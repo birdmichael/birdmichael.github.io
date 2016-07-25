@@ -1,0 +1,601 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="NSSearchPathForDirectoriesInDomains," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="NSSearchPathForDirectoriesInDomains函数有三个参数.分别是NSSearchPathDirectory directory,NSSearchPathDomainMask domainMask,BOOL expandTilde.
+现在来深入讲解一下这三个参数.
+国际惯例,先贴上官方代码:
+typedef NS_ENUM(NSUInteger, NSSearchPath">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSSearchPathForDirectoriesInDomains深入解析">
+<meta property="og:url" content="http://yoursite.com/2015/07/12/nssearchpathfordirectoriesindomains-deep-analysis/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="NSSearchPathForDirectoriesInDomains函数有三个参数.分别是NSSearchPathDirectory directory,NSSearchPathDomainMask domainMask,BOOL expandTilde.
+现在来深入讲解一下这三个参数.
+国际惯例,先贴上官方代码:
+typedef NS_ENUM(NSUInteger, NSSearchPath">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSSearchPathForDirectoriesInDomains深入解析">
+<meta name="twitter:description" content="NSSearchPathForDirectoriesInDomains函数有三个参数.分别是NSSearchPathDirectory directory,NSSearchPathDomainMask domainMask,BOOL expandTilde.
+现在来深入讲解一下这三个参数.
+国际惯例,先贴上官方代码:
+typedef NS_ENUM(NSUInteger, NSSearchPath">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/12/nssearchpathfordirectoriesindomains-deep-analysis/"/>
+
+  <title> NSSearchPathForDirectoriesInDomains深入解析 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NSSearchPathForDirectoriesInDomains深入解析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-12T02:18:43+08:00" content="2015-07-12">
+              2015-07-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>NSSearchPathForDirectoriesInDomains函数有三个参数.分别是<span class="s1">NSSearchPathDirectory directory,</span><span class="s1">NSSearchPathDomainMask domainMask,</span><span class="s1">BOOL</span><span class="s2"> expandTilde.</span></p>
+<p>现在来深入讲解一下这三个参数.</p>
+<p>国际惯例,先贴上官方代码:</p>
+<p><pre class="lang:objc decode:true ">typedef NS_ENUM(NSUInteger, NSSearchPathDirectory) {<br>    NSApplicationDirectory = 1,             // supported applications (Applications)<br>    NSDemoApplicationDirectory,             // unsupported applications, demonstration versions (Demos)<br>    NSDeveloperApplicationDirectory,        // developer applications (Developer/Applications). DEPRECATED - there is no one single Developer directory.<br>    NSAdminApplicationDirectory,            // system and network administration applications (Administration)<br>    NSLibraryDirectory,                     // various documentation, support, and configuration files, resources (Library)<br>    NSDeveloperDirectory,                   // developer resources (Developer) DEPRECATED - there is no one single Developer directory.<br>    NSUserDirectory,                        // user home directories (Users)<br>    NSDocumentationDirectory,               // documentation (Documentation)<br>    NSDocumentDirectory,                    // documents (Documents)<br>    NSCoreServiceDirectory,                 // location of CoreServices directory (System/Library/CoreServices)<br>    NSAutosavedInformationDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 11,   // location of autosaved documents (Documents/Autosaved)<br>    NSDesktopDirectory = 12,                // location of user’s desktop<br>    NSCachesDirectory = 13,                 // location of discardable cache files (Library/Caches)<br>    NSApplicationSupportDirectory = 14,     // location of application support files (plug-ins, etc) (Library/Application Support)<br>    NSDownloadsDirectory NS_ENUM_AVAILABLE(10_5, 2_0) = 15,              // location of the user’s “Downloads” directory<br>    NSInputMethodsDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 16,           // input methods (Library/Input Methods)<br>    NSMoviesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 17,                 // location of user’s Movies directory (~/Movies)<br>    NSMusicDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 18,                  // location of user’s Music directory (~/Music)<br>    NSPicturesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 19,               // location of user’s Pictures directory (~/Pictures)<br>    NSPrinterDescriptionDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 20,     // location of system’s PPDs directory (Library/Printers/PPDs)<br>    NSSharedPublicDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 21,           // location of user’s Public sharing directory (~/Public)<br>    NSPreferencePanesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 22,        // location of the PreferencePanes directory for use with System Preferences (Library/PreferencePanes)<br>    NSApplicationScriptsDirectory NS_ENUM_AVAILABLE(10_8, NA) = 23,      // location of the user scripts folder for the calling application (~/Library/Application Scripts/code-signing-id)<br>    NSItemReplacementDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 99,        // For use with NSFileManager’s URLForDirectory:inDomain:appropriateForURL:create:error:<br>    NSAllApplicationsDirectory = 100,       // all directories where applications can occur<br>    NSAllLibrariesDirectory = 101,          // all directories where resources can occur<br>    NSTrashDirectory NS_ENUM_AVAILABLE(10_8, NA) = 102                   // location of Trash directory</pre></p>
+<p>};</p>
+<p>typedef NS_OPTIONS(NSUInteger, NSSearchPathDomainMask) {<br>    NSUserDomainMask = 1,       // user’s home directory — place to install user’s personal items (~)<br>    NSLocalDomainMask = 2,      // local to the current machine — place to install items available to everyone on this machine (/Library)<br>    NSNetworkDomainMask = 4,    // publically available location in the local area network — place to install items available on the network (/Network)<br>    NSSystemDomainMask = 8,     // provided by Apple, unmodifiable (/System)<br>    NSAllDomainsMask = 0x0ffff  // all domains: all of the above and future items<br>};<br><a id="more"></a>其中NSSearchPathDirectory其实官方已经写的很清楚了.不会英文的同学看括号里面的内容就好了.</p>
+<p>重点是NSSearchPathDomainMask</p>
+<p><pre class="lang:objc decode:true">NSUserDomainMask = 1,//用户主目录中<br>NSLocalDomainMask = 2,//当前机器中(/Library)<br>NSNetworkDomainMask = 4,//网络中可见的主机<br>NSSystemDomainMask = 8,//系统目录,不可修改(/System)<br>NSAllDomainsMask = 0x0ffff,//全部</pre><br>expandTilde是 是否展开成完整路径,返回值通常是YES.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NSSearchPathForDirectoriesInDomains/" rel="tag">#NSSearchPathForDirectoriesInDomains</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/" rel="next" title="iOS应用数据存储的常用方式(沙盒Sandbox)">
+                <i class="fa fa-chevron-left"></i> iOS应用数据存储的常用方式(沙盒Sandbox)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/12/nsuserdefaults-e6-b7-b1-e5-85-a5-e8-a7-a3-e6-9e-90/" rel="prev" title="NSUserDefaults深入解析">
+                NSUserDefaults深入解析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

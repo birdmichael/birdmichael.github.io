@@ -1,0 +1,719 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Quartz 2D," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本次小Demo分2块,一个是自己写的小黄人的头部实战使用.确实很挫..里面主要是一些圆,弧,线,的使用.
+第二个是找到的关于基础使用比较全的一个Demo.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quartz 2D小Demo">
+<meta property="og:url" content="http://yoursite.com/2015/07/13/quartz-2d-e5-b0-8fdemo/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="本次小Demo分2块,一个是自己写的小黄人的头部实战使用.确实很挫..里面主要是一些圆,弧,线,的使用.
+第二个是找到的关于基础使用比较全的一个Demo.">
+<meta property="og:image" content="http://s-187595.abc188.com/wp-content/uploads/2015/07/11111.png">
+<meta property="og:image" content="http://s-187595.abc188.com/wp-content/uploads/2015/07/QQ20150714-1@2x.png">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Quartz 2D小Demo">
+<meta name="twitter:description" content="本次小Demo分2块,一个是自己写的小黄人的头部实战使用.确实很挫..里面主要是一些圆,弧,线,的使用.
+第二个是找到的关于基础使用比较全的一个Demo.">
+<meta name="twitter:image" content="http://s-187595.abc188.com/wp-content/uploads/2015/07/11111.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/13/quartz-2d-e5-b0-8fdemo/"/>
+
+  <title> Quartz 2D小Demo | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Quartz 2D小Demo
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-13T18:10:07+08:00" content="2015-07-13">
+              2015-07-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/摘。/" itemprop="url" rel="index">
+                    <span itemprop="name">摘。</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本次小Demo分2块,一个是自己写的小黄人的头部实战使用.确实很挫..里面主要是一些圆,弧,线,的使用.</p>
+<p>第二个是找到的关于基础使用比较全的一个Demo.</p>
+<p><a href="http://s-187595.abc188.com/wp-content/uploads/2015/07/11111.png" target="_blank" rel="external"><img src="http://s-187595.abc188.com/wp-content/uploads/2015/07/11111.png" alt="11111"></a><a href="http://s-187595.abc188.com/wp-content/uploads/2015/07/QQ20150714-1@2x.png" target="_blank" rel="external"><img src="http://s-187595.abc188.com/wp-content/uploads/2015/07/QQ20150714-1@2x.png" alt="QQ20150714-1@2x"></a><br><a id="more"></a></p>
+<p>代码1.小黄人:</p>
+<p><pre class="lang:objc decode:true ">- (void)drawRect:(CGRect)rect<br>{<br>    // 1.获取上下文<br>    CGContextRef ctx = UIGraphicsGetCurrentContext();</pre></p>
+<pre><code>// 2.身体
+drawBody(ctx, rect);
+
+// 3.嘴
+drawZui(ctx, rect);
+
+// 3.画眼睛
+drawEyes(ctx, rect);
+</code></pre><p>}</p>
+<p>/**</p>
+<ul>
+<li><p>眼睛<br><em>/<br>void drawEyes(CGContextRef ctx, CGRect rect)<br>{<br>// 0.其他变量<br>CGFloat kuangXPading = 5;<br>CGFloat eyesBianKuangHight = 15; // 眼睛边框的高度<br>// 1.黑色绑带<br>CGFloat startX = rect.size.width </em> 0.5 - BMRadius;<br>CGFloat startY = BMTopY;<br>CGContextMoveToPoint(ctx, startX, startY);<br>CGFloat endX = startX + 2 * BMRadius;<br>CGFloat endY = startY;<br>CGContextAddLineToPoint(ctx, endX, endY);<br>CGContextSetLineWidth(ctx, 30);  //  绑带线条<br>[[UIColor blackColor] set];<br>// 绘制线条<br>CGContextStrokePath(ctx);</p>
+<p>//画眼镜框边框(左)<br>CGFloat EyesBianKuangRadius = BMRadius <em> 0.96;<br>CGFloat EyesBianKuangX = rect.size.width </em> 0.5 - EyesBianKuangRadius + kuangXPading;<br>CGFloat EyesBianKuangY = BMTopY - eyesBianKuangHight ;<br>CGContextMoveToPoint(ctx, EyesBianKuangX, EyesBianKuangY);<br>CGFloat endEyesBianKuangX = EyesBianKuangX;<br>CGFloat endEyesBianKuangY = BMTopY + eyesBianKuangHight;<br>CGContextAddLineToPoint(ctx, endEyesBianKuangX, endEyesBianKuangY);<br>CGContextSetLineWidth(ctx, 10);  //  绑带线条<br>CGContextSetLineCap(ctx, kCGLineCapRound);<br>[BMColor(142, 142, 142) set];<br>CGContextStrokePath(ctx);</p>
+<p>// 2.最外圈的镜框<br>[BMColor(92, 92, 92) set];<br>CGFloat kuangRadius = EyesBianKuangRadius <em> 0.5;<br>CGFloat kuangY = startY;<br>CGFloat kuangX = rect.size.width </em> 0.5 - kuangRadius + kuangXPading;<br>CGContextAddArc(ctx, kuangX, kuangY, kuangRadius, 0, M_PI * 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>// 3.里面的皮肤框<br>[BMColor(252, 198, 0) set];<br>CGFloat yellowRadius = kuangRadius * 0.76;<br>CGFloat yellowX = kuangX;<br>CGFloat yellowY = kuangY;</p>
+<p>CGContextAddArc(ctx, yellowX, yellowY, yellowRadius, 0, M_PI * 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>// 3.2里面的白框<br>[[UIColor whiteColor] set];<br>CGFloat whiteRadius = yellowRadius <em> 0.9; // 眼睛大小<br>CGFloat whiteX = kuangX;<br>CGFloat whiteY = kuangY;<br>CGContextAddArc(ctx, whiteX, whiteY, whiteRadius, 0, M_PI </em> 2 , 0);</p>
+<p>CGContextFillPath(ctx);</p>
+<p>// 4.在里面的眼框<br>[BMColor(108, 81, 55) set];<br>CGFloat eyeRadius = whiteRadius <em> 0.48;<br>CGFloat eyeX = kuangX ;<br>CGFloat eyeY = kuangY + 5; // 眼眶下移.<br>CGContextAddArc(ctx, eyeX, eyeY, eyeRadius, 0, M_PI </em> 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>// 4.1在里面的眼珠<br>[[UIColor blackColor] set];<br>CGFloat eyeZhuRadius = eyeRadius <em> 0.55;<br>CGFloat eyeZHuX = eyeX;<br>CGFloat eyeZHUY = eyeY + 5; // 眼珠下移.<br>CGContextAddArc(ctx, eyeZHuX, eyeZHUY, eyeZhuRadius, 0, M_PI </em> 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>//4.2 眼白<br>[[UIColor whiteColor] set];<br>CGFloat eyeBaiRadius = eyeZhuRadius <em> 0.2;<br>CGFloat eyeBaiX = eyeZHuX + 6; // 眼白位置控制.<br>CGFloat eyeBaiY = eyeZHUY + 0; // 眼白位置控制.<br>CGContextAddArc(ctx, eyeBaiX, eyeBaiY, eyeBaiRadius, 0, M_PI </em> 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>//眼皮<br>[BMColor(252, 198, 0) set];<br>CGFloat eyePiRadius = whiteRadius;<br>CGFloat eyePiX = kuangX;<br>CGFloat eyePiY = kuangY;<br>CGContextMoveToPoint(ctx, eyePiX - eyePiRadius, eyePiY);<br>CGFloat contrilEyePiX = eyePiX;<br>CGFloat contrilEyePiY = eyePiY + 10; // 眼皮大小<br>CGContextAddQuadCurveToPoint(ctx, contrilEyePiX, contrilEyePiY, eyePiX + eyePiRadius, eyePiY);<br>CGContextAddArc(ctx, eyePiX, eyePiY, eyePiRadius, 0, M_PI , 1);<br>CGContextFillPath(ctx);</p>
+<p>//另一侧眼镜框边框(右)</p>
+<p>CGFloat otherEyesBianKuangX = rect.size.width * 0.5 + EyesBianKuangRadius - kuangXPading;<br>CGFloat otherEyesBianKuangY = BMTopY - eyesBianKuangHight ;<br>CGContextMoveToPoint(ctx, otherEyesBianKuangX, otherEyesBianKuangY);<br>CGFloat otherendEyesBianKuangX = otherEyesBianKuangX;<br>CGFloat otherendEyesBianKuangY = BMTopY + eyesBianKuangHight;<br>CGContextAddLineToPoint(ctx, otherendEyesBianKuangX, otherendEyesBianKuangY);<br>CGContextSetLineWidth(ctx, 10);  //  绑带线条<br>CGContextSetLineCap(ctx, kCGLineCapRound);<br>[BMColor(142, 142, 142) set];<br>CGContextStrokePath(ctx);</p>
+<p>// 5.另外一边最外圈的镜框<br>[BMColor(92, 92, 92) set];<br>CGFloat OtherKuangY = kuangY;<br>CGFloat OtherKuangX = rect.size.width <em> 0.5 + kuangRadius - kuangXPading;<br>CGContextAddArc(ctx, OtherKuangX, OtherKuangY, kuangRadius, 0, M_PI </em> 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>// 6.另外一侧里面的皮肤框<br>[BMColor(252, 198, 0) set];<br>CGFloat otheryellowX = OtherKuangX;<br>CGFloat otheryellowY = OtherKuangY;<br>CGContextAddArc(ctx, otheryellowX, otheryellowY, yellowRadius, 0, M_PI * 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>// 6.2里面的白框<br>[[UIColor whiteColor] set];<br>CGFloat otherwhiteX = OtherKuangX;<br>CGFloat otherwhiteY = OtherKuangY;<br>CGContextAddArc(ctx, otherwhiteX, otherwhiteY, whiteRadius, 0, M_PI * 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>// 7.在里面的眼框<br>[BMColor(108, 81, 55) set];<br>CGFloat otherEyeX = OtherKuangX ;<br>CGFloat otherEyeY = OtherKuangY + 5; // 眼眶下移<br>CGContextAddArc(ctx, otherEyeX, otherEyeY, eyeRadius, 0, M_PI <em> 2, 0);<br>CGContextFillPath(ctx);<br>// 7.2在里面的眼珠<br>[[UIColor blackColor] set];<br>CGFloat othereyeZHuX = otherEyeX;<br>CGFloat othereyeZHUY = otherEyeY + 5; // 眼珠下移.<br>CGContextAddArc(ctx, othereyeZHuX, othereyeZHUY, eyeZhuRadius, 0, M_PI </em> 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>//7.3 眼白<br>[[UIColor whiteColor] set];<br>CGFloat othereyeBaiX = othereyeZHuX - 4;<br>CGFloat othereyeBaiY = othereyeZHUY + 0; // 眼白控制.<br>CGContextAddArc(ctx, othereyeBaiX, othereyeBaiY, eyeBaiRadius, 0, M_PI * 2, 0);<br>CGContextFillPath(ctx);</p>
+<p>//另一边眼皮<br>[BMColor(252, 198, 0) set];<br>CGFloat otherEyePiRadius = whiteRadius;<br>CGFloat otherEyePiX = OtherKuangX;<br>CGFloat otherEyePiY = OtherKuangY;<br>CGContextMoveToPoint(ctx, otherEyePiX - otherEyePiRadius, otherEyePiY);<br>CGFloat controlOtherEyePiX = otherEyePiX;<br>CGFloat controlOtherEyePiY = otherEyePiY + 10; // 眼皮大小<br>CGContextAddQuadCurveToPoint(ctx, controlOtherEyePiX, controlOtherEyePiY, otherEyePiX + otherEyePiRadius, otherEyePiY);<br>CGContextAddArc(ctx, otherEyePiX, otherEyePiY, otherEyePiRadius, 0, M_PI , 1);<br>CGContextFillPath(ctx);</p>
+</li>
+</ul>
+<p>}</p>
+<p>/**</p>
+<ul>
+<li><p>画眼镜框边框<br>*/<br>void drawEyesBianKuang(CGContextRef ctx, CGRect rect)<br>{<br>CGFloat eyesBianKuangHight = 20; // 眼睛边框的高度</p>
+<p>// 左<br>CGFloat startX = rect.size.width <em> 0.5 - BMRadius </em> 0.48;<br>CGFloat startY = BMTopY - eyesBianKuangHight - 5;<br>CGContextMoveToPoint(ctx, startX, startY);<br>CGFloat endX = startX;<br>CGFloat endY = BMTopY + eyesBianKuangHight;<br>CGContextAddLineToPoint(ctx, endX, endY);<br>CGContextSetLineWidth(ctx, 10);  //  绑带线条<br>CGContextSetLineCap(ctx, kCGLineCapRound);<br>[BMColor(234, 234, 234) set];<br>// 绘制线条<br>CGContextStrokePath(ctx);</p>
+<p>// 右</p>
+</li>
+</ul>
+<p>}<br>/**</p>
+<ul>
+<li><p>画嘴<br><em>/<br>void drawZui(CGContextRef ctx, CGRect rect)<br>{<br>// 中间的控制点<br>CGFloat controlX = rect.size.width </em> 0.5;<br>CGFloat controlY = rect.size.height * 0.4;</p>
+<p>// 当前点<br>CGFloat marginX = 40;<br>CGFloat marginY = - 18;<br>CGFloat currentX = controlX - marginX;<br>CGFloat currentY = controlY - marginY;<br>CGContextMoveToPoint(ctx, currentX, currentY);</p>
+<p>// 结束点<br>CGFloat endX = controlX + marginX;<br>CGFloat endY = currentY;</p>
+<p>// 贝塞尔曲线<br>CGContextAddQuadCurveToPoint(ctx, controlX, controlY, endX, endY);</p>
+<p>// 设置颜色<br>[[UIColor blackColor] set];</p>
+<p>// 渲染<br>CGContextStrokePath(ctx);<br>}</p>
+</li>
+</ul>
+<p>/**</p>
+<ul>
+<li><p>画身体<br><em>/<br>void drawBody(CGContextRef ctx, CGRect rect)<br>{<br>// 上半圆<br>CGFloat topX = rect.size.width </em> 0.5;<br>CGFloat topY = BMTopY;<br>CGFloat topRadius = BMRadius;<br>CGContextAddArc(ctx, topX, topY, topRadius, 0, M_PI, 1);</p>
+<p>// 向下延伸<br>CGFloat middleX = topX - topRadius;<br>CGFloat middleH = 200; // 中间身体的高度<br>CGFloat middleY = topY + middleH;<br>CGContextAddLineToPoint(ctx, middleX, middleY);</p>
+<p>// 下半圆<br>CGFloat bottomX = topX;<br>CGFloat bottomY = middleY;<br>CGFloat bottomRadius = topRadius;<br>CGContextAddArc(ctx, bottomX, bottomY, bottomRadius, M_PI, 0, 1);</p>
+<p>// 合并路径<br>CGContextClosePath(ctx);</p>
+<p>// 设置颜色<br>[BMColor(252, 218, 0) set];</p>
+<p>// 利用填充方式画出之前的路径<br>CGContextFillPath(ctx);<br>}<br><br>&nbsp;</p>
+</li>
+</ul>
+<p>代码2.转载示例代码:</p>
+<p><pre class="lang:objc decode:true ">#define PI M_PI</pre></p>
+<p>#import “allView.h”</p>
+<p>#import &lt;QuartzCore/QuartzCore.h&gt;<br>@implementation allView</p>
+<ul>
+<li><p>(void)drawRect:(CGRect)rect {<br>  //An opaque type that represents a Quartz 2D drawing environment.<br>  //一个不透明类型的Quartz 2D绘画环境,相当于一个画布,你可以在上面任意绘画<br>  CGContextRef context = UIGraphicsGetCurrentContext();</p>
+<p>  /<em>写文字</em>/<br>  [@”画圆：” drawInRect:CGRectMake(10, 20, 80, 20) withAttributes:nil];<br>  [@”画线及孤线：” drawInRect:CGRectMake(10, 80, 100, 20) withAttributes:nil];;<br>  [@”画矩形：” drawInRect:CGRectMake(10, 120, 80, 20) withAttributes:nil];;<br>  [@”画扇形和椭圆：” drawInRect:CGRectMake(10, 160, 110, 20) withAttributes:nil];;<br>  [@”画三角形：” drawInRect:CGRectMake(10, 220, 80, 20) withAttributes:nil];;<br>  [@”画圆角矩形：” drawInRect:CGRectMake(10, 260, 100, 20) withAttributes:nil];;<br>  [@”画贝塞尔曲线：” drawInRect:CGRectMake(10, 300, 100, 20) withAttributes:nil];;<br>  [@”图片：” drawInRect:CGRectMake(10, 340, 80, 20) withAttributes:nil];</p>
+<p>  /<em>画圆</em>/<br>  //边框圆<br>  CGContextSetRGBStrokeColor(context,1,1,1,1.0);//画笔线的颜色<br>  CGContextSetLineWidth(context, 1.0);//线的宽度<br>  //void CGContextAddArc(CGContextRef c,CGFloat x, CGFloat y,CGFloat radius,CGFloat startAngle,CGFloat endAngle, int clockwise)1弧度＝180°/π （≈57.3°） 度＝弧度×180°/π 360°＝360×π/180 ＝2π 弧度<br>  // x,y为圆点坐标，radius半径，startAngle为开始的弧度，endAngle为 结束的弧度，clockwise 0为顺时针，1为逆时针。<br>  CGContextAddArc(context, 100, 20, 15, 0, 2*PI , 0); //添加一个圆<br>  CGContextDrawPath(context, kCGPathStroke); //绘制路径</p>
+<p>  //填充圆，无边框<br>  CGContextAddArc(context, 150, 30, 30, 0, 2*PI, 0); //添加一个圆<br>  CGContextDrawPath(context, kCGPathFill);//绘制填充</p>
+<p>  //画大圆并填充颜<br>  UIColor<em>aColor = [UIColor colorWithRed:1 green:0.0 blue:0 alpha:1];<br>  CGContextSetFillColorWithColor(context, aColor.CGColor);//填充颜色<br>  CGContextSetLineWidth(context, 3.0);//线的宽度<br>  CGContextAddArc(context, 250, 40, 40, 0, 2</em>PI, 0); //添加一个圆<br>  //kCGPathFill填充非零绕数规则,kCGPathEOFill表示用奇偶规则,kCGPathStroke路径,kCGPathFillStroke路径填充,kCGPathEOFillStroke表示描线，不是填充<br>  CGContextDrawPath(context, kCGPathFillStroke); //绘制路径加填充</p>
+<p>  /<em>画线及孤线</em>/<br>  //画线<br>  CGPoint aPoints[2];//坐标点<br>  aPoints[0] =CGPointMake(100, 80);//坐标1<br>  aPoints[1] =CGPointMake(130, 80);//坐标2<br>  //CGContextAddLines(CGContextRef c, const CGPoint points[],size_t count)<br>  //points[]坐标数组，和count大小<br>  CGContextAddLines(context, aPoints, 2);//添加线<br>  CGContextDrawPath(context, kCGPathStroke); //根据坐标绘制路径</p>
+<p>  //画笑脸弧线<br>  //左<br>  CGContextSetRGBStrokeColor(context, 0, 0, 1, 1);//改变画笔颜色<br>  CGContextMoveToPoint(context, 140, 80);//开始坐标p1<br>  //CGContextAddArcToPoint(CGContextRef c, CGFloat x1, CGFloat y1,CGFloat x2, CGFloat y2, CGFloat radius)<br>  //x1,y1跟p1形成一条线的坐标p2，x2,y2结束坐标跟p3形成一条线的p3,radius半径,注意, 需要算好半径的长度,<br>  CGContextAddArcToPoint(context, 148, 68, 156, 80, 10);<br>  CGContextStrokePath(context);//绘画路径</p>
+<p>  //右<br>  CGContextMoveToPoint(context, 160, 80);//开始坐标p1<br>  //CGContextAddArcToPoint(CGContextRef c, CGFloat x1, CGFloat y1,CGFloat x2, CGFloat y2, CGFloat radius)<br>  //x1,y1跟p1形成一条线的坐标p2，x2,y2结束坐标跟p3形成一条线的p3,radius半径,注意, 需要算好半径的长度,<br>  CGContextAddArcToPoint(context, 168, 68, 176, 80, 10);<br>  CGContextStrokePath(context);//绘画路径</p>
+<p>  //右<br>  CGContextMoveToPoint(context, 150, 90);//开始坐标p1<br>  //CGContextAddArcToPoint(CGContextRef c, CGFloat x1, CGFloat y1,CGFloat x2, CGFloat y2, CGFloat radius)<br>  //x1,y1跟p1形成一条线的坐标p2，x2,y2结束坐标跟p3形成一条线的p3,radius半径,注意, 需要算好半径的长度,<br>  CGContextAddArcToPoint(context, 158, 102, 166, 90, 10);<br>  CGContextStrokePath(context);//绘画路径<br>  //注，如果还是没弄明白怎么回事，请参考：<a href="http://donbe.blog.163.com/blog/static/138048021201052093633776/" target="_blank" rel="external">http://donbe.blog.163.com/blog/static/138048021201052093633776/</a></p>
+<p>  /<em>画矩形</em>/<br>  CGContextStrokeRect(context,CGRectMake(100, 120, 10, 10));//画方框<br>  CGContextFillRect(context,CGRectMake(120, 120, 10, 10));//填充框<br>  //矩形，并填弃颜色<br>  CGContextSetLineWidth(context, 2.0);//线的宽度<br>  aColor = [UIColor blueColor];//blue蓝色<br>  CGContextSetFillColorWithColor(context, aColor.CGColor);//填充颜色<br>  aColor = [UIColor yellowColor];<br>  CGContextSetStrokeColorWithColor(context, aColor.CGColor);//线框颜色<br>  CGContextAddRect(context,CGRectMake(140, 120, 60, 30));//画方框<br>  CGContextDrawPath(context, kCGPathFillStroke);//绘画路径</p>
+<p>  //矩形，并填弃渐变颜色<br>  //关于颜色参考<a href="http://blog.sina.com.cn/s/blog_6ec3c9ce01015v3c.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_6ec3c9ce01015v3c.html</a><br>  //<a href="http://blog.csdn.net/reylen/article/details/8622932" target="_blank" rel="external">http://blog.csdn.net/reylen/article/details/8622932</a><br>  //第一种填充方式，第一种方式必须导入类库quartcore并#import &lt;QuartzCore/QuartzCore.h&gt;，这个就不属于在context上画，而是将层插入到view层上面。那么这里就设计到Quartz Core 图层编程了。<br>  CAGradientLayer *gradient1 = [CAGradientLayer layer];<br>  gradient1.frame = CGRectMake(240, 120, 60, 30);<br>  gradient1.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor,</p>
+<pre><code>(id)[UIColor grayColor].CGColor,
+(id)[UIColor blackColor].CGColor,
+(id)[UIColor yellowColor].CGColor,
+(id)[UIColor blueColor].CGColor,
+(id)[UIColor redColor].CGColor,
+(id)[UIColor greenColor].CGColor,
+(id)[UIColor orangeColor].CGColor,
+(id)[UIColor brownColor].CGColor,nil];
+</code></pre><p>  [self.layer insertSublayer:gradient1 atIndex:0];<br>  //第二种填充方式<br>  CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();<br>  CGFloat colors[] =<br>  {</p>
+<pre><code>1,1,1, 1.00,
+1,1,0, 1.00,
+1,0,0, 1.00,
+1,0,1, 1.00,
+0,1,1, 1.00,
+0,1,0, 1.00,
+0,0,1, 1.00,
+0,0,0, 1.00,
+</code></pre><p>  };<br>  CGGradientRef gradient = CGGradientCreateWithColorComponents<br>  (rgb, colors, NULL, sizeof(colors)/(sizeof(colors[0])<em>4));//形成梯形，渐变的效果<br>  CGColorSpaceRelease(rgb);<br>  //画线形成一个矩形<br>  //CGContextSaveGState与CGContextRestoreGState的作用<br>  /</em><br>   CGContextSaveGState函数的作用是将当前图形状态推入堆栈。之后，您对图形状态所做的修改会影响随后的描画操作，但不影响存储在堆栈中的拷贝。在修改完成后，您可以通过CGContextRestoreGState函数把堆栈顶部的状态弹出，返回到之前的图形状态。这种推入和弹出的方式是回到之前图形状态的快速方法，避免逐个撤消所有的状态修改；这也是将某些状态（比如裁剪路径）恢复到原有设置的唯一方式。<br>   */<br>  CGContextSaveGState(context);<br>  CGContextMoveToPoint(context, 220, 90);<br>  CGContextAddLineToPoint(context, 240, 90);<br>  CGContextAddLineToPoint(context, 240, 110);<br>  CGContextAddLineToPoint(context, 220, 110);<br>  CGContextClip(context);//context裁剪路径,后续操作的路径<br>  //CGContextDrawLinearGradient(CGContextRef context,CGGradientRef gradient, CGPoint startPoint, CGPoint endPoint,CGGradientDrawingOptions options)<br>  //gradient渐变颜色,startPoint开始渐变的起始位置,endPoint结束坐标,options开始坐标之前or开始之后开始渐变<br>  CGContextDrawLinearGradient(context, gradient,CGPointMake</p>
+<pre><code>(220,90) ,CGPointMake(240,110),
+kCGGradientDrawsAfterEndLocation);
+</code></pre><p>  CGContextRestoreGState(context);// 恢复到之前的context</p>
+<p>  //再写一个看看效果<br>  CGContextSaveGState(context);<br>  CGContextMoveToPoint(context, 260, 90);<br>  CGContextAddLineToPoint(context, 280, 90);<br>  CGContextAddLineToPoint(context, 280, 100);<br>  CGContextAddLineToPoint(context, 260, 100);<br>  CGContextClip(context);//裁剪路径<br>  //说白了，开始坐标和结束坐标是控制渐变的方向和形状<br>  CGContextDrawLinearGradient(context, gradient,CGPointMake</p>
+<pre><code>(260, 90) ,CGPointMake(260, 100),
+kCGGradientDrawsAfterEndLocation);
+</code></pre><p>  CGContextRestoreGState(context);// 恢复到之前的context</p>
+<p>  //下面再看一个颜色渐变的圆<br>  CGContextDrawRadialGradient(context, gradient, CGPointMake(300, 100), 0.0, CGPointMake(300, 100), 10, kCGGradientDrawsBeforeStartLocation);</p>
+<p>  /<em>画扇形和椭圆</em>/<br>  //画扇形，也就画圆，只不过是设置角度的大小，形成一个扇形<br>  aColor = [UIColor colorWithRed:0 green:1 blue:1 alpha:1];<br>  CGContextSetFillColorWithColor(context, aColor.CGColor);//填充颜色<br>  //以10为半径围绕圆心画指定角度扇形<br>  CGContextMoveToPoint(context, 160, 180);<br>  CGContextAddArc(context, 160, 180, 30,  -60 <em> PI / 180, -120 </em> PI / 180, 1);<br>  CGContextClosePath(context);<br>  CGContextDrawPath(context, kCGPathFillStroke); //绘制路径</p>
+<p>  //画椭圆<br>  CGContextAddEllipseInRect(context, CGRectMake(160, 180, 20, 8)); //椭圆<br>  CGContextDrawPath(context, kCGPathFillStroke);</p>
+<p>  /<em>画三角形</em>/<br>  //只要三个点就行跟画一条线方式一样，把三点连接起来<br>  CGPoint sPoints[3];//坐标点<br>  sPoints[0] =CGPointMake(100, 220);//坐标1<br>  sPoints[1] =CGPointMake(130, 220);//坐标2<br>  sPoints[2] =CGPointMake(130, 160);//坐标3<br>  CGContextAddLines(context, sPoints, 3);//添加线<br>  CGContextClosePath(context);//封起来<br>  CGContextDrawPath(context, kCGPathFillStroke); //根据坐标绘制路径</p>
+<p>  /<em>画圆角矩形</em>/<br>  float fw = 180;<br>  float fh = 280;</p>
+<p>  CGContextMoveToPoint(context, fw, fh-20);  // 开始坐标右边开始<br>  CGContextAddArcToPoint(context, fw, fh, fw-20, fh, 10);  // 右下角角度<br>  CGContextAddArcToPoint(context, 120, fh, 120, fh-20, 10); // 左下角角度<br>  CGContextAddArcToPoint(context, 120, 250, fw-20, 250, 10); // 左上角<br>  CGContextAddArcToPoint(context, fw, 250, fw, fh-20, 10); // 右上角<br>  CGContextClosePath(context);<br>  CGContextDrawPath(context, kCGPathFillStroke); //根据坐标绘制路径</p>
+<p>  /<em>画贝塞尔曲线</em>/<br>  //二次曲线<br>  CGContextMoveToPoint(context, 120, 300);//设置Path的起点<br>  CGContextAddQuadCurveToPoint(context,190, 310, 120, 390);//设置贝塞尔曲线的控制点坐标和终点坐标<br>  CGContextStrokePath(context);<br>  //三次曲线函数<br>  CGContextMoveToPoint(context, 200, 300);//设置Path的起点<br>  CGContextAddCurveToPoint(context,250, 280, 250, 400, 280, 300);//设置贝塞尔曲线的控制点坐标和控制点坐标终点坐标<br>  CGContextStrokePath(context);</p>
+<p>  /<em>图片</em>/<br>  UIImage *image = [UIImage imageNamed:@”IMG_0291”];<br>  [image drawInRect:CGRectMake(60, 340, 50, 50)];//在坐标中画出图片<br>  //    [image drawAtPoint:CGPointMake(100, 340)];//保持图片大小在point点开始画图片，可以把注释去掉看看<br>  CGContextDrawImage(context, CGRectMake(60, 400, 50, 50), image.CGImage);//使用这个使图片上下颠倒了，参考<a href="http://blog.csdn.net/koupoo/article/details/8670024" target="_blank" rel="external">http://blog.csdn.net/koupoo/article/details/8670024</a></p>
+<p>  //    CGContextDrawTiledImage(context, CGRectMake(0, 0, 20, 20), image.CGImage);//平铺图<br>}<br>原文出处:<a href="http://blog.csdn.net/rhljiayou/article/details/9919713" target="_blank" rel="external">http://blog.csdn.net/rhljiayou/article/details/9919713</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Quartz-2D/" rel="tag">#Quartz 2D</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/12/nsuserdefaults-e6-b7-b1-e5-85-a5-e8-a7-a3-e6-9e-90/" rel="next" title="NSUserDefaults深入解析">
+                <i class="fa fa-chevron-left"></i> NSUserDefaults深入解析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/20/uiimage-extension-returns-stretching-a-picture-picture-without-distortion/" rel="prev" title="UIImage扩展 返回拉伸图片(图片不失真)">
+                UIImage扩展 返回拉伸图片(图片不失真) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

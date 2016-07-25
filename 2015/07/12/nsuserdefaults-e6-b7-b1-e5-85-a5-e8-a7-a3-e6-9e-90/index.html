@@ -1,0 +1,663 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="NSUserDefaults," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="首先,NSUserDefaults是系统提供的的一个类,其实通过名字我们都可以理解到,主要保存应用程序设置和属性以及用户数据.比如你可以用来存储用户在应用程序中使用的图片或默认颜色方案,或者说是保存密码,自动登录这些等等配置.
+然而NSUserDefaults的本质其实就是Plist(/Library/Prefereces，里面有个plist文件，存储的就是你的userDefaults)(也就是说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSUserDefaults深入解析">
+<meta property="og:url" content="http://yoursite.com/2015/07/12/nsuserdefaults-e6-b7-b1-e5-85-a5-e8-a7-a3-e6-9e-90/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="首先,NSUserDefaults是系统提供的的一个类,其实通过名字我们都可以理解到,主要保存应用程序设置和属性以及用户数据.比如你可以用来存储用户在应用程序中使用的图片或默认颜色方案,或者说是保存密码,自动登录这些等等配置.
+然而NSUserDefaults的本质其实就是Plist(/Library/Prefereces，里面有个plist文件，存储的就是你的userDefaults)(也就是说">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSUserDefaults深入解析">
+<meta name="twitter:description" content="首先,NSUserDefaults是系统提供的的一个类,其实通过名字我们都可以理解到,主要保存应用程序设置和属性以及用户数据.比如你可以用来存储用户在应用程序中使用的图片或默认颜色方案,或者说是保存密码,自动登录这些等等配置.
+然而NSUserDefaults的本质其实就是Plist(/Library/Prefereces，里面有个plist文件，存储的就是你的userDefaults)(也就是说">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/12/nsuserdefaults-e6-b7-b1-e5-85-a5-e8-a7-a3-e6-9e-90/"/>
+
+  <title> NSUserDefaults深入解析 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NSUserDefaults深入解析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-12T03:43:52+08:00" content="2015-07-12">
+              2015-07-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/Xcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Xcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首先,NSUserDefaults是系统提供的的一个类,其实通过名字我们都可以理解到,主要保存应用程序设置和属性以及用户数据.比如你可以用来存储用户在应用程序中使用的图片或默认颜色方案,或者说是保存密码,自动登录这些等等配置.</p>
+<p>然而NSUserDefaults的本质其实就是Plist(/Library/Prefereces，里面有个plist文件，存储的就是你的userDefaults)(也就是说一个Value 一个Key ).并且<strong>NSUserDefaults是单例，同时也是线程安全的.</strong>iOS的defaults系统在整个app中都是可用的，因此存放到defaults系统中的数据也是整个应用程序生命周期中可用的。也就是说，无论用户关闭程序还是关机，在用户再次打开程序或开机后这些数据仍然存在。</p>
+<p>引入官方支持的数据类型:</p>
+<p>NSNumber（Integer、Float、Double），NSString，NSDate，NSArray，NSDictionary，<span class="s1">NSURL, </span>BOOL类型</p>
+<p>如果用3个词来形容它:1.<strong>方便2.高效3.超轻量级</strong>.</p>
+<blockquote>
+<p>如果将默认数据库比喻为SQL Server数据库，那么NSUserDefaults就相当于SQL语句。就像我们通过SQL语句可以对SQL Server数据库进行增删改查操作一样。我们可以通过NSUserDefaults对默认系统操作。<br><a id="more"></a></p>
+</blockquote>
+<ul>
+<li><p><span style="color: #ff0000;"><strong>NSUserDefaults 存储的对象全是不可变的（这一点非常关键，弄错的话程序会出bug）</strong></span> <wbr><br>例如，如果我想要存储一个 NSMutableArray 对象，我必须先创建一个不可变数组（NSArray）再将它存入NSUserDefaults中去，代码如下：<br><pre class="lang:objc decode:true">    NSMutableArray <em>mutableArray = [NSMutableArray arrayWithObjects:@”bird”,@”michael”, nil];<br>NSArray </em> array = [NSArray arrayWithArray:mutableArray];</pre></p>
+<p>NSUserDefaults *user = [NSUserDefaults standardUserDefaults];<br>[user setObject:array forKey:@”user”];<br>取出数据是一样的，想要用NSUserDefaults中的数据给可变数组赋值</p>
+</li>
+</ul>
+<p>先给出一个<strong><span style="color: #ff0000;">错误</span></strong>的写法：</p>
+<p><pre class="lang:objc decode:true">    NSUserDefaults <em>user = [NSUserDefaults standardUserDefaults];<br>    NSMutableArray </em>mutableArray = [user objectForKey:@”user”];</pre></p>
+<blockquote>
+<p>这样写后，mutableArray 就变成了不可变数组了，如果你要在数组中添加或删除数据就会出现bug.<br>所以<strong><span style="color: #ff0000;">正确</span></strong>写法是:</p>
+<p><div></div></p>
+<p><div></div></p>
+<p><pre class="lang:objc decode:true">NSUserDefaults *user = [NSUserDefaults standardUserDefaults];</pre></p>
+</blockquote>
+<pre><code>//可以用alloc 方法代替
+NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:[user objectForKey:@&quot;user&quot;];&lt;/pre&gt;
+</code></pre><p>&nbsp;</p>
+<p>以下列举了一些常用的：</p>
+<p><pre class="lang:objc decode:true">+ (NSUserDefaults *)standardUserDefaults</pre><br>创建一个NSUserDefaults实例。后，如果 默认数据库 没有建立，那么，默认数据库将被按照以下顺序被建立。</p>
+<p>NSArgumentDomain（应用程序域，应用范围在该应用程序中）</p>
+<p>NSGlobalDomain（全局域，所有应用程序都将公用该域）</p>
+<p>NSRegistrationDomain（临时域，为了确保创建成功）</p>
+<p>（当然，取值的时候，也应该是这样的顺序吧，这样才能保证不同应用程序中的数据不被冲突）</p>
+<p>&nbsp;</p>
+<p><pre class="lang:objc decode:true">+ (void)resetStandardUserDefaults</pre><br>将内存中进行的修改，同步到默认数据库中。</p>
+<p>&nbsp;</p>
+<p><pre class="lang:objc decode:true">- (id)init</pre><br>初始化一个默认的NSUserDefaults</p>
+<p>&nbsp;</p>
+<p><pre class="lang:objc decode:true">- (id)initWithUser:(NSString *)username</pre><br>初始化一个特定用户的NSUserDefaults，如果该用户不存在，则返回nil</p>
+<p>&nbsp;</p>
+<p><pre class="lang:objc decode:true ">- (void)removeObjectForKey:(NString *)defaultName</pre><br>删除响应的项</p>
+<p>&nbsp;</p>
+<p>Get方法</p>
+<p><pre class="lang:objc decode:true ">- (id)objectForKey:(NSString *)defaultName;</pre></p>
+<ul>
+<li>(NSString <em>)stringForKey:(NSString </em>)defaultName;</li>
+<li>(NSArray <em>)arrayForKey:(NSString </em>)defaultName;</li>
+<li>(NSDictionary <em>)dictionaryForKey:(NSString </em>)defaultName;</li>
+<li>(NSData <em>)dataForKey:(NSString </em>)defaultName;</li>
+<li>(NSArray <em>)stringArrayForKey:(NSString </em>)defaultName;</li>
+<li>(NSInteger)integerForKey:(NSString *)defaultName;</li>
+<li>(float)floatForKey:(NSString *)defaultName;</li>
+<li>(double)doubleForKey:(NSString *)defaultName;</li>
+<li>(BOOL)boolForKey:(NSString *)defaultName;</li>
+<li>(NSURL <em>)URLForKey:(NSString </em>)defaultName NS_AVAILABLE(10_6, 4_0);<br>&nbsp;</li>
+</ul>
+<p>Setting方法：</p>
+<p><pre class="lang:objc decode:true">- (void)setObject:(id)value forKey:(NSString *)defaultName;</pre></p>
+<ul>
+<li>(void)setInteger:(NSInteger)value forKey:(NSString *)defaultName;</li>
+<li>(void)setFloat:(float)value forKey:(NSString *)defaultName;</li>
+<li>(void)setDouble:(double)value forKey:(NSString *)defaultName;</li>
+<li>(void)setBool:(BOOL)value forKey:(NSString *)defaultName;</li>
+<li>(void)setURL:(NSURL <em>)url forKey:(NSString </em>)defaultName NS_AVAILABLE(10_6, 4_0);<br>&nbsp;</li>
+</ul>
+<p>官方头文件还有很多其他方法,就不全部解释了.</p>
+<p>另外,一般使用 NSUserDefaults 存储自定义对象,会先将自定义类型转换为NSData类型,然后丢入数组(或者单例存储)中.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NSUserDefaults/" rel="tag">#NSUserDefaults</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/12/nssearchpathfordirectoriesindomains-deep-analysis/" rel="next" title="NSSearchPathForDirectoriesInDomains深入解析">
+                <i class="fa fa-chevron-left"></i> NSSearchPathForDirectoriesInDomains深入解析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/13/quartz-2d-e5-b0-8fdemo/" rel="prev" title="Quartz 2D小Demo">
+                Quartz 2D小Demo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

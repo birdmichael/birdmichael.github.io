@@ -1,0 +1,656 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本地仓库操作01. GIT命令行帮助$ svn help查看svn所有命令的帮助$ svn help 子命令
+要退出帮助信息，按”q”翻看下页，按”空格”翻看上页，按”CTRL+B”要搜索相关文字，按”/“然后输入”相关文字”02. 创建代码库 &amp;amp; 配置个人信息1&amp;gt;  创建代码仓库$ git init
+2&amp;gt;  配置用户名和邮箱$ git config user.name bir">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git零基础指南。。全过程代码">
+<meta property="og:url" content="http://yoursite.com/2015/09/09/essential-guide-to-git-zero-process-code/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="本地仓库操作01. GIT命令行帮助$ svn help查看svn所有命令的帮助$ svn help 子命令
+要退出帮助信息，按”q”翻看下页，按”空格”翻看上页，按”CTRL+B”要搜索相关文字，按”/“然后输入”相关文字”02. 创建代码库 &amp;amp; 配置个人信息1&amp;gt;  创建代码仓库$ git init
+2&amp;gt;  配置用户名和邮箱$ git config user.name bir">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git零基础指南。。全过程代码">
+<meta name="twitter:description" content="本地仓库操作01. GIT命令行帮助$ svn help查看svn所有命令的帮助$ svn help 子命令
+要退出帮助信息，按”q”翻看下页，按”空格”翻看上页，按”CTRL+B”要搜索相关文字，按”/“然后输入”相关文字”02. 创建代码库 &amp;amp; 配置个人信息1&amp;gt;  创建代码仓库$ git init
+2&amp;gt;  配置用户名和邮箱$ git config user.name bir">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/09/09/essential-guide-to-git-zero-process-code/"/>
+
+  <title> git零基础指南。。全过程代码 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                git零基础指南。。全过程代码
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-09-09T13:01:46+08:00" content="2015-09-09">
+              2015-09-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/其他/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="本地仓库操作"><a href="#本地仓库操作" class="headerlink" title="本地仓库操作"></a>本地仓库操作</h3><h1 id="01-GIT命令行帮助"><a href="#01-GIT命令行帮助" class="headerlink" title="01. GIT命令行帮助"></a><pre class="lang:objc decode:true">01. GIT命令行帮助</pre></h1><p>$ svn help<br>查看svn所有命令的帮助<br>$ svn help 子命令</p>
+<h1 id="要退出帮助信息，按”q”"><a href="#要退出帮助信息，按”q”" class="headerlink" title="要退出帮助信息，按”q”"></a>要退出帮助信息，按”q”</h1><h1 id="翻看下页，按”空格”"><a href="#翻看下页，按”空格”" class="headerlink" title="翻看下页，按”空格”"></a>翻看下页，按”空格”</h1><h1 id="翻看上页，按”CTRL-B”"><a href="#翻看上页，按”CTRL-B”" class="headerlink" title="翻看上页，按”CTRL+B”"></a>翻看上页，按”CTRL+B”</h1><h1 id="要搜索相关文字，按”-“然后输入”相关文字”"><a href="#要搜索相关文字，按”-“然后输入”相关文字”" class="headerlink" title="要搜索相关文字，按”/“然后输入”相关文字”"></a>要搜索相关文字，按”/“然后输入”相关文字”</h1><h1 id="02-创建代码库-amp-配置个人信息"><a href="#02-创建代码库-amp-配置个人信息" class="headerlink" title="02. 创建代码库 &amp; 配置个人信息"></a>02. 创建代码库 &amp; 配置个人信息</h1><p>1&gt;  创建代码仓库<br>$ git init</p>
+<p>2&gt;  配置用户名和邮箱<br>$ git config user.name birdmichael<br>$ git config user.email 229953445@qq.com</p>
+<ul>
+<li>以上两个命令会将用户信息保存在当前代码仓库中</li>
+</ul>
+<h1 id="只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子-hooks-程序可以设置一些动作"><a href="#只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子-hooks-程序可以设置一些动作" class="headerlink" title="只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子(hooks)程序可以设置一些动作"></a>只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子(hooks)程序可以设置一些动作</h1><h1 id="例如单元测试发现问题后，自动给相关人员发送电子邮件"><a href="#例如单元测试发现问题后，自动给相关人员发送电子邮件" class="headerlink" title="例如单元测试发现问题后，自动给相关人员发送电子邮件"></a>例如单元测试发现问题后，自动给相关人员发送电子邮件</h1><ul>
+<li>注意 暂时不建议投入一毛钱精力</li>
+</ul>
+<p>3&gt;  如果要一次性配置完成可以使用一下命令<br>$ git config –global user.name birdmichael<br>$ git config –global user.email 229953445@qq.com</p>
+<ul>
+<li>以上两个命令会将用户信息保存在用户目录下的 .gitconfig 文件中</li>
+</ul>
+<p>4&gt;  查看当前所有配置<br>$ git config -l</p>
+<h1 id="03-实际开发"><a href="#03-实际开发" class="headerlink" title="03. 实际开发"></a>03. 实际开发</h1><p>1&gt;  创建代码，开始开发<br>$ touch main.c<br>$ open main.c</p>
+<p>2&gt;  将代码添加到代码库</p>
+<h1 id="查看当前代码库状态"><a href="#查看当前代码库状态" class="headerlink" title="查看当前代码库状态"></a>查看当前代码库状态</h1><p>$ git status</p>
+<h1 id="将文件添加到代码库"><a href="#将文件添加到代码库" class="headerlink" title="将文件添加到代码库"></a>将文件添加到代码库</h1><p>$ git add main.c</p>
+<h1 id="将修改提交到代码库"><a href="#将修改提交到代码库" class="headerlink" title="将修改提交到代码库"></a>将修改提交到代码库</h1><p>$ git commit -m “添加了main.c”</p>
+<p>提示：</p>
+<ul>
+<li>在此一定要使用 -m 参数指定修改的备注信息</li>
+<li>否则会进入 vim 编辑器，如果对vim不熟悉，会是很糟糕的事情</li>
+</ul>
+<h1 id="将当前文件夹下的所有新建或修改的文件一次性添加到代码库"><a href="#将当前文件夹下的所有新建或修改的文件一次性添加到代码库" class="headerlink" title="将当前文件夹下的所有新建或修改的文件一次性添加到代码库"></a>将当前文件夹下的所有新建或修改的文件一次性添加到代码库</h1><p>$ git add .</p>
+<p>3&gt;  添加多个文件<br>$ touch Person.h Person.m<br>$ git add .<br>$ git commit -m “添加了Person类”<br>$ open Person.h<br>$ git add .<br>$ git commit -m “增加Person类属性”</p>
+<ul>
+<li>注意 使用git时，每一次修改都需要添加再提交，这一点是与svn不一样的</li>
+</ul>
+<h2 id="git-的重要概念及工作原理"><a href="#git-的重要概念及工作原理" class="headerlink" title="git 的重要概念及工作原理"></a>git 的重要概念及工作原理</h2><p>工作区<br>暂存区(staged)<br>分支(HEAD)</p>
+<h1 id="04-别名-amp-日志"><a href="#04-别名-amp-日志" class="headerlink" title="04. 别名 &amp; 日志"></a>04. 别名 &amp; 日志</h1><p>$ git config alias.st status<br>$ git config alias.ci “commit -m”</p>
+<p>个人建议：除非特殊原因，最好不要设置别名，否则换一台机器就不会用了</p>
+<h1 id="查看所有版本库日志"><a href="#查看所有版本库日志" class="headerlink" title="查看所有版本库日志"></a>查看所有版本库日志</h1><p>$ git log</p>
+<h1 id="查看指定文件的版本库日志"><a href="#查看指定文件的版本库日志" class="headerlink" title="查看指定文件的版本库日志"></a>查看指定文件的版本库日志</h1><p>$ git log 文件名</p>
+<h1 id="配置带颜色的log别名"><a href="#配置带颜色的log别名" class="headerlink" title="配置带颜色的log别名"></a>配置带颜色的log别名</h1><p>$ git config –global alias.lg “log –color –graph –pretty=format:’%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset’ –abbrev-commit”</p>
+<p>提示：在git中，版本号是一个由SHA1生成的哈希值</p>
+<h1 id="05-版本号，让我们在任意版本之间穿梭"><a href="#05-版本号，让我们在任意版本之间穿梭" class="headerlink" title="05. 版本号，让我们在任意版本之间穿梭"></a>05. 版本号，让我们在任意版本之间穿梭</h1><h1 id="回到当前版本，放弃所有没有提交的修改"><a href="#回到当前版本，放弃所有没有提交的修改" class="headerlink" title="回到当前版本，放弃所有没有提交的修改"></a>回到当前版本，放弃所有没有提交的修改</h1><p>$ git reset –hard HEAD</p>
+<h1 id="回到上一个版本"><a href="#回到上一个版本" class="headerlink" title="回到上一个版本"></a>回到上一个版本</h1><p>$ git reset –hard HEAD^</p>
+<h1 id="回到之前第3个修订版本"><a href="#回到之前第3个修订版本" class="headerlink" title="回到之前第3个修订版本"></a>回到之前第3个修订版本</h1><p>$ git reset –hard HEAD~(3)</p>
+<h1 id="回到指定版本号的版本"><a href="#回到指定版本号的版本" class="headerlink" title="回到指定版本号的版本"></a>回到指定版本号的版本</h1><p>$ git reset e695b67</p>
+<h1 id="查看分支引用记录"><a href="#查看分支引用记录" class="headerlink" title="查看分支引用记录"></a>查看分支引用记录</h1><p>$ git reflog</p>
+<h1 id="07-单个文件的修改管理"><a href="#07-单个文件的修改管理" class="headerlink" title="07. 单个文件的修改管理"></a>07. 单个文件的修改管理</h1><h1 id="查看文件变化"><a href="#查看文件变化" class="headerlink" title="查看文件变化"></a>查看文件变化</h1><p>$ git diff</p>
+<h1 id="撤销对文件做的修改"><a href="#撤销对文件做的修改" class="headerlink" title="撤销对文件做的修改"></a>撤销对文件做的修改</h1><p>$ git checkout Person.h</p>
+<h1 id="从代码库（暂存区中删除文件）"><a href="#从代码库（暂存区中删除文件）" class="headerlink" title="从代码库（暂存区中删除文件）"></a>从代码库（暂存区中删除文件）</h1><h3 id="团队开发操作"><a href="#团队开发操作" class="headerlink" title="团队开发操作"></a>团队开发操作</h3><h1 id="01-建立代码仓库-专门用于团队开发的代码仓库"><a href="#01-建立代码仓库-专门用于团队开发的代码仓库" class="headerlink" title="01. 建立代码仓库(专门用于团队开发的代码仓库)"></a><pre class="lang:objc decode:true  ">01. 建立代码仓库(专门用于团队开发的代码仓库)</pre></h1><h1 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h1><p>$ cd /Users/bm/Desktop/git演练/公司/weibo</p>
+<h1 id="建立空白代码库-专门用于团队开发"><a href="#建立空白代码库-专门用于团队开发" class="headerlink" title="建立空白代码库(专门用于团队开发)"></a>建立空白代码库(专门用于团队开发)</h1><p>$ git init –bare</p>
+<h1 id="02-项目经理准备项目-前奏"><a href="#02-项目经理准备项目-前奏" class="headerlink" title="02. 项目经理准备项目(前奏)"></a>02. 项目经理准备项目(前奏)</h1><h1 id="切换目录-1"><a href="#切换目录-1" class="headerlink" title="切换目录"></a>切换目录</h1><p>$ cd /Users/bm/Desktop/git演练/经理</p>
+<h1 id="“克隆”代码库到本地"><a href="#“克隆”代码库到本地" class="headerlink" title="“克隆”代码库到本地"></a>“克隆”代码库到本地</h1><p>$ git clone /Users/lnj/Desktop/git演练/公司/weibo/</p>
+<h1 id="个人信息配置-因为要演示一台机器上的多人协作，日常开发可以忽略"><a href="#个人信息配置-因为要演示一台机器上的多人协作，日常开发可以忽略" class="headerlink" title="个人信息配置(因为要演示一台机器上的多人协作，日常开发可以忽略)"></a>个人信息配置(因为要演示一台机器上的多人协作，日常开发可以忽略)</h1><p>$ git config user.name manager<br>$ git config user.email manager@163.com</p>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>.gitignore可以指定哪些文件不纳入版本库的管理</p>
+<p>参考网址：<a href="https://github.com/github/gitignore" target="_blank" rel="external">https://github.com/github/gitignore</a></p>
+<h1 id="命令行中进入与-git同级的目录"><a href="#命令行中进入与-git同级的目录" class="headerlink" title="命令行中进入与.git同级的目录"></a>命令行中进入与.git同级的目录</h1><p>$ cd /Users/bm/Desktop/git演练/经理/weibo</p>
+<h2 id="将以下命令一次性粘贴到命令行中"><a href="#将以下命令一次性粘贴到命令行中" class="headerlink" title="将以下命令一次性粘贴到命令行中"></a>将以下命令一次性粘贴到命令行中</h2><p>echo -e “# Xcode<br>#<br>build/<br><em>.pbxuser
+</em>.mode1v3<br><em>.mode2v3
+</em>.perspectivev3<br>xcuserdata<br><em>.xccheckout
+</em>.moved-aside<br>DerivedData<br><em>.hmap
+</em>.ipa<br>*.xcuserstate</p>
+<h1 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h1><p>#</p>
+<h1 id="We-recommend-against-adding-the-Pods-directory-to-your-gitignore-However"><a href="#We-recommend-against-adding-the-Pods-directory-to-your-gitignore-However" class="headerlink" title="We recommend against adding the Pods directory to your .gitignore. However"></a>We recommend against adding the Pods directory to your .gitignore. However</h1><h1 id="you-should-judge-for-yourself-the-pros-and-cons-are-mentioned-at"><a href="#you-should-judge-for-yourself-the-pros-and-cons-are-mentioned-at" class="headerlink" title="you should judge for yourself, the pros and cons are mentioned at:"></a>you should judge for yourself, the pros and cons are mentioned at:</h1><h1 id="http-guides-cocoapods-org-using-using-cocoapods-html-should-i-ignore-the-pods-directory-in-source-control"><a href="#http-guides-cocoapods-org-using-using-cocoapods-html-should-i-ignore-the-pods-directory-in-source-control" class="headerlink" title="http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control"></a><a href="http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control" target="_blank" rel="external">http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control</a></h1><p>#</p>
+<h1 id="Pods-“-gt-gitignore"><a href="#Pods-“-gt-gitignore" class="headerlink" title="Pods/“ &gt; .gitignore"></a>Pods/“ &gt; .gitignore</h1><hr>
+<h1 id="将-gitignore添加到代码库"><a href="#将-gitignore添加到代码库" class="headerlink" title="将.gitignore添加到代码库"></a>将.gitignore添加到代码库</h1><p>$ git add .gitignore</p>
+<h1 id="03-创建项目"><a href="#03-创建项目" class="headerlink" title="03. 创建项目"></a>03. 创建项目</h1><p>提交同时”push”到远程代码仓库</p>
+<h1 id="04-新人加入"><a href="#04-新人加入" class="headerlink" title="04. 新人加入"></a>04. 新人加入</h1><p>…</p>
+<h1 id="05-分布式的代码库-仅供参考"><a href="#05-分布式的代码库-仅供参考" class="headerlink" title="05. 分布式的代码库 - 仅供参考"></a>05. 分布式的代码库 - 仅供参考</h1><p>由于git是分布式的，任何一台计算机上都保留有完整的代码库的内容，因此可以把团队开发的代码库放在任何位置</p>
+<p>多个远程代码库之间的同步演练”提示，此演练仅供了解，具体的使用，需要一定的团队规模之后，才能够体会”</p>
+<h1 id="06-分支管理-Tag"><a href="#06-分支管理-Tag" class="headerlink" title="06. 分支管理 - Tag"></a>06. 分支管理 - Tag</h1><h1 id="查看当前标签"><a href="#查看当前标签" class="headerlink" title="查看当前标签"></a>查看当前标签</h1><p>$ git tag</p>
+<h1 id="在本地代码库给项目打上一个标签"><a href="#在本地代码库给项目打上一个标签" class="headerlink" title="在本地代码库给项目打上一个标签"></a>在本地代码库给项目打上一个标签</h1><p>$ git tag -a v1.0 -m ‘Version 1.0’</p>
+<h1 id="将标签添推送到远程代码库中"><a href="#将标签添推送到远程代码库中" class="headerlink" title="将标签添推送到远程代码库中"></a>将标签添推送到远程代码库中</h1><p>$ git push origin v1.0</p>
+<h1 id="使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本"><a href="#使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本" class="headerlink" title="使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本"></a>使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本</h1><h1 id="签出v1-0标签"><a href="#签出v1-0标签" class="headerlink" title="签出v1.0标签"></a>签出v1.0标签</h1><p>$ git checkout v1.0</p>
+<h1 id="从签出状态创建v1-0bugfix分支"><a href="#从签出状态创建v1-0bugfix分支" class="headerlink" title="从签出状态创建v1.0bugfix分支"></a>从签出状态创建v1.0bugfix分支</h1><p>$ git checkout -b bugfix1.0</p>
+<h1 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h1><p>$ git branch -r</p>
+<h1 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h1><p>$ git branch -r -d origin/bugfix1.0<br></p>
+<p>### </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/03/ios-image-loading-speed-limit-optimization/" rel="next" title="iOS图片加载速度极限优化">
+                <i class="fa fa-chevron-left"></i> iOS图片加载速度极限优化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/11/cllocation-description/" rel="prev" title="CLLocation 常用说明">
+                CLLocation 常用说明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地仓库操作"><span class="nav-number">1.</span> <span class="nav-text">本地仓库操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#01-GIT命令行帮助"><span class="nav-number"></span> <span class="nav-text">01. GIT命令行帮助</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#要退出帮助信息，按”q”"><span class="nav-number"></span> <span class="nav-text">要退出帮助信息，按”q”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#翻看下页，按”空格”"><span class="nav-number"></span> <span class="nav-text">翻看下页，按”空格”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#翻看上页，按”CTRL-B”"><span class="nav-number"></span> <span class="nav-text">翻看上页，按”CTRL+B”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#要搜索相关文字，按”-“然后输入”相关文字”"><span class="nav-number"></span> <span class="nav-text">要搜索相关文字，按”/“然后输入”相关文字”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#02-创建代码库-amp-配置个人信息"><span class="nav-number"></span> <span class="nav-text">02. 创建代码库 & 配置个人信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子-hooks-程序可以设置一些动作"><span class="nav-number"></span> <span class="nav-text">只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子(hooks)程序可以设置一些动作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例如单元测试发现问题后，自动给相关人员发送电子邮件"><span class="nav-number"></span> <span class="nav-text">例如单元测试发现问题后，自动给相关人员发送电子邮件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#03-实际开发"><span class="nav-number"></span> <span class="nav-text">03. 实际开发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看当前代码库状态"><span class="nav-number"></span> <span class="nav-text">查看当前代码库状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将文件添加到代码库"><span class="nav-number"></span> <span class="nav-text">将文件添加到代码库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将修改提交到代码库"><span class="nav-number"></span> <span class="nav-text">将修改提交到代码库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将当前文件夹下的所有新建或修改的文件一次性添加到代码库"><span class="nav-number"></span> <span class="nav-text">将当前文件夹下的所有新建或修改的文件一次性添加到代码库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-的重要概念及工作原理"><span class="nav-number"></span> <span class="nav-text">git 的重要概念及工作原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#04-别名-amp-日志"><span class="nav-number"></span> <span class="nav-text">04. 别名 & 日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看所有版本库日志"><span class="nav-number"></span> <span class="nav-text">查看所有版本库日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看指定文件的版本库日志"><span class="nav-number"></span> <span class="nav-text">查看指定文件的版本库日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置带颜色的log别名"><span class="nav-number"></span> <span class="nav-text">配置带颜色的log别名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#05-版本号，让我们在任意版本之间穿梭"><span class="nav-number"></span> <span class="nav-text">05. 版本号，让我们在任意版本之间穿梭</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回到当前版本，放弃所有没有提交的修改"><span class="nav-number"></span> <span class="nav-text">回到当前版本，放弃所有没有提交的修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回到上一个版本"><span class="nav-number"></span> <span class="nav-text">回到上一个版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回到之前第3个修订版本"><span class="nav-number"></span> <span class="nav-text">回到之前第3个修订版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回到指定版本号的版本"><span class="nav-number"></span> <span class="nav-text">回到指定版本号的版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看分支引用记录"><span class="nav-number"></span> <span class="nav-text">查看分支引用记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#07-单个文件的修改管理"><span class="nav-number"></span> <span class="nav-text">07. 单个文件的修改管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看文件变化"><span class="nav-number"></span> <span class="nav-text">查看文件变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#撤销对文件做的修改"><span class="nav-number"></span> <span class="nav-text">撤销对文件做的修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从代码库（暂存区中删除文件）"><span class="nav-number"></span> <span class="nav-text">从代码库（暂存区中删除文件）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#团队开发操作"><span class="nav-number">1.</span> <span class="nav-text">团队开发操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#01-建立代码仓库-专门用于团队开发的代码仓库"><span class="nav-number"></span> <span class="nav-text">01. 建立代码仓库(专门用于团队开发的代码仓库)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#切换目录"><span class="nav-number"></span> <span class="nav-text">切换目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立空白代码库-专门用于团队开发"><span class="nav-number"></span> <span class="nav-text">建立空白代码库(专门用于团队开发)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#02-项目经理准备项目-前奏"><span class="nav-number"></span> <span class="nav-text">02. 项目经理准备项目(前奏)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#切换目录-1"><span class="nav-number"></span> <span class="nav-text">切换目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“克隆”代码库到本地"><span class="nav-number"></span> <span class="nav-text">“克隆”代码库到本地</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个人信息配置-因为要演示一台机器上的多人协作，日常开发可以忽略"><span class="nav-number"></span> <span class="nav-text">个人信息配置(因为要演示一台机器上的多人协作，日常开发可以忽略)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gitignore"><span class="nav-number"></span> <span class="nav-text">.gitignore</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令行中进入与-git同级的目录"><span class="nav-number"></span> <span class="nav-text">命令行中进入与.git同级的目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#将以下命令一次性粘贴到命令行中"><span class="nav-number"></span> <span class="nav-text">将以下命令一次性粘贴到命令行中</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CocoaPods"><span class="nav-number"></span> <span class="nav-text">CocoaPods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#We-recommend-against-adding-the-Pods-directory-to-your-gitignore-However"><span class="nav-number"></span> <span class="nav-text">We recommend against adding the Pods directory to your .gitignore. However</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#you-should-judge-for-yourself-the-pros-and-cons-are-mentioned-at"><span class="nav-number"></span> <span class="nav-text">you should judge for yourself, the pros and cons are mentioned at:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-guides-cocoapods-org-using-using-cocoapods-html-should-i-ignore-the-pods-directory-in-source-control"><span class="nav-number"></span> <span class="nav-text">http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pods-“-gt-gitignore"><span class="nav-number"></span> <span class="nav-text">Pods/“ > .gitignore</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将-gitignore添加到代码库"><span class="nav-number"></span> <span class="nav-text">将.gitignore添加到代码库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#03-创建项目"><span class="nav-number"></span> <span class="nav-text">03. 创建项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#04-新人加入"><span class="nav-number"></span> <span class="nav-text">04. 新人加入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#05-分布式的代码库-仅供参考"><span class="nav-number"></span> <span class="nav-text">05. 分布式的代码库 - 仅供参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#06-分支管理-Tag"><span class="nav-number"></span> <span class="nav-text">06. 分支管理 - Tag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看当前标签"><span class="nav-number"></span> <span class="nav-text">查看当前标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在本地代码库给项目打上一个标签"><span class="nav-number"></span> <span class="nav-text">在本地代码库给项目打上一个标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将标签添推送到远程代码库中"><span class="nav-number"></span> <span class="nav-text">将标签添推送到远程代码库中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本"><span class="nav-number"></span> <span class="nav-text">使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#签出v1-0标签"><span class="nav-number"></span> <span class="nav-text">签出v1.0标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从签出状态创建v1-0bugfix分支"><span class="nav-number"></span> <span class="nav-text">从签出状态创建v1.0bugfix分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看远程分支"><span class="nav-number"></span> <span class="nav-text">查看远程分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除远程分支"><span class="nav-number"></span> <span class="nav-text">删除远程分支</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

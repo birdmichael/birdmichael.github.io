@@ -1,0 +1,634 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="UDID," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在2013年3月21日苹果已经通知开发者，从2013年5月1日起，访问UIDID的应用将不再能通过审核，替代的方案是开发者应该使用“在iOS 6中介绍的Vendor或Advertising标示符”。unique Identifier即将退出，苹果给了我们Vendor和Advertising identifier两个选择，但应该用哪一个？文档并没有给出确切答案，具体使用哪个完全由你根据自己app的目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS唯一标示符引导">
+<meta property="og:url" content="http://yoursite.com/2015/10/30/ios-e5-94-af-e4-b8-80-e6-a0-87-e7-a4-ba-e7-ac-a6-e5-bc-95-e5-af-bc/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="在2013年3月21日苹果已经通知开发者，从2013年5月1日起，访问UIDID的应用将不再能通过审核，替代的方案是开发者应该使用“在iOS 6中介绍的Vendor或Advertising标示符”。unique Identifier即将退出，苹果给了我们Vendor和Advertising identifier两个选择，但应该用哪一个？文档并没有给出确切答案，具体使用哪个完全由你根据自己app的目">
+<meta property="og:image" content="http://birdmichael.com/wp-content/uploads/2015/10/4196_130422094510_1.png">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS唯一标示符引导">
+<meta name="twitter:description" content="在2013年3月21日苹果已经通知开发者，从2013年5月1日起，访问UIDID的应用将不再能通过审核，替代的方案是开发者应该使用“在iOS 6中介绍的Vendor或Advertising标示符”。unique Identifier即将退出，苹果给了我们Vendor和Advertising identifier两个选择，但应该用哪一个？文档并没有给出确切答案，具体使用哪个完全由你根据自己app的目">
+<meta name="twitter:image" content="http://birdmichael.com/wp-content/uploads/2015/10/4196_130422094510_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/10/30/ios-e5-94-af-e4-b8-80-e6-a0-87-e7-a4-ba-e7-ac-a6-e5-bc-95-e5-af-bc/"/>
+
+  <title> iOS唯一标示符引导 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS唯一标示符引导
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-10-30T10:45:47+08:00" content="2015-10-30">
+              2015-10-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">IOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><div>在2013年3月21日苹果已经通知开发者，从2013年5月1日起，<a href="https://developer.apple.com/news/index.php?id=3212013a" target="_blank" rel="external"><em><strong>访问UIDID的应用将不再能通过审核</strong></em></a>，替代的方案是开发者应该使用“在iOS 6中介绍的Vendor或Advertising标示符”。</div><br>unique Identifier即将退出，苹果给了我们Vendor和Advertising identifier两个选择，但应该用哪一个？文档并没有给出确切答案，具体使用哪个完全由你根据自己app的目的来决定。下面我将列出iOS中目前支持的，以及被废弃的唯一标示符方法，并对其做出相应的解释，希望可以帮你做出正确的确定。</p>
+<p>&nbsp;</p>
+<p><strong>CFUUID</strong><br>从iOS2.0开始，CFUUID就已经出现了。它是CoreFoundatio包的一部分，因此API属于C语言风格。<a href="https://developer.apple.com/library/mac/documentation/CoreFoundation/Reference/CFUUIDRef/Reference/reference.html#//apple_ref/c/func/CFUUIDCreate" target="_blank" rel="external"><em><strong>CFUUIDCreate </strong></em></a>方法用来创建CFUUIDRef，并且可以获得一个相应的NSString，如下代码：</p>
+<p>CFUUIDRef cfuuid = CFUUIDCreate(kCFAllocatorDefault);NSString <em>cfuuidString = (NSString</em>)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, cfuuid));</p>
+<p>&nbsp;</p>
+<p>获得的这个CFUUID值系统并没有存储。每次调用CFUUIDCreate，系统都会返回一个新的唯一标示符。如果你希望存储这个标示符，那么需要自己将其存储到NSUserDefaults, Keychain, Pasteboard或其它地方。</p>
+<p>&nbsp;</p>
+<p><strong>NSUUID</strong><br><a href="http://developer.apple.com/library/ios/#documentation/Foundation/Reference/NSUUID_Class/Reference/Reference.html" target="_blank" rel="external"><em><strong>NSUUID</strong></em></a>在iOS 6中才出现，这跟CFUUID几乎完全一样，只不过它是Objective-C接口。+ (id)UUID 是一个类方法，调用该方法可以获得一个UUID。通过下面的代码可以获得一个UUID字符串：</p>
+<p>NSString *uuid = [[NSUUID UUID] UUIDString];</p>
+<p>&nbsp;</p>
+<p>跟CFUUID一样，这个值系统也不会存储，每次调用的时候都会获得一个新的唯一标示符。如果要存储的话，你需要自己存储。在我读取NSUUID时，注意到获取到的这个值跟CFUUID完全一样（不过也可能不一样）：</p>
+<p>示例: 68753A44-4D6F-1226-9C60-0050E4C00067</p>
+<p>&nbsp;</p>
+<p><strong>广告标示符（IDFA-identifierForIdentifier）</strong><br>这是iOS 6中另外一个新的方法，<a href="https://developer.apple.com/library/ios/#documentation/AdSupport/Reference/ASIdentifierManager_Ref/ASIdentifierManager.html#//apple_ref/occ/instp/ASIdentifierManager/advertisingIdentifier" target="_blank" rel="external"><em><strong>advertisingIdentifier</strong></em></a>是新框架AdSupport.framework的一部分。ASIdentifierManager单例提供了一个方法advertisingIdentifier，通过调用该方法会返回一个上面提到的NSUUID实例。</p>
+<p>NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];</p>
+<p>&nbsp;</p>
+<p>跟CFUUID和NSUUID不一样，广告标示符是由系统存储着的。不过即使这是由系统存储的，但是有几种情况下，会重新生成广告标示符。如果用户完全重置系统（(设置程序 -&gt; 通用 -&gt; 还原 -&gt; 还原位置与隐私) ，这个广告标示符会重新生成。另外如果用户明确的还原广告(设置程序-&gt; 通用 -&gt; 关于本机 -&gt; 广告 -&gt; 还原广告标示符) ，那么广告标示符也会重新生成。关于广告标示符的还原，有一点需要注意：如果程序在后台运行，此时用户“还原广告标示符”，然后再回到程序中，此时获取广告标示符并不会立即获得还原后的标示符。必须要终止程序，然后再重新启动程序，才能获得还原后的广告标示符。之所以会这样，我猜测是由于ASIdentifierManager是一个单例。<br>针对广告标示符用户有一个可控的开关“限制广告跟踪”。<a href="http://www.doubleencore.com/2013/04/what-apples-limit-ad-tracking-feature-actually-means-to-users/" target="_blank" rel="external"><em><strong>Nick Arnott的文章中</strong></em></a>已经指出了。将这个开关打开，实际上什么也没有做，不过这是希望限制你访问广告标示符。这个开关是一个简单的boolean标志，当将广告标示符发到任意的服务器端时，你最好判断一下这个值，然后再做决定。</p>
+<p>示例: 1E2DFA89-496A-47FD-9941-DF1FC4E6484A</p>
+<p>&nbsp;</p>
+<p><strong>Vindor标示符 (IDFV-identifierForVendor)</strong><br>这种叫法也是在iOS 6中新增的，不过获取这个IDFV的新方法被添加在已有的UIDevice类中。跟advertisingIdentifier一样，该方法返回的是一个NSUUID对象。</p>
+<p>NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];</p>
+<p>&nbsp;</p>
+<p>苹果官方的文档中对identifierForVendor有如下这样的一段描述 ：</p>
+<p><em>The value of this property is the same for apps that come from the same vendor running on the same device. A different value is returned for apps on the same device that come from different vendors, and for apps on different devices regardless of vendor.</em></p>
+<p>&nbsp;</p>
+<p>如果满足这样的条件，那么获取到的这个属性值就不会变：相同的一个程序里面-相同的vindor-相同的设备。如果是这样的情况，那么这个值是不会相同的：相同的程序-相同的设备-不同的vindor，或者是相同的程序-不同的设备-无论是否相同的vindor。</p>
+<p>&nbsp;</p>
+<p>看完上面的内容，我有这样的一个疑问“vendor是什么”。我首先想到的是苹果开发者账号。但事实证明这是错误的。接着我想可能是有一个AppIdentifierPrefix东西，跟钥匙串访问一样，可以在多个程序间共享。同样，这个想法也是的。最后证明，vendor非常简单：一个Vendor是CFBundleIdentifier（反转DNS格式）的前两部分。例如，com.doubleencore.app1 和 com.doubleencore.app2 得到的identifierForVendor是相同的，因为它们的CFBundleIdentifier 前两部分是相同的。不过这样获得的identifierForVendor则完全不同：com.massivelyoverrated 或 net.doubleencore。</p>
+<p>&nbsp;</p>
+<p>在这里，还需要注意的一点就是：如果用户卸载了同一个vendor对应的所有程序，然后在重新安装同一个vendor提供的程序，此时identifierForVendor会被重置。</p>
+<p>示例: 599F9C00-92DC-4B5C-9464-7971F01F8370<br><strong>UDID</strong><br>在之前的版本中是可用的，但是在iOS5以及之后的版本中，以及被弃用了。虽然，这个UDID用得很广泛，但是，不得不说的是，它在慢慢的远离开发者，不能在考虑使用UDID了。至于这个标示符是转为私有方法，或者完全从以后的iOS版本中移除，还有待观察。不过，这个UDID在部署企业级签名程序时，非常方便。获取UDID的方法如下：</p>
+<p>NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];</p>
+<p>示例: bb4d786633053a0b9c0da20d54ea7e38e8776da4</p>
+<p>&nbsp;</p>
+<p><strong>OpenUDID</strong><br>在iOS 5发布时，uniqueIdentifier被弃用了，这引起了广大开发者需要寻找一个可以替代UDID，并且不受苹果控制的方案。由此<a href="https://github.com/ylechelle/OpenUDID" target="_blank" rel="external"><em><strong>OpenUDID</strong></em></a>成为了当时使用最广泛的开源UDID替代方案。OpenUDID在工程中实现起来非常简单，并且还支持一系列的广告提供商。</p>
+<p>NSString *openUDID = [OpenUDID value];</p>
+<p>&nbsp;</p>
+<p>OpenUDID利用了一个非常巧妙的方法在不同程序间存储标示符 — 在粘贴板中用了一个特殊的名称来存储标示符。通过这种方法，别的程序（同样使用了OpenUDID）知道去什么地方获取已经生成的标示符（而不用再生成一个新的）。</p>
+<p>&nbsp;</p>
+<p>之前已经提到过，在将来，苹果将开始强制使用advertisingIdentifier 或identifierForVendor。如果这一天到来的话，即使OpenUDID看起来是非常不错的选择，但是你可能不得不过渡到苹果推出的方法。</p>
+<p>示例: 0d943976b24c85900c764dd9f75ce054dc5986ff</p>
+<p>&nbsp;</p>
+<p>总结<br>希望上面的信息能够帮助你在程序使用选择正确的唯一标示符。在这里，我创建了一个小的<a href="https://github.com/doubleencore/DEUID" target="_blank" rel="external"><em><strong>唯一标示符测试程序</strong></em></a>，你可以运行该程序，并查看一下显示的内容（包括上面提到的所有标示符）。另外，下面有两个表，表中描述了两个内容：在iOS中的可用性，以及什么时候可以获得重置的标示符。</p>
+<p><div><a href="http://birdmichael.com/wp-content/uploads/2015/10/4196_130422094510_1.png" target="_blank" rel="external"><img src="http://birdmichael.com/wp-content/uploads/2015/10/4196_130422094510_1.png" alt="4196_130422094510_1"></a><br></div></p>
+<ul>
+<li>程序必须重启才能看到改变的效果。<br>** 删除了所有相同vendor提供的程序，才能看到改变的值。</li>
+</ul>
+<p>来源:<a href="http://www.cocoachina.com/industry/20130422/6040.html" target="_blank" rel="external">http://www.cocoachina.com/industry/20130422/6040.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UDID/" rel="tag">#UDID</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/27/ios-e5-bc-80-e5-8f-91-e4-bd-bf-e7-94-a8weak-e5-ba-94-e8-af-a5-e4-bc-98-e5-85-88-e4-ba-8estrong-e5-8e-9f-e5-9b-a0/" rel="next" title="iOS开发使用strong应该优先于weak原因">
+                <i class="fa fa-chevron-left"></i> iOS开发使用strong应该优先于weak原因
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/04/bmpostscoreview-e6-89-8b-e5-8a-bf-e6-89-93-e5-88-86-e6-8e-a7-e4-bb-b6/" rel="prev" title="BMPostScoreView手势打分控件">
+                BMPostScoreView手势打分控件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="strong,weak," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="起因最近来到新公司产生了控件使用strong&amp;amp;weak问题的讨论。项目中所有控件包括咨询的很多人都习惯的使用strong，并且有Storyboards拖得控件使用weak,代码创建的使用strong的习惯。而我一直控件使用的weak。所以产生了讨论。
+
+总述正如大家知道的，如果一个对象没有被强引用就会被自动释放，那么我们还未什么要在控件使用weak？控件不会被释放？控件还可以正常显示？
+首">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发使用strong应该优先于weak原因">
+<meta property="og:url" content="http://yoursite.com/2015/10/27/ios-e5-bc-80-e5-8f-91-e4-bd-bf-e7-94-a8weak-e5-ba-94-e8-af-a5-e4-bc-98-e5-85-88-e4-ba-8estrong-e5-8e-9f-e5-9b-a0/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="起因最近来到新公司产生了控件使用strong&amp;amp;weak问题的讨论。项目中所有控件包括咨询的很多人都习惯的使用strong，并且有Storyboards拖得控件使用weak,代码创建的使用strong的习惯。而我一直控件使用的weak。所以产生了讨论。
+
+总述正如大家知道的，如果一个对象没有被强引用就会被自动释放，那么我们还未什么要在控件使用weak？控件不会被释放？控件还可以正常显示？
+首">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发使用strong应该优先于weak原因">
+<meta name="twitter:description" content="起因最近来到新公司产生了控件使用strong&amp;amp;weak问题的讨论。项目中所有控件包括咨询的很多人都习惯的使用strong，并且有Storyboards拖得控件使用weak,代码创建的使用strong的习惯。而我一直控件使用的weak。所以产生了讨论。
+
+总述正如大家知道的，如果一个对象没有被强引用就会被自动释放，那么我们还未什么要在控件使用weak？控件不会被释放？控件还可以正常显示？
+首">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/10/27/ios-e5-bc-80-e5-8f-91-e4-bd-bf-e7-94-a8weak-e5-ba-94-e8-af-a5-e4-bc-98-e5-85-88-e4-ba-8estrong-e5-8e-9f-e5-9b-a0/"/>
+
+  <title> iOS开发使用strong应该优先于weak原因 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS开发使用strong应该优先于weak原因
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-10-27T16:08:25+08:00" content="2015-10-27">
+              2015-10-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><div class="zm-editable-content clearfix">最近来到新公司产生了控件使用strong&amp;weak问题的讨论。项目中所有控件包括咨询的很多人都习惯的使用strong，并且有Storyboards拖得控件使用weak,代码创建的使用strong的习惯。而我一直控件使用的weak。所以产生了讨论。</div>
+
+<h2 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h2><p>正如大家知道的，如果一个对象没有被强引用就会被自动释放，那么我们还未什么要在控件使用weak？控件不会被释放？控件还可以正常显示？</p>
+<p>首先我们大致的分三种情况</p>
+<ol>
+<li>从storyboard或者xib创建</li>
+<li>手动创建声明为weak</li>
+<li>手动创建声明为strong</li>
+</ol>
+<h3 id="从storyboard或者xib创建"><a href="#从storyboard或者xib创建" class="headerlink" title="从storyboard或者xib创建"></a>从storyboard或者xib创建</h3><div><br><div class="zm-editable-content clearfix">当一个控件被放在View上时，就已经存在了如下的一个拥有关系：<strong>UIViewController-&gt;UIView-&gt;subView-&gt;（控件）</strong><br>然后你为这个控件声明一个weak属性</div><br><div class="zm-editable-content clearfix"><br><pre class="lang:objc decode:true">@property(nonatomic,weak) IBOOutlet UIButton *btn;</pre><br></div><br><div class="zm-editable-content clearfix"><br><br>相当于storyboard或者xib对这个控件是强引用，你声明的属性对它是弱引用。<br><br></div><br></div>
+
+<h3 id="手动创建并声明strong"><a href="#手动创建并声明strong" class="headerlink" title="手动创建并声明strong"></a>手动创建并声明strong</h3><p><pre class="lang:objc decode:true ">@property(nonatomic,strong) UIButton *btn;</pre></p>
+<div class="zm-editable-content clearfix"><br><div><br><br>那么你在实现这个控件时只需这样：<br><div class="highlight"><br><br>    _btn = [[UIButton alloc]init];<br>    [self.view addSubview:_btn]`<br>    </div><br>    </div><br>    </div>
+
+<pre><code>### 手动创建并申明为weak
+
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;`@property(nonatomic,weak) UIButton *btn;
+`&lt;/pre&gt;
+&lt;/div&gt;
+那么你在实现这个控件时需要这样：
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;`UIButton *button = [[UIButton alloc]init];
+_btn = button;
+[self.view addSubview:_btn];
+</code></pre><p></p>
+<div>其实不管声明的属性是强引用还是弱引用，在控制器消失的时候，这个属性消失，View消失，subViews消失，控件也就消失了。</div><br>也许你会觉得似乎用strong更简单。<br><br>## 说明<br><br>IBOutlet的属性一般可以设为weak是因为它已经被view引用了，除非view被释放，否则IBOutlet的属性也不会被释放，另外IBOutlet属性的生命周期和view应该是一致的，所以IBOutlet属性一般设为weak。<br><div><br><div class="zm-editable-content clearfix">可参考如下:<br>From a practical perspective, in iOS and OS X outlets should be defined as declared properties. Outlets should generally be weak, except for those from File’s Owner to top-level objects in a nib file (or, in iOS, a storyboard scene) which should be strong. Outlets that you create will therefore typically be weak by default, because:<br><br><em>   Outlets that you create to, for example, subviews of a view controller’s view or a window controller’s window, are arbitrary references between objects that do not imply ownership.
+</em>   The strong outlets are frequently specified by framework classes (for example, UIViewController’s view outlet, or NSWindowController’s window outlet).<br>简单的说，如果IBOutlet对象是nib/sb scene的拥有者（File’s owner）所持有的对象，那么很显然拥有者必须“拥有”对象的指针，因此属性应设置为strong。而其他的IBOutlet对象的属性需要设置为weak，因为拥有者并不需要“拥有”他们的指针。举例来说，UIViewController的view属性是strong，因为controller要直接拥有view。而添加到view上的subviews，作为IBOutlet只需要设置为weak就可以了，因为他们不是controller直接拥有的。直接拥有subviews的是controller的view，ARC会帮助管理内存。<br><br>紧接着，<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/LoadingResources/CocoaNibs/CocoaNibs.html#//apple_ref/doc/uid/10000051i-CH4-SW8" target="_blank" rel="external">文档里</a>又提到：<br>&gt; Outlets should be changed to strong when the outlet should be considered to own the referenced object:<br>&gt;<br>&gt;<br>&gt; <em>   As indicated previously, this is often the case with File’s Owner—top level objects in a nib file are frequently considered to be owned by the File’s Owner.<br>&gt; </em>   You may in some situations need an object from a nib file to exist outside of its original container. For example, you might have an outlet for a view that can be temporarily removed from its initial view hierarchy and must therefore be maintained independently.<br>第一种情形前面已经解释过了，对于第二种，通俗点将，就是controller需要直接控制某一个subview并且将subview添加到其他的view tree上去。<br><br>单纯从ARC的角度思考，用weak也是很显然的：因为subview添加到view上时，view会“拥有”subview。当然，给IBOutlet属性设置为strong也没有错，“纠结谁对谁错“的问题可能需要上升到模式或者编码习惯的问题，已经超出本文的范围。<br><br>## 理解<br><br>首先，控件的父（( view.superview )）已经 “强” 的抓着他，所以你只需要 “弱弱” 的看着他就好。因为 “<br><br><span class="s1">addSubview</span>“的原因。 并且当控件从 父 上移除，就自动销毁，逻辑上也是正确的。<br><br>另外，如果你需要控件再View的SuperView里面remove以后还是继续存在（重复添加），就好比你不管控件的父（( view.superview )）已经 “强” 的抓着他，反正你要 “强强”的抓住他，需要控件的时候就立马把他抓过来用，这个时候你就需要用强。<br>&gt; 这个只是个人理解观点，如果有不妥还请指正。<br><br>## <strong>Strong 引用的 IBOutlet</strong><br><br>Apple已经对Xib和Storyboard文件做了很多优化。并且由于这些优化，你现在可以将IBOutlet定义为strong，而不是weak。Apple曾在上一届的WWDC上指出这一点，因此让我们来看一下其中的更多细节。你可以从 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/LoadingResources/CocoaNibs/CocoaNibs.html" target="_blank" rel="external">这个文档</a> 中找到管理Nib文件中对象生命周期的章节：<br><br>Outlet一般来说应该为weak，除了在nib文件 ( 或者iOS中，storyboard scene) 中的File’s Owner的顶级对象，这个对象可以是strong。你创建的Outlets应该为weak，原因如下：<br><br><em>   你创建的一个 view controller 视图的子视图或者 window controller 窗体视图的 Outlets，是对象之间的弱引用，不应该有依赖关系。
+</em>   strong的outlet通常是特殊的framework类（如：UIViewController 视图的 outlet，或者 NSWindowController 视窗的 outlet）。<br>正如这个段落所解释的一样，view controller视图的子视图 outlet应该为 weak，因为这个视图已经被nib文件的顶级对象所拥有了。然而，当一个Outlet被定义为weak指针时，ARC会在编译期间调用以下函数：<br><div><br><div id="highlighter_591122" class="syntaxhighlighter js"><br><pre class="lang:objc decode:true">id objc_storeWeak(id <em>object, id value);</em></pre><br></div><br></div><br>这个函数把对象的值作为key，并把它添加到table中。这个table被称为weak table。ARC使用这个table去存储应用中的所有的weak指针。现在，当对象被deallocated时，ARC将会指向weak table并且将weak引用置为nil。同时，ARC将会调用：<br><div><br><div id="highlighter_804541" class="syntaxhighlighter js"><br><pre class="lang:objc decode:true">void objc_destroyWeak(id  object);</pre><br></div><br></div><br>紧接着，注销这个对象并再次调用objc_destroyWeak：<br><div><br><div id="highlighter_927092" class="syntaxhighlighter js"><br><pre class="lang:objc decode:true">objc_storeWeak(id *object, nil);</pre><br></div><br></div><br>这种weak引用关联的生命周期是strong引用的2-3倍。所以，通过避免简单地定义outlets为strong，使用弱引用是一种运行期间的通用做法。<br><br>我想这个决策与已废弃的viewDidUnload方法有关。直到iOS 5，这个方法被用于清空在低内存环境下的视图。正如文档中解释的那样：<br><br>在iOS 5之前，当发生低内存警告或者当前view controller的视图不被需要时，在视图被释放之后，系统会选择性地调用这个方法。这个方法让你可以进行最后的清理工作。如果你的视图存储了视图或者其子视图的单独引用，你应该使用这个方法去释放这些引用。<br><br>在那时，定义一个属性为weak是有意义的，因为这就不用在viewDidUnload额外地释放对象。但是在iOS 9中，我相信我们已经有足够的时间去避免使用这个方法。因此，在IBOutlets定义weak是没意义的。<br><br>来源：<a href="http://www.cocoachina.com/ios/20151026/13868.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20151026/13868.html</a><br><br>## 最新理解<br><br>所以最新的建议是：都用strong！<br><br></div><br></div>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/strong/" rel="tag">#strong</a>
+          
+            <a href="/tags/weak/" rel="tag">#weak</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/07/lazy-fix-uitableviewcell-imageview/" rel="next" title="偷懒固定UITableViewCell 中的 imageView 大小">
+                <i class="fa fa-chevron-left"></i> 偷懒固定UITableViewCell 中的 imageView 大小
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/30/ios-e5-94-af-e4-b8-80-e6-a0-87-e7-a4-ba-e7-ac-a6-e5-bc-95-e5-af-bc/" rel="prev" title="iOS唯一标示符引导">
+                iOS唯一标示符引导 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总述"><span class="nav-number">2.</span> <span class="nav-text">总述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从storyboard或者xib创建"><span class="nav-number">2.1.</span> <span class="nav-text">从storyboard或者xib创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手动创建并声明strong"><span class="nav-number">2.2.</span> <span class="nav-text">手动创建并声明strong</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

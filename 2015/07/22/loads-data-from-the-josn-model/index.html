@@ -1,0 +1,658 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="josn,NSJSONSerialization," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="- (NSArray *)htmls{    if (!_htmls) {
+    // JSON文件的路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@&amp;quot;help.json&amp;quot; ofType:nil];    
+    // 加载JSON文件
+    NSData *data = [NSData da">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从josn加载数据模型">
+<meta property="og:url" content="http://yoursite.com/2015/07/22/loads-data-from-the-josn-model/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="- (NSArray *)htmls{    if (!_htmls) {
+    // JSON文件的路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@&amp;quot;help.json&amp;quot; ofType:nil];    
+    // 加载JSON文件
+    NSData *data = [NSData da">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从josn加载数据模型">
+<meta name="twitter:description" content="- (NSArray *)htmls{    if (!_htmls) {
+    // JSON文件的路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@&amp;quot;help.json&amp;quot; ofType:nil];    
+    // 加载JSON文件
+    NSData *data = [NSData da">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/22/loads-data-from-the-josn-model/"/>
+
+  <title> 从josn加载数据模型 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从josn加载数据模型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-22T01:07:49+08:00" content="2015-07-22">
+              2015-07-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/Xcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Xcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><pre class="lang:objc decode:true ">- (NSArray *)htmls<br>{<br>    if (!_htmls) {</pre></p>
+<pre><code>    // JSON文件的路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;help.json&quot; ofType:nil];    
+    // 加载JSON文件
+    NSData *data = [NSData dataWithContentsOfFile:path]; 
+    // 将JSON数据转为NSArray或者NSDictionary
+    NSArray *dictArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    // 将字典转成模型
+    NSMutableArray *htmlArray = [NSMutableArray array];
+    for (NSDictionary *dict in dictArray) {
+        Html *html = [Html htmlWithDict:dict];
+        [htmlArray addObject:html];
+    }
+    _htmls = htmlArray;
+}
+return _htmls;
+</code></pre><p>}<br>参数说明:<a id="more"></a></p>
+<p><pre class="lang:objc decode:true ">typedef NS_OPTIONS(NSUInteger, NSJSONReadingOptions) {<br>    NSJSONReadingMutableContainers = (1UL &lt;&lt; 0),<br>    NSJSONReadingMutableLeaves = (1UL &lt;&lt; 1),<br>    NSJSONReadingAllowFragments = (1UL &lt;&lt; 2)<br>} NS_ENUM_AVAILABLE(10_7, 5_0);</pre></p>
+<p>typedef NS_OPTIONS(NSUInteger, NSJSONWritingOptions) {<br>    NSJSONWritingPrettyPrinted = (1UL &lt;&lt; 0)<br>} NS_ENUM_AVAILABLE(10_7, 5_0);</p>
+<p>/* A class for converting JSON to Foundation objects and converting Foundation objects to JSON.</p>
+<p>   An object that may be converted to JSON must have the following properties:</p>
+<pre><code>- Top level object is an NSArray or NSDictionary
+- All objects are NSString, NSNumber, NSArray, NSDictionary, or NSNull
+- All dictionary keys are NSStrings
+- NSNumbers are not NaN or infinity
+</code></pre><p><em>/<br>NS_CLASS_AVAILABLE(10_7, 5_0)<br>@interface NSJSONSerialization : NSObject {<br>@private<br>    void </em>reserved[6];<br>}<br><br>&nbsp;</p>
+<p>NSJSONReadingMutableContainers：返回可变容器，NSMutableDictionary或NSMutableArray。</p>
+<p>NSJSONReadingMutableLeaves：返回的JSON对象中字符串的值为NSMutableString，目前在iOS 7上测试不好用，应该是个bug，参见：<br><a href="http://stackoverflow.com/questions/19345864/nsjsonreadingmutableleaves-option-is-not-working" target="_blank" rel="external">http://stackoverflow.com/questions/19345864/nsjsonreadingmutableleaves-option-is-not-working</a></p>
+<p>NSJSONReadingAllowFragments：允许JSON字符串最外层既不是NSArray也不是NSDictionary，但必须是有效的JSON Fragment。例如使用这个选项可以解析 @“123” 这样的字符串。参见：<br><a href="http://stackoverflow.com/questions/16961025/nsjsonserialization-nsjsonreadingallowfragments-reading" target="_blank" rel="external">http://stackoverflow.com/questions/16961025/nsjsonserialization-nsjsonreadingallowfragments-reading</a></p>
+<p>&nbsp;</p>
+<p><pre class="lang:objc decode:true "></pre></p>
+<ul>
+<li><p>(BOOL)isValidJSONObject:(id)obj;<br>// 判断 该实例(obj)是否为JSONObject<br>// 需满足下面三个条件<br>// 1.obj 是NSArray 或 NSDictionay 以及他们派生出来的子类<br>// 2.obj 包含的所有对象是NSString,NSNumber,NSArray,NSDictionary 或NSNull<br>// 3.NSNumber的对象不能是NaN或无穷大</p>
+</li>
+<li><p>(NSData <em>)dataWithJSONObject:(id)obj options:(NSJSONWritingOptions)opt error:(NSError *</em>)error;</p>
+</li>
+</ul>
+<p>// 将JSONObject的实例转成NSData</p>
+<ul>
+<li>(id)JSONObjectWithData:(NSData <em>)data options:(NSJSONReadingOptions)opt error:(NSError *</em>)error;</li>
+</ul>
+<p>// 将NSData类型的实例转成JSONObject</p>
+<ul>
+<li><p>(NSInteger)writeJSONObject:(id)obj toStream:(NSOutputStream <em>)stream options:(NSJSONWritingOptions)opt error:(NSError *</em>)error;<br>// 将一个JSONObject的实例写入到一个输出流中 返回写入的长度</p>
+</li>
+<li><p>(id)JSONObjectWithStream:(NSInputStream <em>)stream options:(NSJSONReadingOptions)opt error:(NSError *</em>)error;<br>// 从输入流中读取成JSONObject 并返回<br>&nbsp;</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/josn/" rel="tag">#josn</a>
+          
+            <a href="/tags/NSJSONSerialization/" rel="tag">#NSJSONSerialization</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/20/uiimage-extension-returns-stretching-a-picture-picture-without-distortion/" rel="next" title="UIImage扩展 返回拉伸图片(图片不失真)">
+                <i class="fa fa-chevron-left"></i> UIImage扩展 返回拉伸图片(图片不失真)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/22/loading-from-a-local-one-html-to-uiview/" rel="prev" title="从本地加载一个.html到UIView.加载Js">
+                从本地加载一个.html到UIView.加载Js <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

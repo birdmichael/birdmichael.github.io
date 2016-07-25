@@ -1,0 +1,736 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="openURL,sharedApplication," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="打电话
+发短信
+发邮件
+应用跳转
+应用评分
+其他主要通过以上6点分别介绍.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sharedApplication之openURL">
+<meta property="og:url" content="http://yoursite.com/2015/07/29/sharedapplication-openurl/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="打电话
+发短信
+发邮件
+应用跳转
+应用评分
+其他主要通过以上6点分别介绍.">
+<meta property="og:image" content="http://birdmichael.com/wp-content/uploads/2015/07/6598259438238301923.jpg">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sharedApplication之openURL">
+<meta name="twitter:description" content="打电话
+发短信
+发邮件
+应用跳转
+应用评分
+其他主要通过以上6点分别介绍.">
+<meta name="twitter:image" content="http://birdmichael.com/wp-content/uploads/2015/07/6598259438238301923.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/29/sharedapplication-openurl/"/>
+
+  <title> sharedApplication之openURL | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                sharedApplication之openURL
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-29T17:57:51+08:00" content="2015-07-29">
+              2015-07-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/Xcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Xcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>打电话</li>
+<li>发短信</li>
+<li>发邮件</li>
+<li>应用跳转</li>
+<li>应用评分</li>
+<li>其他<br>主要通过以上6点分别介绍.</li>
+</ul>
+<a id="more"></a>
+<h3 id="打电话"><a href="#打电话" class="headerlink" title="打电话"></a>打电话</h3><h4 id="方法1-最简单最直接的方式：直接跳到拨号界面"><a href="#方法1-最简单最直接的方式：直接跳到拨号界面" class="headerlink" title="方法1:最简单最直接的方式：直接跳到拨号界面"></a>方法1:最简单最直接的方式：直接跳到拨号界面</h4><p><pre class="lang:objc decode:true">NSURL <em>url = [NSURL URLWithString:@”tel://10010”];<br>[[UIApplication sharedApplication] openURL:url];</em></pre><br><em>*缺点</em>:打完电话不会自动回到原应用，直接停留在通话记录界面.</p>
+<h4 id="方法2-拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用"><a href="#方法2-拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用" class="headerlink" title="方法2:拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用"></a>方法2:拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用</h4><p><pre class="lang:objc decode:true ">SURL <em>url = [NSURL URLWithString:@”telprompt://10010”];<br>[[UIApplication sharedApplication] openURL:url];</em></pre><br><em>*缺点</em>:私有API(非文档关键字)，所以可能不会被审核通过(没有试过)</p>
+<h4 id="方法3-创建一个UIWebView来加载URL，且宽高为0-0-拨完后能自动回到原应用"><a href="#方法3-创建一个UIWebView来加载URL，且宽高为0-0-拨完后能自动回到原应用" class="headerlink" title="方法3:创建一个UIWebView来加载URL，且宽高为0,0,拨完后能自动回到原应用"></a>方法3:创建一个UIWebView来加载URL，且宽高为0,0,拨完后能自动回到原应用</h4><p><pre class="lang:objc decode:true">if (_webView == nil) {<br>    _webView = [[UIWebView alloc] initWithFrame:CGRectZero];<br>}<br>[_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@”tel://10010”]]];</pre><br><strong>注意</strong>:千万不要添加到界面上来，不然会挡住其他界面</p>
+<blockquote>
+<p>推荐使用方法3,这时的WEBView不是用来显示,只是用来打电话的.</p>
+</blockquote>
+<p>### </p>
+<h3 id="发短信"><a href="#发短信" class="headerlink" title="发短信"></a>发短信</h3><h4 id="方法1-直接跳到发短信界面"><a href="#方法1-直接跳到发短信界面" class="headerlink" title="方法1:直接跳到发短信界面"></a>方法1:直接跳到发短信界面</h4><p><pre class="lang:objc decode:true">NSURL <em>url = [NSURL URLWithString:@”sms://10010”];<br>[[UIApplication sharedApplication] openURL:url];</em></pre><br><em>*缺点:</em>不能指定短信内容，而且不能自动回到原应用</p>
+<h4 id="方法2-使用MessageUI框架"><a href="#方法2-使用MessageUI框架" class="headerlink" title="方法2:使用MessageUI框架"></a>方法2:使用MessageUI框架</h4><p><pre class="lang:objc decode:true">#import &lt;MessageUI/MessageUI.h&gt;  // 引入框架</pre></p>
+<p>// 并且控制需要遵守代理协议</p>
+<p>// 显示发短信的控制器<br>MFMessageComposeViewController *vc = [[MFMessageComposeViewController alloc] init];<br>// 设置短信内容<br>vc.body = @”BM在吗？”;<br>// 设置收件人列表<br>vc.recipients = @[@”10010”, @”02010010”];<br>// 设置代理<br>vc.messageComposeDelegate = self;</p>
+<p>// 显示控制器<br>[self presentViewController:vc animated:YES completion:nil];</p>
+<p>代理方法</p>
+<ul>
+<li><p>(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result<br>{<br>  // 关闭短信界面<br>  [controller dismissViewControllerAnimated:YES completion:nil];</p>
+<p>  if (result == MessageComposeResultCancelled) {</p>
+<pre><code>NSLog(@&quot;取消发送&quot;);
+</code></pre><p>  } else if (result == MessageComposeResultSent) {</p>
+<pre><code>NSLog(@&quot;已经发出&quot;);
+</code></pre><p>  } else {</p>
+<pre><code>NSLog(@&quot;发送失败&quot;);
+</code></pre><p>  }<br>}</p>
+</li>
+</ul>
+<p><br><strong>注意:</strong>1.需要引入框架,2.需要成为代理.</p>
+<blockquote>
+<p>推荐使用方法2,当短信关闭时会返回原来应用,并且可以指定短信内容.</p>
+</blockquote>
+<p>### </p>
+<h3 id="发邮件"><a href="#发邮件" class="headerlink" title="发邮件"></a>发邮件</h3><h4 id="方法1-直接跳到发邮件界面"><a href="#方法1-直接跳到发邮件界面" class="headerlink" title="方法1:直接跳到发邮件界面"></a>方法1:直接跳到发邮件界面</h4><p><pre class="lang:objc decode:true">NSURL <em>url = [NSURL URLWithString:@”mailto://birdmichael126@gmail.com”];<br>[[UIApplication sharedApplication] openURL:url];<br></em></pre><br><em>*缺点:</em>不能指定邮件内容，而且不能自动回到原应用</p>
+<p>&nbsp;</p>
+<h4 id="方法2-使用MessageUI框架-1"><a href="#方法2-使用MessageUI框架-1" class="headerlink" title="方法2:使用MessageUI框架"></a>方法2:使用MessageUI框架</h4><p><pre class="lang:objc decode:true">#import &lt;MessageUI/MessageUI.h&gt;  // 引入框架</pre></p>
+<p>// 并且控制需要遵守代理协议</p>
+<p>// 不能发邮件<br>if (![MFMailComposeViewController canSendMail]) return;</p>
+<p>MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];</p>
+<p>// 设置邮件主题<br>[vc setSubject:@”会议”];<br>// 设置邮件内容<br>[vc setMessageBody:@”今天下午开会吧” isHTML:NO];<br>// 设置收件人列表<br>[vc setToRecipients:@[@”643055866@qq.com”]];<br>// 设置抄送人列表<br>[vc setCcRecipients:@[@”1234@qq.com”]];<br>// 设置密送人列表<br>[vc setBccRecipients:@[@”56789@qq.com”]];</p>
+<p>// 添加附件（一张图片）<br>UIImage <em>image = [UIImage imageNamed:@”lufy.jpeg”];<br>NSData </em>data = UIImageJPEGRepresentation(image, 0.5);<br>[vc addAttachmentData:data mimeType:@”image/jepg” fileName:@”lufy.jpeg”];</p>
+<p>// 设置代理<br>vc.mailComposeDelegate = self;<br>// 显示控制器<br>[self presentViewController:vc animated:YES completion:nil];</p>
+<p>代理方法</p>
+<ul>
+<li><p>(void)mailComposeController:(MFMailComposeViewController <em>)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError </em>)error<br>{<br>  // 关闭邮件界面<br>  [controller dismissViewControllerAnimated:YES completion:nil];</p>
+<p>  if (result == MFMailComposeResultCancelled) {</p>
+<pre><code>NSLog(@&quot;取消发送&quot;);
+</code></pre><p>  } else if (result == MFMailComposeResultSent) {</p>
+<pre><code>NSLog(@&quot;已经发出&quot;);
+</code></pre><p>  } else {</p>
+<pre><code>NSLog(@&quot;发送失败&quot;);
+</code></pre><p>  }<br>}</p>
+</li>
+</ul>
+<p><br><strong>注意:</strong>1.需要引入框架,2.需要成为代理.</p>
+<blockquote>
+<p>推荐使用方法2,与发短信类似,只不过控制器类名换了而已.<br>&nbsp;</p>
+</blockquote>
+<h3 id="应用跳转"><a href="#应用跳转" class="headerlink" title="应用跳转"></a>应用跳转</h3><p>其中,bm:是协议头,ios.birdmichael.com是路径</p>
+<p>在 iOS 里，程序之间都是相互隔离，目前并没有一个有效的方式来做程序间通信，幸好 iOS 程序可以很方便的注册自己的 URL Scheme，这样就可以通过打开特定 URL 的方式来传递参数给另外一个程序。</p>
+<p>例如在 iPad 上浏览网页，并且 iPad 已经安装了 淘宝 HD，那么就打开下面这个链接就会在淘宝 HD 中查看这个商品的详细信息，也可以方便的使用淘宝 HD 进行购买、收藏等操作。</p>
+<p><strong>配置</strong></p>
+<p>要为 iOS 程序添加自定义协议的支持是一件很方便的事，只需要在程序的 Info.plist 添加一个 URL types 节点就可以了。在这个节点里，可以设置这个程序所支持的自定义协议名称，像 http、ftp 这种，一般我们可以设置为程序英文名称，像淘宝客户端中就设置了 taobao，这样 taobao:// 这个形式的 URL 就会关联到淘宝客户端的 App。</p>
+<div><a href="http://birdmichael.com/wp-content/uploads/2015/07/6598259438238301923.jpg" target="_blank" rel="external"><img src="http://birdmichael.com/wp-content/uploads/2015/07/6598259438238301923.jpg" alt="6598259438238301923"></a></div>
+
+<ol>
+<li>如果没有URL types，随意点一个key行后面＋号，输入大写URL选择URL types</li>
+<li>右键URL types，选择add row</li>
+<li>item0下改成url identifier，后面的value值随意写，com.xx,xx</li>
+<li>加一行，选择url schemes，item后面值写成你需要的，譬如上面的todolist，以后别的app就可以用<br>&nbsp;<br><pre class="lang:objc decode:true ">NSURL *url = [NSURL URLWithString:@”bm://ios.birdmichael.com”];<br>[[UIApplication sharedApplication] openURL:url];<br></pre><br>启动你的app.</li>
+</ol>
+<p>&nbsp;</p>
+<h3 id="应用评分"><a href="#应用评分" class="headerlink" title="应用评分"></a>应用评分</h3><p>其中appid是有苹果商店提供的一个身份标识id.</p>
+<p>方法1:</p>
+<p><pre class="lang:objc decode:true ">NSString <em>appid = @”444934666”;<br>NSString </em>str = [NSString stringWithFormat:<br>                 @”itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&amp;id=%@”, appid];<br>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];<br></pre><br>&nbsp;</p>
+<p>方法2:</p>
+<p><pre class="lang:objc decode:true ">NSString *str = [NSString stringWithFormat:<br>                 @”itms-apps://itunes.apple.com/cn/app/id%@?mt=8”, appid];<br>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];</pre></p>
+<blockquote>
+<p>建立使用第二种.<br>&nbsp;</p>
+</blockquote>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><div>About — prefs:root=General&amp;path=About <wbr></div></p>
+<p><div>Accessibility — prefs:root=General&amp;path=ACCESSIBILITY <wbr></div></p>
+<p><div>Airplane Mode On — prefs:root=AIRPLANE_MODE <wbr></div></p>
+<p><div>Auto-Lock — prefs:root=General&amp;path=AUTOLOCK <wbr></div></p>
+<p><div>Brightness — prefs:root=Brightness <wbr></div></p>
+<p><div>Bluetooth — prefs:root=General&amp;path=Bluetooth <wbr></div></p>
+<p><div>Date &amp; Time — prefs:root=General&amp;path=DATE_AND_TIME <wbr></div></p>
+<p><div>FaceTime — prefs:root=FACETIME <wbr></div></p>
+<p><div>General — prefs:root=General <wbr></div></p>
+<p><div>Keyboard — prefs:root=General&amp;path=Keyboard <wbr></div></p>
+<p><div>iCloud — prefs:root=CASTLE <wbr></div></p>
+<p><div>iCloud Storage &amp; Backup — prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP <wbr></div></p>
+<p><div>International — prefs:root=General&amp;path=INTERNATIONAL <wbr></div></p>
+<p><div>Location Services — prefs:root=LOCATION_SERVICES <wbr></div></p>
+<p><div>Music — prefs:root=MUSIC <wbr></div></p>
+<p><div>Music Equalizer — prefs:root=MUSIC&amp;path=EQ <wbr></div></p>
+<p><div>Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit <wbr></div></p>
+<p><div>Network — prefs:root=General&amp;path=Network <wbr></div></p>
+<p><div>Nike + iPod — prefs:root=NIKE_PLUS_IPOD <wbr></div></p>
+<p><div>Notes — prefs:root=NOTES <wbr></div></p>
+<p><div>Notification — prefs:root=NOTIFICATIONS_ID <wbr></div></p>
+<p><div>Phone — prefs:root=Phone <wbr></div></p>
+<p><div>Photos — prefs:root=Photos <wbr></div></p>
+<p><div>Profile — prefs:root=General&amp;path=ManagedConfigurationList<wbr> <wbr></div></p>
+<p><div>Reset — prefs:root=General&amp;path=Reset <wbr></div></p>
+<p><div>Safari — prefs:root=Safari <wbr></div></p>
+<p><div>Siri — prefs:root=General&amp;path=Assistant <wbr></div></p>
+<p><div>Sounds — prefs:root=Sounds <wbr></div></p>
+<p><div>Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK <wbr></div></p>
+<p><div>Store — prefs:root=STORE <wbr></div></p>
+<p><div>Twitter — prefs:root=TWITTER <wbr></div></p>
+<p><div>Usage — prefs:root=General&amp;path=USAGE <wbr></div></p>
+<p><div>VPN — prefs:root=General&amp;path=Network/VPN <wbr></div></p>
+<p><div>Wallpaper — prefs:root=Wallpaper <wbr></div></p>
+<p><div>Wi-Fi — prefs:root=WIFI <wbr></div></p>
+<p><div>INTERNET_TETHERING Internet_tethering — prefs:root= INTERNET_TETHERING</div><br>&nbsp;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/openURL/" rel="tag">#openURL</a>
+          
+            <a href="/tags/sharedApplication/" rel="tag">#sharedApplication</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/22/loading-from-a-local-one-html-to-uiview/" rel="next" title="从本地加载一个.html到UIView.加载Js">
+                <i class="fa fa-chevron-left"></i> 从本地加载一个.html到UIView.加载Js
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/29/ios-uiresponder-of-gestures-gesture-recognition-shake-apple-fm/" rel="prev" title="ios的手势操作之UIResponder、手势识别、摇晃事件、耳机线控">
+                ios的手势操作之UIResponder、手势识别、摇晃事件、耳机线控 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#打电话"><span class="nav-number">1.</span> <span class="nav-text">打电话</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法1-最简单最直接的方式：直接跳到拨号界面"><span class="nav-number">1.1.</span> <span class="nav-text">方法1:最简单最直接的方式：直接跳到拨号界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法2-拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用"><span class="nav-number">1.2.</span> <span class="nav-text">方法2:拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法3-创建一个UIWebView来加载URL，且宽高为0-0-拨完后能自动回到原应用"><span class="nav-number">1.3.</span> <span class="nav-text">方法3:创建一个UIWebView来加载URL，且宽高为0,0,拨完后能自动回到原应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发短信"><span class="nav-number">2.</span> <span class="nav-text">发短信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法1-直接跳到发短信界面"><span class="nav-number">2.1.</span> <span class="nav-text">方法1:直接跳到发短信界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法2-使用MessageUI框架"><span class="nav-number">2.2.</span> <span class="nav-text">方法2:使用MessageUI框架</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发邮件"><span class="nav-number">3.</span> <span class="nav-text">发邮件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法1-直接跳到发邮件界面"><span class="nav-number">3.1.</span> <span class="nav-text">方法1:直接跳到发邮件界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法2-使用MessageUI框架-1"><span class="nav-number">3.2.</span> <span class="nav-text">方法2:使用MessageUI框架</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用跳转"><span class="nav-number">4.</span> <span class="nav-text">应用跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用评分"><span class="nav-number">5.</span> <span class="nav-text">应用评分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">6.</span> <span class="nav-text">其他</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

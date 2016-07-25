@@ -1,0 +1,661 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Steven Fisher：只要一个类返回自身的实例，用instancetype就有好处。
+
+@interface Foo:NSObject
+
+(id)initWithBar:(NSInteger)bar; // initializer
+
+
+(id)fooWithBar:(NSInteger)bar;  // convenience constructor@end对于简易构造函数(convenie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用instancetype代替id作返回类型有什么好处？">
+<meta property="og:url" content="http://yoursite.com/2015/09/29/instancetype-instead-of-the-id-is-used-as-the-return-type-what-are-the-benefits/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="Steven Fisher：只要一个类返回自身的实例，用instancetype就有好处。
+
+@interface Foo:NSObject
+
+(id)initWithBar:(NSInteger)bar; // initializer
+
+
+(id)fooWithBar:(NSInteger)bar;  // convenience constructor@end对于简易构造函数(convenie">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用instancetype代替id作返回类型有什么好处？">
+<meta name="twitter:description" content="Steven Fisher：只要一个类返回自身的实例，用instancetype就有好处。
+
+@interface Foo:NSObject
+
+(id)initWithBar:(NSInteger)bar; // initializer
+
+
+(id)fooWithBar:(NSInteger)bar;  // convenience constructor@end对于简易构造函数(convenie">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/09/29/instancetype-instead-of-the-id-is-used-as-the-return-type-what-are-the-benefits/"/>
+
+  <title> 用instancetype代替id作返回类型有什么好处？ | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用instancetype代替id作返回类型有什么好处？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-09-29T21:23:36+08:00" content="2015-09-29">
+              2015-09-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Steven Fisher</strong>：只要一个类返回自身的实例，用instancetype就有好处。</p>
+<p><div class="highlight"></div></p>
+<p><pre class="lang:objc decode:true">@interface Foo:NSObject</pre></p>
+<ul>
+<li>(id)initWithBar:(NSInteger)bar; // initializer</li>
+</ul>
+<ul>
+<li>(id)fooWithBar:(NSInteger)bar;  // convenience constructor<br>@end<br><br>对于简易构造函数(convenience constructor)，应该总是用instancetype。编译器不会自动将id转化为instancetype。id是通用对象，但如果你用instancetype，编译器就知道方法返回什么类型的对象。</li>
+</ul>
+<p>这个问题可不只有学术意义，比如，[[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData]在Mac OS X（只在该OS版本）中会报错“Multiple methods named ‘writeData:’ found with mismatched result, parameter type or attributes.”原因是NSFileHandle和NSURLHandle都提供writeData:方法。由于[NSFileHandle fileHandleWithStandardOutput] 返回的类型是id，编译器并不确定请求了哪个类的writeData:方法。</p>
+<p>你可以用</p>
+<p><div class="highlight"></div></p>
+<p><pre class="lang:objc decode:true">[(NSFileHandle *)[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData];</pre><br>或</p>
+<p><pre class="lang:objc decode:true">NSFileHandle *fileHandle = [NSFileHandle fileHandleWithStandardOutput];<br>[fileHandle writeData:formattedData];</pre><br></p>
+<p><div class="highlight"></div><br>来绕过。</p>
+<p>当然，更好的方法是声明fileHandleWithStandardOutput的返回类型为instancetype。(注意：这段样例代码在iOS中并不会报错，因为iOS中只有NSFileHandle提供writeData:方法。但length等方法则会，UILayoutSupport会返回CGFloat，而NSString则会返回NSUInteger)</p>
+<p>initializer的情况更复杂，当你输入</p>
+<p><div class="highlight"></div></p>
+<p><pre class="lang:objc decode:true">- (id)initWithBar:(NSInteger)bar</pre><br><br>编译器会假设你输入了</p>
+<p><div class="highlight"></div></p>
+<p><pre class="lang:objc decode:true">- (instancetype)initWithBar:(NSInteger)bar</pre><br><br>对于ARC而言，这是必须的。<a href="http://clang.llvm.org/docs/LanguageExtensions.html#related-result-types" target="_blank" rel="external">Clang Language Extensions</a>的相关结果类型(Related result types)也讲到了这一点。也许别人会据此告诉你不必使用instancetype，但我建议你用它。下面解释我为什么如此建议。</p>
+<p>使用instancetype有三点好处：</p>
+<p>1、明确性。代码只做你让它做的事，而不是其他。</p>
+<p>2、程式化。你会养成好习惯，这些习惯在某些时候会很有用，而且肯定有用武之地。</p>
+<p>3、一致性。让代码可读性更好。</p>
+<p><strong>明确性</strong></p>
+<p>用instancetype代替id作为返回值的确没有<em>技术上的好处</em>。但这是因为编译器自动将id转化成了instancetype。你以为init返回的值类型是id，其实编译器返回了instancetype。</p>
+<p>这两行代码对于编译器来说是<em>一样</em>的：</p>
+<p><div class="highlight"></div></p>
+<p><pre class="lang:objc decode:true">- (id)initWithBar:(NSInteger)bar;</pre></p>
+<ul>
+<li>(instancetype)initWithBar:(NSInteger)bar;<br><br>但在你眼里，这两行代码却不同。<strong>你不该学着忽视它。</strong></li>
+</ul>
+<p><strong>模式化</strong></p>
+<p>在使用init等方法时的确没有区别，但在定义简易构造函数时就<strong>有</strong>区别了。</p>
+<p>这两行代码并不等价：</p>
+<p><div class="highlight"></div></p>
+<p><pre class="lang:objc decode:true">+ (id)fooWithBar:(NSInteger)bar;</pre></p>
+<ul>
+<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>如果用instancetype作为函数的返回类型，就不会出错。</li>
+</ul>
+<p><strong>一致性：</strong></p>
+<p>最后，想象把所有东西放到一起时的情景：你想要一个init方法和一个简易构造函数。</p>
+<p>如果你用id来作为init函数的返回类型，最终代码如下：</p>
+<p><div class="highlight"></div></p>
+<p><pre class="lang:objc decode:true ">- (id)initWithBar:(NSInteger)bar;</pre></p>
+<ul>
+<li>(instancetype)fooWithBar:(NSInteger)bar;<br>但如果你用instancetype，代码如下：</li>
+</ul>
+<p></p>
+<p><div class="highlight"></div></p>
+<p><pre class="lang:objc decode:true  ">- (instancetype)initWithBar:(NSInteger)bar;</pre></p>
+<ul>
+<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>代码更加一致，可读性更强。它们返回相同的东西，这一点一目了然。</li>
+</ul>
+<p><strong>结论</strong></p>
+<p>除非你有意为旧编译器写代码，不然你在合适的时候都应该用instancetype。</p>
+<p>在写一条返回id的消息前，问自己：这个类返回实例吗？如果返回，用instancetype。</p>
+<p>肯定有需要返回id的时候，但你用instancetype的频率应该会更高。</p>
+<p><em>本答案最后编辑于2013年7月12日</em></p>
+<p>原帖：<a href="http://stackoverflow.com/questions/8972221/would-it-be-beneficial-to-begin-using-instancetype-instead-of-id" target="_blank" rel="external">objective c - Would it be beneficial to begin using instancetype instead of id?</a></p>
+<p>注意：我也是刚入门而已，如果翻译的术语与通行术语不一致，敬请告知；如果选取的翻译内容有误或过时，敬请告知，谢谢。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/20/use-system-comes-with-qr-codes-and-scanning/" rel="next" title="使用系统自带二维码生成及扫描">
+                <i class="fa fa-chevron-left"></i> 使用系统自带二维码生成及扫描
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/07/ios-video-player-how-to-force-the-rotating-screen/" rel="prev" title="iOS视频播放等如何强制旋转屏幕">
+                iOS视频播放等如何强制旋转屏幕 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="alloc,allocWithZone:," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="问题起源一切起源于Apple官方文档里面关于单例(Singleton)的示范代码:Creating a Singleton Instance.
+主要的争议集中在下面这一段：
+
+
+
+static MyGizmoClass *sharedGizmoManager = nil;
+
+(MyGizmoClass*)sharedManager{  if (sharedGizmoManager == nil)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C 里的 alloc 和 allocWithZone:">
+<meta property="og:url" content="http://yoursite.com/2015/08/05/objective-cs-alloc-and-allocwithzone/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="问题起源一切起源于Apple官方文档里面关于单例(Singleton)的示范代码:Creating a Singleton Instance.
+主要的争议集中在下面这一段：
+
+
+
+static MyGizmoClass *sharedGizmoManager = nil;
+
+(MyGizmoClass*)sharedManager{  if (sharedGizmoManager == nil)">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C 里的 alloc 和 allocWithZone:">
+<meta name="twitter:description" content="问题起源一切起源于Apple官方文档里面关于单例(Singleton)的示范代码:Creating a Singleton Instance.
+主要的争议集中在下面这一段：
+
+
+
+static MyGizmoClass *sharedGizmoManager = nil;
+
+(MyGizmoClass*)sharedManager{  if (sharedGizmoManager == nil)">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/08/05/objective-cs-alloc-and-allocwithzone/"/>
+
+  <title> Objective-C 里的 alloc 和 allocWithZone: | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Objective-C 里的 alloc 和 allocWithZone:
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-08-05T20:24:00+08:00" content="2015-08-05">
+              2015-08-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="问题起源"><a href="#问题起源" class="headerlink" title="问题起源"></a>问题起源</h2><p>一切起源于Apple官方文档里面关于单例(Singleton)的示范代码:<a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32" target="_blank" rel="external">Creating a Singleton Instance</a>.</p>
+<p>主要的争议集中在下面这一段：</p>
+<p><div></div></p>
+<p><div id="highlighter_207797" class="syntaxhighlighter  objc"></div></p>
+<p><div class="toolbar"></div></p>
+<p><pre class="lang:objc decode:true">static MyGizmoClass *sharedGizmoManager = nil;</pre></p>
+<ul>
+<li><p>(MyGizmoClass*)sharedManager<br>{<br>  if (sharedGizmoManager == nil) {</p>
+<pre><code>sharedGizmoManager = [[super allocWithZone:NULL] init];
+</code></pre><p>  }</p>
+<p>  return sharedGizmoManager;<br>}</p>
+</li>
+<li><p>(id)allocWithZone:(NSZone *)zone<br>{<br>  return [[self sharedManager] retain];<br>}<br><br><br><br><a id="more"></a>其中：<br><pre class="lang:objc decode:true">sharedGizmoManager = [[super allocWithZone:NULL] init];</pre><br>这段有另一个版本，不使用 allocWithZone 而是直接 alloc，如下：<br><div><br><div id="highlighter_648474" class="syntaxhighlighter  objc"><br><pre class="lang:objc decode:true">sharedGizmoManager = [[super alloc] init];</pre><br></div><br></div><br>这就引发了一个讨论，为什么要覆盖allocWithZone方法，到底 alloc 和 allocWithZone 有啥区别呢？</p>
+</li>
+</ul>
+<h2 id="allocWithZone"><a href="#allocWithZone" class="headerlink" title="allocWithZone"></a>allocWithZone</h2><p>平时我们在初始化一个对象的时候， [[Class alloc] init]，其实是做了两件事。 alloc 给对象分配内存空间，init是对对象的初始化，包括设置成员变量初值这些工作。而给对象分配空间，除了alloc方法之外，还有另一个方法： allocWithZone.</p>
+<p>在NSObject 这个类的<a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/nsobject_Class/Reference/Reference.html" target="_blank" rel="external">官方文档</a>里面，allocWithZone方法介绍说，该方法的参数是被忽略的，正确的做法是传nil或者NULL参数给它。而这个方法之所以存在，是历史遗留原因。</p>
+<blockquote>
+<p>Do not override allocWithZone: to include any initialization code. Instead, class-specific versions of init… methods.</p>
+<p>This method exists for historical reasons; memory zones are no longer used by Objective-C.<br>文档里面提到，memory zone已经被弃用了，只是历史原因才保留这个接口。</p>
+</blockquote>
+<p>而实践证明，使用alloc方法初始化一个类的实例的时候，默认是调用了 allocWithZone 的方法。于是覆盖allocWithZone方法的原因已经很明显了：为了保持单例类实例的唯一性，需要覆盖所有会生成新的实例的方法，如果有人初始化这个单例类的时候不走[[Class alloc] init] ，而是直接 allocWithZone， 那么这个单例就不再是单例了，所以必须把这个方法也堵上。allocWithZone的答案到此算是解决了，但是，问题是无止境的。</p>
+<p>这里引出了另外一个问题： What the hell is Memory Zone?</p>
+<h2 id="NSZone"><a href="#NSZone" class="headerlink" title="NSZone"></a>NSZone</h2><p>Apple官方文档里面就简单的几句，吝啬得很：</p>
+<p><div></div></p>
+<p><div id="highlighter_95238" class="syntaxhighlighter  objc"></div></p>
+<p><div class="toolbar"></div></p>
+<p><pre class="lang:objc decode:true">NSZone</pre></p>
+<p>Used to identify and manage memory zones.</p>
+<p>typedef struct _NSZone NSZone;</p>
+<p>Availability</p>
+<p>Available in OS X v10.0 and later.</p>
+<p>Declared In</p>
+<p>NSZone.h<br><br><br><br>CocaDev的wiki就写得详细的多了，原文地址在这里：<a href="http://cocoadev.com/wiki/NSZone" target="_blank" rel="external">http://cocoadev.com/wiki/NSZone</a></p>
+<p>大意上是说NSZone是Apple用来分配和释放内存的一种方式，它不是一个对象，而是使用C结构存储了关于对象的内存管理的信息。基本上开发者是不需要去理会这个东西的，cocoa Application使用一个系统默认的NSZone来对应用的对象进行管理。那么在什么时候你会想要有一个自己控制的NSZone呢？当默认的NSZone里面管理了大量的对象的时候。这种时候，大量对象的释放可能会导致内存严重碎片化，cocoa本身有做过优化，每次alloc的时候会试图去填满内存的空隙，但是这样做的话时间的开销很大。于是乎，你可以自己创建一个NSZone，这样当你有大量的alloc请求的时候就全部转移到指定的NSZone里面去，减少了大量的时间开销。而且，使用NSZone还可以一口气把你创建的zone里面的东西都清除掉，省掉了大量的时间去一个个dealloc对象。</p>
+<p>总的来说，当你需要创建大量的对象的时候，使用NSZone还是能节省一些时间的，不过前提是你得知道怎么去用它。这篇wiki里面也写了NSZone的用法，感兴趣的童鞋可以看看，不过另一篇<strong>2002年</strong>的文章就说开发者已经不能创建一个真正的NSZone了（看来也许这就是历史原因了），只能创建main zone的一个child zone。文章在这里：<a href="http://www.cocoabuilder.com/archive/cocoa/65056-what-an-nszone.html#65056" target="_blank" rel="external">http://www.cocoabuilder.com/archive/cocoa/65056-what-an-nszone.html#65056</a> Timothy J.wood 的回答。</p>
+<p>Timothy还讲到如果可以使用NSZone的话，多个对象在同一时间alloc可以减少分页使用，而且在同一个时间dealloc可以减少内存碎片。想必后来Apple在这方面是做了处理了，对开发者透明，无需开发者自己去做。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>allocWithZone不被Apple鼓励使用，基本上多数时候程序员也不需要自己去管理自己的zone。当然多了解一些东西总是好的嘛。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/alloc/" rel="tag">#alloc</a>
+          
+            <a href="/tags/allocWithZone/" rel="tag">#allocWithZone:</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/04/23-design-patterns/" rel="next" title="IOS常见设计模式">
+                <i class="fa fa-chevron-left"></i> IOS常见设计模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/" rel="prev" title="Objective-C 类的加载和初始化(+load 和 +initialize 方法)">
+                Objective-C 类的加载和初始化(+load 和 +initialize 方法) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题起源"><span class="nav-number">1.</span> <span class="nav-text">问题起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#allocWithZone"><span class="nav-number">2.</span> <span class="nav-text">allocWithZone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSZone"><span class="nav-number">3.</span> <span class="nav-text">NSZone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

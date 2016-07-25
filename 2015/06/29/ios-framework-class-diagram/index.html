@@ -1,0 +1,722 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Cocoa框架是iOS应用程序的基础，了解Cocoa框架，对开发iOS应用有很大的帮助。
+1、Cocoa是什么？Cocoa是OS X和 iOS操作系统的程序的运行环境。
+是什么因素使一个程序成为Cocoa程序呢？不是编程语言，因为在Cocoa开发中你可以使用各种语言；也不是开发工具，你可以在命令行上就可以创建Cocoa程序。Cocoa程序可以这么说，它是由一些对象组成，而这些对象的类最后都是继承于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS 整体框架类图">
+<meta property="og:url" content="http://yoursite.com/2015/06/29/ios-framework-class-diagram/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="Cocoa框架是iOS应用程序的基础，了解Cocoa框架，对开发iOS应用有很大的帮助。
+1、Cocoa是什么？Cocoa是OS X和 iOS操作系统的程序的运行环境。
+是什么因素使一个程序成为Cocoa程序呢？不是编程语言，因为在Cocoa开发中你可以使用各种语言；也不是开发工具，你可以在命令行上就可以创建Cocoa程序。Cocoa程序可以这么说，它是由一些对象组成，而这些对象的类最后都是继承于">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/17/1350459010_4309.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/18/1350526881_2060.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/18/1350526897_3494.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/18/1350526913_6659.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/18/1350528267_1570.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/21/1350831500_2327.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/21/1350831599_3230.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/22/1350871031_1713.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/22/1350871223_8473.gif">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/22/1350871326_3857.gif">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/22/1350871361_2570.gif">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/22/1350871395_7054.gif">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IOS 整体框架类图">
+<meta name="twitter:description" content="Cocoa框架是iOS应用程序的基础，了解Cocoa框架，对开发iOS应用有很大的帮助。
+1、Cocoa是什么？Cocoa是OS X和 iOS操作系统的程序的运行环境。
+是什么因素使一个程序成为Cocoa程序呢？不是编程语言，因为在Cocoa开发中你可以使用各种语言；也不是开发工具，你可以在命令行上就可以创建Cocoa程序。Cocoa程序可以这么说，它是由一些对象组成，而这些对象的类最后都是继承于">
+<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201210/17/1350459010_4309.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/06/29/ios-framework-class-diagram/"/>
+
+  <title> IOS 整体框架类图 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IOS 整体框架类图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-06-29T11:46:17+08:00" content="2015-06-29">
+              2015-06-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">IOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/UI/摘。/" itemprop="url" rel="index">
+                    <span itemprop="name">摘。</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Cocoa框架是iOS应用程序的基础，了解Cocoa框架，对开发iOS应用有很大的帮助。</p>
+<h2 id="1、Cocoa是什么？"><a href="#1、Cocoa是什么？" class="headerlink" title="1、Cocoa是什么？"></a><a name="t0"></a><a name="t0"></a><a name="t0"></a><strong>1、Cocoa是什么？</strong></h2><p>Cocoa是OS X和 iOS操作系统的程序的运行环境。</p>
+<p>是什么因素使一个程序成为Cocoa程序呢？不是编程语言，因为在Cocoa开发中你可以使用各种语言；也不是开发工具，你可以在命令行上就可以创建Cocoa程序。Cocoa程序可以这么说，它是由一些对象组成，而这些对象的类最后都是继承于它们的根类 ：NSObject。而且它们都是基于Objective-C运行环境的。</p>
+<h3 id="1-1、Cocoa框架"><a href="#1-1、Cocoa框架" class="headerlink" title="1.1、Cocoa框架"></a><a name="t1"></a><a name="t1"></a><a name="t1"></a>1.1、Cocoa框架</h3><p>iOS中，Cocoa众多框架中最重要最基本的两个框架是：Foundation 和 UIKit。</p>
+<p>Foundation 和界面无关，也可以说和界面无关的类基本是Foundation框架的，和界面相关的是UIKit框架。</p>
+<p>这两个框架在系统中处于的位置如图：</p>
+<p><img src="http://img.my.csdn.net/uploads/201210/17/1350459010_4309.jpg" alt=""></p>
+<h3 id="1-2、Foundation框架"><a href="#1-2、Foundation框架" class="headerlink" title="1.2、Foundation框架"></a><a name="t2"></a><a name="t2"></a><a name="t2"></a>1.2、Foundation框架</h3><p>好吧，那我们看看两个框架的类组织架构图，第一个先看Foundation的，三个图，包括了Foundation所以的类，图中灰色的是iOS不支持的，灰色部分是OS X系统的。</p>
+<p><img src="http://img.my.csdn.net/uploads/201210/18/1350526881_2060.jpg" alt=""> <img src="http://img.my.csdn.net/uploads/201210/18/1350526897_3494.jpg" alt=""></p>
+<p><img src="http://img.my.csdn.net/uploads/201210/18/1350526913_6659.jpg" alt=""></p>
+<p>将上图Foundation框架中的类进行逻辑分类如下：</p>
+<ol>
+<li>值对象</li>
+<li>集合</li>
+<li>操作系统服务 包括下面三个：文件系统和URL   <strong>进程间通讯。</strong> 这个范畴中的大部分类代表不同的系统端口、套接字、和名字服务器，对实现底层的IPC很有用。NSPipe代表一个BSD管道，即一种进程间的单向通讯通道。   <strong>线程和子任务。</strong> NSThread类使您可以创建多线程的程序，而各种锁（lock）类则为彼此竞争的线程在访问进程资源时提供各种控制机制。通过NSTask，您的程序可以分出      一个子进程来执行其它工作或进行进度监控。</li>
+<li>通知</li>
+<li>归档和序列化</li>
+<li>表达式和条件判断</li>
+<li>Objective-C语言服务<a id="more"></a>
+</li>
+</ol>
+<h3 id="1-3-UIKit框架"><a href="#1-3-UIKit框架" class="headerlink" title="1.3 UIKit框架"></a><a name="t3"></a><a name="t3"></a><a name="t3"></a>1.3 UIKit框架</h3><p><div>应用程序可以通过三种方式使用UIKit创建界面</div></p>
+<div>
+
+<ol>
+<li>在用户界面工具（interface Buidler）从对象库里 拖拽窗口，视图或者其他的对象使用。</li>
+<li>用代码创建</li>
+<li>通过继承UIView类或间接继承UIView类实现自定义用户界面<br></li></ol></div><br><div></div><br><div>框架类组织架构图：</div><br><div><img src="http://img.my.csdn.net/uploads/201210/18/1350528267_1570.jpg" alt=""></div><br><div></div><br><div></div><br>在图中可以看出，responder 类是图中最大分支的根类，UIResponder为处理响应事件和响应链 定义了界面和默认行为。当用户用手指滚动列表或者在虚拟键盘上输入时，UIKit就生成时间传送给UIResponder响应链，直到链中有对象处理这个事件。相应的核心对象，比如：UIApplication  ，UIWindow，UIView都直接或间接的从UIResponder继承。
+
+<h2 id="2、Cocoa对象"><a href="#2、Cocoa对象" class="headerlink" title=" 2、Cocoa对象"></a><a name="t4"></a><a name="t4"></a><a name="t4"></a> 2、Cocoa对象</h2><h3 id="2-1-Objective-C是面向对象的语言"><a href="#2-1-Objective-C是面向对象的语言" class="headerlink" title="2.1 Objective-C是面向对象的语言"></a><a name="t5"></a><a name="t5"></a><a name="t5"></a>2.1 Objective-C是面向对象的语言</h3><p>Objective-C和Java C++一样，有封装，继承，多态，重用。但是它不像C++那样有重载操作法、模版和多继承，也没有Java的垃圾回收机制。</p>
+<h3 id="2-2-Objective-C的优点"><a href="#2-2-Objective-C的优点" class="headerlink" title="2.2 Objective-C的优点"></a><a name="t6"></a><a name="t6"></a><a name="t6"></a>2.2 Objective-C的优点</h3><p>Objective-C语言有C++ Java等面向对象的特点，那是远远不能体现它的优点的。Objective-C的优点是它是动态的。动态能力有三种：</p>
+<p>动态类-运行时确定类的对象</p>
+<p>动态绑定-运行时确定要调用的方法</p>
+<p>动态加载–运行时为程序加载新的模块</p>
+<h3 id="2-3-动态能力相关的isa指针"><a href="#2-3-动态能力相关的isa指针" class="headerlink" title="2.3 动态能力相关的isa指针"></a><a name="t7"></a><a name="t7"></a><a name="t7"></a>2.3 动态能力相关的isa指针</h3><p>每个Objective-C对象都有一个隐藏的数据结构，这个数据结构是Objective-C对象的第一个成员变量，它就是isa指针。这个指针指向哪呢？它指向一个类对象(class object  记住它是个对象，是占用内存空间的一个变量，这个对象在编译的时候编译器就生成了，专门来描述某个类的定义)，这个类对象包含了Objective-C对象的一些信息（为了区分两个对象，我把前面提到的对象叫Objective-C对象），包括Objective-C对象的方法调度表，实现了什么协议等等。这个包含信息就是Objective-C动态能力的根源了。</p>
+<p>那我们看看isa指针类型的数据结构是什么样的？如果抛开NSObject对象的其他的成员数据和变量，NSObject可以看成这样：</p>
+<p><pre class="lang:objc decode:true">@interface NSObject &lt;NSObject&gt; {<br>     Class    isa;<br>}</pre><br>不考虑@interface关键字在编译时的作用，可以把NSObject更接近C语言结构表示为：</p>
+<p><pre class="lang:objc decode:true">struct NSObject{<br> 　　Class isa;<br> }</pre><br>Class是用typedef 定义的</p>
+<p><div class="dp-highlighter bg_cpp"></div></p>
+<p><div class="bar"></div></p>
+<p><div class="tools"></div></p>
+<p><pre class="lang:objc decode:true">typedef struct objc_class *Class;</pre><br><br><br><br>那NSObject可以这么写了</p>
+<p><pre class="lang:objc decode:true">struct NSObject{<br>　　objc_class *isa<br>}</pre></p>
+<p><div class="dp-highlighter bg_cpp"></div><br>那objc_class的结构是什么样的呢？大概是这样的：</p>
+<p><div class="dp-highlighter bg_cpp"></div></p>
+<p><div class="bar"></div></p>
+<p><div class="tools"></div></p>
+<p><pre class="lang:objc decode:true ">struct objc_class {<br>     Class isa;  </pre></p>
+<pre><code>Class super_class;  
+
+const char *name;  
+
+long version;  
+long info;  
+
+long instance_size;  
+struct objc_ivar_list *ivars;  
+struct objc_method_list **methodLists;   
+
+struct objc_cache *cache;  
+struct objc_protocol_list *protocols;     
+</code></pre><p> }<br>&nbsp;</p>
+<p><br><br><br>这里会看到，在这个结构体里还有一个isa指针，又是一重指向，是不是有种到了盗梦空间的感觉。不用紧张，take easy，不会有那么多层次的，这里的isa指针指向的是元类对象(metaclass object)，带有元字，证明快到头了。那元对象有啥用呢？它用来存储的关于类的版本，名字，类方法等信息。所有的元类对象(metaclass object)都指向 NSObject的元类对象，到头还是NSObject。一共三次：类对象-&gt;元类对象-&gt;NSObject元类对象。</p>
+<p>为了得到整个类组织架构的信息，objc_class结构里定义了第二个成员变量Class super_class，它指向父类的类对象。说了这么多，可能关系缕不清楚，有道是一张图胜过千言万语</p>
+<p><img src="http://img.my.csdn.net/uploads/201210/21/1350831500_2327.jpg" alt=""></p>
+<p>图中可以看出，D3继承D2,D2继承D1,D1最终继承NSObject。下图从D3的一个对象开始，排列出D3 D2 D1 NSObject 类对象，元类对象等关系。</p>
+<p><img src="http://img.my.csdn.net/uploads/201210/21/1350831599_3230.png" alt=""></p>
+<p>图中的箭头都是指针的指向。</p>
+<h3 id="2-4-根类-NSObject"><a href="#2-4-根类-NSObject" class="headerlink" title="2.4 根类 NSObject"></a><a name="t8"></a><a name="t8"></a><a name="t8"></a>2.4 根类 NSObject</h3><p>NSObject是大部分Objective-C类的根类，它没有父类。其它类继承NSObject，访问Objective-C运行时系统的基本接口，这样其他类的实例可以获得运行时的能力。</p>
+<p><img src="http://img.my.csdn.net/uploads/201210/22/1350871031_1713.jpg" alt=""></p>
+<h4 id="2-4-1-根类和根类协议"><a href="#2-4-1-根类和根类协议" class="headerlink" title="2.4.1 根类和根类协议"></a><a name="t9"></a><a name="t9"></a><a name="t9"></a><strong>2.4.1 根类和根类协议</strong></h4><p>NSObject不但是个类名，NSObject也是个协议的名称，<a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Protocols/NSObject_Protocol/Reference/NSObject.html" target="_blank" rel="external">参考NSObject协议</a> ， NSObject协议指定了根类必须实现的接口。</p>
+<h4 id="2-4-2-根类的主要方法："><a href="#2-4-2-根类的主要方法：" class="headerlink" title="2.4.2 根类的主要方法："></a><a name="t10"></a><a name="t10"></a><a name="t10"></a><strong>2.4.2 根类的主要方法：</strong></h4><h5 id=""><a href="#" class="headerlink" title=""></a><a name="t11"></a><a name="t11"></a><a name="t11"></a></h5><ul>
+<li>分配、初始化、和复制：<br>alloc和allocWithZone:方法用于从某内存区域中分配一个对象内存，并使对象指向其运行时的类定义。<br>init方法是对象初始化。<br>new是一个将简单的内存分配和初始化结合起来的方法。<br>copy和copyWithZone:</li>
+</ul>
+<h5 id="-1"><a href="#-1" class="headerlink" title=""></a><a name="t12"></a><a name="t12"></a><a name="t12"></a></h5><ul>
+<li>对象的保持和清理：<br>retain方法增加对象的保持次数。<br>release方法减少对象的保持次数。<br>autorelease方法也是减少对象的保持次数，但是以推迟的方式。<br>retainCount方法返回对当前的保持次数。<br>dealloc方法由需要释放对象的实例变量以及释放动态分配的内存的类实现。</li>
+</ul>
+<h5 id="-2"><a href="#-2" class="headerlink" title=""></a><a name="t13"></a><a name="t13"></a><a name="t13"></a></h5><ul>
+<li>内省和比较<br>NSObjec有很多方法可以查询对象的运行时信息。这些内省方法有助于找出对象在类层次中的位置，确定对象是否实现特定的方法，以及测试对象是否遵循某种协议。下面是部分方法<br>superclass和class方法（实现为类和实例方法）分别以Class对象的形式返回接收者的父类和类。<br>您可以通过isKindOfClass:和isMemberOfClass:方法来确定对象属于哪个类。后者用于测试接收者是否为指定类的实例。isSubclassOfClass:类方法则用于测试类的继承性。<br>respondsToSelector:方法用于测试接收者是否实现由选择器参数标识的方法。instancesRespondToSelector:类方法则用于测试给定类的实例是否实现指定的方法。<br>conformsToProtocol:方法用于测试接收者（对象或类）是否遵循给定的协议。<br>isEqual:和hash方法用于对象的比较。<br>description方法允许对象返回一个内容描述字符串；这个方法的输出经常用于调试（“print object”命令），以及在格式化字符串中和“%@”指示符一起表示对象。</li>
+</ul>
+<h5 id="-3"><a href="#-3" class="headerlink" title=""></a><a name="t14"></a><a name="t14"></a><a name="t14"></a></h5><ul>
+<li>对象的编码和解码<br>下面的方法和对象的编解码（作为归档过程的一部分）有关：<br>encodeWithCoder:和initWithCoder:是NSCoding协议仅有的方法。前者使对象可以对其实例变量进行编码，后者则使对象可以根据解码过的实例变量对自身进行初始化。<br>NSObject类中声明了一些于对象编码有关的方法：classForCoder:、replacementObjectForCoder:、和awakeAfterUsingCoder:。</li>
+</ul>
+<h5 id="-4"><a href="#-4" class="headerlink" title=""></a><a name="t15"></a><a name="t15"></a><a name="t15"></a></h5><ul>
+<li>消息的转发<br><strong> </strong>forwardInvocation:允许一个对象将消息转发给另一个对象。</li>
+</ul>
+<h5 id="-5"><a href="#-5" class="headerlink" title=""></a><a name="t16"></a><a name="t16"></a><a name="t16"></a></h5><ul>
+<li>消息的派发<br>在performSelector开头的一些方法允许你延迟后派发指定消息，而且可以将消息（同步或异步的消息）从辅助线程派发到主线程。</li>
+</ul>
+<h3 id="2-5-Cocoa对象生命周期"><a href="#2-5-Cocoa对象生命周期" class="headerlink" title="2.5 Cocoa对象生命周期"></a><a name="t17"></a><a name="t17"></a><a name="t17"></a>2.5 Cocoa对象生命周期</h3><p>对象的四种内存管理方式，如下图所示</p>
+<ul>
+<li><p><strong> 对象的生命周期—简化视图</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871223_8473.gif" alt=""></p>
+</li>
+<li><p><strong>保持接收到的对象</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871326_3857.gif" alt=""></p>
+</li>
+<li><p><strong>拷贝接收到的对象</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871361_2570.gif" alt=""></p>
+</li>
+<li><p><strong>自动释放池</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871395_7054.gif" alt=""></p>
+</li>
+</ul>
+<p>&nbsp;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/28/talk-is-cheap-show-me-the-code/" rel="next" title="Talk is cheap. Show me the code.">
+                <i class="fa fa-chevron-left"></i> Talk is cheap. Show me the code.
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/29/delegate-applications/" rel="prev" title="Delegate的使用场合">
+                Delegate的使用场合 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、Cocoa是什么？"><span class="nav-number">1.</span> <span class="nav-text">1、Cocoa是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1、Cocoa框架"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、Cocoa框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2、Foundation框架"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、Foundation框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-UIKit框架"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 UIKit框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、Cocoa对象"><span class="nav-number">2.</span> <span class="nav-text"> 2、Cocoa对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Objective-C是面向对象的语言"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Objective-C是面向对象的语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Objective-C的优点"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Objective-C的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-动态能力相关的isa指针"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 动态能力相关的isa指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-根类-NSObject"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 根类 NSObject</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-根类和根类协议"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1 根类和根类协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-根类的主要方法："><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2 根类的主要方法：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">2.4.2.1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-1"><span class="nav-number">2.4.2.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-2"><span class="nav-number">2.4.2.3.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-3"><span class="nav-number">2.4.2.4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-4"><span class="nav-number">2.4.2.5.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-5"><span class="nav-number">2.4.2.6.</span> <span class="nav-text"></span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Cocoa对象生命周期"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 Cocoa对象生命周期</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

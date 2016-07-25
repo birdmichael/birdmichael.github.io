@@ -1,0 +1,665 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="二维码," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="生成代码   // 1.实例化二维码滤镜
+    CIFilter *filter = [CIFilter filterWithName:@&quot;CIQRCodeGenerator&quot;];
+
+    // 2.恢复滤镜的默认属性 (因为滤镜有可能保存上一次的属性)
+    [filter setDefaults];
+
+    // 3.将字符串转换成NSdata
+    NSData *data  =">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用系统自带二维码生成及扫描">
+<meta property="og:url" content="http://yoursite.com/2015/09/20/use-system-comes-with-qr-codes-and-scanning/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="生成代码   // 1.实例化二维码滤镜
+    CIFilter *filter = [CIFilter filterWithName:@&quot;CIQRCodeGenerator&quot;];
+
+    // 2.恢复滤镜的默认属性 (因为滤镜有可能保存上一次的属性)
+    [filter setDefaults];
+
+    // 3.将字符串转换成NSdata
+    NSData *data  =">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用系统自带二维码生成及扫描">
+<meta name="twitter:description" content="生成代码   // 1.实例化二维码滤镜
+    CIFilter *filter = [CIFilter filterWithName:@&quot;CIQRCodeGenerator&quot;];
+
+    // 2.恢复滤镜的默认属性 (因为滤镜有可能保存上一次的属性)
+    [filter setDefaults];
+
+    // 3.将字符串转换成NSdata
+    NSData *data  =">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/09/20/use-system-comes-with-qr-codes-and-scanning/"/>
+
+  <title> 使用系统自带二维码生成及扫描 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用系统自带二维码生成及扫描
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-09-20T23:03:34+08:00" content="2015-09-20">
+              2015-09-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">IOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h3><pre class="lang:objc decode:true ">   // 1.实例化二维码滤镜
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+
+    // 2.恢复滤镜的默认属性 (因为滤镜有可能保存上一次的属性)
+    [filter setDefaults];
+
+    // 3.将字符串转换成NSdata
+    NSData *data  = [@"http://www.birdmichael.com" dataUsingEncoding:NSUTF8StringEncoding];
+
+    // 4.通过KVO设置滤镜, 传入data, 将来滤镜就知道要通过传入的数据生成二维码
+    [filter setValue:data forKey:@"inputMessage"];
+
+    // 5.生成二维码
+     CIImage *outputImage = [filter outputImage];
+
+    // 6.得到image
+    UIImage *image = [UIImage  imageWithCIImage:outputImage];</pre>
+
+<h3 id="扫描二维码"><a href="#扫描二维码" class="headerlink" title="扫描二维码"></a>扫描二维码</h3><p><pre class="lang:objc decode:true ">#import “ViewController.h”</pre></p>
+<p>#import &lt;AVFoundation/AVFoundation.h&gt;</p>
+<p>@interface ViewController ()&lt;AVCaptureMetadataOutputObjectsDelegate&gt;<br>@property (nonatomic, strong) AVCaptureSession <em>session;<br>@property (nonatomic, strong) AVCaptureVideoPreviewLayer </em>previewLayer;<br>@end</p>
+<p>@implementation ViewController</p>
+<ul>
+<li><p>(void)viewDidLoad {<br>  [super viewDidLoad];<br>  // Do any additional setup after loading the view, typically from a nib.</p>
+<p>  // 1. 实例化拍摄设备<br>  AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];</p>
+<p>  // 2. 设置输入设备<br>  AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];</p>
+<p>  // 3. 设置元数据输出<br>  // 3.1 实例化拍摄元数据输出<br>  AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];<br>  // 3.3 设置输出数据代理<br>  [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];</p>
+<p>  // 4. 添加拍摄会话<br>  // 4.1 实例化拍摄会话<br>  AVCaptureSession *session = [[AVCaptureSession alloc] init];<br>  // 4.2 添加会话输入<br>  [session addInput:input];<br>  // 4.3 添加会话输出<br>  [session addOutput:output];<br>  // 4.3 设置输出数据类型，需要将元数据输出添加到会话后，才能指定元数据类型，否则会报错<br>  [output setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];</p>
+<p>  self.session = session;</p>
+<p>  // 5. 视频预览图层<br>  // 5.1 实例化预览图层, 传递_session是为了告诉图层将来显示什么内容<br>  AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession:_session];</p>
+<p>  preview.videoGravity = AVLayerVideoGravityResizeAspectFill;<br>  preview.frame = self.view.bounds;<br>  // 5.2 将图层插入当前视图<br>  [self.view.layer insertSublayer:preview atIndex:100];</p>
+<p>  self.previewLayer = preview;</p>
+<p>  // 6. 启动会话<br>  [_session startRunning];</p>
+</li>
+</ul>
+<p>}</p>
+<ul>
+<li><p>(void)captureOutput:(AVCaptureOutput <em>)captureOutput didOutputMetadataObjects:(NSArray </em>)metadataObjects fromConnection:(AVCaptureConnection *)connection<br>{</p>
+<p>  // 会频繁的扫描，调用代理方法<br>  // 1. 如果扫描完成，停止会话<br>  [self.session stopRunning];<br>  // 2. 删除预览图层<br>  [self.previewLayer removeFromSuperlayer];</p>
+<p>  NSLog(@”%@”, metadataObjects);<br>  // 3. 设置界面显示扫描结果</p>
+<p>  if (metadataObjects.count &gt; 0) {</p>
+<pre><code>AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
+// 提示：如果需要对url或者名片等信息进行扫描，可以在此进行扩展！
+</code></pre><p>//        _label.text = obj.stringValue;</p>
+<pre><code>NSLog(@&quot;%@&quot;, obj.stringValue);
+</code></pre><p>  }<br>}<br>&nbsp;</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二维码/" rel="tag">#二维码</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/20/static-library/" rel="next" title="静态库">
+                <i class="fa fa-chevron-left"></i> 静态库
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/29/instancetype-instead-of-the-id-is-used-as-the-return-type-what-are-the-benefits/" rel="prev" title="用instancetype代替id作返回类型有什么好处？">
+                用instancetype代替id作返回类型有什么好处？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成代码"><span class="nav-number">1.</span> <span class="nav-text">生成代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扫描二维码"><span class="nav-number">2.</span> <span class="nav-text">扫描二维码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

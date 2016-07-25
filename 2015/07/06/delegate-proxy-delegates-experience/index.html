@@ -1,0 +1,610 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="dalegate,代理,委托," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="首先，大家应该都非常清楚明白委托(代理)其实协议的一种，顾名思义，就是委托他人帮自己去做什么事,或者他人代谁去坐某事。也就是当自己做什么事情不方便的时候，就可以建立一个委托，这样就可以委托他人帮自己去实现什么方法。
+&amp;gt; 委托一般情况做以下几件事情&amp;gt;&amp;gt; 传值:所谓传值经常用在b类要把自己的一个数据或者对象传给a类，让a类去展示或者处理。（提高代码可复制性，可移植性，和代码分块的时候">
+<meta property="og:type" content="article">
+<meta property="og:title" content="delegate代理（委托）的使用心得">
+<meta property="og:url" content="http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="首先，大家应该都非常清楚明白委托(代理)其实协议的一种，顾名思义，就是委托他人帮自己去做什么事,或者他人代谁去坐某事。也就是当自己做什么事情不方便的时候，就可以建立一个委托，这样就可以委托他人帮自己去实现什么方法。
+&amp;gt; 委托一般情况做以下几件事情&amp;gt;&amp;gt; 传值:所谓传值经常用在b类要把自己的一个数据或者对象传给a类，让a类去展示或者处理。（提高代码可复制性，可移植性，和代码分块的时候">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://www.1000phone.net/data/attachment/forum/201112/23/191755zeji8jas6qyidyqe.jpg">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="delegate代理（委托）的使用心得">
+<meta name="twitter:description" content="首先，大家应该都非常清楚明白委托(代理)其实协议的一种，顾名思义，就是委托他人帮自己去做什么事,或者他人代谁去坐某事。也就是当自己做什么事情不方便的时候，就可以建立一个委托，这样就可以委托他人帮自己去实现什么方法。
+&amp;gt; 委托一般情况做以下几件事情&amp;gt;&amp;gt; 传值:所谓传值经常用在b类要把自己的一个数据或者对象传给a类，让a类去展示或者处理。（提高代码可复制性，可移植性，和代码分块的时候">
+<meta name="twitter:image" content="http://common.cnblogs.com/images/copycode.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/"/>
+
+  <title> delegate代理（委托）的使用心得 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                delegate代理（委托）的使用心得
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-06T00:14:53+08:00" content="2015-07-06">
+              2015-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">IOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首先，大家应该都非常清楚明白委托(代理)其实协议的一种，顾名思义，就是委托他人帮自己去做什么事,或者他人代谁去坐某事。也就是当自己做什么事情不方便的时候，就可以建立一个委托，这样就可以委托他人帮自己去实现什么方法。</p>
+<div></div><br>&gt; <div>委托一般情况做以下几件事情</div><br>&gt;<br>&gt; <div>传值:所谓传值经常用在b类要把自己的一个数据或者对象传给a类，让a类去展示或者处理。（提高代码可复制性，可移植性，和代码分块的时候经常用）</div><br>&gt;<br>&gt; <div>传事件:所谓传事件就是a类发生了什么事，把这件事告诉关注自己的人，也就是委托的对象，由委托的对象去考虑发生这个事件后应该做出什么反映。（这个经常见，例如在异步请求中，界面事件触发数据层改变等等）</div><br>&gt;<br>&gt; <div>赋值:这种方法感觉是为了不暴露自己的属性就可以给自己复值，而且这样更方便了类的管理，只有在你想要让别人给你赋值的时候才调用，这样的赋值更可控一些。（例如tableView中的委托（dateSource）中常见）。</div><br><div></div><br><div>最后，我想分享一下在使用委托的时候的一些心得和注意事项。</div><br><div></div><br><div>心得：delegate的命名要准确，尽量看名字就知道用法。delegate和通知有的用法有些象，但是前者是单对单的，后者是单对多的情况。</div><br>&gt; 命名:<br>&gt; 1.协议名一般以类名开头,如(<span class="s2"> BMfirendHeaderViewDelegate</span>)<br>&gt; 2.委托的外部声明属性一般固定为delegate.(有经验的程序员一般会默认在你类名后面”.”一个delegate,如果有马上成为代理看看)<br>&gt; 3.委托方法一般也以类名开头,且不加标示符.(有经验的程序员查看你的代理方法会直接成为代理后输入你的类名查看代理方法)<br>&gt; 4.委托方法一般不是特殊轻快都@optional.<br>&gt; 5.委托方法一般会使用should、will、did这3个关键字表面状态.<br>&gt; 具体更多书写规范可以查看官方示例.<br><div>注意：在dealloc要把delegate至为nil，还有就是delegate设置属性的时候要用assign，不要用retain。</div><br><a id="more"></a><br><div></div><br><div><br><br><strong>委托</strong>在IOS中委托通过一种@protocol的方式实现,所以又称为协议.协议是多个类共享的一个方法列表,在协议中所列出的方法没有响应的实现，由其它人来实现.这叫好比我想买个手机，所以我有个buyIphone 方法,但是我不知道谁那买手机,所以把这个需求发布出去(比如公布在网站上),如果有卖手机的商人(也就是说他能实现buyIphone这个方法)看到，他就会接受我的委托,(在商人自己的类中实现&lt;XXXdelegate&gt;),那么我的委托对象就指向了这个商人..当我要买手机的时候，直接找他就行了.<br><br>例如:<br><div class="cnblogs_code"><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="复制代码" target="_blank" rel="external"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div><br><pre>@protocol MyDelegate<br>-(void)buyIphone:(NSString <em>)iphoneType money:(NSString </em>)money;<br><br>@end<br>@interface My : NSObject<br>{<br>    id&lt;MyDelegate&gt; deleage;<br>}<br>@property(assign,nonatomic)id&lt;MyDelegate&gt; delegate;<br>@end</pre><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="复制代码" target="_blank" rel="external"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div><br></div><br>代码中声明了一个协议 名叫Mydelegate,在其中有一个buyIphone方法，即一个委托项。当我要购买手机的时候只需要通过delegate 调用 BuyIphone方法即可.<br><br>如下:<br><div class="cnblogs_code"><br><pre>-(void)willbuy<br>{<br>    [delegate buyIphone:@”iphone 4s” money:@”4888”];<br><br>}</pre><br></div><br>我不必关心谁现实了这一委托，只要实现了这个委托的类，并且buyIphone是声明的委托中必须实现的方法，那么就一定能够得到结果.<br><br>例如:商人类实现了这一委托(用&lt;Mydelegate&gt;表示实现)<br><div class="cnblogs_code"><br><pre>#import &lt;Foundation/Foundation.h&gt;<br>#import “My.h”<br>@interface Business : NSObject&lt;MyDelegate&gt;<br><br>@end</pre><br></div><br>然后在 @implementation Business 中调用 buyIphone方法<br><div class="cnblogs_code"><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="复制代码" target="_blank" rel="external"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div><br><pre>#import “Business.h”<br><br>@implementation Business<br><br>-(void)buyIphone:(NSString <em>)iphoneType money:(NSString </em>)money<br>{<br>    NSLog(@”手机有货，这个价钱卖你了，发货中!!”);<br>}<br>@end</pre><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="复制代码" target="_blank" rel="external"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy">委托是Cocoa中最简单、最灵活的模式之一。委托是指给一个对象提供机会对另一个对象中的变化做出反应或者影响另一个对象的行为。其基本思想是：两个对象协同解决问题。一个对象非常普通，并且打算在广泛的情形中重用。它存储指向另一个对象（即它的委托）的引用，并在关键时刻给委托发消息。消息可能只是通知委托发生了某件事情，给委托提供机会执行额外的处理，或者消息可能要求委托提供一些关键的信息以控制所发生的事情。<br><img src="http://www.1000phone.net/data/attachment/forum/201112/23/191755zeji8jas6qyidyqe.jpg" alt=""> </span></div><br><div class="cnblogs_code_toolbar"><br><br><span class="cnblogs_code_copy">委托方法通常包括3种动词：should、will、did。</span><br><br>should表示一个动作发生前，通常带有返回值，可以在动作发生之前改变对象状态。<br>will在动作发生前，委托可以对动作做出响应，但不带有返回值。<br>did在动作发生后做出的响应。<br><br>从方法的定义我们不难看出委托模式能够起到两方面的作用：<br><br>第一：委托协助对象主体完成某项操作，将需要定制化的操作通过委托对象来自定义实现，达到和子类化对象主体同样的作用。<br>第二：事件监听，委托对象监听对象主体的某些重要事件，对事件做出具体响应或广播事件交给需要作出响应的对象。<br><br></div><br><div class="cnblogs_code_toolbar"><br><div class="cnblogs_code_toolbar"><br><br><span class="cnblogs_code_copy"><span class="cnblogs_code_copy">委托模式的实现思路：</span></span><br><br>1、通常是在对象主体包含一个委托对象的弱引用：<br><pre class="lang:objc decode:true">@interface A : NSObject<br>{<br>IBOutlet id delegate;<br>} -(id) delegate;<br>-(void) setDelegate:(id)obj;<br></pre><br>2、委托对象的实现有两种方式：正式协议和非正式协议，对象主体在协议中定义委托方法，委托对象可以选择实现其中某些委托方法，因此如果通过正式协议定义委托方法需要使用@option。<br><pre class="lang:objc decode:true">@protocol NSSearchDelegate<br>@option<br>-(void)didSearchFinish:(<em>NSNotification) aNotification;<br>@end</em></pre><br>3、连接对象主体和委托，无非就是通过setDelegate:(id)obj来实现。<br><br>4、触发委托方法。<br><br></div><br></div><br></div><br>下面总结一下委托的步骤:<br><br>1.  创建一份协议.<br><pre class="lang:objc decode:true">@protocol BMfirendHeaderViewDelegate &lt;NSObject&gt;<br><br>@end</pre><br><br>2.  申明代理属性.<br><pre class="lang:objc decode:true">@property (nonatomic, weak) id&lt;BMfirendHeaderViewDelegate&gt; delegate;</pre><br><br>3.  申明代理方法<br><pre class="lang:objc decode:true">@protocol BMfirendHeaderViewDelegate &lt;NSObject&gt;<br>@optional<br>- (void)firendHeaderViewHeadBtnClick:(BMfirendHeaderView )firendHeaderView;<br>@end</pre><br><br>4.  在委托（委托对象）设置委托代理属性(通常是某个ViewController原因作为委托)<br><pre class="lang:objc decode:true" title="ViewController.m">headerView.delegate =self;</pre><br><br>5.  遵守协议<br><pre class="lang:objc decode:true">@interface ViewController ()&lt;BMfirendHeaderViewDelegate&gt;</pre><br><br>6.  实现代理方法<br><pre class="lang:objc decode:true  ">-(void)firendHeaderViewHeadBtnClick:(BMfirendHeaderView *)firendHeaderView<br>{<br><br>}</pre><br>&nbsp;<br></div>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dalegate/" rel="tag">#dalegate</a>
+          
+            <a href="/tags/代理/" rel="tag">#代理</a>
+          
+            <a href="/tags/委托/" rel="tag">#委托</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/05/nsnotification-and-delegate-usage-and-tips/" rel="next" title="NSNotification和Delegate使用及心得">
+                <i class="fa fa-chevron-left"></i> NSNotification和Delegate使用及心得
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/06/object-c-difference-between-informal-agreements-and-formal-agreements/" rel="prev" title="Object-C非正式协议与正式协议的区别">
+                Object-C非正式协议与正式协议的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

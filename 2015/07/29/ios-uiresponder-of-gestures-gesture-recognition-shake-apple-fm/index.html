@@ -1,0 +1,1585 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="UIEvent,UIGestureRecognizer,UIResponder,UITouch,手势,手势识别,触摸事件," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="UIResponder响应者在iOS中不是任何对象都能处理事件,只有继承了UIResponder的对象才能接收并处理事件.我们称之为”响应者对象”.
+UIApplication、UIViewController、UIView都继承自UIResponder，因此它们都是响应者对象，都能够接收并处理事件.
+&amp;nbsp;
+IOS事件iOS中的事件可以分为3大类型
+
+触摸事件
+加速计事件
+远程控制事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ios的手势操作之UIResponder、手势识别、摇晃事件、耳机线控">
+<meta property="og:url" content="http://yoursite.com/2015/07/29/ios-uiresponder-of-gestures-gesture-recognition-shake-apple-fm/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="UIResponder响应者在iOS中不是任何对象都能处理事件,只有继承了UIResponder的对象才能接收并处理事件.我们称之为”响应者对象”.
+UIApplication、UIViewController、UIView都继承自UIResponder，因此它们都是响应者对象，都能够接收并处理事件.
+&amp;nbsp;
+IOS事件iOS中的事件可以分为3大类型
+
+触摸事件
+加速计事件
+远程控制事件">
+<meta property="og:image" content="http://birdmichael.com/wp-content/uploads/2015/07/020632292508224.png">
+<meta property="og:image" content="http://birdmichael.com/wp-content/uploads/2015/07/020632340003907.png">
+<meta property="og:image" content="http://birdmichael.com/wp-content/uploads/2015/07/020632363914977.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/62046/201409/020633051412527.gif">
+<meta property="og:image" content="http://images.cnitblog.com/blog/62046/201409/020633069389711.png">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ios的手势操作之UIResponder、手势识别、摇晃事件、耳机线控">
+<meta name="twitter:description" content="UIResponder响应者在iOS中不是任何对象都能处理事件,只有继承了UIResponder的对象才能接收并处理事件.我们称之为”响应者对象”.
+UIApplication、UIViewController、UIView都继承自UIResponder，因此它们都是响应者对象，都能够接收并处理事件.
+&amp;nbsp;
+IOS事件iOS中的事件可以分为3大类型
+
+触摸事件
+加速计事件
+远程控制事件">
+<meta name="twitter:image" content="http://birdmichael.com/wp-content/uploads/2015/07/020632292508224.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/29/ios-uiresponder-of-gestures-gesture-recognition-shake-apple-fm/"/>
+
+  <title> ios的手势操作之UIResponder、手势识别、摇晃事件、耳机线控 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ios的手势操作之UIResponder、手势识别、摇晃事件、耳机线控
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-29T22:01:34+08:00" content="2015-07-29">
+              2015-07-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/UI/Xcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Xcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="UIResponder"><a href="#UIResponder" class="headerlink" title="UIResponder"></a>UIResponder</h2><h3 id="响应者"><a href="#响应者" class="headerlink" title="响应者"></a>响应者</h3><p>在iOS中不是任何对象都能处理事件,只有继承了UIResponder的对象才能接收并处理事件.我们称之为”响应者对象”.</p>
+<p>UIApplication、UIViewController、UIView都继承自UIResponder，因此它们都是响应者对象，都能够接收并处理事件.</p>
+<p>&nbsp;</p>
+<h3 id="IOS事件"><a href="#IOS事件" class="headerlink" title="IOS事件"></a>IOS事件</h3><p>iOS中的事件可以分为3大类型</p>
+<ol>
+<li>触摸事件</li>
+<li>加速计事件</li>
+<li>远程控制事件<a id="more"></a>
+</li>
+</ol>
+<p><a href="http://birdmichael.com/wp-content/uploads/2015/07/020632292508224.png" target="_blank" rel="external"><img src="http://birdmichael.com/wp-content/uploads/2015/07/020632292508224.png" alt="020632292508224"></a></p>
+<p>在iOS中并不是所有的类都能处理接收并事件，只有继承自UIResponder类的对象才能处理事件（如我们常用的UIView、UIViewController、UIApplication都继承自UIResponder，它们都能接收并处理事件）。在UIResponder中定义了上面三类事件相关的处理方法：</p>
+<pre class="lang:objc decode:true ">// 触摸事件     
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+// 一根或多根手指开始触摸屏幕时执行；
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+// 一根或多根手指在屏幕上移动时执行，注意此方法在移动过程中会重复调用；
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+// 一根或多根手指触摸结束离开屏幕时执行；
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+// 触摸意外取消时执行（例如正在触摸时打入电话）；
+
+// 运动事件     
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event NS_AVAILABLE_IOS(3_0);
+// 运动开始时执行；
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event NS_AVAILABLE_IOS(3_0);
+// 运动结束后执行；
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event NS_AVAILABLE_IOS(3_0);    
+// 运动被意外取消时执行；
+
+// 远程控制事件     
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event NS_AVAILABLE_IOS(4_0);
+// 接收到远程控制消息时执行；</pre>
+&nbsp;
+
+### UIResponder处理事件方法
+
+<pre class="lang:objc decode:true">// 触摸事件
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+
+// 加速计事件
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+
+// 远程控制事件
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event;
+</pre>
+&nbsp;
+<pre class="lang:objc decode:true ">// 一根或者多根手指开始触摸view，系统会自动调用view的下面方法
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+
+// 一根或者多根手指在view上移动，系统会自动调用view的下面方法（随着手指的移动，会持续调用该方法）
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+
+// 一根或者多根手指离开view，系统会自动调用view的下面方法
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+
+// 触摸结束前，某个系统事件(例如电话呼入)会打断触摸过程，系统会自动调用view的下面方法
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+
+</pre>
+**提示**：touches中存放的都是UITouch对象(当用户用一根触摸屏幕时，会创建一个与手指相关联的UITouch对象,一根手指对应一个UITouch对象)
+
+&nbsp;
+
+### UITouch
+
+保存着跟手指相关的信息，比如触摸的位置、时间、阶段
+
+*   当手指移动时，系统会更新同一个UITouch对象，使之能够一直保存该手指在的触摸位置
+*   当手指离开屏幕时，系统会销毁相应的UITouch对象
+> 提示：iPhone开发中，要避免使用双击事件！
+属性:
+<pre class="lang:objc decode:true">// 触摸产生时所处的窗口
+@property(nonatomic,readonly,retain) UIWindow    *window;
+// 触摸产生时所处的视图
+@property(nonatomic,readonly,retain) UIView      *view;
+// 短时间内点按屏幕的次数，可以根据tapCount判断单击、双击或更多的点击
+@property(nonatomic,readonly) NSUInteger          tapCount;
+// 记录了触摸事件产生或变化时的时间，单位是秒
+@property(nonatomic,readonly) NSTimeInterval      timestamp;
+// 当前触摸事件所处的状态
+@property(nonatomic,readonly) UITouchPhase        phase;
+</pre>
+其中,UITouchPhase是一个枚举类型，包含：UITouchPhaseBegan（触摸开始）,UITouchPhaseMoved（接触点移动）,UITouchPhaseStationary（接触点无移动）,UITouchPhaseEnded（触摸结束）,UITouchPhaseCancelled（触摸取消）.
+
+方法:
+<pre class="lang:objc decode:true">- (CGPoint)locationInView:(UIView *)view;
+</pre>
+返回值表示触摸在view上的位置
+这里返回的位置是针对view的坐标系的（以view的左上角为原点(0, 0)）
+调用时传入的view参数为nil的话，返回的是触摸点在UIWindow的位置
+
+&nbsp;
+<pre class="lang:objc decode:true ">- (CGPoint)previousLocationInView:(UIView *)view;</pre>
+该方法记录了前一个触摸点的位置
+
+&nbsp;
+
+### UIEvent
+
+每产生一个事件，就会产生一个UIEvent对象(称为事件对象，记录事件产生的时刻和类型)
+
+属性:
+<pre class="lang:objc decode:true">// 事件类型
+@property(nonatomic,readonly) UIEventType     type;
+@property(nonatomic,readonly) UIEventSubtype  subtype;
+// 事件产生的时间
+@property(nonatomic,readonly) NSTimeInterval  timestamp;
+</pre>
+<pre class="lang:objc decode:true ">typedef NS_ENUM(NSInteger, UIEventType) {
+    UIEventTypeTouches,
+    UIEventTypeMotion,
+    UIEventTypeRemoteControl,
+};
+
+typedef NS_ENUM(NSInteger, UIEventSubtype) {
+    // available in iPhone OS 3.0
+    UIEventSubtypeNone                              = 0,
+
+    // for UIEventTypeMotion, available in iPhone OS 3.0
+    UIEventSubtypeMotionShake                       = 1,
+
+    // for UIEventTypeRemoteControl, available in iOS 4.0
+    UIEventSubtypeRemoteControlPlay                 = 100,
+    UIEventSubtypeRemoteControlPause                = 101,
+    UIEventSubtypeRemoteControlStop                 = 102,
+    UIEventSubtypeRemoteControlTogglePlayPause      = 103,
+    UIEventSubtypeRemoteControlNextTrack            = 104,
+    UIEventSubtypeRemoteControlPreviousTrack        = 105,
+    UIEventSubtypeRemoteControlBeginSeekingBackward = 106,
+    UIEventSubtypeRemoteControlEndSeekingBackward   = 107,
+    UIEventSubtypeRemoteControlBeginSeekingForward  = 108,
+    UIEventSubtypeRemoteControlEndSeekingForward    = 109,
+};
+</pre>
+
+<h3 id="事件处理机制"><a href="#事件处理机制" class="headerlink" title="事件处理机制"></a>事件处理机制</h3><p>在iOS中发生触摸后，事件会加入到UIApplication事件队列（在这个系列关于iOS开发的第一篇文章中我们分析iOS程序原理的时候就说过程序运行后UIApplication会循环监听用户操作），UIApplication会从事件队列取出最前面的事件并分发处理，通常先分发给应用程序主窗口，主窗口会调用<strong>hitTest:withEvent:</strong>方法（假设称为方法A，注意这是UIView的方法），查找合适的事件触发视图（这里通常称为“hit-test view”）：</p>
+<ol>
+<li>在顶级视图（key window的视图）上调用pointInside:withEvent:方法判断触摸点是否在当前视图内；</li>
+<li>如果返回NO，那么A返回nil；</li>
+<li>如果返回YES，那么它会向当前视图的所有子视图（key window的子视图）发送hitTest:withEvent:消息，遍历所有子视图的顺序是从subviews数组的末尾向前遍历（从界面最上方开始向下遍历）。</li>
+<li>如果有subview的hitTest:withEvent:返回非空对象则A返回此对象，处理结束（注意这个过程，子视图也是根据pointInside:withEvent:的返回值来确定是返回空还是当前子视图对象的。并且这个过程中如果子视图的hidden=YES、userInteractionEnabled=NO或者alpha小于0.1都会并忽略）；</li>
+<li>如果所有subview遍历结束仍然没有返回非空对象，则A返回顶级视图；<br>上面的步骤就是点击检测的过程，其实就是查找事件触发者的过程。触摸对象并非就是事件的响应者，检测到了触摸的对象之后，事件到底是如何响应呢？这个过程就必须引入一个新的概念“响应者链”。</li>
+</ol>
+<p>什么是响应者链呢？我们知道在iOS程序中无论是最后面的UIWindow还是最前面的某个按钮，它们的摆放是有前后关系的，一个控件可以放到另一个控件上面或下面，那么用户点击某个控件时是触发上面的控件还是下面的控件呢，这种先后关系构成一个链条就叫“响应者链”。在iOS中响应者链的关系可以用下图表示：</p>
+<p><a href="http://birdmichael.com/wp-content/uploads/2015/07/020632340003907.png" target="_blank" rel="external"><img src="http://birdmichael.com/wp-content/uploads/2015/07/020632340003907.png" alt="020632340003907"></a></p>
+<p>当一个事件发生后首先看initial view能否处理这个事件，如果不能则会将事件传递给其上级视图（inital view的superView）；如果上级视图仍然无法处理则会继续往上传递；一直传递到视图控制器view controller，首先判断视图控制器的根视图view是否能处理此事件；如果不能则接着判断该视图控制器能否处理此事件，如果还是不能则继续向上传递；（对于第二个图视图控制器本身还在另一个视图控制器中，则继续交给父视图控制器的根视图，如果根视图不能处理则交给父视图控制器处理）；一直到window，如果window还是不能处理此事件则继续交给application（UIApplication单例对象）处理，如果最后application还是不能处理此事件则将其丢弃。</p>
+<p>这个过程大家理解起来并不难，关键问题是在这个过程中各个对象如何知道自己能不能处理该事件呢？对于继承UIResponder的对象，其不能处理事件有几个条件：</p>
+<ul>
+<li>userInteractionEnabled=NO</li>
+<li>hidden=YES</li>
+<li>alpha=0~0.01</li>
+<li>没有实现开始触摸方法（注意是touchesBegan:withEvent:而不是移动和结束触摸事件）</li>
+<li>提示:UIImageView的userInteractionEnabled默认就是NO，因此UIImageView以及它的子控件默认是不能接收触摸事件的<br>当然前三点都是针对UIView控件或其子控件而言的，第四点可以针对UIView也可以针对视图控制器等其他UIResponder子类。对于第四种情况这里再次强调是对象中重写了开始触摸方法，则会处理这个事件，如果仅仅写了移动、停止触摸或取消触摸事件（或者这三个事件都重写了）没有写开始触摸事件，则此事件该对象不会进行处理。<blockquote>
+<p>其实很简单:</p>
+<p>第一步传递:如果父控件不能接收触摸事件，那么子控件就不可能接收到触摸事件</p>
+<p>:不能处理的3个条件:1.没有开启用户交互.2.隐藏.3.透明度介于0到0.01.4.没有实现方法.</p>
+<p>:传递过程中都是由父控件向子控件.UIApplication&gt;window&gt;控制器View及子控件(子控件数组)</p>
+<p>.</p>
+<p>第二步响应:如果子控件不调用父控件<span class="s1">touchesBegan(或</span><span class="s1">Moved及</span><span class="s1">Ended等</span><span class="s1">): withEvent:方法,链条将断裂,链条中Next响应者将不会响应.</span></p>
+<p>:如果view的控制器存在,就传递给控制器;如果控制器不存在,则将其传递给它的父视图.</p>
+<p>:传递过程中都是由子控件向父控件.子控件&gt;当前控件控制器&gt;父控件&gt;UIWindow&gt;UIApplication</p>
+<p>:如果UIApplication也不能处理该事件或消息,则将其丢弃,完成此次响应者链条<br>&nbsp;</p>
+</blockquote>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="UIGestureRecognizer"><a href="#UIGestureRecognizer" class="headerlink" title="UIGestureRecognizer"></a>UIGestureRecognizer</h2><p><strong>UIGestureRecognizer基类是一个抽象类</strong>，我们主要是使用它的<strong>子类</strong>（名字包含链接，可以点击跳到ios Developer library，看官方文档）：</p>
+<ul>
+<li><code>[UITapGestureRecognizer](http://developer.apple.com/library/ios/documentation/uikit/reference/UITapGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/cl/UITapGestureRecognizer)</code></li>
+<li><code>[UIPinchGestureRecognizer](http://developer.apple.com/library/ios/documentation/uikit/reference/UIPinchGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/cl/UIPinchGestureRecognizer)</code></li>
+<li><code>[UIRotationGestureRecognizer](http://developer.apple.com/library/ios/documentation/uikit/reference/UIRotateGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/cl/UIRotationGestureRecognizer)</code></li>
+<li><code>[UISwipeGestureRecognizer](http://developer.apple.com/library/ios/documentation/uikit/reference/UISwipeGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/cl/UISwipeGestureRecognizer)</code></li>
+<li><code>[UIPanGestureRecognizer](http://developer.apple.com/library/ios/documentation/uikit/reference/UIPanGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/cl/UIPanGestureRecognizer)</code></li>
+<li><code>[UILongPressGestureRecognizer](http://developer.apple.com/library/ios/documentation/uikit/reference/UILongPressGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/cl/UILongPressGestureRecognizer)</code><br><strong>从名字上我们就能知道，</strong> Tap（点击）、Pinch（捏合）、Rotation（旋转）、Swipe（滑动，快速移动，是用于监测滑动的方向的）、Pan （拖移，慢速移动，是用于监测偏移的量的）以及 LongPress（长按）。</li>
+</ul>
+<p>所有的手势操作都继承于UIGestureRecognizer，这个类本身不能直接使用。这个类中定义了这几种手势共有的一些属性和方法(下表仅列出常用属性和方法)：</p>
+<pre class="lang:objc decode:true ">// 属性     
+@property(nonatomic,readonly) UIGestureRecognizerState state;
+// 手势状态
+@property(nonatomic, getter=isEnabled) BOOL enabled;
+// 手势是否可用
+@property(nonatomic,readonly) UIView *view;
+// 触发手势的视图（一般在触摸执行操作中我们可以通过此属性获得触摸视图进行操作）
+@property(nonatomic) BOOL delaysTouchesBegan;
+//手势识别失败前不执行触摸开始事件，默认为NO；如果为YES，那么成功识别则不执行触摸开始事件，失败则执行触摸开始事件；如果为NO，则不管成功与否都执行触摸开始事件；
+
+// 方法     
+- (void)addTarget:(id)target action:(SEL)action;
+// 添加触摸执行事件
+- (void)removeTarget:(id)target action:(SEL)action;
+// 移除触摸执行事件
+- (NSUInteger)numberOfTouches;
+// 触摸点的个数（同时触摸的手指数）
+- (CGPoint)locationInView:(UIView*)view;
+// 在指定视图中的相对位置
+- (CGPoint)locationOfTouch:(NSUInteger)touchIndex inView:(UIView*)view;
+// 触摸点相对于指定视图的位置
+- (void)requireGestureRecognizerToFail:(UIGestureRecognizer *)otherGestureRecognizer;
+// 指定一个手势需要另一个手势执行失败才会执行
+代理方法     
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer;
+// 一个控件的手势识别后是否阻断手势识别继续向下传播，默认返回NO；如果为YES，响应者链上层对象触发手势识别后，如果下层对象也添加了手势并成功识别也会继续执行，否则上层对象识别后则不再继续传播；</pre>
+&nbsp;
+
+### 手势状态
+
+这里着重解释一下上表中手势状态这个对象。在六种手势识别中，只有一种手势是离散手势，它就是UITapGestureRecgnier。离散手势的特点就是一旦识别就无法取消，而且只会调用一次手势操作事件（初始化手势时指定的触发方法）。换句话说其他五种手势是连续手势，连续手势的特点就是会多次调用手势操作事件，而且在连续手势识别后可以取消手势。从下图可以看出两者调用操作事件的次数是不同的：
+
+[![020632352825948](http://birdmichael.com/wp-content/uploads/2015/07/020632352825948.png)](http://birdmichael.com/wp-content/uploads/2015/07/020632352825948.png)
+
+官方文档:属性,方法以及代理
+<pre class="lang:objc decode:true">#import &lt;Foundation/Foundation.h&gt;
+#import &lt;CoreGraphics/CoreGraphics.h&gt;
+#import &lt;UIKit/UIKitDefines.h&gt;
+
+@protocol UIGestureRecognizerDelegate;
+@class UIView, UIEvent, UITouch;
+
+typedef NS_ENUM(NSInteger, UIGestureRecognizerState) {
+    UIGestureRecognizerStatePossible,   // the recognizer has not yet recognized its gesture, but may be evaluating touch events. this is the default state
+
+    UIGestureRecognizerStateBegan,      // the recognizer has received touches recognized as the gesture. the action method will be called at the next turn of the run loop
+    UIGestureRecognizerStateChanged,    // the recognizer has received touches recognized as a change to the gesture. the action method will be called at the next turn of the run loop
+    UIGestureRecognizerStateEnded,      // the recognizer has received touches recognized as the end of the gesture. the action method will be called at the next turn of the run loop and the recognizer will be reset to UIGestureRecognizerStatePossible
+    UIGestureRecognizerStateCancelled,  // the recognizer has received touches resulting in the cancellation of the gesture. the action method will be called at the next turn of the run loop. the recognizer will be reset to UIGestureRecognizerStatePossible
+
+    UIGestureRecognizerStateFailed,     // the recognizer has received a touch sequence that can not be recognized as the gesture. the action method will not be called and the recognizer will be reset to UIGestureRecognizerStatePossible
+
+    // Discrete Gestures – gesture recognizers that recognize a discrete event but do not report changes (for example, a tap) do not transition through the Began and Changed states and can not fail or be cancelled
+    UIGestureRecognizerStateRecognized = UIGestureRecognizerStateEnded // the recognizer has received touches recognized as the gesture. the action method will be called at the next turn of the run loop and the recognizer will be reset to UIGestureRecognizerStatePossible
+};
+
+NS_CLASS_AVAILABLE_IOS(3_2) @interface UIGestureRecognizer : NSObject
+
+// Valid action method signatures:
+//     -(void)handleGesture;
+//     -(void)handleGesture:(UIGestureRecognizer*)gestureRecognizer;
+- (instancetype)initWithTarget:(id)target action:(SEL)action; // designated initializer
+
+- (void)addTarget:(id)target action:(SEL)action;    // add a target/action pair. you can call this multiple times to specify multiple target/actions
+- (void)removeTarget:(id)target action:(SEL)action; // remove the specified target/action pair. passing nil for target matches all targets, and the same for actions
+
+@property(nonatomic,readonly) UIGestureRecognizerState state;  // the current state of the gesture recognizer
+
+@property(nonatomic,assign) id &lt;UIGestureRecognizerDelegate&gt; delegate; // the gesture recognizer's delegate
+
+@property(nonatomic, getter=isEnabled) BOOL enabled;  // default is YES. disabled gesture recognizers will not receive touches. when changed to NO the gesture recognizer will be cancelled if it's currently recognizing a gesture
+
+// a UIGestureRecognizer receives touches hit-tested to its view and any of that view's subviews
+@property(nonatomic,readonly) UIView *view;           // the view the gesture is attached to. set by adding the recognizer to a UIView using the addGestureRecognizer: method
+
+@property(nonatomic) BOOL cancelsTouchesInView;       // default is YES. causes touchesCancelled:withEvent: to be sent to the view for all touches recognized as part of this gesture immediately before the action method is called
+@property(nonatomic) BOOL delaysTouchesBegan;         // default is NO.  causes all touch events to be delivered to the target view only after this gesture has failed recognition. set to YES to prevent views from processing any touches that may be recognized as part of this gesture
+@property(nonatomic) BOOL delaysTouchesEnded;         // default is YES. causes touchesEnded events to be delivered to the target view only after this gesture has failed recognition. this ensures that a touch that is part of the gesture can be cancelled if the gesture is recognized
+
+// create a relationship with another gesture recognizer that will prevent this gesture's actions from being called until otherGestureRecognizer transitions to UIGestureRecognizerStateFailed
+// if otherGestureRecognizer transitions to UIGestureRecognizerStateRecognized or UIGestureRecognizerStateBegan then this recognizer will instead transition to UIGestureRecognizerStateFailed
+// example usage: a single tap may require a double tap to fail
+- (void)requireGestureRecognizerToFail:(UIGestureRecognizer *)otherGestureRecognizer;
+
+// individual UIGestureRecognizer subclasses may provide subclass-specific location information. see individual subclasses for details
+- (CGPoint)locationInView:(UIView*)view;                                // a generic single-point location for the gesture. usually the centroid of the touches involved
+
+- (NSUInteger)numberOfTouches;                                          // number of touches involved for which locations can be queried
+- (CGPoint)locationOfTouch:(NSUInteger)touchIndex inView:(UIView*)view; // the location of a particular touch
+
+@end
+
+@protocol UIGestureRecognizerDelegate &lt;NSObject&gt;
+@optional
+// called when a gesture recognizer attempts to transition out of UIGestureRecognizerStatePossible. returning NO causes it to transition to UIGestureRecognizerStateFailed
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;
+
+// called when the recognition of one of gestureRecognizer or otherGestureRecognizer would be blocked by the other
+// return YES to allow both to recognize simultaneously. the default implementation returns NO (by default no two gestures can be recognized simultaneously)
+//
+// note: returning YES is guaranteed to allow simultaneous recognition. returning NO is not guaranteed to prevent simultaneous recognition, as the other gesture's delegate may return YES
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer;
+
+// called once per attempt to recognize, so failure requirements can be determined lazily and may be set up between recognizers across view hierarchies
+// return YES to set up a dynamic failure requirement between gestureRecognizer and otherGestureRecognizer
+//
+// note: returning YES is guaranteed to set up the failure requirement. returning NO does not guarantee that there will not be a failure requirement as the other gesture's counterpart delegate or subclass methods may return YES
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0);
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0);
+
+// called before touchesBegan:withEvent: is called on the gesture recognizer for a new touch. return NO to prevent the gesture recognizer from seeing this touch
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch;
+</pre>
+其中手势状态分为如下几种：
+<pre class="code">typedef NS_ENUM(NSInteger, UIGestureRecognizerState) {
+    UIGestureRecognizerStatePossible,   // 尚未识别是何种手势操作（但可能已经触发了触摸事件），默认状态
+
+    UIGestureRecognizerStateBegan,      // 手势已经开始，此时已经被识别，但是这个过程中可能发生变化，手势操作尚未完成
+    UIGestureRecognizerStateChanged,    // 手势状态发生转变
+    UIGestureRecognizerStateEnded,      // 手势识别操作完成（此时已经松开手指）
+    UIGestureRecognizerStateCancelled,  // 手势被取消，恢复到默认状态
+
+    UIGestureRecognizerStateFailed,     // 手势识别失败，恢复到默认状态
+
+    UIGestureRecognizerStateRecognized = UIGestureRecognizerStateEnded // 手势识别完成，同UIGestureRecognizerStateEnded
+};</pre>
+
+<ul>
+<li>对于离散型手势UITapGestureRecgnizer要么被识别，要么失败，点按（假设点按次数设置为1，并且没有添加长按手势）下去一次不松开则此时什么也不会发生，松开手指立即识别并调用操作事件，并且状态为3（已完成）。</li>
+<li>但是连续手势要复杂一些，就拿旋转手势来说，如果两个手指点下去不做任何操作，此时并不能识别手势（因为我们还没旋转）但是其实已经触发了触摸开始事件，此时处于状态0；如果此时旋转会被识别，也就会调用对应的操作事件，同时状态变成1（手势开始），但是状态1只有一瞬间；紧接着状态变为2（因为我们的旋转需要持续一会），并且重复调用操作事件（如果在事件中打印状态会重复打印2）；松开手指，此时状态变为3，并调用1次操作事件。<br>为了大家更好的理解这个状态的变化，不妨在操作事件中打印事件状态，会发现在操作事件中的状态永远不可能为0（默认状态），因为只要调用此事件说明已经被识别了。前面也说过，手势识别从根本还是调用触摸事件而完成的，连续手势之所以会发生状态转换完全是由于触摸事件中的移动事件造成的，没有移动事件也就不存在这个过程中状态变化。</li>
+</ul>
+<p>大家通过苹果官方的分析图再理解一下上面说的内容：</p>
+<p><a href="http://birdmichael.com/wp-content/uploads/2015/07/020632363914977.png" target="_blank" rel="external"><img src="http://birdmichael.com/wp-content/uploads/2015/07/020632363914977.png" alt="020632363914977"></a></p>
+<h3 id="使用手势"><a href="#使用手势" class="headerlink" title="使用手势"></a>使用手势</h3><pre class="lang:objc decode:true">// 创建手势识别器对象
+UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+// 设置手势识别器对象的具体属性
+// 连续敲击2次
+tap.numberOfTapsRequired = 2;
+// 需要2根手指一起敲击
+tap.numberOfTouchesRequired = 2;
+// 添加手势识别器到对应的view上
+[self.iconView addGestureRecognizer:tap];
+// 监听手势的触发
+[tap addTarget:self action:@selector(tapIconView:)];
+</pre>
+> 每个手势识别器对象使用方法差不多,主要是修改手势识别器对象的具体属性.
+> 
+> 
+> 1创建对应的手势对象；
+> 
+> 
+> 2设置手势识别属性【可选】；
+> 
+> 
+> 3附加手势到指定的对象；
+> 
+> 
+> 4编写手势操作方法；
+&nbsp;
+
+为了帮助大家理解，下面以一个图片查看程序演示一下上面几种手势，在这个程序中我们完成以下功能：
+
+如果点按图片会在导航栏显示图片名称；
+
+如果长按图片会显示删除按钮，提示用户是否删除；
+
+如果捏合会放大、缩小图片；
+
+如果轻扫会切换到下一张或上一张图片；
+
+如果旋转会旋转图片；
+
+如果拖动会移动图片；
+
+为了显示导航条，我们首先将主视图控制器BMPhotoViewController放入一个导航控制器，然后在主视图控制器中放一个UIImage用于展示图片。下面是主要代码：
+<pre class="code">#import "BMPhotoViewController.h"
+#define kImageCount 3
+
+@interface BMPhotoViewController (){
+    UIImageView *_imageView;//图片展示控件
+    int _currentIndex;//当前图片索引
+}
+
+@end
+
+@implementation KCPhotoViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self initLayout];
+
+    [self addGesture];
+}
+
+#pragma mark 布局
+-(void)initLayout{
+    /*添加图片展示控件*/
+    CGSize screenSize=[UIScreen mainScreen].applicationFrame.size;
+    CGFloat topPadding=20;
+    CGFloat y=22+44+topPadding,height=screenSize.height-y-topPadding;
+
+    CGRect imageFrame=CGRectMake(0, y, screenSize.width, height);
+    _imageView=[[UIImageView alloc]initWithFrame:imageFrame];
+    _imageView.contentMode=UIViewContentModeScaleToFill;//设置内容模式为缩放填充
+    _imageView.userInteractionEnabled=YES;//这里必须设置为YES，否则无法接收手势操作
+    [self.view addSubview:_imageView];
+
+    //添加默认图片
+    UIImage *image=[UIImage imageNamed:@"0.jpg"];
+    _imageView.image=image;
+    [self showPhotoName];
+
+}
+
+#pragma mark 添加手势
+-(void)addGesture{
+    /*添加点按手势*/
+    //创建手势对象
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImage:)];
+    //设置手势属性
+    tapGesture.numberOfTapsRequired=1;//设置点按次数，默认为1，注意在iOS中很少用双击操作
+    tapGesture.numberOfTouchesRequired=1;//点按的手指数
+    //添加手势到对象(注意，这里添加到了控制器视图中，而不是图片上，否则点击空白无法隐藏导航栏)
+    [self.view addGestureRecognizer:tapGesture];
+
+    /*添加长按手势*/
+    UILongPressGestureRecognizer *longPressGesture=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressImage:)];
+    longPressGesture.minimumPressDuration=0.5;//设置长按时间，默认0.5秒，一般这个值不要修改
+    //注意由于我们要做长按提示删除操作，因此这个手势不再添加到控制器视图上而是添加到了图片上
+    [_imageView addGestureRecognizer:longPressGesture];
+
+    /*添加捏合手势*/
+    UIPinchGestureRecognizer *pinchGesture=[[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinchImage:)];
+    [self.view addGestureRecognizer:pinchGesture];
+
+    /*添加旋转手势*/
+    UIRotationGestureRecognizer *rotationGesture=[[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotateImage:)];
+    [self.view addGestureRecognizer:rotationGesture];
+
+    /*添加拖动手势*/
+    UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panImage:)];
+    [_imageView addGestureRecognizer:panGesture];
+
+    /*添加轻扫手势*/
+    //注意一个轻扫手势只能控制一个方向，默认向右，通过direction进行方向控制
+    UISwipeGestureRecognizer *swipeGestureToRight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeImage:)];
+    //swipeGestureToRight.direction=UISwipeGestureRecognizerDirectionRight;//默认为向右轻扫
+    [self.view addGestureRecognizer:swipeGestureToRight];
+
+    UISwipeGestureRecognizer *swipeGestureToLeft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeImage:)];
+    swipeGestureToLeft.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeGestureToLeft];
+
+}
+
+#pragma mark 显示图片名称
+-(void)showPhotoName{
+    NSString *title=[NSString stringWithFormat:@"%i.jpg",_currentIndex];
+    [self setTitle:title];
+}
+
+#pragma mark 下一张图片
+-(void)nextImage{
+    int index=(_currentIndex+kImageCount+1)%kImageCount;
+    NSString *imageName=[NSString stringWithFormat:@"%i.jpg",index];
+    _imageView.image=[UIImage imageNamed:imageName];
+    _currentIndex=index;
+    [self showPhotoName];
+}
+
+#pragma mark 上一张图片
+-(void)lastImage{
+    int index=(_currentIndex+kImageCount-1)%kImageCount;
+    NSString *imageName=[NSString stringWithFormat:@"%i.jpg",index];
+    _imageView.image=[UIImage imageNamed:imageName];
+    _currentIndex=index;
+    [self showPhotoName];
+}
+
+#pragma mark - 手势操作
+#pragma mark 点按隐藏或显示导航栏
+-(void)tapImage:(UITapGestureRecognizer *)gesture{
+    //NSLog(@"tap:%i",gesture.state);
+    BOOL hidden=!self.navigationController.navigationBarHidden;
+    [self.navigationController setNavigationBarHidden:hidden animated:YES];
+}
+
+#pragma mark 长按提示是否删除
+-(void)longPressImage:(UILongPressGestureRecognizer *)gesture{
+    //NSLog(@"longpress:%i",gesture.state);
+    //注意其实在手势里面有一个view属性可以获取点按的视图
+    //UIImageView *imageView=(UIImageView *)gesture.view;
+
+    //由于连续手势此方法会调用多次，所以需要判断其手势状态
+    if (gesture.state==UIGestureRecognizerStateBegan) {
+        UIActionSheet *actionSheet=[[UIActionSheet alloc]initWithTitle:@"System Info" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete the photo" otherButtonTitles:nil];
+        [actionSheet showInView:self.view];
+
+    }
+}
+
+#pragma mark 捏合时缩放图片
+-(void)pinchImage:(UIPinchGestureRecognizer *)gesture{
+    //NSLog(@"pinch:%i",gesture.state);
+
+    if (gesture.state==UIGestureRecognizerStateChanged) {
+        //捏合手势中scale属性记录的缩放比例
+        _imageView.transform=CGAffineTransformMakeScale(gesture.scale, gesture.scale);
+    }else if(gesture.state==UIGestureRecognizerStateEnded){//结束后恢复
+        [UIView animateWithDuration:.5 animations:^{
+            _imageView.transform=CGAffineTransformIdentity;//取消一切形变
+        }];
+    }
+}
+
+#pragma mark 旋转图片
+-(void)rotateImage:(UIRotationGestureRecognizer *)gesture{
+    //NSLog(@"rotate:%i",gesture.state);
+    if (gesture.state==UIGestureRecognizerStateChanged) {
+        //旋转手势中rotation属性记录了旋转弧度
+        _imageView.transform=CGAffineTransformMakeRotation(gesture.rotation);
+    }else if(gesture.state==UIGestureRecognizerStateEnded){
+        [UIView animateWithDuration:0.8 animations:^{
+            _imageView.transform=CGAffineTransformIdentity;//取消形变
+        }];
+    }
+}
+
+#pragma mark 拖动图片
+-(void)panImage:(UIPanGestureRecognizer *)gesture{
+    if (gesture.state==UIGestureRecognizerStateChanged) {
+        CGPoint translation=[gesture translationInView:self.view];//利用拖动手势的translationInView:方法取得在相对指定视图（这里是控制器根视图）的移动
+        _imageView.transform=CGAffineTransformMakeTranslation(translation.x, translation.y);
+    }else if(gesture.state==UIGestureRecognizerStateEnded){
+        [UIView animateWithDuration:0.5 animations:^{
+            _imageView.transform=CGAffineTransformIdentity;
+        }];
+    }
+
+}
+
+#pragma mark 轻扫则查看下一张或上一张
+//注意虽然轻扫手势是连续手势，但是只有在识别结束才会触发，不用判断状态
+-(void)swipeImage:(UISwipeGestureRecognizer *)gesture{
+//    NSLog(@"swip:%i",gesture.state);
+//    if (gesture.state==UIGestureRecognizerStateEnded) {
+
+        //direction记录的轻扫的方向
+        if (gesture.direction==UISwipeGestureRecognizerDirectionRight) {//向右
+            [self nextImage];
+//            NSLog(@"right");
+        }else if(gesture.direction==UISwipeGestureRecognizerDirectionLeft){//向左
+//            NSLog(@"left");
+            [self lastImage];
+        }
+//    }
+}
+
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    //NSLog(@"touch begin...");
+//}
+@end</pre>
+运行效果:
+
+[![020632495475224](http://birdmichael.com/wp-content/uploads/2015/07/020632495475224.gif)](http://birdmichael.com/wp-content/uploads/2015/07/020632495475224.gif)
+
+在上面示例中需要强调几点：
+
+*   UIImageView默认是不支持交互的，也就是userInteractionEnabled=NO ，因此要接收触摸事件（手势识别），必须设置userInteractionEnabled=YES(在iOS中UILabel、UIImageView的userInteractionEnabled默认都是NO，UIButton、UITextField、UIScrollView、UITableView等默认都是YES)。
+*   轻扫手势虽然是连续手势但是它的操作事件只会在识别结束时调用一次，其他连续手势都会调用多次，一般需要进行状态判断；此外轻扫手势支持四个方向，但是如果要支持多个方向需要添加多个轻扫手势。
+
+## 手势冲突
+
+细心的童鞋会发现在上面的演示效果图中当切换到下一张或者上一张图片时并没有轻扫图片而是在空白地方轻扫完成，原因是如果我轻扫图片会引起拖动手势而不是轻扫手势。换句话说，两种手势发生了冲突。
+
+冲突的原因很简单，拖动手势的操作事件是在手势的开始状态（状态1）识别执行的，而轻扫手势的操作事件只有在手势结束状态（状态3）才能执行，因此轻扫手势就作为了牺牲品没有被正确识别。我们理想的情况当然是如果在图片上拖动就移动图片，如果在图片上轻扫就翻动图片。如何解决这个冲突呢？
+
+在iOS中，如果一个手势A的识别部分是另一个手势B的子部分时，默认情况下A就会先识别，B就无法识别了。要解决这个冲突可以利用**- (void)requireGestureRecognizerToFail:(UIGestureRecognizer *)otherGestureRecognizer;**方法来完成。正是前面表格中UIGestureRecognizer的最后一个方法，这个方法可以指定某个手势执行的前提是另一个手势失败才会识别执行。也就是说如果我们指定拖动手势的执行前提为轻扫手势失败就可以了，这样一来当我们手指轻轻滑动时系统会优先考虑轻扫手势，如果最后发现该操作不是轻扫，那么就会执行拖动。只要将下面的代码添加到添加手势之后就能解决这个问题了（注意为了更加清晰的区分拖动和轻扫[模拟器中拖动稍微快一点就识别成了轻扫]，这里将长按手势的前提设置为拖动失败，避免演示拖动时长按手势会被识别）：
+<pre class="code">    
+    //解决在图片上滑动时拖动手势和轻扫手势的冲突
+    [panGesture requireGestureRecognizerToFail:swipeGestureToRight];
+    [panGesture requireGestureRecognizerToFail:swipeGestureToLeft];
+    //解决拖动和长按手势之间的冲突
+    [longPressGesture requireGestureRecognizerToFail:panGesture];</pre>
+运行效果：
+
+[![GestureRecognizerEffect2](http://images.cnitblog.com/blog/62046/201409/020633016728886.gif "GestureRecognizerEffect2")](http://images.cnitblog.com/blog/62046/201409/020632580169003.gif)
+
+## 两个不同控件的手势同时执行
+
+我们知道在iOS的触摸事件中，事件触发是根据响应者链进行的，上层触摸事件执行后就不再向下传播。默认情况下手势也是类似的，先识别的手势会阻断手势识别操作继续传播。那么如何让两个有层次关系并且都添加了手势的控件都能正确识别手势呢？答案就是利用代理的
+<pre class="lang:objc decode:true  ">-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer</pre>
+方法。这个代理方法默认返回NO，会阻断继续向下识别手势，如果返回YES则可以继续向下传播识别。
+
+下面的代码控制演示了当在图片上长按时同时可以识别控制器视图的长按手势（注意其中我们还控制了只有在UIImageView中操作的手势才能向下传递，如果不控制则所有控件都可以向下传递）
+<pre class="code">#import "BMPhotoViewController.h"
+#define kImageCount 3
+
+@interface BMPhotoViewController ()&lt;UIGestureRecognizerDelegate&gt;{
+    UIImageView *_imageView;//图片展示控件
+    int _currentIndex;//当前图片索引
+}
+
+@end
+
+@implementation KCPhotoViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self initLayout];
+
+    [self addGesture];
+}
+
+#pragma mark 布局
+-(void)initLayout{
+    /*添加图片展示控件*/
+    CGSize screenSize=[UIScreen mainScreen].applicationFrame.size;
+    CGFloat topPadding=20;
+    CGFloat y=22+44+topPadding,height=screenSize.height-y-topPadding;
+
+    CGRect imageFrame=CGRectMake(0, y, screenSize.width, height);
+    _imageView=[[UIImageView alloc]initWithFrame:imageFrame];
+    _imageView.contentMode=UIViewContentModeScaleToFill;//设置内容模式为缩放填充
+    _imageView.userInteractionEnabled=YES;//这里必须设置位YES，否则无法接收手势操作
+    //_imageView.multipleTouchEnabled=YES;//支持多点触摸，默认就是YES
+    [self.view addSubview:_imageView];
+
+    //添加默认图片
+    UIImage *image=[UIImage imageNamed:@"0.jpg"];
+    _imageView.image=image;
+    [self showPhotoName];
+
+}
+
+#pragma mark 添加手势
+-(void)addGesture{
+    /*添加点按手势*/
+    //创建手势对象
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImage:)];
+    //设置手势属性
+    tapGesture.numberOfTapsRequired=1;//设置点按次数，默认为1，注意在iOS中很少用双击操作
+    tapGesture.numberOfTouchesRequired=1;//点按的手指数
+    //添加手势到对象(注意，这里添加到了控制器视图中，而不是图片上，否则点击空白无法隐藏导航栏)
+    [self.view addGestureRecognizer:tapGesture];
+
+    /*添加长按手势*/
+    UILongPressGestureRecognizer *longPressGesture=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressImage:)];
+    longPressGesture.minimumPressDuration=0.5;//设置长按时间，默认0.5秒，一般这个值不要修改
+    //注意由于我们要做长按提示删除操作，因此这个手势不再添加到控制器视图上而是添加到了图片上
+    [_imageView addGestureRecognizer:longPressGesture];
+
+    /*添加捏合手势*/
+    UIPinchGestureRecognizer *pinchGesture=[[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinchImage:)];
+    [self.view addGestureRecognizer:pinchGesture];
+
+    /*添加旋转手势*/
+    UIRotationGestureRecognizer *rotationGesture=[[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotateImage:)];
+    [self.view addGestureRecognizer:rotationGesture];
+
+    /*添加拖动手势*/
+    UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panImage:)];
+    [_imageView addGestureRecognizer:panGesture];
+
+    /*添加轻扫手势*/
+    //注意一个轻扫手势只能控制一个方向，默认向右，通过direction进行方向控制
+    UISwipeGestureRecognizer *swipeGestureToRight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeImage:)];
+    //swipeGestureToRight.direction=UISwipeGestureRecognizerDirectionRight;//默认位向右轻扫
+    [self.view addGestureRecognizer:swipeGestureToRight];
+
+    UISwipeGestureRecognizer *swipeGestureToLeft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeImage:)];
+    swipeGestureToLeft.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeGestureToLeft];
+
+    //解决在图片上滑动时拖动手势和轻扫手势的冲突
+    [panGesture requireGestureRecognizerToFail:swipeGestureToRight];
+    [panGesture requireGestureRecognizerToFail:swipeGestureToLeft];
+    //解决拖动和长按手势之间的冲突
+    [longPressGesture requireGestureRecognizerToFail:panGesture];
+
+    /*演示不同视图的手势同时执行
+     *在上面_imageView已经添加了长按手势，这里给视图控制器的视图也加上长按手势让两者都执行
+     *
+     */
+    self.view.tag=100;
+    _imageView.tag=200;
+    UILongPressGestureRecognizer *viewLongPressGesture=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressView:)];
+    viewLongPressGesture.delegate=self;
+    [self.view addGestureRecognizer:viewLongPressGesture];
+
+}
+
+#pragma mark 显示图片名称
+-(void)showPhotoName{
+    NSString *title=[NSString stringWithFormat:@"%i.jpg",_currentIndex];
+    [self setTitle:title];
+}
+
+#pragma mark 下一张图片
+-(void)nextImage{
+    int index=(_currentIndex+kImageCount+1)%kImageCount;
+    NSString *imageName=[NSString stringWithFormat:@"%i.jpg",index];
+    _imageView.image=[UIImage imageNamed:imageName];
+    _currentIndex=index;
+    [self showPhotoName];
+}
+
+#pragma mark 上一张图片
+-(void)lastImage{
+    int index=(_currentIndex+kImageCount-1)%kImageCount;
+    NSString *imageName=[NSString stringWithFormat:@"%i.jpg",index];
+    _imageView.image=[UIImage imageNamed:imageName];
+    _currentIndex=index;
+    [self showPhotoName];
+}
+
+#pragma mark - 手势操作
+#pragma mark 点按隐藏或显示导航栏
+-(void)tapImage:(UITapGestureRecognizer *)gesture{
+    //NSLog(@"tap:%i",gesture.state);
+    BOOL hidden=!self.navigationController.navigationBarHidden;
+    [self.navigationController setNavigationBarHidden:hidden animated:YES];
+}
+
+#pragma mark 长按提示是否删除
+-(void)longPressImage:(UILongPressGestureRecognizer *)gesture{
+    //NSLog(@"longpress:%i",gesture.state);
+    //注意其实在手势里面有一个view属性可以获取点按的视图
+    //UIImageView *imageView=(UIImageView *)gesture.view;
+
+    //由于连续手势此方法会调用多次，所以需求判断其手势状态
+    if (gesture.state==UIGestureRecognizerStateBegan) {
+        UIActionSheet *actionSheet=[[UIActionSheet alloc]initWithTitle:@"System Info" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete the photo" otherButtonTitles:nil];
+        [actionSheet showInView:self.view];
+
+    }
+}
+
+#pragma mark 捏合时缩放图片
+-(void)pinchImage:(UIPinchGestureRecognizer *)gesture{
+    //NSLog(@"pinch:%i",gesture.state);
+
+    if (gesture.state==UIGestureRecognizerStateChanged) {
+        //捏合手势中scale属性记录的缩放比例
+        _imageView.transform=CGAffineTransformMakeScale(gesture.scale, gesture.scale);
+    }else if(gesture.state==UIGestureRecognizerStateEnded){//结束后恢复
+        [UIView animateWithDuration:.5 animations:^{
+            _imageView.transform=CGAffineTransformIdentity;//取消一切形变
+        }];
+    }
+}
+
+#pragma mark 旋转图片
+-(void)rotateImage:(UIRotationGestureRecognizer *)gesture{
+    //NSLog(@"rotate:%i",gesture.state);
+    if (gesture.state==UIGestureRecognizerStateChanged) {
+        //旋转手势中rotation属性记录了旋转弧度
+        _imageView.transform=CGAffineTransformMakeRotation(gesture.rotation);
+    }else if(gesture.state==UIGestureRecognizerStateEnded){
+        [UIView animateWithDuration:0.8 animations:^{
+            _imageView.transform=CGAffineTransformIdentity;//取消形变
+        }];
+    }
+}
+
+#pragma mark 拖动图片
+-(void)panImage:(UIPanGestureRecognizer *)gesture{
+    if (gesture.state==UIGestureRecognizerStateChanged) {
+        CGPoint translation=[gesture translationInView:self.view];//利用拖动手势的translationInView:方法取得在相对指定视图（控制器根视图）的移动
+        _imageView.transform=CGAffineTransformMakeTranslation(translation.x, translation.y);
+    }else if(gesture.state==UIGestureRecognizerStateEnded){
+        [UIView animateWithDuration:0.5 animations:^{
+            _imageView.transform=CGAffineTransformIdentity;
+        }];
+    }
+
+}
+
+#pragma mark 轻扫则查看下一张或上一张
+//注意虽然轻扫手势是连续手势，但是只有在识别结束才会触发，不用判断状态
+-(void)swipeImage:(UISwipeGestureRecognizer *)gesture{
+//    NSLog(@"swip:%i",gesture.state);
+//    if (gesture.state==UIGestureRecognizerStateEnded) {
+
+        //direction记录的轻扫的方向
+        if (gesture.direction==UISwipeGestureRecognizerDirectionRight) {//向右
+            [self nextImage];
+//            NSLog(@"right");
+        }else if(gesture.direction==UISwipeGestureRecognizerDirectionLeft){//向左
+//            NSLog(@"left");
+            [self lastImage];
+        }
+//    }
+}
+
+#pragma mark 控制器视图的长按手势
+-(void)longPressView:(UILongPressGestureRecognizer *)gesture{
+    NSLog(@"view long press!");
+}
+
+#pragma mark 手势代理方法
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    //NSLog(@"%i,%i",gestureRecognizer.view.tag,otherGestureRecognizer.view.tag);
+
+    //注意，这里控制只有在UIImageView中才能向下传播，其他情况不允许
+    if ([otherGestureRecognizer.view isKindOfClass:[UIImageView class]]) {
+        return YES;
+    }
+    return NO;
+}
+
+#pragma mark - 触摸事件
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"touch begin...");
+}
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"touch end.");
+}
+@end</pre>
+
+<h2 id="运动事件"><a href="#运动事件" class="headerlink" title="运动事件"></a>运动事件</h2><p>前面我们主要介绍了触摸事件以及由触摸事件引出的手势识别，下面我们简单介绍一下运动事件。在iOS中和运动相关的有三个事件:开始运动、结束运动、取消运动。</p>
+<p>监听运动事件对于UI控件有个前提就是监听对象必须是第一响应者（对于UIViewController视图控制器和UIAPPlication没有此要求）。这也就意味着如果监听的是一个UI控件那么<strong>-(BOOL)canBecomeFirstResponder;</strong>方法必须返回YES。同时控件显示时（在<strong>-(void)viewWillAppear:(BOOL)animated;</strong>事件中）调用视图控制器的<strong>becomeFirstResponder</strong>方法。当视图不再显示时（在<strong>-(void)viewDidDisappear:(BOOL)animated;</strong>事件中）注销第一响应者身份。</p>
+<p>由于视图控制器默认就可以调用运动开始、运动结束事件在此不再举例。现在不妨假设我们现在在开发一个摇一摇找人的功能，这里我们就自定义一个图片展示控件，在这个图片控件中我们可以通过摇晃随机切换界面图片。代码比较简单：</p>
+<p>BMImageView.m</p>
+<p><pre class="code">#import “BMImageView.h”</pre></p>
+<p>#define BMImageCount 3</p>
+<p>@implementation BMImageView</p>
+<ul>
+<li>(instancetype)initWithFrame:(CGRect)frame {<br>  self = [super initWithFrame:frame];<br>  if (self) {<pre><code>self.image=[self getImage];
+</code></pre>  }<br>  return self;<br>}</li>
+</ul>
+<p>#pragma mark 设置控件可以成为第一响应者<br>-(BOOL)canBecomeFirstResponder{<br>    return YES;<br>}</p>
+<p>#pragma mark 运动开始<br>-(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{<br>    //这里只处理摇晃事件<br>    if (motion==UIEventSubtypeMotionShake) {<br>        self.image=[self getImage];<br>    }<br>}</p>
+<p>#pragma mark 运动结束<br>-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{</p>
+<p>}</p>
+<p>#pragma mark 随机取得图片<br>-(UIImage <em>)getImage{<br>    int index= arc4random()%kImageCount;<br>    NSString </em>imageName=[NSString stringWithFormat:@”avatar%i.png”,index];<br>    UIImage *image=[UIImage imageNamed:imageName];<br>    return image;<br>}<br>@end<br>BMShakeViewController.m</p>
+<p><pre class="code">#import “BMShakeViewController.h”</pre></p>
+<p>#import “BMImageView.h”</p>
+<p>@interface BMShakeViewController (){<br>    BMImageView *_imageView;<br>}</p>
+<p>@end</p>
+<p>@implementation BMShakeViewController</p>
+<ul>
+<li>(void)viewDidLoad {<br>  [super viewDidLoad];</li>
+</ul>
+<p>}</p>
+<p>#pragma mark 视图显示时让控件变成第一响应者<br>-(void)viewDidAppear:(BOOL)animated{<br>    _imageView=[[BMImageView alloc]initWithFrame:[UIScreen mainScreen].applicationFrame];<br>    _imageView.userInteractionEnabled=true;<br>    [self.view addSubview:_imageView];<br>    [_imageView becomeFirstResponder];<br>}</p>
+<p>#pragma mark 视图不显示时注销控件第一响应者的身份<br>-(void)viewDidDisappear:(BOOL)animated{<br>    [_imageView resignFirstResponder];<br>}</p>
+<p>/<em>视图控制器的运动事件</em>/<br>//-(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent <em>)event{<br>//    NSLog(@”motion begin…”);<br>//}<br>//<br>//-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent </em>)event{<br>//    NSLog(@”motion end.”);<br>//}</p>
+<p>@end<br>运行效果（下图演示时使用了模拟器摇晃操作的快捷键,没有使用鼠标操作）：</p>
+<p><a href="http://images.cnitblog.com/blog/62046/201409/020633047975098.gif" target="_blank" rel="external"><img src="http://images.cnitblog.com/blog/62046/201409/020633051412527.gif" alt="MotionEffect" title="MotionEffect"></a></p>
+<p>&nbsp;</p>
+<h2 id="远程控制事件"><a href="#远程控制事件" class="headerlink" title="远程控制事件"></a>远程控制事件</h2><p>在今天的文章中还剩下最后一类事件：远程控制，远程控制事件这里主要说的就是耳机线控操作。在前面的事件列表中，大家可以看到在iOS中和远程控制事件有关的只有一个<strong>- (void)remoteControlReceivedWithEvent:(UIEvent *)event NS_AVAILABLE_IOS(4_0);</strong>事件<strong>。</strong>要监听到这个事件有三个前提（视图控制器UIViewController或应用程序UIApplication只有两个）</p>
+<ul>
+<li>启用远程事件接收（<strong>使用[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];</strong>方法）。</li>
+<li>对于UI控件同样要求必须是第一响应者（对于视图控制器UIViewController或者应用程序UIApplication对象监听无此要求）。</li>
+<li>应用程序必须是当前音频的控制者，也就是在iOS 7中通知栏中当前音频播放程序必须是我们自己开发程序。<br>基于第三点我们必须明确，如果我们的程序不想要控制音频，只是想利用远程控制事件做其他的事情，例如模仿iOS7中的按音量+键拍照是做不到的，目前iOS7给我们的远程控制权限还仅限于音频控制（当然假设我们确实想要做一个和播放音频无关的应用但是又想进行远程控制，也可以隐藏一个音频播放操作，拿到远程控制操作权后进行远程控制）。</li>
+</ul>
+<p>运动事件中我们也提到一个枚举类型UIEventSubtype，而且我们利用它来判断是否运动事件，在枚举中还包含了我们运程控制的子事件类型，我们先来熟悉一下这个枚举（从远程控制子事件类型也不难发现它和音频播放有密切关系）：</p>
+<p><pre class="code">typedef NS_ENUM(NSInteger, UIEventSubtype) {<br>    // 不包含任何子事件类型<br>    UIEventSubtypeNone                              = 0,</pre></p>
+<pre><code>// 摇晃事件（从iOS3.0开始支持此事件）
+UIEventSubtypeMotionShake                       = 1,
+
+//远程控制子事件类型（从iOS4.0开始支持远程控制事件）
+//播放事件【操作：停止状态下，按耳机线控中间按钮一下】
+UIEventSubtypeRemoteControlPlay                 = 100,
+//暂停事件
+UIEventSubtypeRemoteControlPause                = 101,
+//停止事件
+UIEventSubtypeRemoteControlStop                 = 102,
+//播放或暂停切换【操作：播放或暂停状态下，按耳机线控中间按钮一下】
+UIEventSubtypeRemoteControlTogglePlayPause      = 103,
+//下一曲【操作：按耳机线控中间按钮两下】
+UIEventSubtypeRemoteControlNextTrack            = 104,
+//上一曲【操作：按耳机线控中间按钮三下】
+UIEventSubtypeRemoteControlPreviousTrack        = 105,
+//快退开始【操作：按耳机线控中间按钮三下不要松开】
+UIEventSubtypeRemoteControlBeginSeekingBackward = 106,
+//快退停止【操作：按耳机线控中间按钮三下到了快退的位置松开】
+UIEventSubtypeRemoteControlEndSeekingBackward   = 107,
+//快进开始【操作：按耳机线控中间按钮两下不要松开】
+UIEventSubtypeRemoteControlBeginSeekingForward  = 108,
+//快进停止【操作：按耳机线控中间按钮两下到了快进的位置松开】
+UIEventSubtypeRemoteControlEndSeekingForward    = 109,
+</code></pre><p>};<br>这里我们将远程控制事件放到视图控制器（事实上很少直接添加到UI控件，一般就是添加到UIApplication或者UIViewController），模拟一个音乐播放器。</p>
+<p>1.首先在应用程序启动后设置接收远程控制事件，并且设置音频会话保证后台运行可以播放（注意要在应用配置中设置允许多任务）</p>
+<p><pre class="lang:objc decode:true code">#import “AppDelegate.h”</pre></p>
+<p>#import “ViewController.h”</p>
+<p>#import &lt;AVFoundation/AVFoundation.h&gt;</p>
+<p>#import “Application.h”</p>
+<p>@interface AppDelegate ()</p>
+<p>@end</p>
+<p>@implementation AppDelegate</p>
+<ul>
+<li><p>(BOOL)application:(UIApplication <em>)application didFinishLaunchingWithOptions:(NSDictionary </em>)launchOptions {<br>  _window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];</p>
+<p>  _window.backgroundColor =[UIColor colorWithRed:249/255.0 green:249/255.0 blue:249/255.0 alpha:1];</p>
+<p>  //设置全局导航条风格和颜色<br>  [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:23/255.0 green:180/255.0 blue:237/255.0 alpha:1]];<br>  [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];</p>
+<p>  ViewController *mainController=[[ViewController alloc]init];<br>  _window.rootViewController=mainController;</p>
+<p>  //设置播放会话，在后台可以继续播放（还需要设置程序允许后台运行模式）<br>  [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];<br>  if(![[AVAudioSession sharedInstance] setActive:YES error:nil])<br>  {</p>
+<pre><code>NSLog(@&quot;Failed to set up a session.&quot;);
+</code></pre><p>  }</p>
+<p>  //启用远程控制事件接收<br>  [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];<br>//    [self becomeFirstResponder];</p>
+<p>  [_window makeKeyAndVisible];</p>
+<p>  return YES;<br>}</p>
+</li>
+</ul>
+<p>//-(void)remoteControlReceivedWithEvent:(UIEvent *)event{<br>//    NSLog(@”remote”);<br>//}</p>
+<ul>
+<li><p>(void)applicationWillResignActive:(UIApplication *)application {<br>  // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.<br>  // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.<br>}</p>
+</li>
+<li><p>(void)applicationDidEnterBackground:(UIApplication *)application {<br>  // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.<br>  // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.</p>
+<p>  [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];<br>}</p>
+</li>
+<li><p>(void)applicationWillEnterForeground:(UIApplication *)application {<br>  // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.<br>}</p>
+</li>
+<li><p>(void)applicationDidBecomeActive:(UIApplication *)application {<br>  // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.<br>}</p>
+</li>
+<li><p>(void)applicationWillTerminate:(UIApplication *)application {<br>  // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.<br>}</p>
+</li>
+</ul>
+<p>@end<br>2.在视图控制器中添加远程控制事件并音频播放进行控制</p>
+<p><pre class="code ">#import “ViewController.h”</pre></p>
+<p>@interface ViewController (){<br>    UIButton *_playButton;<br>    BOOL _isPlaying;<br>}</p>
+<p>@end</p>
+<p>@implementation ViewController</p>
+<ul>
+<li><p>(void)viewDidLoad {<br>  [super viewDidLoad];</p>
+<p>  [self initLayout];<br>}</p>
+</li>
+</ul>
+<p>-(BOOL)canBecomeFirstResponder{<br>    return NO;<br>}</p>
+<p>-(void)viewDidAppear:(BOOL)animated{<br>    [super viewDidAppear:animated];<br>    _player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:@”<a href="http://stream.jewishmusicstream.com:8000" target="_blank" rel="external">http://stream.jewishmusicstream.com:8000</a>“]];</p>
+<pre><code>//[_player play];
+//_isPlaying=true;
+</code></pre><p>}</p>
+<p>#pragma mark 远程控制事件<br>-(void)remoteControlReceivedWithEvent:(UIEvent *)event{<br>    NSLog(@”%i,%i”,event.type,event.subtype);<br>    if(event.type==UIEventTypeRemoteControl){<br>        switch (event.subtype) {<br>            case UIEventSubtypeRemoteControlPlay:<br>                [_player play];<br>                _isPlaying=true;<br>                break;<br>            case UIEventSubtypeRemoteControlTogglePlayPause:<br>                if (_isPlaying) {<br>                    [_player pause];<br>                }else{<br>                    [_player play];<br>                }<br>                _isPlaying=!_isPlaying;<br>                break;<br>            case UIEventSubtypeRemoteControlNextTrack:<br>                NSLog(@”Next…”);<br>                break;<br>            case UIEventSubtypeRemoteControlPreviousTrack:<br>                NSLog(@”Previous…”);<br>                break;<br>            case UIEventSubtypeRemoteControlBeginSeekingForward:<br>                NSLog(@”Begin seek forward…”);<br>                break;<br>            case UIEventSubtypeRemoteControlEndSeekingForward:<br>                NSLog(@”End seek forward…”);<br>                break;<br>            case UIEventSubtypeRemoteControlBeginSeekingBackward:<br>                NSLog(@”Begin seek backward…”);<br>                break;<br>            case UIEventSubtypeRemoteControlEndSeekingBackward:<br>                NSLog(@”End seek backward…”);<br>                break;<br>            default:<br>                break;<br>        }<br>        [self changeUIState];<br>    }<br>}</p>
+<p>#pragma mark 界面布局<br>-(void)initLayout{<br>    //专辑封面<br>    UIImage <em>image=[UIImage imageNamed:@”wxl.jpg”];<br>    UIImageView </em>imageView=[[UIImageView alloc]initWithFrame:[UIScreen mainScreen].applicationFrame];<br>    imageView.image=image;<br>    imageView.contentMode=UIViewContentModeScaleAspectFill;<br>    [self.view addSubview:imageView];<br>    //播放控制面板<br>    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 480, 320, 88)];<br>    view.backgroundColor=[UIColor lightGrayColor];<br>    view.alpha=0.9;<br>    [self.view addSubview:view];</p>
+<pre><code>//添加播放按钮
+_playButton=[UIButton buttonWithType:UIButtonTypeCustom];
+_playButton.bounds=CGRectMake(0, 0, 50, 50);
+_playButton.center=CGPointMake(view.frame.size.width/2, view.frame.size.height/2);
+[self changeUIState];
+[_playButton addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+[view addSubview:_playButton];
+</code></pre><p>}</p>
+<p>#pragma mark 界面状态<br>-(void)changeUIState{<br>    if(_isPlaying){<br>        [_playButton setImage:[UIImage imageNamed:@”playing_btn_pause_n.png”] forState:UIControlStateNormal];<br>        [_playButton setImage:[UIImage imageNamed:@”playing_btn_pause_h.png”] forState:UIControlStateHighlighted];<br>    }else{<br>        [_playButton setImage:[UIImage imageNamed:@”playing_btn_play_n.png”] forState:UIControlStateNormal];<br>        [_playButton setImage:[UIImage imageNamed:@”playing_btn_play_h.png”] forState:UIControlStateHighlighted];<br>    }<br>}</p>
+<p>-(void)btnClick:(UIButton *)btn{<br>    if (_isPlaying) {<br>        [_player pause];<br>    }else{<br>        [_player play];<br>    }<br>    _isPlaying=!_isPlaying;<br>    [self changeUIState];<br>}<br>@end<br>运行效果(真机截图)：</p>
+<p><a href="http://images.cnitblog.com/blog/62046/201409/020633057825697.png" target="_blank" rel="external"><img src="http://images.cnitblog.com/blog/62046/201409/020633069389711.png" alt="MusicPlayer" title="MusicPlayer"></a></p>
+<p>注意：</p>
+<ul>
+<li>为了模拟一个真实的播放器，程序中我们启用了后台运行模式，配置方法：在info.plist中添加UIBackgroundModes并且添加一个元素值为audio。</li>
+<li>即使利用线控进行音频控制我们也无法监控到耳机增加音量、减小音量的按键操作（另外注意模拟器无法模拟远程事件，请使用真机调试）。</li>
+<li>子事件的类型跟当前音频状态有直接关系，点击一次播放/暂停按钮究竟是【播放】还是【播放/暂停】状态切换要看当前音频处于什么状态，如果处于停止状态则点击一下是播放，如果处于暂停或播放状态点击一下是暂停和播放切换。</li>
+<li>上面的程序已在真机调试通过，无论是线控还是点击应用按钮都可以控制播放或暂停。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UIEvent/" rel="tag">#UIEvent</a>
+          
+            <a href="/tags/UIGestureRecognizer/" rel="tag">#UIGestureRecognizer</a>
+          
+            <a href="/tags/UIResponder/" rel="tag">#UIResponder</a>
+          
+            <a href="/tags/UITouch/" rel="tag">#UITouch</a>
+          
+            <a href="/tags/手势/" rel="tag">#手势</a>
+          
+            <a href="/tags/手势识别/" rel="tag">#手势识别</a>
+          
+            <a href="/tags/触摸事件/" rel="tag">#触摸事件</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/29/sharedapplication-openurl/" rel="next" title="sharedApplication之openURL">
+                <i class="fa fa-chevron-left"></i> sharedApplication之openURL
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/" rel="prev" title="ios多线程之NSThread,GCD,NSOperation以及线程同步">
+                ios多线程之NSThread,GCD,NSOperation以及线程同步 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UIResponder"><span class="nav-number">1.</span> <span class="nav-text">UIResponder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#响应者"><span class="nav-number">1.1.</span> <span class="nav-text">响应者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IOS事件"><span class="nav-number">1.2.</span> <span class="nav-text">IOS事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件处理机制"><span class="nav-number">1.3.</span> <span class="nav-text">事件处理机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIGestureRecognizer"><span class="nav-number">2.</span> <span class="nav-text">UIGestureRecognizer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用手势"><span class="nav-number">2.1.</span> <span class="nav-text">使用手势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运动事件"><span class="nav-number">3.</span> <span class="nav-text">运动事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程控制事件"><span class="nav-number">4.</span> <span class="nav-text">远程控制事件</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="initialize,load,初始化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="作为一个IOS程序员，绝大多数时候你都不需要关心一个类是怎么被加载进内存的。这里面 runtime linker 在你的代码还没跑起来之前就已经做了很多复杂的工作。
+对于大多类来说，知道这一点就已经相当足够了。但是，有一些类可能需要做一些特殊的准备工作。比如初始化一个全局的表，从 UserDefaults 里面读取配置并缓存起来，又或者做一些其他的准备工作。
+ObjC 提供了两种方法来实现这些事情">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C 类的加载和初始化(+load 和 +initialize 方法)">
+<meta property="og:url" content="http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="作为一个IOS程序员，绝大多数时候你都不需要关心一个类是怎么被加载进内存的。这里面 runtime linker 在你的代码还没跑起来之前就已经做了很多复杂的工作。
+对于大多类来说，知道这一点就已经相当足够了。但是，有一些类可能需要做一些特殊的准备工作。比如初始化一个全局的表，从 UserDefaults 里面读取配置并缓存起来，又或者做一些其他的准备工作。
+ObjC 提供了两种方法来实现这些事情">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C 类的加载和初始化(+load 和 +initialize 方法)">
+<meta name="twitter:description" content="作为一个IOS程序员，绝大多数时候你都不需要关心一个类是怎么被加载进内存的。这里面 runtime linker 在你的代码还没跑起来之前就已经做了很多复杂的工作。
+对于大多类来说，知道这一点就已经相当足够了。但是，有一些类可能需要做一些特殊的准备工作。比如初始化一个全局的表，从 UserDefaults 里面读取配置并缓存起来，又或者做一些其他的准备工作。
+ObjC 提供了两种方法来实现这些事情">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/"/>
+
+  <title> Objective-C 类的加载和初始化(+load 和 +initialize 方法) | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Objective-C 类的加载和初始化(+load 和 +initialize 方法)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-08-05T22:13:40+08:00" content="2015-08-05">
+              2015-08-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作为一个IOS程序员，绝大多数时候你都不需要关心一个类是怎么被加载进内存的。这里面 runtime linker 在你的代码还没跑起来之前就已经做了很多复杂的工作。</p>
+<p>对于大多类来说，知道这一点就已经相当足够了。但是，有一些类可能需要做一些特殊的准备工作。比如初始化一个全局的表，从 UserDefaults 里面读取配置并缓存起来，又或者做一些其他的准备工作。</p>
+<p>ObjC 提供了两种方法来实现这些事情：</p>
+<p><pre class="lang:objc decode:true">+ (void)initialize</pre></p>
+<ul>
+<li>(void)load<a id="more"></a>
+</li>
+</ul>
+<h2 id="load"><a href="#load" class="headerlink" title="+load"></a>+load</h2><p>如果你的类实现了 +load 方法，这个方法就会在类被加载的时候调用。这个调用时机是很早的。如果你是在被其他应用引用的应用（Application）或框架（Framework）里实现了这个方法，它甚至会比 main() 函数还早被触发。如果你是在一个可以被加载的 bundle 里面实现这个方法，那当 bundle 被加载的时候这个方法就会被调用。</p>
+<p>因为 +load 方法过早被调用，所以应用起来会有点困难。很多时候有些类是要比别人更早被加载的，这样你无法判断别人是不是早就被调用过 +load 方法了。更糟糕的时候，你的应用中包含的 C++ 静态初始化函数在这个时机点是还没被调用的，如果你在 +load 里面调用了相关的代码，就很有可能会 crash。好消息是你链接的 frameworks 是保证在 +load 调用前就加载过了的，所以在这里使用 framewroks 是安全的。还有父类也是保证完全加载过了，所以使用父类也是没问题的。</p>
+<p>+load 这个方法有一个有意思的特性，就是 runtime 会把所有 category 里面实现了 +load 的方法全部调一遍。也就是说如果你在多个 category 里面都实现了 +load 方法，这些方法都会被调用一次。这种设计可能跟你认识到 category 的机制完全相反，不过你要知道 +load 方法不是一个普通的方法。这个特性决定了 +load 是一个干坏事的绝佳场所，比如 swizzling。</p>
+<h2 id="initialize"><a href="#initialize" class="headerlink" title="+initialize"></a>+initialize</h2><p>相比而言，+initialize 方法就要正常的多了，通常也是一个更好的安置代码的地方。+initialize 有意思的地方在于它会很晚才被调用，甚至它有可能完全不会被调用。当一个类被加载的时候，+initialize 不会被调用，当一个消息发送给这个类的时候（译者注：ObjC 的方法调用都是通过 runtime 的消息机制，objc_sendMsg 方法），runtime 就会检查这个方法有没有被调用过，如果没有就调用之。大概可以认为是这样的：</p>
+<p><div></div></p>
+<p><div id="highlighter_919334" class="syntaxhighlighter  swift"></div></p>
+<p><div class="toolbar"></div></p>
+<p><pre class="lang:objc decode:true">id objc_msgSend(id self, SEL _cmd, …)<br>{<br>    if(!self-&gt;class-&gt;initialized)<br>        [self-&gt;class initialize];<br>    …send the message…<br>}</pre><br><br><br><br>当然真正的实现不会这么简单，还要解决线程安全之类的问题，不过大概就是这么个意思吧。每个类知会调用一次 +initialize 方法，而且只会在这个类收到第一个消息的时候被调用。跟 +load 方法一样，+initialize 会先调用这个类所有的父类，最后才调到自己的 +initialize 方法。</p>
+<p>这就使得 +initialize 用起来要比 +load 方法更安全，因为调用时机的环境要安全得多。当然这时候的环境还要取决于第一条消息发送的结果，不过可以保证调用的时机一定比 NSApplicationMain() 要晚。</p>
+<p>由于 +initialize 是 lazily run 的，所以这里就不是做注册事件的好地方。比如说，NSValueTransformer 和 NSURLProtocol 就不能用 +initialize 来注册自己，因为这就成了一个先有鸡还是先有蛋的问题。</p>
+<p>这个方法适合用来做需要在类被加载后做的事情。由于这个方法运行的时候环境容错性更好，所以你可以使用的方法也就比 +load 自由得多，也因为这个方法是 lazy 调用的，所以你在这个方法中使用的资源就不会事先申请而造成浪费。</p>
+<p>+initialize 的使用还有个小伎俩，我上面的伪代码里提到 runtime 会调用：</p>
+<p><pre class="lang:objc decode:true">[self-&gt;class initialize]</pre><br>这就导致 ObjC 做 selector 实现的检查，如果当前类没有实现这个方法，那么父类的方法就会被调用。不只在伪代码里，实际上也是这样的。所以，你的 +initialize 就得写成下面这样：</p>
+<p><pre class="lang:objc decode:true ">+ (void)initialize<br>{<br>    if(self == [WhateverClass class])<br>    {<br>        …perform initialization…<br>    }<br>}</pre><br>&nbsp;</p>
+<p>如果没有做这个检查，如果你有没实现 +initialize 的子类，你的代码就会被调用两次。就算你没有任何子类，Apple 的 KVO 也会<a href="https://www.mikeash.com/pyblog/friday-qa-2009-01-23.html" target="_blank" rel="external">动态创建</a>没有实现 +initialize 的子类。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>ObjC 提供了两种自动运行类初始化代码的方法。+load 方法保证了会在 class 被加载的时候调用，这个时机很早，所以对于需要很早被执行的代码来说是很有用的。但是在这个时机跑的代码也可以是很危险的，毕竟这个时候的环境比较恶劣。</p>
+<p>由于 +initialize 方法是 lazy 触发的，所以对于初始化设置的环境就要友好得多。只要不是在类接收第一条消息之前一定要做的事情，都可以在这个方法里面做。</p>
+<blockquote>
+<p><strong>+load-当类加载到OC运行环境中(内存),就会调用一次.永远只调一次!</strong></p>
+<p><strong>+initialize-当第一次使用这个类的时候就会调用一次.可能会调2次!(子类没有<strong>initialize方法,并且父类有,会调2次父类</strong>)</strong></p>
+<p>&nbsp;<br>原文地址:<a href="https://www.mikeash.com/pyblog/friday-qa-2009-05-22-objective-c-class-loading-and-initialization.html" target="_blank" rel="external">https://www.mikeash.com/pyblog/friday-qa-2009-05-22-objective-c-class-loading-and-initialization.html</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/initialize/" rel="tag">#initialize</a>
+          
+            <a href="/tags/load/" rel="tag">#load</a>
+          
+            <a href="/tags/初始化/" rel="tag">#初始化</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/05/objective-cs-alloc-and-allocwithzone/" rel="next" title="Objective-C 里的 alloc 和 allocWithZone:">
+                <i class="fa fa-chevron-left"></i> Objective-C 里的 alloc 和 allocWithZone:
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/07/mac-used-in-the-ios-command-line/" rel="prev" title="在IOS中mac常用命令行">
+                在IOS中mac常用命令行 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#load"><span class="nav-number">1.</span> <span class="nav-text">+load</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initialize"><span class="nav-number">2.</span> <span class="nav-text">+initialize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

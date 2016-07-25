@@ -1,0 +1,617 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Delegate,NSNotification," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="首先,请确保以阅读: &amp;lt;delegate代理（委托）的使用心得&amp;gt; 和 &amp;lt;消息通知机制NSNotification&amp;gt;
+正如我们大家都知道的，IOS中经常会提到NSNotification和delegate来进行一些类之间的消息传递。其实在我刚开始学OC的时候,很久不能理解这个消息传递有什么用.慢慢的当熟悉了MVC,以及封装思想以后,发现这2个消息传递真的时神器,但是他们之间有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSNotification和Delegate使用及心得">
+<meta property="og:url" content="http://yoursite.com/2015/07/05/nsnotification-and-delegate-usage-and-tips/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="首先,请确保以阅读: &amp;lt;delegate代理（委托）的使用心得&amp;gt; 和 &amp;lt;消息通知机制NSNotification&amp;gt;
+正如我们大家都知道的，IOS中经常会提到NSNotification和delegate来进行一些类之间的消息传递。其实在我刚开始学OC的时候,很久不能理解这个消息传递有什么用.慢慢的当熟悉了MVC,以及封装思想以后,发现这2个消息传递真的时神器,但是他们之间有">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSNotification和Delegate使用及心得">
+<meta name="twitter:description" content="首先,请确保以阅读: &amp;lt;delegate代理（委托）的使用心得&amp;gt; 和 &amp;lt;消息通知机制NSNotification&amp;gt;
+正如我们大家都知道的，IOS中经常会提到NSNotification和delegate来进行一些类之间的消息传递。其实在我刚开始学OC的时候,很久不能理解这个消息传递有什么用.慢慢的当熟悉了MVC,以及封装思想以后,发现这2个消息传递真的时神器,但是他们之间有">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/05/nsnotification-and-delegate-usage-and-tips/"/>
+
+  <title> NSNotification和Delegate使用及心得 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NSNotification和Delegate使用及心得
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-05T10:08:20+08:00" content="2015-07-05">
+              2015-07-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/Xcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Xcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首先,请确保以阅读: &lt;<a href="http://s-187595.abc188.com/index.php/2015/07/06/delegate-proxy-delegates-experience.html" target="_blank" rel="external">delegate代理（委托）的使用心得</a>&gt; 和 &lt;<a href="http://s-187595.abc188.com/index.php/2015/07/02/message-notification-mechanism-nsnotification.html" target="_blank" rel="external">消息通知机制NSNotification</a>&gt;</p>
+<p>正如我们大家都知道的，IOS中经常会提到NSNotification和<a href="http://s-187595.abc188.com/index.php/2015/07/05/delegate-proxy-in-ios-delegates-experience.html" target="_blank" rel="external">delegate</a>来进行一些类之间的消息传递。其实在我刚开始学OC的时候,很久不能理解这个消息传递有什么用.慢慢的当熟悉了MVC,以及封装思想以后,发现这2个消息传递真的时神器,但是他们之间有什么区别呢？</p>
+<p>NSNotification就是IOS提供的一个<strong>消息中心</strong>，由一个全局的defaultNotification管理应用中的消息机制。通过公开的API可以看出，这里面使用了是一个观察者，通过注册addObserver和解除注册removeObserver来实现消息传递。苹果文档特别提出，在类析构的时候，要记得把removeObserver，不然就会引发崩溃，所以NSNotifcation的使用是没有retain+1的，NSNotification是一对多的。</p>
+<p>至于Delegate，很简单，就是通过增加一个指针，然后把需要调用的函数通过delegate传递到其他类中，来得很直截了当。不需要通过广播的形式去实现，但是，delegate的形式只能是一对一，不能实现一对多。</p>
+<p>在什么情况下使用Delegate和NSNotifiation呢。从效率上看Delegate是一个很轻量级的，相对delegate，NSNotification却是一个很重量级的，效率上delegate明显要比Noticication低。一般情况我们会这样使用。</p>
+<p>场景一：</p>
+<p>A拥有B，然后B中的一些操作需要回调到A中，这时候就简单的通过delegate回调到A。因为B是A创建的，B可以很直接的把delegate赋值A。</p>
+<p><a id="more"></a>场景二：</p>
+<p>A和B是两个不相干的关系，A不知道B，B也不知道A，那么这时候如果通过delegate就没办法做到，会相对复杂。所以可以通过NSNotifcation去做一些消息传递。</p>
+<p>所以使用delegate的情况是两者有直接的关系，至于一方知道另一方的存在。而NSNotifcation一般是大家不知道对方的存在，一般是使用跨模块的时候使用。在使用的时候，使用delegate可能需要多写一些delegate去实现，代码量比较多。NSNotication只要定义相关的NotificationName就可以很方便的沟通。两者各有所长。</p>
+<blockquote>
+<p>我们可以举一个这样不是特别恰当的例子,假设一个工程是一个小区,而每个类是小区的住户.Delegate就像是打电话,而NSNotification像是进行一次小区的广播.</p>
+<p>广播可以做到打电话的所有事情,但是没一次广播会牵涉到其他不需要通知的住户,虽然他们不理会.(但是你小区24小时广播,内容都和你没关系,当发送一条和你有关系的内容,你会注意到吗?这就一部分的影响了程序的性能)</p>
+<p>打电话一定程序也可以广播的事情,当你知道另外一个住户的电话号码才可以进行通话(这里知道对话电话号码可能和实际代理的使用有点小区别,仅仅举这个例子),但是还有一种情况是你不知道对方的电话号码.</p>
+<p>情节:1.比如你想去通知你的女朋友(有电话号码)去吃饭,你不可能去发一个广播说”xxx,走去吃饭了”. 2.比如你的小孩(并且没有电话号码)丢了,这个时候你可能只有通过一则广告”xxx小朋友,请到哪里,xx正在找你”.(当然你也有一个极端的做法,给你所有认识的打一个电话”xx小朋友你看到没有? 帮我问问你认识的人”).</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Delegate/" rel="tag">#Delegate</a>
+          
+            <a href="/tags/NSNotification/" rel="tag">#NSNotification</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/03/xcode-debugging-breakpoint-debug-does-not-show-the-source-code/" rel="next" title="Xcode调试断点Debug不显示源代码区">
+                <i class="fa fa-chevron-left"></i> Xcode调试断点Debug不显示源代码区
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/06/delegate-proxy-delegates-experience/" rel="prev" title="delegate代理（委托）的使用心得">
+                delegate代理（委托）的使用心得 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

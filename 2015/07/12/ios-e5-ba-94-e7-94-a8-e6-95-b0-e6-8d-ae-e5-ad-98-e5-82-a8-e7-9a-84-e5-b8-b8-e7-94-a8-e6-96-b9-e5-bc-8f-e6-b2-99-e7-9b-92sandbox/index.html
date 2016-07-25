@@ -1,0 +1,898 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Caches,Document,NSSearchPathForDirectoriesInDomains,NSUserDefaults,Plist,Preference,Sandbox,tmp,属性列表,数据储存,沙盒," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="通常,我们很多的数据都不是临时或者一次性的,也就是说需要下一次登录以后,很多数据依然存在.我们就需要把这些需要的数据存储在一个文件夹或者文件中(或者网络).而ios默认就为我们提供了这样一个文件夹叫沙盒(就是文件系统目录).并且这个文件与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒(也就是说A程序的文件只能存在A的沙盒中,并且不能去访问B程序的沙盒)
+常见的文件存储方式
+XM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS应用数据存储的常用方式(沙盒Sandbox)">
+<meta property="og:url" content="http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="通常,我们很多的数据都不是临时或者一次性的,也就是说需要下一次登录以后,很多数据依然存在.我们就需要把这些需要的数据存储在一个文件夹或者文件中(或者网络).而ios默认就为我们提供了这样一个文件夹叫沙盒(就是文件系统目录).并且这个文件与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒(也就是说A程序的文件只能存在A的沙盒中,并且不能去访问B程序的沙盒)
+常见的文件存储方式
+XM">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS应用数据存储的常用方式(沙盒Sandbox)">
+<meta name="twitter:description" content="通常,我们很多的数据都不是临时或者一次性的,也就是说需要下一次登录以后,很多数据依然存在.我们就需要把这些需要的数据存储在一个文件夹或者文件中(或者网络).而ios默认就为我们提供了这样一个文件夹叫沙盒(就是文件系统目录).并且这个文件与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒(也就是说A程序的文件只能存在A的沙盒中,并且不能去访问B程序的沙盒)
+常见的文件存储方式
+XM">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/"/>
+
+  <title> iOS应用数据存储的常用方式(沙盒Sandbox) | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS应用数据存储的常用方式(沙盒Sandbox)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-12T02:02:47+08:00" content="2015-07-12">
+              2015-07-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">IOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/OC/Xcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Xcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通常,我们很多的数据都不是临时或者一次性的,也就是说需要下一次登录以后,很多数据依然存在.我们就需要把这些需要的数据存储在一个文件夹或者文件中(或者网络).而ios默认就为我们提供了这样一个文件夹叫<strong>沙盒</strong>(就是文件系统目录).并且这个文件与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒(也就是说A程序的文件只能存在A的沙盒中,并且不能去访问B程序的沙盒)</p>
+<h2 id="常见的文件存储方式"><a href="#常见的文件存储方式" class="headerlink" title="常见的文件存储方式"></a>常见的文件存储方式</h2><ul>
+<li>XML属性列表（plist）归档</li>
+<li>Preference(偏好设置)</li>
+<li>NSKeyedArchiver归档(NSCoding)</li>
+<li>SQLite3</li>
+<li>Core Data<br>要搞懂文件存储之前,我们应该对沙盒的结构以及沙盒的作用有深入的了解.</li>
+</ul>
+<h2 id="沙盒结构"><a href="#沙盒结构" class="headerlink" title="沙盒结构"></a><strong>沙盒结构</strong></h2><ul>
+<li><strong>Documents</strong>：保存应用运行时生成的需要<strong>持久化的数据</strong>，iTunes同步设备时<span style="color: #ff0000;">会备份该目录</span>。例如，游戏应用可将游戏存档保存在该目录</li>
+<li><strong>tmp</strong>：保存应用运行时所需的<strong>临时数据</strong>，使用完毕后再将相应的文件<strong>从该目录删除</strong>。应用没有运行时，系统也可能会清除该目录下的文件。iTunes同步设备时<span style="color: #ff0000;">不会备份该目录</span></li>
+<li><strong>Library/Caches</strong>：保存应用运行时生成的需要<strong>持久化的数据</strong>，iTunes同步设备时<span style="color: #ff0000;">不会备份该目录</span>。一般存储体积大、不需要备份的非重要数据</li>
+<li><strong>Library/Preference</strong>：保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息。iTunes同步设备时<span style="color: #ff0000;">会备份该目录</span><blockquote>
+<p>所以我们应该合理的选择我们数据储存的地方.简单来说:</p>
+<p>1.完全<strong>不重要</strong>的数据放tmp.(临时文件)</p>
+<p>2.<strong>不重要数据,</strong>但是<strong>不任意删除</strong>数据存在Caches.(部分资源,缓存)</p>
+<p>3.<strong>重要数据</strong>,并且<strong>大</strong>体积存在Document.(存档,歌曲..)</p>
+<p>4.<strong>重要数据</strong>,并且<strong>小</strong>体积存在Preference.(用户设置,密码..)</p>
+<a id="more"></a>
+</blockquote>
+</li>
+</ul>
+<h2 id="沙盒获取方式"><a href="#沙盒获取方式" class="headerlink" title="沙盒获取方式:"></a><strong>沙盒获取方式:</strong></h2><pre class="lang:objc decode:true ">NSString *home = NSHomeDirectory();</pre>
+
+<h3 id="Document"><a href="#Document" class="headerlink" title="Document:"></a>Document:</h3><p>一般来说Document有2种方式来获取目录.</p>
+<ul>
+<li><p>根据沙盒的根目录拼接字符串<br><pre class="lang:objc decode:true">NSString <em>home = NSHomeDirectory();<br>NSString </em>documents = [home stringByAppendingPathComponent:@”Documents”];</pre></p>
+<blockquote>
+<p>这个方法很垃圾.一般不建议使用.因为新版本的操作系统可能会修改目录名,所以会使老程序无法运行.并且字符串输入很容易打错.</p>
+</blockquote>
+</li>
+<li><p>通过函数<br>通过NSSearchPathForDirectoriesInDomains函数来取得目录结构. 详情介绍介意查看<a href="http://s-187595.abc188.com/index.php/2015/07/12/nssearchpathfordirectoriesindomains%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90.html" target="_blank" rel="external">[NSSearchPathForDirectoriesInDomains深入解析]</a><br><pre class="lang:objc decode:true">NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)</pre></p>
+<blockquote>
+<p>因为NSSearchPathForDirectoriesInDomains的返回值是一个数组.并且在iOS中，只有一个目录跟传入的参数匹配，所以这个集合里面只有一个元素,所有又有另外一句常用语句.<br><pre class="lang:objc decode:true">NSString *documents = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];</pre><br>&nbsp;</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Caches"><a href="#Caches" class="headerlink" title="Caches:"></a><strong>Caches</strong>:</h3><p>同Document一样.(字符串拼接的方式就不讲了)</p>
+<pre class="lang:objc decode:true ">NSString *Caches = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSCachesDirectory, YES) lastObject];</pre>
+&nbsp;
+
+### tmp:
+
+tmp直接调用函数方法就好了.
+<pre class="lang:objc decode:true">tmp：NSString *tmp = NSTemporaryDirectory();</pre>
+&nbsp;
+
+### **Preference**:
+
+Preference相对于上面3个文件(或文件夹)来说比较特殊,系统专门有一个类(NSUserDefaults).
+
+第一步,我们需要创建一个NSUserDefaults的实例,然后通过get(响应set),set方法来使用.(具体使用后面会通过"偏好设置"讲到.)
+
+(补充了一点知识,查看文章&gt; [[NSUserDefaults深入解析]](http://s-187595.abc188.com/index.php/2015/07/12/nsuserdefaults%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90.html) ).
+
+&nbsp;
+
+## 文件存储
+
+### 属性列表(plist)
+
+属性列表是一种非常常见并且简单的存储方式,XML格式的文件，拓展名为plist.
+
+Plist存储的对象是NSString、NSDictionary、NSArray、NSData、NSNumber等类型.
+
+使用writeToFile:atomically:方法直接将对象写到属性列表文件中,使用xxxWithContentsOfFile:即可读取属性列表文件赋值给对象(其中xxx为对象类型,如dictionary,array等)
+
+第一步,获取路径
+<pre class="lang:objc decode:true  ">    NSString *documents = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filepath = [docPath stringByAppendingPathComponent:@"me.plist"];
+</pre>
+第二部,将对象写入文件
+<pre class="lang:objc decode:true ">    NSArray *data = @[@"jack", @10, @"ffdsf"]; // 假设对象data
+    [data writeToFile:filepath atomically:YES];</pre>
+> 其中<span class="s1">atomically参数是一个布尔类型.</span>意思是如果为YES则保证文件的写入原子性,就是说会先创建一个临时文件,直到文件内容写入成功再导入到目标文件里.
+> 
+> 
+> 如果为NO,则直接写入目标文件里.
+第三部,将文件读取并赋值给对象
+<pre class="lang:objc decode:true ">    NSArray *data = [NSArray arrayWithContentsOfFile:filepath];</pre>
+**若文件不能正常存储,可能是因为<strong>在NSArray或** **NSDictionary中存储了自定义对象.**</strong>
+
+&nbsp;
+
+### 偏好设置(Preference)
+
+偏好设置一般是用来保存用户的用户名、密码、字体大小、是否自动登录等等设置.并且每个应用都有个NSUserDefaults实例(单例对象).并且本质是Plist.
+
+具体详细说明请看 [ [NSUserDefaults深入解析]](http://s-187595.abc188.com/index.php/2015/07/12/nsuserdefaults%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90.html)
+
+&nbsp;
+
+第一步,拿到NSUserDefaults实例
+<pre class="lang:objc decode:true">NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];</pre>
+第二部,通过NSUserDefaults的set方法,写入键值对
+<pre class="lang:objc decode:true">[defaults setObject:@"birdmichael" forKey:@"username"];
+[defaults setFloat:18.0f forKey:@"text_size"];
+[defaults setBool:YES forKey:@"auto_login"];
+</pre>
+第三部,通过NSUserDefaults的get方法,读取键值对
+<pre class="lang:objc decode:true">NSString *username = [defaults stringForKey:@"username"];
+float textSize = [defaults floatForKey:@"text_size"];
+BOOL autoLogin = [defaults boolForKey:@"auto_login"];</pre>
+**注意:**UserDefaults设置数据时，不是立即写入，而是根据时间戳定时地把缓存中的数据写入本地磁盘。所以调用了set方法之后数据有可能还没有写入磁盘应用程序就终止了。
+> 1.所以在99%的情况下,我们都需要在写入键值对后面调用synchornize方法.(可以理解为默认格式)
+> 
+> 
+> 2.一般来说,由于很容易把Key的字符串打错,我们经常把Key定义为宏.
+<pre class="lang:objc decode:true">[defaults synchornize];</pre>
+<pre class="lang:objc decode:true">#define BMUsername @"username"
+#define BMtextSize @"text_size"
+#define BMautoLogin @"auto_login"</pre>
+&nbsp;
+
+### 归档(NSKeyedArchiver)(NSCoding)
+
+归档是ios常见数据存储的一个重点也是一个小难点.归档(又名序列化),把对象转为字节码,以文件的形式存储到磁盘上.程序运行过程中或者当再次重写打开程序的时候,可以通过解归档(反序列化)还原这些对象。
+
+**优点:1.大量数据,2.加密,3.支持自定义对象.**
+
+我们将本小节内容分为3个部分来讲,1.对基本数据类型对象进行归档,2.键值对进行归档,3.数据模型进行归档.
+
+#### 
+
+#### 基本数据类型归档(Foundation框架中对象)  <span style="color: #ff0000;">很少用</span>
+
+第一步,获取文件路径
+<pre class="lang:objc decode:true">    NSString *documents = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filepath = [docPath stringByAppendingPathComponent:@"birdmichael.archive"];
+</pre>
+> 因为归档后的文件是加密的，所以归档文件的扩展名可以随意取,甚至可以不要.但是一般来说扩展名都是.archive.
+第二步,归档(序列化)
+<pre class="lang:objc decode:true ">NSArray *archiveAry = @[@"bird",@"michael"];
+[NSKeyedArchiver archiveRootObject: archiveAry toFile:filePath];</pre>
+第三部,解码(反序列化)
+<pre class="lang:objc decode:true">NSArray *unArchiveAry = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+</pre>
+
+<ul>
+<li><h4 id="基本数据类型归档总结"><a href="#基本数据类型归档总结" class="headerlink" title="基本数据类型归档总结:"></a>基本数据类型归档总结:</h4></li>
+<li><p>归档和解归档操作步骤简单</p>
+</li>
+<li>一次只能归档一个对象，如果是多个对象归档需要分开进行</li>
+<li>归档的对象是Foundation框架中的对象</li>
+<li>归档和解归档其中任意对象都需要归档和解归档整个文件</li>
+</ul>
+<p>#### </p>
+<h4 id="键值对进行归档-自定义的内容-几乎不用"><a href="#键值对进行归档-自定义的内容-几乎不用" class="headerlink" title="键值对进行归档(自定义的内容)  几乎不用"></a>键值对进行归档(自定义的内容)  <span style="color: #ff0000;">几乎不用</span></h4><p>第一步,获取文件路径</p>
+<pre class="lang:objc decode:true ">    NSString *documents = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filepath = [docPath stringByAppendingPathComponent:@"birdmichael.archive"];
+</pre>
+第二步,NSData存放归档数据
+<pre class="lang:objc decode:true ">NSMutableData *archiverData = [NSMutableData data];</pre>
+第三步,取得归档对象
+<pre class="lang:objc decode:true">NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:archiverData];</pre>
+第四步,设置内容 （di'sa设置键值对）
+<pre class="lang:objc decode:true "> [archiver encodeObject:@"birdmichael" forKey:@"name"];
+ [archiver encodeInt:20 forKey:@"age"];
+ [archiver encodeObject:@[@"ios",@"oc"] forKey:@"language"];</pre>
+第五部,结束编辑,并写入文件.
+<pre class="lang:objc decode:true ">[archiver finishEncoding];
+[archiverData writeToFile:filePath atomically:YES]</pre>
+解档:
+
+第一步,获取文件路径
+<pre class="lang:objc decode:true">    NSString *documents = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filepath = [docPath stringByAppendingPathComponent:@"birdmichael.archive"];</pre>
+第二步,读取文件,生成实例
+<pre class="lang:objc decode:true">NSData *unarchiverData = [NSData dataWithContentsOfFile:filePath];</pre>
+第三步,取得解档对象
+<pre class="lang:objc decode:true ">NSKeyedUnarchiver *unachiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:unarchiverData];</pre>
+第四步,根据key取值.
+<pre class="lang:objc decode:true ">NSString *name = [unachiver decodeObjectForKey:@"name"];
+int age = [unachiver decodeIntForKey:@"age"];
+NSArray *ary = [unachiver decodeObjectForKey:@"language"];</pre>
+
+<ul>
+<li><h4 id="键值对进行归档总结"><a href="#键值对进行归档总结" class="headerlink" title="键值对进行归档总结:"></a>键值对进行归档总结:</h4></li>
+<li><p>在带键的归档中，每个归档字段都有一个key值，解归档时key值要与归档时key值匹配</p>
+</li>
+<li>带键归档可以一次存储多个对象</li>
+<li>归档的对象是Foundation框架中的对象</li>
+<li>归档和解归档其中任意对象都需要归档和解归档整个文件<br>&nbsp;</li>
+</ul>
+<p>&nbsp;</p>
+<h4 id="数据模型进行归档-自定义对象-常用率高达95"><a href="#数据模型进行归档-自定义对象-常用率高达95" class="headerlink" title="数据模型进行归档(自定义对象)  常用率高达95%"></a>数据模型进行归档(自定义对象)  <span style="color: #ff0000;">常用率高达95%</span></h4><p>第一步,新建数据模型(对象).并申明属性</p>
+<pre class="lang:objc decode:true" title="BMStudent.h">#import &lt;Foundation/Foundation.h&gt;
+@interface BMStudent : NSObject
+@property (nonatomic, copy) NSString *no;
+@property (nonatomic, assign) double height;
+@property (nonatomic, assign) int age;
+@end</pre>
+第二步,遵守协议NSCoding
+<pre class="lang:objc mark:2 decode:true" title="BMStudent.h">#import &lt;Foundation/Foundation.h&gt;
+@interface BMStudent : NSObject  &lt;NSCoding&gt;
+@property (nonatomic, copy) NSString *no;
+@property (nonatomic, assign) double height;
+@property (nonatomic, assign) int age;
+@end</pre>
+第三步,写入需要存储或读取的属性并写入对应的Key,
+<pre class="lang:objc decode:true" title="BMStudent.m">#import "BMStudent.h"
+@interface BMStudent() 
+@end
+@implementation BMStudent
+/**
+ *  将某个对象写入文件时会调用
+ *  在这个方法中说清楚哪些属性需要存储
+ */
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.no forKey:@"no"];
+    [aCoder encodeInt:self.age forKey:@"age"];
+    [aCoder encodeDouble:self.height forKey:@"height"];
+}
+/**
+ *  从文件中解析对象时会调用
+ *  在这个方法中说清楚哪些属性需要存储
+ */
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super init]) {
+        // 读取文件的内容
+        self.no = [aDecoder decodeObjectForKey:@"no"];
+        self.age = [aDecoder decodeIntForKey:@"age"];
+        self.height = [aDecoder decodeDoubleForKey:@"height"];
+    }
+    return self;
+}
+@end</pre>
+第四步,获取文件路径
+<pre class="lang:objc decode:true" title="ViewController.m">    NSString *documents = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filepath = [docPath stringByAppendingPathComponent:@"birdmichael.archive"];
+</pre>
+第五部,归档写入文件(一般丢入对象数组既数据模型)
+<pre class="lang:objc decode:true" title="ViewController.m">    [NSKeyedArchiver archiveRootObject:stu toFile:filepath];
+
+// 假设之前创建了stu对象,并写入了值
+    BMStudent *stu = [[MJStudent alloc] init];
+    stu.no = @"42343254";
+    stu.age = 20;
+    stu.height = 1.55;</pre>
+解档
+
+第一步,获取文件路径
+<pre class="lang:objc decode:true" title="ViewController.m">    NSString *documents = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filepath = [docPath stringByAppendingPathComponent:@"birdmichael.archive"];
+</pre>
+第二步,从文件读取对象(一般读书到对象数组既数据模型)
+<pre class="lang:objc decode:true" title="ViewController.m">BMStudent *stu = [NSKeyedUnarchiver unarchiveObjectWithFile:filepath];
+
+// 取得数据用.语法就好了.
+    NSLog(@"%@ %d %f", stu.no, stu.age, stu.height);</pre>
+
+<ul>
+<li><h4 id="数据模型进行归档总结"><a href="#数据模型进行归档总结" class="headerlink" title="数据模型进行归档总结:"></a>数据模型进行归档总结:</h4></li>
+<li><p>自定义对象与自定义内容归档和解归档步骤和用法完全相同</p>
+</li>
+<li>自定义的对象归档需要<strong><span style="color: #ff0000;">实现NSCoding协议</span></strong>，并且<strong><span style="color: #ff0000;">实现协议中的方法</span></strong></li>
+<li>NSCoding协议中有两个方法：</li>
+<li>1.encodeWithCoder方法对对象属性进行编码，在对象归档时调用</li>
+<li>2.initWithCoder方法解码归档数据来初始化对象，在对象解归档时调用</li>
+</ul>
+<h3 id="数据库方式-SQLite3-Core-Data"><a href="#数据库方式-SQLite3-Core-Data" class="headerlink" title="数据库方式(SQLite3)(Core Data)"></a>数据库方式(SQLite3)(Core Data)</h3><p>涉及内容太多,后期单独详解</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Caches/" rel="tag">#Caches</a>
+          
+            <a href="/tags/Document/" rel="tag">#Document</a>
+          
+            <a href="/tags/NSSearchPathForDirectoriesInDomains/" rel="tag">#NSSearchPathForDirectoriesInDomains</a>
+          
+            <a href="/tags/NSUserDefaults/" rel="tag">#NSUserDefaults</a>
+          
+            <a href="/tags/Plist/" rel="tag">#Plist</a>
+          
+            <a href="/tags/Preference/" rel="tag">#Preference</a>
+          
+            <a href="/tags/Sandbox/" rel="tag">#Sandbox</a>
+          
+            <a href="/tags/tmp/" rel="tag">#tmp</a>
+          
+            <a href="/tags/属性列表/" rel="tag">#属性列表</a>
+          
+            <a href="/tags/数据储存/" rel="tag">#数据储存</a>
+          
+            <a href="/tags/沙盒/" rel="tag">#沙盒</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/09/uistoryboardsegue-explanation/" rel="next" title="UIStoryboardSegue讲解.">
+                <i class="fa fa-chevron-left"></i> UIStoryboardSegue讲解.
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/12/nssearchpathfordirectoriesindomains-deep-analysis/" rel="prev" title="NSSearchPathForDirectoriesInDomains深入解析">
+                NSSearchPathForDirectoriesInDomains深入解析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的文件存储方式"><span class="nav-number">1.</span> <span class="nav-text">常见的文件存储方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沙盒结构"><span class="nav-number">2.</span> <span class="nav-text">沙盒结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沙盒获取方式"><span class="nav-number">3.</span> <span class="nav-text">沙盒获取方式:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Document"><span class="nav-number">3.1.</span> <span class="nav-text">Document:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Caches"><span class="nav-number">3.2.</span> <span class="nav-text">Caches:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本数据类型归档总结"><span class="nav-number">3.2.1.</span> <span class="nav-text">基本数据类型归档总结:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键值对进行归档-自定义的内容-几乎不用"><span class="nav-number">3.2.2.</span> <span class="nav-text">键值对进行归档(自定义的内容)  几乎不用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键值对进行归档总结"><span class="nav-number">3.2.3.</span> <span class="nav-text">键值对进行归档总结:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据模型进行归档-自定义对象-常用率高达95"><span class="nav-number">3.2.4.</span> <span class="nav-text">数据模型进行归档(自定义对象)  常用率高达95%</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据模型进行归档总结"><span class="nav-number">3.2.5.</span> <span class="nav-text">数据模型进行归档总结:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库方式-SQLite3-Core-Data"><span class="nav-number">3.3.</span> <span class="nav-text">数据库方式(SQLite3)(Core Data)</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

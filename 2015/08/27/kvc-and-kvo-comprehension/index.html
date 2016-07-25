@@ -1,0 +1,637 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="KVC,KVO," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="KVC 与 KVO 是 Objective C 的关键概念，个人认为必须理解的东西，下面是实例讲解。
+Key-Value Coding (KVC)KVC，即是指 NSKeyValueCoding，一个非正式的 Protocol，提供一种机制来间接访问对象的属性。KVO 就是基于 KVC 实现的关键技术之一。
+一个对象拥有某些属性。比如说，一个 Person 对象有一个 name 和一个 addre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVC 与 KVO 理解">
+<meta property="og:url" content="http://yoursite.com/2015/08/27/kvc-and-kvo-comprehension/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="KVC 与 KVO 是 Objective C 的关键概念，个人认为必须理解的东西，下面是实例讲解。
+Key-Value Coding (KVC)KVC，即是指 NSKeyValueCoding，一个非正式的 Protocol，提供一种机制来间接访问对象的属性。KVO 就是基于 KVC 实现的关键技术之一。
+一个对象拥有某些属性。比如说，一个 Person 对象有一个 name 和一个 addre">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KVC 与 KVO 理解">
+<meta name="twitter:description" content="KVC 与 KVO 是 Objective C 的关键概念，个人认为必须理解的东西，下面是实例讲解。
+Key-Value Coding (KVC)KVC，即是指 NSKeyValueCoding，一个非正式的 Protocol，提供一种机制来间接访问对象的属性。KVO 就是基于 KVC 实现的关键技术之一。
+一个对象拥有某些属性。比如说，一个 Person 对象有一个 name 和一个 addre">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/08/27/kvc-and-kvo-comprehension/"/>
+
+  <title> KVC 与 KVO 理解 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                KVC 与 KVO 理解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-08-27T00:32:09+08:00" content="2015-08-27">
+              2015-08-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>KVC 与 KVO 是 Objective C 的关键概念，个人认为必须理解的东西，下面是实例讲解。</p>
+<p>Key-Value Coding (KVC)<br>KVC，即是指 NSKeyValueCoding，一个非正式的 Protocol，提供一种机制来间接访问对象的属性。KVO 就是基于 KVC 实现的关键技术之一。</p>
+<p>一个对象拥有某些属性。比如说，一个 Person 对象有一个 name 和一个 address 属性。以 KVC 说法，Person 对象分别有一个 value 对应他的 name 和 address 的 key。 key 只是一个字符串，它对应的值可以是任意类型的对象。从最基础的层次上看，KVC 有两个方法：一个是设置 key 的值，另一个是获取 key 的值。如下面的例子：</p>
+<p><pre class="lang:objc decode:true ">void changeName(Person <em>p, NSString </em>newName)<br>{</pre></p>
+<pre><code>// using the KVC accessor (getter) method
+NSString *originalName = [p valueForKey:@&quot;name&quot;];
+
+// using the KVC  accessor (setter) method.
+[p setValue:newName forKey:@&quot;name&quot;];
+
+NSLog(@&quot;Changed %@&apos;s name to: %@&quot;, originalName, newName);
+</code></pre><p>}<br>&nbsp;</p>
+<p>现在，如果 Person 有另外一个 key 配偶（spouse），spouse 的 key 值是另一个 Person 对象，用 KVC 可以这样写：</p>
+<p><pre class="lang:objc decode:true">void logMarriage(Person *p)<br>{</pre></p>
+<pre><code>// just using the accessor again, same as example above
+NSString *personsName = [p valueForKey:@&quot;name&quot;];
+
+// this line is different, because it is using
+// a &quot;key path&quot; instead of a normal &quot;key&quot;
+NSString *spousesName = [p valueForKeyPath:@&quot;spouse.name&quot;];
+
+NSLog(@&quot;%@ is happily married to %@&quot;, personsName, spousesName);
+</code></pre><p>}<br>key 与 key pat 要区分开来，key 可以从一个对象中获取值，而 key path 可以将多个 key 用点号 “.” 分割连接起来，比如：</p>
+<p>[p valueForKeyPath:@”spouse.name”];<br>相当于这样……</p>
+<p>[[p valueForKey:@”spouse”] valueForKey:@”name”];<br>好了，以上是 KVC 的基本知识，接着看看 KVO。</p>
+<p>Key-Value Observing (KVO)<br>Key-Value Observing (KVO) 建立在 KVC 之上，它能够观察一个对象的 KVC key path 值的变化。举个例子，用代码观察一个 person 对象的 address 变化，以下是实现的三个方法：</p>
+<p>watchPersonForChangeOfAddress: 实现观察<br>observeValueForKeyPath:ofObject:change:context: 在被观察的 key path 的值变化时调用。<br>dealloc 停止观察</p>
+<p><pre class="lang:objc decode:true">static NSString *const KVO_CONTEXT_ADDRESS_CHANGED = @”KVO_CONTEXT_ADDRESS_CHANGED”</pre></p>
+<p>@implementation PersonWatcher</p>
+<p>-(void) watchPersonForChangeOfAddress:(Person *)p<br>{</p>
+<p>// this begins the observing<br>[p addObserver:self<br>forKeyPath:@”address”<br>options:0<br>context:KVO_CONTEXT_ADDRESS_CHANGED];</p>
+<p>// keep a record of all the people being observed,<br>// because we need to stop observing them in dealloc<br>[m_observedPeople addObject:p];<br>}</p>
+<p>// whenever an observed key path changes, this method will be called</p>
+<ul>
+<li>(void)observeValueForKeyPath:(NSString <em>)keyPath<br>ofObject:(id)object<br>change:(NSDictionary </em>)change<br>context:(void *)context</li>
+</ul>
+<p>{<br>// use the context to make sure this is a change in the address,<br>// because we may also be observing other things<br>if(context == KVO_CONTEXT_ADDRESS_CHANGED) {<br>NSString <em>name = [object valueForKey:@”name”];<br>NSString </em>address = [object valueForKey:@”address”];<br>NSLog(@”%@ has a new address: %@”, name, address);<br>}<br>}</p>
+<p>-(void) dealloc;<br>{</p>
+<p>// must stop observing everything before this object is<br>// deallocated, otherwise it will cause crashes<br>for(Person *p in m_observedPeople){<br>[p removeObserver:self forKeyPath:@”address”];<br>}</p>
+<p>[m_observedPeople release];<br>m_observedPeople = nil;</p>
+<p>[super dealloc];</p>
+<p>}</p>
+<p>-(id) init;<br>{<br>if(self = [super init]){<br>m_observedPeople = [NSMutableArray new];<br>}</p>
+<p>return self;<br>}</p>
+<p>@end<br>这就是 KVO 的作用，它通过 key path 观察对象的值，当值发生变化的时候会收到通知。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/KVC/" rel="tag">#KVC</a>
+          
+            <a href="/tags/KVO/" rel="tag">#KVO</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/07/mac-used-in-the-ios-command-line/" rel="next" title="在IOS中mac常用命令行">
+                <i class="fa fa-chevron-left"></i> 在IOS中mac常用命令行
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/03/uiview-contentmode/" rel="prev" title="UIView 的contentMode">
+                UIView 的contentMode <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

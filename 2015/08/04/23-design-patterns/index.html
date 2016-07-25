@@ -1,0 +1,961 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="介绍设计模式（Design Pattern），是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结出来的固有模式。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络.
+
+设计模式就如同建筑中的大厦的结构一般重要有精通了设计模式，才敢说真正理解了软件工程。可以说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS常见设计模式">
+<meta property="og:url" content="http://yoursite.com/2015/08/04/23-design-patterns/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="介绍设计模式（Design Pattern），是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结出来的固有模式。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络.
+
+设计模式就如同建筑中的大厦的结构一般重要有精通了设计模式，才敢说真正理解了软件工程。可以说">
+<meta property="og:image" content="http://birdmichael.com/wp-content/uploads/2015/08/singleton.jpg">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IOS常见设计模式">
+<meta name="twitter:description" content="介绍设计模式（Design Pattern），是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结出来的固有模式。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络.
+
+设计模式就如同建筑中的大厦的结构一般重要有精通了设计模式，才敢说真正理解了软件工程。可以说">
+<meta name="twitter:image" content="http://birdmichael.com/wp-content/uploads/2015/08/singleton.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/08/04/23-design-patterns/"/>
+
+  <title> IOS常见设计模式 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IOS常见设计模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-08-04T23:13:34+08:00" content="2015-08-04">
+              2015-08-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>设计模式（Design Pattern），是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结出来的固有模式。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络.</p>
+<blockquote>
+<p>设计模式就如同建筑中的大厦的结构一般重要有精通了设计模式，才敢说真正理解了软件工程。可以说，设计模式是每一个架构师所必备的技能之一。作为一个面向对象设计程序员，只有精通了设计模式，才能摆脱码奴的命运，成为一个真正的软件工程师，才能完成自身价值的飞跃和设计思想的升华！<br><a id="more"></a></p>
+</blockquote>
+<h2 id="设计模式的分类"><a href="#设计模式的分类" class="headerlink" title="设计模式的分类"></a>设计模式的分类</h2><p>总体来说设计模式分为三大类：</p>
+<p>创建型模式（Creational）</p>
+<p>结构型模式（Structural）</p>
+<p>行为型模式（Behavioral）</p>
+<h3 id="JAVA中的23设计模式"><a href="#JAVA中的23设计模式" class="headerlink" title="JAVA中的23设计模式"></a>JAVA中的23设计模式</h3><table style="height: 684px;" border="1" width="100%" cellspacing="0" cellpadding="5"><br><tbody><br><tr><br><td colspan="3" width="100%"><br><br><strong>JAVA设计模式</strong><br><br>Design Pattern<br><br></td><br></tr><br><tr><br><td width="60"><br><br><strong>创建型</strong><br><br>Creational<br><br></td><br><td width="160"><br><br><strong>结构型</strong><br><br>Structural<br><br></td><br><td><br><br><strong>行为型</strong><br><br>Behavioral<br><br></td><br></tr><br><tr><br><td valign="top">Abstract Factory(抽象工厂)Builder(建造者)Factory Method(工厂方法)Prototype(原型)Singleton(单态)<wbr><br><br><wbr><br><br><wbr><br><br><wbr><br><br><wbr><br><br><wbr><br><br><wbr></td><br><td valign="top">Adapter(适配器)Bridge(桥模式)Composite(组合)Decorator(装饰)Façade(外观)Flyweight(享元)<br><br>Proxy(代理)</td><br><td valign="top">Chain of Responsibility(职责链)Command(命令)Interpreter(解释器)Iterator(迭代器)Mediator(中介)Memento(备忘录)<br><br>Observer(观察者)<br><br>State(状态)<br><br>Strategy(策略)<br><br>Template Method(模板方法)<br><br>Visitor(访问者)</td><br></tr><br></tbody><br></table>
+
+<h3 id="IOS中常见8种设计模式"><a href="#IOS中常见8种设计模式" class="headerlink" title="IOS中常见8种设计模式"></a>IOS中常见8种设计模式</h3><p><table border="1" width="100%" cellspacing="0" cellpadding="5"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<td colspan="3" width="100%">
+
+<p><strong>ios常见设计模式</strong></p>
+<p>Design Pattern</p>
+<p></p></td><br><p></p>
+<p><tr></tr></p>
+<td width="60">
+
+<p><strong>创建型</strong></p>
+<p>Creational</p>
+<p></p></td><p></p>
+<td width="160">
+
+<p><strong>结构型</strong></p>
+<p>Structural</p>
+<p></p></td><p></p>
+<td>
+
+<p><strong>行为型</strong></p>
+<p>Behavioral</p>
+<p></p></td><br><p></p>
+<p><tr></tr></p>
+<p><td valign="top">单例模式(Singleton)</td></p>
+<p><td valign="top">MVC模式(Model View Controller)装饰者模式 (Decorator)适配器模式(Adapter)外观模式 (Facade)</td></p>
+<p><td valign="top">观察者模式(Observer){KVO(Key-Value-Observing)机制通知(notification)机制}备忘录模式(Memento)</td><br><br><br><br>本文重点以IOS常见涉及模式为例. 更多涉及模式可以参考:<a href="http://download.csdn.net/download/sunboy_2050/4228807" target="_blank" rel="external">设计模式 - 可复用面向对象软件的基础</a></p>
+<h2 id="单例模式-Singleton"><a href="#单例模式-Singleton" class="headerlink" title="单例模式(Singleton)"></a>单例模式(Singleton)</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p>单例模式是IOS设计模式当中一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类(确保每个指定的类只存在一个实例对象)。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。</p>
+<p><a href="http://birdmichael.com/wp-content/uploads/2015/08/singleton.jpg" target="_blank" rel="external"><img src="http://birdmichael.com/wp-content/uploads/2015/08/singleton.jpg" alt="singleton"></a></p>
+<h4 id="单例模式核心"><a href="#单例模式核心" class="headerlink" title="单例模式核心"></a>单例模式核心</h4><p>一般情况下只在第一次需要使用的时候初始化。</p>
+<h4 id="单例模式意义"><a href="#单例模式意义" class="headerlink" title="单例模式意义"></a>单例模式意义</h4><p>如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。</p>
+<blockquote>
+<p>比如你生活在古代,你有几十个老婆,她们的老公都是你,你就是你们整个家的老公Sigleton,她们只要说道“老公”,都是指的同一个人,那就都是你.</p>
+</blockquote>
+<h3 id="系统中常见的单例模式"><a href="#系统中常见的单例模式" class="headerlink" title="系统中常见的单例模式"></a>系统中常见的单例模式</h3><p>在iOS开发我们经常碰到只需要某类一个实例的情况,你的应用实例(UIApplication)必须有且只有一个,不然你是无法实行控制的,并且永远指你的当前应用.最常见的还是莫过于对硬件参数的访问类,比如UIAccelerometer.这个类可以帮助我们获得硬件在各个方向轴上的加速度,但是我们仅仅需要它的一个实例就够了,再多只会浪费内存.</p>
+<h4 id="UIAccelerometer"><a href="#UIAccelerometer" class="headerlink" title="UIAccelerometer"></a>UIAccelerometer</h4><p>实例化方法＋sharedAccelerometer,从名字上我们也能看出此方法让整个应用共享一个UIAccelerometer实例（PS：iOS 的开放中，我们往往能从方法名中就了解这个方法的作用）</p>
+<h4 id="UIApplication"><a href="#UIApplication" class="headerlink" title="UIApplication"></a>UIApplication</h4><p>提供了 ＋sharedAPplication方法创建和获取UIApplication单例</p>
+<h4 id="NSBundle"><a href="#NSBundle" class="headerlink" title="NSBundle"></a>NSBundle</h4><p>提供了 +mainBunle方法获取NSBundle单例</p>
+<h4 id="NSFileManager"><a href="#NSFileManager" class="headerlink" title="NSFileManager"></a>NSFileManager</h4><p>提供了 ＋defaultManager方法创建和获得NSFileManager单例。（PS：有些时候我们得放弃使用单例模式，使用－init方法去实现一个新的实例，比如使用委托时）</p>
+<h4 id="NSNotificationCenter"><a href="#NSNotificationCenter" class="headerlink" title="NSNotificationCenter"></a>NSNotificationCenter</h4><p>提供了 ＋defaultCenter方法创建和获取NSNotificationCenter单例（PS：该类还遵循了另一个重要的设计模式：观察者模式）</p>
+<h4 id="NSUserDefaults"><a href="#NSUserDefaults" class="headerlink" title="NSUserDefaults"></a>NSUserDefaults</h4><p>提供了 ＋defaultUserDefaults方法去创建和获取NSUserDefaults单例</p>
+<blockquote>
+<p>所以苹果的SDK中大量的遵循此设计模式，那么它的内部是如何实现的呢?</p>
+</blockquote>
+<h3 id="单例模式代码"><a href="#单例模式代码" class="headerlink" title="单例模式代码"></a>单例模式代码</h3><p>假设我们新建一个工具单例类:音乐播放器.</p>
+<h4 id="初级代码-使用懒汉式"><a href="#初级代码-使用懒汉式" class="headerlink" title="初级代码-使用懒汉式"></a>初级代码-使用懒汉式</h4><p>因为主要体现一个实现的思想,所以代码写的比较细.</p>
+<h5 id="1-保证永远只alloc一次"><a href="#1-保证永远只alloc一次" class="headerlink" title="1.保证永远只alloc一次"></a>1.保证永远只alloc一次</h5><pre class="lang:objc decode:true">//
+//  BMMusicTool.m
+//
+//  Created by 李 阳 on 15/8/5.
+//  Copyright (c) 2015年 BirdMIchael. All rights reserved.
+//
+
+#import "BMMusicTool.h"
+
+@implementation BMMusicTool
+static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都可以访问,并使用static修饰
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    // 判断如果_musicTool如果有值就直接返回(永远只allocWithZone:一次)
+    if (!_musicTool) {
+        _musicTool = [super allocWithZone:zone];
+    }
+
+    return _musicTool;
+}
+
+@end</pre>
+这里使用的是<span class="s1">allocWithZone</span><span class="s2">:方法,具体原因请见:</span>[[Objective-C 里的 alloc 和 allocWithZone:]](http://birdmichael.com/index.php/2015/08/05/objective-cs-alloc-and-allocwithzone.html)
+
+关于使用static修饰具体可以见:[[静变量static、全局变量extern、局部变量、实例变量]](http://birdmichael.com/index.php/2015/08/04/static-local-variables-global-variables-extern-static-variables-instance-variables.html)
+
+##### 2.保证多线程只alloc一次
+
+<pre class="lang:objc decode:true ">+ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    if (!_musicTool) {  // 防止频繁加锁
+        // 多线程加锁
+        @synchronized(self){
+            // 判断如果_musicTool如果有值就直接返回(永远只allocWithZone:一次)
+            if (!_musicTool) {  // 防止多次创建
+            _musicTool = [super allocWithZone:zone];
+            }
+        }
+    }
+    return _musicTool;
+}</pre>
+
+<h5 id="3-规范代码-实现shared或者defaults方法"><a href="#3-规范代码-实现shared或者defaults方法" class="headerlink" title="3.规范代码,实现shared或者defaults方法"></a>3.规范代码,实现shared或者defaults方法</h5><pre class="lang:objc decode:true">+ (instancetype)sharedMuiscTool
+{
+    if (!_musicTool) {  // 防止频繁加锁
+        @synchronized(self){
+            // 判断如果_musicTool如果有值就alloc一次.(避免在没allow得时候调用shared)
+
+            if (!_musicTool) { // 防止创建多次
+                _musicTool = [[self alloc]init];
+            }
+        }
+    }
+
+    return _musicTool;
+}</pre>
+> 提示:这里不能直接返回<span class="s1">[[</span><span class="s2">self</span> <span class="s3">alloc</span><span class="s1">]</span><span class="s3">init</span><span class="s1">],不然每拿到一个对象都会初始化一次.</span>
+
+##### 4.保证copy后也是单例.
+
+<pre class="lang:objc decode:true">// 此方法为预留方法,在未来如果使用copy方法也不会产生新对象.
+- (id)copyWithZone:(NSZone *)zone
+{
+    return _musicTool;
+}</pre>
+> 提示:能copy就保证再之前已经还有单例对象,所以不用判断_musicTool是否为空.
+
+#### <del>初级代码-使用饿汉式</del>
+
+<pre class="lang:objc decode:true">#import "BMMusicTool.h"
+
+@implementation BMMusicTool
+static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都可以访问,并使用static修饰
++ (void)load
+{
+    _musicTool = [[self alloc]init];
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+
+    // 判断如果_musicTool如果有值就直接返回(永远只allocWithZone:一次)
+    if (!_musicTool) {  // 防止多次创建
+        _musicTool = [super allocWithZone:zone];
+    }
+
+    return _musicTool;
+}
++ (instancetype)sharedMuiscTool
+{
+    return _musicTool;
+}
+- (id)copyWithZone:(NSZone *)zone
+{
+    return _musicTool;
+}
+
+@end</pre>
+关于使用loade而不使用initialize查看此文有详细解释:[[Objective-C 类的加载和初始化(+load 和 +initialize 方法) ]](http://birdmichael.com/index.php/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize.html)
+> 所谓饿汉式就是程序一开始运行就执行代码创建.
+> 
+> 
+> 因为创建时在程序启动时,所以一般情况不会有多个线程进来创建,所以不需要加锁.并且调用shared时,肯定是在程序启动后.
+<span style="color: #ff0000;">**饿汉式几乎完全不用.**</span>
+
+#### 中级代码-使用GCD
+
+<pre class="lang:objc decode:true ">#import "BMMusicTool.h"
+
+@implementation BMMusicTool
+static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都可以访问,并使用static修饰
++ (void)load
+{
+    _musicTool = [[self alloc]init];
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&amp;onceToken, ^{
+        _musicTool = [super allocWithZone:zone];
+    });
+    return _musicTool;
+}
++ (instancetype)sharedMuiscTool
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&amp;onceToken, ^{
+        _musicTool = [[self alloc]init];
+    });
+
+    return _musicTool;
+}
+- (id)copyWithZone:(NSZone *)zone
+{
+    return _musicTool;
+}</pre>
+> GCD默认dispatch_once只会执行一次,并且线程安全.更多可以参考[[ios多线程之NSThread,GCD,NSOperation以及线程同步]](http://birdmichael.com/index.php/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization.html) 中GCD-一次性.
+
+#### 中级代码- MRC环境
+
+<pre class="lang:objc decode:true">#import "BMMusicTool.h"
+
+@implementation BMMusicTool
+static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都可以访问,并使用static修饰
++ (void)load
+{
+    _musicTool = [[self alloc]init];
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&amp;onceToken, ^{
+        _musicTool = [super allocWithZone:zone];
+    });
+    return _musicTool;
+}
++ (instancetype)sharedMuiscTool
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&amp;onceToken, ^{
+        _musicTool = [[self alloc]init];
+    });
+
+    return _musicTool;
+}
+- (id)copyWithZone:(NSZone *)zone
+{
+    return _musicTool;
+}
+-(oneway void)release
+{
+    // Do nothing
+}
+- (instancetype)retain
+{
+    return self;
+}
+-(NSUInteger)retainCount
+{
+    return 1;
+}
+- (instancetype)autorelease
+{
+    return self;
+}
+@end</pre>
+> 非ARC环境的核心就是:1.不release 2.不retain 3.retain计数器恒为1.
+适配ARC和MRC
+<pre class="lang:objc decode:true">#if __has_feature(objc_arc)
+
+// ARC
+
+#else
+
+// MRC
+
+#endif</pre>
+
+<h4 id="高级代码-简化代码及宏实现-lt-推荐"><a href="#高级代码-简化代码及宏实现-lt-推荐" class="headerlink" title="高级代码- 简化代码及宏实现&lt;推荐"></a>高级代码- 简化代码及宏实现&lt;推荐</h4><h5 id="1-编写-h宏文件"><a href="#1-编写-h宏文件" class="headerlink" title="1.编写.h宏文件"></a>1.编写.h宏文件</h5><p>命名为:<span class="s1">BMSingleton.h</span></p>
+<pre class="lang:objc decode:true">//
+//  BMSingleton.h
+//
+//  Created by 李 阳 on 15/8/5.
+//  Copyright (c) 2015年 BirdMIchael. All rights reserved.
+//
+
+/*
+ .h 引用
+ **/
+#define BMSingletonH(name) + (instancetype)shared##name;
+/*
+ .m 引用
+ **/
+
+#if __has_feature(objc_arc)
+
+// ARC
+#define BMSingletonM(name) \
+static id _instance; \
+\
++ (void)load \
+{ \
+_instance = [[self alloc]init]; \
+} \
+\
++ (instancetype)allocWithZone:(struct _NSZone *)zone \
+{ \
+static dispatch_once_t onceToken; \
+dispatch_once(&amp;onceToken, ^{ \
+_instance = [super allocWithZone:zone]; \
+}); \
+return _instance; \
+} \
++ (instancetype)shared##name \
+{ \
+static dispatch_once_t onceToken; \
+dispatch_once(&amp;onceToken, ^{ \
+_instance = [[self alloc]init]; \
+}); \
+\
+return _instance; \
+} \
+- (id)copyWithZone:(NSZone *)zone \
+{ \
+return _instance; \
+}
+// ARC结束
+
+#else
+
+// MRC
+#define BMSingletonM(name) \
+static id _instance; \
+\
++ (void)load \
+{ \
+_instance = [[self alloc]init]; \
+} \
+\
++ (instancetype)allocWithZone:(struct _NSZone *)zone \
+{ \
+static dispatch_once_t onceToken; \
+dispatch_once(&amp;onceToken, ^{ \
+_instance = [super allocWithZone:zone]; \
+}); \
+return _instance; \
+} \
++ (instancetype)shared##name \
+{ \
+static dispatch_once_t onceToken; \
+dispatch_once(&amp;onceToken, ^{ \
+_instance = [[self alloc]init]; \
+}); \
+\
+return _instance; \
+} \
+- (id)copyWithZone:(NSZone *)zone \
+{ \
+return _instance; \
+} \
+- (instancetype)autorelease{return self;} \
+- (oneway void)release{ } \
+- (instancetype)retain{return self;} \
+- (NSUInteger)retainCount{return 1;}
+// MRC结束
+
+#endif</pre>
+
+<h5 id="2-使用宏"><a href="#2-使用宏" class="headerlink" title="2.使用宏"></a>2.使用宏</h5><h6 id="h中"><a href="#h中" class="headerlink" title=".h中"></a>.h中</h6><pre class="lang:objc decode:true ">#import &lt;Foundation/Foundation.h&gt;
+#import "BMSingleton.h"
+
+@interface BMMusicTool : NSObject
+BMSingletonH(MusicTool)
+@end</pre>
+
+<h6 id="m中"><a href="#m中" class="headerlink" title=".m中"></a>.m中</h6><p><pre class="lang:objc decode:true ">#import “BMMusicTool.h”</pre></p>
+<p>@implementation BMMusicTool<br>BMSingletonM(MusicTool)<br>@end</p>
+<blockquote>
+<p>提示:<span class="s1">BMSingletonH和</span><span class="s1">BMSingletonM传入的<span style="color: #ff0000;">name切记一样</span></span><br>这样只需要2句代码就使<span class="s1">BMMusicTool这个类为单例了.并且自适应ARC和MRC.</span></p>
+</blockquote>
+<p>下载源码:<a href="http://pan.baidu.com/s/1i3vTjXN" target="_blank" rel="external">BMSingleton.h</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/04/static-local-variables-global-variables-extern-static-variables-instance-variables/" rel="next" title="静变量static、全局变量extern、局部变量、实例变量">
+                <i class="fa fa-chevron-left"></i> 静变量static、全局变量extern、局部变量、实例变量
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/05/objective-cs-alloc-and-allocwithzone/" rel="prev" title="Objective-C 里的 alloc 和 allocWithZone:">
+                Objective-C 里的 alloc 和 allocWithZone: <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式的分类"><span class="nav-number">2.</span> <span class="nav-text">设计模式的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA中的23设计模式"><span class="nav-number">2.1.</span> <span class="nav-text">JAVA中的23设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IOS中常见8种设计模式"><span class="nav-number">2.2.</span> <span class="nav-text">IOS中常见8种设计模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式-Singleton"><span class="nav-number">3.</span> <span class="nav-text">单例模式(Singleton)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-1"><span class="nav-number">3.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式核心"><span class="nav-number">3.1.1.</span> <span class="nav-text">单例模式核心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式意义"><span class="nav-number">3.1.2.</span> <span class="nav-text">单例模式意义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统中常见的单例模式"><span class="nav-number">3.2.</span> <span class="nav-text">系统中常见的单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UIAccelerometer"><span class="nav-number">3.2.1.</span> <span class="nav-text">UIAccelerometer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIApplication"><span class="nav-number">3.2.2.</span> <span class="nav-text">UIApplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSBundle"><span class="nav-number">3.2.3.</span> <span class="nav-text">NSBundle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSFileManager"><span class="nav-number">3.2.4.</span> <span class="nav-text">NSFileManager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSNotificationCenter"><span class="nav-number">3.2.5.</span> <span class="nav-text">NSNotificationCenter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSUserDefaults"><span class="nav-number">3.2.6.</span> <span class="nav-text">NSUserDefaults</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式代码"><span class="nav-number">3.3.</span> <span class="nav-text">单例模式代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初级代码-使用懒汉式"><span class="nav-number">3.3.1.</span> <span class="nav-text">初级代码-使用懒汉式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-保证永远只alloc一次"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">1.保证永远只alloc一次</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-规范代码-实现shared或者defaults方法"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">3.规范代码,实现shared或者defaults方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级代码-简化代码及宏实现-lt-推荐"><span class="nav-number">3.3.2.</span> <span class="nav-text">高级代码- 简化代码及宏实现<推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-编写-h宏文件"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">1.编写.h宏文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-使用宏"><span class="nav-number">3.3.2.2.</span> <span class="nav-text">2.使用宏</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#h中"><span class="nav-number">3.3.2.2.1.</span> <span class="nav-text">.h中</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#m中"><span class="nav-number">3.3.2.2.2.</span> <span class="nav-text">.m中</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="代理,委托,performSegueWithIdentifier,Segue,UIStoryboardSegue,协议,数据传递,源控制器,目标控制器," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="什么是SegueStoryboard上每一根用来界面跳转的线，都是一个UIStoryboardSegue对象（简称Segue）#import &amp;lt;Foundation/Foundation.h&amp;gt;#import &amp;lt;UIKit/UIKitDefines.h&amp;gt;
+
+@class UIViewController;
+NS_CLASS_AVAILABLE_IOS(5_0) @inter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIStoryboardSegue讲解.">
+<meta property="og:url" content="http://yoursite.com/2015/07/09/uistoryboardsegue-explanation/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="什么是SegueStoryboard上每一根用来界面跳转的线，都是一个UIStoryboardSegue对象（简称Segue）#import &amp;lt;Foundation/Foundation.h&amp;gt;#import &amp;lt;UIKit/UIKitDefines.h&amp;gt;
+
+@class UIViewController;
+NS_CLASS_AVAILABLE_IOS(5_0) @inter">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UIStoryboardSegue讲解.">
+<meta name="twitter:description" content="什么是SegueStoryboard上每一根用来界面跳转的线，都是一个UIStoryboardSegue对象（简称Segue）#import &amp;lt;Foundation/Foundation.h&amp;gt;#import &amp;lt;UIKit/UIKitDefines.h&amp;gt;
+
+@class UIViewController;
+NS_CLASS_AVAILABLE_IOS(5_0) @inter">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/09/uistoryboardsegue-explanation/"/>
+
+  <title> UIStoryboardSegue讲解. | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UIStoryboardSegue讲解.
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-09T17:25:14+08:00" content="2015-07-09">
+              2015-07-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><h3 id="什么是Segue"><a href="#什么是Segue" class="headerlink" title="什么是Segue"></a>什么是Segue</h3>Storyboard上每一根用来界面跳转的线，都是一个UIStoryboardSegue对象（简称Segue）<br><pre class="lang:objc decode:true" title="UIStoryboardSegue.h">#import &lt;Foundation/Foundation.h&gt;<br>#import &lt;UIKit/UIKitDefines.h&gt;</pre></li>
+</ul>
+<p>@class UIViewController;</p>
+<p>NS_CLASS_AVAILABLE_IOS(5_0) @interface UIStoryboardSegue : NSObject</p>
+<p>// Convenience constructor for returning a segue that performs a handler block in its -perform method.</p>
+<ul>
+<li>(instancetype)segueWithIdentifier:(NSString <em>)identifier source:(UIViewController </em>)source destination:(UIViewController *)destination performHandler:(void (^)(void))performHandler NS_AVAILABLE_IOS(6_0);</li>
+</ul>
+<ul>
+<li>(instancetype)initWithIdentifier:(NSString <em>)identifier source:(UIViewController </em>)source destination:(UIViewController *)destination; // Designated initializer</li>
+</ul>
+<p>@property (nonatomic, readonly) NSString *identifier;<br>@property (nonatomic, readonly) id sourceViewController;<br>@property (nonatomic, readonly) id destinationViewController;</p>
+<ul>
+<li>(void)perform;</li>
+</ul>
+<p>@end</p>
+<ul>
+<li><h3 id="Segue的属性"><a href="#Segue的属性" class="headerlink" title="Segue的属性"></a>Segue的属性</h3><p>每一个Segue对象，都有3个属性<br><pre class="lang:objc decode:true  ">// 唯一标识<br>@property (nonatomic, readonly) NSString *identifier;<br>// 来源控制器<br>@property (nonatomic, readonly) id sourceViewController;<br>// 目标控制器<br>@property (nonatomic, readonly) id destinationViewController;<br></pre></p>
+<a id="more"></a>
+</li>
+<li><h3 id="Segue的类型"><a href="#Segue的类型" class="headerlink" title="Segue的类型"></a>Segue的类型</h3><p>根据Segue的执行（跳转）时刻，Segue可以分为2大类型</p>
+</li>
+</ul>
+<p><strong>自动型</strong>：点击某个控件后（比如按钮），自动执行Segue，自动完成界面跳转</p>
+<p>设置方法:按住Control键，直接从控件(某个继承<span class="s1">UIControl的控件</span>)拖线到目标控制器.</p>
+<blockquote>
+<p><span class="s1">一般来说,</span>如果点击某个控件后，不需要做任何判断，一定要跳转到下一个界面，建议使用“自动型Segue”<br>&nbsp;</p>
+</blockquote>
+<p><strong>手动型</strong>：需要通过写代码手动执行Segue，才能完成界面跳转</p>
+<p>设置方法:</p>
+<ol>
+<li>按住Control键，从来源控制器(当前控制器)拖线到目标控制器.</li>
+<li>在Storyboard的Segue属性中设置唯一标识(一般来说命名建议为:”login2index”,既 当前控制器名称+2+目标控制器名称)</li>
+<li>在适当的时候调用下面方法,来实现跳转.(适当的时候一般是设置控件时,或某些自动跳转)<br><pre class="lang:objc decode:true">performSegueWithIdentifier:&lt;#(NSString *)#&gt; sender:&lt;#(id)#&gt;</pre><blockquote>
+<p>一般来说,如果点击某个控件后，需要做一些判断，也就是说：满足一定条件后才跳转到下一个界面，建议使用“手动型Segue”(比如用户登录,比如选择后等等)<br>&nbsp;</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><h3 id="performSegueWithIdentifier-sender-方法完整执行过程"><a href="#performSegueWithIdentifier-sender-方法完整执行过程" class="headerlink" title="performSegueWithIdentifier:sender: 方法完整执行过程"></a>performSegueWithIdentifier:sender: 方法完整执行过程</h3><p>总得来说这个方法可以分为三个大的部分:</p>
+</li>
+<li><p>1.根据identifier去storyboard中找到对应的线，新建UIStoryboardSegue对象<br><pre class="lang:objc decode:true ">- (instancetype)initWithIdentifier:(NSString <em>)identifier source:(UIViewController </em>)source destination:(UIViewController *)destination; // Designated initializer</pre><br>其实就是执行了这样一句,并且identifier就是在Storyboard中Segue属性设置的标识. 来源就是连线的头部. 目标就是连线尾部.</p>
+</li>
+<li><p>2.调用sourceViewController的下面方法，做一些跳转前的准备工作并且传入创建好的Segue对象<br><pre class="lang:objc decode:true">- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;</pre><br>所谓跳转前的准备,因为可以拿到Segue(来源控制器,目标控制器),所以就可以在这里给下一个控制器传递数据.</p>
+</li>
+</ul>
+<p><strong>注意的是:只能只能由来源控制器调用,来拿到目标控制器.</strong></p>
+<p>并且,这个sender是当初performSegueWithIdentifier:sender:中传入的sender.</p>
+<p>另外需要注意的是:</p>
+<ol>
+<li>这个方法是系统默认调用,所以只需要实现即可.</li>
+<li>凡是performSegue都会来到这个方法.所以一般需要对Segue的标识进行判断.于是有了如下的两种固定格式:<br><pre class="lang:objc decode:true ">- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender<br>{<br>if ([segue.identifier  isEqual: @”login2index”]) {<pre><code>// 需要执行的代码
+</code></pre>}<br>}</pre><br><pre class="lang:objc decode:true">#import “IndexTableViewController.h”</pre></li>
+</ol>
+<ul>
+<li>(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender<br>{<br>  if ([segue.destinationViewController isKindOfClass:[IndexTableViewController class]]) {<pre><code>//  执行代码
+</code></pre>  }<br>}<blockquote>
+<p>区别:第一种需要在设置标识的值,并且匹配. 第二种却是通过目标控制器判断</p>
+<p><strong>个人建议</strong>:使用第二种(既可以不在Storyboard输入标识,并且因为不涉及字符串,不容易出错.)</p>
+<p>一个页面的跳转可能不止一个.并且为了后期的可维护性,建议加上标识判断.</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>3.调用Segue对象的- (void)perform;方法开始执行界面跳转操作<br>其实就是封装了Push方法:1.首先取得sourceViewController所在的UINavigationController.  2.然后调用UINavigationController的push方法将destinationViewController压入栈中，完成跳转.</li>
+</ul>
+<p>但是如果类型是Modal,就是调用了SourceViewController的presentViewController方法将destinationViewController展示出来.</p>
+<p>&nbsp;</p>
+<ul>
+<li><h3 id="控制器之间的数据传递"><a href="#控制器之间的数据传递" class="headerlink" title="控制器之间的数据传递"></a>控制器之间的数据传递</h3>根据segue我们可以吧控制器之间的数据传递分为两种情况:1.顺传 2.逆传</li>
+</ul>
+<p><strong>顺,逆关系由Segue决定</strong></p>
+<p>顺传:可以在prepareForSegue:sender:方法中根据segue参数取得目标控制器,直接给目标控制器传递数据模型.</p>
+<p>逆传:只能让源控制器成为目标控制器的代理,然后通过代理方法传递数据.(采用解耦方法)</p>
+<blockquote>
+<p>传递模型的好处是:假如一个数据需要<strong>顺传</strong>到<strong>目标控制器</strong>,并且<strong>目标控制</strong>需要对数据进行了<strong>修改</strong>,这个时候<strong>修改的其实就是数据模型</strong>.(所以再次<strong>逆传</strong>的时候,可以<strong>不传数据</strong>).</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/代理/" rel="tag">#代理</a>
+          
+            <a href="/tags/委托/" rel="tag">#委托</a>
+          
+            <a href="/tags/performSegueWithIdentifier/" rel="tag">#performSegueWithIdentifier</a>
+          
+            <a href="/tags/Segue/" rel="tag">#Segue</a>
+          
+            <a href="/tags/UIStoryboardSegue/" rel="tag">#UIStoryboardSegue</a>
+          
+            <a href="/tags/协议/" rel="tag">#协议</a>
+          
+            <a href="/tags/数据传递/" rel="tag">#数据传递</a>
+          
+            <a href="/tags/源控制器/" rel="tag">#源控制器</a>
+          
+            <a href="/tags/目标控制器/" rel="tag">#目标控制器</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/07/uiview-commonly-used-properties-and-methods/" rel="next" title="UIview常用属性及方法翻译.">
+                <i class="fa fa-chevron-left"></i> UIview常用属性及方法翻译.
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/" rel="prev" title="iOS应用数据存储的常用方式(沙盒Sandbox)">
+                iOS应用数据存储的常用方式(沙盒Sandbox) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Segue"><span class="nav-number">1.</span> <span class="nav-text">什么是Segue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Segue的属性"><span class="nav-number">2.</span> <span class="nav-text">Segue的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Segue的类型"><span class="nav-number">3.</span> <span class="nav-text">Segue的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#performSegueWithIdentifier-sender-方法完整执行过程"><span class="nav-number">4.</span> <span class="nav-text">performSegueWithIdentifier:sender: 方法完整执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制器之间的数据传递"><span class="nav-number">5.</span> <span class="nav-text">控制器之间的数据传递</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="UIView,endEditing," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="问题在 《IOS 键盘的显示和关闭》 一篇介绍了键盘的显示与关闭的原理流程性的东西，在关闭如果当前我们正在在textField上输入文本的话，我们只要做如下操作
+[textField resignFirstResponder]&amp;nbsp;即可将键盘关闭，但随之问题也就出现了，假如考虑我们现在在应用中包含一了表单模块，要求填完表单之后我们要将数据进行保存，该表单可能包含了十几个UITextField">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIView之endEditing方法">
+<meta property="og:url" content="http://yoursite.com/2015/07/02/uiview-endediting-method/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="问题在 《IOS 键盘的显示和关闭》 一篇介绍了键盘的显示与关闭的原理流程性的东西，在关闭如果当前我们正在在textField上输入文本的话，我们只要做如下操作
+[textField resignFirstResponder]&amp;nbsp;即可将键盘关闭，但随之问题也就出现了，假如考虑我们现在在应用中包含一了表单模块，要求填完表单之后我们要将数据进行保存，该表单可能包含了十几个UITextField">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UIView之endEditing方法">
+<meta name="twitter:description" content="问题在 《IOS 键盘的显示和关闭》 一篇介绍了键盘的显示与关闭的原理流程性的东西，在关闭如果当前我们正在在textField上输入文本的话，我们只要做如下操作
+[textField resignFirstResponder]&amp;nbsp;即可将键盘关闭，但随之问题也就出现了，假如考虑我们现在在应用中包含一了表单模块，要求填完表单之后我们要将数据进行保存，该表单可能包含了十几个UITextField">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/07/02/uiview-endediting-method/"/>
+
+  <title> UIView之endEditing方法 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UIView之endEditing方法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-02T05:24:25+08:00" content="2015-07-02">
+              2015-07-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">IOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/OC/Xcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Xcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在<a href="http://s-187595.abc188.com/index.php/2015/07/02/ios-keyboard-display-closes.html" target="_blank" rel="external"> 《IOS 键盘的显示和关闭》 </a>一篇介绍了键盘的显示与关闭的原理流程性的东西，在关闭如果当前我们正在在textField上输入文本的话，我们只要做如下操作</p>
+<p><pre class="lang:objc decode:true ">[textField resignFirstResponder]</pre><br>&nbsp;<br>即可将键盘关闭，但随之问题也就出现了，假如考虑我们现在在应用中包含一了表单模块，要求填完表单之后我们要将数据进行保存，该表单可能包含了十几个UITextField对应的数据 输入项。此外包含了一个“提交”按钮，点击提交数据发送后台的过程中，我们要弹出一个简单的提交等待弹出框告知用户等待。整个流程并不复杂，但是涉及到了一个UI显示细节问题，即： 在用户等待的过程中键盘可能一直处于显示状态，虽然可能被弹出框的遮罩遮住，也许可能有些人不介意，但个人感觉正确正确的显示状态是，在点击提交数据后，紧接着是马上关闭键盘， 然后显示等待弹出框。因此，这涉及到要跟踪当前处于First Responder状态的UITextField对象，好让我们在提交的action中调用其resignFirstResponder方法关闭键盘，这 是我们可能直观上首先想到的问题的解决办法，的确，这也是最直观的。通常在IOS的MVC设计中，一个模块往往会对应一个UIViewController，假设我们的表单提交对应的Controller名为 FormViewController,我们可以用如下代码来简单解释以上处理流程：</p>
+<p><pre class="lang:objc decode:true  ">#import “FormViewController.h”</pre></p>
+<p>@interface FormViewController ()&lt;UITextFieldDelegate&gt;</p>
+<p>@property (weak, nonatomic) IBOutlet UITextField <em>textFieldA;<br>@property (weak, nonatomic) IBOutlet UITextField </em>textFieldB;<br>@property (weak, nonatomic) IBOutlet UITextField <em>textFieldC;<br>@property (weak, nonatomic) IBOutlet UITextField </em>textFieldD;<br>@property (weak, nonatomic) IBOutlet UITextField <em>textFieldE;<br>@property (weak, nonatomic) IBOutlet UITextField </em>textFieldF;<br>@property (weak, nonatomic) IBOutlet UITextField <em>textFieldG;<br>@property (weak, nonatomic) IBOutlet UITextField </em>textFieldH;<br>@property (weak, nonatomic) IBOutlet UITextField *textFieldI;</p>
+<p>@property (weak , nonatomic) UITextField *editingTextField ; // 跟踪当前处于编辑状态的textfield</p>
+<p>@end<br>@implementation FormViewController<br>@synthesize textFieldA,textFieldB,textFieldC,<br>            textFieldD,textFieldE,textFieldF,textFieldG,textFieldH,<br>            textFieldI,editingTextField; </p>
+<ul>
+<li>(void)viewDidLoad<br>{<br>  [super viewDidLoad];<br>  self.textFieldA.delegate = self ;<br>  self.textFieldB.delegate = self ;<br>  self.textFieldC.delegate = self ;<br>  self.textFieldD.delegate = self ;<br>  self.textFieldE.delegate = self ;<br>  self.textFieldF.delegate = self ;<br>  self.textFieldG.delegate = self ;<br>  self.textFieldH.delegate = self ;<br>  self.textFieldI.delegate = self ;</li>
+</ul>
+<p>}</p>
+<ul>
+<li>(void)viewDidUnload {<br>  [self setTextFieldA:nil];<br>  [self setTextFieldB:nil];<br>  [self setTextFieldC:nil];<br>  [self setTextFieldD:nil];<br>  [self setTextFieldE:nil];<br>  [self setTextFieldF:nil];<br>  [self setTextFieldG:nil];<br>  [self setTextFieldH:nil];<br>  [self setTextFieldI:nil];<br>  [self setEditingTextField:nil];<br>  [super viewDidUnload];<br>}<br>// UITextFieldDelegate 方法</li>
+<li>(void)textFieldDidBeginEditing:(UITextField *)textField<br>{<br>  self.editingTextField = textField ;<br>}<br>// 提交Action</li>
+<li>(IBAction)submitForm:(UIBarButtonItem *)sender<br>{<br>  [self.editingTextField resignFirstResponder];<br>  // 提交表单，弹出提示等待框，略<br>}<a id="more"></a>
+</li>
+</ul>
+<p>这里FormViewController首先实现了UITextFieldDelegate协议,在viewDidLoad的时候，让所有textField的delegate都指向FormViewController，并且添加了editingTextField属性用于保存当前处于编辑状态下的textField对象，具体的跟踪方法是在在textFieldDidBeginEditing:代理方法中实现，这样在submitForm时，我们边可以调用</p>
+<p><pre class="lang:objc decode:true ">[self.editingTextField resignFirstResponder];</pre><br>来关闭键盘。</p>
+<p>流程上逻辑很简单，但总感觉只为实现关闭键盘这个功能，需要添加</p>
+<p><pre class="lang:objc decode:true ">self.textFieldA.delegate = self ;<br>self.textFieldB.delegate = self ;<br>self.textFieldC.delegate = self ;<br>self.textFieldD.delegate = self ;<br>self.textFieldE.delegate = self ;<br>self.textFieldF.delegate = self ;<br>self.textFieldG.delegate = self ;<br>self.textFieldH.delegate = self ;<br>self.textFieldI.delegate = self ;</pre><br>这一坨的重复代码，总感觉不爽。而且如果表单中出现多个UITextView的话，岂不是还要重复以上逻辑？</p>
+<h3 id="endEditing"><a href="#endEditing" class="headerlink" title="endEditing:"></a>endEditing:</h3><p>说了半天终于开始讲到重点了，下面介绍下endEditing：方法，该方法为UIView中的一个方法，定义为</p>
+<p><pre class="lang:objc decode:true">- (BOOL)endEditing:(BOOL)force</pre><br>&nbsp;</p>
+<p>官网文档释义：</p>
+<blockquote>
+<p>Causes the view (or one of its embedded text fields) to resign the first responder status.<br>This method looks at the current view and its subview hierarchy for the text field that is currently the first responder. If it finds one, it asks that text field to resign as first responder. If the force parameter is set to YES, the text field is never even asked; it is forced to resign.<br>大意为：<br>注销当前view(或它下属嵌入的text fields)的first responder 状态。<br>该方法会在当前view以及其subview层次结构中需找当前处于first responder状态的text field。如果找到的话会注销其first responder状态，如果指定force参数为YES，则不再询问text field，而直接强制注销其first responder状态。<br>好了，有了这个快捷方法，在FormViewController中，则不需要在实现UITextFieldDelegate，来对处于编辑状态的textField进行跟踪，也不必担心将来会添加N个UITextView，只要是在FormViewController下，我们<br>只要调用</p>
+<p><pre class="lang:objc decode:true">[self.view endEditing:YES];</pre><br>键盘立马关闭！</p>
+</blockquote>
+<p>&nbsp;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UIView/" rel="tag">#UIView</a>
+          
+            <a href="/tags/endEditing/" rel="tag">#endEditing</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/02/through-the-development-of-api-gets-mobile-uidevice-and-nsbundle-and-nslocale/" rel="next" title="通过开发api获取手机信息（UIDevice、NSBundle、NSLocale)">
+                <i class="fa fa-chevron-left"></i> 通过开发api获取手机信息（UIDevice、NSBundle、NSLocale)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/03/xcode-debugging-breakpoint-debug-does-not-show-the-source-code/" rel="prev" title="Xcode调试断点Debug不显示源代码区">
+                Xcode调试断点Debug不显示源代码区 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#endEditing"><span class="nav-number">2.</span> <span class="nav-text">endEditing:</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
