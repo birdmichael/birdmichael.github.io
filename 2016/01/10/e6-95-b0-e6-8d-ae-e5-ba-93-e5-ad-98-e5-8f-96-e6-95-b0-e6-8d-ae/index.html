@@ -86,20 +86,20 @@
 
 <meta name="description" content="static FMDatabase *_db;
 
-(void)initialize{  NSString cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];  // 拼接文件名  NSString filePath = [cachePath stringByApp">
+(void)initialize{  NSString cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];  // &amp;#x62FC;&amp;#x63A5;&amp;#x6587;&amp;#x4EF6;&amp;#x540D;  NSStrin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库存取数据">
 <meta property="og:url" content="http://yoursite.com/2016/01/10/e6-95-b0-e6-8d-ae-e5-ba-93-e5-ad-98-e5-8f-96-e6-95-b0-e6-8d-ae/index.html">
 <meta property="og:site_name" content="BirdMichael">
 <meta property="og:description" content="static FMDatabase *_db;
 
-(void)initialize{  NSString cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];  // 拼接文件名  NSString filePath = [cachePath stringByApp">
+(void)initialize{  NSString cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];  // &amp;#x62FC;&amp;#x63A5;&amp;#x6587;&amp;#x4EF6;&amp;#x540D;  NSStrin">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库存取数据">
 <meta name="twitter:description" content="static FMDatabase *_db;
 
-(void)initialize{  NSString cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];  // 拼接文件名  NSString filePath = [cachePath stringByApp">
+(void)initialize{  NSString cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];  // &amp;#x62FC;&amp;#x63A5;&amp;#x6587;&amp;#x4EF6;&amp;#x540D;  NSStrin">
 
 
 
@@ -303,19 +303,19 @@
       
         <p><pre class="lang:objc decode:true ">static FMDatabase *_db;</pre></p>
 <ul>
-<li><p>(void)initialize<br>{<br>  NSString <em>cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];<br>  // 拼接文件名<br>  NSString </em>filePath = [cachePath stringByAppendingPathComponent:@”onLineHome.sqlite”];<br>  // 创建了一个数据库实例<br>  _db = [FMDatabase databaseWithPath:filePath];</p>
-<p>  // 打开数据库<br>  if ([_db open]) {</p>
-<pre><code>NSLog(@&quot;打开成功&quot;);
+<li><p>(void)initialize<br>{<br>  NSString <em>cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];<br>  // &#x62FC;&#x63A5;&#x6587;&#x4EF6;&#x540D;<br>  NSString </em>filePath = [cachePath stringByAppendingPathComponent:@&#x201D;onLineHome.sqlite&#x201D;];<br>  // &#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x5B9E;&#x4F8B;<br>  _db = [FMDatabase databaseWithPath:filePath];</p>
+<p>  // &#x6253;&#x5F00;&#x6570;&#x636E;&#x5E93;<br>  if ([_db open]) {</p>
+<pre><code>NSLog(@&quot;&#x6253;&#x5F00;&#x6210;&#x529F;&quot;);
 </code></pre><p>  }else{</p>
-<pre><code>NSLog(@&quot;打开失败&quot;);
+<pre><code>NSLog(@&quot;&#x6253;&#x5F00;&#x5931;&#x8D25;&quot;);
 </code></pre><p>  }</p>
-<p>  // 创建t_online_home表格<br>  BOOL flag = [_db executeUpdate:@”create table if not exists t_online_home (id integer primary key autoincrement,tagid text,dict text);”];<br>  if (flag) {</p>
-<pre><code>NSLog(@&quot;t_online_home 可用&quot;);
+<p>  // &#x521B;&#x5EFA;t_online_home&#x8868;&#x683C;<br>  BOOL flag = [_db executeUpdate:@&#x201D;create table if not exists t_online_home (id integer primary key autoincrement,tagid text,dict text);&#x201D;];<br>  if (flag) {</p>
+<pre><code>NSLog(@&quot;t_online_home &#x53EF;&#x7528;&quot;);
 </code></pre><p>  }else{</p>
-<pre><code>NSLog(@&quot;t_online_home 创建失败&quot;);
+<pre><code>NSLog(@&quot;t_online_home &#x521B;&#x5EFA;&#x5931;&#x8D25;&quot;);
 </code></pre><p>  }<br>}</p>
 </li>
-<li><p>(void)saveWithOnlineVC:(NSDictionary <em>)onlinevc withTagId:(NSNumber </em>)tagid{<br>  BOOL isHaveRet = NO;<br>  NSString <em>sel = [NSString stringWithFormat:@”select </em> from t_online_home where tagid = ‘%@’;”,tagid];<br>  FMResultSet * set = [_db executeQuery:sel];<br>  while ([set next]) {</p>
+<li><p>(void)saveWithOnlineVC:(NSDictionary <em>)onlinevc withTagId:(NSNumber </em>)tagid{<br>  BOOL isHaveRet = NO;<br>  NSString <em>sel = [NSString stringWithFormat:@&#x201D;select </em> from t_online_home where tagid = &#x2018;%@&#x2019;;&#x201D;,tagid];<br>  FMResultSet * set = [_db executeQuery:sel];<br>  while ([set next]) {</p>
 <pre><code>isHaveRet = YES;
 break;
 </code></pre><p>  }<br>  NSString <em> sql = nil;<br>  NSString </em> json = [YYUtil json2String:onlinevc];<br>  if (isHaveRet) {</p>
@@ -332,13 +332,13 @@ break;
 </ul>
 <p>}</p>
 <ul>
-<li>(NSDictionary <em>)onlineVCWithTagId:(NSNumber </em>)tagid{<br>  // 进入程序第一次获取的查询语句<br>  NSString <em>sql = [NSString stringWithFormat:@”select </em> from t_online_home where tagid = ‘%@’;”,tagid];<br>  FMResultSet *set = [_db executeQuery:sql];<br>  while ([set next]) {<pre><code>NSString *json = [set stringForColumn:@&quot;dict&quot;];
+<li>(NSDictionary <em>)onlineVCWithTagId:(NSNumber </em>)tagid{<br>  // &#x8FDB;&#x5165;&#x7A0B;&#x5E8F;&#x7B2C;&#x4E00;&#x6B21;&#x83B7;&#x53D6;&#x7684;&#x67E5;&#x8BE2;&#x8BED;&#x53E5;<br>  NSString <em>sql = [NSString stringWithFormat:@&#x201D;select </em> from t_online_home where tagid = &#x2018;%@&#x2019;;&#x201D;,tagid];<br>  FMResultSet *set = [_db executeQuery:sql];<br>  while ([set next]) {<pre><code>NSString *json = [set stringForColumn:@&quot;dict&quot;];
 NSDictionary *dict = [YYUtil string2Json:json];
 NSLog(@&quot;%@&quot;,dict);
 return dict;
 </code></pre>  }<br>  return nil;</li>
 </ul>
-<p>}<br>&nbsp;</p>
+<p>}<br>&#xA0;</p>
 
       
     </div>
@@ -442,7 +442,7 @@ return dict;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

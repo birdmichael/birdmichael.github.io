@@ -84,20 +84,20 @@
 
 
 
-<meta name="description" content="第一启动界面
-Failed to instantiate the default view controller for UIMainStoryboardFile ‘Main’ - perhaps the designated entry point is not set?原因分析：在StoryBoard中没有一个view controller设置了Initial Scene。解决方案：在Stor">
+<meta name="description" content="&amp;#x7B2C;&amp;#x4E00;&amp;#x542F;&amp;#x52A8;&amp;#x754C;&amp;#x9762;
+Failed to instantiate the default view controller for UIMainStoryboardFile &amp;#x2018;Main&amp;#x2019; - perhaps the designated entry point is not set?&amp;#x539F">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见错误汇总">
 <meta property="og:url" content="http://yoursite.com/2015/08/01/common-error-summary/index.html">
 <meta property="og:site_name" content="BirdMichael">
-<meta property="og:description" content="第一启动界面
-Failed to instantiate the default view controller for UIMainStoryboardFile ‘Main’ - perhaps the designated entry point is not set?原因分析：在StoryBoard中没有一个view controller设置了Initial Scene。解决方案：在Stor">
+<meta property="og:description" content="&amp;#x7B2C;&amp;#x4E00;&amp;#x542F;&amp;#x52A8;&amp;#x754C;&amp;#x9762;
+Failed to instantiate the default view controller for UIMainStoryboardFile &amp;#x2018;Main&amp;#x2019; - perhaps the designated entry point is not set?&amp;#x539F">
 <meta property="og:image" content="http://s-187595.abc188.com/wp-content/uploads/2015/07/20141202141656125.png">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见错误汇总">
-<meta name="twitter:description" content="第一启动界面
-Failed to instantiate the default view controller for UIMainStoryboardFile ‘Main’ - perhaps the designated entry point is not set?原因分析：在StoryBoard中没有一个view controller设置了Initial Scene。解决方案：在Stor">
+<meta name="twitter:description" content="&amp;#x7B2C;&amp;#x4E00;&amp;#x542F;&amp;#x52A8;&amp;#x754C;&amp;#x9762;
+Failed to instantiate the default view controller for UIMainStoryboardFile &amp;#x2018;Main&amp;#x2019; - perhaps the designated entry point is not set?&amp;#x539F">
 <meta name="twitter:image" content="http://s-187595.abc188.com/wp-content/uploads/2015/07/20141202141656125.png">
 
 
@@ -312,43 +312,43 @@ Failed to instantiate the default view controller for UIMainStoryboardFile ‘Ma
       
 
       
-        <h2 id="第一启动界面"><a href="#第一启动界面" class="headerlink" title="第一启动界面"></a>第一启动界面</h2><blockquote>
-<p>Failed to instantiate the default view controller for UIMainStoryboardFile ‘Main’ - perhaps the designated entry point is not set?<br>原因分析：在StoryBoard中没有一个view controller设置了Initial Scene。<br>解决方案：在Storyboard中，选择一个view conroller作为story board的第一启动界面</p>
+        <h2 id="&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;"><a href="#&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;" class="headerlink" title="&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;"></a>&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;</h2><blockquote>
+<p>Failed to instantiate the default view controller for UIMainStoryboardFile &#x2018;Main&#x2019; - perhaps the designated entry point is not set?<br>&#x539F;&#x56E0;&#x5206;&#x6790;&#xFF1A;&#x5728;StoryBoard&#x4E2D;&#x6CA1;&#x6709;&#x4E00;&#x4E2A;view controller&#x8BBE;&#x7F6E;&#x4E86;Initial Scene&#x3002;<br>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x5728;Storyboard&#x4E2D;&#xFF0C;&#x9009;&#x62E9;&#x4E00;&#x4E2A;view conroller&#x4F5C;&#x4E3A;story board&#x7684;&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;</p>
 </blockquote>
 <p><a href="http://s-187595.abc188.com/wp-content/uploads/2015/07/20141202141656125.png" target="_blank" rel="external"><img src="http://s-187595.abc188.com/wp-content/uploads/2015/07/20141202141656125.png" alt="20141202141656125"></a><a id="more"></a></p>
 <h2 id="CollectionViewLayout"><a href="#CollectionViewLayout" class="headerlink" title="CollectionViewLayout"></a>CollectionViewLayout</h2><blockquote>
-<p><span class="s1"><strong>*</strong> Terminating app due to uncaught exception ‘NSInvalidArgumentException’, reason: ‘UICollectionView must be initialized with a non-nil layout parameter’**</span></p>
+<p><span class="s1"><strong>*</strong> Terminating app due to uncaught exception &#x2018;NSInvalidArgumentException&#x2019;, reason: &#x2018;UICollectionView must be initialized with a non-nil layout parameter&#x2019;**</span></p>
 </blockquote>
-<p>原因分析：在<strong>UICollectionView</strong>中没有<span class="s1">CollectionViewLayout</span>。<br>解决方案：创建一个<span class="s1">CollectionViewLayout</span></p>
+<p>&#x539F;&#x56E0;&#x5206;&#x6790;&#xFF1A;&#x5728;<strong>UICollectionView</strong>&#x4E2D;&#x6CA1;&#x6709;<span class="s1">CollectionViewLayout</span>&#x3002;<br>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;<span class="s1">CollectionViewLayout</span></p>
 <pre class="lang:objc decode:true ">- (id)init
 {
-    // 1.流水布局
+    // 1.&#x6D41;&#x6C34;&#x5E03;&#x5C40;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    // 2.每个cell的尺寸
+    // 2.&#x6BCF;&#x4E2A;cell&#x7684;&#x5C3A;&#x5BF8;
     layout.itemSize = CGSizeMake(80, 80);
-    // 3.设置cell之间的水平间距
+    // 3.&#x8BBE;&#x7F6E;cell&#x4E4B;&#x95F4;&#x7684;&#x6C34;&#x5E73;&#x95F4;&#x8DDD;
     layout.minimumInteritemSpacing = 0;
-    // 4.设置cell之间的垂直间距
+    // 4.&#x8BBE;&#x7F6E;cell&#x4E4B;&#x95F4;&#x7684;&#x5782;&#x76F4;&#x95F4;&#x8DDD;
     layout.minimumLineSpacing = 10;
-    // 5.设置四周的内边距
+    // 5.&#x8BBE;&#x7F6E;&#x56DB;&#x5468;&#x7684;&#x5185;&#x8FB9;&#x8DDD;
     layout.sectionInset = UIEdgeInsetsMake(layout.minimumLineSpacing, 0, 0, 0);
     return [super initWithCollectionViewLayout:layout];
 }</pre>
 
-<h2 id="按钮不能设置Image"><a href="#按钮不能设置Image" class="headerlink" title="按钮不能设置Image"></a>按钮不能设置Image</h2><blockquote>
-<p>创建一个UIButton后,可以设置背景图片,但是不能设置image.<br>原因分析:可能因为按钮的Type为系统样式.</p>
+<h2 id="&#x6309;&#x94AE;&#x4E0D;&#x80FD;&#x8BBE;&#x7F6E;Image"><a href="#&#x6309;&#x94AE;&#x4E0D;&#x80FD;&#x8BBE;&#x7F6E;Image" class="headerlink" title="&#x6309;&#x94AE;&#x4E0D;&#x80FD;&#x8BBE;&#x7F6E;Image"></a>&#x6309;&#x94AE;&#x4E0D;&#x80FD;&#x8BBE;&#x7F6E;Image</h2><blockquote>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;UIButton&#x540E;,&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x80CC;&#x666F;&#x56FE;&#x7247;,&#x4F46;&#x662F;&#x4E0D;&#x80FD;&#x8BBE;&#x7F6E;image.<br>&#x539F;&#x56E0;&#x5206;&#x6790;:&#x53EF;&#x80FD;&#x56E0;&#x4E3A;&#x6309;&#x94AE;&#x7684;Type&#x4E3A;&#x7CFB;&#x7EDF;&#x6837;&#x5F0F;.</p>
 </blockquote>
-<p>解决方案:将按钮的Type设置为Custom.</p>
-<h2 id="属性名以New开头"><a href="#属性名以New开头" class="headerlink" title="属性名以New开头"></a>属性名以New开头</h2><blockquote>
-<p>某个控件的属性名称以New开头,编译错误<br>原因分析:New系统会认为创建新对象.</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;:&#x5C06;&#x6309;&#x94AE;&#x7684;Type&#x8BBE;&#x7F6E;&#x4E3A;Custom.</p>
+<h2 id="&#x5C5E;&#x6027;&#x540D;&#x4EE5;New&#x5F00;&#x5934;"><a href="#&#x5C5E;&#x6027;&#x540D;&#x4EE5;New&#x5F00;&#x5934;" class="headerlink" title="&#x5C5E;&#x6027;&#x540D;&#x4EE5;New&#x5F00;&#x5934;"></a>&#x5C5E;&#x6027;&#x540D;&#x4EE5;New&#x5F00;&#x5934;</h2><blockquote>
+<p>&#x67D0;&#x4E2A;&#x63A7;&#x4EF6;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x79F0;&#x4EE5;New&#x5F00;&#x5934;,&#x7F16;&#x8BD1;&#x9519;&#x8BEF;<br>&#x539F;&#x56E0;&#x5206;&#x6790;:New&#x7CFB;&#x7EDF;&#x4F1A;&#x8BA4;&#x4E3A;&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;.</p>
 </blockquote>
-<p>解决方案:不以New开头的名称来命名对象.</p>
-<h2 id="调用super-init报错"><a href="#调用super-init报错" class="headerlink" title="调用super init报错"></a>调用super init报错</h2><blockquote>
-<p>在某个-(id)initwith中调用[super init]报错<br>原因分析:当前对象的构造方法不是以init开头,而是以initwith开头.</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;:&#x4E0D;&#x4EE5;New&#x5F00;&#x5934;&#x7684;&#x540D;&#x79F0;&#x6765;&#x547D;&#x540D;&#x5BF9;&#x8C61;.</p>
+<h2 id="&#x8C03;&#x7528;super-init&#x62A5;&#x9519;"><a href="#&#x8C03;&#x7528;super-init&#x62A5;&#x9519;" class="headerlink" title="&#x8C03;&#x7528;super init&#x62A5;&#x9519;"></a>&#x8C03;&#x7528;super init&#x62A5;&#x9519;</h2><blockquote>
+<p>&#x5728;&#x67D0;&#x4E2A;-(id)initwith&#x4E2D;&#x8C03;&#x7528;[super init]&#x62A5;&#x9519;<br>&#x539F;&#x56E0;&#x5206;&#x6790;:&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E0D;&#x662F;&#x4EE5;init&#x5F00;&#x5934;,&#x800C;&#x662F;&#x4EE5;initwith&#x5F00;&#x5934;.</p>
 </blockquote>
-<p>解决方案:init后面任何单词手写字母大写.</p>
-<h2 id="xcode-编写代码不能智能提示"><a href="#xcode-编写代码不能智能提示" class="headerlink" title="xcode 编写代码不能智能提示"></a>xcode 编写代码不能智能提示</h2><blockquote>
-<p>代码块不能提示,但是可以搜索拉出.<br>解决方法:Window(menu) -&gt;  -&gt; Projects(tab),删除 Derived Data ，立刻关闭xcode 然后重启xcode然后重新打开项目。</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;:init&#x540E;&#x9762;&#x4EFB;&#x4F55;&#x5355;&#x8BCD;&#x624B;&#x5199;&#x5B57;&#x6BCD;&#x5927;&#x5199;.</p>
+<h2 id="xcode-&#x7F16;&#x5199;&#x4EE3;&#x7801;&#x4E0D;&#x80FD;&#x667A;&#x80FD;&#x63D0;&#x793A;"><a href="#xcode-&#x7F16;&#x5199;&#x4EE3;&#x7801;&#x4E0D;&#x80FD;&#x667A;&#x80FD;&#x63D0;&#x793A;" class="headerlink" title="xcode &#x7F16;&#x5199;&#x4EE3;&#x7801;&#x4E0D;&#x80FD;&#x667A;&#x80FD;&#x63D0;&#x793A;"></a>xcode &#x7F16;&#x5199;&#x4EE3;&#x7801;&#x4E0D;&#x80FD;&#x667A;&#x80FD;&#x63D0;&#x793A;</h2><blockquote>
+<p>&#x4EE3;&#x7801;&#x5757;&#x4E0D;&#x80FD;&#x63D0;&#x793A;,&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x641C;&#x7D22;&#x62C9;&#x51FA;.<br>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;:Window(menu) -&gt;  -&gt; Projects(tab),&#x5220;&#x9664; Derived Data &#xFF0C;&#x7ACB;&#x523B;&#x5173;&#x95ED;xcode &#x7136;&#x540E;&#x91CD;&#x542F;xcode&#x7136;&#x540E;&#x91CD;&#x65B0;&#x6253;&#x5F00;&#x9879;&#x76EE;&#x3002;</p>
 </blockquote>
 
       
@@ -461,7 +461,7 @@ Failed to instantiate the default view controller for UIMainStoryboardFile ‘Ma
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

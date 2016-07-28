@@ -235,149 +235,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/07/22/loads-data-from-the-josn-model/" itemprop="url">
-                  从josn加载数据模型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-22T01:07:49+08:00" content="2015-07-22">
-              2015-07-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UI/" itemprop="url" rel="index">
-                    <span itemprop="name">UI</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UI/Xcode/" itemprop="url" rel="index">
-                    <span itemprop="name">Xcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><pre class="lang:objc decode:true ">- (NSArray *)htmls<br>{<br>    if (!_htmls) {</p>
-<pre><code>    // JSON文件的路径
-    NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;help.json&quot; ofType:nil];    
-    // 加载JSON文件
-    NSData *data = [NSData dataWithContentsOfFile:path]; 
-    // 将JSON数据转为NSArray或者NSDictionary
-    NSArray *dictArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    // 将字典转成模型
-    NSMutableArray *htmlArray = [NSMutableArray array];
-    for (NSDictionary *dict in dictArray) {
-        Html *html = [Html htmlWithDict:dict];
-        [htmlArray addObject:html];
-    }
-    _htmls = htmlArray;
-}
-return _htmls;
-</code></pre><p>}</pre><br>参数说明:
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/22/loads-data-from-the-josn-model/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/07/20/uiimage-extension-returns-stretching-a-picture-picture-without-distortion/" itemprop="url">
                   UIImage扩展 返回拉伸图片(图片不失真)
                 </a>
@@ -440,7 +297,7 @@ return _htmls;
 
       
         
-          <p>
+          <p></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/20/uiimage-extension-returns-stretching-a-picture-picture-without-distortion/#more" rel="contents">
               阅读全文 &raquo;
@@ -567,9 +424,9 @@ return _htmls;
 
       
         
-          <p>本次小Demo分2块,一个是自己写的小黄人的头部实战使用.确实很挫..里面主要是一些圆,弧,线,的使用.</p>
-<p>第二个是找到的关于基础使用比较全的一个Demo.</p>
-<p><a href="http://s-187595.abc188.com/wp-content/uploads/2015/07/11111.png"><img src="http://s-187595.abc188.com/wp-content/uploads/2015/07/11111.png" alt="11111"></a><a href="http://s-187595.abc188.com/wp-content/uploads/2015/07/QQ20150714-1@2x.png"><img src="http://s-187595.abc188.com/wp-content/uploads/2015/07/QQ20150714-1@2x.png" alt="QQ20150714-1@2x"></a><br>
+          <p>&#x672C;&#x6B21;&#x5C0F;Demo&#x5206;2&#x5757;,&#x4E00;&#x4E2A;&#x662F;&#x81EA;&#x5DF1;&#x5199;&#x7684;&#x5C0F;&#x9EC4;&#x4EBA;&#x7684;&#x5934;&#x90E8;&#x5B9E;&#x6218;&#x4F7F;&#x7528;.&#x786E;&#x5B9E;&#x5F88;&#x632B;..&#x91CC;&#x9762;&#x4E3B;&#x8981;&#x662F;&#x4E00;&#x4E9B;&#x5706;,&#x5F27;,&#x7EBF;,&#x7684;&#x4F7F;&#x7528;.</p>
+<p>&#x7B2C;&#x4E8C;&#x4E2A;&#x662F;&#x627E;&#x5230;&#x7684;&#x5173;&#x4E8E;&#x57FA;&#x7840;&#x4F7F;&#x7528;&#x6BD4;&#x8F83;&#x5168;&#x7684;&#x4E00;&#x4E2A;Demo.</p>
+<p><a href="http://s-187595.abc188.com/wp-content/uploads/2015/07/11111.png"><img src="http://s-187595.abc188.com/wp-content/uploads/2015/07/11111.png" alt="11111"></a><a href="http://s-187595.abc188.com/wp-content/uploads/2015/07/QQ20150714-1@2x.png"><img src="http://s-187595.abc188.com/wp-content/uploads/2015/07/QQ20150714-1@2x.png" alt="QQ20150714-1@2x"></a><br></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/13/quartz-2d-e5-b0-8fdemo/#more" rel="contents">
               阅读全文 &raquo;
@@ -696,13 +553,13 @@ return _htmls;
 
       
         
-          <p>首先,NSUserDefaults是系统提供的的一个类,其实通过名字我们都可以理解到,主要保存应用程序设置和属性以及用户数据.比如你可以用来存储用户在应用程序中使用的图片或默认颜色方案,或者说是保存密码,自动登录这些等等配置.</p>
-<p>然而NSUserDefaults的本质其实就是Plist(/Library/Prefereces，里面有个plist文件，存储的就是你的userDefaults)(也就是说一个Value 一个Key ).并且<strong>NSUserDefaults是单例，同时也是线程安全的.</strong>iOS的defaults系统在整个app中都是可用的，因此存放到defaults系统中的数据也是整个应用程序生命周期中可用的。也就是说，无论用户关闭程序还是关机，在用户再次打开程序或开机后这些数据仍然存在。</p>
-<p>引入官方支持的数据类型:</p>
-<p>NSNumber（Integer、Float、Double），NSString，NSDate，NSArray，NSDictionary，<span class="s1">NSURL, </span>BOOL类型</p>
-<p>如果用3个词来形容它:1.<strong>方便2.高效3.超轻量级</strong>.</p>
+          <p>&#x9996;&#x5148;,NSUserDefaults&#x662F;&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x7684;&#x4E00;&#x4E2A;&#x7C7B;,&#x5176;&#x5B9E;&#x901A;&#x8FC7;&#x540D;&#x5B57;&#x6211;&#x4EEC;&#x90FD;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x5230;,&#x4E3B;&#x8981;&#x4FDD;&#x5B58;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BBE;&#x7F6E;&#x548C;&#x5C5E;&#x6027;&#x4EE5;&#x53CA;&#x7528;&#x6237;&#x6570;&#x636E;.&#x6BD4;&#x5982;&#x4F60;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x7528;&#x6237;&#x5728;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x56FE;&#x7247;&#x6216;&#x9ED8;&#x8BA4;&#x989C;&#x8272;&#x65B9;&#x6848;,&#x6216;&#x8005;&#x8BF4;&#x662F;&#x4FDD;&#x5B58;&#x5BC6;&#x7801;,&#x81EA;&#x52A8;&#x767B;&#x5F55;&#x8FD9;&#x4E9B;&#x7B49;&#x7B49;&#x914D;&#x7F6E;.</p>
+<p>&#x7136;&#x800C;NSUserDefaults&#x7684;&#x672C;&#x8D28;&#x5176;&#x5B9E;&#x5C31;&#x662F;Plist(/Library/Prefereces&#xFF0C;&#x91CC;&#x9762;&#x6709;&#x4E2A;plist&#x6587;&#x4EF6;&#xFF0C;&#x5B58;&#x50A8;&#x7684;&#x5C31;&#x662F;&#x4F60;&#x7684;userDefaults)(&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4E00;&#x4E2A;Value &#x4E00;&#x4E2A;Key ).&#x5E76;&#x4E14;<strong>NSUserDefaults&#x662F;&#x5355;&#x4F8B;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;.</strong>iOS&#x7684;defaults&#x7CFB;&#x7EDF;&#x5728;&#x6574;&#x4E2A;app&#x4E2D;&#x90FD;&#x662F;&#x53EF;&#x7528;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x5B58;&#x653E;&#x5230;defaults&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x4E5F;&#x662F;&#x6574;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E2D;&#x53EF;&#x7528;&#x7684;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x65E0;&#x8BBA;&#x7528;&#x6237;&#x5173;&#x95ED;&#x7A0B;&#x5E8F;&#x8FD8;&#x662F;&#x5173;&#x673A;&#xFF0C;&#x5728;&#x7528;&#x6237;&#x518D;&#x6B21;&#x6253;&#x5F00;&#x7A0B;&#x5E8F;&#x6216;&#x5F00;&#x673A;&#x540E;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x4ECD;&#x7136;&#x5B58;&#x5728;&#x3002;</p>
+<p>&#x5F15;&#x5165;&#x5B98;&#x65B9;&#x652F;&#x6301;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;:</p>
+<p>NSNumber&#xFF08;Integer&#x3001;Float&#x3001;Double&#xFF09;&#xFF0C;NSString&#xFF0C;NSDate&#xFF0C;NSArray&#xFF0C;NSDictionary&#xFF0C;<span class="s1">NSURL, </span>BOOL&#x7C7B;&#x578B;</p>
+<p>&#x5982;&#x679C;&#x7528;3&#x4E2A;&#x8BCD;&#x6765;&#x5F62;&#x5BB9;&#x5B83;:1.<strong>&#x65B9;&#x4FBF;2.&#x9AD8;&#x6548;3.&#x8D85;&#x8F7B;&#x91CF;&#x7EA7;</strong>.</p>
 <blockquote>
-<p>如果将默认数据库比喻为SQL Server数据库，那么NSUserDefaults就相当于SQL语句。就像我们通过SQL语句可以对SQL Server数据库进行增删改查操作一样。我们可以通过NSUserDefaults对默认系统操作。<br>
+<p>&#x5982;&#x679C;&#x5C06;&#x9ED8;&#x8BA4;&#x6570;&#x636E;&#x5E93;&#x6BD4;&#x55BB;&#x4E3A;SQL Server&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x90A3;&#x4E48;NSUserDefaults&#x5C31;&#x76F8;&#x5F53;&#x4E8E;SQL&#x8BED;&#x53E5;&#x3002;&#x5C31;&#x50CF;&#x6211;&#x4EEC;&#x901A;&#x8FC7;SQL&#x8BED;&#x53E5;&#x53EF;&#x4EE5;&#x5BF9;SQL Server&#x6570;&#x636E;&#x5E93;&#x8FDB;&#x884C;&#x589E;&#x5220;&#x6539;&#x67E5;&#x64CD;&#x4F5C;&#x4E00;&#x6837;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;NSUserDefaults&#x5BF9;&#x9ED8;&#x8BA4;&#x7CFB;&#x7EDF;&#x64CD;&#x4F5C;&#x3002;<br></p></blockquote>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/12/nsuserdefaults-e6-b7-b1-e5-85-a5-e8-a7-a3-e6-9e-90/#more" rel="contents">
               阅读全文 &raquo;
@@ -817,12 +674,12 @@ return _htmls;
 
       
         
-          <p>NSSearchPathForDirectoriesInDomains函数有三个参数.分别是<span class="s1">NSSearchPathDirectory directory,</span><span class="s1">NSSearchPathDomainMask domainMask,</span><span class="s1">BOOL</span><span class="s2"> expandTilde.</span></p>
-<p>现在来深入讲解一下这三个参数.</p>
-<p>国际惯例,先贴上官方代码:</p>
-<p><pre class="lang:objc decode:true ">typedef NS_ENUM(NSUInteger, NSSearchPathDirectory) {<br>    NSApplicationDirectory = 1,             // supported applications (Applications)<br>    NSDemoApplicationDirectory,             // unsupported applications, demonstration versions (Demos)<br>    NSDeveloperApplicationDirectory,        // developer applications (Developer/Applications). DEPRECATED - there is no one single Developer directory.<br>    NSAdminApplicationDirectory,            // system and network administration applications (Administration)<br>    NSLibraryDirectory,                     // various documentation, support, and configuration files, resources (Library)<br>    NSDeveloperDirectory,                   // developer resources (Developer) DEPRECATED - there is no one single Developer directory.<br>    NSUserDirectory,                        // user home directories (Users)<br>    NSDocumentationDirectory,               // documentation (Documentation)<br>    NSDocumentDirectory,                    // documents (Documents)<br>    NSCoreServiceDirectory,                 // location of CoreServices directory (System/Library/CoreServices)<br>    NSAutosavedInformationDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 11,   // location of autosaved documents (Documents/Autosaved)<br>    NSDesktopDirectory = 12,                // location of user’s desktop<br>    NSCachesDirectory = 13,                 // location of discardable cache files (Library/Caches)<br>    NSApplicationSupportDirectory = 14,     // location of application support files (plug-ins, etc) (Library/Application Support)<br>    NSDownloadsDirectory NS_ENUM_AVAILABLE(10_5, 2_0) = 15,              // location of the user’s “Downloads” directory<br>    NSInputMethodsDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 16,           // input methods (Library/Input Methods)<br>    NSMoviesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 17,                 // location of user’s Movies directory (~/Movies)<br>    NSMusicDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 18,                  // location of user’s Music directory (~/Music)<br>    NSPicturesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 19,               // location of user’s Pictures directory (~/Pictures)<br>    NSPrinterDescriptionDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 20,     // location of system’s PPDs directory (Library/Printers/PPDs)<br>    NSSharedPublicDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 21,           // location of user’s Public sharing directory (~/Public)<br>    NSPreferencePanesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 22,        // location of the PreferencePanes directory for use with System Preferences (Library/PreferencePanes)<br>    NSApplicationScriptsDirectory NS_ENUM_AVAILABLE(10_8, NA) = 23,      // location of the user scripts folder for the calling application (~/Library/Application Scripts/code-signing-id)<br>    NSItemReplacementDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 99,        // For use with NSFileManager’s URLForDirectory:inDomain:appropriateForURL:create:error:<br>    NSAllApplicationsDirectory = 100,       // all directories where applications can occur<br>    NSAllLibrariesDirectory = 101,          // all directories where resources can occur<br>    NSTrashDirectory NS_ENUM_AVAILABLE(10_8, NA) = 102                   // location of Trash directory</p>
+          <p>NSSearchPathForDirectoriesInDomains&#x51FD;&#x6570;&#x6709;&#x4E09;&#x4E2A;&#x53C2;&#x6570;.&#x5206;&#x522B;&#x662F;<span class="s1">NSSearchPathDirectory directory,</span><span class="s1">NSSearchPathDomainMask domainMask,</span><span class="s1">BOOL</span><span class="s2"> expandTilde.</span></p>
+<p>&#x73B0;&#x5728;&#x6765;&#x6DF1;&#x5165;&#x8BB2;&#x89E3;&#x4E00;&#x4E0B;&#x8FD9;&#x4E09;&#x4E2A;&#x53C2;&#x6570;.</p>
+<p>&#x56FD;&#x9645;&#x60EF;&#x4F8B;,&#x5148;&#x8D34;&#x4E0A;&#x5B98;&#x65B9;&#x4EE3;&#x7801;:</p>
+<p><pre class="lang:objc decode:true ">typedef NS_ENUM(NSUInteger, NSSearchPathDirectory) {<br>    NSApplicationDirectory = 1,             // supported applications (Applications)<br>    NSDemoApplicationDirectory,             // unsupported applications, demonstration versions (Demos)<br>    NSDeveloperApplicationDirectory,        // developer applications (Developer/Applications). DEPRECATED - there is no one single Developer directory.<br>    NSAdminApplicationDirectory,            // system and network administration applications (Administration)<br>    NSLibraryDirectory,                     // various documentation, support, and configuration files, resources (Library)<br>    NSDeveloperDirectory,                   // developer resources (Developer) DEPRECATED - there is no one single Developer directory.<br>    NSUserDirectory,                        // user home directories (Users)<br>    NSDocumentationDirectory,               // documentation (Documentation)<br>    NSDocumentDirectory,                    // documents (Documents)<br>    NSCoreServiceDirectory,                 // location of CoreServices directory (System/Library/CoreServices)<br>    NSAutosavedInformationDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 11,   // location of autosaved documents (Documents/Autosaved)<br>    NSDesktopDirectory = 12,                // location of user&#x2019;s desktop<br>    NSCachesDirectory = 13,                 // location of discardable cache files (Library/Caches)<br>    NSApplicationSupportDirectory = 14,     // location of application support files (plug-ins, etc) (Library/Application Support)<br>    NSDownloadsDirectory NS_ENUM_AVAILABLE(10_5, 2_0) = 15,              // location of the user&#x2019;s &#x201C;Downloads&#x201D; directory<br>    NSInputMethodsDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 16,           // input methods (Library/Input Methods)<br>    NSMoviesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 17,                 // location of user&#x2019;s Movies directory (~/Movies)<br>    NSMusicDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 18,                  // location of user&#x2019;s Music directory (~/Music)<br>    NSPicturesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 19,               // location of user&#x2019;s Pictures directory (~/Pictures)<br>    NSPrinterDescriptionDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 20,     // location of system&#x2019;s PPDs directory (Library/Printers/PPDs)<br>    NSSharedPublicDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 21,           // location of user&#x2019;s Public sharing directory (~/Public)<br>    NSPreferencePanesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 22,        // location of the PreferencePanes directory for use with System Preferences (Library/PreferencePanes)<br>    NSApplicationScriptsDirectory NS_ENUM_AVAILABLE(10_8, NA) = 23,      // location of the user scripts folder for the calling application (~/Library/Application Scripts/code-signing-id)<br>    NSItemReplacementDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 99,        // For use with NSFileManager&#x2019;s URLForDirectory:inDomain:appropriateForURL:create:error:<br>    NSAllApplicationsDirectory = 100,       // all directories where applications can occur<br>    NSAllLibrariesDirectory = 101,          // all directories where resources can occur<br>    NSTrashDirectory NS_ENUM_AVAILABLE(10_8, NA) = 102                   // location of Trash directory</pre></p>
 <p>};</p>
-<p>typedef NS_OPTIONS(NSUInteger, NSSearchPathDomainMask) {<br>    NSUserDomainMask = 1,       // user’s home directory — place to install user’s personal items (~)<br>    NSLocalDomainMask = 2,      // local to the current machine — place to install items available to everyone on this machine (/Library)<br>    NSNetworkDomainMask = 4,    // publically available location in the local area network — place to install items available on the network (/Network)<br>    NSSystemDomainMask = 8,     // provided by Apple, unmodifiable (/System)<br>    NSAllDomainsMask = 0x0ffff  // all domains: all of the above and future items<br>};</pre><br>
+<p>typedef NS_OPTIONS(NSUInteger, NSSearchPathDomainMask) {<br>    NSUserDomainMask = 1,       // user&#x2019;s home directory &#x2014; place to install user&#x2019;s personal items (~)<br>    NSLocalDomainMask = 2,      // local to the current machine &#x2014; place to install items available to everyone on this machine (/Library)<br>    NSNetworkDomainMask = 4,    // publically available location in the local area network &#x2014; place to install items available on the network (/Network)<br>    NSSystemDomainMask = 8,     // provided by Apple, unmodifiable (/System)<br>    NSAllDomainsMask = 0x0ffff  // all domains: all of the above and future items<br>};<br></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/12/nssearchpathfordirectoriesindomains-deep-analysis/#more" rel="contents">
               阅读全文 &raquo;
@@ -961,24 +818,24 @@ return _htmls;
 
       
         
-          <p>通常,我们很多的数据都不是临时或者一次性的,也就是说需要下一次登录以后,很多数据依然存在.我们就需要把这些需要的数据存储在一个文件夹或者文件中(或者网络).而ios默认就为我们提供了这样一个文件夹叫<strong>沙盒</strong>(就是文件系统目录).并且这个文件与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒(也就是说A程序的文件只能存在A的沙盒中,并且不能去访问B程序的沙盒)</p>
-<h2 id="常见的文件存储方式"><a href="#常见的文件存储方式" class="headerlink" title="常见的文件存储方式"></a>常见的文件存储方式</h2><ul>
-<li>XML属性列表（plist）归档</li>
-<li>Preference(偏好设置)</li>
-<li>NSKeyedArchiver归档(NSCoding)</li>
+          <p>&#x901A;&#x5E38;,&#x6211;&#x4EEC;&#x5F88;&#x591A;&#x7684;&#x6570;&#x636E;&#x90FD;&#x4E0D;&#x662F;&#x4E34;&#x65F6;&#x6216;&#x8005;&#x4E00;&#x6B21;&#x6027;&#x7684;,&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x9700;&#x8981;&#x4E0B;&#x4E00;&#x6B21;&#x767B;&#x5F55;&#x4EE5;&#x540E;,&#x5F88;&#x591A;&#x6570;&#x636E;&#x4F9D;&#x7136;&#x5B58;&#x5728;.&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;&#x628A;&#x8FD9;&#x4E9B;&#x9700;&#x8981;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x6216;&#x8005;&#x6587;&#x4EF6;&#x4E2D;(&#x6216;&#x8005;&#x7F51;&#x7EDC;).&#x800C;ios&#x9ED8;&#x8BA4;&#x5C31;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x53EB;<strong>&#x6C99;&#x76D2;</strong>(&#x5C31;&#x662F;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x76EE;&#x5F55;).&#x5E76;&#x4E14;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E0E;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x9694;&#x79BB;&#x3002;&#x5E94;&#x7528;&#x5FC5;&#x987B;&#x5F85;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x6C99;&#x76D2;&#x91CC;&#xFF0C;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x8BE5;&#x6C99;&#x76D2;(&#x4E5F;&#x5C31;&#x662F;&#x8BF4;A&#x7A0B;&#x5E8F;&#x7684;&#x6587;&#x4EF6;&#x53EA;&#x80FD;&#x5B58;&#x5728;A&#x7684;&#x6C99;&#x76D2;&#x4E2D;,&#x5E76;&#x4E14;&#x4E0D;&#x80FD;&#x53BB;&#x8BBF;&#x95EE;B&#x7A0B;&#x5E8F;&#x7684;&#x6C99;&#x76D2;)</p>
+<h2 id="&#x5E38;&#x89C1;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;"><a href="#&#x5E38;&#x89C1;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;" class="headerlink" title="&#x5E38;&#x89C1;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;"></a>&#x5E38;&#x89C1;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;</h2><ul>
+<li>XML&#x5C5E;&#x6027;&#x5217;&#x8868;&#xFF08;plist&#xFF09;&#x5F52;&#x6863;</li>
+<li>Preference(&#x504F;&#x597D;&#x8BBE;&#x7F6E;)</li>
+<li>NSKeyedArchiver&#x5F52;&#x6863;(NSCoding)</li>
 <li>SQLite3</li>
-<li>Core Data<br>要搞懂文件存储之前,我们应该对沙盒的结构以及沙盒的作用有深入的了解.</li>
+<li>Core Data<br>&#x8981;&#x641E;&#x61C2;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x4E4B;&#x524D;,&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5BF9;&#x6C99;&#x76D2;&#x7684;&#x7ED3;&#x6784;&#x4EE5;&#x53CA;&#x6C99;&#x76D2;&#x7684;&#x4F5C;&#x7528;&#x6709;&#x6DF1;&#x5165;&#x7684;&#x4E86;&#x89E3;.</li>
 </ul>
-<h2 id="沙盒结构"><a href="#沙盒结构" class="headerlink" title="沙盒结构"></a><strong>沙盒结构</strong></h2><ul>
-<li><strong>Documents</strong>：保存应用运行时生成的需要<strong>持久化的数据</strong>，iTunes同步设备时<span style="color: #ff0000;">会备份该目录</span>。例如，游戏应用可将游戏存档保存在该目录</li>
-<li><strong>tmp</strong>：保存应用运行时所需的<strong>临时数据</strong>，使用完毕后再将相应的文件<strong>从该目录删除</strong>。应用没有运行时，系统也可能会清除该目录下的文件。iTunes同步设备时<span style="color: #ff0000;">不会备份该目录</span></li>
-<li><strong>Library/Caches</strong>：保存应用运行时生成的需要<strong>持久化的数据</strong>，iTunes同步设备时<span style="color: #ff0000;">不会备份该目录</span>。一般存储体积大、不需要备份的非重要数据</li>
-<li><strong>Library/Preference</strong>：保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息。iTunes同步设备时<span style="color: #ff0000;">会备份该目录</span><blockquote>
-<p>所以我们应该合理的选择我们数据储存的地方.简单来说:</p>
-<p>1.完全<strong>不重要</strong>的数据放tmp.(临时文件)</p>
-<p>2.<strong>不重要数据,</strong>但是<strong>不任意删除</strong>数据存在Caches.(部分资源,缓存)</p>
-<p>3.<strong>重要数据</strong>,并且<strong>大</strong>体积存在Document.(存档,歌曲..)</p>
-<p>4.<strong>重要数据</strong>,并且<strong>小</strong>体积存在Preference.(用户设置,密码..)</p>
+<h2 id="&#x6C99;&#x76D2;&#x7ED3;&#x6784;"><a href="#&#x6C99;&#x76D2;&#x7ED3;&#x6784;" class="headerlink" title="&#x6C99;&#x76D2;&#x7ED3;&#x6784;"></a><strong>&#x6C99;&#x76D2;&#x7ED3;&#x6784;</strong></h2><ul>
+<li><strong>Documents</strong>&#xFF1A;&#x4FDD;&#x5B58;&#x5E94;&#x7528;&#x8FD0;&#x884C;&#x65F6;&#x751F;&#x6210;&#x7684;&#x9700;&#x8981;<strong>&#x6301;&#x4E45;&#x5316;&#x7684;&#x6570;&#x636E;</strong>&#xFF0C;iTunes&#x540C;&#x6B65;&#x8BBE;&#x5907;&#x65F6;<span style="color: #ff0000;">&#x4F1A;&#x5907;&#x4EFD;&#x8BE5;&#x76EE;&#x5F55;</span>&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6E38;&#x620F;&#x5E94;&#x7528;&#x53EF;&#x5C06;&#x6E38;&#x620F;&#x5B58;&#x6863;&#x4FDD;&#x5B58;&#x5728;&#x8BE5;&#x76EE;&#x5F55;</li>
+<li><strong>tmp</strong>&#xFF1A;&#x4FDD;&#x5B58;&#x5E94;&#x7528;&#x8FD0;&#x884C;&#x65F6;&#x6240;&#x9700;&#x7684;<strong>&#x4E34;&#x65F6;&#x6570;&#x636E;</strong>&#xFF0C;&#x4F7F;&#x7528;&#x5B8C;&#x6BD5;&#x540E;&#x518D;&#x5C06;&#x76F8;&#x5E94;&#x7684;&#x6587;&#x4EF6;<strong>&#x4ECE;&#x8BE5;&#x76EE;&#x5F55;&#x5220;&#x9664;</strong>&#x3002;&#x5E94;&#x7528;&#x6CA1;&#x6709;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x4E5F;&#x53EF;&#x80FD;&#x4F1A;&#x6E05;&#x9664;&#x8BE5;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x3002;iTunes&#x540C;&#x6B65;&#x8BBE;&#x5907;&#x65F6;<span style="color: #ff0000;">&#x4E0D;&#x4F1A;&#x5907;&#x4EFD;&#x8BE5;&#x76EE;&#x5F55;</span></li>
+<li><strong>Library/Caches</strong>&#xFF1A;&#x4FDD;&#x5B58;&#x5E94;&#x7528;&#x8FD0;&#x884C;&#x65F6;&#x751F;&#x6210;&#x7684;&#x9700;&#x8981;<strong>&#x6301;&#x4E45;&#x5316;&#x7684;&#x6570;&#x636E;</strong>&#xFF0C;iTunes&#x540C;&#x6B65;&#x8BBE;&#x5907;&#x65F6;<span style="color: #ff0000;">&#x4E0D;&#x4F1A;&#x5907;&#x4EFD;&#x8BE5;&#x76EE;&#x5F55;</span>&#x3002;&#x4E00;&#x822C;&#x5B58;&#x50A8;&#x4F53;&#x79EF;&#x5927;&#x3001;&#x4E0D;&#x9700;&#x8981;&#x5907;&#x4EFD;&#x7684;&#x975E;&#x91CD;&#x8981;&#x6570;&#x636E;</li>
+<li><strong>Library/Preference</strong>&#xFF1A;&#x4FDD;&#x5B58;&#x5E94;&#x7528;&#x7684;&#x6240;&#x6709;&#x504F;&#x597D;&#x8BBE;&#x7F6E;&#xFF0C;iOS&#x7684;Settings(&#x8BBE;&#x7F6E;)&#x5E94;&#x7528;&#x4F1A;&#x5728;&#x8BE5;&#x76EE;&#x5F55;&#x4E2D;&#x67E5;&#x627E;&#x5E94;&#x7528;&#x7684;&#x8BBE;&#x7F6E;&#x4FE1;&#x606F;&#x3002;iTunes&#x540C;&#x6B65;&#x8BBE;&#x5907;&#x65F6;<span style="color: #ff0000;">&#x4F1A;&#x5907;&#x4EFD;&#x8BE5;&#x76EE;&#x5F55;</span><blockquote>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5408;&#x7406;&#x7684;&#x9009;&#x62E9;&#x6211;&#x4EEC;&#x6570;&#x636E;&#x50A8;&#x5B58;&#x7684;&#x5730;&#x65B9;.&#x7B80;&#x5355;&#x6765;&#x8BF4;:</p>
+<p>1.&#x5B8C;&#x5168;<strong>&#x4E0D;&#x91CD;&#x8981;</strong>&#x7684;&#x6570;&#x636E;&#x653E;tmp.(&#x4E34;&#x65F6;&#x6587;&#x4EF6;)</p>
+<p>2.<strong>&#x4E0D;&#x91CD;&#x8981;&#x6570;&#x636E;,</strong>&#x4F46;&#x662F;<strong>&#x4E0D;&#x4EFB;&#x610F;&#x5220;&#x9664;</strong>&#x6570;&#x636E;&#x5B58;&#x5728;Caches.(&#x90E8;&#x5206;&#x8D44;&#x6E90;,&#x7F13;&#x5B58;)</p>
+<p>3.<strong>&#x91CD;&#x8981;&#x6570;&#x636E;</strong>,&#x5E76;&#x4E14;<strong>&#x5927;</strong>&#x4F53;&#x79EF;&#x5B58;&#x5728;Document.(&#x5B58;&#x6863;,&#x6B4C;&#x66F2;..)</p>
+<p>4.<strong>&#x91CD;&#x8981;&#x6570;&#x636E;</strong>,&#x5E76;&#x4E14;<strong>&#x5C0F;</strong>&#x4F53;&#x79EF;&#x5B58;&#x5728;Preference.(&#x7528;&#x6237;&#x8BBE;&#x7F6E;,&#x5BC6;&#x7801;..)</p></blockquote></li></ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/#more" rel="contents">
               阅读全文 &raquo;
@@ -1031,7 +888,7 @@ return _htmls;
             
               
                 
-                <a class="post-title-link" href="/2015/07/09/uistoryboardsegue-explanation/" itemprop="url">
+                <a class="post-title-link" href="/2015/07/09/UIStoryboardSegue讲解/" itemprop="url">
                   UIStoryboardSegue讲解.
                 </a>
               
@@ -1051,37 +908,6 @@ return _htmls;
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/OC/" itemprop="url" rel="index">
-                    <span itemprop="name">OC</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/OC/UI/" itemprop="url" rel="index">
-                    <span itemprop="name">UI</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
 
           
             
@@ -1105,245 +931,13 @@ return _htmls;
 
       
         
-          <ul>
-<li><h3 id="什么是Segue"><a href="#什么是Segue" class="headerlink" title="什么是Segue"></a>什么是Segue</h3>Storyboard上每一根用来界面跳转的线，都是一个UIStoryboardSegue对象（简称Segue）<br><pre class="lang:objc decode:true" title="UIStoryboardSegue.h">#import &lt;Foundation/Foundation.h&gt;<br>#import &lt;UIKit/UIKitDefines.h&gt;</li>
-</ul>
-<p>@class UIViewController;</p>
-<p>NS_CLASS_AVAILABLE_IOS(5_0) @interface UIStoryboardSegue : NSObject</p>
-<p>// Convenience constructor for returning a segue that performs a handler block in its -perform method.</p>
-<ul>
-<li>(instancetype)segueWithIdentifier:(NSString <em>)identifier source:(UIViewController </em>)source destination:(UIViewController *)destination performHandler:(void (^)(void))performHandler NS_AVAILABLE_IOS(6_0);</li>
-</ul>
-<ul>
-<li>(instancetype)initWithIdentifier:(NSString <em>)identifier source:(UIViewController </em>)source destination:(UIViewController *)destination; // Designated initializer</li>
-</ul>
-<p>@property (nonatomic, readonly) NSString *identifier;<br>@property (nonatomic, readonly) id sourceViewController;<br>@property (nonatomic, readonly) id destinationViewController;</p>
-<ul>
-<li>(void)perform;</li>
-</ul>
-<p>@end</pre></p>
-<ul>
-<li><h3 id="Segue的属性"><a href="#Segue的属性" class="headerlink" title="Segue的属性"></a>Segue的属性</h3><p>每一个Segue对象，都有3个属性<br><pre class="lang:objc decode:true  ">// 唯一标识<br>@property (nonatomic, readonly) NSString *identifier;<br>// 来源控制器<br>@property (nonatomic, readonly) id sourceViewController;<br>// 目标控制器<br>@property (nonatomic, readonly) id destinationViewController;<br></pre></p>
+          <h1 id="&#x4EC0;&#x4E48;&#x662F;Segue"><a href="#&#x4EC0;&#x4E48;&#x662F;Segue" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;Segue"></a>&#x4EC0;&#x4E48;&#x662F;Segue</h1><p>Storyboard&#x4E0A;&#x6BCF;&#x4E00;&#x6839;&#x7528;&#x6765;&#x754C;&#x9762;&#x8DF3;&#x8F6C;&#x7684;&#x7EBF;&#xFF0C;&#x90FD;&#x662F;&#x4E00;&#x4E2A;<code>UIStoryboardSegue</code>&#x5BF9;&#x8C61;&#xFF08;&#x7B80;&#x79F0;<code>Segue</code>&#xFF09;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#import &amp;lt;Foundation/Foundation.h&amp;gt;</div><div class="line">#import &amp;lt;UIKit/UIKitDefines.h&amp;gt;</div><div class="line"></div><div class="line">@class UIViewController;</div><div class="line"></div><div class="line">NS_CLASS_AVAILABLE_IOS(5_0) @interface UIStoryboardSegue : NSObject</div><div class="line"></div><div class="line">// Convenience constructor for returning a segue that performs a handler block in its -perform method.</div><div class="line">+ (instancetype)segueWithIdentifier:(NSString *)identifier source:(UIViewController *)source destination:(UIViewController *)destination performHandler:(void (^)(void))performHandler NS_AVAILABLE_IOS(6_0);</div><div class="line"></div><div class="line">- (instancetype)initWithIdentifier:(NSString *)identifier source:(UIViewController *)source destination:(UIViewController *)destination; // Designated initializer</div><div class="line"></div><div class="line">@property (nonatomic, readonly) NSString *identifier;</div><div class="line">@property (nonatomic, readonly) id sourceViewController;</div><div class="line">@property (nonatomic, readonly) id destinationViewController;</div><div class="line"></div><div class="line">- (void)perform;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/09/uistoryboardsegue-explanation/#more" rel="contents">
+            <a class="btn" href="/2015/07/09/UIStoryboardSegue讲解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/07/uiview-commonly-used-properties-and-methods/" itemprop="url">
-                  UIview常用属性及方法翻译.
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-07T15:47:42+08:00" content="2015-07-07">
-              2015-07-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/OC/" itemprop="url" rel="index">
-                    <span itemprop="name">OC</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/OC/UI/" itemprop="url" rel="index">
-                    <span itemprop="name">UI</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><pre class="lang:objc decode:true  ">@interface UIView : UIResponder&lt;NSCoding, UIAppearance, UIAppearanceContainer, UIDynamicItem&gt;</pre></p>
-<p>/**</p>
-<ul>
-<li>通过一个frame来初始化一个UI控件<br>*/<ul>
-<li>(id)initWithFrame:(CGRect)frame;</li>
-</ul>
-</li>
-</ul>
-<p>// YES:能够跟用户进行交互<br>@property(nonatomic,getter=isUserInteractionEnabled) BOOL userInteractionEnabled;  // default is YES</p>
-<p>// 控件的一个标记(父控件可以通过tag找到对应的子控件)<br>@property(nonatomic)                                 NSInteger tag;                // default is 0</p>
-<p>// 图层(可以用来设置圆角效果\阴影效果)<br>@property(nonatomic,readonly,retain)                 CALayer  *layer;</p>
-<p>@end</p>
-<p>@interface UIView(UIViewGeometry)<br>// 位置和尺寸(以父控件的左上角为坐标原点(0, 0))<br>@property(nonatomic) CGRect            frame;</p>
-<p>// 位置和尺寸(以自己的左上角为坐标原点(0, 0))<br>@property(nonatomic) CGRect            bounds;</p>
-<p>// 中点(以父控件的左上角为坐标原点(0, 0))<br>@property(nonatomic) CGPoint           center;      </p>
-<p>// 形变属性(平移\缩放\旋转)<br>@property(nonatomic) CGAffineTransform transform;   // default is CGAffineTransformIdentity</p>
-<p>// YES:支持多点触摸<br>@property(nonatomic,getter=isMultipleTouchEnabled) BOOL multipleTouchEnabled;   // default is NO<br>@end</p>
-<p>@interface UIView(UIViewHierarchy)<br>// 父控件<br>@property(nonatomic,readonly) UIView       *superview;</p>
-<p>// 子控件(新添加的控件默认都在subviews数组的后面, 新添加的控件默认都显示在最上面\最顶部)<br>@property(nonatomic,readonly,copy) NSArray *subviews;</p>
-<p>// 获得当前控件所在的window<br>@property(nonatomic,readonly) UIWindow     *window;</p>
-<p>// 从父控件中移除一个控件</p>
-<ul>
-<li>(void)removeFromSuperview;</li>
-</ul>
-<p>// 添加一个子控件(可以将子控件插入到subviews数组中index这个位置)</p>
-<ul>
-<li>(void)insertSubview:(UIView *)view atIndex:(NSInteger)index;</li>
-</ul>
-<p>// 交换subviews数组中所存放子控件的位置</p>
-<ul>
-<li>(void)exchangeSubviewAtIndex:(NSInteger)index1 withSubviewAtIndex:(NSInteger)index2;</li>
-</ul>
-<p>// 添加一个子控件(新添加的控件默认都在subviews数组的后面, 新添加的控件默认都显示在最上面\最顶部)</p>
-<ul>
-<li>(void)addSubview:(UIView *)view;</li>
-</ul>
-<p>// 添加一个子控件view(被挡在siblingSubview的下面)</p>
-<ul>
-<li>(void)insertSubview:(UIView <em>)view belowSubview:(UIView </em>)siblingSubview;</li>
-</ul>
-<p>// 添加一个子控件view(盖在siblingSubview的上面)</p>
-<ul>
-<li>(void)insertSubview:(UIView <em>)view aboveSubview:(UIView </em>)siblingSubview;</li>
-</ul>
-<p>// 将某个子控件拉到最上面(最顶部)来显示</p>
-<ul>
-<li>(void)bringSubviewToFront:(UIView *)view;</li>
-</ul>
-<p>// 将某个子控件拉到最下面(最底部)来显示</p>
-<ul>
-<li>(void)sendSubviewToBack:(UIView *)view;</li>
-</ul>
-<p>/<strong>系统自动调用(留给子类去实现)</strong>/</p>
-<ul>
-<li>(void)didAddSubview:(UIView *)subview;</li>
-<li><p>(void)willRemoveSubview:(UIView *)subview;</p>
-</li>
-<li><p>(void)willMoveToSuperview:(UIView *)newSuperview;</p>
-</li>
-<li>(void)didMoveToSuperview;</li>
-<li>(void)willMoveToWindow:(UIWindow *)newWindow;</li>
-<li>(void)didMoveToWindow;<br>/<strong>系统自动调用</strong>/</li>
-</ul>
-<p>// 是不是view的子控件或者子控件的子控件(是否为view的后代)</p>
-<ul>
-<li>(BOOL)isDescendantOfView:(UIView *)view;  // returns YES for self.</li>
-</ul>
-<p>// 通过tag获得对应的子控件(也可以或者子控件的子控件)</p>
-<ul>
-<li>(UIView *)viewWithTag:(NSInteger)tag;     // recursive search. includes self</li>
-</ul>
-<p>/<strong>系统自动调用(留给子类去实现)</strong>/<br>// 控件的frame发生改变的时候就会调用,一般在这里重写布局子控件的位置和尺寸<br>// 重写了这个写方法后,一定调用[super layoutSubviews];</p>
-<ul>
-<li>(void)layoutSubviews;</li>
-</ul>
-<p>@end</p>
-<p>@interface UIView(UIViewRendering)<br>// YES : 超出控件边框范围的内容都剪掉<br>@property(nonatomic)                 BOOL              clipsToBounds;</p>
-<p>// 背景色<br>@property(nonatomic,copy)            UIColor          *backgroundColor; // default is nil</p>
-<p>// 透明度(0.0~1.0)<br>@property(nonatomic)                 CGFloat           alpha;                      // default is 1.0</p>
-<p>// YES:不透明  NO:透明<br>@property(nonatomic,getter=isOpaque) BOOL              opaque;                     // default is YES</p>
-<p>// YES : 隐藏  NO : 显示<br>@property(nonatomic,getter=isHidden) BOOL              hidden;</p>
-<p>// 内容模式<br>@property(nonatomic)                 UIViewContentMode contentMode;                // default is UIViewContentModeScaleToFill<br>@end</p>
-<p>@interface UIView(UIViewAnimationWithBlocks)</p>
-<ul>
-<li>(void)animateWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;</li>
-<li><p>(void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;</p>
-</li>
-<li><p>(void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations;</p>
-</li>
-<li>(void)animateWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay usingSpringWithDamping:(CGFloat)dampingRatio initialSpringVelocity:(CGFloat)velocity options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;<br>@end<br>&nbsp;</li>
-</ul>
-
-          
         
       
     </div>
@@ -1478,43 +1072,43 @@ return _htmls;
       
         
           
-            <p>这两个概念困扰我很久了，一直都很像搞清楚到非正式协议和正式协议有什么区别和联系，下面结合网上的资料和自己的看法谈谈这个问题。</p>
-<p>一、非正式协议</p>
-<p>显然这个名词是相对于正式协议而言的。在解释非正式协议之前，先引用两段话：</p>
-<p>1、在《Cocoa设计模式》第六章类别的6.3.2把类别用于非正式协议一节中，这样写到：</p>
-<p>非正式协议通常定义为NSObject的类别。类别接口中指定的方法可能会或者可能不会被框架类实际地实现。非正式协议位于一种设计灰区中。正式协议由编译器检查并且代表一种关于对象能力的保证，但是非正式协议不会做出保证—-而只会给出提示。</p>
-<p>2、苹果官方文档<a href="http://developer.apple.com/library/ios/#documentation/general/conceptual/devpedia-cocoacore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45-SW2" target="_blank" rel="external">Cocoa Core Competencies</a>一文中是这样介绍非正式协议的：</p>
+            <p>&#x8FD9;&#x4E24;&#x4E2A;&#x6982;&#x5FF5;&#x56F0;&#x6270;&#x6211;&#x5F88;&#x4E45;&#x4E86;&#xFF0C;&#x4E00;&#x76F4;&#x90FD;&#x5F88;&#x50CF;&#x641E;&#x6E05;&#x695A;&#x5230;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x548C;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x548C;&#x8054;&#x7CFB;&#xFF0C;&#x4E0B;&#x9762;&#x7ED3;&#x5408;&#x7F51;&#x4E0A;&#x7684;&#x8D44;&#x6599;&#x548C;&#x81EA;&#x5DF1;&#x7684;&#x770B;&#x6CD5;&#x8C08;&#x8C08;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x4E00;&#x3001;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;</p>
+<p>&#x663E;&#x7136;&#x8FD9;&#x4E2A;&#x540D;&#x8BCD;&#x662F;&#x76F8;&#x5BF9;&#x4E8E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x800C;&#x8A00;&#x7684;&#x3002;&#x5728;&#x89E3;&#x91CA;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E4B;&#x524D;&#xFF0C;&#x5148;&#x5F15;&#x7528;&#x4E24;&#x6BB5;&#x8BDD;&#xFF1A;</p>
+<p>1&#x3001;&#x5728;&#x300A;Cocoa&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x300B;&#x7B2C;&#x516D;&#x7AE0;&#x7C7B;&#x522B;&#x7684;6.3.2&#x628A;&#x7C7B;&#x522B;&#x7528;&#x4E8E;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E00;&#x8282;&#x4E2D;&#xFF0C;&#x8FD9;&#x6837;&#x5199;&#x5230;&#xFF1A;</p>
+<p>&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x901A;&#x5E38;&#x5B9A;&#x4E49;&#x4E3A;NSObject&#x7684;&#x7C7B;&#x522B;&#x3002;&#x7C7B;&#x522B;&#x63A5;&#x53E3;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x80FD;&#x4F1A;&#x6216;&#x8005;&#x53EF;&#x80FD;&#x4E0D;&#x4F1A;&#x88AB;&#x6846;&#x67B6;&#x7C7B;&#x5B9E;&#x9645;&#x5730;&#x5B9E;&#x73B0;&#x3002;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4F4D;&#x4E8E;&#x4E00;&#x79CD;&#x8BBE;&#x8BA1;&#x7070;&#x533A;&#x4E2D;&#x3002;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x7531;&#x7F16;&#x8BD1;&#x5668;&#x68C0;&#x67E5;&#x5E76;&#x4E14;&#x4EE3;&#x8868;&#x4E00;&#x79CD;&#x5173;&#x4E8E;&#x5BF9;&#x8C61;&#x80FD;&#x529B;&#x7684;&#x4FDD;&#x8BC1;&#xFF0C;&#x4F46;&#x662F;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E0D;&#x4F1A;&#x505A;&#x51FA;&#x4FDD;&#x8BC1;&#x2014;-&#x800C;&#x53EA;&#x4F1A;&#x7ED9;&#x51FA;&#x63D0;&#x793A;&#x3002;</p>
+<p>2&#x3001;&#x82F9;&#x679C;&#x5B98;&#x65B9;&#x6587;&#x6863;<a href="http://developer.apple.com/library/ios/#documentation/general/conceptual/devpedia-cocoacore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45-SW2" target="_blank" rel="external">Cocoa Core Competencies</a>&#x4E00;&#x6587;&#x4E2D;&#x662F;&#x8FD9;&#x6837;&#x4ECB;&#x7ECD;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x7684;&#xFF1A;</p>
 <p>An informal protocol is a category on <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/Reference/Reference.html#//apple_ref/occ/cl/NSObject" target="_blank" rel="external">NSObject</a>, which implicitly makes almost all objects adopters of the protocol. (A category is a language feature that enables you to add methods to a class without subclassing it.) Implementation of the methods in an informal protocol is optional. Before invoking a method, the calling object checks to see whether the target object implements it. Until optional protocol methods were introduced in Objective-C 2.0, informal protocols were essential to the way Foundation and AppKit classes implemented delegation.</p>
-<p>大概意思：非正式协议是NSObject类（显而易见，还包括它的子类）的类别，其所有的子类都含蓄地接受了这个协议。（类别是Objective-C的一个语言特点，可以让你在无需子类化的前提下为一个类增加方法。）非正式协议中的方法是否实现都是可选的，因此在调用非正式协议中的方法之前，需要去检查对象类是否实现了它。在Objective-C2.0中引入可选的正式协议方法之前，非正式协议是Foundation和AppKit类实现委托的唯一方式。</p>
-<p>3、到底什么是非正式协议</p>
-<p>综合1、2两段引文可以看出，所谓的非正式协议就是类别，即凡是NSObject或其子类的类别，都是非正式协议。</p>
-<p>4、类别和匿名类别</p>
-<p>类别的写法：</p>
-<p><pre class="lang:objc decode:true">@interface NSString (CamelCase)  //类别<br>-(NSString*) camelCaseString;<br>@end</pre><br>这里的CamelCase就是类别名称，跟类名一样不能重复。总所周知，类别只能增加方法，不能增加实例变量，但是类别还有下面这样一种写法：</p>
-<p><pre class="lang:objc decode:true">@interface MyClass () { //类扩展<br>    float value;<br>}    </pre></p>
+<p>&#x5927;&#x6982;&#x610F;&#x601D;&#xFF1A;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x662F;NSObject&#x7C7B;&#xFF08;&#x663E;&#x800C;&#x6613;&#x89C1;&#xFF0C;&#x8FD8;&#x5305;&#x62EC;&#x5B83;&#x7684;&#x5B50;&#x7C7B;&#xFF09;&#x7684;&#x7C7B;&#x522B;&#xFF0C;&#x5176;&#x6240;&#x6709;&#x7684;&#x5B50;&#x7C7B;&#x90FD;&#x542B;&#x84C4;&#x5730;&#x63A5;&#x53D7;&#x4E86;&#x8FD9;&#x4E2A;&#x534F;&#x8BAE;&#x3002;&#xFF08;&#x7C7B;&#x522B;&#x662F;Objective-C&#x7684;&#x4E00;&#x4E2A;&#x8BED;&#x8A00;&#x7279;&#x70B9;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9;&#x4F60;&#x5728;&#x65E0;&#x9700;&#x5B50;&#x7C7B;&#x5316;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x4E3A;&#x4E00;&#x4E2A;&#x7C7B;&#x589E;&#x52A0;&#x65B9;&#x6CD5;&#x3002;&#xFF09;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x90FD;&#x662F;&#x53EF;&#x9009;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x8C03;&#x7528;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x53BB;&#x68C0;&#x67E5;&#x5BF9;&#x8C61;&#x7C7B;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x4E86;&#x5B83;&#x3002;&#x5728;Objective-C2.0&#x4E2D;&#x5F15;&#x5165;&#x53EF;&#x9009;&#x7684;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x65B9;&#x6CD5;&#x4E4B;&#x524D;&#xFF0C;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x662F;Foundation&#x548C;AppKit&#x7C7B;&#x5B9E;&#x73B0;&#x59D4;&#x6258;&#x7684;&#x552F;&#x4E00;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>3&#x3001;&#x5230;&#x5E95;&#x4EC0;&#x4E48;&#x662F;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;</p>
+<p>&#x7EFC;&#x5408;1&#x3001;2&#x4E24;&#x6BB5;&#x5F15;&#x6587;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x6240;&#x8C13;&#x7684;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x5C31;&#x662F;&#x7C7B;&#x522B;&#xFF0C;&#x5373;&#x51E1;&#x662F;NSObject&#x6216;&#x5176;&#x5B50;&#x7C7B;&#x7684;&#x7C7B;&#x522B;&#xFF0C;&#x90FD;&#x662F;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x3002;</p>
+<p>4&#x3001;&#x7C7B;&#x522B;&#x548C;&#x533F;&#x540D;&#x7C7B;&#x522B;</p>
+<p>&#x7C7B;&#x522B;&#x7684;&#x5199;&#x6CD5;&#xFF1A;</p>
+<p><pre class="lang:objc decode:true">@interface NSString (CamelCase)  //&#x7C7B;&#x522B;<br>-(NSString*) camelCaseString;<br>@end</pre><br>&#x8FD9;&#x91CC;&#x7684;CamelCase&#x5C31;&#x662F;&#x7C7B;&#x522B;&#x540D;&#x79F0;&#xFF0C;&#x8DDF;&#x7C7B;&#x540D;&#x4E00;&#x6837;&#x4E0D;&#x80FD;&#x91CD;&#x590D;&#x3002;&#x603B;&#x6240;&#x5468;&#x77E5;&#xFF0C;&#x7C7B;&#x522B;&#x53EA;&#x80FD;&#x589E;&#x52A0;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x80FD;&#x589E;&#x52A0;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF0C;&#x4F46;&#x662F;&#x7C7B;&#x522B;&#x8FD8;&#x6709;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;</p>
+<p><pre class="lang:objc decode:true">@interface MyClass () { //&#x7C7B;&#x6269;&#x5C55;<br>    float value;<br>}    </pre></p>
 <ul>
-<li>(void)setValue:(float)newValue;<br>@end<br>这种写法的类别叫匿名类别，又叫类扩展，所谓的扩展，其实就是为一个类添加额外的原来没有的变量、方法或者合成属性。</li>
+<li>(void)setValue:(float)newValue;<br>@end<br>&#x8FD9;&#x79CD;&#x5199;&#x6CD5;&#x7684;&#x7C7B;&#x522B;&#x53EB;&#x533F;&#x540D;&#x7C7B;&#x522B;&#xFF0C;&#x53C8;&#x53EB;&#x7C7B;&#x6269;&#x5C55;&#xFF0C;&#x6240;&#x8C13;&#x7684;&#x6269;&#x5C55;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E3A;&#x4E00;&#x4E2A;&#x7C7B;&#x6DFB;&#x52A0;&#x989D;&#x5916;&#x7684;&#x539F;&#x6765;&#x6CA1;&#x6709;&#x7684;&#x53D8;&#x91CF;&#x3001;&#x65B9;&#x6CD5;&#x6216;&#x8005;&#x5408;&#x6210;&#x5C5E;&#x6027;&#x3002;</li>
 </ul>
-<p>类别与类扩展的区别：</p>
-<p>①类别中只能增加方法；</p>
-<p>②是的，你没看错，类扩展不仅可以增加方法，还可以增加实例变量（或者合成属性），只是该实例变量默认是@private类型的（作用范围只能在自身类，而不是子类或其他地方）；</p>
-<p>③类扩展中声明的方法没被实现，编译器会报警，但是类别中的方法没被实现编译器是不会有任何警告的。这是因为类扩展是在编译阶段被添加到类中，而类别是在运行时添加到类中。</p>
-<p>④类扩展不能像类别那样拥有独立的实现部分（@implementation部分），也就是说，类扩展所声明的方法必须依托对应类的实现部分来实现。</p>
-<p>⑤定义在 .m 文件中的类扩展方法为私有的，定义在 .h 文件（头文件）中的类扩展方法为公有的。类扩展是在 .m 文件中声明私有方法的非常好的方式。</p>
-<p>二、正式协议</p>
-<p>正式协议从概念上理解起来就简单的多了，它指的是一个以@protocol方式命名的方法列表，与非正式协议相比不同的是，它要求显示的采用协议。</p>
-<p>1、正式协议的方法类型</p>
-<p>正式协议声明的方法有两种类型的：</p>
-<p>①@required</p>
-<p>该类的方法在遵守相应协议的类中是必须被实现的，不然编译器会告警（显然这是在编译时做的检查，而不是在运行时）</p>
-<p>②@optional</p>
-<p>该类的方法在遵守相应协议的类中是否实现是可选的</p>
-<p>2、正式协议存在的意义</p>
-<p>从字面上理解，正式协议比非正式协议要正式了很多，它存在的意义在于：</p>
-<p>正式协议可以将业务中的方法定义剥离出来，形成一个单独的文件，这跟传统OO中的提取接口是不谋而合的。如果遇到二个系统需要交换数据，可以制定一套双方都遵守的协议，然后这二个系统中都把这个协议文件添加到项目中，实现它即可。</p>
-<p>3、继承性</p>
-<p>正式协议和类一样，是可以继承的，书写格式同类继承相似：</p>
-<p><pre class="lang:objc decode:true">@protocol NewProtocal   &lt;Protocal&gt;</pre><br>&nbsp;</p>
+<p>&#x7C7B;&#x522B;&#x4E0E;&#x7C7B;&#x6269;&#x5C55;&#x7684;&#x533A;&#x522B;&#xFF1A;</p>
+<p>&#x2460;&#x7C7B;&#x522B;&#x4E2D;&#x53EA;&#x80FD;&#x589E;&#x52A0;&#x65B9;&#x6CD5;&#xFF1B;</p>
+<p>&#x2461;&#x662F;&#x7684;&#xFF0C;&#x4F60;&#x6CA1;&#x770B;&#x9519;&#xFF0C;&#x7C7B;&#x6269;&#x5C55;&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF08;&#x6216;&#x8005;&#x5408;&#x6210;&#x5C5E;&#x6027;&#xFF09;&#xFF0C;&#x53EA;&#x662F;&#x8BE5;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x9ED8;&#x8BA4;&#x662F;@private&#x7C7B;&#x578B;&#x7684;&#xFF08;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x53EA;&#x80FD;&#x5728;&#x81EA;&#x8EAB;&#x7C7B;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5B50;&#x7C7B;&#x6216;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#xFF09;&#xFF1B;</p>
+<p>&#x2462;&#x7C7B;&#x6269;&#x5C55;&#x4E2D;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#x6CA1;&#x88AB;&#x5B9E;&#x73B0;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x62A5;&#x8B66;&#xFF0C;&#x4F46;&#x662F;&#x7C7B;&#x522B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x6CA1;&#x88AB;&#x5B9E;&#x73B0;&#x7F16;&#x8BD1;&#x5668;&#x662F;&#x4E0D;&#x4F1A;&#x6709;&#x4EFB;&#x4F55;&#x8B66;&#x544A;&#x7684;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x7C7B;&#x6269;&#x5C55;&#x662F;&#x5728;&#x7F16;&#x8BD1;&#x9636;&#x6BB5;&#x88AB;&#x6DFB;&#x52A0;&#x5230;&#x7C7B;&#x4E2D;&#xFF0C;&#x800C;&#x7C7B;&#x522B;&#x662F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x6DFB;&#x52A0;&#x5230;&#x7C7B;&#x4E2D;&#x3002;</p>
+<p>&#x2463;&#x7C7B;&#x6269;&#x5C55;&#x4E0D;&#x80FD;&#x50CF;&#x7C7B;&#x522B;&#x90A3;&#x6837;&#x62E5;&#x6709;&#x72EC;&#x7ACB;&#x7684;&#x5B9E;&#x73B0;&#x90E8;&#x5206;&#xFF08;@implementation&#x90E8;&#x5206;&#xFF09;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x7C7B;&#x6269;&#x5C55;&#x6240;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#x5FC5;&#x987B;&#x4F9D;&#x6258;&#x5BF9;&#x5E94;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x90E8;&#x5206;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x2464;&#x5B9A;&#x4E49;&#x5728; .m &#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x7C7B;&#x6269;&#x5C55;&#x65B9;&#x6CD5;&#x4E3A;&#x79C1;&#x6709;&#x7684;&#xFF0C;&#x5B9A;&#x4E49;&#x5728; .h &#x6587;&#x4EF6;&#xFF08;&#x5934;&#x6587;&#x4EF6;&#xFF09;&#x4E2D;&#x7684;&#x7C7B;&#x6269;&#x5C55;&#x65B9;&#x6CD5;&#x4E3A;&#x516C;&#x6709;&#x7684;&#x3002;&#x7C7B;&#x6269;&#x5C55;&#x662F;&#x5728; .m &#x6587;&#x4EF6;&#x4E2D;&#x58F0;&#x660E;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#x7684;&#x975E;&#x5E38;&#x597D;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x4E8C;&#x3001;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;</p>
+<p>&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4ECE;&#x6982;&#x5FF5;&#x4E0A;&#x7406;&#x89E3;&#x8D77;&#x6765;&#x5C31;&#x7B80;&#x5355;&#x7684;&#x591A;&#x4E86;&#xFF0C;&#x5B83;&#x6307;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x4EE5;@protocol&#x65B9;&#x5F0F;&#x547D;&#x540D;&#x7684;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#xFF0C;&#x4E0E;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x76F8;&#x6BD4;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x8981;&#x6C42;&#x663E;&#x793A;&#x7684;&#x91C7;&#x7528;&#x534F;&#x8BAE;&#x3002;</p>
+<p>1&#x3001;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x7684;&#x65B9;&#x6CD5;&#x7C7B;&#x578B;</p>
+<p>&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x4E24;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#xFF1A;</p>
+<p>&#x2460;@required</p>
+<p>&#x8BE5;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5728;&#x9075;&#x5B88;&#x76F8;&#x5E94;&#x534F;&#x8BAE;&#x7684;&#x7C7B;&#x4E2D;&#x662F;&#x5FC5;&#x987B;&#x88AB;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4E0D;&#x7136;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x544A;&#x8B66;&#xFF08;&#x663E;&#x7136;&#x8FD9;&#x662F;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x505A;&#x7684;&#x68C0;&#x67E5;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#xFF09;</p>
+<p>&#x2461;@optional</p>
+<p>&#x8BE5;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5728;&#x9075;&#x5B88;&#x76F8;&#x5E94;&#x534F;&#x8BAE;&#x7684;&#x7C7B;&#x4E2D;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x662F;&#x53EF;&#x9009;&#x7684;</p>
+<p>2&#x3001;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x5B58;&#x5728;&#x7684;&#x610F;&#x4E49;</p>
+<p>&#x4ECE;&#x5B57;&#x9762;&#x4E0A;&#x7406;&#x89E3;&#xFF0C;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x6BD4;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x8981;&#x6B63;&#x5F0F;&#x4E86;&#x5F88;&#x591A;&#xFF0C;&#x5B83;&#x5B58;&#x5728;&#x7684;&#x610F;&#x4E49;&#x5728;&#x4E8E;&#xFF1A;</p>
+<p>&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x53EF;&#x4EE5;&#x5C06;&#x4E1A;&#x52A1;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x5265;&#x79BB;&#x51FA;&#x6765;&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x8DDF;&#x4F20;&#x7EDF;OO&#x4E2D;&#x7684;&#x63D0;&#x53D6;&#x63A5;&#x53E3;&#x662F;&#x4E0D;&#x8C0B;&#x800C;&#x5408;&#x7684;&#x3002;&#x5982;&#x679C;&#x9047;&#x5230;&#x4E8C;&#x4E2A;&#x7CFB;&#x7EDF;&#x9700;&#x8981;&#x4EA4;&#x6362;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x4EE5;&#x5236;&#x5B9A;&#x4E00;&#x5957;&#x53CC;&#x65B9;&#x90FD;&#x9075;&#x5B88;&#x7684;&#x534F;&#x8BAE;&#xFF0C;&#x7136;&#x540E;&#x8FD9;&#x4E8C;&#x4E2A;&#x7CFB;&#x7EDF;&#x4E2D;&#x90FD;&#x628A;&#x8FD9;&#x4E2A;&#x534F;&#x8BAE;&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x5230;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x5B9E;&#x73B0;&#x5B83;&#x5373;&#x53EF;&#x3002;</p>
+<p>3&#x3001;&#x7EE7;&#x627F;&#x6027;</p>
+<p>&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x548C;&#x7C7B;&#x4E00;&#x6837;&#xFF0C;&#x662F;&#x53EF;&#x4EE5;&#x7EE7;&#x627F;&#x7684;&#xFF0C;&#x4E66;&#x5199;&#x683C;&#x5F0F;&#x540C;&#x7C7B;&#x7EE7;&#x627F;&#x76F8;&#x4F3C;&#xFF1A;</p>
+<p><pre class="lang:objc decode:true">@protocol NewProtocal   &lt;Protocal&gt;</pre><br>&#xA0;</p>
 
           
         
@@ -1638,13 +1232,247 @@ return _htmls;
 
       
         
-          <p>首先，大家应该都非常清楚明白委托(代理)其实协议的一种，顾名思义，就是委托他人帮自己去做什么事,或者他人代谁去坐某事。也就是当自己做什么事情不方便的时候，就可以建立一个委托，这样就可以委托他人帮自己去实现什么方法。</p>
-<div></div><br>&gt; <div>委托一般情况做以下几件事情</div><br>&gt;<br>&gt; <div>传值:所谓传值经常用在b类要把自己的一个数据或者对象传给a类，让a类去展示或者处理。（提高代码可复制性，可移植性，和代码分块的时候经常用）</div><br>&gt;<br>&gt; <div>传事件:所谓传事件就是a类发生了什么事，把这件事告诉关注自己的人，也就是委托的对象，由委托的对象去考虑发生这个事件后应该做出什么反映。（这个经常见，例如在异步请求中，界面事件触发数据层改变等等）</div><br>&gt;<br>&gt; <div>赋值:这种方法感觉是为了不暴露自己的属性就可以给自己复值，而且这样更方便了类的管理，只有在你想要让别人给你赋值的时候才调用，这样的赋值更可控一些。（例如tableView中的委托（dateSource）中常见）。</div><br><div></div><br><div>最后，我想分享一下在使用委托的时候的一些心得和注意事项。</div><br><div></div><br><div>心得：delegate的命名要准确，尽量看名字就知道用法。delegate和通知有的用法有些象，但是前者是单对单的，后者是单对多的情况。</div><br>&gt; 命名:<br>&gt; 1.协议名一般以类名开头,如(<span class="s2"> BMfirendHeaderViewDelegate</span>)<br>&gt; 2.委托的外部声明属性一般固定为delegate.(有经验的程序员一般会默认在你类名后面”.”一个delegate,如果有马上成为代理看看)<br>&gt; 3.委托方法一般也以类名开头,且不加标示符.(有经验的程序员查看你的代理方法会直接成为代理后输入你的类名查看代理方法)<br>&gt; 4.委托方法一般不是特殊轻快都@optional.<br>&gt; 5.委托方法一般会使用should、will、did这3个关键字表面状态.<br>&gt; 具体更多书写规范可以查看官方示例.<br><div>注意：在dealloc要把delegate至为nil，还有就是delegate设置属性的时候要用assign，不要用retain。</div><br>
+          <p>&#x9996;&#x5148;&#xFF0C;&#x5927;&#x5BB6;&#x5E94;&#x8BE5;&#x90FD;&#x975E;&#x5E38;&#x6E05;&#x695A;&#x660E;&#x767D;&#x59D4;&#x6258;(&#x4EE3;&#x7406;)&#x5176;&#x5B9E;&#x534F;&#x8BAE;&#x7684;&#x4E00;&#x79CD;&#xFF0C;&#x987E;&#x540D;&#x601D;&#x4E49;&#xFF0C;&#x5C31;&#x662F;&#x59D4;&#x6258;&#x4ED6;&#x4EBA;&#x5E2E;&#x81EA;&#x5DF1;&#x53BB;&#x505A;&#x4EC0;&#x4E48;&#x4E8B;,&#x6216;&#x8005;&#x4ED6;&#x4EBA;&#x4EE3;&#x8C01;&#x53BB;&#x5750;&#x67D0;&#x4E8B;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x5F53;&#x81EA;&#x5DF1;&#x505A;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;&#x4E0D;&#x65B9;&#x4FBF;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x59D4;&#x6258;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x59D4;&#x6258;&#x4ED6;&#x4EBA;&#x5E2E;&#x81EA;&#x5DF1;&#x53BB;&#x5B9E;&#x73B0;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x3002;</p>
+<div></div><br>&gt; <div>&#x59D4;&#x6258;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x505A;&#x4EE5;&#x4E0B;&#x51E0;&#x4EF6;&#x4E8B;&#x60C5;</div><br>&gt;<br>&gt; <div>&#x4F20;&#x503C;:&#x6240;&#x8C13;&#x4F20;&#x503C;&#x7ECF;&#x5E38;&#x7528;&#x5728;b&#x7C7B;&#x8981;&#x628A;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6216;&#x8005;&#x5BF9;&#x8C61;&#x4F20;&#x7ED9;a&#x7C7B;&#xFF0C;&#x8BA9;a&#x7C7B;&#x53BB;&#x5C55;&#x793A;&#x6216;&#x8005;&#x5904;&#x7406;&#x3002;&#xFF08;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x53EF;&#x590D;&#x5236;&#x6027;&#xFF0C;&#x53EF;&#x79FB;&#x690D;&#x6027;&#xFF0C;&#x548C;&#x4EE3;&#x7801;&#x5206;&#x5757;&#x7684;&#x65F6;&#x5019;&#x7ECF;&#x5E38;&#x7528;&#xFF09;</div><br>&gt;<br>&gt; <div>&#x4F20;&#x4E8B;&#x4EF6;:&#x6240;&#x8C13;&#x4F20;&#x4E8B;&#x4EF6;&#x5C31;&#x662F;a&#x7C7B;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#xFF0C;&#x628A;&#x8FD9;&#x4EF6;&#x4E8B;&#x544A;&#x8BC9;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x7684;&#x4EBA;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x59D4;&#x6258;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x7531;&#x59D4;&#x6258;&#x7684;&#x5BF9;&#x8C61;&#x53BB;&#x8003;&#x8651;&#x53D1;&#x751F;&#x8FD9;&#x4E2A;&#x4E8B;&#x4EF6;&#x540E;&#x5E94;&#x8BE5;&#x505A;&#x51FA;&#x4EC0;&#x4E48;&#x53CD;&#x6620;&#x3002;&#xFF08;&#x8FD9;&#x4E2A;&#x7ECF;&#x5E38;&#x89C1;&#xFF0C;&#x4F8B;&#x5982;&#x5728;&#x5F02;&#x6B65;&#x8BF7;&#x6C42;&#x4E2D;&#xFF0C;&#x754C;&#x9762;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x6570;&#x636E;&#x5C42;&#x6539;&#x53D8;&#x7B49;&#x7B49;&#xFF09;</div><br>&gt;<br>&gt; <div>&#x8D4B;&#x503C;:&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x611F;&#x89C9;&#x662F;&#x4E3A;&#x4E86;&#x4E0D;&#x66B4;&#x9732;&#x81EA;&#x5DF1;&#x7684;&#x5C5E;&#x6027;&#x5C31;&#x53EF;&#x4EE5;&#x7ED9;&#x81EA;&#x5DF1;&#x590D;&#x503C;&#xFF0C;&#x800C;&#x4E14;&#x8FD9;&#x6837;&#x66F4;&#x65B9;&#x4FBF;&#x4E86;&#x7C7B;&#x7684;&#x7BA1;&#x7406;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x4F60;&#x60F3;&#x8981;&#x8BA9;&#x522B;&#x4EBA;&#x7ED9;&#x4F60;&#x8D4B;&#x503C;&#x7684;&#x65F6;&#x5019;&#x624D;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x8D4B;&#x503C;&#x66F4;&#x53EF;&#x63A7;&#x4E00;&#x4E9B;&#x3002;&#xFF08;&#x4F8B;&#x5982;tableView&#x4E2D;&#x7684;&#x59D4;&#x6258;&#xFF08;dateSource&#xFF09;&#x4E2D;&#x5E38;&#x89C1;&#xFF09;&#x3002;</div><br><div></div><br><div>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x60F3;&#x5206;&#x4EAB;&#x4E00;&#x4E0B;&#x5728;&#x4F7F;&#x7528;&#x59D4;&#x6258;&#x7684;&#x65F6;&#x5019;&#x7684;&#x4E00;&#x4E9B;&#x5FC3;&#x5F97;&#x548C;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x3002;</div><br><div></div><br><div>&#x5FC3;&#x5F97;&#xFF1A;delegate&#x7684;&#x547D;&#x540D;&#x8981;&#x51C6;&#x786E;&#xFF0C;&#x5C3D;&#x91CF;&#x770B;&#x540D;&#x5B57;&#x5C31;&#x77E5;&#x9053;&#x7528;&#x6CD5;&#x3002;delegate&#x548C;&#x901A;&#x77E5;&#x6709;&#x7684;&#x7528;&#x6CD5;&#x6709;&#x4E9B;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x524D;&#x8005;&#x662F;&#x5355;&#x5BF9;&#x5355;&#x7684;&#xFF0C;&#x540E;&#x8005;&#x662F;&#x5355;&#x5BF9;&#x591A;&#x7684;&#x60C5;&#x51B5;&#x3002;</div><br>&gt; &#x547D;&#x540D;:<br>&gt; 1.&#x534F;&#x8BAE;&#x540D;&#x4E00;&#x822C;&#x4EE5;&#x7C7B;&#x540D;&#x5F00;&#x5934;,&#x5982;(<span class="s2"> BMfirendHeaderViewDelegate</span>)<br>&gt; 2.&#x59D4;&#x6258;&#x7684;&#x5916;&#x90E8;&#x58F0;&#x660E;&#x5C5E;&#x6027;&#x4E00;&#x822C;&#x56FA;&#x5B9A;&#x4E3A;delegate.(&#x6709;&#x7ECF;&#x9A8C;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x4E00;&#x822C;&#x4F1A;&#x9ED8;&#x8BA4;&#x5728;&#x4F60;&#x7C7B;&#x540D;&#x540E;&#x9762;&#x201D;.&#x201D;&#x4E00;&#x4E2A;delegate,&#x5982;&#x679C;&#x6709;&#x9A6C;&#x4E0A;&#x6210;&#x4E3A;&#x4EE3;&#x7406;&#x770B;&#x770B;)<br>&gt; 3.&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x4E5F;&#x4EE5;&#x7C7B;&#x540D;&#x5F00;&#x5934;,&#x4E14;&#x4E0D;&#x52A0;&#x6807;&#x793A;&#x7B26;.(&#x6709;&#x7ECF;&#x9A8C;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x67E5;&#x770B;&#x4F60;&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#x4F1A;&#x76F4;&#x63A5;&#x6210;&#x4E3A;&#x4EE3;&#x7406;&#x540E;&#x8F93;&#x5165;&#x4F60;&#x7684;&#x7C7B;&#x540D;&#x67E5;&#x770B;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;)<br>&gt; 4.&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x4E0D;&#x662F;&#x7279;&#x6B8A;&#x8F7B;&#x5FEB;&#x90FD;@optional.<br>&gt; 5.&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x4F1A;&#x4F7F;&#x7528;should&#x3001;will&#x3001;did&#x8FD9;3&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x8868;&#x9762;&#x72B6;&#x6001;.<br>&gt; &#x5177;&#x4F53;&#x66F4;&#x591A;&#x4E66;&#x5199;&#x89C4;&#x8303;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5B98;&#x65B9;&#x793A;&#x4F8B;.<br><div>&#x6CE8;&#x610F;&#xFF1A;&#x5728;dealloc&#x8981;&#x628A;delegate&#x81F3;&#x4E3A;nil&#xFF0C;&#x8FD8;&#x6709;&#x5C31;&#x662F;delegate&#x8BBE;&#x7F6E;&#x5C5E;&#x6027;&#x7684;&#x65F6;&#x5019;&#x8981;&#x7528;assign&#xFF0C;&#x4E0D;&#x8981;&#x7528;retain&#x3002;</div><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/06/delegate-proxy-delegates-experience/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/07/05/nsnotification-and-delegate-usage-and-tips/" itemprop="url">
+                  NSNotification和Delegate使用及心得
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-05T10:08:20+08:00" content="2015-07-05">
+              2015-07-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/Xcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Xcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>&#x9996;&#x5148;,&#x8BF7;&#x786E;&#x4FDD;&#x4EE5;&#x9605;&#x8BFB;: &lt;<a href="http://s-187595.abc188.com/index.php/2015/07/06/delegate-proxy-delegates-experience.html">delegate&#x4EE3;&#x7406;&#xFF08;&#x59D4;&#x6258;&#xFF09;&#x7684;&#x4F7F;&#x7528;&#x5FC3;&#x5F97;</a>&gt; &#x548C; &lt;<a href="http://s-187595.abc188.com/index.php/2015/07/02/message-notification-mechanism-nsnotification.html">&#x6D88;&#x606F;&#x901A;&#x77E5;&#x673A;&#x5236;NSNotification</a>&gt;</p>
+<p>&#x6B63;&#x5982;&#x6211;&#x4EEC;&#x5927;&#x5BB6;&#x90FD;&#x77E5;&#x9053;&#x7684;&#xFF0C;IOS&#x4E2D;&#x7ECF;&#x5E38;&#x4F1A;&#x63D0;&#x5230;NSNotification&#x548C;<a href="http://s-187595.abc188.com/index.php/2015/07/05/delegate-proxy-in-ios-delegates-experience.html">delegate</a>&#x6765;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x3002;&#x5176;&#x5B9E;&#x5728;&#x6211;&#x521A;&#x5F00;&#x59CB;&#x5B66;OC&#x7684;&#x65F6;&#x5019;,&#x5F88;&#x4E45;&#x4E0D;&#x80FD;&#x7406;&#x89E3;&#x8FD9;&#x4E2A;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x6709;&#x4EC0;&#x4E48;&#x7528;.&#x6162;&#x6162;&#x7684;&#x5F53;&#x719F;&#x6089;&#x4E86;MVC,&#x4EE5;&#x53CA;&#x5C01;&#x88C5;&#x601D;&#x60F3;&#x4EE5;&#x540E;,&#x53D1;&#x73B0;&#x8FD9;2&#x4E2A;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x771F;&#x7684;&#x65F6;&#x795E;&#x5668;,&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x4E4B;&#x95F4;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x5462;&#xFF1F;</p>
+<p>NSNotification&#x5C31;&#x662F;IOS&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x4E2A;<strong>&#x6D88;&#x606F;&#x4E2D;&#x5FC3;</strong>&#xFF0C;&#x7531;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x7684;defaultNotification&#x7BA1;&#x7406;&#x5E94;&#x7528;&#x4E2D;&#x7684;&#x6D88;&#x606F;&#x673A;&#x5236;&#x3002;&#x901A;&#x8FC7;&#x516C;&#x5F00;&#x7684;API&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x8FD9;&#x91CC;&#x9762;&#x4F7F;&#x7528;&#x4E86;&#x662F;&#x4E00;&#x4E2A;&#x89C2;&#x5BDF;&#x8005;&#xFF0C;&#x901A;&#x8FC7;&#x6CE8;&#x518C;addObserver&#x548C;&#x89E3;&#x9664;&#x6CE8;&#x518C;removeObserver&#x6765;&#x5B9E;&#x73B0;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x3002;&#x82F9;&#x679C;&#x6587;&#x6863;&#x7279;&#x522B;&#x63D0;&#x51FA;&#xFF0C;&#x5728;&#x7C7B;&#x6790;&#x6784;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8981;&#x8BB0;&#x5F97;&#x628A;removeObserver&#xFF0C;&#x4E0D;&#x7136;&#x5C31;&#x4F1A;&#x5F15;&#x53D1;&#x5D29;&#x6E83;&#xFF0C;&#x6240;&#x4EE5;NSNotifcation&#x7684;&#x4F7F;&#x7528;&#x662F;&#x6CA1;&#x6709;retain+1&#x7684;&#xFF0C;NSNotification&#x662F;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x3002;</p>
+<p>&#x81F3;&#x4E8E;Delegate&#xFF0C;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x9700;&#x8981;&#x8C03;&#x7528;&#x7684;&#x51FD;&#x6570;&#x901A;&#x8FC7;delegate&#x4F20;&#x9012;&#x5230;&#x5176;&#x4ED6;&#x7C7B;&#x4E2D;&#xFF0C;&#x6765;&#x5F97;&#x5F88;&#x76F4;&#x622A;&#x4E86;&#x5F53;&#x3002;&#x4E0D;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x5E7F;&#x64AD;&#x7684;&#x5F62;&#x5F0F;&#x53BB;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x662F;&#xFF0C;delegate&#x7684;&#x5F62;&#x5F0F;&#x53EA;&#x80FD;&#x662F;&#x4E00;&#x5BF9;&#x4E00;&#xFF0C;&#x4E0D;&#x80FD;&#x5B9E;&#x73B0;&#x4E00;&#x5BF9;&#x591A;&#x3002;</p>
+<p>&#x5728;&#x4EC0;&#x4E48;&#x60C5;&#x51B5;&#x4E0B;&#x4F7F;&#x7528;Delegate&#x548C;NSNotifiation&#x5462;&#x3002;&#x4ECE;&#x6548;&#x7387;&#x4E0A;&#x770B;Delegate&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x8F7B;&#x91CF;&#x7EA7;&#x7684;&#xFF0C;&#x76F8;&#x5BF9;delegate&#xFF0C;NSNotification&#x5374;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x91CD;&#x91CF;&#x7EA7;&#x7684;&#xFF0C;&#x6548;&#x7387;&#x4E0A;delegate&#x660E;&#x663E;&#x8981;&#x6BD4;Noticication&#x4F4E;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x6211;&#x4EEC;&#x4F1A;&#x8FD9;&#x6837;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x573A;&#x666F;&#x4E00;&#xFF1A;</p>
+<p>A&#x62E5;&#x6709;B&#xFF0C;&#x7136;&#x540E;B&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#x9700;&#x8981;&#x56DE;&#x8C03;&#x5230;A&#x4E2D;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x7B80;&#x5355;&#x7684;&#x901A;&#x8FC7;delegate&#x56DE;&#x8C03;&#x5230;A&#x3002;&#x56E0;&#x4E3A;B&#x662F;A&#x521B;&#x5EFA;&#x7684;&#xFF0C;B&#x53EF;&#x4EE5;&#x5F88;&#x76F4;&#x63A5;&#x7684;&#x628A;delegate&#x8D4B;&#x503C;A&#x3002;</p>
+<p></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/05/nsnotification-and-delegate-usage-and-tips/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/07/03/Xcode调试断点Debug不显示源代码区/" itemprop="url">
+                  Xcode调试断点Debug不显示源代码区
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-03T16:31:51+08:00" content="2015-07-03">
+              2015-07-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&#x5F53;&#x6211;&#x4EEC;&#x5728;&#x5F00;&#x53D1;Xcode&#x7A0B;&#x5E8F;&#x7684;&#x65F6;&#x5019;,&#x65FA;&#x65FA;&#x8981;&#x7528;&#x5230;Xcode&#x8C03;&#x8BD5;,&#x6709;&#x65F6;&#x53EF;&#x80FD;&#x65E0;&#x610F;&#x4FEE;&#x6539;&#x4E86;&#x67D0;&#x4E2A;&#x914D;&#x7F6E;&#x4FE1;&#x606F;,&#x5BFC;&#x81F4;&#x5728;&#x8C03;&#x8BD5;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x80FD;&#x8FFD;&#x8E2A;&#x5230;&#x5177;&#x4F53;&#x7684;&#x4EE3;&#x7801;&#x533A;&#x57DF;.</p>
+<p>&#x95EE;&#x9898;:&#x5728;&#x6253;&#x65AD;&#x70B9;&#x7684;&#x65F6;&#x5019;,&#x4E00;&#x76F4;&#x5728;Disassembly&#x91CC;&#x9762;&#x8DF3;,&#x4E0D;&#x80FD;&#x663E;&#x793A;&#x6E90;&#x4EE3;&#x7801;.&#x95EE;&#x4E86;&#x597D;&#x591A;&#x4EBA;&#x90FD;&#x6CA1;&#x89E3;&#x51B3;.</p>
+<p><img src="/2015/07/03/Xcode&#x8C03;&#x8BD5;&#x65AD;&#x70B9;Debug&#x4E0D;&#x663E;&#x793A;&#x6E90;&#x4EE3;&#x7801;&#x533A;/QQ20150703-1@2x.png" alt="image"></p>
+<p>&#xA0;</p>
+<p>&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x89E3;&#x51B3;&#x529E;&#x6CD5;,&#x5176;&#x5B9E;&#x5F88;&#x7B80;&#x5355;:</p>
+<p><img src="/2015/07/03/Xcode&#x8C03;&#x8BD5;&#x65AD;&#x70B9;Debug&#x4E0D;&#x663E;&#x793A;&#x6E90;&#x4EE3;&#x7801;&#x533A;/69756B14-BC21-47D7-A992-C30B9A3A0ED0.jpg" alt="image"><br>&#x53D6;&#x6D88;Always Show Disassembly&#x5373;&#x53EF;.</p>
+<p>&#xA0;</p>
+
+          
         
       
     </div>
@@ -1716,7 +1544,7 @@ return _htmls;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

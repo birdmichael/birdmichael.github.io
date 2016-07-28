@@ -84,43 +84,22 @@
 
 
 
-<meta name="description" content="Delegate的使用场合
-对象A内部发生了一些事情,想通知对象B
-对象B想监听对象A内部发生了什么事情
-对象A想在自己的方法内部调用对象B的某个方法,并且对象A不能对对象B有耦合依赖
-对象A想传递数据给对象B
-……以上情况,结果都一样:对象B是对象A的代理(delegate)
-
-### 
-使用delegate的步骤1.先搞清楚谁是谁的代理(delegate)
-2.定义代理协议,协议名称的命名规范">
+<meta name="description" content="Delegate&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x573A;&amp;#x5408;
+&amp;#x5BF9;&amp;#x8C61;A&amp;#x5185;&amp;#x90E8;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4E00;&amp;#x4E9B;&amp;#x4E8B;&amp;#x60C5;,&amp;#x60F3;&amp;#x901A;&amp;#x77E5;&amp;#x5BF9;&amp;#x8C61;B
+&amp;#x5BF9;&amp;#x8C61;B&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Delegate的使用场合">
 <meta property="og:url" content="http://yoursite.com/2015/06/29/delegate-applications/index.html">
 <meta property="og:site_name" content="BirdMichael">
-<meta property="og:description" content="Delegate的使用场合
-对象A内部发生了一些事情,想通知对象B
-对象B想监听对象A内部发生了什么事情
-对象A想在自己的方法内部调用对象B的某个方法,并且对象A不能对对象B有耦合依赖
-对象A想传递数据给对象B
-……以上情况,结果都一样:对象B是对象A的代理(delegate)
-
-### 
-使用delegate的步骤1.先搞清楚谁是谁的代理(delegate)
-2.定义代理协议,协议名称的命名规范">
+<meta property="og:description" content="Delegate&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x573A;&amp;#x5408;
+&amp;#x5BF9;&amp;#x8C61;A&amp;#x5185;&amp;#x90E8;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4E00;&amp;#x4E9B;&amp;#x4E8B;&amp;#x60C5;,&amp;#x60F3;&amp;#x901A;&amp;#x77E5;&amp;#x5BF9;&amp;#x8C61;B
+&amp;#x5BF9;&amp;#x8C61;B&amp;#">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Delegate的使用场合">
-<meta name="twitter:description" content="Delegate的使用场合
-对象A内部发生了一些事情,想通知对象B
-对象B想监听对象A内部发生了什么事情
-对象A想在自己的方法内部调用对象B的某个方法,并且对象A不能对对象B有耦合依赖
-对象A想传递数据给对象B
-……以上情况,结果都一样:对象B是对象A的代理(delegate)
-
-### 
-使用delegate的步骤1.先搞清楚谁是谁的代理(delegate)
-2.定义代理协议,协议名称的命名规范">
+<meta name="twitter:description" content="Delegate&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x573A;&amp;#x5408;
+&amp;#x5BF9;&amp;#x8C61;A&amp;#x5185;&amp;#x90E8;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4E00;&amp;#x4E9B;&amp;#x4E8B;&amp;#x60C5;,&amp;#x60F3;&amp;#x901A;&amp;#x77E5;&amp;#x5BF9;&amp;#x8C61;B
+&amp;#x5BF9;&amp;#x8C61;B&amp;#">
 
 
 
@@ -334,25 +313,25 @@
       
 
       
-        <h3 id="Delegate的使用场合"><a href="#Delegate的使用场合" class="headerlink" title="Delegate的使用场合"></a>Delegate的使用场合</h3><ul>
-<li><strong>对象A</strong>内部发生了一些事情,想通知<strong>对象B</strong></li>
-<li><strong>对象B</strong>想监听<strong>对象A</strong>内部发生了什么事情</li>
-<li><strong>对象A</strong>想在自己的方法内部调用<strong>对象B</strong>的某个方法,<strong>并且对象A不能对对象B有耦合依赖</strong></li>
-<li><strong>对象A</strong>想传递数据给<strong>对象B</strong></li>
-<li>……<br>以上情况,结果都一样:<strong>对象B</strong>是<strong>对象A</strong>的代理(<strong>delegate</strong>)</li>
+        <h3 id="Delegate&#x7684;&#x4F7F;&#x7528;&#x573A;&#x5408;"><a href="#Delegate&#x7684;&#x4F7F;&#x7528;&#x573A;&#x5408;" class="headerlink" title="Delegate&#x7684;&#x4F7F;&#x7528;&#x573A;&#x5408;"></a>Delegate&#x7684;&#x4F7F;&#x7528;&#x573A;&#x5408;</h3><ul>
+<li><strong>&#x5BF9;&#x8C61;A</strong>&#x5185;&#x90E8;&#x53D1;&#x751F;&#x4E86;&#x4E00;&#x4E9B;&#x4E8B;&#x60C5;,&#x60F3;&#x901A;&#x77E5;<strong>&#x5BF9;&#x8C61;B</strong></li>
+<li><strong>&#x5BF9;&#x8C61;B</strong>&#x60F3;&#x76D1;&#x542C;<strong>&#x5BF9;&#x8C61;A</strong>&#x5185;&#x90E8;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;</li>
+<li><strong>&#x5BF9;&#x8C61;A</strong>&#x60F3;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x8C03;&#x7528;<strong>&#x5BF9;&#x8C61;B</strong>&#x7684;&#x67D0;&#x4E2A;&#x65B9;&#x6CD5;,<strong>&#x5E76;&#x4E14;&#x5BF9;&#x8C61;A&#x4E0D;&#x80FD;&#x5BF9;&#x5BF9;&#x8C61;B&#x6709;&#x8026;&#x5408;&#x4F9D;&#x8D56;</strong></li>
+<li><strong>&#x5BF9;&#x8C61;A</strong>&#x60F3;&#x4F20;&#x9012;&#x6570;&#x636E;&#x7ED9;<strong>&#x5BF9;&#x8C61;B</strong></li>
+<li>&#x2026;&#x2026;<br>&#x4EE5;&#x4E0A;&#x60C5;&#x51B5;,&#x7ED3;&#x679C;&#x90FD;&#x4E00;&#x6837;:<strong>&#x5BF9;&#x8C61;B</strong>&#x662F;<strong>&#x5BF9;&#x8C61;A</strong>&#x7684;&#x4EE3;&#x7406;(<strong>delegate</strong>)</li>
 </ul>
 <p>### </p>
-<h3 id="使用delegate的步骤"><a href="#使用delegate的步骤" class="headerlink" title="使用delegate的步骤"></a>使用delegate的步骤</h3><p>1.先搞清楚谁是谁的代理(delegate)</p>
-<p>2.定义代理协议,协议名称的命名规范:控件类名 + Delegate</p>
-<p>3.定义代理方法</p>
-<p>Ø代理方法一般都定义为@optional</p>
-<p>Ø代理方法名都以<strong>控件名开头</strong></p>
-<p>Ø代理方法至少有1个参数,<strong>将控件本身传递出去</strong></p>
-<p>4.设置代理(delegate)对象  (比如myView.delegate = xxxx;)</p>
-<p>Ø代理对象遵守协议</p>
-<p>Ø代理对象实现协议里面该实现的方法</p>
-<p>5.在恰当的时刻调用代理对象(delegate)的代理方法,通知代理发生了什么事情</p>
-<p>(在调用之前判断代理是否实现了该代理方法)</p>
+<h3 id="&#x4F7F;&#x7528;delegate&#x7684;&#x6B65;&#x9AA4;"><a href="#&#x4F7F;&#x7528;delegate&#x7684;&#x6B65;&#x9AA4;" class="headerlink" title="&#x4F7F;&#x7528;delegate&#x7684;&#x6B65;&#x9AA4;"></a>&#x4F7F;&#x7528;delegate&#x7684;&#x6B65;&#x9AA4;</h3><p>1.&#x5148;&#x641E;&#x6E05;&#x695A;&#x8C01;&#x662F;&#x8C01;&#x7684;&#x4EE3;&#x7406;(delegate)</p>
+<p>2.&#x5B9A;&#x4E49;&#x4EE3;&#x7406;&#x534F;&#x8BAE;,&#x534F;&#x8BAE;&#x540D;&#x79F0;&#x7684;&#x547D;&#x540D;&#x89C4;&#x8303;:&#x63A7;&#x4EF6;&#x7C7B;&#x540D; + Delegate</p>
+<p>3.&#x5B9A;&#x4E49;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;</p>
+<p>&#xD8;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x90FD;&#x5B9A;&#x4E49;&#x4E3A;@optional</p>
+<p>&#xD8;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#x540D;&#x90FD;&#x4EE5;<strong>&#x63A7;&#x4EF6;&#x540D;&#x5F00;&#x5934;</strong></p>
+<p>&#xD8;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#x81F3;&#x5C11;&#x6709;1&#x4E2A;&#x53C2;&#x6570;,<strong>&#x5C06;&#x63A7;&#x4EF6;&#x672C;&#x8EAB;&#x4F20;&#x9012;&#x51FA;&#x53BB;</strong></p>
+<p>4.&#x8BBE;&#x7F6E;&#x4EE3;&#x7406;(delegate)&#x5BF9;&#x8C61;  (&#x6BD4;&#x5982;myView.delegate = xxxx;)</p>
+<p>&#xD8;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x9075;&#x5B88;&#x534F;&#x8BAE;</p>
+<p>&#xD8;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x5B9E;&#x73B0;&#x534F;&#x8BAE;&#x91CC;&#x9762;&#x8BE5;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;</p>
+<p>5.&#x5728;&#x6070;&#x5F53;&#x7684;&#x65F6;&#x523B;&#x8C03;&#x7528;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;(delegate)&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;,&#x901A;&#x77E5;&#x4EE3;&#x7406;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;</p>
+<p>(&#x5728;&#x8C03;&#x7528;&#x4E4B;&#x524D;&#x5224;&#x65AD;&#x4EE3;&#x7406;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x4E86;&#x8BE5;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;)</p>
 
       
     </div>
@@ -456,7 +435,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

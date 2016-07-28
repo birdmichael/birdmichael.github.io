@@ -84,16 +84,12 @@
 
 
 
-<meta name="description" content="Cocoa框架是iOS应用程序的基础，了解Cocoa框架，对开发iOS应用有很大的帮助。
-1、Cocoa是什么？Cocoa是OS X和 iOS操作系统的程序的运行环境。
-是什么因素使一个程序成为Cocoa程序呢？不是编程语言，因为在Cocoa开发中你可以使用各种语言；也不是开发工具，你可以在命令行上就可以创建Cocoa程序。Cocoa程序可以这么说，它是由一些对象组成，而这些对象的类最后都是继承于">
+<meta name="description" content="Cocoa&amp;#x6846;&amp;#x67B6;&amp;#x662F;iOS&amp;#x5E94;&amp;#x7528;&amp;#x7A0B;&amp;#x5E8F;&amp;#x7684;&amp;#x57FA;&amp;#x7840;&amp;#xFF0C;&amp;#x4E86;&amp;#x89E3;Cocoa&amp;#x6846;&amp;#x67B6;&amp;#xFF0C;&amp;#x5BF9;&amp;#x5F00;&amp;#x53D1;iOS&amp;#x5E94;&amp;#x7528;&amp;#x6709;&amp;#x5F88;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IOS 整体框架类图">
 <meta property="og:url" content="http://yoursite.com/2015/06/29/ios-framework-class-diagram/index.html">
 <meta property="og:site_name" content="BirdMichael">
-<meta property="og:description" content="Cocoa框架是iOS应用程序的基础，了解Cocoa框架，对开发iOS应用有很大的帮助。
-1、Cocoa是什么？Cocoa是OS X和 iOS操作系统的程序的运行环境。
-是什么因素使一个程序成为Cocoa程序呢？不是编程语言，因为在Cocoa开发中你可以使用各种语言；也不是开发工具，你可以在命令行上就可以创建Cocoa程序。Cocoa程序可以这么说，它是由一些对象组成，而这些对象的类最后都是继承于">
+<meta property="og:description" content="Cocoa&amp;#x6846;&amp;#x67B6;&amp;#x662F;iOS&amp;#x5E94;&amp;#x7528;&amp;#x7A0B;&amp;#x5E8F;&amp;#x7684;&amp;#x57FA;&amp;#x7840;&amp;#xFF0C;&amp;#x4E86;&amp;#x89E3;Cocoa&amp;#x6846;&amp;#x67B6;&amp;#xFF0C;&amp;#x5BF9;&amp;#x5F00;&amp;#x53D1;iOS&amp;#x5E94;&amp;#x7528;&amp;#x6709;&amp;#x5F88;">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201210/17/1350459010_4309.jpg">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201210/18/1350526881_2060.jpg">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201210/18/1350526897_3494.jpg">
@@ -109,9 +105,7 @@
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS 整体框架类图">
-<meta name="twitter:description" content="Cocoa框架是iOS应用程序的基础，了解Cocoa框架，对开发iOS应用有很大的帮助。
-1、Cocoa是什么？Cocoa是OS X和 iOS操作系统的程序的运行环境。
-是什么因素使一个程序成为Cocoa程序呢？不是编程语言，因为在Cocoa开发中你可以使用各种语言；也不是开发工具，你可以在命令行上就可以创建Cocoa程序。Cocoa程序可以这么说，它是由一些对象组成，而这些对象的类最后都是继承于">
+<meta name="twitter:description" content="Cocoa&amp;#x6846;&amp;#x67B6;&amp;#x662F;iOS&amp;#x5E94;&amp;#x7528;&amp;#x7A0B;&amp;#x5E8F;&amp;#x7684;&amp;#x57FA;&amp;#x7840;&amp;#xFF0C;&amp;#x4E86;&amp;#x89E3;Cocoa&amp;#x6846;&amp;#x67B6;&amp;#xFF0C;&amp;#x5BF9;&amp;#x5F00;&amp;#x53D1;iOS&amp;#x5E94;&amp;#x7528;&amp;#x6709;&amp;#x5F88;">
 <meta name="twitter:image" content="http://img.my.csdn.net/uploads/201210/17/1350459010_4309.jpg">
 
 
@@ -338,50 +332,50 @@
       
 
       
-        <p>Cocoa框架是iOS应用程序的基础，了解Cocoa框架，对开发iOS应用有很大的帮助。</p>
-<h2 id="1、Cocoa是什么？"><a href="#1、Cocoa是什么？" class="headerlink" title="1、Cocoa是什么？"></a><a name="t0"></a><a name="t0"></a><a name="t0"></a><strong>1、Cocoa是什么？</strong></h2><p>Cocoa是OS X和 iOS操作系统的程序的运行环境。</p>
-<p>是什么因素使一个程序成为Cocoa程序呢？不是编程语言，因为在Cocoa开发中你可以使用各种语言；也不是开发工具，你可以在命令行上就可以创建Cocoa程序。Cocoa程序可以这么说，它是由一些对象组成，而这些对象的类最后都是继承于它们的根类 ：NSObject。而且它们都是基于Objective-C运行环境的。</p>
-<h3 id="1-1、Cocoa框架"><a href="#1-1、Cocoa框架" class="headerlink" title="1.1、Cocoa框架"></a><a name="t1"></a><a name="t1"></a><a name="t1"></a>1.1、Cocoa框架</h3><p>iOS中，Cocoa众多框架中最重要最基本的两个框架是：Foundation 和 UIKit。</p>
-<p>Foundation 和界面无关，也可以说和界面无关的类基本是Foundation框架的，和界面相关的是UIKit框架。</p>
-<p>这两个框架在系统中处于的位置如图：</p>
+        <p>Cocoa&#x6846;&#x67B6;&#x662F;iOS&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x57FA;&#x7840;&#xFF0C;&#x4E86;&#x89E3;Cocoa&#x6846;&#x67B6;&#xFF0C;&#x5BF9;&#x5F00;&#x53D1;iOS&#x5E94;&#x7528;&#x6709;&#x5F88;&#x5927;&#x7684;&#x5E2E;&#x52A9;&#x3002;</p>
+<h2 id="1&#x3001;Cocoa&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"><a href="#1&#x3001;Cocoa&#x662F;&#x4EC0;&#x4E48;&#xFF1F;" class="headerlink" title="1&#x3001;Cocoa&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"></a><a name="t0"></a><a name="t0"></a><a name="t0"></a><strong>1&#x3001;Cocoa&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</strong></h2><p>Cocoa&#x662F;OS X&#x548C; iOS&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x7A0B;&#x5E8F;&#x7684;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x3002;</p>
+<p>&#x662F;&#x4EC0;&#x4E48;&#x56E0;&#x7D20;&#x4F7F;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x6210;&#x4E3A;Cocoa&#x7A0B;&#x5E8F;&#x5462;&#xFF1F;&#x4E0D;&#x662F;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;Cocoa&#x5F00;&#x53D1;&#x4E2D;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5404;&#x79CD;&#x8BED;&#x8A00;&#xFF1B;&#x4E5F;&#x4E0D;&#x662F;&#x5F00;&#x53D1;&#x5DE5;&#x5177;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x4E0A;&#x5C31;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;Cocoa&#x7A0B;&#x5E8F;&#x3002;Cocoa&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x8FD9;&#x4E48;&#x8BF4;&#xFF0C;&#x5B83;&#x662F;&#x7531;&#x4E00;&#x4E9B;&#x5BF9;&#x8C61;&#x7EC4;&#x6210;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x6700;&#x540E;&#x90FD;&#x662F;&#x7EE7;&#x627F;&#x4E8E;&#x5B83;&#x4EEC;&#x7684;&#x6839;&#x7C7B; &#xFF1A;NSObject&#x3002;&#x800C;&#x4E14;&#x5B83;&#x4EEC;&#x90FD;&#x662F;&#x57FA;&#x4E8E;Objective-C&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x7684;&#x3002;</p>
+<h3 id="1-1&#x3001;Cocoa&#x6846;&#x67B6;"><a href="#1-1&#x3001;Cocoa&#x6846;&#x67B6;" class="headerlink" title="1.1&#x3001;Cocoa&#x6846;&#x67B6;"></a><a name="t1"></a><a name="t1"></a><a name="t1"></a>1.1&#x3001;Cocoa&#x6846;&#x67B6;</h3><p>iOS&#x4E2D;&#xFF0C;Cocoa&#x4F17;&#x591A;&#x6846;&#x67B6;&#x4E2D;&#x6700;&#x91CD;&#x8981;&#x6700;&#x57FA;&#x672C;&#x7684;&#x4E24;&#x4E2A;&#x6846;&#x67B6;&#x662F;&#xFF1A;Foundation &#x548C; UIKit&#x3002;</p>
+<p>Foundation &#x548C;&#x754C;&#x9762;&#x65E0;&#x5173;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x8BF4;&#x548C;&#x754C;&#x9762;&#x65E0;&#x5173;&#x7684;&#x7C7B;&#x57FA;&#x672C;&#x662F;Foundation&#x6846;&#x67B6;&#x7684;&#xFF0C;&#x548C;&#x754C;&#x9762;&#x76F8;&#x5173;&#x7684;&#x662F;UIKit&#x6846;&#x67B6;&#x3002;</p>
+<p>&#x8FD9;&#x4E24;&#x4E2A;&#x6846;&#x67B6;&#x5728;&#x7CFB;&#x7EDF;&#x4E2D;&#x5904;&#x4E8E;&#x7684;&#x4F4D;&#x7F6E;&#x5982;&#x56FE;&#xFF1A;</p>
 <p><img src="http://img.my.csdn.net/uploads/201210/17/1350459010_4309.jpg" alt=""></p>
-<h3 id="1-2、Foundation框架"><a href="#1-2、Foundation框架" class="headerlink" title="1.2、Foundation框架"></a><a name="t2"></a><a name="t2"></a><a name="t2"></a>1.2、Foundation框架</h3><p>好吧，那我们看看两个框架的类组织架构图，第一个先看Foundation的，三个图，包括了Foundation所以的类，图中灰色的是iOS不支持的，灰色部分是OS X系统的。</p>
+<h3 id="1-2&#x3001;Foundation&#x6846;&#x67B6;"><a href="#1-2&#x3001;Foundation&#x6846;&#x67B6;" class="headerlink" title="1.2&#x3001;Foundation&#x6846;&#x67B6;"></a><a name="t2"></a><a name="t2"></a><a name="t2"></a>1.2&#x3001;Foundation&#x6846;&#x67B6;</h3><p>&#x597D;&#x5427;&#xFF0C;&#x90A3;&#x6211;&#x4EEC;&#x770B;&#x770B;&#x4E24;&#x4E2A;&#x6846;&#x67B6;&#x7684;&#x7C7B;&#x7EC4;&#x7EC7;&#x67B6;&#x6784;&#x56FE;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x5148;&#x770B;Foundation&#x7684;&#xFF0C;&#x4E09;&#x4E2A;&#x56FE;&#xFF0C;&#x5305;&#x62EC;&#x4E86;Foundation&#x6240;&#x4EE5;&#x7684;&#x7C7B;&#xFF0C;&#x56FE;&#x4E2D;&#x7070;&#x8272;&#x7684;&#x662F;iOS&#x4E0D;&#x652F;&#x6301;&#x7684;&#xFF0C;&#x7070;&#x8272;&#x90E8;&#x5206;&#x662F;OS X&#x7CFB;&#x7EDF;&#x7684;&#x3002;</p>
 <p><img src="http://img.my.csdn.net/uploads/201210/18/1350526881_2060.jpg" alt=""> <img src="http://img.my.csdn.net/uploads/201210/18/1350526897_3494.jpg" alt=""></p>
 <p><img src="http://img.my.csdn.net/uploads/201210/18/1350526913_6659.jpg" alt=""></p>
-<p>将上图Foundation框架中的类进行逻辑分类如下：</p>
+<p>&#x5C06;&#x4E0A;&#x56FE;Foundation&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x7C7B;&#x8FDB;&#x884C;&#x903B;&#x8F91;&#x5206;&#x7C7B;&#x5982;&#x4E0B;&#xFF1A;</p>
 <ol>
-<li>值对象</li>
-<li>集合</li>
-<li>操作系统服务 包括下面三个：文件系统和URL   <strong>进程间通讯。</strong> 这个范畴中的大部分类代表不同的系统端口、套接字、和名字服务器，对实现底层的IPC很有用。NSPipe代表一个BSD管道，即一种进程间的单向通讯通道。   <strong>线程和子任务。</strong> NSThread类使您可以创建多线程的程序，而各种锁（lock）类则为彼此竞争的线程在访问进程资源时提供各种控制机制。通过NSTask，您的程序可以分出      一个子进程来执行其它工作或进行进度监控。</li>
-<li>通知</li>
-<li>归档和序列化</li>
-<li>表达式和条件判断</li>
-<li>Objective-C语言服务<a id="more"></a>
+<li>&#x503C;&#x5BF9;&#x8C61;</li>
+<li>&#x96C6;&#x5408;</li>
+<li>&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x670D;&#x52A1; &#x5305;&#x62EC;&#x4E0B;&#x9762;&#x4E09;&#x4E2A;&#xFF1A;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x548C;URL   <strong>&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x8BAF;&#x3002;</strong> &#x8FD9;&#x4E2A;&#x8303;&#x7574;&#x4E2D;&#x7684;&#x5927;&#x90E8;&#x5206;&#x7C7B;&#x4EE3;&#x8868;&#x4E0D;&#x540C;&#x7684;&#x7CFB;&#x7EDF;&#x7AEF;&#x53E3;&#x3001;&#x5957;&#x63A5;&#x5B57;&#x3001;&#x548C;&#x540D;&#x5B57;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5BF9;&#x5B9E;&#x73B0;&#x5E95;&#x5C42;&#x7684;IPC&#x5F88;&#x6709;&#x7528;&#x3002;NSPipe&#x4EE3;&#x8868;&#x4E00;&#x4E2A;BSD&#x7BA1;&#x9053;&#xFF0C;&#x5373;&#x4E00;&#x79CD;&#x8FDB;&#x7A0B;&#x95F4;&#x7684;&#x5355;&#x5411;&#x901A;&#x8BAF;&#x901A;&#x9053;&#x3002;   <strong>&#x7EBF;&#x7A0B;&#x548C;&#x5B50;&#x4EFB;&#x52A1;&#x3002;</strong> NSThread&#x7C7B;&#x4F7F;&#x60A8;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x591A;&#x7EBF;&#x7A0B;&#x7684;&#x7A0B;&#x5E8F;&#xFF0C;&#x800C;&#x5404;&#x79CD;&#x9501;&#xFF08;lock&#xFF09;&#x7C7B;&#x5219;&#x4E3A;&#x5F7C;&#x6B64;&#x7ADE;&#x4E89;&#x7684;&#x7EBF;&#x7A0B;&#x5728;&#x8BBF;&#x95EE;&#x8FDB;&#x7A0B;&#x8D44;&#x6E90;&#x65F6;&#x63D0;&#x4F9B;&#x5404;&#x79CD;&#x63A7;&#x5236;&#x673A;&#x5236;&#x3002;&#x901A;&#x8FC7;NSTask&#xFF0C;&#x60A8;&#x7684;&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x5206;&#x51FA;      &#x4E00;&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#x6765;&#x6267;&#x884C;&#x5176;&#x5B83;&#x5DE5;&#x4F5C;&#x6216;&#x8FDB;&#x884C;&#x8FDB;&#x5EA6;&#x76D1;&#x63A7;&#x3002;</li>
+<li>&#x901A;&#x77E5;</li>
+<li>&#x5F52;&#x6863;&#x548C;&#x5E8F;&#x5217;&#x5316;</li>
+<li>&#x8868;&#x8FBE;&#x5F0F;&#x548C;&#x6761;&#x4EF6;&#x5224;&#x65AD;</li>
+<li>Objective-C&#x8BED;&#x8A00;&#x670D;&#x52A1;<a id="more"></a>
 </li>
 </ol>
-<h3 id="1-3-UIKit框架"><a href="#1-3-UIKit框架" class="headerlink" title="1.3 UIKit框架"></a><a name="t3"></a><a name="t3"></a><a name="t3"></a>1.3 UIKit框架</h3><p><div>应用程序可以通过三种方式使用UIKit创建界面</div></p>
+<h3 id="1-3-UIKit&#x6846;&#x67B6;"><a href="#1-3-UIKit&#x6846;&#x67B6;" class="headerlink" title="1.3 UIKit&#x6846;&#x67B6;"></a><a name="t3"></a><a name="t3"></a><a name="t3"></a>1.3 UIKit&#x6846;&#x67B6;</h3><p><div>&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E09;&#x79CD;&#x65B9;&#x5F0F;&#x4F7F;&#x7528;UIKit&#x521B;&#x5EFA;&#x754C;&#x9762;</div></p>
 <div>
 
 <ol>
-<li>在用户界面工具（interface Buidler）从对象库里 拖拽窗口，视图或者其他的对象使用。</li>
-<li>用代码创建</li>
-<li>通过继承UIView类或间接继承UIView类实现自定义用户界面<br></li></ol></div><br><div></div><br><div>框架类组织架构图：</div><br><div><img src="http://img.my.csdn.net/uploads/201210/18/1350528267_1570.jpg" alt=""></div><br><div></div><br><div></div><br>在图中可以看出，responder 类是图中最大分支的根类，UIResponder为处理响应事件和响应链 定义了界面和默认行为。当用户用手指滚动列表或者在虚拟键盘上输入时，UIKit就生成时间传送给UIResponder响应链，直到链中有对象处理这个事件。相应的核心对象，比如：UIApplication  ，UIWindow，UIView都直接或间接的从UIResponder继承。
+<li>&#x5728;&#x7528;&#x6237;&#x754C;&#x9762;&#x5DE5;&#x5177;&#xFF08;interface Buidler&#xFF09;&#x4ECE;&#x5BF9;&#x8C61;&#x5E93;&#x91CC; &#x62D6;&#x62FD;&#x7A97;&#x53E3;&#xFF0C;&#x89C6;&#x56FE;&#x6216;&#x8005;&#x5176;&#x4ED6;&#x7684;&#x5BF9;&#x8C61;&#x4F7F;&#x7528;&#x3002;</li>
+<li>&#x7528;&#x4EE3;&#x7801;&#x521B;&#x5EFA;</li>
+<li>&#x901A;&#x8FC7;&#x7EE7;&#x627F;UIView&#x7C7B;&#x6216;&#x95F4;&#x63A5;&#x7EE7;&#x627F;UIView&#x7C7B;&#x5B9E;&#x73B0;&#x81EA;&#x5B9A;&#x4E49;&#x7528;&#x6237;&#x754C;&#x9762;<br></li></ol></div><br><div></div><br><div>&#x6846;&#x67B6;&#x7C7B;&#x7EC4;&#x7EC7;&#x67B6;&#x6784;&#x56FE;&#xFF1A;</div><br><div><img src="http://img.my.csdn.net/uploads/201210/18/1350528267_1570.jpg" alt=""></div><br><div></div><br><div></div><br>&#x5728;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;responder &#x7C7B;&#x662F;&#x56FE;&#x4E2D;&#x6700;&#x5927;&#x5206;&#x652F;&#x7684;&#x6839;&#x7C7B;&#xFF0C;UIResponder&#x4E3A;&#x5904;&#x7406;&#x54CD;&#x5E94;&#x4E8B;&#x4EF6;&#x548C;&#x54CD;&#x5E94;&#x94FE; &#x5B9A;&#x4E49;&#x4E86;&#x754C;&#x9762;&#x548C;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#x3002;&#x5F53;&#x7528;&#x6237;&#x7528;&#x624B;&#x6307;&#x6EDA;&#x52A8;&#x5217;&#x8868;&#x6216;&#x8005;&#x5728;&#x865A;&#x62DF;&#x952E;&#x76D8;&#x4E0A;&#x8F93;&#x5165;&#x65F6;&#xFF0C;UIKit&#x5C31;&#x751F;&#x6210;&#x65F6;&#x95F4;&#x4F20;&#x9001;&#x7ED9;UIResponder&#x54CD;&#x5E94;&#x94FE;&#xFF0C;&#x76F4;&#x5230;&#x94FE;&#x4E2D;&#x6709;&#x5BF9;&#x8C61;&#x5904;&#x7406;&#x8FD9;&#x4E2A;&#x4E8B;&#x4EF6;&#x3002;&#x76F8;&#x5E94;&#x7684;&#x6838;&#x5FC3;&#x5BF9;&#x8C61;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;UIApplication  &#xFF0C;UIWindow&#xFF0C;UIView&#x90FD;&#x76F4;&#x63A5;&#x6216;&#x95F4;&#x63A5;&#x7684;&#x4ECE;UIResponder&#x7EE7;&#x627F;&#x3002;
 
-<h2 id="2、Cocoa对象"><a href="#2、Cocoa对象" class="headerlink" title=" 2、Cocoa对象"></a><a name="t4"></a><a name="t4"></a><a name="t4"></a> 2、Cocoa对象</h2><h3 id="2-1-Objective-C是面向对象的语言"><a href="#2-1-Objective-C是面向对象的语言" class="headerlink" title="2.1 Objective-C是面向对象的语言"></a><a name="t5"></a><a name="t5"></a><a name="t5"></a>2.1 Objective-C是面向对象的语言</h3><p>Objective-C和Java C++一样，有封装，继承，多态，重用。但是它不像C++那样有重载操作法、模版和多继承，也没有Java的垃圾回收机制。</p>
-<h3 id="2-2-Objective-C的优点"><a href="#2-2-Objective-C的优点" class="headerlink" title="2.2 Objective-C的优点"></a><a name="t6"></a><a name="t6"></a><a name="t6"></a>2.2 Objective-C的优点</h3><p>Objective-C语言有C++ Java等面向对象的特点，那是远远不能体现它的优点的。Objective-C的优点是它是动态的。动态能力有三种：</p>
-<p>动态类-运行时确定类的对象</p>
-<p>动态绑定-运行时确定要调用的方法</p>
-<p>动态加载–运行时为程序加载新的模块</p>
-<h3 id="2-3-动态能力相关的isa指针"><a href="#2-3-动态能力相关的isa指针" class="headerlink" title="2.3 动态能力相关的isa指针"></a><a name="t7"></a><a name="t7"></a><a name="t7"></a>2.3 动态能力相关的isa指针</h3><p>每个Objective-C对象都有一个隐藏的数据结构，这个数据结构是Objective-C对象的第一个成员变量，它就是isa指针。这个指针指向哪呢？它指向一个类对象(class object  记住它是个对象，是占用内存空间的一个变量，这个对象在编译的时候编译器就生成了，专门来描述某个类的定义)，这个类对象包含了Objective-C对象的一些信息（为了区分两个对象，我把前面提到的对象叫Objective-C对象），包括Objective-C对象的方法调度表，实现了什么协议等等。这个包含信息就是Objective-C动态能力的根源了。</p>
-<p>那我们看看isa指针类型的数据结构是什么样的？如果抛开NSObject对象的其他的成员数据和变量，NSObject可以看成这样：</p>
-<p><pre class="lang:objc decode:true">@interface NSObject &lt;NSObject&gt; {<br>     Class    isa;<br>}</pre><br>不考虑@interface关键字在编译时的作用，可以把NSObject更接近C语言结构表示为：</p>
-<p><pre class="lang:objc decode:true">struct NSObject{<br> 　　Class isa;<br> }</pre><br>Class是用typedef 定义的</p>
+<h2 id="2&#x3001;Cocoa&#x5BF9;&#x8C61;"><a href="#2&#x3001;Cocoa&#x5BF9;&#x8C61;" class="headerlink" title=" 2&#x3001;Cocoa&#x5BF9;&#x8C61;"></a><a name="t4"></a><a name="t4"></a><a name="t4"></a> 2&#x3001;Cocoa&#x5BF9;&#x8C61;</h2><h3 id="2-1-Objective-C&#x662F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x8A00;"><a href="#2-1-Objective-C&#x662F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x8A00;" class="headerlink" title="2.1 Objective-C&#x662F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x8A00;"></a><a name="t5"></a><a name="t5"></a><a name="t5"></a>2.1 Objective-C&#x662F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x8A00;</h3><p>Objective-C&#x548C;Java C++&#x4E00;&#x6837;&#xFF0C;&#x6709;&#x5C01;&#x88C5;&#xFF0C;&#x7EE7;&#x627F;&#xFF0C;&#x591A;&#x6001;&#xFF0C;&#x91CD;&#x7528;&#x3002;&#x4F46;&#x662F;&#x5B83;&#x4E0D;&#x50CF;C++&#x90A3;&#x6837;&#x6709;&#x91CD;&#x8F7D;&#x64CD;&#x4F5C;&#x6CD5;&#x3001;&#x6A21;&#x7248;&#x548C;&#x591A;&#x7EE7;&#x627F;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;Java&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x3002;</p>
+<h3 id="2-2-Objective-C&#x7684;&#x4F18;&#x70B9;"><a href="#2-2-Objective-C&#x7684;&#x4F18;&#x70B9;" class="headerlink" title="2.2 Objective-C&#x7684;&#x4F18;&#x70B9;"></a><a name="t6"></a><a name="t6"></a><a name="t6"></a>2.2 Objective-C&#x7684;&#x4F18;&#x70B9;</h3><p>Objective-C&#x8BED;&#x8A00;&#x6709;C++ Java&#x7B49;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x7279;&#x70B9;&#xFF0C;&#x90A3;&#x662F;&#x8FDC;&#x8FDC;&#x4E0D;&#x80FD;&#x4F53;&#x73B0;&#x5B83;&#x7684;&#x4F18;&#x70B9;&#x7684;&#x3002;Objective-C&#x7684;&#x4F18;&#x70B9;&#x662F;&#x5B83;&#x662F;&#x52A8;&#x6001;&#x7684;&#x3002;&#x52A8;&#x6001;&#x80FD;&#x529B;&#x6709;&#x4E09;&#x79CD;&#xFF1A;</p>
+<p>&#x52A8;&#x6001;&#x7C7B;-&#x8FD0;&#x884C;&#x65F6;&#x786E;&#x5B9A;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;</p>
+<p>&#x52A8;&#x6001;&#x7ED1;&#x5B9A;-&#x8FD0;&#x884C;&#x65F6;&#x786E;&#x5B9A;&#x8981;&#x8C03;&#x7528;&#x7684;&#x65B9;&#x6CD5;</p>
+<p>&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#x2013;&#x8FD0;&#x884C;&#x65F6;&#x4E3A;&#x7A0B;&#x5E8F;&#x52A0;&#x8F7D;&#x65B0;&#x7684;&#x6A21;&#x5757;</p>
+<h3 id="2-3-&#x52A8;&#x6001;&#x80FD;&#x529B;&#x76F8;&#x5173;&#x7684;isa&#x6307;&#x9488;"><a href="#2-3-&#x52A8;&#x6001;&#x80FD;&#x529B;&#x76F8;&#x5173;&#x7684;isa&#x6307;&#x9488;" class="headerlink" title="2.3 &#x52A8;&#x6001;&#x80FD;&#x529B;&#x76F8;&#x5173;&#x7684;isa&#x6307;&#x9488;"></a><a name="t7"></a><a name="t7"></a><a name="t7"></a>2.3 &#x52A8;&#x6001;&#x80FD;&#x529B;&#x76F8;&#x5173;&#x7684;isa&#x6307;&#x9488;</h3><p>&#x6BCF;&#x4E2A;Objective-C&#x5BF9;&#x8C61;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x9690;&#x85CF;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x662F;Objective-C&#x5BF9;&#x8C61;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x5B83;&#x5C31;&#x662F;isa&#x6307;&#x9488;&#x3002;&#x8FD9;&#x4E2A;&#x6307;&#x9488;&#x6307;&#x5411;&#x54EA;&#x5462;&#xFF1F;&#x5B83;&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x7C7B;&#x5BF9;&#x8C61;(class object  &#x8BB0;&#x4F4F;&#x5B83;&#x662F;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x662F;&#x5360;&#x7528;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x7684;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x5728;&#x7F16;&#x8BD1;&#x7684;&#x65F6;&#x5019;&#x7F16;&#x8BD1;&#x5668;&#x5C31;&#x751F;&#x6210;&#x4E86;&#xFF0C;&#x4E13;&#x95E8;&#x6765;&#x63CF;&#x8FF0;&#x67D0;&#x4E2A;&#x7C7B;&#x7684;&#x5B9A;&#x4E49;)&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x5BF9;&#x8C61;&#x5305;&#x542B;&#x4E86;Objective-C&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x4FE1;&#x606F;&#xFF08;&#x4E3A;&#x4E86;&#x533A;&#x5206;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x6211;&#x628A;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;&#x5BF9;&#x8C61;&#x53EB;Objective-C&#x5BF9;&#x8C61;&#xFF09;&#xFF0C;&#x5305;&#x62EC;Objective-C&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x8C03;&#x5EA6;&#x8868;&#xFF0C;&#x5B9E;&#x73B0;&#x4E86;&#x4EC0;&#x4E48;&#x534F;&#x8BAE;&#x7B49;&#x7B49;&#x3002;&#x8FD9;&#x4E2A;&#x5305;&#x542B;&#x4FE1;&#x606F;&#x5C31;&#x662F;Objective-C&#x52A8;&#x6001;&#x80FD;&#x529B;&#x7684;&#x6839;&#x6E90;&#x4E86;&#x3002;</p>
+<p>&#x90A3;&#x6211;&#x4EEC;&#x770B;&#x770B;isa&#x6307;&#x9488;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#xFF1F;&#x5982;&#x679C;&#x629B;&#x5F00;NSObject&#x5BF9;&#x8C61;&#x7684;&#x5176;&#x4ED6;&#x7684;&#x6210;&#x5458;&#x6570;&#x636E;&#x548C;&#x53D8;&#x91CF;&#xFF0C;NSObject&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x8FD9;&#x6837;&#xFF1A;</p>
+<p><pre class="lang:objc decode:true">@interface NSObject &lt;NSObject&gt; {<br>     Class    isa;<br>}</pre><br>&#x4E0D;&#x8003;&#x8651;@interface&#x5173;&#x952E;&#x5B57;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x7684;&#x4F5C;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;NSObject&#x66F4;&#x63A5;&#x8FD1;C&#x8BED;&#x8A00;&#x7ED3;&#x6784;&#x8868;&#x793A;&#x4E3A;&#xFF1A;</p>
+<p><pre class="lang:objc decode:true">struct NSObject{<br> &#x3000;&#x3000;Class isa;<br> }</pre><br>Class&#x662F;&#x7528;typedef &#x5B9A;&#x4E49;&#x7684;</p>
 <p><div class="dp-highlighter bg_cpp"></div></p>
 <p><div class="bar"></div></p>
 <p><div class="tools"></div></p>
-<p><pre class="lang:objc decode:true">typedef struct objc_class *Class;</pre><br><br><br><br>那NSObject可以这么写了</p>
-<p><pre class="lang:objc decode:true">struct NSObject{<br>　　objc_class *isa<br>}</pre></p>
-<p><div class="dp-highlighter bg_cpp"></div><br>那objc_class的结构是什么样的呢？大概是这样的：</p>
+<p><pre class="lang:objc decode:true">typedef struct objc_class *Class;</pre><br><br><br><br>&#x90A3;NSObject&#x53EF;&#x4EE5;&#x8FD9;&#x4E48;&#x5199;&#x4E86;</p>
+<p><pre class="lang:objc decode:true">struct NSObject{<br>&#x3000;&#x3000;objc_class *isa<br>}</pre></p>
+<p><div class="dp-highlighter bg_cpp"></div><br>&#x90A3;objc_class&#x7684;&#x7ED3;&#x6784;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x5462;&#xFF1F;&#x5927;&#x6982;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
 <p><div class="dp-highlighter bg_cpp"></div></p>
 <p><div class="bar"></div></p>
 <p><div class="tools"></div></p>
@@ -399,46 +393,46 @@ struct objc_method_list **methodLists;
 
 struct objc_cache *cache;  
 struct objc_protocol_list *protocols;     
-</code></pre><p> }<br>&nbsp;</p>
-<p><br><br><br>这里会看到，在这个结构体里还有一个isa指针，又是一重指向，是不是有种到了盗梦空间的感觉。不用紧张，take easy，不会有那么多层次的，这里的isa指针指向的是元类对象(metaclass object)，带有元字，证明快到头了。那元对象有啥用呢？它用来存储的关于类的版本，名字，类方法等信息。所有的元类对象(metaclass object)都指向 NSObject的元类对象，到头还是NSObject。一共三次：类对象-&gt;元类对象-&gt;NSObject元类对象。</p>
-<p>为了得到整个类组织架构的信息，objc_class结构里定义了第二个成员变量Class super_class，它指向父类的类对象。说了这么多，可能关系缕不清楚，有道是一张图胜过千言万语</p>
+</code></pre><p> }<br>&#xA0;</p>
+<p><br><br><br>&#x8FD9;&#x91CC;&#x4F1A;&#x770B;&#x5230;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x91CC;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;isa&#x6307;&#x9488;&#xFF0C;&#x53C8;&#x662F;&#x4E00;&#x91CD;&#x6307;&#x5411;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x6709;&#x79CD;&#x5230;&#x4E86;&#x76D7;&#x68A6;&#x7A7A;&#x95F4;&#x7684;&#x611F;&#x89C9;&#x3002;&#x4E0D;&#x7528;&#x7D27;&#x5F20;&#xFF0C;take easy&#xFF0C;&#x4E0D;&#x4F1A;&#x6709;&#x90A3;&#x4E48;&#x591A;&#x5C42;&#x6B21;&#x7684;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;isa&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x662F;&#x5143;&#x7C7B;&#x5BF9;&#x8C61;(metaclass object)&#xFF0C;&#x5E26;&#x6709;&#x5143;&#x5B57;&#xFF0C;&#x8BC1;&#x660E;&#x5FEB;&#x5230;&#x5934;&#x4E86;&#x3002;&#x90A3;&#x5143;&#x5BF9;&#x8C61;&#x6709;&#x5565;&#x7528;&#x5462;&#xFF1F;&#x5B83;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x7684;&#x5173;&#x4E8E;&#x7C7B;&#x7684;&#x7248;&#x672C;&#xFF0C;&#x540D;&#x5B57;&#xFF0C;&#x7C7B;&#x65B9;&#x6CD5;&#x7B49;&#x4FE1;&#x606F;&#x3002;&#x6240;&#x6709;&#x7684;&#x5143;&#x7C7B;&#x5BF9;&#x8C61;(metaclass object)&#x90FD;&#x6307;&#x5411; NSObject&#x7684;&#x5143;&#x7C7B;&#x5BF9;&#x8C61;&#xFF0C;&#x5230;&#x5934;&#x8FD8;&#x662F;NSObject&#x3002;&#x4E00;&#x5171;&#x4E09;&#x6B21;&#xFF1A;&#x7C7B;&#x5BF9;&#x8C61;-&gt;&#x5143;&#x7C7B;&#x5BF9;&#x8C61;-&gt;NSObject&#x5143;&#x7C7B;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x5F97;&#x5230;&#x6574;&#x4E2A;&#x7C7B;&#x7EC4;&#x7EC7;&#x67B6;&#x6784;&#x7684;&#x4FE1;&#x606F;&#xFF0C;objc_class&#x7ED3;&#x6784;&#x91CC;&#x5B9A;&#x4E49;&#x4E86;&#x7B2C;&#x4E8C;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;Class super_class&#xFF0C;&#x5B83;&#x6307;&#x5411;&#x7236;&#x7C7B;&#x7684;&#x7C7B;&#x5BF9;&#x8C61;&#x3002;&#x8BF4;&#x4E86;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x53EF;&#x80FD;&#x5173;&#x7CFB;&#x7F15;&#x4E0D;&#x6E05;&#x695A;&#xFF0C;&#x6709;&#x9053;&#x662F;&#x4E00;&#x5F20;&#x56FE;&#x80DC;&#x8FC7;&#x5343;&#x8A00;&#x4E07;&#x8BED;</p>
 <p><img src="http://img.my.csdn.net/uploads/201210/21/1350831500_2327.jpg" alt=""></p>
-<p>图中可以看出，D3继承D2,D2继承D1,D1最终继承NSObject。下图从D3的一个对象开始，排列出D3 D2 D1 NSObject 类对象，元类对象等关系。</p>
+<p>&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;D3&#x7EE7;&#x627F;D2,D2&#x7EE7;&#x627F;D1,D1&#x6700;&#x7EC8;&#x7EE7;&#x627F;NSObject&#x3002;&#x4E0B;&#x56FE;&#x4ECE;D3&#x7684;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5F00;&#x59CB;&#xFF0C;&#x6392;&#x5217;&#x51FA;D3 D2 D1 NSObject &#x7C7B;&#x5BF9;&#x8C61;&#xFF0C;&#x5143;&#x7C7B;&#x5BF9;&#x8C61;&#x7B49;&#x5173;&#x7CFB;&#x3002;</p>
 <p><img src="http://img.my.csdn.net/uploads/201210/21/1350831599_3230.png" alt=""></p>
-<p>图中的箭头都是指针的指向。</p>
-<h3 id="2-4-根类-NSObject"><a href="#2-4-根类-NSObject" class="headerlink" title="2.4 根类 NSObject"></a><a name="t8"></a><a name="t8"></a><a name="t8"></a>2.4 根类 NSObject</h3><p>NSObject是大部分Objective-C类的根类，它没有父类。其它类继承NSObject，访问Objective-C运行时系统的基本接口，这样其他类的实例可以获得运行时的能力。</p>
+<p>&#x56FE;&#x4E2D;&#x7684;&#x7BAD;&#x5934;&#x90FD;&#x662F;&#x6307;&#x9488;&#x7684;&#x6307;&#x5411;&#x3002;</p>
+<h3 id="2-4-&#x6839;&#x7C7B;-NSObject"><a href="#2-4-&#x6839;&#x7C7B;-NSObject" class="headerlink" title="2.4 &#x6839;&#x7C7B; NSObject"></a><a name="t8"></a><a name="t8"></a><a name="t8"></a>2.4 &#x6839;&#x7C7B; NSObject</h3><p>NSObject&#x662F;&#x5927;&#x90E8;&#x5206;Objective-C&#x7C7B;&#x7684;&#x6839;&#x7C7B;&#xFF0C;&#x5B83;&#x6CA1;&#x6709;&#x7236;&#x7C7B;&#x3002;&#x5176;&#x5B83;&#x7C7B;&#x7EE7;&#x627F;NSObject&#xFF0C;&#x8BBF;&#x95EE;Objective-C&#x8FD0;&#x884C;&#x65F6;&#x7CFB;&#x7EDF;&#x7684;&#x57FA;&#x672C;&#x63A5;&#x53E3;&#xFF0C;&#x8FD9;&#x6837;&#x5176;&#x4ED6;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x80FD;&#x529B;&#x3002;</p>
 <p><img src="http://img.my.csdn.net/uploads/201210/22/1350871031_1713.jpg" alt=""></p>
-<h4 id="2-4-1-根类和根类协议"><a href="#2-4-1-根类和根类协议" class="headerlink" title="2.4.1 根类和根类协议"></a><a name="t9"></a><a name="t9"></a><a name="t9"></a><strong>2.4.1 根类和根类协议</strong></h4><p>NSObject不但是个类名，NSObject也是个协议的名称，<a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Protocols/NSObject_Protocol/Reference/NSObject.html" target="_blank" rel="external">参考NSObject协议</a> ， NSObject协议指定了根类必须实现的接口。</p>
-<h4 id="2-4-2-根类的主要方法："><a href="#2-4-2-根类的主要方法：" class="headerlink" title="2.4.2 根类的主要方法："></a><a name="t10"></a><a name="t10"></a><a name="t10"></a><strong>2.4.2 根类的主要方法：</strong></h4><h5 id=""><a href="#" class="headerlink" title=""></a><a name="t11"></a><a name="t11"></a><a name="t11"></a></h5><ul>
-<li>分配、初始化、和复制：<br>alloc和allocWithZone:方法用于从某内存区域中分配一个对象内存，并使对象指向其运行时的类定义。<br>init方法是对象初始化。<br>new是一个将简单的内存分配和初始化结合起来的方法。<br>copy和copyWithZone:</li>
+<h4 id="2-4-1-&#x6839;&#x7C7B;&#x548C;&#x6839;&#x7C7B;&#x534F;&#x8BAE;"><a href="#2-4-1-&#x6839;&#x7C7B;&#x548C;&#x6839;&#x7C7B;&#x534F;&#x8BAE;" class="headerlink" title="2.4.1 &#x6839;&#x7C7B;&#x548C;&#x6839;&#x7C7B;&#x534F;&#x8BAE;"></a><a name="t9"></a><a name="t9"></a><a name="t9"></a><strong>2.4.1 &#x6839;&#x7C7B;&#x548C;&#x6839;&#x7C7B;&#x534F;&#x8BAE;</strong></h4><p>NSObject&#x4E0D;&#x4F46;&#x662F;&#x4E2A;&#x7C7B;&#x540D;&#xFF0C;NSObject&#x4E5F;&#x662F;&#x4E2A;&#x534F;&#x8BAE;&#x7684;&#x540D;&#x79F0;&#xFF0C;<a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Protocols/NSObject_Protocol/Reference/NSObject.html" target="_blank" rel="external">&#x53C2;&#x8003;NSObject&#x534F;&#x8BAE;</a> &#xFF0C; NSObject&#x534F;&#x8BAE;&#x6307;&#x5B9A;&#x4E86;&#x6839;&#x7C7B;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x7684;&#x63A5;&#x53E3;&#x3002;</p>
+<h4 id="2-4-2-&#x6839;&#x7C7B;&#x7684;&#x4E3B;&#x8981;&#x65B9;&#x6CD5;&#xFF1A;"><a href="#2-4-2-&#x6839;&#x7C7B;&#x7684;&#x4E3B;&#x8981;&#x65B9;&#x6CD5;&#xFF1A;" class="headerlink" title="2.4.2 &#x6839;&#x7C7B;&#x7684;&#x4E3B;&#x8981;&#x65B9;&#x6CD5;&#xFF1A;"></a><a name="t10"></a><a name="t10"></a><a name="t10"></a><strong>2.4.2 &#x6839;&#x7C7B;&#x7684;&#x4E3B;&#x8981;&#x65B9;&#x6CD5;&#xFF1A;</strong></h4><h5 id=""><a href="#" class="headerlink" title=""></a><a name="t11"></a><a name="t11"></a><a name="t11"></a></h5><ul>
+<li>&#x5206;&#x914D;&#x3001;&#x521D;&#x59CB;&#x5316;&#x3001;&#x548C;&#x590D;&#x5236;&#xFF1A;<br>alloc&#x548C;allocWithZone:&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x4ECE;&#x67D0;&#x5185;&#x5B58;&#x533A;&#x57DF;&#x4E2D;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5185;&#x5B58;&#xFF0C;&#x5E76;&#x4F7F;&#x5BF9;&#x8C61;&#x6307;&#x5411;&#x5176;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x7C7B;&#x5B9A;&#x4E49;&#x3002;<br>init&#x65B9;&#x6CD5;&#x662F;&#x5BF9;&#x8C61;&#x521D;&#x59CB;&#x5316;&#x3002;<br>new&#x662F;&#x4E00;&#x4E2A;&#x5C06;&#x7B80;&#x5355;&#x7684;&#x5185;&#x5B58;&#x5206;&#x914D;&#x548C;&#x521D;&#x59CB;&#x5316;&#x7ED3;&#x5408;&#x8D77;&#x6765;&#x7684;&#x65B9;&#x6CD5;&#x3002;<br>copy&#x548C;copyWithZone:</li>
 </ul>
 <h5 id="-1"><a href="#-1" class="headerlink" title=""></a><a name="t12"></a><a name="t12"></a><a name="t12"></a></h5><ul>
-<li>对象的保持和清理：<br>retain方法增加对象的保持次数。<br>release方法减少对象的保持次数。<br>autorelease方法也是减少对象的保持次数，但是以推迟的方式。<br>retainCount方法返回对当前的保持次数。<br>dealloc方法由需要释放对象的实例变量以及释放动态分配的内存的类实现。</li>
+<li>&#x5BF9;&#x8C61;&#x7684;&#x4FDD;&#x6301;&#x548C;&#x6E05;&#x7406;&#xFF1A;<br>retain&#x65B9;&#x6CD5;&#x589E;&#x52A0;&#x5BF9;&#x8C61;&#x7684;&#x4FDD;&#x6301;&#x6B21;&#x6570;&#x3002;<br>release&#x65B9;&#x6CD5;&#x51CF;&#x5C11;&#x5BF9;&#x8C61;&#x7684;&#x4FDD;&#x6301;&#x6B21;&#x6570;&#x3002;<br>autorelease&#x65B9;&#x6CD5;&#x4E5F;&#x662F;&#x51CF;&#x5C11;&#x5BF9;&#x8C61;&#x7684;&#x4FDD;&#x6301;&#x6B21;&#x6570;&#xFF0C;&#x4F46;&#x662F;&#x4EE5;&#x63A8;&#x8FDF;&#x7684;&#x65B9;&#x5F0F;&#x3002;<br>retainCount&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x5BF9;&#x5F53;&#x524D;&#x7684;&#x4FDD;&#x6301;&#x6B21;&#x6570;&#x3002;<br>dealloc&#x65B9;&#x6CD5;&#x7531;&#x9700;&#x8981;&#x91CA;&#x653E;&#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x4EE5;&#x53CA;&#x91CA;&#x653E;&#x52A8;&#x6001;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x7684;&#x7C7B;&#x5B9E;&#x73B0;&#x3002;</li>
 </ul>
 <h5 id="-2"><a href="#-2" class="headerlink" title=""></a><a name="t13"></a><a name="t13"></a><a name="t13"></a></h5><ul>
-<li>内省和比较<br>NSObjec有很多方法可以查询对象的运行时信息。这些内省方法有助于找出对象在类层次中的位置，确定对象是否实现特定的方法，以及测试对象是否遵循某种协议。下面是部分方法<br>superclass和class方法（实现为类和实例方法）分别以Class对象的形式返回接收者的父类和类。<br>您可以通过isKindOfClass:和isMemberOfClass:方法来确定对象属于哪个类。后者用于测试接收者是否为指定类的实例。isSubclassOfClass:类方法则用于测试类的继承性。<br>respondsToSelector:方法用于测试接收者是否实现由选择器参数标识的方法。instancesRespondToSelector:类方法则用于测试给定类的实例是否实现指定的方法。<br>conformsToProtocol:方法用于测试接收者（对象或类）是否遵循给定的协议。<br>isEqual:和hash方法用于对象的比较。<br>description方法允许对象返回一个内容描述字符串；这个方法的输出经常用于调试（“print object”命令），以及在格式化字符串中和“%@”指示符一起表示对象。</li>
+<li>&#x5185;&#x7701;&#x548C;&#x6BD4;&#x8F83;<br>NSObjec&#x6709;&#x5F88;&#x591A;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x67E5;&#x8BE2;&#x5BF9;&#x8C61;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x4FE1;&#x606F;&#x3002;&#x8FD9;&#x4E9B;&#x5185;&#x7701;&#x65B9;&#x6CD5;&#x6709;&#x52A9;&#x4E8E;&#x627E;&#x51FA;&#x5BF9;&#x8C61;&#x5728;&#x7C7B;&#x5C42;&#x6B21;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x786E;&#x5B9A;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x7279;&#x5B9A;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4EE5;&#x53CA;&#x6D4B;&#x8BD5;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x9075;&#x5FAA;&#x67D0;&#x79CD;&#x534F;&#x8BAE;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x90E8;&#x5206;&#x65B9;&#x6CD5;<br>superclass&#x548C;class&#x65B9;&#x6CD5;&#xFF08;&#x5B9E;&#x73B0;&#x4E3A;&#x7C7B;&#x548C;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#xFF09;&#x5206;&#x522B;&#x4EE5;Class&#x5BF9;&#x8C61;&#x7684;&#x5F62;&#x5F0F;&#x8FD4;&#x56DE;&#x63A5;&#x6536;&#x8005;&#x7684;&#x7236;&#x7C7B;&#x548C;&#x7C7B;&#x3002;<br>&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;isKindOfClass:&#x548C;isMemberOfClass:&#x65B9;&#x6CD5;&#x6765;&#x786E;&#x5B9A;&#x5BF9;&#x8C61;&#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x7C7B;&#x3002;&#x540E;&#x8005;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#x63A5;&#x6536;&#x8005;&#x662F;&#x5426;&#x4E3A;&#x6307;&#x5B9A;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x3002;isSubclassOfClass:&#x7C7B;&#x65B9;&#x6CD5;&#x5219;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x6027;&#x3002;<br>respondsToSelector:&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#x63A5;&#x6536;&#x8005;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x7531;&#x9009;&#x62E9;&#x5668;&#x53C2;&#x6570;&#x6807;&#x8BC6;&#x7684;&#x65B9;&#x6CD5;&#x3002;instancesRespondToSelector:&#x7C7B;&#x65B9;&#x6CD5;&#x5219;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#x7ED9;&#x5B9A;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x6307;&#x5B9A;&#x7684;&#x65B9;&#x6CD5;&#x3002;<br>conformsToProtocol:&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#x63A5;&#x6536;&#x8005;&#xFF08;&#x5BF9;&#x8C61;&#x6216;&#x7C7B;&#xFF09;&#x662F;&#x5426;&#x9075;&#x5FAA;&#x7ED9;&#x5B9A;&#x7684;&#x534F;&#x8BAE;&#x3002;<br>isEqual:&#x548C;hash&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x6BD4;&#x8F83;&#x3002;<br>description&#x65B9;&#x6CD5;&#x5141;&#x8BB8;&#x5BF9;&#x8C61;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5185;&#x5BB9;&#x63CF;&#x8FF0;&#x5B57;&#x7B26;&#x4E32;&#xFF1B;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x8F93;&#x51FA;&#x7ECF;&#x5E38;&#x7528;&#x4E8E;&#x8C03;&#x8BD5;&#xFF08;&#x201C;print object&#x201D;&#x547D;&#x4EE4;&#xFF09;&#xFF0C;&#x4EE5;&#x53CA;&#x5728;&#x683C;&#x5F0F;&#x5316;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x548C;&#x201C;%@&#x201D;&#x6307;&#x793A;&#x7B26;&#x4E00;&#x8D77;&#x8868;&#x793A;&#x5BF9;&#x8C61;&#x3002;</li>
 </ul>
 <h5 id="-3"><a href="#-3" class="headerlink" title=""></a><a name="t14"></a><a name="t14"></a><a name="t14"></a></h5><ul>
-<li>对象的编码和解码<br>下面的方法和对象的编解码（作为归档过程的一部分）有关：<br>encodeWithCoder:和initWithCoder:是NSCoding协议仅有的方法。前者使对象可以对其实例变量进行编码，后者则使对象可以根据解码过的实例变量对自身进行初始化。<br>NSObject类中声明了一些于对象编码有关的方法：classForCoder:、replacementObjectForCoder:、和awakeAfterUsingCoder:。</li>
+<li>&#x5BF9;&#x8C61;&#x7684;&#x7F16;&#x7801;&#x548C;&#x89E3;&#x7801;<br>&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x548C;&#x5BF9;&#x8C61;&#x7684;&#x7F16;&#x89E3;&#x7801;&#xFF08;&#x4F5C;&#x4E3A;&#x5F52;&#x6863;&#x8FC7;&#x7A0B;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF09;&#x6709;&#x5173;&#xFF1A;<br>encodeWithCoder:&#x548C;initWithCoder:&#x662F;NSCoding&#x534F;&#x8BAE;&#x4EC5;&#x6709;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x524D;&#x8005;&#x4F7F;&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x5BF9;&#x5176;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x7F16;&#x7801;&#xFF0C;&#x540E;&#x8005;&#x5219;&#x4F7F;&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x89E3;&#x7801;&#x8FC7;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x5BF9;&#x81EA;&#x8EAB;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#x3002;<br>NSObject&#x7C7B;&#x4E2D;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E9B;&#x4E8E;&#x5BF9;&#x8C61;&#x7F16;&#x7801;&#x6709;&#x5173;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;classForCoder:&#x3001;replacementObjectForCoder:&#x3001;&#x548C;awakeAfterUsingCoder:&#x3002;</li>
 </ul>
 <h5 id="-4"><a href="#-4" class="headerlink" title=""></a><a name="t15"></a><a name="t15"></a><a name="t15"></a></h5><ul>
-<li>消息的转发<br><strong> </strong>forwardInvocation:允许一个对象将消息转发给另一个对象。</li>
+<li>&#x6D88;&#x606F;&#x7684;&#x8F6C;&#x53D1;<br><strong> </strong>forwardInvocation:&#x5141;&#x8BB8;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5C06;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x7ED9;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;</li>
 </ul>
 <h5 id="-5"><a href="#-5" class="headerlink" title=""></a><a name="t16"></a><a name="t16"></a><a name="t16"></a></h5><ul>
-<li>消息的派发<br>在performSelector开头的一些方法允许你延迟后派发指定消息，而且可以将消息（同步或异步的消息）从辅助线程派发到主线程。</li>
+<li>&#x6D88;&#x606F;&#x7684;&#x6D3E;&#x53D1;<br>&#x5728;performSelector&#x5F00;&#x5934;&#x7684;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x5141;&#x8BB8;&#x4F60;&#x5EF6;&#x8FDF;&#x540E;&#x6D3E;&#x53D1;&#x6307;&#x5B9A;&#x6D88;&#x606F;&#xFF0C;&#x800C;&#x4E14;&#x53EF;&#x4EE5;&#x5C06;&#x6D88;&#x606F;&#xFF08;&#x540C;&#x6B65;&#x6216;&#x5F02;&#x6B65;&#x7684;&#x6D88;&#x606F;&#xFF09;&#x4ECE;&#x8F85;&#x52A9;&#x7EBF;&#x7A0B;&#x6D3E;&#x53D1;&#x5230;&#x4E3B;&#x7EBF;&#x7A0B;&#x3002;</li>
 </ul>
-<h3 id="2-5-Cocoa对象生命周期"><a href="#2-5-Cocoa对象生命周期" class="headerlink" title="2.5 Cocoa对象生命周期"></a><a name="t17"></a><a name="t17"></a><a name="t17"></a>2.5 Cocoa对象生命周期</h3><p>对象的四种内存管理方式，如下图所示</p>
+<h3 id="2-5-Cocoa&#x5BF9;&#x8C61;&#x751F;&#x547D;&#x5468;&#x671F;"><a href="#2-5-Cocoa&#x5BF9;&#x8C61;&#x751F;&#x547D;&#x5468;&#x671F;" class="headerlink" title="2.5 Cocoa&#x5BF9;&#x8C61;&#x751F;&#x547D;&#x5468;&#x671F;"></a><a name="t17"></a><a name="t17"></a><a name="t17"></a>2.5 Cocoa&#x5BF9;&#x8C61;&#x751F;&#x547D;&#x5468;&#x671F;</h3><p>&#x5BF9;&#x8C61;&#x7684;&#x56DB;&#x79CD;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;</p>
 <ul>
-<li><p><strong> 对象的生命周期—简化视图</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871223_8473.gif" alt=""></p>
+<li><p><strong> &#x5BF9;&#x8C61;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x2014;&#x7B80;&#x5316;&#x89C6;&#x56FE;</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871223_8473.gif" alt=""></p>
 </li>
-<li><p><strong>保持接收到的对象</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871326_3857.gif" alt=""></p>
+<li><p><strong>&#x4FDD;&#x6301;&#x63A5;&#x6536;&#x5230;&#x7684;&#x5BF9;&#x8C61;</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871326_3857.gif" alt=""></p>
 </li>
-<li><p><strong>拷贝接收到的对象</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871361_2570.gif" alt=""></p>
+<li><p><strong>&#x62F7;&#x8D1D;&#x63A5;&#x6536;&#x5230;&#x7684;&#x5BF9;&#x8C61;</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871361_2570.gif" alt=""></p>
 </li>
-<li><p><strong>自动释放池</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871395_7054.gif" alt=""></p>
+<li><p><strong>&#x81EA;&#x52A8;&#x91CA;&#x653E;&#x6C60;</strong><br><img src="http://img.my.csdn.net/uploads/201210/22/1350871395_7054.gif" alt=""></p>
 </li>
 </ul>
-<p>&nbsp;</p>
+<p>&#xA0;</p>
 
       
     </div>
@@ -542,7 +536,7 @@ struct objc_protocol_list *protocols;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

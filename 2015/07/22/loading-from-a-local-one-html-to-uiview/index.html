@@ -87,8 +87,7 @@
 <meta name="description" content="- (void)loadView{    UIWebView *webView = [[UIWebView alloc]init];    self.view = webView;}
 
 (void)viewDidLoad {  [super viewDidLoad];
-  // 设置标题  self.title = self.html.title;
-  UIWebView webView = (U">
+  // &amp;#x8BBE;&amp;#x7F6E;&amp;#x6807;&amp;#x9898;  self.title = self.html.tit">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从本地加载一个.html到UIView.加载Js">
 <meta property="og:url" content="http://yoursite.com/2015/07/22/loading-from-a-local-one-html-to-uiview/index.html">
@@ -96,16 +95,14 @@
 <meta property="og:description" content="- (void)loadView{    UIWebView *webView = [[UIWebView alloc]init];    self.view = webView;}
 
 (void)viewDidLoad {  [super viewDidLoad];
-  // 设置标题  self.title = self.html.title;
-  UIWebView webView = (U">
+  // &amp;#x8BBE;&amp;#x7F6E;&amp;#x6807;&amp;#x9898;  self.title = self.html.tit">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从本地加载一个.html到UIView.加载Js">
 <meta name="twitter:description" content="- (void)loadView{    UIWebView *webView = [[UIWebView alloc]init];    self.view = webView;}
 
 (void)viewDidLoad {  [super viewDidLoad];
-  // 设置标题  self.title = self.html.title;
-  UIWebView webView = (U">
+  // &amp;#x8BBE;&amp;#x7F6E;&amp;#x6807;&amp;#x9898;  self.title = self.html.tit">
 
 
 
@@ -322,22 +319,22 @@
         <p><pre class="lang:objc decode:true">- (void)loadView<br>{<br>    UIWebView *webView = [[UIWebView alloc]init];<br>    self.view = webView;<br>}</pre></p>
 <ul>
 <li><p>(void)viewDidLoad {<br>  [super viewDidLoad];</p>
-<p>  // 设置标题<br>  self.title = self.html.title;</p>
+<p>  // &#x8BBE;&#x7F6E;&#x6807;&#x9898;<br>  self.title = self.html.title;</p>
 <p>  UIWebView <em>webView = (UIWebView </em>)self.view;</p>
-<p>  // 创建URL<br>  NSURL *url = [[NSBundle mainBundle] URLForResource:self.html.html withExtension:nil];</p>
-<p>  // 创建请求<br>  NSURLRequest *request = [NSURLRequest requestWithURL:url];</p>
-<p>  // 发送请求加载网页<br>  [webView loadRequest:request];</p>
+<p>  // &#x521B;&#x5EFA;URL<br>  NSURL *url = [[NSBundle mainBundle] URLForResource:self.html.html withExtension:nil];</p>
+<p>  // &#x521B;&#x5EFA;&#x8BF7;&#x6C42;<br>  NSURLRequest *request = [NSURLRequest requestWithURL:url];</p>
+<p>  // &#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x52A0;&#x8F7D;&#x7F51;&#x9875;<br>  [webView loadRequest:request];</p>
 </li>
 </ul>
-<p>}<br>大致分为以下四步</p>
+<p>}<br>&#x5927;&#x81F4;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x56DB;&#x6B65;</p>
 <ol>
-<li>替换View为UIWebView</li>
-<li>创建URL.</li>
-<li>创建请求</li>
-<li>View从请求加载.<br>加载Js:<br><pre class="lang:objc decode:true ">// 代理方法</pre></li>
+<li>&#x66FF;&#x6362;View&#x4E3A;UIWebView</li>
+<li>&#x521B;&#x5EFA;URL.</li>
+<li>&#x521B;&#x5EFA;&#x8BF7;&#x6C42;</li>
+<li>View&#x4ECE;&#x8BF7;&#x6C42;&#x52A0;&#x8F7D;.<br>&#x52A0;&#x8F7D;Js:<br><pre class="lang:objc decode:true ">// &#x4EE3;&#x7406;&#x65B9;&#x6CD5;</pre></li>
 </ol>
 <ul>
-<li>(void)webViewDidFinishLoad:(UIWebView <em>)webView<br>{<br>  // 1.拼接Javacript代码<br>  NSString </em>js = [NSString stringWithFormat:@”window.location.href = ‘#%@’;”, self.html.ID];<br>  // 2.执行JavaScript代码<br>  [webView stringByEvaluatingJavaScriptFromString:js];<br>}<br>&nbsp;</li>
+<li>(void)webViewDidFinishLoad:(UIWebView <em>)webView<br>{<br>  // 1.&#x62FC;&#x63A5;Javacript&#x4EE3;&#x7801;<br>  NSString </em>js = [NSString stringWithFormat:@&#x201D;window.location.href = &#x2018;#%@&#x2019;;&#x201D;, self.html.ID];<br>  // 2.&#x6267;&#x884C;JavaScript&#x4EE3;&#x7801;<br>  [webView stringByEvaluatingJavaScriptFromString:js];<br>}<br>&#xA0;</li>
 </ul>
 
       
@@ -452,7 +449,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

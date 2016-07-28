@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="首先,我们经常会遇到这样的一样情况.就是需要监听某个对象,或者通知某个对象去做什么是事情.之前我们经常会使用Delegate.比如我们之前使用的UITableViewDelegate.但是有一个很严重的问题就是,代理的方式是1对1的.对象A只能遵守对象B的协议,然后对象B去调用对象A的方法.这样的方式明显不能满足我们的使用要求,所以苹果为我们提供了另外一种响应方式,那就是NSNotificatio">
+<meta name="description" content="&amp;#x9996;&amp;#x5148;,&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x4E00;&amp;#x6837;&amp;#x60C5;&amp;#x51B5;.&amp;#x5C31;&amp;#x662F;&amp;#x9700;&amp;#x8981;&amp;#x76D1;&amp;#x542C;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="消息通知机制NSNotification">
 <meta property="og:url" content="http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/index.html">
 <meta property="og:site_name" content="BirdMichael">
-<meta property="og:description" content="首先,我们经常会遇到这样的一样情况.就是需要监听某个对象,或者通知某个对象去做什么是事情.之前我们经常会使用Delegate.比如我们之前使用的UITableViewDelegate.但是有一个很严重的问题就是,代理的方式是1对1的.对象A只能遵守对象B的协议,然后对象B去调用对象A的方法.这样的方式明显不能满足我们的使用要求,所以苹果为我们提供了另外一种响应方式,那就是NSNotificatio">
+<meta property="og:description" content="&amp;#x9996;&amp;#x5148;,&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x4E00;&amp;#x6837;&amp;#x60C5;&amp;#x51B5;.&amp;#x5C31;&amp;#x662F;&amp;#x9700;&amp;#x8981;&amp;#x76D1;&amp;#x542C;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF">
 <meta property="og:image" content="http://unmi.cc/wp-content/uploads/2012/01/notificationcenter.jpg">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="消息通知机制NSNotification">
-<meta name="twitter:description" content="首先,我们经常会遇到这样的一样情况.就是需要监听某个对象,或者通知某个对象去做什么是事情.之前我们经常会使用Delegate.比如我们之前使用的UITableViewDelegate.但是有一个很严重的问题就是,代理的方式是1对1的.对象A只能遵守对象B的协议,然后对象B去调用对象A的方法.这样的方式明显不能满足我们的使用要求,所以苹果为我们提供了另外一种响应方式,那就是NSNotificatio">
+<meta name="twitter:description" content="&amp;#x9996;&amp;#x5148;,&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x4E00;&amp;#x6837;&amp;#x60C5;&amp;#x51B5;.&amp;#x5C31;&amp;#x662F;&amp;#x9700;&amp;#x8981;&amp;#x76D1;&amp;#x542C;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF">
 <meta name="twitter:image" content="http://unmi.cc/wp-content/uploads/2012/01/notificationcenter.jpg">
 
 
@@ -333,75 +333,75 @@
       
 
       
-        <p>首先,我们经常会遇到这样的一样情况.就是需要监听某个对象,或者通知某个对象去做什么是事情.之前我们经常会使用Delegate.比如我们之前使用的<span class="s1">UITableViewDelegate.但是有一个很严重的问题就是,代理的方式是1对1的.对象A只能遵守对象B的协议,然后对象B去调用对象A的方法.这样的方式明显不能满足我们的使用要求,所以苹果为我们提供了另外一种响应方式,那就是NSNotification.系统中(UIKeyboardDidShowNotification 等) 以及某些第三方组件(例如 ASIHTTPRequest 的 kReachabilityChangedNotification 等)。</span></p>
+        <p>&#x9996;&#x5148;,&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x6837;&#x60C5;&#x51B5;.&#x5C31;&#x662F;&#x9700;&#x8981;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;,&#x6216;&#x8005;&#x901A;&#x77E5;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x53BB;&#x505A;&#x4EC0;&#x4E48;&#x662F;&#x4E8B;&#x60C5;.&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x4F7F;&#x7528;Delegate.&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x4F7F;&#x7528;&#x7684;<span class="s1">UITableViewDelegate.&#x4F46;&#x662F;&#x6709;&#x4E00;&#x4E2A;&#x5F88;&#x4E25;&#x91CD;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;,&#x4EE3;&#x7406;&#x7684;&#x65B9;&#x5F0F;&#x662F;1&#x5BF9;1&#x7684;.&#x5BF9;&#x8C61;A&#x53EA;&#x80FD;&#x9075;&#x5B88;&#x5BF9;&#x8C61;B&#x7684;&#x534F;&#x8BAE;,&#x7136;&#x540E;&#x5BF9;&#x8C61;B&#x53BB;&#x8C03;&#x7528;&#x5BF9;&#x8C61;A&#x7684;&#x65B9;&#x6CD5;.&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#x660E;&#x663E;&#x4E0D;&#x80FD;&#x6EE1;&#x8DB3;&#x6211;&#x4EEC;&#x7684;&#x4F7F;&#x7528;&#x8981;&#x6C42;,&#x6240;&#x4EE5;&#x82F9;&#x679C;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x54CD;&#x5E94;&#x65B9;&#x5F0F;,&#x90A3;&#x5C31;&#x662F;NSNotification.&#x7CFB;&#x7EDF;&#x4E2D;(UIKeyboardDidShowNotification &#x7B49;) &#x4EE5;&#x53CA;&#x67D0;&#x4E9B;&#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x4EF6;(&#x4F8B;&#x5982; ASIHTTPRequest &#x7684; kReachabilityChangedNotification &#x7B49;)&#x3002;</span></p>
 <ul>
-<li>共同点</li>
-<li><p>利用通知和代理都能完成对象之间的通信(比如A对象告诉D对象发生了什么事情, A对象传递数据给D对象)</p>
+<li>&#x5171;&#x540C;&#x70B9;</li>
+<li><p>&#x5229;&#x7528;&#x901A;&#x77E5;&#x548C;&#x4EE3;&#x7406;&#x90FD;&#x80FD;&#x5B8C;&#x6210;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x901A;&#x4FE1;(&#x6BD4;&#x5982;A&#x5BF9;&#x8C61;&#x544A;&#x8BC9;D&#x5BF9;&#x8C61;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;, A&#x5BF9;&#x8C61;&#x4F20;&#x9012;&#x6570;&#x636E;&#x7ED9;D&#x5BF9;&#x8C61;)</p>
 </li>
-<li><p>不同点</p>
+<li><p>&#x4E0D;&#x540C;&#x70B9;</p>
 </li>
-<li>代理 : 一对一关系(1个对象只能告诉另1个对象发生了什么事情)Ø通知 : 多对多关系(1个对象能告诉N个对象发生了什么事情, 1个对象能得知N个对象发生了什么事情)<br>&nbsp;</li>
+<li>&#x4EE3;&#x7406; : &#x4E00;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;(1&#x4E2A;&#x5BF9;&#x8C61;&#x53EA;&#x80FD;&#x544A;&#x8BC9;&#x53E6;1&#x4E2A;&#x5BF9;&#x8C61;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;)&#xD8;&#x901A;&#x77E5; : &#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;(1&#x4E2A;&#x5BF9;&#x8C61;&#x80FD;&#x544A;&#x8BC9;N&#x4E2A;&#x5BF9;&#x8C61;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;, 1&#x4E2A;&#x5BF9;&#x8C61;&#x80FD;&#x5F97;&#x77E5;N&#x4E2A;&#x5BF9;&#x8C61;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;)<br>&#xA0;</li>
 </ul>
 <p><a href="http://unmi.cc/nsnotificationcenter-usage/notificationcenter" target="_blank" rel="external"><img src="http://unmi.cc/wp-content/uploads/2012/01/notificationcenter.jpg" alt="notificationcenter" title="notificationcenter"></a></p>
 <blockquote>
-<p>如何去理解通知中心呢?</p>
-<p>我们可以把通知通知中心视为一个求职网站,并且整个社会只有这个么一个求职网站”拉钩网”.</p>
-<p>而公司为通知的发布者</p>
-<p>求职者为通知的接收者.<br>下面我们要引入NSNotification,一个完整的NSNotification通常还有2-3个属性.</p>
+<p>&#x5982;&#x4F55;&#x53BB;&#x7406;&#x89E3;&#x901A;&#x77E5;&#x4E2D;&#x5FC3;&#x5462;?</p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x901A;&#x77E5;&#x901A;&#x77E5;&#x4E2D;&#x5FC3;&#x89C6;&#x4E3A;&#x4E00;&#x4E2A;&#x6C42;&#x804C;&#x7F51;&#x7AD9;,&#x5E76;&#x4E14;&#x6574;&#x4E2A;&#x793E;&#x4F1A;&#x53EA;&#x6709;&#x8FD9;&#x4E2A;&#x4E48;&#x4E00;&#x4E2A;&#x6C42;&#x804C;&#x7F51;&#x7AD9;&#x201D;&#x62C9;&#x94A9;&#x7F51;&#x201D;.</p>
+<p>&#x800C;&#x516C;&#x53F8;&#x4E3A;&#x901A;&#x77E5;&#x7684;&#x53D1;&#x5E03;&#x8005;</p>
+<p>&#x6C42;&#x804C;&#x8005;&#x4E3A;&#x901A;&#x77E5;&#x7684;&#x63A5;&#x6536;&#x8005;.<br>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x8981;&#x5F15;&#x5165;NSNotification,&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;NSNotification&#x901A;&#x5E38;&#x8FD8;&#x6709;2-3&#x4E2A;&#x5C5E;&#x6027;.</p>
 </blockquote>
-<p>一个完整的通知一般包含3个属性：</p>
+<p>&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x901A;&#x77E5;&#x4E00;&#x822C;&#x5305;&#x542B;3&#x4E2A;&#x5C5E;&#x6027;&#xFF1A;</p>
 <ul>
-<li><p>(NSString *)name; // 通知的名称(可以理解为岗位名称)</p>
+<li><p>(NSString *)name; // &#x901A;&#x77E5;&#x7684;&#x540D;&#x79F0;(&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x5C97;&#x4F4D;&#x540D;&#x79F0;)</p>
 </li>
-<li><p>(id)object; // 通知发布者(可以理解为公司)</p>
+<li><p>(id)object; // &#x901A;&#x77E5;&#x53D1;&#x5E03;&#x8005;(&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x516C;&#x53F8;)</p>
 </li>
-<li><p>(NSDictionary *)userInfo; // 一些额外的信息(比如职位的描述,能力的要求.以字典的方式存放) &lt;而这个额外的信息是可有可无的.</p>
+<li><p>(NSDictionary *)userInfo; // &#x4E00;&#x4E9B;&#x989D;&#x5916;&#x7684;&#x4FE1;&#x606F;(&#x6BD4;&#x5982;&#x804C;&#x4F4D;&#x7684;&#x63CF;&#x8FF0;,&#x80FD;&#x529B;&#x7684;&#x8981;&#x6C42;.&#x4EE5;&#x5B57;&#x5178;&#x7684;&#x65B9;&#x5F0F;&#x5B58;&#x653E;) &lt;&#x800C;&#x8FD9;&#x4E2A;&#x989D;&#x5916;&#x7684;&#x4FE1;&#x606F;&#x662F;&#x53EF;&#x6709;&#x53EF;&#x65E0;&#x7684;.</p>
 </li>
 </ul>
-<p>&nbsp;</p>
-<p>初始化一个通知（NSNotification）对象:</p>
+<p>&#xA0;</p>
+<p>&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x901A;&#x77E5;&#xFF08;NSNotification&#xFF09;&#x5BF9;&#x8C61;:</p>
 <blockquote>
-<p>这一步,我们可以理解为在”拉勾网”注册了一个账号,并且设置自己是什么名字的公司,需要什么岗位,有什么额外的信息或者要求</p>
-<p><strong>注意:这一步只是注册,这个招聘信息并没有推送给求职者.</strong></p>
+<p>&#x8FD9;&#x4E00;&#x6B65;,&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x5728;&#x201D;&#x62C9;&#x52FE;&#x7F51;&#x201D;&#x6CE8;&#x518C;&#x4E86;&#x4E00;&#x4E2A;&#x8D26;&#x53F7;,&#x5E76;&#x4E14;&#x8BBE;&#x7F6E;&#x81EA;&#x5DF1;&#x662F;&#x4EC0;&#x4E48;&#x540D;&#x5B57;&#x7684;&#x516C;&#x53F8;,&#x9700;&#x8981;&#x4EC0;&#x4E48;&#x5C97;&#x4F4D;,&#x6709;&#x4EC0;&#x4E48;&#x989D;&#x5916;&#x7684;&#x4FE1;&#x606F;&#x6216;&#x8005;&#x8981;&#x6C42;</p>
+<p><strong>&#x6CE8;&#x610F;:&#x8FD9;&#x4E00;&#x6B65;&#x53EA;&#x662F;&#x6CE8;&#x518C;,&#x8FD9;&#x4E2A;&#x62DB;&#x8058;&#x4FE1;&#x606F;&#x5E76;&#x6CA1;&#x6709;&#x63A8;&#x9001;&#x7ED9;&#x6C42;&#x804C;&#x8005;.</strong></p>
 <p><pre class="lang:objc decode:true">+ (instancetype)notificationWithName:(NSString *)aName object:(id)anObject;</pre></p>
 <ul>
 <li>(instancetype)notificationWithName:(NSString <em>)aName object:(id)anObject userInfo:(NSDictionary </em>)aUserInfo;</li>
 </ul>
 <ul>
-<li>(instancetype)initWithName:(NSString <em>)name object:(id)object userInfo:(NSDictionary </em>)userInfo;<br><br>通知中心(NSNotificationCenter)调用方法来发布通知:<br><pre class="lang:objc decode:true ">- (void)postNotification:(NSNotification <em>)notification;</em></pre><br>当然,我们可以把上面的2部合为一步,就是注册的时候就发布内容,然后再填写发布什么内容,自己的公司情况. 于是:<br><pre class="lang:objc decode:true ">- (void)postNotificationName:(NSString )aName object:(id)anObject;<br>发布一个名称为aName的通知，anObject为这个通知的发布者</pre></li>
-<li>(void)postNotificationName:(NSString <em>)aName object:(id)anObject userInfo:(NSDictionary </em>)aUserInfo;<br>发布一个名称为aName的通知，anObject为这个通知的发布者，aUserInfo为额外信息<br><a id="more"></a>
+<li>(instancetype)initWithName:(NSString <em>)name object:(id)object userInfo:(NSDictionary </em>)userInfo;<br><br>&#x901A;&#x77E5;&#x4E2D;&#x5FC3;(NSNotificationCenter)&#x8C03;&#x7528;&#x65B9;&#x6CD5;&#x6765;&#x53D1;&#x5E03;&#x901A;&#x77E5;:<br><pre class="lang:objc decode:true ">- (void)postNotification:(NSNotification <em>)notification;</em></pre><br>&#x5F53;&#x7136;,&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x4E0A;&#x9762;&#x7684;2&#x90E8;&#x5408;&#x4E3A;&#x4E00;&#x6B65;,&#x5C31;&#x662F;&#x6CE8;&#x518C;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x53D1;&#x5E03;&#x5185;&#x5BB9;,&#x7136;&#x540E;&#x518D;&#x586B;&#x5199;&#x53D1;&#x5E03;&#x4EC0;&#x4E48;&#x5185;&#x5BB9;,&#x81EA;&#x5DF1;&#x7684;&#x516C;&#x53F8;&#x60C5;&#x51B5;. &#x4E8E;&#x662F;:<br><pre class="lang:objc decode:true ">- (void)postNotificationName:(NSString )aName object:(id)anObject;<br>&#x53D1;&#x5E03;&#x4E00;&#x4E2A;&#x540D;&#x79F0;&#x4E3A;aName&#x7684;&#x901A;&#x77E5;&#xFF0C;anObject&#x4E3A;&#x8FD9;&#x4E2A;&#x901A;&#x77E5;&#x7684;&#x53D1;&#x5E03;&#x8005;</pre></li>
+<li>(void)postNotificationName:(NSString <em>)aName object:(id)anObject userInfo:(NSDictionary </em>)aUserInfo;<br>&#x53D1;&#x5E03;&#x4E00;&#x4E2A;&#x540D;&#x79F0;&#x4E3A;aName&#x7684;&#x901A;&#x77E5;&#xFF0C;anObject&#x4E3A;&#x8FD9;&#x4E2A;&#x901A;&#x77E5;&#x7684;&#x53D1;&#x5E03;&#x8005;&#xFF0C;aUserInfo&#x4E3A;&#x989D;&#x5916;&#x4FE1;&#x606F;<br><a id="more"></a>
 </li>
 </ul>
 </blockquote>
-<p>这样我们就成功注册了一个消息的发布者,并且发布了一条内容,但是有一个问题是,我们没有对象来接受,或者响应这个通知.其实这个消息的接受者更准确的讲应该叫消息的观察者.<strong>因为:应该先有观察者,再有消息发布者.换句话说,观察者应该先在发布者之前执行.</strong></p>
-<p>是这样来注册一个消息的观察者:</p>
+<p>&#x8FD9;&#x6837;&#x6211;&#x4EEC;&#x5C31;&#x6210;&#x529F;&#x6CE8;&#x518C;&#x4E86;&#x4E00;&#x4E2A;&#x6D88;&#x606F;&#x7684;&#x53D1;&#x5E03;&#x8005;,&#x5E76;&#x4E14;&#x53D1;&#x5E03;&#x4E86;&#x4E00;&#x6761;&#x5185;&#x5BB9;,&#x4F46;&#x662F;&#x6709;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x662F;,&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x5BF9;&#x8C61;&#x6765;&#x63A5;&#x53D7;,&#x6216;&#x8005;&#x54CD;&#x5E94;&#x8FD9;&#x4E2A;&#x901A;&#x77E5;.&#x5176;&#x5B9E;&#x8FD9;&#x4E2A;&#x6D88;&#x606F;&#x7684;&#x63A5;&#x53D7;&#x8005;&#x66F4;&#x51C6;&#x786E;&#x7684;&#x8BB2;&#x5E94;&#x8BE5;&#x53EB;&#x6D88;&#x606F;&#x7684;&#x89C2;&#x5BDF;&#x8005;.<strong>&#x56E0;&#x4E3A;:&#x5E94;&#x8BE5;&#x5148;&#x6709;&#x89C2;&#x5BDF;&#x8005;,&#x518D;&#x6709;&#x6D88;&#x606F;&#x53D1;&#x5E03;&#x8005;.&#x6362;&#x53E5;&#x8BDD;&#x8BF4;,&#x89C2;&#x5BDF;&#x8005;&#x5E94;&#x8BE5;&#x5148;&#x5728;&#x53D1;&#x5E03;&#x8005;&#x4E4B;&#x524D;&#x6267;&#x884C;.</strong></p>
+<p>&#x662F;&#x8FD9;&#x6837;&#x6765;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x6D88;&#x606F;&#x7684;&#x89C2;&#x5BDF;&#x8005;:</p>
 <pre class="lang:objc decode:true ">- (void)addObserver:(id)observer selector:(SEL)aSelector name:(NSString *)aName object:(id)anObject;
 </pre>
 
 <ul>
-<li>observer：监听器，即谁要接收这个通知 (求职者名字)</li>
-<li>aSelector：收到通知后，回调监听器的这个方法，并且把通知对象当做参数传入(收到消息后是要打电话,还是面试,还是怎样)</li>
-<li>aName：通知的名称。如果为nil，那么无论通知的名称是什么，监听器都能收到这个通知(可以理解为对应上面的岗位名称)</li>
-<li>anObject：通知发布者。如果为anObject和aName都为nil，监听器都收到所有的通知(求职的公司)</li>
+<li>observer&#xFF1A;&#x76D1;&#x542C;&#x5668;&#xFF0C;&#x5373;&#x8C01;&#x8981;&#x63A5;&#x6536;&#x8FD9;&#x4E2A;&#x901A;&#x77E5; (&#x6C42;&#x804C;&#x8005;&#x540D;&#x5B57;)</li>
+<li>aSelector&#xFF1A;&#x6536;&#x5230;&#x901A;&#x77E5;&#x540E;&#xFF0C;&#x56DE;&#x8C03;&#x76D1;&#x542C;&#x5668;&#x7684;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x4E14;&#x628A;&#x901A;&#x77E5;&#x5BF9;&#x8C61;&#x5F53;&#x505A;&#x53C2;&#x6570;&#x4F20;&#x5165;(&#x6536;&#x5230;&#x6D88;&#x606F;&#x540E;&#x662F;&#x8981;&#x6253;&#x7535;&#x8BDD;,&#x8FD8;&#x662F;&#x9762;&#x8BD5;,&#x8FD8;&#x662F;&#x600E;&#x6837;)</li>
+<li>aName&#xFF1A;&#x901A;&#x77E5;&#x7684;&#x540D;&#x79F0;&#x3002;&#x5982;&#x679C;&#x4E3A;nil&#xFF0C;&#x90A3;&#x4E48;&#x65E0;&#x8BBA;&#x901A;&#x77E5;&#x7684;&#x540D;&#x79F0;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x76D1;&#x542C;&#x5668;&#x90FD;&#x80FD;&#x6536;&#x5230;&#x8FD9;&#x4E2A;&#x901A;&#x77E5;(&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x5BF9;&#x5E94;&#x4E0A;&#x9762;&#x7684;&#x5C97;&#x4F4D;&#x540D;&#x79F0;)</li>
+<li>anObject&#xFF1A;&#x901A;&#x77E5;&#x53D1;&#x5E03;&#x8005;&#x3002;&#x5982;&#x679C;&#x4E3A;anObject&#x548C;aName&#x90FD;&#x4E3A;nil&#xFF0C;&#x76D1;&#x542C;&#x5668;&#x90FD;&#x6536;&#x5230;&#x6240;&#x6709;&#x7684;&#x901A;&#x77E5;(&#x6C42;&#x804C;&#x7684;&#x516C;&#x53F8;)</li>
 </ul>
-<h6 id="还有一个因为涉及到多线程-我们今天暂时不讲解的方法"><a href="#还有一个因为涉及到多线程-我们今天暂时不讲解的方法" class="headerlink" title="(还有一个因为涉及到多线程,我们今天暂时不讲解的方法):"></a>(还有一个因为涉及到多线程,我们今天暂时不讲解的方法):</h6><pre class="lang:objc decode:true  ">- (id)addObserverForName:(NSString *)name object:(id)obj queue:(NSOperationQueue *)queue usingBlock:(void (^)(NSNotification *note))block;</pre>
+<h6 id="&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x56E0;&#x4E3A;&#x6D89;&#x53CA;&#x5230;&#x591A;&#x7EBF;&#x7A0B;-&#x6211;&#x4EEC;&#x4ECA;&#x5929;&#x6682;&#x65F6;&#x4E0D;&#x8BB2;&#x89E3;&#x7684;&#x65B9;&#x6CD5;"><a href="#&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x56E0;&#x4E3A;&#x6D89;&#x53CA;&#x5230;&#x591A;&#x7EBF;&#x7A0B;-&#x6211;&#x4EEC;&#x4ECA;&#x5929;&#x6682;&#x65F6;&#x4E0D;&#x8BB2;&#x89E3;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="(&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x56E0;&#x4E3A;&#x6D89;&#x53CA;&#x5230;&#x591A;&#x7EBF;&#x7A0B;,&#x6211;&#x4EEC;&#x4ECA;&#x5929;&#x6682;&#x65F6;&#x4E0D;&#x8BB2;&#x89E3;&#x7684;&#x65B9;&#x6CD5;):"></a>(&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x56E0;&#x4E3A;&#x6D89;&#x53CA;&#x5230;&#x591A;&#x7EBF;&#x7A0B;,&#x6211;&#x4EEC;&#x4ECA;&#x5929;&#x6682;&#x65F6;&#x4E0D;&#x8BB2;&#x89E3;&#x7684;&#x65B9;&#x6CD5;):</h6><pre class="lang:objc decode:true  ">- (id)addObserverForName:(NSString *)name object:(id)obj queue:(NSOperationQueue *)queue usingBlock:(void (^)(NSNotification *note))block;</pre>
 
 <ul>
-<li><h6 id="name：通知的名称"><a href="#name：通知的名称" class="headerlink" title="name：通知的名称"></a>name：通知的名称</h6></li>
-<li><h6 id="obj：通知发布者"><a href="#obj：通知发布者" class="headerlink" title="obj：通知发布者"></a>obj：通知发布者</h6></li>
-<li><h6 id="block：收到对应的通知时，会回调这个block"><a href="#block：收到对应的通知时，会回调这个block" class="headerlink" title="block：收到对应的通知时，会回调这个block"></a>block：收到对应的通知时，会回调这个block</h6></li>
-<li><h6 id="queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行"><a href="#queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行" class="headerlink" title="queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行"></a>queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行</h6><p>注销观察者(取消注册的监听器)</p>
+<li><h6 id="name&#xFF1A;&#x901A;&#x77E5;&#x7684;&#x540D;&#x79F0;"><a href="#name&#xFF1A;&#x901A;&#x77E5;&#x7684;&#x540D;&#x79F0;" class="headerlink" title="name&#xFF1A;&#x901A;&#x77E5;&#x7684;&#x540D;&#x79F0;"></a>name&#xFF1A;&#x901A;&#x77E5;&#x7684;&#x540D;&#x79F0;</h6></li>
+<li><h6 id="obj&#xFF1A;&#x901A;&#x77E5;&#x53D1;&#x5E03;&#x8005;"><a href="#obj&#xFF1A;&#x901A;&#x77E5;&#x53D1;&#x5E03;&#x8005;" class="headerlink" title="obj&#xFF1A;&#x901A;&#x77E5;&#x53D1;&#x5E03;&#x8005;"></a>obj&#xFF1A;&#x901A;&#x77E5;&#x53D1;&#x5E03;&#x8005;</h6></li>
+<li><h6 id="block&#xFF1A;&#x6536;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x901A;&#x77E5;&#x65F6;&#xFF0C;&#x4F1A;&#x56DE;&#x8C03;&#x8FD9;&#x4E2A;block"><a href="#block&#xFF1A;&#x6536;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x901A;&#x77E5;&#x65F6;&#xFF0C;&#x4F1A;&#x56DE;&#x8C03;&#x8FD9;&#x4E2A;block" class="headerlink" title="block&#xFF1A;&#x6536;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x901A;&#x77E5;&#x65F6;&#xFF0C;&#x4F1A;&#x56DE;&#x8C03;&#x8FD9;&#x4E2A;block"></a>block&#xFF1A;&#x6536;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x901A;&#x77E5;&#x65F6;&#xFF0C;&#x4F1A;&#x56DE;&#x8C03;&#x8FD9;&#x4E2A;block</h6></li>
+<li><h6 id="queue&#xFF1A;&#x51B3;&#x5B9A;&#x4E86;block&#x5728;&#x54EA;&#x4E2A;&#x64CD;&#x4F5C;&#x961F;&#x5217;&#x4E2D;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x4F20;nil&#xFF0C;&#x9ED8;&#x8BA4;&#x5728;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x961F;&#x5217;&#x4E2D;&#x540C;&#x6B65;&#x6267;&#x884C;"><a href="#queue&#xFF1A;&#x51B3;&#x5B9A;&#x4E86;block&#x5728;&#x54EA;&#x4E2A;&#x64CD;&#x4F5C;&#x961F;&#x5217;&#x4E2D;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x4F20;nil&#xFF0C;&#x9ED8;&#x8BA4;&#x5728;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x961F;&#x5217;&#x4E2D;&#x540C;&#x6B65;&#x6267;&#x884C;" class="headerlink" title="queue&#xFF1A;&#x51B3;&#x5B9A;&#x4E86;block&#x5728;&#x54EA;&#x4E2A;&#x64CD;&#x4F5C;&#x961F;&#x5217;&#x4E2D;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x4F20;nil&#xFF0C;&#x9ED8;&#x8BA4;&#x5728;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x961F;&#x5217;&#x4E2D;&#x540C;&#x6B65;&#x6267;&#x884C;"></a>queue&#xFF1A;&#x51B3;&#x5B9A;&#x4E86;block&#x5728;&#x54EA;&#x4E2A;&#x64CD;&#x4F5C;&#x961F;&#x5217;&#x4E2D;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x4F20;nil&#xFF0C;&#x9ED8;&#x8BA4;&#x5728;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x961F;&#x5217;&#x4E2D;&#x540C;&#x6B65;&#x6267;&#x884C;</h6><p>&#x6CE8;&#x9500;&#x89C2;&#x5BDF;&#x8005;(&#x53D6;&#x6D88;&#x6CE8;&#x518C;&#x7684;&#x76D1;&#x542C;&#x5668;)</p>
 </li>
 </ul>
-<p>通知中心不会保留(retain)监听器对象，在通知中心注册过的对象，<strong>必须在该对象释放前取消注册</strong>。否则，当相应的通知再次出现时，通知中心仍然会向该监听器发送消息。因为相应的监听器对象已经被释放了，所以可能会导致应用崩溃.</p>
+<p>&#x901A;&#x77E5;&#x4E2D;&#x5FC3;&#x4E0D;&#x4F1A;&#x4FDD;&#x7559;(retain)&#x76D1;&#x542C;&#x5668;&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x901A;&#x77E5;&#x4E2D;&#x5FC3;&#x6CE8;&#x518C;&#x8FC7;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;<strong>&#x5FC5;&#x987B;&#x5728;&#x8BE5;&#x5BF9;&#x8C61;&#x91CA;&#x653E;&#x524D;&#x53D6;&#x6D88;&#x6CE8;&#x518C;</strong>&#x3002;&#x5426;&#x5219;&#xFF0C;&#x5F53;&#x76F8;&#x5E94;&#x7684;&#x901A;&#x77E5;&#x518D;&#x6B21;&#x51FA;&#x73B0;&#x65F6;&#xFF0C;&#x901A;&#x77E5;&#x4E2D;&#x5FC3;&#x4ECD;&#x7136;&#x4F1A;&#x5411;&#x8BE5;&#x76D1;&#x542C;&#x5668;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x3002;&#x56E0;&#x4E3A;&#x76F8;&#x5E94;&#x7684;&#x76D1;&#x542C;&#x5668;&#x5BF9;&#x8C61;&#x5DF2;&#x7ECF;&#x88AB;&#x91CA;&#x653E;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x5E94;&#x7528;&#x5D29;&#x6E83;.</p>
 <blockquote>
-<p>如果一个求职者在拉勾网选中了应聘哪个公司的哪个岗位,或者所有公司的哪个岗位,或者哪个公司的所有岗位后,并且已经找到了一个工作.但是没有去拉勾网注明,或者把自己的求职删除.拉勾网就会不断给你推荐不同的岗位.</p>
-<p>这样就会出现一个情况,明明你已经没有求职了,但是拉勾网还在给你发送应聘消息.<br>通知中心提供了相应的方法来取消注册监听器:</p>
+<p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x6C42;&#x804C;&#x8005;&#x5728;&#x62C9;&#x52FE;&#x7F51;&#x9009;&#x4E2D;&#x4E86;&#x5E94;&#x8058;&#x54EA;&#x4E2A;&#x516C;&#x53F8;&#x7684;&#x54EA;&#x4E2A;&#x5C97;&#x4F4D;,&#x6216;&#x8005;&#x6240;&#x6709;&#x516C;&#x53F8;&#x7684;&#x54EA;&#x4E2A;&#x5C97;&#x4F4D;,&#x6216;&#x8005;&#x54EA;&#x4E2A;&#x516C;&#x53F8;&#x7684;&#x6240;&#x6709;&#x5C97;&#x4F4D;&#x540E;,&#x5E76;&#x4E14;&#x5DF2;&#x7ECF;&#x627E;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x5DE5;&#x4F5C;.&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x53BB;&#x62C9;&#x52FE;&#x7F51;&#x6CE8;&#x660E;,&#x6216;&#x8005;&#x628A;&#x81EA;&#x5DF1;&#x7684;&#x6C42;&#x804C;&#x5220;&#x9664;.&#x62C9;&#x52FE;&#x7F51;&#x5C31;&#x4F1A;&#x4E0D;&#x65AD;&#x7ED9;&#x4F60;&#x63A8;&#x8350;&#x4E0D;&#x540C;&#x7684;&#x5C97;&#x4F4D;.</p>
+<p>&#x8FD9;&#x6837;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x4E00;&#x4E2A;&#x60C5;&#x51B5;,&#x660E;&#x660E;&#x4F60;&#x5DF2;&#x7ECF;&#x6CA1;&#x6709;&#x6C42;&#x804C;&#x4E86;,&#x4F46;&#x662F;&#x62C9;&#x52FE;&#x7F51;&#x8FD8;&#x5728;&#x7ED9;&#x4F60;&#x53D1;&#x9001;&#x5E94;&#x8058;&#x6D88;&#x606F;.<br>&#x901A;&#x77E5;&#x4E2D;&#x5FC3;&#x63D0;&#x4F9B;&#x4E86;&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x53D6;&#x6D88;&#x6CE8;&#x518C;&#x76D1;&#x542C;&#x5668;:</p>
 <p><pre class="lang:objc decode:true">- (void)removeObserver:(id)observer;</pre></p>
 <ul>
-<li>(void)removeObserver:(id)observer name:(NSString *)aName object:(id)anObject;<br><br>一般在监听器销毁之前取消注册（如在监听器中加入下列代码）：<br><pre class="lang:objc decode:true">- (void)dealloc {<br>  //[super dealloc];  非ARC中需要调用此句<br>  [[NSNotificationCenter defaultCenter] removeObserver:self];<br>}<br></pre><br><span style="color: #808000;">Cocoa 还给我们另一种事件通知模型就是 KVO(Key-Value Obsering)，基于 NSKeyValueObserving 非正式协议。</span></li>
+<li>(void)removeObserver:(id)observer name:(NSString *)aName object:(id)anObject;<br><br>&#x4E00;&#x822C;&#x5728;&#x76D1;&#x542C;&#x5668;&#x9500;&#x6BC1;&#x4E4B;&#x524D;&#x53D6;&#x6D88;&#x6CE8;&#x518C;&#xFF08;&#x5982;&#x5728;&#x76D1;&#x542C;&#x5668;&#x4E2D;&#x52A0;&#x5165;&#x4E0B;&#x5217;&#x4EE3;&#x7801;&#xFF09;&#xFF1A;<br><pre class="lang:objc decode:true">- (void)dealloc {<br>  //[super dealloc];  &#x975E;ARC&#x4E2D;&#x9700;&#x8981;&#x8C03;&#x7528;&#x6B64;&#x53E5;<br>  [[NSNotificationCenter defaultCenter] removeObserver:self];<br>}<br></pre><br><span style="color: #808000;">Cocoa &#x8FD8;&#x7ED9;&#x6211;&#x4EEC;&#x53E6;&#x4E00;&#x79CD;&#x4E8B;&#x4EF6;&#x901A;&#x77E5;&#x6A21;&#x578B;&#x5C31;&#x662F; KVO(Key-Value Obsering)&#xFF0C;&#x57FA;&#x4E8E; NSKeyValueObserving &#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x3002;</span></li>
 </ul>
-<p>参考：</p>
+<p>&#x53C2;&#x8003;&#xFF1A;</p>
 <ol>
 <li><p><a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSNotificationCenter_Class/Reference/Reference.html" target="_blank" rel="external">NSNotification Class Reference</a></p>
 </li>
@@ -520,7 +520,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

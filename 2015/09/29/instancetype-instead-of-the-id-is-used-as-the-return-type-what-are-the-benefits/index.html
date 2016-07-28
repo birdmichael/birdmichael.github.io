@@ -84,37 +84,22 @@
 
 
 
-<meta name="description" content="Steven Fisher：只要一个类返回自身的实例，用instancetype就有好处。
+<meta name="description" content="Steven Fisher&amp;#xFF1A;&amp;#x53EA;&amp;#x8981;&amp;#x4E00;&amp;#x4E2A;&amp;#x7C7B;&amp;#x8FD4;&amp;#x56DE;&amp;#x81EA;&amp;#x8EAB;&amp;#x7684;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF0C;&amp;#x7528;instancetype&amp;#x5C31;&amp;#x6709;&amp;#x597D;&amp;#x5904;&amp;#x3002;
 
-@interface Foo:NSObject
-
-(id)initWithBar:(NSInteger)bar; // initializer
-
-
-(id)fooWithBar:(NSInteger)bar;  // convenience constructor@end对于简易构造函数(convenie">
+@interface Fo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用instancetype代替id作返回类型有什么好处？">
 <meta property="og:url" content="http://yoursite.com/2015/09/29/instancetype-instead-of-the-id-is-used-as-the-return-type-what-are-the-benefits/index.html">
 <meta property="og:site_name" content="BirdMichael">
-<meta property="og:description" content="Steven Fisher：只要一个类返回自身的实例，用instancetype就有好处。
+<meta property="og:description" content="Steven Fisher&amp;#xFF1A;&amp;#x53EA;&amp;#x8981;&amp;#x4E00;&amp;#x4E2A;&amp;#x7C7B;&amp;#x8FD4;&amp;#x56DE;&amp;#x81EA;&amp;#x8EAB;&amp;#x7684;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF0C;&amp;#x7528;instancetype&amp;#x5C31;&amp;#x6709;&amp;#x597D;&amp;#x5904;&amp;#x3002;
 
-@interface Foo:NSObject
-
-(id)initWithBar:(NSInteger)bar; // initializer
-
-
-(id)fooWithBar:(NSInteger)bar;  // convenience constructor@end对于简易构造函数(convenie">
+@interface Fo">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用instancetype代替id作返回类型有什么好处？">
-<meta name="twitter:description" content="Steven Fisher：只要一个类返回自身的实例，用instancetype就有好处。
+<meta name="twitter:description" content="Steven Fisher&amp;#xFF1A;&amp;#x53EA;&amp;#x8981;&amp;#x4E00;&amp;#x4E2A;&amp;#x7C7B;&amp;#x8FD4;&amp;#x56DE;&amp;#x81EA;&amp;#x8EAB;&amp;#x7684;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF0C;&amp;#x7528;instancetype&amp;#x5C31;&amp;#x6709;&amp;#x597D;&amp;#x5904;&amp;#x3002;
 
-@interface Foo:NSObject
-
-(id)initWithBar:(NSInteger)bar; // initializer
-
-
-(id)fooWithBar:(NSInteger)bar;  // convenience constructor@end对于简易构造函数(convenie">
+@interface Fo">
 
 
 
@@ -316,68 +301,68 @@
       
 
       
-        <p><strong>Steven Fisher</strong>：只要一个类返回自身的实例，用instancetype就有好处。</p>
+        <p><strong>Steven Fisher</strong>&#xFF1A;&#x53EA;&#x8981;&#x4E00;&#x4E2A;&#x7C7B;&#x8FD4;&#x56DE;&#x81EA;&#x8EAB;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x7528;instancetype&#x5C31;&#x6709;&#x597D;&#x5904;&#x3002;</p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true">@interface Foo:NSObject</pre></p>
 <ul>
 <li>(id)initWithBar:(NSInteger)bar; // initializer</li>
 </ul>
 <ul>
-<li>(id)fooWithBar:(NSInteger)bar;  // convenience constructor<br>@end<br><br>对于简易构造函数(convenience constructor)，应该总是用instancetype。编译器不会自动将id转化为instancetype。id是通用对象，但如果你用instancetype，编译器就知道方法返回什么类型的对象。</li>
+<li>(id)fooWithBar:(NSInteger)bar;  // convenience constructor<br>@end<br><br>&#x5BF9;&#x4E8E;&#x7B80;&#x6613;&#x6784;&#x9020;&#x51FD;&#x6570;(convenience constructor)&#xFF0C;&#x5E94;&#x8BE5;&#x603B;&#x662F;&#x7528;instancetype&#x3002;&#x7F16;&#x8BD1;&#x5668;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x5C06;id&#x8F6C;&#x5316;&#x4E3A;instancetype&#x3002;id&#x662F;&#x901A;&#x7528;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x4F60;&#x7528;instancetype&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5C31;&#x77E5;&#x9053;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4EC0;&#x4E48;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x3002;</li>
 </ul>
-<p>这个问题可不只有学术意义，比如，[[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData]在Mac OS X（只在该OS版本）中会报错“Multiple methods named ‘writeData:’ found with mismatched result, parameter type or attributes.”原因是NSFileHandle和NSURLHandle都提供writeData:方法。由于[NSFileHandle fileHandleWithStandardOutput] 返回的类型是id，编译器并不确定请求了哪个类的writeData:方法。</p>
-<p>你可以用</p>
+<p>&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x53EF;&#x4E0D;&#x53EA;&#x6709;&#x5B66;&#x672F;&#x610F;&#x4E49;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;[[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData]&#x5728;Mac OS X&#xFF08;&#x53EA;&#x5728;&#x8BE5;OS&#x7248;&#x672C;&#xFF09;&#x4E2D;&#x4F1A;&#x62A5;&#x9519;&#x201C;Multiple methods named &#x2018;writeData:&#x2019; found with mismatched result, parameter type or attributes.&#x201D;&#x539F;&#x56E0;&#x662F;NSFileHandle&#x548C;NSURLHandle&#x90FD;&#x63D0;&#x4F9B;writeData:&#x65B9;&#x6CD5;&#x3002;&#x7531;&#x4E8E;[NSFileHandle fileHandleWithStandardOutput] &#x8FD4;&#x56DE;&#x7684;&#x7C7B;&#x578B;&#x662F;id&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5E76;&#x4E0D;&#x786E;&#x5B9A;&#x8BF7;&#x6C42;&#x4E86;&#x54EA;&#x4E2A;&#x7C7B;&#x7684;writeData:&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x7528;</p>
 <p><div class="highlight"></div></p>
-<p><pre class="lang:objc decode:true">[(NSFileHandle *)[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData];</pre><br>或</p>
+<p><pre class="lang:objc decode:true">[(NSFileHandle *)[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData];</pre><br>&#x6216;</p>
 <p><pre class="lang:objc decode:true">NSFileHandle *fileHandle = [NSFileHandle fileHandleWithStandardOutput];<br>[fileHandle writeData:formattedData];</pre><br></p>
-<p><div class="highlight"></div><br>来绕过。</p>
-<p>当然，更好的方法是声明fileHandleWithStandardOutput的返回类型为instancetype。(注意：这段样例代码在iOS中并不会报错，因为iOS中只有NSFileHandle提供writeData:方法。但length等方法则会，UILayoutSupport会返回CGFloat，而NSString则会返回NSUInteger)</p>
-<p>initializer的情况更复杂，当你输入</p>
+<p><div class="highlight"></div><br>&#x6765;&#x7ED5;&#x8FC7;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x66F4;&#x597D;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x58F0;&#x660E;fileHandleWithStandardOutput&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x4E3A;instancetype&#x3002;(&#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x6BB5;&#x6837;&#x4F8B;&#x4EE3;&#x7801;&#x5728;iOS&#x4E2D;&#x5E76;&#x4E0D;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x56E0;&#x4E3A;iOS&#x4E2D;&#x53EA;&#x6709;NSFileHandle&#x63D0;&#x4F9B;writeData:&#x65B9;&#x6CD5;&#x3002;&#x4F46;length&#x7B49;&#x65B9;&#x6CD5;&#x5219;&#x4F1A;&#xFF0C;UILayoutSupport&#x4F1A;&#x8FD4;&#x56DE;CGFloat&#xFF0C;&#x800C;NSString&#x5219;&#x4F1A;&#x8FD4;&#x56DE;NSUInteger)</p>
+<p>initializer&#x7684;&#x60C5;&#x51B5;&#x66F4;&#x590D;&#x6742;&#xFF0C;&#x5F53;&#x4F60;&#x8F93;&#x5165;</p>
 <p><div class="highlight"></div></p>
-<p><pre class="lang:objc decode:true">- (id)initWithBar:(NSInteger)bar</pre><br><br>编译器会假设你输入了</p>
+<p><pre class="lang:objc decode:true">- (id)initWithBar:(NSInteger)bar</pre><br><br>&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5047;&#x8BBE;&#x4F60;&#x8F93;&#x5165;&#x4E86;</p>
 <p><div class="highlight"></div></p>
-<p><pre class="lang:objc decode:true">- (instancetype)initWithBar:(NSInteger)bar</pre><br><br>对于ARC而言，这是必须的。<a href="http://clang.llvm.org/docs/LanguageExtensions.html#related-result-types" target="_blank" rel="external">Clang Language Extensions</a>的相关结果类型(Related result types)也讲到了这一点。也许别人会据此告诉你不必使用instancetype，但我建议你用它。下面解释我为什么如此建议。</p>
-<p>使用instancetype有三点好处：</p>
-<p>1、明确性。代码只做你让它做的事，而不是其他。</p>
-<p>2、程式化。你会养成好习惯，这些习惯在某些时候会很有用，而且肯定有用武之地。</p>
-<p>3、一致性。让代码可读性更好。</p>
-<p><strong>明确性</strong></p>
-<p>用instancetype代替id作为返回值的确没有<em>技术上的好处</em>。但这是因为编译器自动将id转化成了instancetype。你以为init返回的值类型是id，其实编译器返回了instancetype。</p>
-<p>这两行代码对于编译器来说是<em>一样</em>的：</p>
+<p><pre class="lang:objc decode:true">- (instancetype)initWithBar:(NSInteger)bar</pre><br><br>&#x5BF9;&#x4E8E;ARC&#x800C;&#x8A00;&#xFF0C;&#x8FD9;&#x662F;&#x5FC5;&#x987B;&#x7684;&#x3002;<a href="http://clang.llvm.org/docs/LanguageExtensions.html#related-result-types" target="_blank" rel="external">Clang Language Extensions</a>&#x7684;&#x76F8;&#x5173;&#x7ED3;&#x679C;&#x7C7B;&#x578B;(Related result types)&#x4E5F;&#x8BB2;&#x5230;&#x4E86;&#x8FD9;&#x4E00;&#x70B9;&#x3002;&#x4E5F;&#x8BB8;&#x522B;&#x4EBA;&#x4F1A;&#x636E;&#x6B64;&#x544A;&#x8BC9;&#x4F60;&#x4E0D;&#x5FC5;&#x4F7F;&#x7528;instancetype&#xFF0C;&#x4F46;&#x6211;&#x5EFA;&#x8BAE;&#x4F60;&#x7528;&#x5B83;&#x3002;&#x4E0B;&#x9762;&#x89E3;&#x91CA;&#x6211;&#x4E3A;&#x4EC0;&#x4E48;&#x5982;&#x6B64;&#x5EFA;&#x8BAE;&#x3002;</p>
+<p>&#x4F7F;&#x7528;instancetype&#x6709;&#x4E09;&#x70B9;&#x597D;&#x5904;&#xFF1A;</p>
+<p>1&#x3001;&#x660E;&#x786E;&#x6027;&#x3002;&#x4EE3;&#x7801;&#x53EA;&#x505A;&#x4F60;&#x8BA9;&#x5B83;&#x505A;&#x7684;&#x4E8B;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5176;&#x4ED6;&#x3002;</p>
+<p>2&#x3001;&#x7A0B;&#x5F0F;&#x5316;&#x3002;&#x4F60;&#x4F1A;&#x517B;&#x6210;&#x597D;&#x4E60;&#x60EF;&#xFF0C;&#x8FD9;&#x4E9B;&#x4E60;&#x60EF;&#x5728;&#x67D0;&#x4E9B;&#x65F6;&#x5019;&#x4F1A;&#x5F88;&#x6709;&#x7528;&#xFF0C;&#x800C;&#x4E14;&#x80AF;&#x5B9A;&#x6709;&#x7528;&#x6B66;&#x4E4B;&#x5730;&#x3002;</p>
+<p>3&#x3001;&#x4E00;&#x81F4;&#x6027;&#x3002;&#x8BA9;&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x66F4;&#x597D;&#x3002;</p>
+<p><strong>&#x660E;&#x786E;&#x6027;</strong></p>
+<p>&#x7528;instancetype&#x4EE3;&#x66FF;id&#x4F5C;&#x4E3A;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x786E;&#x6CA1;&#x6709;<em>&#x6280;&#x672F;&#x4E0A;&#x7684;&#x597D;&#x5904;</em>&#x3002;&#x4F46;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x7F16;&#x8BD1;&#x5668;&#x81EA;&#x52A8;&#x5C06;id&#x8F6C;&#x5316;&#x6210;&#x4E86;instancetype&#x3002;&#x4F60;&#x4EE5;&#x4E3A;init&#x8FD4;&#x56DE;&#x7684;&#x503C;&#x7C7B;&#x578B;&#x662F;id&#xFF0C;&#x5176;&#x5B9E;&#x7F16;&#x8BD1;&#x5668;&#x8FD4;&#x56DE;&#x4E86;instancetype&#x3002;</p>
+<p>&#x8FD9;&#x4E24;&#x884C;&#x4EE3;&#x7801;&#x5BF9;&#x4E8E;&#x7F16;&#x8BD1;&#x5668;&#x6765;&#x8BF4;&#x662F;<em>&#x4E00;&#x6837;</em>&#x7684;&#xFF1A;</p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true">- (id)initWithBar:(NSInteger)bar;</pre></p>
 <ul>
-<li>(instancetype)initWithBar:(NSInteger)bar;<br><br>但在你眼里，这两行代码却不同。<strong>你不该学着忽视它。</strong></li>
+<li>(instancetype)initWithBar:(NSInteger)bar;<br><br>&#x4F46;&#x5728;&#x4F60;&#x773C;&#x91CC;&#xFF0C;&#x8FD9;&#x4E24;&#x884C;&#x4EE3;&#x7801;&#x5374;&#x4E0D;&#x540C;&#x3002;<strong>&#x4F60;&#x4E0D;&#x8BE5;&#x5B66;&#x7740;&#x5FFD;&#x89C6;&#x5B83;&#x3002;</strong></li>
 </ul>
-<p><strong>模式化</strong></p>
-<p>在使用init等方法时的确没有区别，但在定义简易构造函数时就<strong>有</strong>区别了。</p>
-<p>这两行代码并不等价：</p>
+<p><strong>&#x6A21;&#x5F0F;&#x5316;</strong></p>
+<p>&#x5728;&#x4F7F;&#x7528;init&#x7B49;&#x65B9;&#x6CD5;&#x65F6;&#x7684;&#x786E;&#x6CA1;&#x6709;&#x533A;&#x522B;&#xFF0C;&#x4F46;&#x5728;&#x5B9A;&#x4E49;&#x7B80;&#x6613;&#x6784;&#x9020;&#x51FD;&#x6570;&#x65F6;&#x5C31;<strong>&#x6709;</strong>&#x533A;&#x522B;&#x4E86;&#x3002;</p>
+<p>&#x8FD9;&#x4E24;&#x884C;&#x4EE3;&#x7801;&#x5E76;&#x4E0D;&#x7B49;&#x4EF7;&#xFF1A;</p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true">+ (id)fooWithBar:(NSInteger)bar;</pre></p>
 <ul>
-<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>如果用instancetype作为函数的返回类型，就不会出错。</li>
+<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>&#x5982;&#x679C;&#x7528;instancetype&#x4F5C;&#x4E3A;&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x51FA;&#x9519;&#x3002;</li>
 </ul>
-<p><strong>一致性：</strong></p>
-<p>最后，想象把所有东西放到一起时的情景：你想要一个init方法和一个简易构造函数。</p>
-<p>如果你用id来作为init函数的返回类型，最终代码如下：</p>
+<p><strong>&#x4E00;&#x81F4;&#x6027;&#xFF1A;</strong></p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x60F3;&#x8C61;&#x628A;&#x6240;&#x6709;&#x4E1C;&#x897F;&#x653E;&#x5230;&#x4E00;&#x8D77;&#x65F6;&#x7684;&#x60C5;&#x666F;&#xFF1A;&#x4F60;&#x60F3;&#x8981;&#x4E00;&#x4E2A;init&#x65B9;&#x6CD5;&#x548C;&#x4E00;&#x4E2A;&#x7B80;&#x6613;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x7528;id&#x6765;&#x4F5C;&#x4E3A;init&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#xFF0C;&#x6700;&#x7EC8;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true ">- (id)initWithBar:(NSInteger)bar;</pre></p>
 <ul>
-<li>(instancetype)fooWithBar:(NSInteger)bar;<br>但如果你用instancetype，代码如下：</li>
+<li>(instancetype)fooWithBar:(NSInteger)bar;<br>&#x4F46;&#x5982;&#x679C;&#x4F60;&#x7528;instancetype&#xFF0C;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</li>
 </ul>
 <p></p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true  ">- (instancetype)initWithBar:(NSInteger)bar;</pre></p>
 <ul>
-<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>代码更加一致，可读性更强。它们返回相同的东西，这一点一目了然。</li>
+<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>&#x4EE3;&#x7801;&#x66F4;&#x52A0;&#x4E00;&#x81F4;&#xFF0C;&#x53EF;&#x8BFB;&#x6027;&#x66F4;&#x5F3A;&#x3002;&#x5B83;&#x4EEC;&#x8FD4;&#x56DE;&#x76F8;&#x540C;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x8FD9;&#x4E00;&#x70B9;&#x4E00;&#x76EE;&#x4E86;&#x7136;&#x3002;</li>
 </ul>
-<p><strong>结论</strong></p>
-<p>除非你有意为旧编译器写代码，不然你在合适的时候都应该用instancetype。</p>
-<p>在写一条返回id的消息前，问自己：这个类返回实例吗？如果返回，用instancetype。</p>
-<p>肯定有需要返回id的时候，但你用instancetype的频率应该会更高。</p>
-<p><em>本答案最后编辑于2013年7月12日</em></p>
-<p>原帖：<a href="http://stackoverflow.com/questions/8972221/would-it-be-beneficial-to-begin-using-instancetype-instead-of-id" target="_blank" rel="external">objective c - Would it be beneficial to begin using instancetype instead of id?</a></p>
-<p>注意：我也是刚入门而已，如果翻译的术语与通行术语不一致，敬请告知；如果选取的翻译内容有误或过时，敬请告知，谢谢。</p>
+<p><strong>&#x7ED3;&#x8BBA;</strong></p>
+<p>&#x9664;&#x975E;&#x4F60;&#x6709;&#x610F;&#x4E3A;&#x65E7;&#x7F16;&#x8BD1;&#x5668;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x4E0D;&#x7136;&#x4F60;&#x5728;&#x5408;&#x9002;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x5E94;&#x8BE5;&#x7528;instancetype&#x3002;</p>
+<p>&#x5728;&#x5199;&#x4E00;&#x6761;&#x8FD4;&#x56DE;id&#x7684;&#x6D88;&#x606F;&#x524D;&#xFF0C;&#x95EE;&#x81EA;&#x5DF1;&#xFF1A;&#x8FD9;&#x4E2A;&#x7C7B;&#x8FD4;&#x56DE;&#x5B9E;&#x4F8B;&#x5417;&#xFF1F;&#x5982;&#x679C;&#x8FD4;&#x56DE;&#xFF0C;&#x7528;instancetype&#x3002;</p>
+<p>&#x80AF;&#x5B9A;&#x6709;&#x9700;&#x8981;&#x8FD4;&#x56DE;id&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F46;&#x4F60;&#x7528;instancetype&#x7684;&#x9891;&#x7387;&#x5E94;&#x8BE5;&#x4F1A;&#x66F4;&#x9AD8;&#x3002;</p>
+<p><em>&#x672C;&#x7B54;&#x6848;&#x6700;&#x540E;&#x7F16;&#x8F91;&#x4E8E;2013&#x5E74;7&#x6708;12&#x65E5;</em></p>
+<p>&#x539F;&#x5E16;&#xFF1A;<a href="http://stackoverflow.com/questions/8972221/would-it-be-beneficial-to-begin-using-instancetype-instead-of-id" target="_blank" rel="external">objective c - Would it be beneficial to begin using instancetype instead of id?</a></p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x6211;&#x4E5F;&#x662F;&#x521A;&#x5165;&#x95E8;&#x800C;&#x5DF2;&#xFF0C;&#x5982;&#x679C;&#x7FFB;&#x8BD1;&#x7684;&#x672F;&#x8BED;&#x4E0E;&#x901A;&#x884C;&#x672F;&#x8BED;&#x4E0D;&#x4E00;&#x81F4;&#xFF0C;&#x656C;&#x8BF7;&#x544A;&#x77E5;&#xFF1B;&#x5982;&#x679C;&#x9009;&#x53D6;&#x7684;&#x7FFB;&#x8BD1;&#x5185;&#x5BB9;&#x6709;&#x8BEF;&#x6216;&#x8FC7;&#x65F6;&#xFF0C;&#x656C;&#x8BF7;&#x544A;&#x77E5;&#xFF0C;&#x8C22;&#x8C22;&#x3002;</p>
 
       
     </div>
@@ -403,7 +388,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/09/20/use-system-comes-with-qr-codes-and-scanning/" rel="next" title="使用系统自带二维码生成及扫描">
+              <a href="/2015/09/20/使用系统自带二维码生成及扫描/" rel="next" title="使用系统自带二维码生成及扫描">
                 <i class="fa fa-chevron-left"></i> 使用系统自带二维码生成及扫描
               </a>
             
@@ -481,7 +466,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

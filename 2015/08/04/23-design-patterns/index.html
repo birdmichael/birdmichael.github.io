@@ -84,23 +84,17 @@
 
 
 
-<meta name="description" content="介绍设计模式（Design Pattern），是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结出来的固有模式。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络.
-
-设计模式就如同建筑中的大厦的结构一般重要有精通了设计模式，才敢说真正理解了软件工程。可以说">
+<meta name="description" content="&amp;#x4ECB;&amp;#x7ECD;&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;&amp;#xFF08;Design Pattern&amp;#xFF09;&amp;#xFF0C;&amp;#x662F;&amp;#x4E00;&amp;#x5957;&amp;#x88AB;&amp;#x53CD;&amp;#x590D;&amp;#x4F7F;&amp;#x7528;&amp;#x3001;&amp;#x591A;&amp;#x6570;&amp;#x4EBA;&amp;#x77E5;&amp;#x6653;&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IOS常见设计模式">
 <meta property="og:url" content="http://yoursite.com/2015/08/04/23-design-patterns/index.html">
 <meta property="og:site_name" content="BirdMichael">
-<meta property="og:description" content="介绍设计模式（Design Pattern），是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结出来的固有模式。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络.
-
-设计模式就如同建筑中的大厦的结构一般重要有精通了设计模式，才敢说真正理解了软件工程。可以说">
+<meta property="og:description" content="&amp;#x4ECB;&amp;#x7ECD;&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;&amp;#xFF08;Design Pattern&amp;#xFF09;&amp;#xFF0C;&amp;#x662F;&amp;#x4E00;&amp;#x5957;&amp;#x88AB;&amp;#x53CD;&amp;#x590D;&amp;#x4F7F;&amp;#x7528;&amp;#x3001;&amp;#x591A;&amp;#x6570;&amp;#x4EBA;&amp;#x77E5;&amp;#x6653;&amp;#">
 <meta property="og:image" content="http://birdmichael.com/wp-content/uploads/2015/08/singleton.jpg">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS常见设计模式">
-<meta name="twitter:description" content="介绍设计模式（Design Pattern），是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结出来的固有模式。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络.
-
-设计模式就如同建筑中的大厦的结构一般重要有精通了设计模式，才敢说真正理解了软件工程。可以说">
+<meta name="twitter:description" content="&amp;#x4ECB;&amp;#x7ECD;&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;&amp;#xFF08;Design Pattern&amp;#xFF09;&amp;#xFF0C;&amp;#x662F;&amp;#x4E00;&amp;#x5957;&amp;#x88AB;&amp;#x53CD;&amp;#x590D;&amp;#x4F7F;&amp;#x7528;&amp;#x3001;&amp;#x591A;&amp;#x6570;&amp;#x4EBA;&amp;#x77E5;&amp;#x6653;&amp;#">
 <meta name="twitter:image" content="http://birdmichael.com/wp-content/uploads/2015/08/singleton.jpg">
 
 
@@ -315,78 +309,78 @@
       
 
       
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>设计模式（Design Pattern），是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结出来的固有模式。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络.</p>
+        <h2 id="&#x4ECB;&#x7ECD;"><a href="#&#x4ECB;&#x7ECD;" class="headerlink" title="&#x4ECB;&#x7ECD;"></a>&#x4ECB;&#x7ECD;</h2><p>&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF08;Design Pattern&#xFF09;&#xFF0C;&#x662F;&#x4E00;&#x5957;&#x88AB;&#x53CD;&#x590D;&#x4F7F;&#x7528;&#x3001;&#x591A;&#x6570;&#x4EBA;&#x77E5;&#x6653;&#x7684;&#x3001;&#x7ECF;&#x8FC7;&#x5206;&#x7C7B;&#x7F16;&#x76EE;&#x7684;&#x3001;&#x4EE3;&#x7801;&#x8BBE;&#x8BA1;&#x7ECF;&#x9A8C;&#x7684;&#x603B;&#x7ED3;&#x51FA;&#x6765;&#x7684;&#x56FA;&#x6709;&#x6A21;&#x5F0F;&#x3002;&#x4F7F;&#x7528;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x662F;&#x4E3A;&#x4E86;&#x53EF;&#x91CD;&#x7528;&#x4EE3;&#x7801;&#x3001;&#x8BA9;&#x4EE3;&#x7801;&#x66F4;&#x5BB9;&#x6613;&#x88AB;&#x4ED6;&#x4EBA;&#x7406;&#x89E3;&#x3001;&#x4FDD;&#x8BC1;&#x4EE3;&#x7801;&#x53EF;&#x9760;&#x6027;&#x3002; &#x6BEB;&#x65E0;&#x7591;&#x95EE;&#xFF0C;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E8E;&#x5DF1;&#x4E8E;&#x4ED6;&#x4EBA;&#x4E8E;&#x7CFB;&#x7EDF;&#x90FD;&#x662F;&#x591A;&#x8D62;&#x7684;&#xFF1B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4F7F;&#x4EE3;&#x7801;&#x7F16;&#x5236;&#x771F;&#x6B63;&#x5DE5;&#x7A0B;&#x5316;&#xFF1B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x662F;&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;&#x7684;&#x57FA;&#x77F3;&#x8109;&#x7EDC;.</p>
 <blockquote>
-<p>设计模式就如同建筑中的大厦的结构一般重要有精通了设计模式，才敢说真正理解了软件工程。可以说，设计模式是每一个架构师所必备的技能之一。作为一个面向对象设计程序员，只有精通了设计模式，才能摆脱码奴的命运，成为一个真正的软件工程师，才能完成自身价值的飞跃和设计思想的升华！<br><a id="more"></a></p>
+<p>&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5C31;&#x5982;&#x540C;&#x5EFA;&#x7B51;&#x4E2D;&#x7684;&#x5927;&#x53A6;&#x7684;&#x7ED3;&#x6784;&#x4E00;&#x822C;&#x91CD;&#x8981;&#x6709;&#x7CBE;&#x901A;&#x4E86;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x624D;&#x6562;&#x8BF4;&#x771F;&#x6B63;&#x7406;&#x89E3;&#x4E86;&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;&#x3002;&#x53EF;&#x4EE5;&#x8BF4;&#xFF0C;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x662F;&#x6BCF;&#x4E00;&#x4E2A;&#x67B6;&#x6784;&#x5E08;&#x6240;&#x5FC5;&#x5907;&#x7684;&#x6280;&#x80FD;&#x4E4B;&#x4E00;&#x3002;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BBE;&#x8BA1;&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x53EA;&#x6709;&#x7CBE;&#x901A;&#x4E86;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x624D;&#x80FD;&#x6446;&#x8131;&#x7801;&#x5974;&#x7684;&#x547D;&#x8FD0;&#xFF0C;&#x6210;&#x4E3A;&#x4E00;&#x4E2A;&#x771F;&#x6B63;&#x7684;&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;&#x5E08;&#xFF0C;&#x624D;&#x80FD;&#x5B8C;&#x6210;&#x81EA;&#x8EAB;&#x4EF7;&#x503C;&#x7684;&#x98DE;&#x8DC3;&#x548C;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;&#x7684;&#x5347;&#x534E;&#xFF01;<br><a id="more"></a></p>
 </blockquote>
-<h2 id="设计模式的分类"><a href="#设计模式的分类" class="headerlink" title="设计模式的分类"></a>设计模式的分类</h2><p>总体来说设计模式分为三大类：</p>
-<p>创建型模式（Creational）</p>
-<p>结构型模式（Structural）</p>
-<p>行为型模式（Behavioral）</p>
-<h3 id="JAVA中的23设计模式"><a href="#JAVA中的23设计模式" class="headerlink" title="JAVA中的23设计模式"></a>JAVA中的23设计模式</h3><table style="height: 684px;" border="1" width="100%" cellspacing="0" cellpadding="5"><br><tbody><br><tr><br><td colspan="3" width="100%"><br><br><strong>JAVA设计模式</strong><br><br>Design Pattern<br><br></td><br></tr><br><tr><br><td width="60"><br><br><strong>创建型</strong><br><br>Creational<br><br></td><br><td width="160"><br><br><strong>结构型</strong><br><br>Structural<br><br></td><br><td><br><br><strong>行为型</strong><br><br>Behavioral<br><br></td><br></tr><br><tr><br><td valign="top">Abstract Factory(抽象工厂)Builder(建造者)Factory Method(工厂方法)Prototype(原型)Singleton(单态)<wbr><br><br><wbr><br><br><wbr><br><br><wbr><br><br><wbr><br><br><wbr><br><br><wbr></td><br><td valign="top">Adapter(适配器)Bridge(桥模式)Composite(组合)Decorator(装饰)Façade(外观)Flyweight(享元)<br><br>Proxy(代理)</td><br><td valign="top">Chain of Responsibility(职责链)Command(命令)Interpreter(解释器)Iterator(迭代器)Mediator(中介)Memento(备忘录)<br><br>Observer(观察者)<br><br>State(状态)<br><br>Strategy(策略)<br><br>Template Method(模板方法)<br><br>Visitor(访问者)</td><br></tr><br></tbody><br></table>
+<h2 id="&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x5206;&#x7C7B;"><a href="#&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x5206;&#x7C7B;" class="headerlink" title="&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x5206;&#x7C7B;"></a>&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x5206;&#x7C7B;</h2><p>&#x603B;&#x4F53;&#x6765;&#x8BF4;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5206;&#x4E3A;&#x4E09;&#x5927;&#x7C7B;&#xFF1A;</p>
+<p>&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;&#xFF08;Creational&#xFF09;</p>
+<p>&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#xFF08;Structural&#xFF09;</p>
+<p>&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#xFF08;Behavioral&#xFF09;</p>
+<h3 id="JAVA&#x4E2D;&#x7684;23&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"><a href="#JAVA&#x4E2D;&#x7684;23&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;" class="headerlink" title="JAVA&#x4E2D;&#x7684;23&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"></a>JAVA&#x4E2D;&#x7684;23&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</h3><table style="height: 684px;" border="1" width="100%" cellspacing="0" cellpadding="5"><br><tbody><br><tr><br><td colspan="3" width="100%"><br><br><strong>JAVA&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</strong><br><br>Design Pattern<br><br></td><br></tr><br><tr><br><td width="60"><br><br><strong>&#x521B;&#x5EFA;&#x578B;</strong><br><br>Creational<br><br></td><br><td width="160"><br><br><strong>&#x7ED3;&#x6784;&#x578B;</strong><br><br>Structural<br><br></td><br><td><br><br><strong>&#x884C;&#x4E3A;&#x578B;</strong><br><br>Behavioral<br><br></td><br></tr><br><tr><br><td valign="top">Abstract Factory(&#x62BD;&#x8C61;&#x5DE5;&#x5382;)Builder(&#x5EFA;&#x9020;&#x8005;)Factory Method(&#x5DE5;&#x5382;&#x65B9;&#x6CD5;)Prototype(&#x539F;&#x578B;)Singleton(&#x5355;&#x6001;)<wbr><br><br><wbr><br><br><wbr><br><br><wbr><br><br><wbr><br><br><wbr><br><br><wbr></td><br><td valign="top">Adapter(&#x9002;&#x914D;&#x5668;)Bridge(&#x6865;&#x6A21;&#x5F0F;)Composite(&#x7EC4;&#x5408;)Decorator(&#x88C5;&#x9970;)Fa&#xE7;ade(&#x5916;&#x89C2;)Flyweight(&#x4EAB;&#x5143;)<br><br>Proxy(&#x4EE3;&#x7406;)</td><br><td valign="top">Chain of Responsibility(&#x804C;&#x8D23;&#x94FE;)Command(&#x547D;&#x4EE4;)Interpreter(&#x89E3;&#x91CA;&#x5668;)Iterator(&#x8FED;&#x4EE3;&#x5668;)Mediator(&#x4E2D;&#x4ECB;)Memento(&#x5907;&#x5FD8;&#x5F55;)<br><br>Observer(&#x89C2;&#x5BDF;&#x8005;)<br><br>State(&#x72B6;&#x6001;)<br><br>Strategy(&#x7B56;&#x7565;)<br><br>Template Method(&#x6A21;&#x677F;&#x65B9;&#x6CD5;)<br><br>Visitor(&#x8BBF;&#x95EE;&#x8005;)</td><br></tr><br></tbody><br></table>
 
-<h3 id="IOS中常见8种设计模式"><a href="#IOS中常见8种设计模式" class="headerlink" title="IOS中常见8种设计模式"></a>IOS中常见8种设计模式</h3><p><table border="1" width="100%" cellspacing="0" cellpadding="5"></table></p>
+<h3 id="IOS&#x4E2D;&#x5E38;&#x89C1;8&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"><a href="#IOS&#x4E2D;&#x5E38;&#x89C1;8&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;" class="headerlink" title="IOS&#x4E2D;&#x5E38;&#x89C1;8&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"></a>IOS&#x4E2D;&#x5E38;&#x89C1;8&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</h3><p><table border="1" width="100%" cellspacing="0" cellpadding="5"></table></p>
 <p><tbody></tbody></p>
 <p><tr></tr></p>
 <td colspan="3" width="100%">
 
-<p><strong>ios常见设计模式</strong></p>
+<p><strong>ios&#x5E38;&#x89C1;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</strong></p>
 <p>Design Pattern</p>
 <p></p></td><br><p></p>
 <p><tr></tr></p>
 <td width="60">
 
-<p><strong>创建型</strong></p>
+<p><strong>&#x521B;&#x5EFA;&#x578B;</strong></p>
 <p>Creational</p>
 <p></p></td><p></p>
 <td width="160">
 
-<p><strong>结构型</strong></p>
+<p><strong>&#x7ED3;&#x6784;&#x578B;</strong></p>
 <p>Structural</p>
 <p></p></td><p></p>
 <td>
 
-<p><strong>行为型</strong></p>
+<p><strong>&#x884C;&#x4E3A;&#x578B;</strong></p>
 <p>Behavioral</p>
 <p></p></td><br><p></p>
 <p><tr></tr></p>
-<p><td valign="top">单例模式(Singleton)</td></p>
-<p><td valign="top">MVC模式(Model View Controller)装饰者模式 (Decorator)适配器模式(Adapter)外观模式 (Facade)</td></p>
-<p><td valign="top">观察者模式(Observer){KVO(Key-Value-Observing)机制通知(notification)机制}备忘录模式(Memento)</td><br><br><br><br>本文重点以IOS常见涉及模式为例. 更多涉及模式可以参考:<a href="http://download.csdn.net/download/sunboy_2050/4228807" target="_blank" rel="external">设计模式 - 可复用面向对象软件的基础</a></p>
-<h2 id="单例模式-Singleton"><a href="#单例模式-Singleton" class="headerlink" title="单例模式(Singleton)"></a>单例模式(Singleton)</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p>单例模式是IOS设计模式当中一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类(确保每个指定的类只存在一个实例对象)。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。</p>
+<p><td valign="top">&#x5355;&#x4F8B;&#x6A21;&#x5F0F;(Singleton)</td></p>
+<p><td valign="top">MVC&#x6A21;&#x5F0F;(Model View Controller)&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F; (Decorator)&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;(Adapter)&#x5916;&#x89C2;&#x6A21;&#x5F0F; (Facade)</td></p>
+<p><td valign="top">&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;(Observer){KVO(Key-Value-Observing)&#x673A;&#x5236;&#x901A;&#x77E5;(notification)&#x673A;&#x5236;}&#x5907;&#x5FD8;&#x5F55;&#x6A21;&#x5F0F;(Memento)</td><br><br><br><br>&#x672C;&#x6587;&#x91CD;&#x70B9;&#x4EE5;IOS&#x5E38;&#x89C1;&#x6D89;&#x53CA;&#x6A21;&#x5F0F;&#x4E3A;&#x4F8B;. &#x66F4;&#x591A;&#x6D89;&#x53CA;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x53C2;&#x8003;:<a href="http://download.csdn.net/download/sunboy_2050/4228807" target="_blank" rel="external">&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F; - &#x53EF;&#x590D;&#x7528;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8F6F;&#x4EF6;&#x7684;&#x57FA;&#x7840;</a></p>
+<h2 id="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;-Singleton"><a href="#&#x5355;&#x4F8B;&#x6A21;&#x5F0F;-Singleton" class="headerlink" title="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;(Singleton)"></a>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;(Singleton)</h2><h3 id="&#x4ECB;&#x7ECD;-1"><a href="#&#x4ECB;&#x7ECD;-1" class="headerlink" title="&#x4ECB;&#x7ECD;"></a>&#x4ECB;&#x7ECD;</h3><p>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x662F;IOS&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5F53;&#x4E2D;&#x4E00;&#x79CD;&#x5E38;&#x7528;&#x7684;&#x8F6F;&#x4EF6;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;&#x5728;&#x5B83;&#x7684;&#x6838;&#x5FC3;&#x7ED3;&#x6784;&#x4E2D;&#x53EA;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x88AB;&#x79F0;&#x4E3A;&#x5355;&#x4F8B;&#x7C7B;&#x7684;&#x7279;&#x6B8A;&#x7C7B;(&#x786E;&#x4FDD;&#x6BCF;&#x4E2A;&#x6307;&#x5B9A;&#x7684;&#x7C7B;&#x53EA;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;)&#x3002;&#x901A;&#x8FC7;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x7CFB;&#x7EDF;&#x4E2D;&#x4E00;&#x4E2A;&#x7C7B;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x800C;&#x4E14;&#x8BE5;&#x5B9E;&#x4F8B;&#x6613;&#x4E8E;&#x5916;&#x754C;&#x8BBF;&#x95EE;&#xFF0C;&#x4ECE;&#x800C;&#x65B9;&#x4FBF;&#x5BF9;&#x5B9E;&#x4F8B;&#x4E2A;&#x6570;&#x7684;&#x63A7;&#x5236;&#x5E76;&#x8282;&#x7EA6;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x3002;</p>
 <p><a href="http://birdmichael.com/wp-content/uploads/2015/08/singleton.jpg" target="_blank" rel="external"><img src="http://birdmichael.com/wp-content/uploads/2015/08/singleton.jpg" alt="singleton"></a></p>
-<h4 id="单例模式核心"><a href="#单例模式核心" class="headerlink" title="单例模式核心"></a>单例模式核心</h4><p>一般情况下只在第一次需要使用的时候初始化。</p>
-<h4 id="单例模式意义"><a href="#单例模式意义" class="headerlink" title="单例模式意义"></a>单例模式意义</h4><p>如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。</p>
+<h4 id="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x6838;&#x5FC3;"><a href="#&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x6838;&#x5FC3;" class="headerlink" title="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x6838;&#x5FC3;"></a>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x6838;&#x5FC3;</h4><p>&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x53EA;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x65F6;&#x5019;&#x521D;&#x59CB;&#x5316;&#x3002;</p>
+<h4 id="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x610F;&#x4E49;"><a href="#&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x610F;&#x4E49;" class="headerlink" title="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x610F;&#x4E49;"></a>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x610F;&#x4E49;</h4><p>&#x5982;&#x679C;&#x5E0C;&#x671B;&#x5728;&#x7CFB;&#x7EDF;&#x4E2D;&#x67D0;&#x4E2A;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#x53EA;&#x80FD;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#xFF0C;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x662F;&#x6700;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
 <blockquote>
-<p>比如你生活在古代,你有几十个老婆,她们的老公都是你,你就是你们整个家的老公Sigleton,她们只要说道“老公”,都是指的同一个人,那就都是你.</p>
+<p>&#x6BD4;&#x5982;&#x4F60;&#x751F;&#x6D3B;&#x5728;&#x53E4;&#x4EE3;,&#x4F60;&#x6709;&#x51E0;&#x5341;&#x4E2A;&#x8001;&#x5A46;,&#x5979;&#x4EEC;&#x7684;&#x8001;&#x516C;&#x90FD;&#x662F;&#x4F60;,&#x4F60;&#x5C31;&#x662F;&#x4F60;&#x4EEC;&#x6574;&#x4E2A;&#x5BB6;&#x7684;&#x8001;&#x516C;Sigleton,&#x5979;&#x4EEC;&#x53EA;&#x8981;&#x8BF4;&#x9053;&#x201C;&#x8001;&#x516C;&#x201D;,&#x90FD;&#x662F;&#x6307;&#x7684;&#x540C;&#x4E00;&#x4E2A;&#x4EBA;,&#x90A3;&#x5C31;&#x90FD;&#x662F;&#x4F60;.</p>
 </blockquote>
-<h3 id="系统中常见的单例模式"><a href="#系统中常见的单例模式" class="headerlink" title="系统中常见的单例模式"></a>系统中常见的单例模式</h3><p>在iOS开发我们经常碰到只需要某类一个实例的情况,你的应用实例(UIApplication)必须有且只有一个,不然你是无法实行控制的,并且永远指你的当前应用.最常见的还是莫过于对硬件参数的访问类,比如UIAccelerometer.这个类可以帮助我们获得硬件在各个方向轴上的加速度,但是我们仅仅需要它的一个实例就够了,再多只会浪费内存.</p>
-<h4 id="UIAccelerometer"><a href="#UIAccelerometer" class="headerlink" title="UIAccelerometer"></a>UIAccelerometer</h4><p>实例化方法＋sharedAccelerometer,从名字上我们也能看出此方法让整个应用共享一个UIAccelerometer实例（PS：iOS 的开放中，我们往往能从方法名中就了解这个方法的作用）</p>
-<h4 id="UIApplication"><a href="#UIApplication" class="headerlink" title="UIApplication"></a>UIApplication</h4><p>提供了 ＋sharedAPplication方法创建和获取UIApplication单例</p>
-<h4 id="NSBundle"><a href="#NSBundle" class="headerlink" title="NSBundle"></a>NSBundle</h4><p>提供了 +mainBunle方法获取NSBundle单例</p>
-<h4 id="NSFileManager"><a href="#NSFileManager" class="headerlink" title="NSFileManager"></a>NSFileManager</h4><p>提供了 ＋defaultManager方法创建和获得NSFileManager单例。（PS：有些时候我们得放弃使用单例模式，使用－init方法去实现一个新的实例，比如使用委托时）</p>
-<h4 id="NSNotificationCenter"><a href="#NSNotificationCenter" class="headerlink" title="NSNotificationCenter"></a>NSNotificationCenter</h4><p>提供了 ＋defaultCenter方法创建和获取NSNotificationCenter单例（PS：该类还遵循了另一个重要的设计模式：观察者模式）</p>
-<h4 id="NSUserDefaults"><a href="#NSUserDefaults" class="headerlink" title="NSUserDefaults"></a>NSUserDefaults</h4><p>提供了 ＋defaultUserDefaults方法去创建和获取NSUserDefaults单例</p>
+<h3 id="&#x7CFB;&#x7EDF;&#x4E2D;&#x5E38;&#x89C1;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"><a href="#&#x7CFB;&#x7EDF;&#x4E2D;&#x5E38;&#x89C1;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x4E2D;&#x5E38;&#x89C1;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"></a>&#x7CFB;&#x7EDF;&#x4E2D;&#x5E38;&#x89C1;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;</h3><p>&#x5728;iOS&#x5F00;&#x53D1;&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x78B0;&#x5230;&#x53EA;&#x9700;&#x8981;&#x67D0;&#x7C7B;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x7684;&#x60C5;&#x51B5;,&#x4F60;&#x7684;&#x5E94;&#x7528;&#x5B9E;&#x4F8B;(UIApplication)&#x5FC5;&#x987B;&#x6709;&#x4E14;&#x53EA;&#x6709;&#x4E00;&#x4E2A;,&#x4E0D;&#x7136;&#x4F60;&#x662F;&#x65E0;&#x6CD5;&#x5B9E;&#x884C;&#x63A7;&#x5236;&#x7684;,&#x5E76;&#x4E14;&#x6C38;&#x8FDC;&#x6307;&#x4F60;&#x7684;&#x5F53;&#x524D;&#x5E94;&#x7528;.&#x6700;&#x5E38;&#x89C1;&#x7684;&#x8FD8;&#x662F;&#x83AB;&#x8FC7;&#x4E8E;&#x5BF9;&#x786C;&#x4EF6;&#x53C2;&#x6570;&#x7684;&#x8BBF;&#x95EE;&#x7C7B;,&#x6BD4;&#x5982;UIAccelerometer.&#x8FD9;&#x4E2A;&#x7C7B;&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x83B7;&#x5F97;&#x786C;&#x4EF6;&#x5728;&#x5404;&#x4E2A;&#x65B9;&#x5411;&#x8F74;&#x4E0A;&#x7684;&#x52A0;&#x901F;&#x5EA6;,&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x4EC5;&#x4EC5;&#x9700;&#x8981;&#x5B83;&#x7684;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x5C31;&#x591F;&#x4E86;,&#x518D;&#x591A;&#x53EA;&#x4F1A;&#x6D6A;&#x8D39;&#x5185;&#x5B58;.</p>
+<h4 id="UIAccelerometer"><a href="#UIAccelerometer" class="headerlink" title="UIAccelerometer"></a>UIAccelerometer</h4><p>&#x5B9E;&#x4F8B;&#x5316;&#x65B9;&#x6CD5;&#xFF0B;sharedAccelerometer,&#x4ECE;&#x540D;&#x5B57;&#x4E0A;&#x6211;&#x4EEC;&#x4E5F;&#x80FD;&#x770B;&#x51FA;&#x6B64;&#x65B9;&#x6CD5;&#x8BA9;&#x6574;&#x4E2A;&#x5E94;&#x7528;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;UIAccelerometer&#x5B9E;&#x4F8B;&#xFF08;PS&#xFF1A;iOS &#x7684;&#x5F00;&#x653E;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5F80;&#x5F80;&#x80FD;&#x4ECE;&#x65B9;&#x6CD5;&#x540D;&#x4E2D;&#x5C31;&#x4E86;&#x89E3;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x4F5C;&#x7528;&#xFF09;</p>
+<h4 id="UIApplication"><a href="#UIApplication" class="headerlink" title="UIApplication"></a>UIApplication</h4><p>&#x63D0;&#x4F9B;&#x4E86; &#xFF0B;sharedAPplication&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x548C;&#x83B7;&#x53D6;UIApplication&#x5355;&#x4F8B;</p>
+<h4 id="NSBundle"><a href="#NSBundle" class="headerlink" title="NSBundle"></a>NSBundle</h4><p>&#x63D0;&#x4F9B;&#x4E86; +mainBunle&#x65B9;&#x6CD5;&#x83B7;&#x53D6;NSBundle&#x5355;&#x4F8B;</p>
+<h4 id="NSFileManager"><a href="#NSFileManager" class="headerlink" title="NSFileManager"></a>NSFileManager</h4><p>&#x63D0;&#x4F9B;&#x4E86; &#xFF0B;defaultManager&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x548C;&#x83B7;&#x5F97;NSFileManager&#x5355;&#x4F8B;&#x3002;&#xFF08;PS&#xFF1A;&#x6709;&#x4E9B;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x5F97;&#x653E;&#x5F03;&#x4F7F;&#x7528;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#xFF0D;init&#x65B9;&#x6CD5;&#x53BB;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x6BD4;&#x5982;&#x4F7F;&#x7528;&#x59D4;&#x6258;&#x65F6;&#xFF09;</p>
+<h4 id="NSNotificationCenter"><a href="#NSNotificationCenter" class="headerlink" title="NSNotificationCenter"></a>NSNotificationCenter</h4><p>&#x63D0;&#x4F9B;&#x4E86; &#xFF0B;defaultCenter&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x548C;&#x83B7;&#x53D6;NSNotificationCenter&#x5355;&#x4F8B;&#xFF08;PS&#xFF1A;&#x8BE5;&#x7C7B;&#x8FD8;&#x9075;&#x5FAA;&#x4E86;&#x53E6;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#xFF09;</p>
+<h4 id="NSUserDefaults"><a href="#NSUserDefaults" class="headerlink" title="NSUserDefaults"></a>NSUserDefaults</h4><p>&#x63D0;&#x4F9B;&#x4E86; &#xFF0B;defaultUserDefaults&#x65B9;&#x6CD5;&#x53BB;&#x521B;&#x5EFA;&#x548C;&#x83B7;&#x53D6;NSUserDefaults&#x5355;&#x4F8B;</p>
 <blockquote>
-<p>所以苹果的SDK中大量的遵循此设计模式，那么它的内部是如何实现的呢?</p>
+<p>&#x6240;&#x4EE5;&#x82F9;&#x679C;&#x7684;SDK&#x4E2D;&#x5927;&#x91CF;&#x7684;&#x9075;&#x5FAA;&#x6B64;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x7684;&#x5185;&#x90E8;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7684;&#x5462;?</p>
 </blockquote>
-<h3 id="单例模式代码"><a href="#单例模式代码" class="headerlink" title="单例模式代码"></a>单例模式代码</h3><p>假设我们新建一个工具单例类:音乐播放器.</p>
-<h4 id="初级代码-使用懒汉式"><a href="#初级代码-使用懒汉式" class="headerlink" title="初级代码-使用懒汉式"></a>初级代码-使用懒汉式</h4><p>因为主要体现一个实现的思想,所以代码写的比较细.</p>
-<h5 id="1-保证永远只alloc一次"><a href="#1-保证永远只alloc一次" class="headerlink" title="1.保证永远只alloc一次"></a>1.保证永远只alloc一次</h5><pre class="lang:objc decode:true">//
+<h3 id="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x4EE3;&#x7801;"><a href="#&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x4EE3;&#x7801;" class="headerlink" title="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x4EE3;&#x7801;"></a>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x4EE3;&#x7801;</h3><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x5DE5;&#x5177;&#x5355;&#x4F8B;&#x7C7B;:&#x97F3;&#x4E50;&#x64AD;&#x653E;&#x5668;.</p>
+<h4 id="&#x521D;&#x7EA7;&#x4EE3;&#x7801;-&#x4F7F;&#x7528;&#x61D2;&#x6C49;&#x5F0F;"><a href="#&#x521D;&#x7EA7;&#x4EE3;&#x7801;-&#x4F7F;&#x7528;&#x61D2;&#x6C49;&#x5F0F;" class="headerlink" title="&#x521D;&#x7EA7;&#x4EE3;&#x7801;-&#x4F7F;&#x7528;&#x61D2;&#x6C49;&#x5F0F;"></a>&#x521D;&#x7EA7;&#x4EE3;&#x7801;-&#x4F7F;&#x7528;&#x61D2;&#x6C49;&#x5F0F;</h4><p>&#x56E0;&#x4E3A;&#x4E3B;&#x8981;&#x4F53;&#x73B0;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0;&#x7684;&#x601D;&#x60F3;,&#x6240;&#x4EE5;&#x4EE3;&#x7801;&#x5199;&#x7684;&#x6BD4;&#x8F83;&#x7EC6;.</p>
+<h5 id="1-&#x4FDD;&#x8BC1;&#x6C38;&#x8FDC;&#x53EA;alloc&#x4E00;&#x6B21;"><a href="#1-&#x4FDD;&#x8BC1;&#x6C38;&#x8FDC;&#x53EA;alloc&#x4E00;&#x6B21;" class="headerlink" title="1.&#x4FDD;&#x8BC1;&#x6C38;&#x8FDC;&#x53EA;alloc&#x4E00;&#x6B21;"></a>1.&#x4FDD;&#x8BC1;&#x6C38;&#x8FDC;&#x53EA;alloc&#x4E00;&#x6B21;</h5><pre class="lang:objc decode:true">//
 //  BMMusicTool.m
 //
-//  Created by 李 阳 on 15/8/5.
-//  Copyright (c) 2015年 BirdMIchael. All rights reserved.
+//  Created by &#x674E; &#x9633; on 15/8/5.
+//  Copyright (c) 2015&#x5E74; BirdMIchael. All rights reserved.
 //
 
-#import "BMMusicTool.h"
+#import &quot;BMMusicTool.h&quot;
 
 @implementation BMMusicTool
-static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都可以访问,并使用static修饰
+static BMMusicTool *_musicTool;  // &#x5F15;&#x5165;&#x5168;&#x5C40;&#x53D8;&#x91CF;,&#x76EE;&#x7684;&#x662F;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;,&#x5E76;&#x4F7F;&#x7528;static&#x4FEE;&#x9970;
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone
 {
-    // 判断如果_musicTool如果有值就直接返回(永远只allocWithZone:一次)
+    // &#x5224;&#x65AD;&#x5982;&#x679C;_musicTool&#x5982;&#x679C;&#x6709;&#x503C;&#x5C31;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;(&#x6C38;&#x8FDC;&#x53EA;allocWithZone:&#x4E00;&#x6B21;)
     if (!_musicTool) {
         _musicTool = [super allocWithZone:zone];
     }
@@ -395,19 +389,19 @@ static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都�
 }
 
 @end</pre>
-这里使用的是<span class="s1">allocWithZone</span><span class="s2">:方法,具体原因请见:</span>[[Objective-C 里的 alloc 和 allocWithZone:]](http://birdmichael.com/index.php/2015/08/05/objective-cs-alloc-and-allocwithzone.html)
+&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x7684;&#x662F;<span class="s1">allocWithZone</span><span class="s2">:&#x65B9;&#x6CD5;,&#x5177;&#x4F53;&#x539F;&#x56E0;&#x8BF7;&#x89C1;:</span>[[Objective-C &#x91CC;&#x7684; alloc &#x548C; allocWithZone:]](http://birdmichael.com/index.php/2015/08/05/objective-cs-alloc-and-allocwithzone.html)
 
-关于使用static修饰具体可以见:[[静变量static、全局变量extern、局部变量、实例变量]](http://birdmichael.com/index.php/2015/08/04/static-local-variables-global-variables-extern-static-variables-instance-variables.html)
+&#x5173;&#x4E8E;&#x4F7F;&#x7528;static&#x4FEE;&#x9970;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x89C1;:[[&#x9759;&#x53D8;&#x91CF;static&#x3001;&#x5168;&#x5C40;&#x53D8;&#x91CF;extern&#x3001;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x3001;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;]](http://birdmichael.com/index.php/2015/08/04/static-local-variables-global-variables-extern-static-variables-instance-variables.html)
 
-##### 2.保证多线程只alloc一次
+##### 2.&#x4FDD;&#x8BC1;&#x591A;&#x7EBF;&#x7A0B;&#x53EA;alloc&#x4E00;&#x6B21;
 
 <pre class="lang:objc decode:true ">+ (instancetype)allocWithZone:(struct _NSZone *)zone
 {
-    if (!_musicTool) {  // 防止频繁加锁
-        // 多线程加锁
+    if (!_musicTool) {  // &#x9632;&#x6B62;&#x9891;&#x7E41;&#x52A0;&#x9501;
+        // &#x591A;&#x7EBF;&#x7A0B;&#x52A0;&#x9501;
         @synchronized(self){
-            // 判断如果_musicTool如果有值就直接返回(永远只allocWithZone:一次)
-            if (!_musicTool) {  // 防止多次创建
+            // &#x5224;&#x65AD;&#x5982;&#x679C;_musicTool&#x5982;&#x679C;&#x6709;&#x503C;&#x5C31;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;(&#x6C38;&#x8FDC;&#x53EA;allocWithZone:&#x4E00;&#x6B21;)
+            if (!_musicTool) {  // &#x9632;&#x6B62;&#x591A;&#x6B21;&#x521B;&#x5EFA;
             _musicTool = [super allocWithZone:zone];
             }
         }
@@ -415,13 +409,13 @@ static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都�
     return _musicTool;
 }</pre>
 
-<h5 id="3-规范代码-实现shared或者defaults方法"><a href="#3-规范代码-实现shared或者defaults方法" class="headerlink" title="3.规范代码,实现shared或者defaults方法"></a>3.规范代码,实现shared或者defaults方法</h5><pre class="lang:objc decode:true">+ (instancetype)sharedMuiscTool
+<h5 id="3-&#x89C4;&#x8303;&#x4EE3;&#x7801;-&#x5B9E;&#x73B0;shared&#x6216;&#x8005;defaults&#x65B9;&#x6CD5;"><a href="#3-&#x89C4;&#x8303;&#x4EE3;&#x7801;-&#x5B9E;&#x73B0;shared&#x6216;&#x8005;defaults&#x65B9;&#x6CD5;" class="headerlink" title="3.&#x89C4;&#x8303;&#x4EE3;&#x7801;,&#x5B9E;&#x73B0;shared&#x6216;&#x8005;defaults&#x65B9;&#x6CD5;"></a>3.&#x89C4;&#x8303;&#x4EE3;&#x7801;,&#x5B9E;&#x73B0;shared&#x6216;&#x8005;defaults&#x65B9;&#x6CD5;</h5><pre class="lang:objc decode:true">+ (instancetype)sharedMuiscTool
 {
-    if (!_musicTool) {  // 防止频繁加锁
+    if (!_musicTool) {  // &#x9632;&#x6B62;&#x9891;&#x7E41;&#x52A0;&#x9501;
         @synchronized(self){
-            // 判断如果_musicTool如果有值就alloc一次.(避免在没allow得时候调用shared)
+            // &#x5224;&#x65AD;&#x5982;&#x679C;_musicTool&#x5982;&#x679C;&#x6709;&#x503C;&#x5C31;alloc&#x4E00;&#x6B21;.(&#x907F;&#x514D;&#x5728;&#x6CA1;allow&#x5F97;&#x65F6;&#x5019;&#x8C03;&#x7528;shared)
 
-            if (!_musicTool) { // 防止创建多次
+            if (!_musicTool) { // &#x9632;&#x6B62;&#x521B;&#x5EFA;&#x591A;&#x6B21;
                 _musicTool = [[self alloc]init];
             }
         }
@@ -429,23 +423,23 @@ static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都�
 
     return _musicTool;
 }</pre>
-> 提示:这里不能直接返回<span class="s1">[[</span><span class="s2">self</span> <span class="s3">alloc</span><span class="s1">]</span><span class="s3">init</span><span class="s1">],不然每拿到一个对象都会初始化一次.</span>
+&gt; &#x63D0;&#x793A;:&#x8FD9;&#x91CC;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;<span class="s1">[[</span><span class="s2">self</span> <span class="s3">alloc</span><span class="s1">]</span><span class="s3">init</span><span class="s1">],&#x4E0D;&#x7136;&#x6BCF;&#x62FF;&#x5230;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x90FD;&#x4F1A;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x6B21;.</span>
 
-##### 4.保证copy后也是单例.
+##### 4.&#x4FDD;&#x8BC1;copy&#x540E;&#x4E5F;&#x662F;&#x5355;&#x4F8B;.
 
-<pre class="lang:objc decode:true">// 此方法为预留方法,在未来如果使用copy方法也不会产生新对象.
+<pre class="lang:objc decode:true">// &#x6B64;&#x65B9;&#x6CD5;&#x4E3A;&#x9884;&#x7559;&#x65B9;&#x6CD5;,&#x5728;&#x672A;&#x6765;&#x5982;&#x679C;&#x4F7F;&#x7528;copy&#x65B9;&#x6CD5;&#x4E5F;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x65B0;&#x5BF9;&#x8C61;.
 - (id)copyWithZone:(NSZone *)zone
 {
     return _musicTool;
 }</pre>
-> 提示:能copy就保证再之前已经还有单例对象,所以不用判断_musicTool是否为空.
+&gt; &#x63D0;&#x793A;:&#x80FD;copy&#x5C31;&#x4FDD;&#x8BC1;&#x518D;&#x4E4B;&#x524D;&#x5DF2;&#x7ECF;&#x8FD8;&#x6709;&#x5355;&#x4F8B;&#x5BF9;&#x8C61;,&#x6240;&#x4EE5;&#x4E0D;&#x7528;&#x5224;&#x65AD;_musicTool&#x662F;&#x5426;&#x4E3A;&#x7A7A;.
 
-#### <del>初级代码-使用饿汉式</del>
+#### <del>&#x521D;&#x7EA7;&#x4EE3;&#x7801;-&#x4F7F;&#x7528;&#x997F;&#x6C49;&#x5F0F;</del>
 
-<pre class="lang:objc decode:true">#import "BMMusicTool.h"
+<pre class="lang:objc decode:true">#import &quot;BMMusicTool.h&quot;
 
 @implementation BMMusicTool
-static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都可以访问,并使用static修饰
+static BMMusicTool *_musicTool;  // &#x5F15;&#x5165;&#x5168;&#x5C40;&#x53D8;&#x91CF;,&#x76EE;&#x7684;&#x662F;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;,&#x5E76;&#x4F7F;&#x7528;static&#x4FEE;&#x9970;
 + (void)load
 {
     _musicTool = [[self alloc]init];
@@ -454,8 +448,8 @@ static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都�
 + (instancetype)allocWithZone:(struct _NSZone *)zone
 {
 
-    // 判断如果_musicTool如果有值就直接返回(永远只allocWithZone:一次)
-    if (!_musicTool) {  // 防止多次创建
+    // &#x5224;&#x65AD;&#x5982;&#x679C;_musicTool&#x5982;&#x679C;&#x6709;&#x503C;&#x5C31;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;(&#x6C38;&#x8FDC;&#x53EA;allocWithZone:&#x4E00;&#x6B21;)
+    if (!_musicTool) {  // &#x9632;&#x6B62;&#x591A;&#x6B21;&#x521B;&#x5EFA;
         _musicTool = [super allocWithZone:zone];
     }
 
@@ -471,19 +465,19 @@ static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都�
 }
 
 @end</pre>
-关于使用loade而不使用initialize查看此文有详细解释:[[Objective-C 类的加载和初始化(+load 和 +initialize 方法) ]](http://birdmichael.com/index.php/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize.html)
-> 所谓饿汉式就是程序一开始运行就执行代码创建.
-> 
-> 
-> 因为创建时在程序启动时,所以一般情况不会有多个线程进来创建,所以不需要加锁.并且调用shared时,肯定是在程序启动后.
-<span style="color: #ff0000;">**饿汉式几乎完全不用.**</span>
+&#x5173;&#x4E8E;&#x4F7F;&#x7528;loade&#x800C;&#x4E0D;&#x4F7F;&#x7528;initialize&#x67E5;&#x770B;&#x6B64;&#x6587;&#x6709;&#x8BE6;&#x7EC6;&#x89E3;&#x91CA;:[[Objective-C &#x7C7B;&#x7684;&#x52A0;&#x8F7D;&#x548C;&#x521D;&#x59CB;&#x5316;(+load &#x548C; +initialize &#x65B9;&#x6CD5;) ]](http://birdmichael.com/index.php/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize.html)
+&gt; &#x6240;&#x8C13;&#x997F;&#x6C49;&#x5F0F;&#x5C31;&#x662F;&#x7A0B;&#x5E8F;&#x4E00;&#x5F00;&#x59CB;&#x8FD0;&#x884C;&#x5C31;&#x6267;&#x884C;&#x4EE3;&#x7801;&#x521B;&#x5EFA;.
+&gt; 
+&gt; 
+&gt; &#x56E0;&#x4E3A;&#x521B;&#x5EFA;&#x65F6;&#x5728;&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x65F6;,&#x6240;&#x4EE5;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0D;&#x4F1A;&#x6709;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x8FDB;&#x6765;&#x521B;&#x5EFA;,&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x52A0;&#x9501;.&#x5E76;&#x4E14;&#x8C03;&#x7528;shared&#x65F6;,&#x80AF;&#x5B9A;&#x662F;&#x5728;&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x540E;.
+<span style="color: #ff0000;">**&#x997F;&#x6C49;&#x5F0F;&#x51E0;&#x4E4E;&#x5B8C;&#x5168;&#x4E0D;&#x7528;.**</span>
 
-#### 中级代码-使用GCD
+#### &#x4E2D;&#x7EA7;&#x4EE3;&#x7801;-&#x4F7F;&#x7528;GCD
 
-<pre class="lang:objc decode:true ">#import "BMMusicTool.h"
+<pre class="lang:objc decode:true ">#import &quot;BMMusicTool.h&quot;
 
 @implementation BMMusicTool
-static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都可以访问,并使用static修饰
+static BMMusicTool *_musicTool;  // &#x5F15;&#x5165;&#x5168;&#x5C40;&#x53D8;&#x91CF;,&#x76EE;&#x7684;&#x662F;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;,&#x5E76;&#x4F7F;&#x7528;static&#x4FEE;&#x9970;
 + (void)load
 {
     _musicTool = [[self alloc]init];
@@ -510,14 +504,14 @@ static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都�
 {
     return _musicTool;
 }</pre>
-> GCD默认dispatch_once只会执行一次,并且线程安全.更多可以参考[[ios多线程之NSThread,GCD,NSOperation以及线程同步]](http://birdmichael.com/index.php/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization.html) 中GCD-一次性.
+&gt; GCD&#x9ED8;&#x8BA4;dispatch_once&#x53EA;&#x4F1A;&#x6267;&#x884C;&#x4E00;&#x6B21;,&#x5E76;&#x4E14;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;.&#x66F4;&#x591A;&#x53EF;&#x4EE5;&#x53C2;&#x8003;[[ios&#x591A;&#x7EBF;&#x7A0B;&#x4E4B;NSThread,GCD,NSOperation&#x4EE5;&#x53CA;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;]](http://birdmichael.com/index.php/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization.html) &#x4E2D;GCD-&#x4E00;&#x6B21;&#x6027;.
 
-#### 中级代码- MRC环境
+#### &#x4E2D;&#x7EA7;&#x4EE3;&#x7801;- MRC&#x73AF;&#x5883;
 
-<pre class="lang:objc decode:true">#import "BMMusicTool.h"
+<pre class="lang:objc decode:true">#import &quot;BMMusicTool.h&quot;
 
 @implementation BMMusicTool
-static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都可以访问,并使用static修饰
+static BMMusicTool *_musicTool;  // &#x5F15;&#x5165;&#x5168;&#x5C40;&#x53D8;&#x91CF;,&#x76EE;&#x7684;&#x662F;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;,&#x5E76;&#x4F7F;&#x7528;static&#x4FEE;&#x9970;
 + (void)load
 {
     _musicTool = [[self alloc]init];
@@ -561,8 +555,8 @@ static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都�
     return self;
 }
 @end</pre>
-> 非ARC环境的核心就是:1.不release 2.不retain 3.retain计数器恒为1.
-适配ARC和MRC
+&gt; &#x975E;ARC&#x73AF;&#x5883;&#x7684;&#x6838;&#x5FC3;&#x5C31;&#x662F;:1.&#x4E0D;release 2.&#x4E0D;retain 3.retain&#x8BA1;&#x6570;&#x5668;&#x6052;&#x4E3A;1.
+&#x9002;&#x914D;ARC&#x548C;MRC
 <pre class="lang:objc decode:true">#if __has_feature(objc_arc)
 
 // ARC
@@ -573,20 +567,20 @@ static BMMusicTool *_musicTool;  // 引入全局变量,目的是整个文件都�
 
 #endif</pre>
 
-<h4 id="高级代码-简化代码及宏实现-lt-推荐"><a href="#高级代码-简化代码及宏实现-lt-推荐" class="headerlink" title="高级代码- 简化代码及宏实现&lt;推荐"></a>高级代码- 简化代码及宏实现&lt;推荐</h4><h5 id="1-编写-h宏文件"><a href="#1-编写-h宏文件" class="headerlink" title="1.编写.h宏文件"></a>1.编写.h宏文件</h5><p>命名为:<span class="s1">BMSingleton.h</span></p>
+<h4 id="&#x9AD8;&#x7EA7;&#x4EE3;&#x7801;-&#x7B80;&#x5316;&#x4EE3;&#x7801;&#x53CA;&#x5B8F;&#x5B9E;&#x73B0;-lt-&#x63A8;&#x8350;"><a href="#&#x9AD8;&#x7EA7;&#x4EE3;&#x7801;-&#x7B80;&#x5316;&#x4EE3;&#x7801;&#x53CA;&#x5B8F;&#x5B9E;&#x73B0;-lt-&#x63A8;&#x8350;" class="headerlink" title="&#x9AD8;&#x7EA7;&#x4EE3;&#x7801;- &#x7B80;&#x5316;&#x4EE3;&#x7801;&#x53CA;&#x5B8F;&#x5B9E;&#x73B0;&lt;&#x63A8;&#x8350;"></a>&#x9AD8;&#x7EA7;&#x4EE3;&#x7801;- &#x7B80;&#x5316;&#x4EE3;&#x7801;&#x53CA;&#x5B8F;&#x5B9E;&#x73B0;&lt;&#x63A8;&#x8350;</h4><h5 id="1-&#x7F16;&#x5199;-h&#x5B8F;&#x6587;&#x4EF6;"><a href="#1-&#x7F16;&#x5199;-h&#x5B8F;&#x6587;&#x4EF6;" class="headerlink" title="1.&#x7F16;&#x5199;.h&#x5B8F;&#x6587;&#x4EF6;"></a>1.&#x7F16;&#x5199;.h&#x5B8F;&#x6587;&#x4EF6;</h5><p>&#x547D;&#x540D;&#x4E3A;:<span class="s1">BMSingleton.h</span></p>
 <pre class="lang:objc decode:true">//
 //  BMSingleton.h
 //
-//  Created by 李 阳 on 15/8/5.
-//  Copyright (c) 2015年 BirdMIchael. All rights reserved.
+//  Created by &#x674E; &#x9633; on 15/8/5.
+//  Copyright (c) 2015&#x5E74; BirdMIchael. All rights reserved.
 //
 
 /*
- .h 引用
+ .h &#x5F15;&#x7528;
  **/
 #define BMSingletonH(name) + (instancetype)shared##name;
 /*
- .m 引用
+ .m &#x5F15;&#x7528;
  **/
 
 #if __has_feature(objc_arc)
@@ -621,7 +615,7 @@ return _instance; \
 { \
 return _instance; \
 }
-// ARC结束
+// ARC&#x7ED3;&#x675F;
 
 #else
 
@@ -659,25 +653,25 @@ return _instance; \
 - (oneway void)release{ } \
 - (instancetype)retain{return self;} \
 - (NSUInteger)retainCount{return 1;}
-// MRC结束
+// MRC&#x7ED3;&#x675F;
 
 #endif</pre>
 
-<h5 id="2-使用宏"><a href="#2-使用宏" class="headerlink" title="2.使用宏"></a>2.使用宏</h5><h6 id="h中"><a href="#h中" class="headerlink" title=".h中"></a>.h中</h6><pre class="lang:objc decode:true ">#import &lt;Foundation/Foundation.h&gt;
-#import "BMSingleton.h"
+<h5 id="2-&#x4F7F;&#x7528;&#x5B8F;"><a href="#2-&#x4F7F;&#x7528;&#x5B8F;" class="headerlink" title="2.&#x4F7F;&#x7528;&#x5B8F;"></a>2.&#x4F7F;&#x7528;&#x5B8F;</h5><h6 id="h&#x4E2D;"><a href="#h&#x4E2D;" class="headerlink" title=".h&#x4E2D;"></a>.h&#x4E2D;</h6><pre class="lang:objc decode:true ">#import &lt;Foundation/Foundation.h&gt;
+#import &quot;BMSingleton.h&quot;
 
 @interface BMMusicTool : NSObject
 BMSingletonH(MusicTool)
 @end</pre>
 
-<h6 id="m中"><a href="#m中" class="headerlink" title=".m中"></a>.m中</h6><p><pre class="lang:objc decode:true ">#import “BMMusicTool.h”</pre></p>
+<h6 id="m&#x4E2D;"><a href="#m&#x4E2D;" class="headerlink" title=".m&#x4E2D;"></a>.m&#x4E2D;</h6><p><pre class="lang:objc decode:true ">#import &#x201C;BMMusicTool.h&#x201D;</pre></p>
 <p>@implementation BMMusicTool<br>BMSingletonM(MusicTool)<br>@end</p>
 <blockquote>
-<p>提示:<span class="s1">BMSingletonH和</span><span class="s1">BMSingletonM传入的<span style="color: #ff0000;">name切记一样</span></span><br>这样只需要2句代码就使<span class="s1">BMMusicTool这个类为单例了.并且自适应ARC和MRC.</span></p>
+<p>&#x63D0;&#x793A;:<span class="s1">BMSingletonH&#x548C;</span><span class="s1">BMSingletonM&#x4F20;&#x5165;&#x7684;<span style="color: #ff0000;">name&#x5207;&#x8BB0;&#x4E00;&#x6837;</span></span><br>&#x8FD9;&#x6837;&#x53EA;&#x9700;&#x8981;2&#x53E5;&#x4EE3;&#x7801;&#x5C31;&#x4F7F;<span class="s1">BMMusicTool&#x8FD9;&#x4E2A;&#x7C7B;&#x4E3A;&#x5355;&#x4F8B;&#x4E86;.&#x5E76;&#x4E14;&#x81EA;&#x9002;&#x5E94;ARC&#x548C;MRC.</span></p>
 </blockquote>
-<p>下载源码:<a href="http://pan.baidu.com/s/1i3vTjXN" target="_blank" rel="external">BMSingleton.h</a></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p>&#x4E0B;&#x8F7D;&#x6E90;&#x7801;:<a href="http://pan.baidu.com/s/1i3vTjXN" target="_blank" rel="external">BMSingleton.h</a></p>
+<p>&#xA0;</p>
+<p>&#xA0;</p>
 
       
     </div>
@@ -781,7 +775,7 @@ BMSingletonH(MusicTool)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

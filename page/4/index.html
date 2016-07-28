@@ -235,125 +235,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/07/mac-used-in-the-ios-command-line/" itemprop="url">
-                  在IOS中mac常用命令行
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-07T23:43:29+08:00" content="2015-08-07">
-              2015-08-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>启动本地的Apache服务器</p>
-<p><span class="s1">sudo apachectl -k start</span></p>
-<p>重新启动本地的Apache服务器</p>
-<p>sudo apachectl -k restart</p>
-<p>(涉及修改,就需要重新启动)</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/07/mac-used-in-the-ios-command-line/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/" itemprop="url">
                   Objective-C 类的加载和初始化(+load 和 +initialize 方法)
                 </a>
@@ -416,12 +297,12 @@
 
       
         
-          <p>作为一个IOS程序员，绝大多数时候你都不需要关心一个类是怎么被加载进内存的。这里面 runtime linker 在你的代码还没跑起来之前就已经做了很多复杂的工作。</p>
-<p>对于大多类来说，知道这一点就已经相当足够了。但是，有一些类可能需要做一些特殊的准备工作。比如初始化一个全局的表，从 UserDefaults 里面读取配置并缓存起来，又或者做一些其他的准备工作。</p>
-<p>ObjC 提供了两种方法来实现这些事情：</p>
-<p><pre class="lang:objc decode:true">+ (void)initialize</p>
+          <p>&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;IOS&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x65F6;&#x5019;&#x4F60;&#x90FD;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x4E00;&#x4E2A;&#x7C7B;&#x662F;&#x600E;&#x4E48;&#x88AB;&#x52A0;&#x8F7D;&#x8FDB;&#x5185;&#x5B58;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x9762; runtime linker &#x5728;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x8FD8;&#x6CA1;&#x8DD1;&#x8D77;&#x6765;&#x4E4B;&#x524D;&#x5C31;&#x5DF2;&#x7ECF;&#x505A;&#x4E86;&#x5F88;&#x591A;&#x590D;&#x6742;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x5927;&#x591A;&#x7C7B;&#x6765;&#x8BF4;&#xFF0C;&#x77E5;&#x9053;&#x8FD9;&#x4E00;&#x70B9;&#x5C31;&#x5DF2;&#x7ECF;&#x76F8;&#x5F53;&#x8DB3;&#x591F;&#x4E86;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x6709;&#x4E00;&#x4E9B;&#x7C7B;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x505A;&#x4E00;&#x4E9B;&#x7279;&#x6B8A;&#x7684;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;&#x3002;&#x6BD4;&#x5982;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x7684;&#x8868;&#xFF0C;&#x4ECE; UserDefaults &#x91CC;&#x9762;&#x8BFB;&#x53D6;&#x914D;&#x7F6E;&#x5E76;&#x7F13;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x53C8;&#x6216;&#x8005;&#x505A;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x7684;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;&#x3002;</p>
+<p>ObjC &#x63D0;&#x4F9B;&#x4E86;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#x8FD9;&#x4E9B;&#x4E8B;&#x60C5;&#xFF1A;</p>
+<p><pre class="lang:objc decode:true">+ (void)initialize</pre></p>
 <ul>
-<li>(void)load</pre>
+<li>(void)load</li></ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/#more" rel="contents">
               阅读全文 &raquo;
@@ -536,19 +417,19 @@
 
       
         
-          <h2 id="问题起源"><a href="#问题起源" class="headerlink" title="问题起源"></a>问题起源</h2><p>一切起源于Apple官方文档里面关于单例(Singleton)的示范代码:<a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32">Creating a Singleton Instance</a>.</p>
-<p>主要的争议集中在下面这一段：</p>
-<p><div></p>
-<p><div id="highlighter_207797" class="syntaxhighlighter  objc"></p>
-<p><div class="toolbar"></p>
-<p><pre class="lang:objc decode:true">static MyGizmoClass *sharedGizmoManager = nil;</p>
+          <h2 id="&#x95EE;&#x9898;&#x8D77;&#x6E90;"><a href="#&#x95EE;&#x9898;&#x8D77;&#x6E90;" class="headerlink" title="&#x95EE;&#x9898;&#x8D77;&#x6E90;"></a>&#x95EE;&#x9898;&#x8D77;&#x6E90;</h2><p>&#x4E00;&#x5207;&#x8D77;&#x6E90;&#x4E8E;Apple&#x5B98;&#x65B9;&#x6587;&#x6863;&#x91CC;&#x9762;&#x5173;&#x4E8E;&#x5355;&#x4F8B;(Singleton)&#x7684;&#x793A;&#x8303;&#x4EE3;&#x7801;:<a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32">Creating a Singleton Instance</a>.</p>
+<p>&#x4E3B;&#x8981;&#x7684;&#x4E89;&#x8BAE;&#x96C6;&#x4E2D;&#x5728;&#x4E0B;&#x9762;&#x8FD9;&#x4E00;&#x6BB5;&#xFF1A;</p>
+<p><div></div></p>
+<p><div id="highlighter_207797" class="syntaxhighlighter  objc"></div></p>
+<p><div class="toolbar"></div></p>
+<p><pre class="lang:objc decode:true">static MyGizmoClass *sharedGizmoManager = nil;</pre></p>
 <ul>
 <li><p>(MyGizmoClass*)sharedManager<br>{<br>  if (sharedGizmoManager == nil) {</p>
 <pre><code>sharedGizmoManager = [[super allocWithZone:NULL] init];
 </code></pre><p>  }</p>
 <p>  return sharedGizmoManager;<br>}</p>
 </li>
-<li><p>(id)allocWithZone:(NSZone *)zone<br>{<br>  return [[self sharedManager] retain];<br>}</pre><br></div><br></div><br></div><br>
+<li><p>(id)allocWithZone:(NSZone *)zone<br>{<br>  return [[self sharedManager] retain];<br>}<br><br><br><br></p></li></ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/08/05/objective-cs-alloc-and-allocwithzone/#more" rel="contents">
               阅读全文 &raquo;
@@ -675,9 +556,9 @@
 
       
         
-          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>设计模式（Design Pattern），是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结出来的固有模式。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络.</p>
+          <h2 id="&#x4ECB;&#x7ECD;"><a href="#&#x4ECB;&#x7ECD;" class="headerlink" title="&#x4ECB;&#x7ECD;"></a>&#x4ECB;&#x7ECD;</h2><p>&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF08;Design Pattern&#xFF09;&#xFF0C;&#x662F;&#x4E00;&#x5957;&#x88AB;&#x53CD;&#x590D;&#x4F7F;&#x7528;&#x3001;&#x591A;&#x6570;&#x4EBA;&#x77E5;&#x6653;&#x7684;&#x3001;&#x7ECF;&#x8FC7;&#x5206;&#x7C7B;&#x7F16;&#x76EE;&#x7684;&#x3001;&#x4EE3;&#x7801;&#x8BBE;&#x8BA1;&#x7ECF;&#x9A8C;&#x7684;&#x603B;&#x7ED3;&#x51FA;&#x6765;&#x7684;&#x56FA;&#x6709;&#x6A21;&#x5F0F;&#x3002;&#x4F7F;&#x7528;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x662F;&#x4E3A;&#x4E86;&#x53EF;&#x91CD;&#x7528;&#x4EE3;&#x7801;&#x3001;&#x8BA9;&#x4EE3;&#x7801;&#x66F4;&#x5BB9;&#x6613;&#x88AB;&#x4ED6;&#x4EBA;&#x7406;&#x89E3;&#x3001;&#x4FDD;&#x8BC1;&#x4EE3;&#x7801;&#x53EF;&#x9760;&#x6027;&#x3002; &#x6BEB;&#x65E0;&#x7591;&#x95EE;&#xFF0C;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E8E;&#x5DF1;&#x4E8E;&#x4ED6;&#x4EBA;&#x4E8E;&#x7CFB;&#x7EDF;&#x90FD;&#x662F;&#x591A;&#x8D62;&#x7684;&#xFF1B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4F7F;&#x4EE3;&#x7801;&#x7F16;&#x5236;&#x771F;&#x6B63;&#x5DE5;&#x7A0B;&#x5316;&#xFF1B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x662F;&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;&#x7684;&#x57FA;&#x77F3;&#x8109;&#x7EDC;.</p>
 <blockquote>
-<p>设计模式就如同建筑中的大厦的结构一般重要有精通了设计模式，才敢说真正理解了软件工程。可以说，设计模式是每一个架构师所必备的技能之一。作为一个面向对象设计程序员，只有精通了设计模式，才能摆脱码奴的命运，成为一个真正的软件工程师，才能完成自身价值的飞跃和设计思想的升华！<br>
+<p>&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5C31;&#x5982;&#x540C;&#x5EFA;&#x7B51;&#x4E2D;&#x7684;&#x5927;&#x53A6;&#x7684;&#x7ED3;&#x6784;&#x4E00;&#x822C;&#x91CD;&#x8981;&#x6709;&#x7CBE;&#x901A;&#x4E86;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x624D;&#x6562;&#x8BF4;&#x771F;&#x6B63;&#x7406;&#x89E3;&#x4E86;&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;&#x3002;&#x53EF;&#x4EE5;&#x8BF4;&#xFF0C;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x662F;&#x6BCF;&#x4E00;&#x4E2A;&#x67B6;&#x6784;&#x5E08;&#x6240;&#x5FC5;&#x5907;&#x7684;&#x6280;&#x80FD;&#x4E4B;&#x4E00;&#x3002;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BBE;&#x8BA1;&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x53EA;&#x6709;&#x7CBE;&#x901A;&#x4E86;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x624D;&#x80FD;&#x6446;&#x8131;&#x7801;&#x5974;&#x7684;&#x547D;&#x8FD0;&#xFF0C;&#x6210;&#x4E3A;&#x4E00;&#x4E2A;&#x771F;&#x6B63;&#x7684;&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;&#x5E08;&#xFF0C;&#x624D;&#x80FD;&#x5B8C;&#x6210;&#x81EA;&#x8EAB;&#x4EF7;&#x503C;&#x7684;&#x98DE;&#x8DC3;&#x548C;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;&#x7684;&#x5347;&#x534E;&#xFF01;<br></p></blockquote>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/08/04/23-design-patterns/#more" rel="contents">
               阅读全文 &raquo;
@@ -792,7 +673,7 @@
 
       
         
-          <h2 id="静态变量-static"><a href="#静态变量-static" class="headerlink" title="静态变量 static"></a>静态变量 static</h2><div><br><br>什么是静态变量：从面向对象的角度触发，当需要一个数据对象为整类而非某个对象服务，同时有力求不破坏类的封装性，既要求此成员隐藏在类的内部，有要求对外不可见的时候，就可以使用static。<br><br>### 静态变量的优点：<br><br><div style="padding-left: 30px;">1、节省内存。静态变量只存储一处，但供所有对象使用。</div><br><div style="padding-left: 30px;">2、它的值是可以更新的。</div><br><div style="padding-left: 30px;">3、可提高时间效率。只要某个对象对静态变量更新一次，所有的对象都能访问更新后的值。</div><br>
+          <h2 id="&#x9759;&#x6001;&#x53D8;&#x91CF;-static"><a href="#&#x9759;&#x6001;&#x53D8;&#x91CF;-static" class="headerlink" title="&#x9759;&#x6001;&#x53D8;&#x91CF; static"></a>&#x9759;&#x6001;&#x53D8;&#x91CF; static</h2><div><br><br>&#x4EC0;&#x4E48;&#x662F;&#x9759;&#x6001;&#x53D8;&#x91CF;&#xFF1A;&#x4ECE;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x89D2;&#x5EA6;&#x89E6;&#x53D1;&#xFF0C;&#x5F53;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5BF9;&#x8C61;&#x4E3A;&#x6574;&#x7C7B;&#x800C;&#x975E;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x670D;&#x52A1;&#xFF0C;&#x540C;&#x65F6;&#x6709;&#x529B;&#x6C42;&#x4E0D;&#x7834;&#x574F;&#x7C7B;&#x7684;&#x5C01;&#x88C5;&#x6027;&#xFF0C;&#x65E2;&#x8981;&#x6C42;&#x6B64;&#x6210;&#x5458;&#x9690;&#x85CF;&#x5728;&#x7C7B;&#x7684;&#x5185;&#x90E8;&#xFF0C;&#x6709;&#x8981;&#x6C42;&#x5BF9;&#x5916;&#x4E0D;&#x53EF;&#x89C1;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;static&#x3002;<br><br>### &#x9759;&#x6001;&#x53D8;&#x91CF;&#x7684;&#x4F18;&#x70B9;&#xFF1A;<br><br><div style="padding-left: 30px;">1&#x3001;&#x8282;&#x7701;&#x5185;&#x5B58;&#x3002;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x53EA;&#x5B58;&#x50A8;&#x4E00;&#x5904;&#xFF0C;&#x4F46;&#x4F9B;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x4F7F;&#x7528;&#x3002;</div><br><div style="padding-left: 30px;">2&#x3001;&#x5B83;&#x7684;&#x503C;&#x662F;&#x53EF;&#x4EE5;&#x66F4;&#x65B0;&#x7684;&#x3002;</div><br><div style="padding-left: 30px;">3&#x3001;&#x53EF;&#x63D0;&#x9AD8;&#x65F6;&#x95F4;&#x6548;&#x7387;&#x3002;&#x53EA;&#x8981;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x5BF9;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x66F4;&#x65B0;&#x4E00;&#x6B21;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x5BF9;&#x8C61;&#x90FD;&#x80FD;&#x8BBF;&#x95EE;&#x66F4;&#x65B0;&#x540E;&#x7684;&#x503C;&#x3002;</div><br></div>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/08/04/static-local-variables-global-variables-extern-static-variables-instance-variables/#more" rel="contents">
               阅读全文 &raquo;
@@ -919,10 +800,10 @@
 
       
         
-          <h2 id="第一启动界面"><a href="#第一启动界面" class="headerlink" title="第一启动界面"></a>第一启动界面</h2><blockquote>
-<p>Failed to instantiate the default view controller for UIMainStoryboardFile ‘Main’ - perhaps the designated entry point is not set?<br>原因分析：在StoryBoard中没有一个view controller设置了Initial Scene。<br>解决方案：在Storyboard中，选择一个view conroller作为story board的第一启动界面</p>
+          <h2 id="&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;"><a href="#&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;" class="headerlink" title="&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;"></a>&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;</h2><blockquote>
+<p>Failed to instantiate the default view controller for UIMainStoryboardFile &#x2018;Main&#x2019; - perhaps the designated entry point is not set?<br>&#x539F;&#x56E0;&#x5206;&#x6790;&#xFF1A;&#x5728;StoryBoard&#x4E2D;&#x6CA1;&#x6709;&#x4E00;&#x4E2A;view controller&#x8BBE;&#x7F6E;&#x4E86;Initial Scene&#x3002;<br>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x5728;Storyboard&#x4E2D;&#xFF0C;&#x9009;&#x62E9;&#x4E00;&#x4E2A;view conroller&#x4F5C;&#x4E3A;story board&#x7684;&#x7B2C;&#x4E00;&#x542F;&#x52A8;&#x754C;&#x9762;</p>
 </blockquote>
-<p><a href="http://s-187595.abc188.com/wp-content/uploads/2015/07/20141202141656125.png"><img src="http://s-187595.abc188.com/wp-content/uploads/2015/07/20141202141656125.png" alt="20141202141656125"></a>
+<p><a href="http://s-187595.abc188.com/wp-content/uploads/2015/07/20141202141656125.png"><img src="http://s-187595.abc188.com/wp-content/uploads/2015/07/20141202141656125.png" alt="20141202141656125"></a></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/08/01/common-error-summary/#more" rel="contents">
               阅读全文 &raquo;
@@ -1049,8 +930,8 @@
 
       
         
-          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>大家都知道,我们在很多app的使用中很关注的一个体验就是app的流畅性以及用户等待时间.而这两点其实最根本就的就是让程序已最少的时间完成运算.无论是哪种语言开发的程序最终往往转换成汇编语言进而解释成机器码来执行.但是机器码是按顺序执行的,一个复杂的多步操作只能一步步按顺序逐个执行.所以我们就会引入这个线程技术.然后这里初学者很容易有一个误区是:(“<strong>多线程技术会提高单个算法本身的执行效率</strong>.”这是非常严重的一个<span style="color: #ff0000;"><strong>错误</strong>.<span style="color: #000000;">多线程技术并不会和程序本身的执行效率有关系,只是将一些耗时的任务分配到其他线程执行,进行一个”并行”运算</span></span>).对于单核处理器,可以将多个步骤放到不同的线程,这样一来用户完成UI操作后其他后续任务在其他线程中,当CPU空闲时会继续执行,而此时对于用户而言可以继续进行其他操作;对于多核处理器,如果用户在UI线程中完成某个操作之后,其他后续操作在别的线程中继续执行,用户同样可以继续进行其他UI操作,与此同时前一个操作的后续任务可以分散到多个空闲CPU中继续执行（当然具体调度顺序要根据程序设计而定）,既解决了线程阻塞又提高了运行效率.苹果从iPad2 开始使用双核A5处理器(iPhone中从iPhone 4S开始使用),A7中还加入了协处理器，如何充分发挥这些处理器的性能确实值得思考.</p>
-<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2>
+          <h2 id="&#x6982;&#x8FF0;"><a href="#&#x6982;&#x8FF0;" class="headerlink" title="&#x6982;&#x8FF0;"></a>&#x6982;&#x8FF0;</h2><p>&#x5927;&#x5BB6;&#x90FD;&#x77E5;&#x9053;,&#x6211;&#x4EEC;&#x5728;&#x5F88;&#x591A;app&#x7684;&#x4F7F;&#x7528;&#x4E2D;&#x5F88;&#x5173;&#x6CE8;&#x7684;&#x4E00;&#x4E2A;&#x4F53;&#x9A8C;&#x5C31;&#x662F;app&#x7684;&#x6D41;&#x7545;&#x6027;&#x4EE5;&#x53CA;&#x7528;&#x6237;&#x7B49;&#x5F85;&#x65F6;&#x95F4;.&#x800C;&#x8FD9;&#x4E24;&#x70B9;&#x5176;&#x5B9E;&#x6700;&#x6839;&#x672C;&#x5C31;&#x7684;&#x5C31;&#x662F;&#x8BA9;&#x7A0B;&#x5E8F;&#x5DF2;&#x6700;&#x5C11;&#x7684;&#x65F6;&#x95F4;&#x5B8C;&#x6210;&#x8FD0;&#x7B97;.&#x65E0;&#x8BBA;&#x662F;&#x54EA;&#x79CD;&#x8BED;&#x8A00;&#x5F00;&#x53D1;&#x7684;&#x7A0B;&#x5E8F;&#x6700;&#x7EC8;&#x5F80;&#x5F80;&#x8F6C;&#x6362;&#x6210;&#x6C47;&#x7F16;&#x8BED;&#x8A00;&#x8FDB;&#x800C;&#x89E3;&#x91CA;&#x6210;&#x673A;&#x5668;&#x7801;&#x6765;&#x6267;&#x884C;.&#x4F46;&#x662F;&#x673A;&#x5668;&#x7801;&#x662F;&#x6309;&#x987A;&#x5E8F;&#x6267;&#x884C;&#x7684;,&#x4E00;&#x4E2A;&#x590D;&#x6742;&#x7684;&#x591A;&#x6B65;&#x64CD;&#x4F5C;&#x53EA;&#x80FD;&#x4E00;&#x6B65;&#x6B65;&#x6309;&#x987A;&#x5E8F;&#x9010;&#x4E2A;&#x6267;&#x884C;.&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5C31;&#x4F1A;&#x5F15;&#x5165;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x6280;&#x672F;.&#x7136;&#x540E;&#x8FD9;&#x91CC;&#x521D;&#x5B66;&#x8005;&#x5F88;&#x5BB9;&#x6613;&#x6709;&#x4E00;&#x4E2A;&#x8BEF;&#x533A;&#x662F;:(&#x201C;<strong>&#x591A;&#x7EBF;&#x7A0B;&#x6280;&#x672F;&#x4F1A;&#x63D0;&#x9AD8;&#x5355;&#x4E2A;&#x7B97;&#x6CD5;&#x672C;&#x8EAB;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;</strong>.&#x201D;&#x8FD9;&#x662F;&#x975E;&#x5E38;&#x4E25;&#x91CD;&#x7684;&#x4E00;&#x4E2A;<span style="color: #ff0000;"><strong>&#x9519;&#x8BEF;</strong>.<span style="color: #000000;">&#x591A;&#x7EBF;&#x7A0B;&#x6280;&#x672F;&#x5E76;&#x4E0D;&#x4F1A;&#x548C;&#x7A0B;&#x5E8F;&#x672C;&#x8EAB;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;&#x6709;&#x5173;&#x7CFB;,&#x53EA;&#x662F;&#x5C06;&#x4E00;&#x4E9B;&#x8017;&#x65F6;&#x7684;&#x4EFB;&#x52A1;&#x5206;&#x914D;&#x5230;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x6267;&#x884C;,&#x8FDB;&#x884C;&#x4E00;&#x4E2A;&#x201D;&#x5E76;&#x884C;&#x201D;&#x8FD0;&#x7B97;</span></span>).&#x5BF9;&#x4E8E;&#x5355;&#x6838;&#x5904;&#x7406;&#x5668;,&#x53EF;&#x4EE5;&#x5C06;&#x591A;&#x4E2A;&#x6B65;&#x9AA4;&#x653E;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x7EBF;&#x7A0B;,&#x8FD9;&#x6837;&#x4E00;&#x6765;&#x7528;&#x6237;&#x5B8C;&#x6210;UI&#x64CD;&#x4F5C;&#x540E;&#x5176;&#x4ED6;&#x540E;&#x7EED;&#x4EFB;&#x52A1;&#x5728;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x4E2D;,&#x5F53;CPU&#x7A7A;&#x95F2;&#x65F6;&#x4F1A;&#x7EE7;&#x7EED;&#x6267;&#x884C;,&#x800C;&#x6B64;&#x65F6;&#x5BF9;&#x4E8E;&#x7528;&#x6237;&#x800C;&#x8A00;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x8FDB;&#x884C;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;;&#x5BF9;&#x4E8E;&#x591A;&#x6838;&#x5904;&#x7406;&#x5668;,&#x5982;&#x679C;&#x7528;&#x6237;&#x5728;UI&#x7EBF;&#x7A0B;&#x4E2D;&#x5B8C;&#x6210;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#x4E4B;&#x540E;,&#x5176;&#x4ED6;&#x540E;&#x7EED;&#x64CD;&#x4F5C;&#x5728;&#x522B;&#x7684;&#x7EBF;&#x7A0B;&#x4E2D;&#x7EE7;&#x7EED;&#x6267;&#x884C;,&#x7528;&#x6237;&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x8FDB;&#x884C;&#x5176;&#x4ED6;UI&#x64CD;&#x4F5C;,&#x4E0E;&#x6B64;&#x540C;&#x65F6;&#x524D;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x7684;&#x540E;&#x7EED;&#x4EFB;&#x52A1;&#x53EF;&#x4EE5;&#x5206;&#x6563;&#x5230;&#x591A;&#x4E2A;&#x7A7A;&#x95F2;CPU&#x4E2D;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF08;&#x5F53;&#x7136;&#x5177;&#x4F53;&#x8C03;&#x5EA6;&#x987A;&#x5E8F;&#x8981;&#x6839;&#x636E;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x800C;&#x5B9A;&#xFF09;,&#x65E2;&#x89E3;&#x51B3;&#x4E86;&#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x53C8;&#x63D0;&#x9AD8;&#x4E86;&#x8FD0;&#x884C;&#x6548;&#x7387;.&#x82F9;&#x679C;&#x4ECE;iPad2 &#x5F00;&#x59CB;&#x4F7F;&#x7528;&#x53CC;&#x6838;A5&#x5904;&#x7406;&#x5668;(iPhone&#x4E2D;&#x4ECE;iPhone 4S&#x5F00;&#x59CB;&#x4F7F;&#x7528;),A7&#x4E2D;&#x8FD8;&#x52A0;&#x5165;&#x4E86;&#x534F;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x5982;&#x4F55;&#x5145;&#x5206;&#x53D1;&#x6325;&#x8FD9;&#x4E9B;&#x5904;&#x7406;&#x5668;&#x7684;&#x6027;&#x80FD;&#x786E;&#x5B9E;&#x503C;&#x5F97;&#x601D;&#x8003;.</p>
+<h2 id="&#x591A;&#x7EBF;&#x7A0B;"><a href="#&#x591A;&#x7EBF;&#x7A0B;" class="headerlink" title="&#x591A;&#x7EBF;&#x7A0B;"></a>&#x591A;&#x7EBF;&#x7A0B;</h2>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/#more" rel="contents">
               阅读全文 &raquo;
@@ -1189,14 +1070,14 @@
 
       
         
-          <h2 id="UIResponder"><a href="#UIResponder" class="headerlink" title="UIResponder"></a>UIResponder</h2><h3 id="响应者"><a href="#响应者" class="headerlink" title="响应者"></a>响应者</h3><p>在iOS中不是任何对象都能处理事件,只有继承了UIResponder的对象才能接收并处理事件.我们称之为”响应者对象”.</p>
-<p>UIApplication、UIViewController、UIView都继承自UIResponder，因此它们都是响应者对象，都能够接收并处理事件.</p>
-<p>&nbsp;</p>
-<h3 id="IOS事件"><a href="#IOS事件" class="headerlink" title="IOS事件"></a>IOS事件</h3><p>iOS中的事件可以分为3大类型</p>
+          <h2 id="UIResponder"><a href="#UIResponder" class="headerlink" title="UIResponder"></a>UIResponder</h2><h3 id="&#x54CD;&#x5E94;&#x8005;"><a href="#&#x54CD;&#x5E94;&#x8005;" class="headerlink" title="&#x54CD;&#x5E94;&#x8005;"></a>&#x54CD;&#x5E94;&#x8005;</h3><p>&#x5728;iOS&#x4E2D;&#x4E0D;&#x662F;&#x4EFB;&#x4F55;&#x5BF9;&#x8C61;&#x90FD;&#x80FD;&#x5904;&#x7406;&#x4E8B;&#x4EF6;,&#x53EA;&#x6709;&#x7EE7;&#x627F;&#x4E86;UIResponder&#x7684;&#x5BF9;&#x8C61;&#x624D;&#x80FD;&#x63A5;&#x6536;&#x5E76;&#x5904;&#x7406;&#x4E8B;&#x4EF6;.&#x6211;&#x4EEC;&#x79F0;&#x4E4B;&#x4E3A;&#x201D;&#x54CD;&#x5E94;&#x8005;&#x5BF9;&#x8C61;&#x201D;.</p>
+<p>UIApplication&#x3001;UIViewController&#x3001;UIView&#x90FD;&#x7EE7;&#x627F;&#x81EA;UIResponder&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x4EEC;&#x90FD;&#x662F;&#x54CD;&#x5E94;&#x8005;&#x5BF9;&#x8C61;&#xFF0C;&#x90FD;&#x80FD;&#x591F;&#x63A5;&#x6536;&#x5E76;&#x5904;&#x7406;&#x4E8B;&#x4EF6;.</p>
+<p>&#xA0;</p>
+<h3 id="IOS&#x4E8B;&#x4EF6;"><a href="#IOS&#x4E8B;&#x4EF6;" class="headerlink" title="IOS&#x4E8B;&#x4EF6;"></a>IOS&#x4E8B;&#x4EF6;</h3><p>iOS&#x4E2D;&#x7684;&#x4E8B;&#x4EF6;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;3&#x5927;&#x7C7B;&#x578B;</p>
 <ol>
-<li>触摸事件</li>
-<li>加速计事件</li>
-<li>远程控制事件
+<li>&#x89E6;&#x6478;&#x4E8B;&#x4EF6;</li>
+<li>&#x52A0;&#x901F;&#x8BA1;&#x4E8B;&#x4EF6;</li>
+<li>&#x8FDC;&#x7A0B;&#x63A7;&#x5236;&#x4E8B;&#x4EF6;</li></ol>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/29/ios-uiresponder-of-gestures-gesture-recognition-shake-apple-fm/#more" rel="contents">
               阅读全文 &raquo;
@@ -1324,12 +1205,12 @@
       
         
           <ul>
-<li>打电话</li>
-<li>发短信</li>
-<li>发邮件</li>
-<li>应用跳转</li>
-<li>应用评分</li>
-<li>其他<br>主要通过以上6点分别介绍.</li>
+<li>&#x6253;&#x7535;&#x8BDD;</li>
+<li>&#x53D1;&#x77ED;&#x4FE1;</li>
+<li>&#x53D1;&#x90AE;&#x4EF6;</li>
+<li>&#x5E94;&#x7528;&#x8DF3;&#x8F6C;</li>
+<li>&#x5E94;&#x7528;&#x8BC4;&#x5206;</li>
+<li>&#x5176;&#x4ED6;<br>&#x4E3B;&#x8981;&#x901A;&#x8FC7;&#x4EE5;&#x4E0A;6&#x70B9;&#x5206;&#x522B;&#x4ECB;&#x7ECD;.</li>
 </ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/29/sharedapplication-openurl/#more" rel="contents">
@@ -1461,25 +1342,168 @@
             <p><pre class="lang:objc decode:true">- (void)loadView<br>{<br>    UIWebView *webView = [[UIWebView alloc]init];<br>    self.view = webView;<br>}</pre></p>
 <ul>
 <li><p>(void)viewDidLoad {<br>  [super viewDidLoad];</p>
-<p>  // 设置标题<br>  self.title = self.html.title;</p>
+<p>  // &#x8BBE;&#x7F6E;&#x6807;&#x9898;<br>  self.title = self.html.title;</p>
 <p>  UIWebView <em>webView = (UIWebView </em>)self.view;</p>
-<p>  // 创建URL<br>  NSURL *url = [[NSBundle mainBundle] URLForResource:self.html.html withExtension:nil];</p>
-<p>  // 创建请求<br>  NSURLRequest *request = [NSURLRequest requestWithURL:url];</p>
-<p>  // 发送请求加载网页<br>  [webView loadRequest:request];</p>
+<p>  // &#x521B;&#x5EFA;URL<br>  NSURL *url = [[NSBundle mainBundle] URLForResource:self.html.html withExtension:nil];</p>
+<p>  // &#x521B;&#x5EFA;&#x8BF7;&#x6C42;<br>  NSURLRequest *request = [NSURLRequest requestWithURL:url];</p>
+<p>  // &#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x52A0;&#x8F7D;&#x7F51;&#x9875;<br>  [webView loadRequest:request];</p>
 </li>
 </ul>
-<p>}<br>大致分为以下四步</p>
+<p>}<br>&#x5927;&#x81F4;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x56DB;&#x6B65;</p>
 <ol>
-<li>替换View为UIWebView</li>
-<li>创建URL.</li>
-<li>创建请求</li>
-<li>View从请求加载.<br>加载Js:<br><pre class="lang:objc decode:true ">// 代理方法</pre></li>
+<li>&#x66FF;&#x6362;View&#x4E3A;UIWebView</li>
+<li>&#x521B;&#x5EFA;URL.</li>
+<li>&#x521B;&#x5EFA;&#x8BF7;&#x6C42;</li>
+<li>View&#x4ECE;&#x8BF7;&#x6C42;&#x52A0;&#x8F7D;.<br>&#x52A0;&#x8F7D;Js:<br><pre class="lang:objc decode:true ">// &#x4EE3;&#x7406;&#x65B9;&#x6CD5;</pre></li>
 </ol>
 <ul>
-<li>(void)webViewDidFinishLoad:(UIWebView <em>)webView<br>{<br>  // 1.拼接Javacript代码<br>  NSString </em>js = [NSString stringWithFormat:@”window.location.href = ‘#%@’;”, self.html.ID];<br>  // 2.执行JavaScript代码<br>  [webView stringByEvaluatingJavaScriptFromString:js];<br>}<br>&nbsp;</li>
+<li>(void)webViewDidFinishLoad:(UIWebView <em>)webView<br>{<br>  // 1.&#x62FC;&#x63A5;Javacript&#x4EE3;&#x7801;<br>  NSString </em>js = [NSString stringWithFormat:@&#x201D;window.location.href = &#x2018;#%@&#x2019;;&#x201D;, self.html.ID];<br>  // 2.&#x6267;&#x884C;JavaScript&#x4EE3;&#x7801;<br>  [webView stringByEvaluatingJavaScriptFromString:js];<br>}<br>&#xA0;</li>
 </ul>
 
           
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/07/22/loads-data-from-the-josn-model/" itemprop="url">
+                  从josn加载数据模型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-22T01:07:49+08:00" content="2015-07-22">
+              2015-07-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/Xcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Xcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><pre class="lang:objc decode:true ">- (NSArray *)htmls<br>{<br>    if (!_htmls) {</pre></p>
+<pre><code>    // JSON&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;help.json&quot; ofType:nil];    
+    // &#x52A0;&#x8F7D;JSON&#x6587;&#x4EF6;
+    NSData *data = [NSData dataWithContentsOfFile:path]; 
+    // &#x5C06;JSON&#x6570;&#x636E;&#x8F6C;&#x4E3A;NSArray&#x6216;&#x8005;NSDictionary
+    NSArray *dictArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    // &#x5C06;&#x5B57;&#x5178;&#x8F6C;&#x6210;&#x6A21;&#x578B;
+    NSMutableArray *htmlArray = [NSMutableArray array];
+    for (NSDictionary *dict in dictArray) {
+        Html *html = [Html htmlWithDict:dict];
+        [htmlArray addObject:html];
+    }
+    _htmls = htmlArray;
+}
+return _htmls;
+</code></pre><p>}<br>&#x53C2;&#x6570;&#x8BF4;&#x660E;:</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/22/loads-data-from-the-josn-model/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1551,7 +1575,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

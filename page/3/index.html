@@ -235,150 +235,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/07/ios-video-player-how-to-force-the-rotating-screen/" itemprop="url">
-                  iOS视频播放等如何强制旋转屏幕
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-07T03:42:36+08:00" content="2015-10-07">
-              2015-10-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>如果做过项目中有视频播放的内容 一定遇到过全屏播放视频的需求 一般来说 直接弹出一个modal viewcontroller来全屏播放视频就ok了</p>
-<p>但是为了用户体验 可能需要在同一个viewcontroller中进行全屏和非全屏的切换 这个时候可能就需要强制旋转屏幕来做到</p>
-<p>那么如何完美的对屏幕进行强制旋转呢?</p>
-<p>这里只讨论ios6+的方法(因为从ios6+起 屏幕旋转的api做了重要的变化 有需要的同学可以自己去探索一下ios6-的方法)</p>
-<h1 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h1><p>首先 你得在项目的的plist中或者target的general选项里配置好APP所支持的所有放心啊个</p>
-<p>然后 在ios6+之后 屏幕旋转的控制权交给了rootViewController(这里没探讨presentViewController的情况 只考虑普通的布局) 那么基本上所有的APP都是基于UINavigationController或者UITabbarViewController做为rootViewController的 所以要灵活的控制每个push进来的view的旋转 需要修改一下UINavigationController或者UITabbarViewController的以下几个方法(可以添加Category 也可以继承一下)</p>
-<p><pre class="lang:objc decode:true ">//UINavigationController</pre></p>
-<ul>
-<li><p>(BOOL)shouldAutorotate<br>{<br>  return self.topViewController.shouldAutorotate;<br>}</p>
-</li>
-<li><p>(NSUInteger)supportedInterfaceOrientations<br>{<br>  return self.topViewController.supportedInterfaceOrientations;<br>}</p>
-</li>
-<li><p>(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation<br>{<br>  return self.topViewController.preferredInterfaceOrientationForPresentation;<br>}</p>
-</li>
-</ul>
-<p>//UITabbarViewController<br>//注意 这里的selectedViewController如果是UINavigationController的话 也需要对它做上面的修改</p>
-<ul>
-<li><p>(BOOL)shouldAutorotate<br>{<br>  return self.selectedViewController.shouldAutorotate;<br>}</p>
-</li>
-<li><p>(NSUInteger)supportedInterfaceOrientations<br>{<br>  return self.selectedViewController.supportedInterfaceOrientations;<br>}</p>
-</li>
-<li><p>(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation<br>{<br>  return self.selectedViewController.preferredInterfaceOrientationForPresentation;<br>}<br>&nbsp;</p>
-</li>
-</ul>
-<p>这样 控制旋转的主动权就交还到了每个viewController的手上了</p>
-<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>在ios6中 使用如下的trick可以强制让屏幕进行旋转检测</p>
-<p><pre class="lang:objc decode:true ">UIViewController *vc = [[UIViewController alloc]init];<br>[self presentModalViewController:vc animated:NO];<br>[self dismissModalViewControllerAnimated:NO];</pre><br>&nbsp;</p>
-<p>在ios7中 上面的方法不管用了 但是稍微改一改就可以了</p>
-<p><pre class="lang:objc decode:true">   UIViewController *vc  = [[UIViewController alloc] init];<br>[self presentViewController:viewController animated:NO completion:^{<br>       [self dismissViewControllerAnimated:NO completion:nil];<br>}];</pre><br>虽然上面的办法确实可以触发对屏幕旋转的判断 但缺陷就是旋转起来不自然</p>
-<p>实际上有个更好的方法</p>
-<p><pre class="lang:objc decode:true">   [[UIDevice currentDevice] setValue:<br>    [NSNumber numberWithInteger: self.isFullScreen?UIInterfaceOrientationLandscapeRight:UIInterfaceOrientationPortrait]<br>                               forKey:@”orientation”];</pre></p>
-<p>//等价于<br>objc_msgSend([UIDevice currentDevice], @selector(setOrientation:), self.isFullScreen?UIInterfaceOrientationLandscapeRight:UIInterfaceOrientationPortrait);<br>在stackoverflow上看到有人说 此方法是私有方法 调用有可能会导致被reject，但是目前实测是没有影响的。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/09/29/instancetype-instead-of-the-id-is-used-as-the-return-type-what-are-the-benefits/" itemprop="url">
                   用instancetype代替id作返回类型有什么好处？
                 </a>
@@ -442,68 +298,68 @@
       
         
           
-            <p><strong>Steven Fisher</strong>：只要一个类返回自身的实例，用instancetype就有好处。</p>
+            <p><strong>Steven Fisher</strong>&#xFF1A;&#x53EA;&#x8981;&#x4E00;&#x4E2A;&#x7C7B;&#x8FD4;&#x56DE;&#x81EA;&#x8EAB;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x7528;instancetype&#x5C31;&#x6709;&#x597D;&#x5904;&#x3002;</p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true">@interface Foo:NSObject</pre></p>
 <ul>
 <li>(id)initWithBar:(NSInteger)bar; // initializer</li>
 </ul>
 <ul>
-<li>(id)fooWithBar:(NSInteger)bar;  // convenience constructor<br>@end<br><br>对于简易构造函数(convenience constructor)，应该总是用instancetype。编译器不会自动将id转化为instancetype。id是通用对象，但如果你用instancetype，编译器就知道方法返回什么类型的对象。</li>
+<li>(id)fooWithBar:(NSInteger)bar;  // convenience constructor<br>@end<br><br>&#x5BF9;&#x4E8E;&#x7B80;&#x6613;&#x6784;&#x9020;&#x51FD;&#x6570;(convenience constructor)&#xFF0C;&#x5E94;&#x8BE5;&#x603B;&#x662F;&#x7528;instancetype&#x3002;&#x7F16;&#x8BD1;&#x5668;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x5C06;id&#x8F6C;&#x5316;&#x4E3A;instancetype&#x3002;id&#x662F;&#x901A;&#x7528;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x4F60;&#x7528;instancetype&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5C31;&#x77E5;&#x9053;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4EC0;&#x4E48;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x3002;</li>
 </ul>
-<p>这个问题可不只有学术意义，比如，[[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData]在Mac OS X（只在该OS版本）中会报错“Multiple methods named ‘writeData:’ found with mismatched result, parameter type or attributes.”原因是NSFileHandle和NSURLHandle都提供writeData:方法。由于[NSFileHandle fileHandleWithStandardOutput] 返回的类型是id，编译器并不确定请求了哪个类的writeData:方法。</p>
-<p>你可以用</p>
+<p>&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x53EF;&#x4E0D;&#x53EA;&#x6709;&#x5B66;&#x672F;&#x610F;&#x4E49;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;[[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData]&#x5728;Mac OS X&#xFF08;&#x53EA;&#x5728;&#x8BE5;OS&#x7248;&#x672C;&#xFF09;&#x4E2D;&#x4F1A;&#x62A5;&#x9519;&#x201C;Multiple methods named &#x2018;writeData:&#x2019; found with mismatched result, parameter type or attributes.&#x201D;&#x539F;&#x56E0;&#x662F;NSFileHandle&#x548C;NSURLHandle&#x90FD;&#x63D0;&#x4F9B;writeData:&#x65B9;&#x6CD5;&#x3002;&#x7531;&#x4E8E;[NSFileHandle fileHandleWithStandardOutput] &#x8FD4;&#x56DE;&#x7684;&#x7C7B;&#x578B;&#x662F;id&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5E76;&#x4E0D;&#x786E;&#x5B9A;&#x8BF7;&#x6C42;&#x4E86;&#x54EA;&#x4E2A;&#x7C7B;&#x7684;writeData:&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x7528;</p>
 <p><div class="highlight"></div></p>
-<p><pre class="lang:objc decode:true">[(NSFileHandle *)[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData];</pre><br>或</p>
+<p><pre class="lang:objc decode:true">[(NSFileHandle *)[NSFileHandle fileHandleWithStandardOutput] writeData:formattedData];</pre><br>&#x6216;</p>
 <p><pre class="lang:objc decode:true">NSFileHandle *fileHandle = [NSFileHandle fileHandleWithStandardOutput];<br>[fileHandle writeData:formattedData];</pre><br></p>
-<p><div class="highlight"></div><br>来绕过。</p>
-<p>当然，更好的方法是声明fileHandleWithStandardOutput的返回类型为instancetype。(注意：这段样例代码在iOS中并不会报错，因为iOS中只有NSFileHandle提供writeData:方法。但length等方法则会，UILayoutSupport会返回CGFloat，而NSString则会返回NSUInteger)</p>
-<p>initializer的情况更复杂，当你输入</p>
+<p><div class="highlight"></div><br>&#x6765;&#x7ED5;&#x8FC7;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x66F4;&#x597D;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x58F0;&#x660E;fileHandleWithStandardOutput&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x4E3A;instancetype&#x3002;(&#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x6BB5;&#x6837;&#x4F8B;&#x4EE3;&#x7801;&#x5728;iOS&#x4E2D;&#x5E76;&#x4E0D;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x56E0;&#x4E3A;iOS&#x4E2D;&#x53EA;&#x6709;NSFileHandle&#x63D0;&#x4F9B;writeData:&#x65B9;&#x6CD5;&#x3002;&#x4F46;length&#x7B49;&#x65B9;&#x6CD5;&#x5219;&#x4F1A;&#xFF0C;UILayoutSupport&#x4F1A;&#x8FD4;&#x56DE;CGFloat&#xFF0C;&#x800C;NSString&#x5219;&#x4F1A;&#x8FD4;&#x56DE;NSUInteger)</p>
+<p>initializer&#x7684;&#x60C5;&#x51B5;&#x66F4;&#x590D;&#x6742;&#xFF0C;&#x5F53;&#x4F60;&#x8F93;&#x5165;</p>
 <p><div class="highlight"></div></p>
-<p><pre class="lang:objc decode:true">- (id)initWithBar:(NSInteger)bar</pre><br><br>编译器会假设你输入了</p>
+<p><pre class="lang:objc decode:true">- (id)initWithBar:(NSInteger)bar</pre><br><br>&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5047;&#x8BBE;&#x4F60;&#x8F93;&#x5165;&#x4E86;</p>
 <p><div class="highlight"></div></p>
-<p><pre class="lang:objc decode:true">- (instancetype)initWithBar:(NSInteger)bar</pre><br><br>对于ARC而言，这是必须的。<a href="http://clang.llvm.org/docs/LanguageExtensions.html#related-result-types" target="_blank" rel="external">Clang Language Extensions</a>的相关结果类型(Related result types)也讲到了这一点。也许别人会据此告诉你不必使用instancetype，但我建议你用它。下面解释我为什么如此建议。</p>
-<p>使用instancetype有三点好处：</p>
-<p>1、明确性。代码只做你让它做的事，而不是其他。</p>
-<p>2、程式化。你会养成好习惯，这些习惯在某些时候会很有用，而且肯定有用武之地。</p>
-<p>3、一致性。让代码可读性更好。</p>
-<p><strong>明确性</strong></p>
-<p>用instancetype代替id作为返回值的确没有<em>技术上的好处</em>。但这是因为编译器自动将id转化成了instancetype。你以为init返回的值类型是id，其实编译器返回了instancetype。</p>
-<p>这两行代码对于编译器来说是<em>一样</em>的：</p>
+<p><pre class="lang:objc decode:true">- (instancetype)initWithBar:(NSInteger)bar</pre><br><br>&#x5BF9;&#x4E8E;ARC&#x800C;&#x8A00;&#xFF0C;&#x8FD9;&#x662F;&#x5FC5;&#x987B;&#x7684;&#x3002;<a href="http://clang.llvm.org/docs/LanguageExtensions.html#related-result-types" target="_blank" rel="external">Clang Language Extensions</a>&#x7684;&#x76F8;&#x5173;&#x7ED3;&#x679C;&#x7C7B;&#x578B;(Related result types)&#x4E5F;&#x8BB2;&#x5230;&#x4E86;&#x8FD9;&#x4E00;&#x70B9;&#x3002;&#x4E5F;&#x8BB8;&#x522B;&#x4EBA;&#x4F1A;&#x636E;&#x6B64;&#x544A;&#x8BC9;&#x4F60;&#x4E0D;&#x5FC5;&#x4F7F;&#x7528;instancetype&#xFF0C;&#x4F46;&#x6211;&#x5EFA;&#x8BAE;&#x4F60;&#x7528;&#x5B83;&#x3002;&#x4E0B;&#x9762;&#x89E3;&#x91CA;&#x6211;&#x4E3A;&#x4EC0;&#x4E48;&#x5982;&#x6B64;&#x5EFA;&#x8BAE;&#x3002;</p>
+<p>&#x4F7F;&#x7528;instancetype&#x6709;&#x4E09;&#x70B9;&#x597D;&#x5904;&#xFF1A;</p>
+<p>1&#x3001;&#x660E;&#x786E;&#x6027;&#x3002;&#x4EE3;&#x7801;&#x53EA;&#x505A;&#x4F60;&#x8BA9;&#x5B83;&#x505A;&#x7684;&#x4E8B;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5176;&#x4ED6;&#x3002;</p>
+<p>2&#x3001;&#x7A0B;&#x5F0F;&#x5316;&#x3002;&#x4F60;&#x4F1A;&#x517B;&#x6210;&#x597D;&#x4E60;&#x60EF;&#xFF0C;&#x8FD9;&#x4E9B;&#x4E60;&#x60EF;&#x5728;&#x67D0;&#x4E9B;&#x65F6;&#x5019;&#x4F1A;&#x5F88;&#x6709;&#x7528;&#xFF0C;&#x800C;&#x4E14;&#x80AF;&#x5B9A;&#x6709;&#x7528;&#x6B66;&#x4E4B;&#x5730;&#x3002;</p>
+<p>3&#x3001;&#x4E00;&#x81F4;&#x6027;&#x3002;&#x8BA9;&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x66F4;&#x597D;&#x3002;</p>
+<p><strong>&#x660E;&#x786E;&#x6027;</strong></p>
+<p>&#x7528;instancetype&#x4EE3;&#x66FF;id&#x4F5C;&#x4E3A;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x786E;&#x6CA1;&#x6709;<em>&#x6280;&#x672F;&#x4E0A;&#x7684;&#x597D;&#x5904;</em>&#x3002;&#x4F46;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x7F16;&#x8BD1;&#x5668;&#x81EA;&#x52A8;&#x5C06;id&#x8F6C;&#x5316;&#x6210;&#x4E86;instancetype&#x3002;&#x4F60;&#x4EE5;&#x4E3A;init&#x8FD4;&#x56DE;&#x7684;&#x503C;&#x7C7B;&#x578B;&#x662F;id&#xFF0C;&#x5176;&#x5B9E;&#x7F16;&#x8BD1;&#x5668;&#x8FD4;&#x56DE;&#x4E86;instancetype&#x3002;</p>
+<p>&#x8FD9;&#x4E24;&#x884C;&#x4EE3;&#x7801;&#x5BF9;&#x4E8E;&#x7F16;&#x8BD1;&#x5668;&#x6765;&#x8BF4;&#x662F;<em>&#x4E00;&#x6837;</em>&#x7684;&#xFF1A;</p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true">- (id)initWithBar:(NSInteger)bar;</pre></p>
 <ul>
-<li>(instancetype)initWithBar:(NSInteger)bar;<br><br>但在你眼里，这两行代码却不同。<strong>你不该学着忽视它。</strong></li>
+<li>(instancetype)initWithBar:(NSInteger)bar;<br><br>&#x4F46;&#x5728;&#x4F60;&#x773C;&#x91CC;&#xFF0C;&#x8FD9;&#x4E24;&#x884C;&#x4EE3;&#x7801;&#x5374;&#x4E0D;&#x540C;&#x3002;<strong>&#x4F60;&#x4E0D;&#x8BE5;&#x5B66;&#x7740;&#x5FFD;&#x89C6;&#x5B83;&#x3002;</strong></li>
 </ul>
-<p><strong>模式化</strong></p>
-<p>在使用init等方法时的确没有区别，但在定义简易构造函数时就<strong>有</strong>区别了。</p>
-<p>这两行代码并不等价：</p>
+<p><strong>&#x6A21;&#x5F0F;&#x5316;</strong></p>
+<p>&#x5728;&#x4F7F;&#x7528;init&#x7B49;&#x65B9;&#x6CD5;&#x65F6;&#x7684;&#x786E;&#x6CA1;&#x6709;&#x533A;&#x522B;&#xFF0C;&#x4F46;&#x5728;&#x5B9A;&#x4E49;&#x7B80;&#x6613;&#x6784;&#x9020;&#x51FD;&#x6570;&#x65F6;&#x5C31;<strong>&#x6709;</strong>&#x533A;&#x522B;&#x4E86;&#x3002;</p>
+<p>&#x8FD9;&#x4E24;&#x884C;&#x4EE3;&#x7801;&#x5E76;&#x4E0D;&#x7B49;&#x4EF7;&#xFF1A;</p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true">+ (id)fooWithBar:(NSInteger)bar;</pre></p>
 <ul>
-<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>如果用instancetype作为函数的返回类型，就不会出错。</li>
+<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>&#x5982;&#x679C;&#x7528;instancetype&#x4F5C;&#x4E3A;&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x51FA;&#x9519;&#x3002;</li>
 </ul>
-<p><strong>一致性：</strong></p>
-<p>最后，想象把所有东西放到一起时的情景：你想要一个init方法和一个简易构造函数。</p>
-<p>如果你用id来作为init函数的返回类型，最终代码如下：</p>
+<p><strong>&#x4E00;&#x81F4;&#x6027;&#xFF1A;</strong></p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x60F3;&#x8C61;&#x628A;&#x6240;&#x6709;&#x4E1C;&#x897F;&#x653E;&#x5230;&#x4E00;&#x8D77;&#x65F6;&#x7684;&#x60C5;&#x666F;&#xFF1A;&#x4F60;&#x60F3;&#x8981;&#x4E00;&#x4E2A;init&#x65B9;&#x6CD5;&#x548C;&#x4E00;&#x4E2A;&#x7B80;&#x6613;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x7528;id&#x6765;&#x4F5C;&#x4E3A;init&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#xFF0C;&#x6700;&#x7EC8;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true ">- (id)initWithBar:(NSInteger)bar;</pre></p>
 <ul>
-<li>(instancetype)fooWithBar:(NSInteger)bar;<br>但如果你用instancetype，代码如下：</li>
+<li>(instancetype)fooWithBar:(NSInteger)bar;<br>&#x4F46;&#x5982;&#x679C;&#x4F60;&#x7528;instancetype&#xFF0C;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</li>
 </ul>
 <p></p>
 <p><div class="highlight"></div></p>
 <p><pre class="lang:objc decode:true  ">- (instancetype)initWithBar:(NSInteger)bar;</pre></p>
 <ul>
-<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>代码更加一致，可读性更强。它们返回相同的东西，这一点一目了然。</li>
+<li>(instancetype)fooWithBar:(NSInteger)bar;<br><br>&#x4EE3;&#x7801;&#x66F4;&#x52A0;&#x4E00;&#x81F4;&#xFF0C;&#x53EF;&#x8BFB;&#x6027;&#x66F4;&#x5F3A;&#x3002;&#x5B83;&#x4EEC;&#x8FD4;&#x56DE;&#x76F8;&#x540C;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x8FD9;&#x4E00;&#x70B9;&#x4E00;&#x76EE;&#x4E86;&#x7136;&#x3002;</li>
 </ul>
-<p><strong>结论</strong></p>
-<p>除非你有意为旧编译器写代码，不然你在合适的时候都应该用instancetype。</p>
-<p>在写一条返回id的消息前，问自己：这个类返回实例吗？如果返回，用instancetype。</p>
-<p>肯定有需要返回id的时候，但你用instancetype的频率应该会更高。</p>
-<p><em>本答案最后编辑于2013年7月12日</em></p>
-<p>原帖：<a href="http://stackoverflow.com/questions/8972221/would-it-be-beneficial-to-begin-using-instancetype-instead-of-id" target="_blank" rel="external">objective c - Would it be beneficial to begin using instancetype instead of id?</a></p>
-<p>注意：我也是刚入门而已，如果翻译的术语与通行术语不一致，敬请告知；如果选取的翻译内容有误或过时，敬请告知，谢谢。</p>
+<p><strong>&#x7ED3;&#x8BBA;</strong></p>
+<p>&#x9664;&#x975E;&#x4F60;&#x6709;&#x610F;&#x4E3A;&#x65E7;&#x7F16;&#x8BD1;&#x5668;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x4E0D;&#x7136;&#x4F60;&#x5728;&#x5408;&#x9002;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x5E94;&#x8BE5;&#x7528;instancetype&#x3002;</p>
+<p>&#x5728;&#x5199;&#x4E00;&#x6761;&#x8FD4;&#x56DE;id&#x7684;&#x6D88;&#x606F;&#x524D;&#xFF0C;&#x95EE;&#x81EA;&#x5DF1;&#xFF1A;&#x8FD9;&#x4E2A;&#x7C7B;&#x8FD4;&#x56DE;&#x5B9E;&#x4F8B;&#x5417;&#xFF1F;&#x5982;&#x679C;&#x8FD4;&#x56DE;&#xFF0C;&#x7528;instancetype&#x3002;</p>
+<p>&#x80AF;&#x5B9A;&#x6709;&#x9700;&#x8981;&#x8FD4;&#x56DE;id&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F46;&#x4F60;&#x7528;instancetype&#x7684;&#x9891;&#x7387;&#x5E94;&#x8BE5;&#x4F1A;&#x66F4;&#x9AD8;&#x3002;</p>
+<p><em>&#x672C;&#x7B54;&#x6848;&#x6700;&#x540E;&#x7F16;&#x8F91;&#x4E8E;2013&#x5E74;7&#x6708;12&#x65E5;</em></p>
+<p>&#x539F;&#x5E16;&#xFF1A;<a href="http://stackoverflow.com/questions/8972221/would-it-be-beneficial-to-begin-using-instancetype-instead-of-id" target="_blank" rel="external">objective c - Would it be beneficial to begin using instancetype instead of id?</a></p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x6211;&#x4E5F;&#x662F;&#x521A;&#x5165;&#x95E8;&#x800C;&#x5DF2;&#xFF0C;&#x5982;&#x679C;&#x7FFB;&#x8BD1;&#x7684;&#x672F;&#x8BED;&#x4E0E;&#x901A;&#x884C;&#x672F;&#x8BED;&#x4E0D;&#x4E00;&#x81F4;&#xFF0C;&#x656C;&#x8BF7;&#x544A;&#x77E5;&#xFF1B;&#x5982;&#x679C;&#x9009;&#x53D6;&#x7684;&#x7FFB;&#x8BD1;&#x5185;&#x5BB9;&#x6709;&#x8BEF;&#x6216;&#x8FC7;&#x65F6;&#xFF0C;&#x656C;&#x8BF7;&#x544A;&#x77E5;&#xFF0C;&#x8C22;&#x8C22;&#x3002;</p>
 
           
         
@@ -553,7 +409,7 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/20/use-system-comes-with-qr-codes-and-scanning/" itemprop="url">
+                <a class="post-title-link" href="/2015/09/20/使用系统自带二维码生成及扫描/" itemprop="url">
                   使用系统自带二维码生成及扫描
                 </a>
               
@@ -572,37 +428,6 @@
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IOS/" itemprop="url" rel="index">
-                    <span itemprop="name">IOS</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IOS/OC/" itemprop="url" rel="index">
-                    <span itemprop="name">OC</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -627,57 +452,12 @@
 
       
         
-          
-            <h3 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h3><pre class="lang:objc decode:true ">   // 1.实例化二维码滤镜
-    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
-
-    // 2.恢复滤镜的默认属性 (因为滤镜有可能保存上一次的属性)
-    [filter setDefaults];
-
-    // 3.将字符串转换成NSdata
-    NSData *data  = [@"http://www.birdmichael.com" dataUsingEncoding:NSUTF8StringEncoding];
-
-    // 4.通过KVO设置滤镜, 传入data, 将来滤镜就知道要通过传入的数据生成二维码
-    [filter setValue:data forKey:@"inputMessage"];
-
-    // 5.生成二维码
-     CIImage *outputImage = [filter outputImage];
-
-    // 6.得到image
-    UIImage *image = [UIImage  imageWithCIImage:outputImage];</pre>
-
-<h3 id="扫描二维码"><a href="#扫描二维码" class="headerlink" title="扫描二维码"></a>扫描二维码</h3><p><pre class="lang:objc decode:true ">#import “ViewController.h”</pre></p>
-<p>#import &lt;AVFoundation/AVFoundation.h&gt;</p>
-<p>@interface ViewController ()&lt;AVCaptureMetadataOutputObjectsDelegate&gt;<br>@property (nonatomic, strong) AVCaptureSession <em>session;<br>@property (nonatomic, strong) AVCaptureVideoPreviewLayer </em>previewLayer;<br>@end</p>
-<p>@implementation ViewController</p>
-<ul>
-<li><p>(void)viewDidLoad {<br>  [super viewDidLoad];<br>  // Do any additional setup after loading the view, typically from a nib.</p>
-<p>  // 1. 实例化拍摄设备<br>  AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];</p>
-<p>  // 2. 设置输入设备<br>  AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];</p>
-<p>  // 3. 设置元数据输出<br>  // 3.1 实例化拍摄元数据输出<br>  AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];<br>  // 3.3 设置输出数据代理<br>  [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];</p>
-<p>  // 4. 添加拍摄会话<br>  // 4.1 实例化拍摄会话<br>  AVCaptureSession *session = [[AVCaptureSession alloc] init];<br>  // 4.2 添加会话输入<br>  [session addInput:input];<br>  // 4.3 添加会话输出<br>  [session addOutput:output];<br>  // 4.3 设置输出数据类型，需要将元数据输出添加到会话后，才能指定元数据类型，否则会报错<br>  [output setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];</p>
-<p>  self.session = session;</p>
-<p>  // 5. 视频预览图层<br>  // 5.1 实例化预览图层, 传递_session是为了告诉图层将来显示什么内容<br>  AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession:_session];</p>
-<p>  preview.videoGravity = AVLayerVideoGravityResizeAspectFill;<br>  preview.frame = self.view.bounds;<br>  // 5.2 将图层插入当前视图<br>  [self.view.layer insertSublayer:preview atIndex:100];</p>
-<p>  self.previewLayer = preview;</p>
-<p>  // 6. 启动会话<br>  [_session startRunning];</p>
-</li>
-</ul>
-<p>}</p>
-<ul>
-<li><p>(void)captureOutput:(AVCaptureOutput <em>)captureOutput didOutputMetadataObjects:(NSArray </em>)metadataObjects fromConnection:(AVCaptureConnection *)connection<br>{</p>
-<p>  // 会频繁的扫描，调用代理方法<br>  // 1. 如果扫描完成，停止会话<br>  [self.session stopRunning];<br>  // 2. 删除预览图层<br>  [self.previewLayer removeFromSuperlayer];</p>
-<p>  NSLog(@”%@”, metadataObjects);<br>  // 3. 设置界面显示扫描结果</p>
-<p>  if (metadataObjects.count &gt; 0) {</p>
-<pre><code>AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
-// 提示：如果需要对url或者名片等信息进行扫描，可以在此进行扩展！
-</code></pre><p>//        _label.text = obj.stringValue;</p>
-<pre><code>NSLog(@&quot;%@&quot;, obj.stringValue);
-</code></pre><p>  }<br>}<br>&nbsp;</p>
-</li>
-</ul>
-
-          
+          <h3 id="&#x751F;&#x6210;&#x4EE3;&#x7801;"><a href="#&#x751F;&#x6210;&#x4EE3;&#x7801;" class="headerlink" title="&#x751F;&#x6210;&#x4EE3;&#x7801;"></a>&#x751F;&#x6210;&#x4EE3;&#x7801;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// 1.&#x5B9E;&#x4F8B;&#x5316;&#x4E8C;&#x7EF4;&#x7801;&#x6EE4;&#x955C;</div><div class="line">   CIFilter *filter = [CIFilter filterWithName:@&quot;CIQRCodeGenerator&quot;];</div><div class="line"></div><div class="line">   // 2.&#x6062;&#x590D;&#x6EE4;&#x955C;&#x7684;&#x9ED8;&#x8BA4;&#x5C5E;&#x6027; (&#x56E0;&#x4E3A;&#x6EE4;&#x955C;&#x6709;&#x53EF;&#x80FD;&#x4FDD;&#x5B58;&#x4E0A;&#x4E00;&#x6B21;&#x7684;&#x5C5E;&#x6027;)</div><div class="line">   [filter setDefaults];</div><div class="line"></div><div class="line">   // 3.&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x6210;NSdata</div><div class="line">   NSData *data  = [@&quot;http://www.birdmichael.com&quot; dataUsingEncoding:NSUTF8StringEncoding];</div><div class="line"></div><div class="line">   // 4.&#x901A;&#x8FC7;KVO&#x8BBE;&#x7F6E;&#x6EE4;&#x955C;, &#x4F20;&#x5165;data, &#x5C06;&#x6765;&#x6EE4;&#x955C;&#x5C31;&#x77E5;&#x9053;&#x8981;&#x901A;&#x8FC7;&#x4F20;&#x5165;&#x7684;&#x6570;&#x636E;&#x751F;&#x6210;&#x4E8C;&#x7EF4;&#x7801;</div><div class="line">   [filter setValue:data forKey:@&quot;inputMessage&quot;];</div><div class="line"></div><div class="line">   // 5.&#x751F;&#x6210;&#x4E8C;&#x7EF4;&#x7801;</div><div class="line">    CIImage *outputImage = [filter outputImage];</div><div class="line"></div><div class="line">   // 6.&#x5F97;&#x5230;image</div><div class="line">   UIImage *image = [UIImage  imageWithCIImage:outputImage];</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/20/使用系统自带二维码生成及扫描/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -788,40 +568,40 @@
       
         
           
-            <p>什么是库？</p>
-<p>库是程序代码的集合，是共享程序代码的一种方式</p>
-<p>根据源代码的公开情况，库可以分为2种类型</p>
-<p>开源库—公开源代码，能看到具体实现 比如SDWebImage、AFNetworking</p>
-<p>闭源库—不公开源代码，是经过编译后的二进制文件，看不到具体实现 主要分为：静态库、动态库</p>
-<h1 id="01-为什么要做静态库"><a href="#01-为什么要做静态库" class="headerlink" title="01. 为什么要做静态库"></a>01. 为什么要做静态库</h1><p>1&gt; 国内的企业，掌握有核心技术，同时是又希望更多的程序员来使用其技术，因此采用”闭源”的方式开发使用<br>例如：百度地图，友盟，JPush等</p>
-<p>2&gt; 在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，也会提供静态库给程序员使用</p>
-<h1 id="02-静态库的特点"><a href="#02-静态库的特点" class="headerlink" title="02. 静态库的特点"></a>02. 静态库的特点</h1><p>.a + .h</p>
-<h1 id="03-静态库简单演练"><a href="#03-静态库简单演练" class="headerlink" title="03. 静态库简单演练"></a>03. 静态库简单演练</h1><p>1&gt; 新建BMTools项目<br>2&gt; 创建一个类方法，实现一个简单的加法<br>3&gt; 编译</p>
-<h1 id="注意，在编译静态库时，需要编译两个版本-gt-真机-arm-模拟器-i386"><a href="#注意，在编译静态库时，需要编译两个版本-gt-真机-arm-模拟器-i386" class="headerlink" title="注意，在编译静态库时，需要编译两个版本 -&gt; 真机(arm) | 模拟器(i386)"></a>注意，在编译静态库时，需要编译两个版本 -&gt; 真机(arm) | 模拟器(i386)</h1><p>4&gt; 新建项目将编译生成的.a + .h拖到项目中使用</p>
-<h1 id="04-静态库中的资源包的使用"><a href="#04-静态库中的资源包的使用" class="headerlink" title="04. 静态库中的资源包的使用"></a>04. 静态库中的资源包的使用</h1><p>问题：有些第三方库会使用到一些图片素材，例如公司的logo等。</p>
-<p>但是由于Xcode默认在编译时会把所有的素材文件导入到mainBundle中，为了避免与使用静态库的程序冲突。<br>在静态库中如果要使用图片素材，会利用bundle的手段</p>
-<p>1&gt; 建立bundle，并且向其中添加图片<br>2&gt; 创建一个类方法，返回图片<br>3&gt; 编译<br>4&gt; 调用方如果需要使用，需要导入 .h + .a + XXX.bundle</p>
-<h1 id="05-静态库中的自定义视图"><a href="#05-静态库中的自定义视图" class="headerlink" title="05. 静态库中的自定义视图"></a>05. 静态库中的自定义视图</h1><p>问题：程序需要测试<br>静态库如何测试呢？</p>
-<p>创建复合项目</p>
-<p>1&gt; 复习块代码传值</p>
-<h1 id="06-静态库的使用"><a href="#06-静态库的使用" class="headerlink" title="06. 静态库的使用"></a>06. 静态库的使用</h1><p>新建项目将编译生成的.a + .h拖到项目中使用</p>
-<h1 id="07-静态库的种类"><a href="#07-静态库的种类" class="headerlink" title="07. 静态库的种类"></a>07. 静态库的种类</h1><p>静态库文件的版本(4种)<br>1.真机-Debug版本<br>2.真机-Release版本<br>3.模拟器-Debug版本<br>4.模拟器-Release版本</p>
-<h2 id="调试版本-VS-发布版本"><a href="#调试版本-VS-发布版本" class="headerlink" title="调试版本 VS 发布版本"></a>调试版本 VS 发布版本</h2><ul>
-<li>调试版本会包含完整的符号信息，以方便调试</li>
-<li><p>调试版本不会对代码进行优化</p>
+            <p>&#x4EC0;&#x4E48;&#x662F;&#x5E93;&#xFF1F;</p>
+<p>&#x5E93;&#x662F;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x662F;&#x5171;&#x4EAB;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;</p>
+<p>&#x6839;&#x636E;&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x516C;&#x5F00;&#x60C5;&#x51B5;&#xFF0C;&#x5E93;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;2&#x79CD;&#x7C7B;&#x578B;</p>
+<p>&#x5F00;&#x6E90;&#x5E93;&#x2014;&#x516C;&#x5F00;&#x6E90;&#x4EE3;&#x7801;&#xFF0C;&#x80FD;&#x770B;&#x5230;&#x5177;&#x4F53;&#x5B9E;&#x73B0; &#x6BD4;&#x5982;SDWebImage&#x3001;AFNetworking</p>
+<p>&#x95ED;&#x6E90;&#x5E93;&#x2014;&#x4E0D;&#x516C;&#x5F00;&#x6E90;&#x4EE3;&#x7801;&#xFF0C;&#x662F;&#x7ECF;&#x8FC7;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#xFF0C;&#x770B;&#x4E0D;&#x5230;&#x5177;&#x4F53;&#x5B9E;&#x73B0; &#x4E3B;&#x8981;&#x5206;&#x4E3A;&#xFF1A;&#x9759;&#x6001;&#x5E93;&#x3001;&#x52A8;&#x6001;&#x5E93;</p>
+<h1 id="01-&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x505A;&#x9759;&#x6001;&#x5E93;"><a href="#01-&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x505A;&#x9759;&#x6001;&#x5E93;" class="headerlink" title="01. &#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x505A;&#x9759;&#x6001;&#x5E93;"></a>01. &#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x505A;&#x9759;&#x6001;&#x5E93;</h1><p>1&gt; &#x56FD;&#x5185;&#x7684;&#x4F01;&#x4E1A;&#xFF0C;&#x638C;&#x63E1;&#x6709;&#x6838;&#x5FC3;&#x6280;&#x672F;&#xFF0C;&#x540C;&#x65F6;&#x662F;&#x53C8;&#x5E0C;&#x671B;&#x66F4;&#x591A;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x6765;&#x4F7F;&#x7528;&#x5176;&#x6280;&#x672F;&#xFF0C;&#x56E0;&#x6B64;&#x91C7;&#x7528;&#x201D;&#x95ED;&#x6E90;&#x201D;&#x7684;&#x65B9;&#x5F0F;&#x5F00;&#x53D1;&#x4F7F;&#x7528;<br>&#x4F8B;&#x5982;&#xFF1A;&#x767E;&#x5EA6;&#x5730;&#x56FE;&#xFF0C;&#x53CB;&#x76DF;&#xFF0C;JPush&#x7B49;</p>
+<p>2&gt; &#x5728;&#x4F01;&#x4E1A;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x4E00;&#x4E9B;&#x6838;&#x5FC3;&#x6280;&#x672F;&#x6216;&#x8005;&#x5E38;&#x7528;&#x6846;&#x67B6;&#xFF0C;&#x51FA;&#x4E8E;&#x5B89;&#x5168;&#x6027;&#x548C;&#x7A33;&#x5B9A;&#x6027;&#x7684;&#x8003;&#x8651;&#xFF0C;&#x4E5F;&#x4F1A;&#x63D0;&#x4F9B;&#x9759;&#x6001;&#x5E93;&#x7ED9;&#x7A0B;&#x5E8F;&#x5458;&#x4F7F;&#x7528;</p>
+<h1 id="02-&#x9759;&#x6001;&#x5E93;&#x7684;&#x7279;&#x70B9;"><a href="#02-&#x9759;&#x6001;&#x5E93;&#x7684;&#x7279;&#x70B9;" class="headerlink" title="02. &#x9759;&#x6001;&#x5E93;&#x7684;&#x7279;&#x70B9;"></a>02. &#x9759;&#x6001;&#x5E93;&#x7684;&#x7279;&#x70B9;</h1><p>.a + .h</p>
+<h1 id="03-&#x9759;&#x6001;&#x5E93;&#x7B80;&#x5355;&#x6F14;&#x7EC3;"><a href="#03-&#x9759;&#x6001;&#x5E93;&#x7B80;&#x5355;&#x6F14;&#x7EC3;" class="headerlink" title="03. &#x9759;&#x6001;&#x5E93;&#x7B80;&#x5355;&#x6F14;&#x7EC3;"></a>03. &#x9759;&#x6001;&#x5E93;&#x7B80;&#x5355;&#x6F14;&#x7EC3;</h1><p>1&gt; &#x65B0;&#x5EFA;BMTools&#x9879;&#x76EE;<br>2&gt; &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7C7B;&#x65B9;&#x6CD5;&#xFF0C;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x52A0;&#x6CD5;<br>3&gt; &#x7F16;&#x8BD1;</p>
+<h1 id="&#x6CE8;&#x610F;&#xFF0C;&#x5728;&#x7F16;&#x8BD1;&#x9759;&#x6001;&#x5E93;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x4E24;&#x4E2A;&#x7248;&#x672C;-gt-&#x771F;&#x673A;-arm-&#x6A21;&#x62DF;&#x5668;-i386"><a href="#&#x6CE8;&#x610F;&#xFF0C;&#x5728;&#x7F16;&#x8BD1;&#x9759;&#x6001;&#x5E93;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x4E24;&#x4E2A;&#x7248;&#x672C;-gt-&#x771F;&#x673A;-arm-&#x6A21;&#x62DF;&#x5668;-i386" class="headerlink" title="&#x6CE8;&#x610F;&#xFF0C;&#x5728;&#x7F16;&#x8BD1;&#x9759;&#x6001;&#x5E93;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x4E24;&#x4E2A;&#x7248;&#x672C; -&gt; &#x771F;&#x673A;(arm) | &#x6A21;&#x62DF;&#x5668;(i386)"></a>&#x6CE8;&#x610F;&#xFF0C;&#x5728;&#x7F16;&#x8BD1;&#x9759;&#x6001;&#x5E93;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x4E24;&#x4E2A;&#x7248;&#x672C; -&gt; &#x771F;&#x673A;(arm) | &#x6A21;&#x62DF;&#x5668;(i386)</h1><p>4&gt; &#x65B0;&#x5EFA;&#x9879;&#x76EE;&#x5C06;&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x7684;.a + .h&#x62D6;&#x5230;&#x9879;&#x76EE;&#x4E2D;&#x4F7F;&#x7528;</p>
+<h1 id="04-&#x9759;&#x6001;&#x5E93;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5305;&#x7684;&#x4F7F;&#x7528;"><a href="#04-&#x9759;&#x6001;&#x5E93;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5305;&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="04. &#x9759;&#x6001;&#x5E93;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5305;&#x7684;&#x4F7F;&#x7528;"></a>04. &#x9759;&#x6001;&#x5E93;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5305;&#x7684;&#x4F7F;&#x7528;</h1><p>&#x95EE;&#x9898;&#xFF1A;&#x6709;&#x4E9B;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x4F1A;&#x4F7F;&#x7528;&#x5230;&#x4E00;&#x4E9B;&#x56FE;&#x7247;&#x7D20;&#x6750;&#xFF0C;&#x4F8B;&#x5982;&#x516C;&#x53F8;&#x7684;logo&#x7B49;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x7531;&#x4E8E;Xcode&#x9ED8;&#x8BA4;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x4F1A;&#x628A;&#x6240;&#x6709;&#x7684;&#x7D20;&#x6750;&#x6587;&#x4EF6;&#x5BFC;&#x5165;&#x5230;mainBundle&#x4E2D;&#xFF0C;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x4E0E;&#x4F7F;&#x7528;&#x9759;&#x6001;&#x5E93;&#x7684;&#x7A0B;&#x5E8F;&#x51B2;&#x7A81;&#x3002;<br>&#x5728;&#x9759;&#x6001;&#x5E93;&#x4E2D;&#x5982;&#x679C;&#x8981;&#x4F7F;&#x7528;&#x56FE;&#x7247;&#x7D20;&#x6750;&#xFF0C;&#x4F1A;&#x5229;&#x7528;bundle&#x7684;&#x624B;&#x6BB5;</p>
+<p>1&gt; &#x5EFA;&#x7ACB;bundle&#xFF0C;&#x5E76;&#x4E14;&#x5411;&#x5176;&#x4E2D;&#x6DFB;&#x52A0;&#x56FE;&#x7247;<br>2&gt; &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7C7B;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD4;&#x56DE;&#x56FE;&#x7247;<br>3&gt; &#x7F16;&#x8BD1;<br>4&gt; &#x8C03;&#x7528;&#x65B9;&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#xFF0C;&#x9700;&#x8981;&#x5BFC;&#x5165; .h + .a + XXX.bundle</p>
+<h1 id="05-&#x9759;&#x6001;&#x5E93;&#x4E2D;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x89C6;&#x56FE;"><a href="#05-&#x9759;&#x6001;&#x5E93;&#x4E2D;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x89C6;&#x56FE;" class="headerlink" title="05. &#x9759;&#x6001;&#x5E93;&#x4E2D;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x89C6;&#x56FE;"></a>05. &#x9759;&#x6001;&#x5E93;&#x4E2D;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x89C6;&#x56FE;</h1><p>&#x95EE;&#x9898;&#xFF1A;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x6D4B;&#x8BD5;<br>&#x9759;&#x6001;&#x5E93;&#x5982;&#x4F55;&#x6D4B;&#x8BD5;&#x5462;&#xFF1F;</p>
+<p>&#x521B;&#x5EFA;&#x590D;&#x5408;&#x9879;&#x76EE;</p>
+<p>1&gt; &#x590D;&#x4E60;&#x5757;&#x4EE3;&#x7801;&#x4F20;&#x503C;</p>
+<h1 id="06-&#x9759;&#x6001;&#x5E93;&#x7684;&#x4F7F;&#x7528;"><a href="#06-&#x9759;&#x6001;&#x5E93;&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="06. &#x9759;&#x6001;&#x5E93;&#x7684;&#x4F7F;&#x7528;"></a>06. &#x9759;&#x6001;&#x5E93;&#x7684;&#x4F7F;&#x7528;</h1><p>&#x65B0;&#x5EFA;&#x9879;&#x76EE;&#x5C06;&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x7684;.a + .h&#x62D6;&#x5230;&#x9879;&#x76EE;&#x4E2D;&#x4F7F;&#x7528;</p>
+<h1 id="07-&#x9759;&#x6001;&#x5E93;&#x7684;&#x79CD;&#x7C7B;"><a href="#07-&#x9759;&#x6001;&#x5E93;&#x7684;&#x79CD;&#x7C7B;" class="headerlink" title="07. &#x9759;&#x6001;&#x5E93;&#x7684;&#x79CD;&#x7C7B;"></a>07. &#x9759;&#x6001;&#x5E93;&#x7684;&#x79CD;&#x7C7B;</h1><p>&#x9759;&#x6001;&#x5E93;&#x6587;&#x4EF6;&#x7684;&#x7248;&#x672C;(4&#x79CD;)<br>1.&#x771F;&#x673A;-Debug&#x7248;&#x672C;<br>2.&#x771F;&#x673A;-Release&#x7248;&#x672C;<br>3.&#x6A21;&#x62DF;&#x5668;-Debug&#x7248;&#x672C;<br>4.&#x6A21;&#x62DF;&#x5668;-Release&#x7248;&#x672C;</p>
+<h2 id="&#x8C03;&#x8BD5;&#x7248;&#x672C;-VS-&#x53D1;&#x5E03;&#x7248;&#x672C;"><a href="#&#x8C03;&#x8BD5;&#x7248;&#x672C;-VS-&#x53D1;&#x5E03;&#x7248;&#x672C;" class="headerlink" title="&#x8C03;&#x8BD5;&#x7248;&#x672C; VS &#x53D1;&#x5E03;&#x7248;&#x672C;"></a>&#x8C03;&#x8BD5;&#x7248;&#x672C; VS &#x53D1;&#x5E03;&#x7248;&#x672C;</h2><ul>
+<li>&#x8C03;&#x8BD5;&#x7248;&#x672C;&#x4F1A;&#x5305;&#x542B;&#x5B8C;&#x6574;&#x7684;&#x7B26;&#x53F7;&#x4FE1;&#x606F;&#xFF0C;&#x4EE5;&#x65B9;&#x4FBF;&#x8C03;&#x8BD5;</li>
+<li><p>&#x8C03;&#x8BD5;&#x7248;&#x672C;&#x4E0D;&#x4F1A;&#x5BF9;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4F18;&#x5316;</p>
 </li>
-<li><p>发布版本不会包含完整的符号信息</p>
+<li><p>&#x53D1;&#x5E03;&#x7248;&#x672C;&#x4E0D;&#x4F1A;&#x5305;&#x542B;&#x5B8C;&#x6574;&#x7684;&#x7B26;&#x53F7;&#x4FE1;&#x606F;</p>
 </li>
-<li>发布版本的执行代码是进行过优化的</li>
-<li>发布版本的大小会比调试版本的略小</li>
-<li>在执行速度方面，发布版本会更快些，但不意味着会有显著的提升</li>
+<li>&#x53D1;&#x5E03;&#x7248;&#x672C;&#x7684;&#x6267;&#x884C;&#x4EE3;&#x7801;&#x662F;&#x8FDB;&#x884C;&#x8FC7;&#x4F18;&#x5316;&#x7684;</li>
+<li>&#x53D1;&#x5E03;&#x7248;&#x672C;&#x7684;&#x5927;&#x5C0F;&#x4F1A;&#x6BD4;&#x8C03;&#x8BD5;&#x7248;&#x672C;&#x7684;&#x7565;&#x5C0F;</li>
+<li>&#x5728;&#x6267;&#x884C;&#x901F;&#x5EA6;&#x65B9;&#x9762;&#xFF0C;&#x53D1;&#x5E03;&#x7248;&#x672C;&#x4F1A;&#x66F4;&#x5FEB;&#x4E9B;&#xFF0C;&#x4F46;&#x4E0D;&#x610F;&#x5473;&#x7740;&#x4F1A;&#x6709;&#x663E;&#x8457;&#x7684;&#x63D0;&#x5347;</li>
 </ul>
-<h1 id="08-静态库的合并"><a href="#08-静态库的合并" class="headerlink" title="08. 静态库的合并"></a>08. 静态库的合并</h1><h1 id="检测-a的类型"><a href="#检测-a的类型" class="headerlink" title="检测.a的类型"></a>检测.a的类型</h1><p>$ lipo -info libBMToolss.a</p>
-<h1 id="合并-a"><a href="#合并-a" class="headerlink" title="合并.a"></a>合并.a</h1><p>lipo -create Debug-iphoneos/libBMTools.a Debug-iphonesimulator/libBMTools.a -output libBMTools.a</p>
-<h1 id="合并-a的好处，开发过程中既可以在真机上调试，也可以在模拟器上调试"><a href="#合并-a的好处，开发过程中既可以在真机上调试，也可以在模拟器上调试" class="headerlink" title="合并.a的好处，开发过程中既可以在真机上调试，也可以在模拟器上调试"></a>合并.a的好处，开发过程中既可以在真机上调试，也可以在模拟器上调试</h1><h1 id="合并-a的坏处，如果静态库太大，合并打包后，会非常大，因此很多第三方的静态库的-a是区分版本的"><a href="#合并-a的坏处，如果静态库太大，合并打包后，会非常大，因此很多第三方的静态库的-a是区分版本的" class="headerlink" title="合并.a的坏处，如果静态库太大，合并打包后，会非常大，因此很多第三方的静态库的.a是区分版本的"></a>合并.a的坏处，如果静态库太大，合并打包后，会非常大，因此很多第三方的静态库的.a是区分版本的</h1><h1 id="今后在使用-a时一定注意版本"><a href="#今后在使用-a时一定注意版本" class="headerlink" title="今后在使用.a时一定注意版本"></a>今后在使用.a时一定注意版本</h1><p>&nbsp;</p>
-<p>静态库中包含了Category</p>
-<p>如果静态库中包含了Category，有时候在使用静态库的工程中会报“方法找不到”的错误（unrecognized selector sent to instance）</p>
-<p>解决方案：在使用静态库的工程中配置Other Linker Flags为-ObjC</p>
+<h1 id="08-&#x9759;&#x6001;&#x5E93;&#x7684;&#x5408;&#x5E76;"><a href="#08-&#x9759;&#x6001;&#x5E93;&#x7684;&#x5408;&#x5E76;" class="headerlink" title="08. &#x9759;&#x6001;&#x5E93;&#x7684;&#x5408;&#x5E76;"></a>08. &#x9759;&#x6001;&#x5E93;&#x7684;&#x5408;&#x5E76;</h1><h1 id="&#x68C0;&#x6D4B;-a&#x7684;&#x7C7B;&#x578B;"><a href="#&#x68C0;&#x6D4B;-a&#x7684;&#x7C7B;&#x578B;" class="headerlink" title="&#x68C0;&#x6D4B;.a&#x7684;&#x7C7B;&#x578B;"></a>&#x68C0;&#x6D4B;.a&#x7684;&#x7C7B;&#x578B;</h1><p>$ lipo -info libBMToolss.a</p>
+<h1 id="&#x5408;&#x5E76;-a"><a href="#&#x5408;&#x5E76;-a" class="headerlink" title="&#x5408;&#x5E76;.a"></a>&#x5408;&#x5E76;.a</h1><p>lipo -create Debug-iphoneos/libBMTools.a Debug-iphonesimulator/libBMTools.a -output libBMTools.a</p>
+<h1 id="&#x5408;&#x5E76;-a&#x7684;&#x597D;&#x5904;&#xFF0C;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x65E2;&#x53EF;&#x4EE5;&#x5728;&#x771F;&#x673A;&#x4E0A;&#x8C03;&#x8BD5;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6A21;&#x62DF;&#x5668;&#x4E0A;&#x8C03;&#x8BD5;"><a href="#&#x5408;&#x5E76;-a&#x7684;&#x597D;&#x5904;&#xFF0C;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x65E2;&#x53EF;&#x4EE5;&#x5728;&#x771F;&#x673A;&#x4E0A;&#x8C03;&#x8BD5;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6A21;&#x62DF;&#x5668;&#x4E0A;&#x8C03;&#x8BD5;" class="headerlink" title="&#x5408;&#x5E76;.a&#x7684;&#x597D;&#x5904;&#xFF0C;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x65E2;&#x53EF;&#x4EE5;&#x5728;&#x771F;&#x673A;&#x4E0A;&#x8C03;&#x8BD5;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6A21;&#x62DF;&#x5668;&#x4E0A;&#x8C03;&#x8BD5;"></a>&#x5408;&#x5E76;.a&#x7684;&#x597D;&#x5904;&#xFF0C;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x65E2;&#x53EF;&#x4EE5;&#x5728;&#x771F;&#x673A;&#x4E0A;&#x8C03;&#x8BD5;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6A21;&#x62DF;&#x5668;&#x4E0A;&#x8C03;&#x8BD5;</h1><h1 id="&#x5408;&#x5E76;-a&#x7684;&#x574F;&#x5904;&#xFF0C;&#x5982;&#x679C;&#x9759;&#x6001;&#x5E93;&#x592A;&#x5927;&#xFF0C;&#x5408;&#x5E76;&#x6253;&#x5305;&#x540E;&#xFF0C;&#x4F1A;&#x975E;&#x5E38;&#x5927;&#xFF0C;&#x56E0;&#x6B64;&#x5F88;&#x591A;&#x7B2C;&#x4E09;&#x65B9;&#x7684;&#x9759;&#x6001;&#x5E93;&#x7684;-a&#x662F;&#x533A;&#x5206;&#x7248;&#x672C;&#x7684;"><a href="#&#x5408;&#x5E76;-a&#x7684;&#x574F;&#x5904;&#xFF0C;&#x5982;&#x679C;&#x9759;&#x6001;&#x5E93;&#x592A;&#x5927;&#xFF0C;&#x5408;&#x5E76;&#x6253;&#x5305;&#x540E;&#xFF0C;&#x4F1A;&#x975E;&#x5E38;&#x5927;&#xFF0C;&#x56E0;&#x6B64;&#x5F88;&#x591A;&#x7B2C;&#x4E09;&#x65B9;&#x7684;&#x9759;&#x6001;&#x5E93;&#x7684;-a&#x662F;&#x533A;&#x5206;&#x7248;&#x672C;&#x7684;" class="headerlink" title="&#x5408;&#x5E76;.a&#x7684;&#x574F;&#x5904;&#xFF0C;&#x5982;&#x679C;&#x9759;&#x6001;&#x5E93;&#x592A;&#x5927;&#xFF0C;&#x5408;&#x5E76;&#x6253;&#x5305;&#x540E;&#xFF0C;&#x4F1A;&#x975E;&#x5E38;&#x5927;&#xFF0C;&#x56E0;&#x6B64;&#x5F88;&#x591A;&#x7B2C;&#x4E09;&#x65B9;&#x7684;&#x9759;&#x6001;&#x5E93;&#x7684;.a&#x662F;&#x533A;&#x5206;&#x7248;&#x672C;&#x7684;"></a>&#x5408;&#x5E76;.a&#x7684;&#x574F;&#x5904;&#xFF0C;&#x5982;&#x679C;&#x9759;&#x6001;&#x5E93;&#x592A;&#x5927;&#xFF0C;&#x5408;&#x5E76;&#x6253;&#x5305;&#x540E;&#xFF0C;&#x4F1A;&#x975E;&#x5E38;&#x5927;&#xFF0C;&#x56E0;&#x6B64;&#x5F88;&#x591A;&#x7B2C;&#x4E09;&#x65B9;&#x7684;&#x9759;&#x6001;&#x5E93;&#x7684;.a&#x662F;&#x533A;&#x5206;&#x7248;&#x672C;&#x7684;</h1><h1 id="&#x4ECA;&#x540E;&#x5728;&#x4F7F;&#x7528;-a&#x65F6;&#x4E00;&#x5B9A;&#x6CE8;&#x610F;&#x7248;&#x672C;"><a href="#&#x4ECA;&#x540E;&#x5728;&#x4F7F;&#x7528;-a&#x65F6;&#x4E00;&#x5B9A;&#x6CE8;&#x610F;&#x7248;&#x672C;" class="headerlink" title="&#x4ECA;&#x540E;&#x5728;&#x4F7F;&#x7528;.a&#x65F6;&#x4E00;&#x5B9A;&#x6CE8;&#x610F;&#x7248;&#x672C;"></a>&#x4ECA;&#x540E;&#x5728;&#x4F7F;&#x7528;.a&#x65F6;&#x4E00;&#x5B9A;&#x6CE8;&#x610F;&#x7248;&#x672C;</h1><p>&#xA0;</p>
+<p>&#x9759;&#x6001;&#x5E93;&#x4E2D;&#x5305;&#x542B;&#x4E86;Category</p>
+<p>&#x5982;&#x679C;&#x9759;&#x6001;&#x5E93;&#x4E2D;&#x5305;&#x542B;&#x4E86;Category&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x5728;&#x4F7F;&#x7528;&#x9759;&#x6001;&#x5E93;&#x7684;&#x5DE5;&#x7A0B;&#x4E2D;&#x4F1A;&#x62A5;&#x201C;&#x65B9;&#x6CD5;&#x627E;&#x4E0D;&#x5230;&#x201D;&#x7684;&#x9519;&#x8BEF;&#xFF08;unrecognized selector sent to instance&#xFF09;</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x5728;&#x4F7F;&#x7528;&#x9759;&#x6001;&#x5E93;&#x7684;&#x5DE5;&#x7A0B;&#x4E2D;&#x914D;&#x7F6E;Other Linker Flags&#x4E3A;-ObjC</p>
 
           
         
@@ -934,29 +714,29 @@
       
         
           
-            <p>1. 创建支持远程推送功能的App ID<br>2. 申请开发者证书，并选中刚刚创建的App ID<br>3. 下载CER文件，并导入钥匙串管理<br>4. 申请发布证书，并选中刚刚创建的App ID<br>5. 下载CER文件，并导入钥匙串管理<br>6. 检查App ID，确认证书已经指定</p>
-<p>远程推送应用程序开发过程<br>1. 新建应用程序<br>2. 指定AppID，在developer.apple.com上设置的AppID</p>
-<p><pre class="lang:objc decode:true ">#ifdef __IPHONE_8_0<br>// 注册接收通知的类型<br>UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];<br>[application registerUserNotificationSettings:settings];</pre></p>
-<p>// 注册允许接收远程推送通知<br>[application registerForRemoteNotifications];</p>
-<p>#else<br>// 如果是iOS7.0，使用以下方法注册<br>[application registerForRemoteNotificationTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound];</p>
+            <p>1. &#x521B;&#x5EFA;&#x652F;&#x6301;&#x8FDC;&#x7A0B;&#x63A8;&#x9001;&#x529F;&#x80FD;&#x7684;App ID<br>2. &#x7533;&#x8BF7;&#x5F00;&#x53D1;&#x8005;&#x8BC1;&#x4E66;&#xFF0C;&#x5E76;&#x9009;&#x4E2D;&#x521A;&#x521A;&#x521B;&#x5EFA;&#x7684;App ID<br>3. &#x4E0B;&#x8F7D;CER&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5BFC;&#x5165;&#x94A5;&#x5319;&#x4E32;&#x7BA1;&#x7406;<br>4. &#x7533;&#x8BF7;&#x53D1;&#x5E03;&#x8BC1;&#x4E66;&#xFF0C;&#x5E76;&#x9009;&#x4E2D;&#x521A;&#x521A;&#x521B;&#x5EFA;&#x7684;App ID<br>5. &#x4E0B;&#x8F7D;CER&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5BFC;&#x5165;&#x94A5;&#x5319;&#x4E32;&#x7BA1;&#x7406;<br>6. &#x68C0;&#x67E5;App ID&#xFF0C;&#x786E;&#x8BA4;&#x8BC1;&#x4E66;&#x5DF2;&#x7ECF;&#x6307;&#x5B9A;</p>
+<p>&#x8FDC;&#x7A0B;&#x63A8;&#x9001;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;<br>1. &#x65B0;&#x5EFA;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;<br>2. &#x6307;&#x5B9A;AppID&#xFF0C;&#x5728;developer.apple.com&#x4E0A;&#x8BBE;&#x7F6E;&#x7684;AppID</p>
+<p><pre class="lang:objc decode:true ">#ifdef __IPHONE_8_0<br>// &#x6CE8;&#x518C;&#x63A5;&#x6536;&#x901A;&#x77E5;&#x7684;&#x7C7B;&#x578B;<br>UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];<br>[application registerUserNotificationSettings:settings];</pre></p>
+<p>// &#x6CE8;&#x518C;&#x5141;&#x8BB8;&#x63A5;&#x6536;&#x8FDC;&#x7A0B;&#x63A8;&#x9001;&#x901A;&#x77E5;<br>[application registerForRemoteNotifications];</p>
+<p>#else<br>// &#x5982;&#x679C;&#x662F;iOS7.0&#xFF0C;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x6CE8;&#x518C;<br>[application registerForRemoteNotificationTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound];</p>
 <p>#endif</p>
-<p>// 当得到苹果的APNs服务器返回的DeviceToken就会被调用<br>// 7040f7d5 5a974598 c5cf31b5 3e340b39 68affd25 122f0ce1 3f315226 396c2e5b</p>
+<p>// &#x5F53;&#x5F97;&#x5230;&#x82F9;&#x679C;&#x7684;APNs&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;DeviceToken&#x5C31;&#x4F1A;&#x88AB;&#x8C03;&#x7528;<br>// 7040f7d5 5a974598 c5cf31b5 3e340b39 68affd25 122f0ce1 3f315226 396c2e5b</p>
 <ul>
-<li>(void)application:(UIApplication <em>)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData </em>)deviceToken {<br>NSLog(@”deviceToken是：%@”, deviceToken);<br>}</li>
+<li>(void)application:(UIApplication <em>)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData </em>)deviceToken {<br>NSLog(@&#x201D;deviceToken&#x662F;&#xFF1A;%@&#x201D;, deviceToken);<br>}</li>
 </ul>
-<p>// 接收到远程通知，触发方法和本地通知一致</p>
+<p>// &#x63A5;&#x6536;&#x5230;&#x8FDC;&#x7A0B;&#x901A;&#x77E5;&#xFF0C;&#x89E6;&#x53D1;&#x65B9;&#x6CD5;&#x548C;&#x672C;&#x5730;&#x901A;&#x77E5;&#x4E00;&#x81F4;</p>
 <ul>
-<li>(void)application:(UIApplication <em>)application didReceiveRemoteNotification:(NSDictionary </em>)userInfo {<br>NSLog(@”%@”, userInfo);<br>}<br>&nbsp;<br><em>*</em> 使用后台的远程消息推送</li>
+<li>(void)application:(UIApplication <em>)application didReceiveRemoteNotification:(NSDictionary </em>)userInfo {<br>NSLog(@&#x201D;%@&#x201D;, userInfo);<br>}<br>&#xA0;<br><em>*</em> &#x4F7F;&#x7528;&#x540E;&#x53F0;&#x7684;&#x8FDC;&#x7A0B;&#x6D88;&#x606F;&#x63A8;&#x9001;</li>
 </ul>
-<p>1&gt; 在Capabilities中打开远程推送通知<br>2&gt; 实现代理方法</p>
-<p><pre class="lang:objc decode:true ">- (void)application:(UIApplication <em>)application didReceiveRemoteNotification:(NSDictionary </em>)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</pre><br>&nbsp;</p>
-<p>远程消息数据格式：<br>{“aps” : {“content-available” : 1},”name” : “birdmichael”}</p>
-<p>执行completionHandler有两个目的<br>1&gt; 系统会估量App消耗的电量，并根据传递的UIBackgroundFetchResult 参数记录新数据是否可用<br>2&gt; 调用完成的处理代码时，应用的界面缩略图会自动更新</p>
-<p>注意：接收到远程通知到执行完网络请求之间的时间不能超过30秒</p>
-<p><pre class="lang:objc decode:true ">if (userInfo) {<br>int contentId = [userInfo[@”content-id”] intValue];</pre></p>
+<p>1&gt; &#x5728;Capabilities&#x4E2D;&#x6253;&#x5F00;&#x8FDC;&#x7A0B;&#x63A8;&#x9001;&#x901A;&#x77E5;<br>2&gt; &#x5B9E;&#x73B0;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;</p>
+<p><pre class="lang:objc decode:true ">- (void)application:(UIApplication <em>)application didReceiveRemoteNotification:(NSDictionary </em>)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</pre><br>&#xA0;</p>
+<p>&#x8FDC;&#x7A0B;&#x6D88;&#x606F;&#x6570;&#x636E;&#x683C;&#x5F0F;&#xFF1A;<br>{&#x201C;aps&#x201D; : {&#x201C;content-available&#x201D; : 1},&#x201D;name&#x201D; : &#x201C;birdmichael&#x201D;}</p>
+<p>&#x6267;&#x884C;completionHandler&#x6709;&#x4E24;&#x4E2A;&#x76EE;&#x7684;<br>1&gt; &#x7CFB;&#x7EDF;&#x4F1A;&#x4F30;&#x91CF;App&#x6D88;&#x8017;&#x7684;&#x7535;&#x91CF;&#xFF0C;&#x5E76;&#x6839;&#x636E;&#x4F20;&#x9012;&#x7684;UIBackgroundFetchResult &#x53C2;&#x6570;&#x8BB0;&#x5F55;&#x65B0;&#x6570;&#x636E;&#x662F;&#x5426;&#x53EF;&#x7528;<br>2&gt; &#x8C03;&#x7528;&#x5B8C;&#x6210;&#x7684;&#x5904;&#x7406;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x5E94;&#x7528;&#x7684;&#x754C;&#x9762;&#x7F29;&#x7565;&#x56FE;&#x4F1A;&#x81EA;&#x52A8;&#x66F4;&#x65B0;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x63A5;&#x6536;&#x5230;&#x8FDC;&#x7A0B;&#x901A;&#x77E5;&#x5230;&#x6267;&#x884C;&#x5B8C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x4E4B;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x4E0D;&#x80FD;&#x8D85;&#x8FC7;30&#x79D2;</p>
+<p><pre class="lang:objc decode:true ">if (userInfo) {<br>int contentId = [userInfo[@&#x201D;content-id&#x201D;] intValue];</pre></p>
 <p>ViewController <em>vc = (ViewController </em>)application.keyWindow.rootViewController;<br>[vc loadDataWithContentID:contentId completion:^(NSArray *dataList) {<br>vc.dataList = dataList;</p>
-<p>NSLog(@”刷新数据结束”);</p>
-<p>completionHandler(UIBackgroundFetchResultNewData);<br>}];<br>} else {<br>completionHandler(UIBackgroundFetchResultNoData);<br>}<br>&nbsp;</p>
+<p>NSLog(@&#x201D;&#x5237;&#x65B0;&#x6570;&#x636E;&#x7ED3;&#x675F;&#x201D;);</p>
+<p>completionHandler(UIBackgroundFetchResultNewData);<br>}];<br>} else {<br>completionHandler(UIBackgroundFetchResultNoData);<br>}<br>&#xA0;</p>
 
           
         
@@ -1069,29 +849,29 @@
       
         
           
-            <h2 id="01-CLLocation"><a href="#01-CLLocation" class="headerlink" title="01. CLLocation"></a>01. CLLocation</h2><p>CLLocationManager 定位管理者<br>CLLocation 代表位置(经度/纬度/高度/速度/路线等)<br>CLHeading 代表移动方向<br>CLRegion 代表一个区域<br>&gt;CLCircularRegion 圆形区域<br>&gt;CLBeaconRegion 蓝牙信号区域</p>
-<p>返回定位服务是否可用<br>[CLLocationManager locationServicesEnabled];<br>返回延迟定位更新是否可用<br>[CLLocationManager deferredLocationUpdatesAvailable];<br>返回重大位置改变监听是否可用<br>[CLLocationManager significantLocationChangeMonitoringAvailable];<br>返回是否支持磁力计算方向<br>[CLLocationManager headingAvailable];<br>返回蓝牙信号范围服务是否可用<br>[CLLocationManager isRangingAvailable];</p>
+            <h2 id="01-CLLocation"><a href="#01-CLLocation" class="headerlink" title="01. CLLocation"></a>01. CLLocation</h2><p>CLLocationManager &#x5B9A;&#x4F4D;&#x7BA1;&#x7406;&#x8005;<br>CLLocation &#x4EE3;&#x8868;&#x4F4D;&#x7F6E;(&#x7ECF;&#x5EA6;/&#x7EAC;&#x5EA6;/&#x9AD8;&#x5EA6;/&#x901F;&#x5EA6;/&#x8DEF;&#x7EBF;&#x7B49;)<br>CLHeading &#x4EE3;&#x8868;&#x79FB;&#x52A8;&#x65B9;&#x5411;<br>CLRegion &#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x533A;&#x57DF;<br>&gt;CLCircularRegion &#x5706;&#x5F62;&#x533A;&#x57DF;<br>&gt;CLBeaconRegion &#x84DD;&#x7259;&#x4FE1;&#x53F7;&#x533A;&#x57DF;</p>
+<p>&#x8FD4;&#x56DE;&#x5B9A;&#x4F4D;&#x670D;&#x52A1;&#x662F;&#x5426;&#x53EF;&#x7528;<br>[CLLocationManager locationServicesEnabled];<br>&#x8FD4;&#x56DE;&#x5EF6;&#x8FDF;&#x5B9A;&#x4F4D;&#x66F4;&#x65B0;&#x662F;&#x5426;&#x53EF;&#x7528;<br>[CLLocationManager deferredLocationUpdatesAvailable];<br>&#x8FD4;&#x56DE;&#x91CD;&#x5927;&#x4F4D;&#x7F6E;&#x6539;&#x53D8;&#x76D1;&#x542C;&#x662F;&#x5426;&#x53EF;&#x7528;<br>[CLLocationManager significantLocationChangeMonitoringAvailable];<br>&#x8FD4;&#x56DE;&#x662F;&#x5426;&#x652F;&#x6301;&#x78C1;&#x529B;&#x8BA1;&#x7B97;&#x65B9;&#x5411;<br>[CLLocationManager headingAvailable];<br>&#x8FD4;&#x56DE;&#x84DD;&#x7259;&#x4FE1;&#x53F7;&#x8303;&#x56F4;&#x670D;&#x52A1;&#x662F;&#x5426;&#x53EF;&#x7528;<br>[CLLocationManager isRangingAvailable];</p>
 <hr>
-<p>设置是否可以暂停定位来节省电池电量, YES不需要定位数据时自动暂停定位<br>// mgr.pausesLocationUpdatesAutomatically</p>
+<p>&#x8BBE;&#x7F6E;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x6682;&#x505C;&#x5B9A;&#x4F4D;&#x6765;&#x8282;&#x7701;&#x7535;&#x6C60;&#x7535;&#x91CF;, YES&#x4E0D;&#x9700;&#x8981;&#x5B9A;&#x4F4D;&#x6570;&#x636E;&#x65F6;&#x81EA;&#x52A8;&#x6682;&#x505C;&#x5B9A;&#x4F4D;<br>// mgr.pausesLocationUpdatesAutomatically</p>
 <hr>
-<p>每隔多少米定位一次, 只有水平方向超过该值时才会重新定位<br>// mgr.distanceFilter = 100;</p>
+<p>&#x6BCF;&#x9694;&#x591A;&#x5C11;&#x7C73;&#x5B9A;&#x4F4D;&#x4E00;&#x6B21;, &#x53EA;&#x6709;&#x6C34;&#x5E73;&#x65B9;&#x5411;&#x8D85;&#x8FC7;&#x8BE5;&#x503C;&#x65F6;&#x624D;&#x4F1A;&#x91CD;&#x65B0;&#x5B9A;&#x4F4D;<br>// mgr.distanceFilter = 100;</p>
 <hr>
-<p>定位精确度<br>// mgr.desiredAccuracy;<br>kCLDistanceFilterNone;<br>kCLLocationAccuracyBestForNavigation 导航级最佳精准<br>kCLLocationAccuracyBest; 最佳精准<br>kCLLocationAccuracyNearestTenMeters; 10米误差<br>kCLLocationAccuracyHundredMeters; 百米胡茬<br>kCLLocationAccuracyKilometer; 千米误差<br>kCLLocationAccuracyThreeKilometers; 3千米误差</p>
+<p>&#x5B9A;&#x4F4D;&#x7CBE;&#x786E;&#x5EA6;<br>// mgr.desiredAccuracy;<br>kCLDistanceFilterNone;<br>kCLLocationAccuracyBestForNavigation &#x5BFC;&#x822A;&#x7EA7;&#x6700;&#x4F73;&#x7CBE;&#x51C6;<br>kCLLocationAccuracyBest; &#x6700;&#x4F73;&#x7CBE;&#x51C6;<br>kCLLocationAccuracyNearestTenMeters; 10&#x7C73;&#x8BEF;&#x5DEE;<br>kCLLocationAccuracyHundredMeters; &#x767E;&#x7C73;&#x80E1;&#x832C;<br>kCLLocationAccuracyKilometer; &#x5343;&#x7C73;&#x8BEF;&#x5DEE;<br>kCLLocationAccuracyThreeKilometers; 3&#x5343;&#x7C73;&#x8BEF;&#x5DEE;</p>
 <hr>
-<p>定位数据的用途<br>// mgr.activityType;<br>CLActivityTypeOther 作为普通用途<br>CLActivityTypeAutomotiveNavigation 作为车辆导航<br>CLActivityTypeFitness 作为不行<br>CLActivityTypeOtherNavigation 作为其它导航</p>
+<p>&#x5B9A;&#x4F4D;&#x6570;&#x636E;&#x7684;&#x7528;&#x9014;<br>// mgr.activityType;<br>CLActivityTypeOther &#x4F5C;&#x4E3A;&#x666E;&#x901A;&#x7528;&#x9014;<br>CLActivityTypeAutomotiveNavigation &#x4F5C;&#x4E3A;&#x8F66;&#x8F86;&#x5BFC;&#x822A;<br>CLActivityTypeFitness &#x4F5C;&#x4E3A;&#x4E0D;&#x884C;<br>CLActivityTypeOtherNavigation &#x4F5C;&#x4E3A;&#x5176;&#x5B83;&#x5BFC;&#x822A;</p>
 <hr>
-<p>// CLLocation<br>location.coordinate; 坐标, 包含经纬度<br>location.altitude; 设备海拔高度 单位是米<br>location.course; 设置前进方向 0表示北 90东 180南 270西<br>location.horizontalAccuracy; 水平精准度<br>location.verticalAccuracy; 垂直精准度<br>location.timestamp; 定位信息返回的时间<br>location.speed; 设备移动速度 单位是米/秒, 适用于行车速度而不太适用于不行<br>/<em><br>可以设置模拟器模拟速度<br>bicycle ride 骑车移动<br>run 跑动<br>freeway drive 高速公路驾车
+<p>// CLLocation<br>location.coordinate; &#x5750;&#x6807;, &#x5305;&#x542B;&#x7ECF;&#x7EAC;&#x5EA6;<br>location.altitude; &#x8BBE;&#x5907;&#x6D77;&#x62D4;&#x9AD8;&#x5EA6; &#x5355;&#x4F4D;&#x662F;&#x7C73;<br>location.course; &#x8BBE;&#x7F6E;&#x524D;&#x8FDB;&#x65B9;&#x5411; 0&#x8868;&#x793A;&#x5317; 90&#x4E1C; 180&#x5357; 270&#x897F;<br>location.horizontalAccuracy; &#x6C34;&#x5E73;&#x7CBE;&#x51C6;&#x5EA6;<br>location.verticalAccuracy; &#x5782;&#x76F4;&#x7CBE;&#x51C6;&#x5EA6;<br>location.timestamp; &#x5B9A;&#x4F4D;&#x4FE1;&#x606F;&#x8FD4;&#x56DE;&#x7684;&#x65F6;&#x95F4;<br>location.speed; &#x8BBE;&#x5907;&#x79FB;&#x52A8;&#x901F;&#x5EA6; &#x5355;&#x4F4D;&#x662F;&#x7C73;/&#x79D2;, &#x9002;&#x7528;&#x4E8E;&#x884C;&#x8F66;&#x901F;&#x5EA6;&#x800C;&#x4E0D;&#x592A;&#x9002;&#x7528;&#x4E8E;&#x4E0D;&#x884C;<br>/<em><br>&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x6A21;&#x62DF;&#x5668;&#x6A21;&#x62DF;&#x901F;&#x5EA6;<br>bicycle ride &#x9A91;&#x8F66;&#x79FB;&#x52A8;<br>run &#x8DD1;&#x52A8;<br>freeway drive &#x9AD8;&#x901F;&#x516C;&#x8DEF;&#x9A7E;&#x8F66;
 </em>/</p>
 <hr>
-<p>// CLAuthorizationStatus<br>用户从未选择过权限<br>kCLAuthorizationStatusNotDetermined<br>无法使用定位服务，该状态用户无法改变<br>kCLAuthorizationStatusRestricted<br>用户拒绝该应用使用定位服务，或是定位服务总开关处于关闭状态<br>kCLAuthorizationStatusDenied<br>已经授权（废弃）<br>kCLAuthorizationStatusAuthorized<br>用户允许该程序无论何时都可以使用地理信息<br>kCLAuthorizationStatusAuthorizedAlways<br>用户同意程序在可见时使用地理位置<br>kCLAuthorizationStatusAuthorizedWhenInUse</p>
+<p>// CLAuthorizationStatus<br>&#x7528;&#x6237;&#x4ECE;&#x672A;&#x9009;&#x62E9;&#x8FC7;&#x6743;&#x9650;<br>kCLAuthorizationStatusNotDetermined<br>&#x65E0;&#x6CD5;&#x4F7F;&#x7528;&#x5B9A;&#x4F4D;&#x670D;&#x52A1;&#xFF0C;&#x8BE5;&#x72B6;&#x6001;&#x7528;&#x6237;&#x65E0;&#x6CD5;&#x6539;&#x53D8;<br>kCLAuthorizationStatusRestricted<br>&#x7528;&#x6237;&#x62D2;&#x7EDD;&#x8BE5;&#x5E94;&#x7528;&#x4F7F;&#x7528;&#x5B9A;&#x4F4D;&#x670D;&#x52A1;&#xFF0C;&#x6216;&#x662F;&#x5B9A;&#x4F4D;&#x670D;&#x52A1;&#x603B;&#x5F00;&#x5173;&#x5904;&#x4E8E;&#x5173;&#x95ED;&#x72B6;&#x6001;<br>kCLAuthorizationStatusDenied<br>&#x5DF2;&#x7ECF;&#x6388;&#x6743;&#xFF08;&#x5E9F;&#x5F03;&#xFF09;<br>kCLAuthorizationStatusAuthorized<br>&#x7528;&#x6237;&#x5141;&#x8BB8;&#x8BE5;&#x7A0B;&#x5E8F;&#x65E0;&#x8BBA;&#x4F55;&#x65F6;&#x90FD;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5730;&#x7406;&#x4FE1;&#x606F;<br>kCLAuthorizationStatusAuthorizedAlways<br>&#x7528;&#x6237;&#x540C;&#x610F;&#x7A0B;&#x5E8F;&#x5728;&#x53EF;&#x89C1;&#x65F6;&#x4F7F;&#x7528;&#x5730;&#x7406;&#x4F4D;&#x7F6E;<br>kCLAuthorizationStatusAuthorizedWhenInUse</p>
 <hr>
-<p>// 计算两个位置之间的距离, 单位是米<br>[newLocation distanceFromLocation:self.prevLocation];</p>
+<p>// &#x8BA1;&#x7B97;&#x4E24;&#x4E2A;&#x4F4D;&#x7F6E;&#x4E4B;&#x95F4;&#x7684;&#x8DDD;&#x79BB;, &#x5355;&#x4F4D;&#x662F;&#x7C73;<br>[newLocation distanceFromLocation:self.prevLocation];</p>
 <hr>
-<p>获取方向信息不会提示用户(不需要授权), 因为不会泄露隐私<br>// [self.mgr startUpdatingHeading];</p>
-<p>magneticHeading 设备与磁北的相对角度<br>trueHeading 设置与真北的相对角度, 必须和定位一起使用, iOS需要设置的位置来计算真北<br>真北始终指向地理北极点</p>
-<h2 id="磁北对应随着时间变化的地球磁场北极"><a href="#磁北对应随着时间变化的地球磁场北极" class="headerlink" title="磁北对应随着时间变化的地球磁场北极"></a>磁北对应随着时间变化的地球磁场北极</h2><p>// 错误：使用CoreLocation获取地理位置信息，报错<br>Error Domain=kCLErrorDomain Code=0 “The operation couldn’t be completed. (kCLErrorDomain error 0.)”</p>
-<p>解决方法：<br>1.确定模拟器（手机）已经联网并且允许程序获取地理位置<br>2.重置地理位置服务或者网络服务</p>
-<p>PS：如果是模拟器就果断直接重置模拟器吧 IOS Simulator - Reset Content and Settings..。</p>
+<p>&#x83B7;&#x53D6;&#x65B9;&#x5411;&#x4FE1;&#x606F;&#x4E0D;&#x4F1A;&#x63D0;&#x793A;&#x7528;&#x6237;(&#x4E0D;&#x9700;&#x8981;&#x6388;&#x6743;), &#x56E0;&#x4E3A;&#x4E0D;&#x4F1A;&#x6CC4;&#x9732;&#x9690;&#x79C1;<br>// [self.mgr startUpdatingHeading];</p>
+<p>magneticHeading &#x8BBE;&#x5907;&#x4E0E;&#x78C1;&#x5317;&#x7684;&#x76F8;&#x5BF9;&#x89D2;&#x5EA6;<br>trueHeading &#x8BBE;&#x7F6E;&#x4E0E;&#x771F;&#x5317;&#x7684;&#x76F8;&#x5BF9;&#x89D2;&#x5EA6;, &#x5FC5;&#x987B;&#x548C;&#x5B9A;&#x4F4D;&#x4E00;&#x8D77;&#x4F7F;&#x7528;, iOS&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x7684;&#x4F4D;&#x7F6E;&#x6765;&#x8BA1;&#x7B97;&#x771F;&#x5317;<br>&#x771F;&#x5317;&#x59CB;&#x7EC8;&#x6307;&#x5411;&#x5730;&#x7406;&#x5317;&#x6781;&#x70B9;</p>
+<h2 id="&#x78C1;&#x5317;&#x5BF9;&#x5E94;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x53D8;&#x5316;&#x7684;&#x5730;&#x7403;&#x78C1;&#x573A;&#x5317;&#x6781;"><a href="#&#x78C1;&#x5317;&#x5BF9;&#x5E94;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x53D8;&#x5316;&#x7684;&#x5730;&#x7403;&#x78C1;&#x573A;&#x5317;&#x6781;" class="headerlink" title="&#x78C1;&#x5317;&#x5BF9;&#x5E94;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x53D8;&#x5316;&#x7684;&#x5730;&#x7403;&#x78C1;&#x573A;&#x5317;&#x6781;"></a>&#x78C1;&#x5317;&#x5BF9;&#x5E94;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x53D8;&#x5316;&#x7684;&#x5730;&#x7403;&#x78C1;&#x573A;&#x5317;&#x6781;</h2><p>// &#x9519;&#x8BEF;&#xFF1A;&#x4F7F;&#x7528;CoreLocation&#x83B7;&#x53D6;&#x5730;&#x7406;&#x4F4D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x62A5;&#x9519;<br>Error Domain=kCLErrorDomain Code=0 &#x201C;The operation couldn&#x2019;t be completed. (kCLErrorDomain error 0.)&#x201D;</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A;<br>1.&#x786E;&#x5B9A;&#x6A21;&#x62DF;&#x5668;&#xFF08;&#x624B;&#x673A;&#xFF09;&#x5DF2;&#x7ECF;&#x8054;&#x7F51;&#x5E76;&#x4E14;&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x83B7;&#x53D6;&#x5730;&#x7406;&#x4F4D;&#x7F6E;<br>2.&#x91CD;&#x7F6E;&#x5730;&#x7406;&#x4F4D;&#x7F6E;&#x670D;&#x52A1;&#x6216;&#x8005;&#x7F51;&#x7EDC;&#x670D;&#x52A1;</p>
+<p>PS&#xFF1A;&#x5982;&#x679C;&#x662F;&#x6A21;&#x62DF;&#x5668;&#x5C31;&#x679C;&#x65AD;&#x76F4;&#x63A5;&#x91CD;&#x7F6E;&#x6A21;&#x62DF;&#x5668;&#x5427; IOS Simulator - Reset Content and Settings..&#x3002;</p>
 
           
         
@@ -1204,77 +984,77 @@
       
         
           
-            <h3 id="本地仓库操作"><a href="#本地仓库操作" class="headerlink" title="本地仓库操作"></a>本地仓库操作</h3><h1 id="01-GIT命令行帮助"><a href="#01-GIT命令行帮助" class="headerlink" title="01. GIT命令行帮助"></a><pre class="lang:objc decode:true">01. GIT命令行帮助</pre></h1><p>$ svn help<br>查看svn所有命令的帮助<br>$ svn help 子命令</p>
-<h1 id="要退出帮助信息，按”q”"><a href="#要退出帮助信息，按”q”" class="headerlink" title="要退出帮助信息，按”q”"></a>要退出帮助信息，按”q”</h1><h1 id="翻看下页，按”空格”"><a href="#翻看下页，按”空格”" class="headerlink" title="翻看下页，按”空格”"></a>翻看下页，按”空格”</h1><h1 id="翻看上页，按”CTRL-B”"><a href="#翻看上页，按”CTRL-B”" class="headerlink" title="翻看上页，按”CTRL+B”"></a>翻看上页，按”CTRL+B”</h1><h1 id="要搜索相关文字，按”-“然后输入”相关文字”"><a href="#要搜索相关文字，按”-“然后输入”相关文字”" class="headerlink" title="要搜索相关文字，按”/“然后输入”相关文字”"></a>要搜索相关文字，按”/“然后输入”相关文字”</h1><h1 id="02-创建代码库-amp-配置个人信息"><a href="#02-创建代码库-amp-配置个人信息" class="headerlink" title="02. 创建代码库 &amp; 配置个人信息"></a>02. 创建代码库 &amp; 配置个人信息</h1><p>1&gt;  创建代码仓库<br>$ git init</p>
-<p>2&gt;  配置用户名和邮箱<br>$ git config user.name birdmichael<br>$ git config user.email 229953445@qq.com</p>
+            <h3 id="&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x64CD;&#x4F5C;"><a href="#&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x64CD;&#x4F5C;" class="headerlink" title="&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x64CD;&#x4F5C;"></a>&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x64CD;&#x4F5C;</h3><h1 id="01-GIT&#x547D;&#x4EE4;&#x884C;&#x5E2E;&#x52A9;"><a href="#01-GIT&#x547D;&#x4EE4;&#x884C;&#x5E2E;&#x52A9;" class="headerlink" title="01. GIT&#x547D;&#x4EE4;&#x884C;&#x5E2E;&#x52A9;"></a><pre class="lang:objc decode:true">01. GIT&#x547D;&#x4EE4;&#x884C;&#x5E2E;&#x52A9;</pre></h1><p>$ svn help<br>&#x67E5;&#x770B;svn&#x6240;&#x6709;&#x547D;&#x4EE4;&#x7684;&#x5E2E;&#x52A9;<br>$ svn help &#x5B50;&#x547D;&#x4EE4;</p>
+<h1 id="&#x8981;&#x9000;&#x51FA;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#xFF0C;&#x6309;&#x201D;q&#x201D;"><a href="#&#x8981;&#x9000;&#x51FA;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#xFF0C;&#x6309;&#x201D;q&#x201D;" class="headerlink" title="&#x8981;&#x9000;&#x51FA;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#xFF0C;&#x6309;&#x201D;q&#x201D;"></a>&#x8981;&#x9000;&#x51FA;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#xFF0C;&#x6309;&#x201D;q&#x201D;</h1><h1 id="&#x7FFB;&#x770B;&#x4E0B;&#x9875;&#xFF0C;&#x6309;&#x201D;&#x7A7A;&#x683C;&#x201D;"><a href="#&#x7FFB;&#x770B;&#x4E0B;&#x9875;&#xFF0C;&#x6309;&#x201D;&#x7A7A;&#x683C;&#x201D;" class="headerlink" title="&#x7FFB;&#x770B;&#x4E0B;&#x9875;&#xFF0C;&#x6309;&#x201D;&#x7A7A;&#x683C;&#x201D;"></a>&#x7FFB;&#x770B;&#x4E0B;&#x9875;&#xFF0C;&#x6309;&#x201D;&#x7A7A;&#x683C;&#x201D;</h1><h1 id="&#x7FFB;&#x770B;&#x4E0A;&#x9875;&#xFF0C;&#x6309;&#x201D;CTRL-B&#x201D;"><a href="#&#x7FFB;&#x770B;&#x4E0A;&#x9875;&#xFF0C;&#x6309;&#x201D;CTRL-B&#x201D;" class="headerlink" title="&#x7FFB;&#x770B;&#x4E0A;&#x9875;&#xFF0C;&#x6309;&#x201D;CTRL+B&#x201D;"></a>&#x7FFB;&#x770B;&#x4E0A;&#x9875;&#xFF0C;&#x6309;&#x201D;CTRL+B&#x201D;</h1><h1 id="&#x8981;&#x641C;&#x7D22;&#x76F8;&#x5173;&#x6587;&#x5B57;&#xFF0C;&#x6309;&#x201D;-&#x201C;&#x7136;&#x540E;&#x8F93;&#x5165;&#x201D;&#x76F8;&#x5173;&#x6587;&#x5B57;&#x201D;"><a href="#&#x8981;&#x641C;&#x7D22;&#x76F8;&#x5173;&#x6587;&#x5B57;&#xFF0C;&#x6309;&#x201D;-&#x201C;&#x7136;&#x540E;&#x8F93;&#x5165;&#x201D;&#x76F8;&#x5173;&#x6587;&#x5B57;&#x201D;" class="headerlink" title="&#x8981;&#x641C;&#x7D22;&#x76F8;&#x5173;&#x6587;&#x5B57;&#xFF0C;&#x6309;&#x201D;/&#x201C;&#x7136;&#x540E;&#x8F93;&#x5165;&#x201D;&#x76F8;&#x5173;&#x6587;&#x5B57;&#x201D;"></a>&#x8981;&#x641C;&#x7D22;&#x76F8;&#x5173;&#x6587;&#x5B57;&#xFF0C;&#x6309;&#x201D;/&#x201C;&#x7136;&#x540E;&#x8F93;&#x5165;&#x201D;&#x76F8;&#x5173;&#x6587;&#x5B57;&#x201D;</h1><h1 id="02-&#x521B;&#x5EFA;&#x4EE3;&#x7801;&#x5E93;-amp-&#x914D;&#x7F6E;&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;"><a href="#02-&#x521B;&#x5EFA;&#x4EE3;&#x7801;&#x5E93;-amp-&#x914D;&#x7F6E;&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;" class="headerlink" title="02. &#x521B;&#x5EFA;&#x4EE3;&#x7801;&#x5E93; &amp; &#x914D;&#x7F6E;&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;"></a>02. &#x521B;&#x5EFA;&#x4EE3;&#x7801;&#x5E93; &amp; &#x914D;&#x7F6E;&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;</h1><p>1&gt;  &#x521B;&#x5EFA;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;<br>$ git init</p>
+<p>2&gt;  &#x914D;&#x7F6E;&#x7528;&#x6237;&#x540D;&#x548C;&#x90AE;&#x7BB1;<br>$ git config user.name birdmichael<br>$ git config user.email 229953445@qq.com</p>
 <ul>
-<li>以上两个命令会将用户信息保存在当前代码仓库中</li>
+<li>&#x4EE5;&#x4E0A;&#x4E24;&#x4E2A;&#x547D;&#x4EE4;&#x4F1A;&#x5C06;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x4FDD;&#x5B58;&#x5728;&#x5F53;&#x524D;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;&#x4E2D;</li>
 </ul>
-<h1 id="只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子-hooks-程序可以设置一些动作"><a href="#只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子-hooks-程序可以设置一些动作" class="headerlink" title="只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子(hooks)程序可以设置一些动作"></a>只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子(hooks)程序可以设置一些动作</h1><h1 id="例如单元测试发现问题后，自动给相关人员发送电子邮件"><a href="#例如单元测试发现问题后，自动给相关人员发送电子邮件" class="headerlink" title="例如单元测试发现问题后，自动给相关人员发送电子邮件"></a>例如单元测试发现问题后，自动给相关人员发送电子邮件</h1><ul>
-<li>注意 暂时不建议投入一毛钱精力</li>
+<h1 id="&#x53EA;&#x6709;&#x914D;&#x7F6E;&#x4E86;&#x7528;&#x6237;&#x548C;&#x90AE;&#x7BB1;&#x4E4B;&#x540E;&#xFF0C;git&#x624D;&#x80FD;&#x8BC6;&#x522B;&#x51FA;&#x64CD;&#x4F5C;&#x7684;&#x4EBA;&#x5458;&#x4FE1;&#x606F;&#xFF0C;&#x901A;&#x8FC7;&#x94A9;&#x5B50;-hooks-&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E00;&#x4E9B;&#x52A8;&#x4F5C;"><a href="#&#x53EA;&#x6709;&#x914D;&#x7F6E;&#x4E86;&#x7528;&#x6237;&#x548C;&#x90AE;&#x7BB1;&#x4E4B;&#x540E;&#xFF0C;git&#x624D;&#x80FD;&#x8BC6;&#x522B;&#x51FA;&#x64CD;&#x4F5C;&#x7684;&#x4EBA;&#x5458;&#x4FE1;&#x606F;&#xFF0C;&#x901A;&#x8FC7;&#x94A9;&#x5B50;-hooks-&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E00;&#x4E9B;&#x52A8;&#x4F5C;" class="headerlink" title="&#x53EA;&#x6709;&#x914D;&#x7F6E;&#x4E86;&#x7528;&#x6237;&#x548C;&#x90AE;&#x7BB1;&#x4E4B;&#x540E;&#xFF0C;git&#x624D;&#x80FD;&#x8BC6;&#x522B;&#x51FA;&#x64CD;&#x4F5C;&#x7684;&#x4EBA;&#x5458;&#x4FE1;&#x606F;&#xFF0C;&#x901A;&#x8FC7;&#x94A9;&#x5B50;(hooks)&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E00;&#x4E9B;&#x52A8;&#x4F5C;"></a>&#x53EA;&#x6709;&#x914D;&#x7F6E;&#x4E86;&#x7528;&#x6237;&#x548C;&#x90AE;&#x7BB1;&#x4E4B;&#x540E;&#xFF0C;git&#x624D;&#x80FD;&#x8BC6;&#x522B;&#x51FA;&#x64CD;&#x4F5C;&#x7684;&#x4EBA;&#x5458;&#x4FE1;&#x606F;&#xFF0C;&#x901A;&#x8FC7;&#x94A9;&#x5B50;(hooks)&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E00;&#x4E9B;&#x52A8;&#x4F5C;</h1><h1 id="&#x4F8B;&#x5982;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x53D1;&#x73B0;&#x95EE;&#x9898;&#x540E;&#xFF0C;&#x81EA;&#x52A8;&#x7ED9;&#x76F8;&#x5173;&#x4EBA;&#x5458;&#x53D1;&#x9001;&#x7535;&#x5B50;&#x90AE;&#x4EF6;"><a href="#&#x4F8B;&#x5982;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x53D1;&#x73B0;&#x95EE;&#x9898;&#x540E;&#xFF0C;&#x81EA;&#x52A8;&#x7ED9;&#x76F8;&#x5173;&#x4EBA;&#x5458;&#x53D1;&#x9001;&#x7535;&#x5B50;&#x90AE;&#x4EF6;" class="headerlink" title="&#x4F8B;&#x5982;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x53D1;&#x73B0;&#x95EE;&#x9898;&#x540E;&#xFF0C;&#x81EA;&#x52A8;&#x7ED9;&#x76F8;&#x5173;&#x4EBA;&#x5458;&#x53D1;&#x9001;&#x7535;&#x5B50;&#x90AE;&#x4EF6;"></a>&#x4F8B;&#x5982;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x53D1;&#x73B0;&#x95EE;&#x9898;&#x540E;&#xFF0C;&#x81EA;&#x52A8;&#x7ED9;&#x76F8;&#x5173;&#x4EBA;&#x5458;&#x53D1;&#x9001;&#x7535;&#x5B50;&#x90AE;&#x4EF6;</h1><ul>
+<li>&#x6CE8;&#x610F; &#x6682;&#x65F6;&#x4E0D;&#x5EFA;&#x8BAE;&#x6295;&#x5165;&#x4E00;&#x6BDB;&#x94B1;&#x7CBE;&#x529B;</li>
 </ul>
-<p>3&gt;  如果要一次性配置完成可以使用一下命令<br>$ git config –global user.name birdmichael<br>$ git config –global user.email 229953445@qq.com</p>
+<p>3&gt;  &#x5982;&#x679C;&#x8981;&#x4E00;&#x6B21;&#x6027;&#x914D;&#x7F6E;&#x5B8C;&#x6210;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E00;&#x4E0B;&#x547D;&#x4EE4;<br>$ git config &#x2013;global user.name birdmichael<br>$ git config &#x2013;global user.email 229953445@qq.com</p>
 <ul>
-<li>以上两个命令会将用户信息保存在用户目录下的 .gitconfig 文件中</li>
+<li>&#x4EE5;&#x4E0A;&#x4E24;&#x4E2A;&#x547D;&#x4EE4;&#x4F1A;&#x5C06;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x4FDD;&#x5B58;&#x5728;&#x7528;&#x6237;&#x76EE;&#x5F55;&#x4E0B;&#x7684; .gitconfig &#x6587;&#x4EF6;&#x4E2D;</li>
 </ul>
-<p>4&gt;  查看当前所有配置<br>$ git config -l</p>
-<h1 id="03-实际开发"><a href="#03-实际开发" class="headerlink" title="03. 实际开发"></a>03. 实际开发</h1><p>1&gt;  创建代码，开始开发<br>$ touch main.c<br>$ open main.c</p>
-<p>2&gt;  将代码添加到代码库</p>
-<h1 id="查看当前代码库状态"><a href="#查看当前代码库状态" class="headerlink" title="查看当前代码库状态"></a>查看当前代码库状态</h1><p>$ git status</p>
-<h1 id="将文件添加到代码库"><a href="#将文件添加到代码库" class="headerlink" title="将文件添加到代码库"></a>将文件添加到代码库</h1><p>$ git add main.c</p>
-<h1 id="将修改提交到代码库"><a href="#将修改提交到代码库" class="headerlink" title="将修改提交到代码库"></a>将修改提交到代码库</h1><p>$ git commit -m “添加了main.c”</p>
-<p>提示：</p>
+<p>4&gt;  &#x67E5;&#x770B;&#x5F53;&#x524D;&#x6240;&#x6709;&#x914D;&#x7F6E;<br>$ git config -l</p>
+<h1 id="03-&#x5B9E;&#x9645;&#x5F00;&#x53D1;"><a href="#03-&#x5B9E;&#x9645;&#x5F00;&#x53D1;" class="headerlink" title="03. &#x5B9E;&#x9645;&#x5F00;&#x53D1;"></a>03. &#x5B9E;&#x9645;&#x5F00;&#x53D1;</h1><p>1&gt;  &#x521B;&#x5EFA;&#x4EE3;&#x7801;&#xFF0C;&#x5F00;&#x59CB;&#x5F00;&#x53D1;<br>$ touch main.c<br>$ open main.c</p>
+<p>2&gt;  &#x5C06;&#x4EE3;&#x7801;&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;</p>
+<h1 id="&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4EE3;&#x7801;&#x5E93;&#x72B6;&#x6001;"><a href="#&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4EE3;&#x7801;&#x5E93;&#x72B6;&#x6001;" class="headerlink" title="&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4EE3;&#x7801;&#x5E93;&#x72B6;&#x6001;"></a>&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4EE3;&#x7801;&#x5E93;&#x72B6;&#x6001;</h1><p>$ git status</p>
+<h1 id="&#x5C06;&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;"><a href="#&#x5C06;&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;" class="headerlink" title="&#x5C06;&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;"></a>&#x5C06;&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;</h1><p>$ git add main.c</p>
+<h1 id="&#x5C06;&#x4FEE;&#x6539;&#x63D0;&#x4EA4;&#x5230;&#x4EE3;&#x7801;&#x5E93;"><a href="#&#x5C06;&#x4FEE;&#x6539;&#x63D0;&#x4EA4;&#x5230;&#x4EE3;&#x7801;&#x5E93;" class="headerlink" title="&#x5C06;&#x4FEE;&#x6539;&#x63D0;&#x4EA4;&#x5230;&#x4EE3;&#x7801;&#x5E93;"></a>&#x5C06;&#x4FEE;&#x6539;&#x63D0;&#x4EA4;&#x5230;&#x4EE3;&#x7801;&#x5E93;</h1><p>$ git commit -m &#x201C;&#x6DFB;&#x52A0;&#x4E86;main.c&#x201D;</p>
+<p>&#x63D0;&#x793A;&#xFF1A;</p>
 <ul>
-<li>在此一定要使用 -m 参数指定修改的备注信息</li>
-<li>否则会进入 vim 编辑器，如果对vim不熟悉，会是很糟糕的事情</li>
+<li>&#x5728;&#x6B64;&#x4E00;&#x5B9A;&#x8981;&#x4F7F;&#x7528; -m &#x53C2;&#x6570;&#x6307;&#x5B9A;&#x4FEE;&#x6539;&#x7684;&#x5907;&#x6CE8;&#x4FE1;&#x606F;</li>
+<li>&#x5426;&#x5219;&#x4F1A;&#x8FDB;&#x5165; vim &#x7F16;&#x8F91;&#x5668;&#xFF0C;&#x5982;&#x679C;&#x5BF9;vim&#x4E0D;&#x719F;&#x6089;&#xFF0C;&#x4F1A;&#x662F;&#x5F88;&#x7CDF;&#x7CD5;&#x7684;&#x4E8B;&#x60C5;</li>
 </ul>
-<h1 id="将当前文件夹下的所有新建或修改的文件一次性添加到代码库"><a href="#将当前文件夹下的所有新建或修改的文件一次性添加到代码库" class="headerlink" title="将当前文件夹下的所有新建或修改的文件一次性添加到代码库"></a>将当前文件夹下的所有新建或修改的文件一次性添加到代码库</h1><p>$ git add .</p>
-<p>3&gt;  添加多个文件<br>$ touch Person.h Person.m<br>$ git add .<br>$ git commit -m “添加了Person类”<br>$ open Person.h<br>$ git add .<br>$ git commit -m “增加Person类属性”</p>
+<h1 id="&#x5C06;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x65B0;&#x5EFA;&#x6216;&#x4FEE;&#x6539;&#x7684;&#x6587;&#x4EF6;&#x4E00;&#x6B21;&#x6027;&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;"><a href="#&#x5C06;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x65B0;&#x5EFA;&#x6216;&#x4FEE;&#x6539;&#x7684;&#x6587;&#x4EF6;&#x4E00;&#x6B21;&#x6027;&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;" class="headerlink" title="&#x5C06;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x65B0;&#x5EFA;&#x6216;&#x4FEE;&#x6539;&#x7684;&#x6587;&#x4EF6;&#x4E00;&#x6B21;&#x6027;&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;"></a>&#x5C06;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x65B0;&#x5EFA;&#x6216;&#x4FEE;&#x6539;&#x7684;&#x6587;&#x4EF6;&#x4E00;&#x6B21;&#x6027;&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;</h1><p>$ git add .</p>
+<p>3&gt;  &#x6DFB;&#x52A0;&#x591A;&#x4E2A;&#x6587;&#x4EF6;<br>$ touch Person.h Person.m<br>$ git add .<br>$ git commit -m &#x201C;&#x6DFB;&#x52A0;&#x4E86;Person&#x7C7B;&#x201D;<br>$ open Person.h<br>$ git add .<br>$ git commit -m &#x201C;&#x589E;&#x52A0;Person&#x7C7B;&#x5C5E;&#x6027;&#x201D;</p>
 <ul>
-<li>注意 使用git时，每一次修改都需要添加再提交，这一点是与svn不一样的</li>
+<li>&#x6CE8;&#x610F; &#x4F7F;&#x7528;git&#x65F6;&#xFF0C;&#x6BCF;&#x4E00;&#x6B21;&#x4FEE;&#x6539;&#x90FD;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x518D;&#x63D0;&#x4EA4;&#xFF0C;&#x8FD9;&#x4E00;&#x70B9;&#x662F;&#x4E0E;svn&#x4E0D;&#x4E00;&#x6837;&#x7684;</li>
 </ul>
-<h2 id="git-的重要概念及工作原理"><a href="#git-的重要概念及工作原理" class="headerlink" title="git 的重要概念及工作原理"></a>git 的重要概念及工作原理</h2><p>工作区<br>暂存区(staged)<br>分支(HEAD)</p>
-<h1 id="04-别名-amp-日志"><a href="#04-别名-amp-日志" class="headerlink" title="04. 别名 &amp; 日志"></a>04. 别名 &amp; 日志</h1><p>$ git config alias.st status<br>$ git config alias.ci “commit -m”</p>
-<p>个人建议：除非特殊原因，最好不要设置别名，否则换一台机器就不会用了</p>
-<h1 id="查看所有版本库日志"><a href="#查看所有版本库日志" class="headerlink" title="查看所有版本库日志"></a>查看所有版本库日志</h1><p>$ git log</p>
-<h1 id="查看指定文件的版本库日志"><a href="#查看指定文件的版本库日志" class="headerlink" title="查看指定文件的版本库日志"></a>查看指定文件的版本库日志</h1><p>$ git log 文件名</p>
-<h1 id="配置带颜色的log别名"><a href="#配置带颜色的log别名" class="headerlink" title="配置带颜色的log别名"></a>配置带颜色的log别名</h1><p>$ git config –global alias.lg “log –color –graph –pretty=format:’%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset’ –abbrev-commit”</p>
-<p>提示：在git中，版本号是一个由SHA1生成的哈希值</p>
-<h1 id="05-版本号，让我们在任意版本之间穿梭"><a href="#05-版本号，让我们在任意版本之间穿梭" class="headerlink" title="05. 版本号，让我们在任意版本之间穿梭"></a>05. 版本号，让我们在任意版本之间穿梭</h1><h1 id="回到当前版本，放弃所有没有提交的修改"><a href="#回到当前版本，放弃所有没有提交的修改" class="headerlink" title="回到当前版本，放弃所有没有提交的修改"></a>回到当前版本，放弃所有没有提交的修改</h1><p>$ git reset –hard HEAD</p>
-<h1 id="回到上一个版本"><a href="#回到上一个版本" class="headerlink" title="回到上一个版本"></a>回到上一个版本</h1><p>$ git reset –hard HEAD^</p>
-<h1 id="回到之前第3个修订版本"><a href="#回到之前第3个修订版本" class="headerlink" title="回到之前第3个修订版本"></a>回到之前第3个修订版本</h1><p>$ git reset –hard HEAD~(3)</p>
-<h1 id="回到指定版本号的版本"><a href="#回到指定版本号的版本" class="headerlink" title="回到指定版本号的版本"></a>回到指定版本号的版本</h1><p>$ git reset e695b67</p>
-<h1 id="查看分支引用记录"><a href="#查看分支引用记录" class="headerlink" title="查看分支引用记录"></a>查看分支引用记录</h1><p>$ git reflog</p>
-<h1 id="07-单个文件的修改管理"><a href="#07-单个文件的修改管理" class="headerlink" title="07. 单个文件的修改管理"></a>07. 单个文件的修改管理</h1><h1 id="查看文件变化"><a href="#查看文件变化" class="headerlink" title="查看文件变化"></a>查看文件变化</h1><p>$ git diff</p>
-<h1 id="撤销对文件做的修改"><a href="#撤销对文件做的修改" class="headerlink" title="撤销对文件做的修改"></a>撤销对文件做的修改</h1><p>$ git checkout Person.h</p>
-<h1 id="从代码库（暂存区中删除文件）"><a href="#从代码库（暂存区中删除文件）" class="headerlink" title="从代码库（暂存区中删除文件）"></a>从代码库（暂存区中删除文件）</h1><h3 id="团队开发操作"><a href="#团队开发操作" class="headerlink" title="团队开发操作"></a>团队开发操作</h3><h1 id="01-建立代码仓库-专门用于团队开发的代码仓库"><a href="#01-建立代码仓库-专门用于团队开发的代码仓库" class="headerlink" title="01. 建立代码仓库(专门用于团队开发的代码仓库)"></a><pre class="lang:objc decode:true  ">01. 建立代码仓库(专门用于团队开发的代码仓库)</pre></h1><h1 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h1><p>$ cd /Users/bm/Desktop/git演练/公司/weibo</p>
-<h1 id="建立空白代码库-专门用于团队开发"><a href="#建立空白代码库-专门用于团队开发" class="headerlink" title="建立空白代码库(专门用于团队开发)"></a>建立空白代码库(专门用于团队开发)</h1><p>$ git init –bare</p>
-<h1 id="02-项目经理准备项目-前奏"><a href="#02-项目经理准备项目-前奏" class="headerlink" title="02. 项目经理准备项目(前奏)"></a>02. 项目经理准备项目(前奏)</h1><h1 id="切换目录-1"><a href="#切换目录-1" class="headerlink" title="切换目录"></a>切换目录</h1><p>$ cd /Users/bm/Desktop/git演练/经理</p>
-<h1 id="“克隆”代码库到本地"><a href="#“克隆”代码库到本地" class="headerlink" title="“克隆”代码库到本地"></a>“克隆”代码库到本地</h1><p>$ git clone /Users/lnj/Desktop/git演练/公司/weibo/</p>
-<h1 id="个人信息配置-因为要演示一台机器上的多人协作，日常开发可以忽略"><a href="#个人信息配置-因为要演示一台机器上的多人协作，日常开发可以忽略" class="headerlink" title="个人信息配置(因为要演示一台机器上的多人协作，日常开发可以忽略)"></a>个人信息配置(因为要演示一台机器上的多人协作，日常开发可以忽略)</h1><p>$ git config user.name manager<br>$ git config user.email manager@163.com</p>
-<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>.gitignore可以指定哪些文件不纳入版本库的管理</p>
-<p>参考网址：<a href="https://github.com/github/gitignore" target="_blank" rel="external">https://github.com/github/gitignore</a></p>
-<h1 id="命令行中进入与-git同级的目录"><a href="#命令行中进入与-git同级的目录" class="headerlink" title="命令行中进入与.git同级的目录"></a>命令行中进入与.git同级的目录</h1><p>$ cd /Users/bm/Desktop/git演练/经理/weibo</p>
-<h2 id="将以下命令一次性粘贴到命令行中"><a href="#将以下命令一次性粘贴到命令行中" class="headerlink" title="将以下命令一次性粘贴到命令行中"></a>将以下命令一次性粘贴到命令行中</h2><p>echo -e “# Xcode<br>#<br>build/<br><em>.pbxuser
+<h2 id="git-&#x7684;&#x91CD;&#x8981;&#x6982;&#x5FF5;&#x53CA;&#x5DE5;&#x4F5C;&#x539F;&#x7406;"><a href="#git-&#x7684;&#x91CD;&#x8981;&#x6982;&#x5FF5;&#x53CA;&#x5DE5;&#x4F5C;&#x539F;&#x7406;" class="headerlink" title="git &#x7684;&#x91CD;&#x8981;&#x6982;&#x5FF5;&#x53CA;&#x5DE5;&#x4F5C;&#x539F;&#x7406;"></a>git &#x7684;&#x91CD;&#x8981;&#x6982;&#x5FF5;&#x53CA;&#x5DE5;&#x4F5C;&#x539F;&#x7406;</h2><p>&#x5DE5;&#x4F5C;&#x533A;<br>&#x6682;&#x5B58;&#x533A;(staged)<br>&#x5206;&#x652F;(HEAD)</p>
+<h1 id="04-&#x522B;&#x540D;-amp-&#x65E5;&#x5FD7;"><a href="#04-&#x522B;&#x540D;-amp-&#x65E5;&#x5FD7;" class="headerlink" title="04. &#x522B;&#x540D; &amp; &#x65E5;&#x5FD7;"></a>04. &#x522B;&#x540D; &amp; &#x65E5;&#x5FD7;</h1><p>$ git config alias.st status<br>$ git config alias.ci &#x201C;commit -m&#x201D;</p>
+<p>&#x4E2A;&#x4EBA;&#x5EFA;&#x8BAE;&#xFF1A;&#x9664;&#x975E;&#x7279;&#x6B8A;&#x539F;&#x56E0;&#xFF0C;&#x6700;&#x597D;&#x4E0D;&#x8981;&#x8BBE;&#x7F6E;&#x522B;&#x540D;&#xFF0C;&#x5426;&#x5219;&#x6362;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x5C31;&#x4E0D;&#x4F1A;&#x7528;&#x4E86;</p>
+<h1 id="&#x67E5;&#x770B;&#x6240;&#x6709;&#x7248;&#x672C;&#x5E93;&#x65E5;&#x5FD7;"><a href="#&#x67E5;&#x770B;&#x6240;&#x6709;&#x7248;&#x672C;&#x5E93;&#x65E5;&#x5FD7;" class="headerlink" title="&#x67E5;&#x770B;&#x6240;&#x6709;&#x7248;&#x672C;&#x5E93;&#x65E5;&#x5FD7;"></a>&#x67E5;&#x770B;&#x6240;&#x6709;&#x7248;&#x672C;&#x5E93;&#x65E5;&#x5FD7;</h1><p>$ git log</p>
+<h1 id="&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7684;&#x7248;&#x672C;&#x5E93;&#x65E5;&#x5FD7;"><a href="#&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7684;&#x7248;&#x672C;&#x5E93;&#x65E5;&#x5FD7;" class="headerlink" title="&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7684;&#x7248;&#x672C;&#x5E93;&#x65E5;&#x5FD7;"></a>&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7684;&#x7248;&#x672C;&#x5E93;&#x65E5;&#x5FD7;</h1><p>$ git log &#x6587;&#x4EF6;&#x540D;</p>
+<h1 id="&#x914D;&#x7F6E;&#x5E26;&#x989C;&#x8272;&#x7684;log&#x522B;&#x540D;"><a href="#&#x914D;&#x7F6E;&#x5E26;&#x989C;&#x8272;&#x7684;log&#x522B;&#x540D;" class="headerlink" title="&#x914D;&#x7F6E;&#x5E26;&#x989C;&#x8272;&#x7684;log&#x522B;&#x540D;"></a>&#x914D;&#x7F6E;&#x5E26;&#x989C;&#x8272;&#x7684;log&#x522B;&#x540D;</h1><p>$ git config &#x2013;global alias.lg &#x201C;log &#x2013;color &#x2013;graph &#x2013;pretty=format:&#x2019;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x2019; &#x2013;abbrev-commit&#x201D;</p>
+<p>&#x63D0;&#x793A;&#xFF1A;&#x5728;git&#x4E2D;&#xFF0C;&#x7248;&#x672C;&#x53F7;&#x662F;&#x4E00;&#x4E2A;&#x7531;SHA1&#x751F;&#x6210;&#x7684;&#x54C8;&#x5E0C;&#x503C;</p>
+<h1 id="05-&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5728;&#x4EFB;&#x610F;&#x7248;&#x672C;&#x4E4B;&#x95F4;&#x7A7F;&#x68AD;"><a href="#05-&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5728;&#x4EFB;&#x610F;&#x7248;&#x672C;&#x4E4B;&#x95F4;&#x7A7F;&#x68AD;" class="headerlink" title="05. &#x7248;&#x672C;&#x53F7;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5728;&#x4EFB;&#x610F;&#x7248;&#x672C;&#x4E4B;&#x95F4;&#x7A7F;&#x68AD;"></a>05. &#x7248;&#x672C;&#x53F7;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5728;&#x4EFB;&#x610F;&#x7248;&#x672C;&#x4E4B;&#x95F4;&#x7A7F;&#x68AD;</h1><h1 id="&#x56DE;&#x5230;&#x5F53;&#x524D;&#x7248;&#x672C;&#xFF0C;&#x653E;&#x5F03;&#x6240;&#x6709;&#x6CA1;&#x6709;&#x63D0;&#x4EA4;&#x7684;&#x4FEE;&#x6539;"><a href="#&#x56DE;&#x5230;&#x5F53;&#x524D;&#x7248;&#x672C;&#xFF0C;&#x653E;&#x5F03;&#x6240;&#x6709;&#x6CA1;&#x6709;&#x63D0;&#x4EA4;&#x7684;&#x4FEE;&#x6539;" class="headerlink" title="&#x56DE;&#x5230;&#x5F53;&#x524D;&#x7248;&#x672C;&#xFF0C;&#x653E;&#x5F03;&#x6240;&#x6709;&#x6CA1;&#x6709;&#x63D0;&#x4EA4;&#x7684;&#x4FEE;&#x6539;"></a>&#x56DE;&#x5230;&#x5F53;&#x524D;&#x7248;&#x672C;&#xFF0C;&#x653E;&#x5F03;&#x6240;&#x6709;&#x6CA1;&#x6709;&#x63D0;&#x4EA4;&#x7684;&#x4FEE;&#x6539;</h1><p>$ git reset &#x2013;hard HEAD</p>
+<h1 id="&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;"><a href="#&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;" class="headerlink" title="&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;"></a>&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;</h1><p>$ git reset &#x2013;hard HEAD^</p>
+<h1 id="&#x56DE;&#x5230;&#x4E4B;&#x524D;&#x7B2C;3&#x4E2A;&#x4FEE;&#x8BA2;&#x7248;&#x672C;"><a href="#&#x56DE;&#x5230;&#x4E4B;&#x524D;&#x7B2C;3&#x4E2A;&#x4FEE;&#x8BA2;&#x7248;&#x672C;" class="headerlink" title="&#x56DE;&#x5230;&#x4E4B;&#x524D;&#x7B2C;3&#x4E2A;&#x4FEE;&#x8BA2;&#x7248;&#x672C;"></a>&#x56DE;&#x5230;&#x4E4B;&#x524D;&#x7B2C;3&#x4E2A;&#x4FEE;&#x8BA2;&#x7248;&#x672C;</h1><p>$ git reset &#x2013;hard HEAD~(3)</p>
+<h1 id="&#x56DE;&#x5230;&#x6307;&#x5B9A;&#x7248;&#x672C;&#x53F7;&#x7684;&#x7248;&#x672C;"><a href="#&#x56DE;&#x5230;&#x6307;&#x5B9A;&#x7248;&#x672C;&#x53F7;&#x7684;&#x7248;&#x672C;" class="headerlink" title="&#x56DE;&#x5230;&#x6307;&#x5B9A;&#x7248;&#x672C;&#x53F7;&#x7684;&#x7248;&#x672C;"></a>&#x56DE;&#x5230;&#x6307;&#x5B9A;&#x7248;&#x672C;&#x53F7;&#x7684;&#x7248;&#x672C;</h1><p>$ git reset e695b67</p>
+<h1 id="&#x67E5;&#x770B;&#x5206;&#x652F;&#x5F15;&#x7528;&#x8BB0;&#x5F55;"><a href="#&#x67E5;&#x770B;&#x5206;&#x652F;&#x5F15;&#x7528;&#x8BB0;&#x5F55;" class="headerlink" title="&#x67E5;&#x770B;&#x5206;&#x652F;&#x5F15;&#x7528;&#x8BB0;&#x5F55;"></a>&#x67E5;&#x770B;&#x5206;&#x652F;&#x5F15;&#x7528;&#x8BB0;&#x5F55;</h1><p>$ git reflog</p>
+<h1 id="07-&#x5355;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x7BA1;&#x7406;"><a href="#07-&#x5355;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x7BA1;&#x7406;" class="headerlink" title="07. &#x5355;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x7BA1;&#x7406;"></a>07. &#x5355;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x7BA1;&#x7406;</h1><h1 id="&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x53D8;&#x5316;"><a href="#&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x53D8;&#x5316;" class="headerlink" title="&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x53D8;&#x5316;"></a>&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x53D8;&#x5316;</h1><p>$ git diff</p>
+<h1 id="&#x64A4;&#x9500;&#x5BF9;&#x6587;&#x4EF6;&#x505A;&#x7684;&#x4FEE;&#x6539;"><a href="#&#x64A4;&#x9500;&#x5BF9;&#x6587;&#x4EF6;&#x505A;&#x7684;&#x4FEE;&#x6539;" class="headerlink" title="&#x64A4;&#x9500;&#x5BF9;&#x6587;&#x4EF6;&#x505A;&#x7684;&#x4FEE;&#x6539;"></a>&#x64A4;&#x9500;&#x5BF9;&#x6587;&#x4EF6;&#x505A;&#x7684;&#x4FEE;&#x6539;</h1><p>$ git checkout Person.h</p>
+<h1 id="&#x4ECE;&#x4EE3;&#x7801;&#x5E93;&#xFF08;&#x6682;&#x5B58;&#x533A;&#x4E2D;&#x5220;&#x9664;&#x6587;&#x4EF6;&#xFF09;"><a href="#&#x4ECE;&#x4EE3;&#x7801;&#x5E93;&#xFF08;&#x6682;&#x5B58;&#x533A;&#x4E2D;&#x5220;&#x9664;&#x6587;&#x4EF6;&#xFF09;" class="headerlink" title="&#x4ECE;&#x4EE3;&#x7801;&#x5E93;&#xFF08;&#x6682;&#x5B58;&#x533A;&#x4E2D;&#x5220;&#x9664;&#x6587;&#x4EF6;&#xFF09;"></a>&#x4ECE;&#x4EE3;&#x7801;&#x5E93;&#xFF08;&#x6682;&#x5B58;&#x533A;&#x4E2D;&#x5220;&#x9664;&#x6587;&#x4EF6;&#xFF09;</h1><h3 id="&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x64CD;&#x4F5C;"><a href="#&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x64CD;&#x4F5C;" class="headerlink" title="&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x64CD;&#x4F5C;"></a>&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x64CD;&#x4F5C;</h3><h1 id="01-&#x5EFA;&#x7ACB;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;-&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x7684;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;"><a href="#01-&#x5EFA;&#x7ACB;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;-&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x7684;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;" class="headerlink" title="01. &#x5EFA;&#x7ACB;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;(&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x7684;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;)"></a><pre class="lang:objc decode:true  ">01. &#x5EFA;&#x7ACB;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;(&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x7684;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;)</pre></h1><h1 id="&#x5207;&#x6362;&#x76EE;&#x5F55;"><a href="#&#x5207;&#x6362;&#x76EE;&#x5F55;" class="headerlink" title="&#x5207;&#x6362;&#x76EE;&#x5F55;"></a>&#x5207;&#x6362;&#x76EE;&#x5F55;</h1><p>$ cd /Users/bm/Desktop/git&#x6F14;&#x7EC3;/&#x516C;&#x53F8;/weibo</p>
+<h1 id="&#x5EFA;&#x7ACB;&#x7A7A;&#x767D;&#x4EE3;&#x7801;&#x5E93;-&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x56E2;&#x961F;&#x5F00;&#x53D1;"><a href="#&#x5EFA;&#x7ACB;&#x7A7A;&#x767D;&#x4EE3;&#x7801;&#x5E93;-&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x56E2;&#x961F;&#x5F00;&#x53D1;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x7A7A;&#x767D;&#x4EE3;&#x7801;&#x5E93;(&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x56E2;&#x961F;&#x5F00;&#x53D1;)"></a>&#x5EFA;&#x7ACB;&#x7A7A;&#x767D;&#x4EE3;&#x7801;&#x5E93;(&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x56E2;&#x961F;&#x5F00;&#x53D1;)</h1><p>$ git init &#x2013;bare</p>
+<h1 id="02-&#x9879;&#x76EE;&#x7ECF;&#x7406;&#x51C6;&#x5907;&#x9879;&#x76EE;-&#x524D;&#x594F;"><a href="#02-&#x9879;&#x76EE;&#x7ECF;&#x7406;&#x51C6;&#x5907;&#x9879;&#x76EE;-&#x524D;&#x594F;" class="headerlink" title="02. &#x9879;&#x76EE;&#x7ECF;&#x7406;&#x51C6;&#x5907;&#x9879;&#x76EE;(&#x524D;&#x594F;)"></a>02. &#x9879;&#x76EE;&#x7ECF;&#x7406;&#x51C6;&#x5907;&#x9879;&#x76EE;(&#x524D;&#x594F;)</h1><h1 id="&#x5207;&#x6362;&#x76EE;&#x5F55;-1"><a href="#&#x5207;&#x6362;&#x76EE;&#x5F55;-1" class="headerlink" title="&#x5207;&#x6362;&#x76EE;&#x5F55;"></a>&#x5207;&#x6362;&#x76EE;&#x5F55;</h1><p>$ cd /Users/bm/Desktop/git&#x6F14;&#x7EC3;/&#x7ECF;&#x7406;</p>
+<h1 id="&#x201C;&#x514B;&#x9686;&#x201D;&#x4EE3;&#x7801;&#x5E93;&#x5230;&#x672C;&#x5730;"><a href="#&#x201C;&#x514B;&#x9686;&#x201D;&#x4EE3;&#x7801;&#x5E93;&#x5230;&#x672C;&#x5730;" class="headerlink" title="&#x201C;&#x514B;&#x9686;&#x201D;&#x4EE3;&#x7801;&#x5E93;&#x5230;&#x672C;&#x5730;"></a>&#x201C;&#x514B;&#x9686;&#x201D;&#x4EE3;&#x7801;&#x5E93;&#x5230;&#x672C;&#x5730;</h1><p>$ git clone /Users/lnj/Desktop/git&#x6F14;&#x7EC3;/&#x516C;&#x53F8;/weibo/</p>
+<h1 id="&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;&#x914D;&#x7F6E;-&#x56E0;&#x4E3A;&#x8981;&#x6F14;&#x793A;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x7684;&#x591A;&#x4EBA;&#x534F;&#x4F5C;&#xFF0C;&#x65E5;&#x5E38;&#x5F00;&#x53D1;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;"><a href="#&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;&#x914D;&#x7F6E;-&#x56E0;&#x4E3A;&#x8981;&#x6F14;&#x793A;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x7684;&#x591A;&#x4EBA;&#x534F;&#x4F5C;&#xFF0C;&#x65E5;&#x5E38;&#x5F00;&#x53D1;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;" class="headerlink" title="&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;&#x914D;&#x7F6E;(&#x56E0;&#x4E3A;&#x8981;&#x6F14;&#x793A;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x7684;&#x591A;&#x4EBA;&#x534F;&#x4F5C;&#xFF0C;&#x65E5;&#x5E38;&#x5F00;&#x53D1;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;)"></a>&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;&#x914D;&#x7F6E;(&#x56E0;&#x4E3A;&#x8981;&#x6F14;&#x793A;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x7684;&#x591A;&#x4EBA;&#x534F;&#x4F5C;&#xFF0C;&#x65E5;&#x5E38;&#x5F00;&#x53D1;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;)</h1><p>$ git config user.name manager<br>$ git config user.email manager@163.com</p>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>.gitignore&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x54EA;&#x4E9B;&#x6587;&#x4EF6;&#x4E0D;&#x7EB3;&#x5165;&#x7248;&#x672C;&#x5E93;&#x7684;&#x7BA1;&#x7406;</p>
+<p>&#x53C2;&#x8003;&#x7F51;&#x5740;&#xFF1A;<a href="https://github.com/github/gitignore" target="_blank" rel="external">https://github.com/github/gitignore</a></p>
+<h1 id="&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x8FDB;&#x5165;&#x4E0E;-git&#x540C;&#x7EA7;&#x7684;&#x76EE;&#x5F55;"><a href="#&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x8FDB;&#x5165;&#x4E0E;-git&#x540C;&#x7EA7;&#x7684;&#x76EE;&#x5F55;" class="headerlink" title="&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x8FDB;&#x5165;&#x4E0E;.git&#x540C;&#x7EA7;&#x7684;&#x76EE;&#x5F55;"></a>&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x8FDB;&#x5165;&#x4E0E;.git&#x540C;&#x7EA7;&#x7684;&#x76EE;&#x5F55;</h1><p>$ cd /Users/bm/Desktop/git&#x6F14;&#x7EC3;/&#x7ECF;&#x7406;/weibo</p>
+<h2 id="&#x5C06;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x4E00;&#x6B21;&#x6027;&#x7C98;&#x8D34;&#x5230;&#x547D;&#x4EE4;&#x884C;&#x4E2D;"><a href="#&#x5C06;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x4E00;&#x6B21;&#x6027;&#x7C98;&#x8D34;&#x5230;&#x547D;&#x4EE4;&#x884C;&#x4E2D;" class="headerlink" title="&#x5C06;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x4E00;&#x6B21;&#x6027;&#x7C98;&#x8D34;&#x5230;&#x547D;&#x4EE4;&#x884C;&#x4E2D;"></a>&#x5C06;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x4E00;&#x6B21;&#x6027;&#x7C98;&#x8D34;&#x5230;&#x547D;&#x4EE4;&#x884C;&#x4E2D;</h2><p>echo -e &#x201C;# Xcode<br>#<br>build/<br><em>.pbxuser
 </em>.mode1v3<br><em>.mode2v3
 </em>.perspectivev3<br>xcuserdata<br><em>.xccheckout
 </em>.moved-aside<br>DerivedData<br><em>.hmap
 </em>.ipa<br>*.xcuserstate</p>
 <h1 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h1><p>#</p>
 <h1 id="We-recommend-against-adding-the-Pods-directory-to-your-gitignore-However"><a href="#We-recommend-against-adding-the-Pods-directory-to-your-gitignore-However" class="headerlink" title="We recommend against adding the Pods directory to your .gitignore. However"></a>We recommend against adding the Pods directory to your .gitignore. However</h1><h1 id="you-should-judge-for-yourself-the-pros-and-cons-are-mentioned-at"><a href="#you-should-judge-for-yourself-the-pros-and-cons-are-mentioned-at" class="headerlink" title="you should judge for yourself, the pros and cons are mentioned at:"></a>you should judge for yourself, the pros and cons are mentioned at:</h1><h1 id="http-guides-cocoapods-org-using-using-cocoapods-html-should-i-ignore-the-pods-directory-in-source-control"><a href="#http-guides-cocoapods-org-using-using-cocoapods-html-should-i-ignore-the-pods-directory-in-source-control" class="headerlink" title="http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control"></a><a href="http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control" target="_blank" rel="external">http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control</a></h1><p>#</p>
-<h1 id="Pods-“-gt-gitignore"><a href="#Pods-“-gt-gitignore" class="headerlink" title="Pods/“ &gt; .gitignore"></a>Pods/“ &gt; .gitignore</h1><hr>
-<h1 id="将-gitignore添加到代码库"><a href="#将-gitignore添加到代码库" class="headerlink" title="将.gitignore添加到代码库"></a>将.gitignore添加到代码库</h1><p>$ git add .gitignore</p>
-<h1 id="03-创建项目"><a href="#03-创建项目" class="headerlink" title="03. 创建项目"></a>03. 创建项目</h1><p>提交同时”push”到远程代码仓库</p>
-<h1 id="04-新人加入"><a href="#04-新人加入" class="headerlink" title="04. 新人加入"></a>04. 新人加入</h1><p>…</p>
-<h1 id="05-分布式的代码库-仅供参考"><a href="#05-分布式的代码库-仅供参考" class="headerlink" title="05. 分布式的代码库 - 仅供参考"></a>05. 分布式的代码库 - 仅供参考</h1><p>由于git是分布式的，任何一台计算机上都保留有完整的代码库的内容，因此可以把团队开发的代码库放在任何位置</p>
-<p>多个远程代码库之间的同步演练”提示，此演练仅供了解，具体的使用，需要一定的团队规模之后，才能够体会”</p>
-<h1 id="06-分支管理-Tag"><a href="#06-分支管理-Tag" class="headerlink" title="06. 分支管理 - Tag"></a>06. 分支管理 - Tag</h1><h1 id="查看当前标签"><a href="#查看当前标签" class="headerlink" title="查看当前标签"></a>查看当前标签</h1><p>$ git tag</p>
-<h1 id="在本地代码库给项目打上一个标签"><a href="#在本地代码库给项目打上一个标签" class="headerlink" title="在本地代码库给项目打上一个标签"></a>在本地代码库给项目打上一个标签</h1><p>$ git tag -a v1.0 -m ‘Version 1.0’</p>
-<h1 id="将标签添推送到远程代码库中"><a href="#将标签添推送到远程代码库中" class="headerlink" title="将标签添推送到远程代码库中"></a>将标签添推送到远程代码库中</h1><p>$ git push origin v1.0</p>
-<h1 id="使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本"><a href="#使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本" class="headerlink" title="使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本"></a>使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本</h1><h1 id="签出v1-0标签"><a href="#签出v1-0标签" class="headerlink" title="签出v1.0标签"></a>签出v1.0标签</h1><p>$ git checkout v1.0</p>
-<h1 id="从签出状态创建v1-0bugfix分支"><a href="#从签出状态创建v1-0bugfix分支" class="headerlink" title="从签出状态创建v1.0bugfix分支"></a>从签出状态创建v1.0bugfix分支</h1><p>$ git checkout -b bugfix1.0</p>
-<h1 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h1><p>$ git branch -r</p>
-<h1 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h1><p>$ git branch -r -d origin/bugfix1.0<br></p>
+<h1 id="Pods-&#x201C;-gt-gitignore"><a href="#Pods-&#x201C;-gt-gitignore" class="headerlink" title="Pods/&#x201C; &gt; .gitignore"></a>Pods/&#x201C; &gt; .gitignore</h1><hr>
+<h1 id="&#x5C06;-gitignore&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;"><a href="#&#x5C06;-gitignore&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;" class="headerlink" title="&#x5C06;.gitignore&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;"></a>&#x5C06;.gitignore&#x6DFB;&#x52A0;&#x5230;&#x4EE3;&#x7801;&#x5E93;</h1><p>$ git add .gitignore</p>
+<h1 id="03-&#x521B;&#x5EFA;&#x9879;&#x76EE;"><a href="#03-&#x521B;&#x5EFA;&#x9879;&#x76EE;" class="headerlink" title="03. &#x521B;&#x5EFA;&#x9879;&#x76EE;"></a>03. &#x521B;&#x5EFA;&#x9879;&#x76EE;</h1><p>&#x63D0;&#x4EA4;&#x540C;&#x65F6;&#x201D;push&#x201D;&#x5230;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;</p>
+<h1 id="04-&#x65B0;&#x4EBA;&#x52A0;&#x5165;"><a href="#04-&#x65B0;&#x4EBA;&#x52A0;&#x5165;" class="headerlink" title="04. &#x65B0;&#x4EBA;&#x52A0;&#x5165;"></a>04. &#x65B0;&#x4EBA;&#x52A0;&#x5165;</h1><p>&#x2026;</p>
+<h1 id="05-&#x5206;&#x5E03;&#x5F0F;&#x7684;&#x4EE3;&#x7801;&#x5E93;-&#x4EC5;&#x4F9B;&#x53C2;&#x8003;"><a href="#05-&#x5206;&#x5E03;&#x5F0F;&#x7684;&#x4EE3;&#x7801;&#x5E93;-&#x4EC5;&#x4F9B;&#x53C2;&#x8003;" class="headerlink" title="05. &#x5206;&#x5E03;&#x5F0F;&#x7684;&#x4EE3;&#x7801;&#x5E93; - &#x4EC5;&#x4F9B;&#x53C2;&#x8003;"></a>05. &#x5206;&#x5E03;&#x5F0F;&#x7684;&#x4EE3;&#x7801;&#x5E93; - &#x4EC5;&#x4F9B;&#x53C2;&#x8003;</h1><p>&#x7531;&#x4E8E;git&#x662F;&#x5206;&#x5E03;&#x5F0F;&#x7684;&#xFF0C;&#x4EFB;&#x4F55;&#x4E00;&#x53F0;&#x8BA1;&#x7B97;&#x673A;&#x4E0A;&#x90FD;&#x4FDD;&#x7559;&#x6709;&#x5B8C;&#x6574;&#x7684;&#x4EE3;&#x7801;&#x5E93;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x628A;&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x7684;&#x4EE3;&#x7801;&#x5E93;&#x653E;&#x5728;&#x4EFB;&#x4F55;&#x4F4D;&#x7F6E;</p>
+<p>&#x591A;&#x4E2A;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x5E93;&#x4E4B;&#x95F4;&#x7684;&#x540C;&#x6B65;&#x6F14;&#x7EC3;&#x201D;&#x63D0;&#x793A;&#xFF0C;&#x6B64;&#x6F14;&#x7EC3;&#x4EC5;&#x4F9B;&#x4E86;&#x89E3;&#xFF0C;&#x5177;&#x4F53;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x9700;&#x8981;&#x4E00;&#x5B9A;&#x7684;&#x56E2;&#x961F;&#x89C4;&#x6A21;&#x4E4B;&#x540E;&#xFF0C;&#x624D;&#x80FD;&#x591F;&#x4F53;&#x4F1A;&#x201D;</p>
+<h1 id="06-&#x5206;&#x652F;&#x7BA1;&#x7406;-Tag"><a href="#06-&#x5206;&#x652F;&#x7BA1;&#x7406;-Tag" class="headerlink" title="06. &#x5206;&#x652F;&#x7BA1;&#x7406; - Tag"></a>06. &#x5206;&#x652F;&#x7BA1;&#x7406; - Tag</h1><h1 id="&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6807;&#x7B7E;"><a href="#&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6807;&#x7B7E;" class="headerlink" title="&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6807;&#x7B7E;"></a>&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6807;&#x7B7E;</h1><p>$ git tag</p>
+<h1 id="&#x5728;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x5E93;&#x7ED9;&#x9879;&#x76EE;&#x6253;&#x4E0A;&#x4E00;&#x4E2A;&#x6807;&#x7B7E;"><a href="#&#x5728;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x5E93;&#x7ED9;&#x9879;&#x76EE;&#x6253;&#x4E0A;&#x4E00;&#x4E2A;&#x6807;&#x7B7E;" class="headerlink" title="&#x5728;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x5E93;&#x7ED9;&#x9879;&#x76EE;&#x6253;&#x4E0A;&#x4E00;&#x4E2A;&#x6807;&#x7B7E;"></a>&#x5728;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x5E93;&#x7ED9;&#x9879;&#x76EE;&#x6253;&#x4E0A;&#x4E00;&#x4E2A;&#x6807;&#x7B7E;</h1><p>$ git tag -a v1.0 -m &#x2018;Version 1.0&#x2019;</p>
+<h1 id="&#x5C06;&#x6807;&#x7B7E;&#x6DFB;&#x63A8;&#x9001;&#x5230;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x5E93;&#x4E2D;"><a href="#&#x5C06;&#x6807;&#x7B7E;&#x6DFB;&#x63A8;&#x9001;&#x5230;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x5E93;&#x4E2D;" class="headerlink" title="&#x5C06;&#x6807;&#x7B7E;&#x6DFB;&#x63A8;&#x9001;&#x5230;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x5E93;&#x4E2D;"></a>&#x5C06;&#x6807;&#x7B7E;&#x6DFB;&#x63A8;&#x9001;&#x5230;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x5E93;&#x4E2D;</h1><p>$ git push origin v1.0</p>
+<h1 id="&#x4F7F;&#x7528;tag&#xFF0C;&#x5C31;&#x80FD;&#x591F;&#x5C06;&#x9879;&#x76EE;&#x5FEB;&#x901F;&#x5207;&#x6362;&#x5230;&#x67D0;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x72B6;&#x6001;&#xFF0C;&#x4F8B;&#x5982;&#x4EA7;&#x54C1;&#x5F00;&#x53D1;&#x7EBF;&#x4E0A;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x7A33;&#x5B9A;&#x7248;&#x672C;"><a href="#&#x4F7F;&#x7528;tag&#xFF0C;&#x5C31;&#x80FD;&#x591F;&#x5C06;&#x9879;&#x76EE;&#x5FEB;&#x901F;&#x5207;&#x6362;&#x5230;&#x67D0;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x72B6;&#x6001;&#xFF0C;&#x4F8B;&#x5982;&#x4EA7;&#x54C1;&#x5F00;&#x53D1;&#x7EBF;&#x4E0A;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x7A33;&#x5B9A;&#x7248;&#x672C;" class="headerlink" title="&#x4F7F;&#x7528;tag&#xFF0C;&#x5C31;&#x80FD;&#x591F;&#x5C06;&#x9879;&#x76EE;&#x5FEB;&#x901F;&#x5207;&#x6362;&#x5230;&#x67D0;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x72B6;&#x6001;&#xFF0C;&#x4F8B;&#x5982;&#x4EA7;&#x54C1;&#x5F00;&#x53D1;&#x7EBF;&#x4E0A;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x7A33;&#x5B9A;&#x7248;&#x672C;"></a>&#x4F7F;&#x7528;tag&#xFF0C;&#x5C31;&#x80FD;&#x591F;&#x5C06;&#x9879;&#x76EE;&#x5FEB;&#x901F;&#x5207;&#x6362;&#x5230;&#x67D0;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x72B6;&#x6001;&#xFF0C;&#x4F8B;&#x5982;&#x4EA7;&#x54C1;&#x5F00;&#x53D1;&#x7EBF;&#x4E0A;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x7A33;&#x5B9A;&#x7248;&#x672C;</h1><h1 id="&#x7B7E;&#x51FA;v1-0&#x6807;&#x7B7E;"><a href="#&#x7B7E;&#x51FA;v1-0&#x6807;&#x7B7E;" class="headerlink" title="&#x7B7E;&#x51FA;v1.0&#x6807;&#x7B7E;"></a>&#x7B7E;&#x51FA;v1.0&#x6807;&#x7B7E;</h1><p>$ git checkout v1.0</p>
+<h1 id="&#x4ECE;&#x7B7E;&#x51FA;&#x72B6;&#x6001;&#x521B;&#x5EFA;v1-0bugfix&#x5206;&#x652F;"><a href="#&#x4ECE;&#x7B7E;&#x51FA;&#x72B6;&#x6001;&#x521B;&#x5EFA;v1-0bugfix&#x5206;&#x652F;" class="headerlink" title="&#x4ECE;&#x7B7E;&#x51FA;&#x72B6;&#x6001;&#x521B;&#x5EFA;v1.0bugfix&#x5206;&#x652F;"></a>&#x4ECE;&#x7B7E;&#x51FA;&#x72B6;&#x6001;&#x521B;&#x5EFA;v1.0bugfix&#x5206;&#x652F;</h1><p>$ git checkout -b bugfix1.0</p>
+<h1 id="&#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;"><a href="#&#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;" class="headerlink" title="&#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;"></a>&#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;</h1><p>$ git branch -r</p>
+<h1 id="&#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;"><a href="#&#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;" class="headerlink" title="&#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;"></a>&#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;</h1><p>$ git branch -r -d origin/bugfix1.0<br></p>
 <p>### </p>
 
           
@@ -1388,55 +1168,55 @@
       
         
           
-            <p><a href="https://github.com/path/FastImageCache" target="_blank" rel="external">FastImageCache</a>是Path团队开发的一个开源库，用于提升图片的加载和渲染速度，让基于图片的列表滑动起来更顺畅，来看看它是怎么做的。</p>
-<h1 id="优化点"><a href="#优化点" class="headerlink" title="优化点"></a>优化点</h1><p>iOS从磁盘加载一张图片，使用UIImageVIew显示在屏幕上，需要经过以下步骤：</p>
+            <p><a href="https://github.com/path/FastImageCache" target="_blank" rel="external">FastImageCache</a>&#x662F;Path&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x7684;&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x5E93;&#xFF0C;&#x7528;&#x4E8E;&#x63D0;&#x5347;&#x56FE;&#x7247;&#x7684;&#x52A0;&#x8F7D;&#x548C;&#x6E32;&#x67D3;&#x901F;&#x5EA6;&#xFF0C;&#x8BA9;&#x57FA;&#x4E8E;&#x56FE;&#x7247;&#x7684;&#x5217;&#x8868;&#x6ED1;&#x52A8;&#x8D77;&#x6765;&#x66F4;&#x987A;&#x7545;&#xFF0C;&#x6765;&#x770B;&#x770B;&#x5B83;&#x662F;&#x600E;&#x4E48;&#x505A;&#x7684;&#x3002;</p>
+<h1 id="&#x4F18;&#x5316;&#x70B9;"><a href="#&#x4F18;&#x5316;&#x70B9;" class="headerlink" title="&#x4F18;&#x5316;&#x70B9;"></a>&#x4F18;&#x5316;&#x70B9;</h1><p>iOS&#x4ECE;&#x78C1;&#x76D8;&#x52A0;&#x8F7D;&#x4E00;&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x4F7F;&#x7528;UIImageVIew&#x663E;&#x793A;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#xFF0C;&#x9700;&#x8981;&#x7ECF;&#x8FC7;&#x4EE5;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
 <ol>
-<li>从磁盘拷贝数据到内核缓冲区</li>
-<li>从内核缓冲区复制数据到用户空间</li>
-<li>生成UIImageView，把图像数据赋值给UIImageView</li>
-<li>如果图像数据为未解码的PNG/JPG，解码为位图数据</li>
-<li>CATransaction捕获到UIImageView layer树的变化</li>
-<li><p>主线程Runloop提交CATransaction，开始进行图像渲染</p>
+<li>&#x4ECE;&#x78C1;&#x76D8;&#x62F7;&#x8D1D;&#x6570;&#x636E;&#x5230;&#x5185;&#x6838;&#x7F13;&#x51B2;&#x533A;</li>
+<li>&#x4ECE;&#x5185;&#x6838;&#x7F13;&#x51B2;&#x533A;&#x590D;&#x5236;&#x6570;&#x636E;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;</li>
+<li>&#x751F;&#x6210;UIImageView&#xFF0C;&#x628A;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x8D4B;&#x503C;&#x7ED9;UIImageView</li>
+<li>&#x5982;&#x679C;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x4E3A;&#x672A;&#x89E3;&#x7801;&#x7684;PNG/JPG&#xFF0C;&#x89E3;&#x7801;&#x4E3A;&#x4F4D;&#x56FE;&#x6570;&#x636E;</li>
+<li>CATransaction&#x6355;&#x83B7;&#x5230;UIImageView layer&#x6811;&#x7684;&#x53D8;&#x5316;</li>
+<li><p>&#x4E3B;&#x7EBF;&#x7A0B;Runloop&#x63D0;&#x4EA4;CATransaction&#xFF0C;&#x5F00;&#x59CB;&#x8FDB;&#x884C;&#x56FE;&#x50CF;&#x6E32;&#x67D3;</p>
 <ul>
-<li>6.1 如果数据没有字节对齐，Core Animation会再拷贝一份数据，进行字节对齐。</li>
-<li>6.2 GPU处理位图数据，进行渲染。<br>FastImageCache分别优化了2,4,6.1三个步骤：</li>
+<li>6.1 &#x5982;&#x679C;&#x6570;&#x636E;&#x6CA1;&#x6709;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#xFF0C;Core Animation&#x4F1A;&#x518D;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x6570;&#x636E;&#xFF0C;&#x8FDB;&#x884C;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x3002;</li>
+<li>6.2 GPU&#x5904;&#x7406;&#x4F4D;&#x56FE;&#x6570;&#x636E;&#xFF0C;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#x3002;<br>FastImageCache&#x5206;&#x522B;&#x4F18;&#x5316;&#x4E86;2,4,6.1&#x4E09;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</li>
 </ul>
 </li>
-<li><p>使用mmap内存映射，省去了上述第2步数据从内核空间拷贝到用户空间的操作。</p>
+<li><p>&#x4F7F;&#x7528;mmap&#x5185;&#x5B58;&#x6620;&#x5C04;&#xFF0C;&#x7701;&#x53BB;&#x4E86;&#x4E0A;&#x8FF0;&#x7B2C;2&#x6B65;&#x6570;&#x636E;&#x4ECE;&#x5185;&#x6838;&#x7A7A;&#x95F4;&#x62F7;&#x8D1D;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
 </li>
-<li>缓存解码后的位图数据到磁盘，下次从磁盘读取时省去第4步解码的操作。</li>
-<li>生成字节对齐的数据，防止上述第6.1步CoreAnimation在渲染时再拷贝一份数据。<br>接下来具体介绍这三个优化点以及它的实现。</li>
+<li>&#x7F13;&#x5B58;&#x89E3;&#x7801;&#x540E;&#x7684;&#x4F4D;&#x56FE;&#x6570;&#x636E;&#x5230;&#x78C1;&#x76D8;&#xFF0C;&#x4E0B;&#x6B21;&#x4ECE;&#x78C1;&#x76D8;&#x8BFB;&#x53D6;&#x65F6;&#x7701;&#x53BB;&#x7B2C;4&#x6B65;&#x89E3;&#x7801;&#x7684;&#x64CD;&#x4F5C;&#x3002;</li>
+<li>&#x751F;&#x6210;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x9632;&#x6B62;&#x4E0A;&#x8FF0;&#x7B2C;6.1&#x6B65;CoreAnimation&#x5728;&#x6E32;&#x67D3;&#x65F6;&#x518D;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x6570;&#x636E;&#x3002;<br>&#x63A5;&#x4E0B;&#x6765;&#x5177;&#x4F53;&#x4ECB;&#x7ECD;&#x8FD9;&#x4E09;&#x4E2A;&#x4F18;&#x5316;&#x70B9;&#x4EE5;&#x53CA;&#x5B83;&#x7684;&#x5B9E;&#x73B0;&#x3002;</li>
 </ol>
-<h3 id="内存映射"><a href="#内存映射" class="headerlink" title="内存映射"></a>内存映射</h3><p>平常我们读取磁盘上的一个文件，上层API调用到最后会使用系统方法read()读取数据，内核把磁盘数据读入内核缓冲区，用户再从内核缓冲区读取数据复制到用户内存空间，这里有一次内存拷贝的时间消耗，并且读取后整个文件数据就已经存在于用户内存中，占用了进程的内存空间。</p>
-<p>FastImageCache采用了另一种读写文件的方法，就是用mmap把文件映射到用户空间里的虚拟内存，文件中的位置在虚拟内存中有了对应的地址，可以像操作内存一样操作这个文件，相当于已经把整个文件放入内存，但在真正使用到这些数据前却不会消耗物理内存，也不会有读写磁盘的操作，只有真正使用这些数据时，也就是图像准备渲染在屏幕上时，虚拟内存管理系统VMS才根据缺页加载的机制从磁盘加载对应的数据块到物理内存，再进行渲染。这样的文件读写文件方式少了数据从内核缓存到用户空间的拷贝，效率很高。</p>
-<h3 id="解码图像"><a href="#解码图像" class="headerlink" title="解码图像"></a>解码图像</h3><p>一般我们使用的图像是JPG/PNG，这些图像数据不是位图，而是是经过编码压缩后的数据，使用它渲染到屏幕之前需要进行解码转成位图数据，这个解码操作是比较耗时的，并且没有GPU硬解码，只能通过CPU，iOS默认会在主线程对图像进行解码。很多库都解决了图像解码的问题，不过由于解码后的图像太大，一般不会缓存到磁盘，SDWebImage的做法是把解码操作从主线程移到子线程，让耗时的解码操作不占用主线程的时间。</p>
-<p>FastImageCache也是在子线程解码图像，不同的是它会缓存解码后的图像到磁盘。因为解码后的图像体积很大，FastImageCache对这些图像数据做了系列缓存管理，详见下文实现部分。另外缓存的图像体积大也是使用内存映射读取文件的原因，小文件使用内存映射无优势，内存拷贝的量少，拷贝后占用用户内存也不高，文件越大内存映射优势越大。</p>
-<h3 id="字节对齐"><a href="#字节对齐" class="headerlink" title="字节对齐"></a>字节对齐</h3><p>Core Animation在图像数据非字节对齐的情况下渲染前会先拷贝一份图像数据，官方文档没有对这次拷贝行为作说明，模拟器和Instrument里有高亮显示“copied images”的功能，但似乎它有bug，即使某张图片没有被高亮显示出渲染时被copy，从调用堆栈上也还是能看到调用了CA::Render::copy_image方法：</p>
+<h3 id="&#x5185;&#x5B58;&#x6620;&#x5C04;"><a href="#&#x5185;&#x5B58;&#x6620;&#x5C04;" class="headerlink" title="&#x5185;&#x5B58;&#x6620;&#x5C04;"></a>&#x5185;&#x5B58;&#x6620;&#x5C04;</h3><p>&#x5E73;&#x5E38;&#x6211;&#x4EEC;&#x8BFB;&#x53D6;&#x78C1;&#x76D8;&#x4E0A;&#x7684;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x4E0A;&#x5C42;API&#x8C03;&#x7528;&#x5230;&#x6700;&#x540E;&#x4F1A;&#x4F7F;&#x7528;&#x7CFB;&#x7EDF;&#x65B9;&#x6CD5;read()&#x8BFB;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x5185;&#x6838;&#x628A;&#x78C1;&#x76D8;&#x6570;&#x636E;&#x8BFB;&#x5165;&#x5185;&#x6838;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x7528;&#x6237;&#x518D;&#x4ECE;&#x5185;&#x6838;&#x7F13;&#x51B2;&#x533A;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x590D;&#x5236;&#x5230;&#x7528;&#x6237;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x6B21;&#x5185;&#x5B58;&#x62F7;&#x8D1D;&#x7684;&#x65F6;&#x95F4;&#x6D88;&#x8017;&#xFF0C;&#x5E76;&#x4E14;&#x8BFB;&#x53D6;&#x540E;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x6570;&#x636E;&#x5C31;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x4E8E;&#x7528;&#x6237;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x5360;&#x7528;&#x4E86;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x3002;</p>
+<p>FastImageCache&#x91C7;&#x7528;&#x4E86;&#x53E6;&#x4E00;&#x79CD;&#x8BFB;&#x5199;&#x6587;&#x4EF6;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;&#x7528;mmap&#x628A;&#x6587;&#x4EF6;&#x6620;&#x5C04;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x91CC;&#x7684;&#x865A;&#x62DF;&#x5185;&#x5B58;&#xFF0C;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;&#x5728;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x4E2D;&#x6709;&#x4E86;&#x5BF9;&#x5E94;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x53EF;&#x4EE5;&#x50CF;&#x64CD;&#x4F5C;&#x5185;&#x5B58;&#x4E00;&#x6837;&#x64CD;&#x4F5C;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x5DF2;&#x7ECF;&#x628A;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x653E;&#x5165;&#x5185;&#x5B58;&#xFF0C;&#x4F46;&#x5728;&#x771F;&#x6B63;&#x4F7F;&#x7528;&#x5230;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x524D;&#x5374;&#x4E0D;&#x4F1A;&#x6D88;&#x8017;&#x7269;&#x7406;&#x5185;&#x5B58;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x6709;&#x8BFB;&#x5199;&#x78C1;&#x76D8;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x53EA;&#x6709;&#x771F;&#x6B63;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x56FE;&#x50CF;&#x51C6;&#x5907;&#x6E32;&#x67D3;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#x65F6;&#xFF0C;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;VMS&#x624D;&#x6839;&#x636E;&#x7F3A;&#x9875;&#x52A0;&#x8F7D;&#x7684;&#x673A;&#x5236;&#x4ECE;&#x78C1;&#x76D8;&#x52A0;&#x8F7D;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;&#x5757;&#x5230;&#x7269;&#x7406;&#x5185;&#x5B58;&#xFF0C;&#x518D;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x6587;&#x4EF6;&#x8BFB;&#x5199;&#x6587;&#x4EF6;&#x65B9;&#x5F0F;&#x5C11;&#x4E86;&#x6570;&#x636E;&#x4ECE;&#x5185;&#x6838;&#x7F13;&#x5B58;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x62F7;&#x8D1D;&#xFF0C;&#x6548;&#x7387;&#x5F88;&#x9AD8;&#x3002;</p>
+<h3 id="&#x89E3;&#x7801;&#x56FE;&#x50CF;"><a href="#&#x89E3;&#x7801;&#x56FE;&#x50CF;" class="headerlink" title="&#x89E3;&#x7801;&#x56FE;&#x50CF;"></a>&#x89E3;&#x7801;&#x56FE;&#x50CF;</h3><p>&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x56FE;&#x50CF;&#x662F;JPG/PNG&#xFF0C;&#x8FD9;&#x4E9B;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x4F4D;&#x56FE;&#xFF0C;&#x800C;&#x662F;&#x662F;&#x7ECF;&#x8FC7;&#x7F16;&#x7801;&#x538B;&#x7F29;&#x540E;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4F7F;&#x7528;&#x5B83;&#x6E32;&#x67D3;&#x5230;&#x5C4F;&#x5E55;&#x4E4B;&#x524D;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x89E3;&#x7801;&#x8F6C;&#x6210;&#x4F4D;&#x56FE;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x4E2A;&#x89E3;&#x7801;&#x64CD;&#x4F5C;&#x662F;&#x6BD4;&#x8F83;&#x8017;&#x65F6;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x6CA1;&#x6709;GPU&#x786C;&#x89E3;&#x7801;&#xFF0C;&#x53EA;&#x80FD;&#x901A;&#x8FC7;CPU&#xFF0C;iOS&#x9ED8;&#x8BA4;&#x4F1A;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x5BF9;&#x56FE;&#x50CF;&#x8FDB;&#x884C;&#x89E3;&#x7801;&#x3002;&#x5F88;&#x591A;&#x5E93;&#x90FD;&#x89E3;&#x51B3;&#x4E86;&#x56FE;&#x50CF;&#x89E3;&#x7801;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4E0D;&#x8FC7;&#x7531;&#x4E8E;&#x89E3;&#x7801;&#x540E;&#x7684;&#x56FE;&#x50CF;&#x592A;&#x5927;&#xFF0C;&#x4E00;&#x822C;&#x4E0D;&#x4F1A;&#x7F13;&#x5B58;&#x5230;&#x78C1;&#x76D8;&#xFF0C;SDWebImage&#x7684;&#x505A;&#x6CD5;&#x662F;&#x628A;&#x89E3;&#x7801;&#x64CD;&#x4F5C;&#x4ECE;&#x4E3B;&#x7EBF;&#x7A0B;&#x79FB;&#x5230;&#x5B50;&#x7EBF;&#x7A0B;&#xFF0C;&#x8BA9;&#x8017;&#x65F6;&#x7684;&#x89E3;&#x7801;&#x64CD;&#x4F5C;&#x4E0D;&#x5360;&#x7528;&#x4E3B;&#x7EBF;&#x7A0B;&#x7684;&#x65F6;&#x95F4;&#x3002;</p>
+<p>FastImageCache&#x4E5F;&#x662F;&#x5728;&#x5B50;&#x7EBF;&#x7A0B;&#x89E3;&#x7801;&#x56FE;&#x50CF;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x662F;&#x5B83;&#x4F1A;&#x7F13;&#x5B58;&#x89E3;&#x7801;&#x540E;&#x7684;&#x56FE;&#x50CF;&#x5230;&#x78C1;&#x76D8;&#x3002;&#x56E0;&#x4E3A;&#x89E3;&#x7801;&#x540E;&#x7684;&#x56FE;&#x50CF;&#x4F53;&#x79EF;&#x5F88;&#x5927;&#xFF0C;FastImageCache&#x5BF9;&#x8FD9;&#x4E9B;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x505A;&#x4E86;&#x7CFB;&#x5217;&#x7F13;&#x5B58;&#x7BA1;&#x7406;&#xFF0C;&#x8BE6;&#x89C1;&#x4E0B;&#x6587;&#x5B9E;&#x73B0;&#x90E8;&#x5206;&#x3002;&#x53E6;&#x5916;&#x7F13;&#x5B58;&#x7684;&#x56FE;&#x50CF;&#x4F53;&#x79EF;&#x5927;&#x4E5F;&#x662F;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x5C0F;&#x6587;&#x4EF6;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x65E0;&#x4F18;&#x52BF;&#xFF0C;&#x5185;&#x5B58;&#x62F7;&#x8D1D;&#x7684;&#x91CF;&#x5C11;&#xFF0C;&#x62F7;&#x8D1D;&#x540E;&#x5360;&#x7528;&#x7528;&#x6237;&#x5185;&#x5B58;&#x4E5F;&#x4E0D;&#x9AD8;&#xFF0C;&#x6587;&#x4EF6;&#x8D8A;&#x5927;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x4F18;&#x52BF;&#x8D8A;&#x5927;&#x3002;</p>
+<h3 id="&#x5B57;&#x8282;&#x5BF9;&#x9F50;"><a href="#&#x5B57;&#x8282;&#x5BF9;&#x9F50;" class="headerlink" title="&#x5B57;&#x8282;&#x5BF9;&#x9F50;"></a>&#x5B57;&#x8282;&#x5BF9;&#x9F50;</h3><p>Core Animation&#x5728;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x975E;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x6E32;&#x67D3;&#x524D;&#x4F1A;&#x5148;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x56FE;&#x50CF;&#x6570;&#x636E;&#xFF0C;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x6CA1;&#x6709;&#x5BF9;&#x8FD9;&#x6B21;&#x62F7;&#x8D1D;&#x884C;&#x4E3A;&#x4F5C;&#x8BF4;&#x660E;&#xFF0C;&#x6A21;&#x62DF;&#x5668;&#x548C;Instrument&#x91CC;&#x6709;&#x9AD8;&#x4EAE;&#x663E;&#x793A;&#x201C;copied images&#x201D;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4F46;&#x4F3C;&#x4E4E;&#x5B83;&#x6709;bug&#xFF0C;&#x5373;&#x4F7F;&#x67D0;&#x5F20;&#x56FE;&#x7247;&#x6CA1;&#x6709;&#x88AB;&#x9AD8;&#x4EAE;&#x663E;&#x793A;&#x51FA;&#x6E32;&#x67D3;&#x65F6;&#x88AB;copy&#xFF0C;&#x4ECE;&#x8C03;&#x7528;&#x5806;&#x6808;&#x4E0A;&#x4E5F;&#x8FD8;&#x662F;&#x80FD;&#x770B;&#x5230;&#x8C03;&#x7528;&#x4E86;CA::Render::copy_image&#x65B9;&#x6CD5;&#xFF1A;</p>
 <p><a href="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache1.png" target="_blank" rel="external"><img src="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache1.png" alt="fastImageCache1"></a></p>
-<p>那什么是字节对齐呢，按我的理解，为了性能，底层渲染图像时不是一个像素一个像素渲染，而是一块一块渲染，数据是一块块地取，就可能遇到这一块连续的内存数据里结尾的数据不是图像的内容，是内存里其他的数据，可能越界读取导致一些奇怪的东西混入，所以在渲染之前CoreAnimation要把数据拷贝一份进行处理，确保每一块都是图像数据，对于不足一块的数据置空。大致图示：(pixel是图像像素数据，data是内存里其他数据)</p>
+<p>&#x90A3;&#x4EC0;&#x4E48;&#x662F;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x5462;&#xFF0C;&#x6309;&#x6211;&#x7684;&#x7406;&#x89E3;&#xFF0C;&#x4E3A;&#x4E86;&#x6027;&#x80FD;&#xFF0C;&#x5E95;&#x5C42;&#x6E32;&#x67D3;&#x56FE;&#x50CF;&#x65F6;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x6E32;&#x67D3;&#xFF0C;&#x800C;&#x662F;&#x4E00;&#x5757;&#x4E00;&#x5757;&#x6E32;&#x67D3;&#xFF0C;&#x6570;&#x636E;&#x662F;&#x4E00;&#x5757;&#x5757;&#x5730;&#x53D6;&#xFF0C;&#x5C31;&#x53EF;&#x80FD;&#x9047;&#x5230;&#x8FD9;&#x4E00;&#x5757;&#x8FDE;&#x7EED;&#x7684;&#x5185;&#x5B58;&#x6570;&#x636E;&#x91CC;&#x7ED3;&#x5C3E;&#x7684;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x56FE;&#x50CF;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x662F;&#x5185;&#x5B58;&#x91CC;&#x5176;&#x4ED6;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x80FD;&#x8D8A;&#x754C;&#x8BFB;&#x53D6;&#x5BFC;&#x81F4;&#x4E00;&#x4E9B;&#x5947;&#x602A;&#x7684;&#x4E1C;&#x897F;&#x6DF7;&#x5165;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x6E32;&#x67D3;&#x4E4B;&#x524D;CoreAnimation&#x8981;&#x628A;&#x6570;&#x636E;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x786E;&#x4FDD;&#x6BCF;&#x4E00;&#x5757;&#x90FD;&#x662F;&#x56FE;&#x50CF;&#x6570;&#x636E;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E0D;&#x8DB3;&#x4E00;&#x5757;&#x7684;&#x6570;&#x636E;&#x7F6E;&#x7A7A;&#x3002;&#x5927;&#x81F4;&#x56FE;&#x793A;&#xFF1A;(pixel&#x662F;&#x56FE;&#x50CF;&#x50CF;&#x7D20;&#x6570;&#x636E;&#xFF0C;data&#x662F;&#x5185;&#x5B58;&#x91CC;&#x5176;&#x4ED6;&#x6570;&#x636E;)</p>
 <p><a href="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache2.png" target="_blank" rel="external"><img src="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache2.png" alt="fastImageCache2"></a></p>
-<p>块的大小应该是跟CPU cache line有关，ARMv7是32byte，A9是64byte，在A9下CoreAnimation应该是按64byte作为一块数据去读取和渲染，让图像数据对齐64byte就可以避免CoreAnimation再拷贝一份数据进行修补。FastImageCache做的字节对齐就是这个事情。</p>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>FastImageCache把同个类型和尺寸的图像都放在一个文件里，根据文件偏移取单张图片，类似web的css雪碧图，这里称为ImageTable。这样做主要是为了方便统一管理图片缓存，控制缓存的大小，整个FastImageCache就是在管理一个个ImageTable的数据。整体实现的数据结构如图：</p>
+<p>&#x5757;&#x7684;&#x5927;&#x5C0F;&#x5E94;&#x8BE5;&#x662F;&#x8DDF;CPU cache line&#x6709;&#x5173;&#xFF0C;ARMv7&#x662F;32byte&#xFF0C;A9&#x662F;64byte&#xFF0C;&#x5728;A9&#x4E0B;CoreAnimation&#x5E94;&#x8BE5;&#x662F;&#x6309;64byte&#x4F5C;&#x4E3A;&#x4E00;&#x5757;&#x6570;&#x636E;&#x53BB;&#x8BFB;&#x53D6;&#x548C;&#x6E32;&#x67D3;&#xFF0C;&#x8BA9;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x5BF9;&#x9F50;64byte&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D;CoreAnimation&#x518D;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x4FEE;&#x8865;&#x3002;FastImageCache&#x505A;&#x7684;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x4E8B;&#x60C5;&#x3002;</p>
+<h1 id="&#x5B9E;&#x73B0;"><a href="#&#x5B9E;&#x73B0;" class="headerlink" title="&#x5B9E;&#x73B0;"></a>&#x5B9E;&#x73B0;</h1><p>FastImageCache&#x628A;&#x540C;&#x4E2A;&#x7C7B;&#x578B;&#x548C;&#x5C3A;&#x5BF8;&#x7684;&#x56FE;&#x50CF;&#x90FD;&#x653E;&#x5728;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x91CC;&#xFF0C;&#x6839;&#x636E;&#x6587;&#x4EF6;&#x504F;&#x79FB;&#x53D6;&#x5355;&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x7C7B;&#x4F3C;web&#x7684;css&#x96EA;&#x78A7;&#x56FE;&#xFF0C;&#x8FD9;&#x91CC;&#x79F0;&#x4E3A;ImageTable&#x3002;&#x8FD9;&#x6837;&#x505A;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x7EDF;&#x4E00;&#x7BA1;&#x7406;&#x56FE;&#x7247;&#x7F13;&#x5B58;&#xFF0C;&#x63A7;&#x5236;&#x7F13;&#x5B58;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x6574;&#x4E2A;FastImageCache&#x5C31;&#x662F;&#x5728;&#x7BA1;&#x7406;&#x4E00;&#x4E2A;&#x4E2A;ImageTable&#x7684;&#x6570;&#x636E;&#x3002;&#x6574;&#x4F53;&#x5B9E;&#x73B0;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5982;&#x56FE;&#xFF1A;</p>
 <p><a href="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache3.png" target="_blank" rel="external"><img src="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache3.png" alt="fastImageCache3"></a></p>
-<p>一些补充和说明：</p>
+<p>&#x4E00;&#x4E9B;&#x8865;&#x5145;&#x548C;&#x8BF4;&#x660E;&#xFF1A;</p>
 <h3 id="ImageTable"><a href="#ImageTable" class="headerlink" title="ImageTable"></a>ImageTable</h3><ol>
-<li>一个ImageFormat对应一个ImageTable，ImageFormat指定了ImageTable里图像渲染格式/大小等信息，ImageTable里的图像数据都由ImageFormat规定了统一的尺寸，每张图像大小都是一样的。</li>
-<li>一个ImageTable一个实体文件，并有另一个文件保存这个ImageTable的meta信息。</li>
-<li>图像使用entityUUID作为唯一标示符，由用户定义，通常是图像url的hash值。ImageTable Meta的indexMap记录了entityUUID-&gt;entryIndex的映射，通过indexMap就可以用图像的entityUUID找到缓存数据在ImageTable对应的位置。</li>
+<li>&#x4E00;&#x4E2A;ImageFormat&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;ImageTable&#xFF0C;ImageFormat&#x6307;&#x5B9A;&#x4E86;ImageTable&#x91CC;&#x56FE;&#x50CF;&#x6E32;&#x67D3;&#x683C;&#x5F0F;/&#x5927;&#x5C0F;&#x7B49;&#x4FE1;&#x606F;&#xFF0C;ImageTable&#x91CC;&#x7684;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x90FD;&#x7531;ImageFormat&#x89C4;&#x5B9A;&#x4E86;&#x7EDF;&#x4E00;&#x7684;&#x5C3A;&#x5BF8;&#xFF0C;&#x6BCF;&#x5F20;&#x56FE;&#x50CF;&#x5927;&#x5C0F;&#x90FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</li>
+<li>&#x4E00;&#x4E2A;ImageTable&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x6709;&#x53E6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4FDD;&#x5B58;&#x8FD9;&#x4E2A;ImageTable&#x7684;meta&#x4FE1;&#x606F;&#x3002;</li>
+<li>&#x56FE;&#x50CF;&#x4F7F;&#x7528;entityUUID&#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x6807;&#x793A;&#x7B26;&#xFF0C;&#x7531;&#x7528;&#x6237;&#x5B9A;&#x4E49;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x56FE;&#x50CF;url&#x7684;hash&#x503C;&#x3002;ImageTable Meta&#x7684;indexMap&#x8BB0;&#x5F55;&#x4E86;entityUUID-&gt;entryIndex&#x7684;&#x6620;&#x5C04;&#xFF0C;&#x901A;&#x8FC7;indexMap&#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x56FE;&#x50CF;&#x7684;entityUUID&#x627E;&#x5230;&#x7F13;&#x5B58;&#x6570;&#x636E;&#x5728;ImageTable&#x5BF9;&#x5E94;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</li>
 </ol>
 <h3 id="ImageTableEntry"><a href="#ImageTableEntry" class="headerlink" title="ImageTableEntry"></a>ImageTableEntry</h3><ol>
-<li>ImageTable的实体数据是ImageTableEntry，每个entry有两部分数据，一部分是对齐后的图像数据，另一部分是meta信息，meta保存这张图像的UUID和原图UUID，用于校验图像数据的正确性。</li>
-<li>Entry数据是按内存分页大小对齐的，数据大小是内存分页大小的整数倍，这样可以保证虚拟内存缺页加载时使用最少的内存页加载一张图像。</li>
-<li>图像数据做了字节对齐处理，CoreAnimation使用时无需再处理拷贝。具体做法是CGBitmapContextCreate创建位图画布时bytesPerRow参数传64倍数。</li>
+<li>ImageTable&#x7684;&#x5B9E;&#x4F53;&#x6570;&#x636E;&#x662F;ImageTableEntry&#xFF0C;&#x6BCF;&#x4E2A;entry&#x6709;&#x4E24;&#x90E8;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x4E00;&#x90E8;&#x5206;&#x662F;&#x5BF9;&#x9F50;&#x540E;&#x7684;&#x56FE;&#x50CF;&#x6570;&#x636E;&#xFF0C;&#x53E6;&#x4E00;&#x90E8;&#x5206;&#x662F;meta&#x4FE1;&#x606F;&#xFF0C;meta&#x4FDD;&#x5B58;&#x8FD9;&#x5F20;&#x56FE;&#x50CF;&#x7684;UUID&#x548C;&#x539F;&#x56FE;UUID&#xFF0C;&#x7528;&#x4E8E;&#x6821;&#x9A8C;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x7684;&#x6B63;&#x786E;&#x6027;&#x3002;</li>
+<li>Entry&#x6570;&#x636E;&#x662F;&#x6309;&#x5185;&#x5B58;&#x5206;&#x9875;&#x5927;&#x5C0F;&#x5BF9;&#x9F50;&#x7684;&#xFF0C;&#x6570;&#x636E;&#x5927;&#x5C0F;&#x662F;&#x5185;&#x5B58;&#x5206;&#x9875;&#x5927;&#x5C0F;&#x7684;&#x6574;&#x6570;&#x500D;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x7F3A;&#x9875;&#x52A0;&#x8F7D;&#x65F6;&#x4F7F;&#x7528;&#x6700;&#x5C11;&#x7684;&#x5185;&#x5B58;&#x9875;&#x52A0;&#x8F7D;&#x4E00;&#x5F20;&#x56FE;&#x50CF;&#x3002;</li>
+<li>&#x56FE;&#x50CF;&#x6570;&#x636E;&#x505A;&#x4E86;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x5904;&#x7406;&#xFF0C;CoreAnimation&#x4F7F;&#x7528;&#x65F6;&#x65E0;&#x9700;&#x518D;&#x5904;&#x7406;&#x62F7;&#x8D1D;&#x3002;&#x5177;&#x4F53;&#x505A;&#x6CD5;&#x662F;CGBitmapContextCreate&#x521B;&#x5EFA;&#x4F4D;&#x56FE;&#x753B;&#x5E03;&#x65F6;bytesPerRow&#x53C2;&#x6570;&#x4F20;64&#x500D;&#x6570;&#x3002;</li>
 </ol>
 <h3 id="Chunk"><a href="#Chunk" class="headerlink" title="Chunk"></a>Chunk</h3><ul>
-<li>ImageTable和实体数据Entry间多了层Chunk，Chunk是逻辑上的数据划分，N个Entry作为一个Chunk，内存映射mmap操作是以chunk为单位的，每一个chunk执行一次mmap把这个chunk的内容映射到虚拟内存。为什么要多一层chunk呢，按我的理解，这样做是为了灵活控制mmap的大小和调用次数，若对整个ImageTable执行mmap，载入虚拟内存的文件过大，若对每个Entry做mmap，调用次数会太多。</li>
+<li>ImageTable&#x548C;&#x5B9E;&#x4F53;&#x6570;&#x636E;Entry&#x95F4;&#x591A;&#x4E86;&#x5C42;Chunk&#xFF0C;Chunk&#x662F;&#x903B;&#x8F91;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x5212;&#x5206;&#xFF0C;N&#x4E2A;Entry&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;Chunk&#xFF0C;&#x5185;&#x5B58;&#x6620;&#x5C04;mmap&#x64CD;&#x4F5C;&#x662F;&#x4EE5;chunk&#x4E3A;&#x5355;&#x4F4D;&#x7684;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;chunk&#x6267;&#x884C;&#x4E00;&#x6B21;mmap&#x628A;&#x8FD9;&#x4E2A;chunk&#x7684;&#x5185;&#x5BB9;&#x6620;&#x5C04;&#x5230;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x591A;&#x4E00;&#x5C42;chunk&#x5462;&#xFF0C;&#x6309;&#x6211;&#x7684;&#x7406;&#x89E3;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x662F;&#x4E3A;&#x4E86;&#x7075;&#x6D3B;&#x63A7;&#x5236;mmap&#x7684;&#x5927;&#x5C0F;&#x548C;&#x8C03;&#x7528;&#x6B21;&#x6570;&#xFF0C;&#x82E5;&#x5BF9;&#x6574;&#x4E2A;ImageTable&#x6267;&#x884C;mmap&#xFF0C;&#x8F7D;&#x5165;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x7684;&#x6587;&#x4EF6;&#x8FC7;&#x5927;&#xFF0C;&#x82E5;&#x5BF9;&#x6BCF;&#x4E2A;Entry&#x505A;mmap&#xFF0C;&#x8C03;&#x7528;&#x6B21;&#x6570;&#x4F1A;&#x592A;&#x591A;&#x3002;</li>
 </ul>
-<h3 id="缓存管理"><a href="#缓存管理" class="headerlink" title="缓存管理"></a>缓存管理</h3><ul>
-<li>用户可以定义整个ImageTable里最大缓存的图像数量，在有新图像需要缓存时，如果缓存没有超过限制，会以chunk为单位扩展文件大小，顺序写下去。如果已超过最大缓存限制，会把最少使用的缓存替换掉，实现方法是每次使用图像都会把UUID插入到MRUEntries数组的开头，MRUEntries按最近使用顺序排列了图像UUID，数组里最后一个图像就是最少使用的。被替换掉的图片下次需要再使用时，再走一次取原图—解压—存储的流程。</li>
+<h3 id="&#x7F13;&#x5B58;&#x7BA1;&#x7406;"><a href="#&#x7F13;&#x5B58;&#x7BA1;&#x7406;" class="headerlink" title="&#x7F13;&#x5B58;&#x7BA1;&#x7406;"></a>&#x7F13;&#x5B58;&#x7BA1;&#x7406;</h3><ul>
+<li>&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x6574;&#x4E2A;ImageTable&#x91CC;&#x6700;&#x5927;&#x7F13;&#x5B58;&#x7684;&#x56FE;&#x50CF;&#x6570;&#x91CF;&#xFF0C;&#x5728;&#x6709;&#x65B0;&#x56FE;&#x50CF;&#x9700;&#x8981;&#x7F13;&#x5B58;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x7F13;&#x5B58;&#x6CA1;&#x6709;&#x8D85;&#x8FC7;&#x9650;&#x5236;&#xFF0C;&#x4F1A;&#x4EE5;chunk&#x4E3A;&#x5355;&#x4F4D;&#x6269;&#x5C55;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#xFF0C;&#x987A;&#x5E8F;&#x5199;&#x4E0B;&#x53BB;&#x3002;&#x5982;&#x679C;&#x5DF2;&#x8D85;&#x8FC7;&#x6700;&#x5927;&#x7F13;&#x5B58;&#x9650;&#x5236;&#xFF0C;&#x4F1A;&#x628A;&#x6700;&#x5C11;&#x4F7F;&#x7528;&#x7684;&#x7F13;&#x5B58;&#x66FF;&#x6362;&#x6389;&#xFF0C;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x662F;&#x6BCF;&#x6B21;&#x4F7F;&#x7528;&#x56FE;&#x50CF;&#x90FD;&#x4F1A;&#x628A;UUID&#x63D2;&#x5165;&#x5230;MRUEntries&#x6570;&#x7EC4;&#x7684;&#x5F00;&#x5934;&#xFF0C;MRUEntries&#x6309;&#x6700;&#x8FD1;&#x4F7F;&#x7528;&#x987A;&#x5E8F;&#x6392;&#x5217;&#x4E86;&#x56FE;&#x50CF;UUID&#xFF0C;&#x6570;&#x7EC4;&#x91CC;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x56FE;&#x50CF;&#x5C31;&#x662F;&#x6700;&#x5C11;&#x4F7F;&#x7528;&#x7684;&#x3002;&#x88AB;&#x66FF;&#x6362;&#x6389;&#x7684;&#x56FE;&#x7247;&#x4E0B;&#x6B21;&#x9700;&#x8981;&#x518D;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x518D;&#x8D70;&#x4E00;&#x6B21;&#x53D6;&#x539F;&#x56FE;&#x2014;&#x89E3;&#x538B;&#x2014;&#x5B58;&#x50A8;&#x7684;&#x6D41;&#x7A0B;&#x3002;</li>
 </ul>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>FastImageCache适合用于tableView里缓存每个cell上同样规格的图像，优点是能极大加快第一次从磁盘加载这些图像的速度。但它有两个明显的缺点：一是占空间大。因为缓存了解码后的位图到磁盘，位图是很大的，宽高100<em>100的图像在2x的高清屏设备下就需要200</em>200*4byte/pixel=156KB，这也是为什么FastImageCache要大费周章限制缓存大小。二是接口不友好，需预定义好缓存的图像尺寸。FastImageCache无法像SDWebImage那样无缝接入UIImageView，使用它需要配置ImageTable，定义好尺寸，手动提供的原图，每种实体图像要定义一个FICEntity模型，使逻辑变复杂。</p>
-<p>FastImageCache已经属于极限优化，做图像加载/渲染优化时应该优先考虑一些低代价高回报的优化点，例如CALayer代替UIImageVIew，减少GPU计算（去透明/像素对齐），图像子线程解码，避免Offscreen-Render等。在其他优化都做到位，图像的渲染还是有性能问题的前提下才考虑使用FastImageCache进一步提升首次加载的性能，不过字节对齐的优化倒是可以脱离FastImageCache直接运用在项目上，只需要在解码图像时bitmap画布的bytesPerRow设为64的倍数即可。</p>
+<h1 id="&#x4F7F;&#x7528;"><a href="#&#x4F7F;&#x7528;" class="headerlink" title="&#x4F7F;&#x7528;"></a>&#x4F7F;&#x7528;</h1><p>FastImageCache&#x9002;&#x5408;&#x7528;&#x4E8E;tableView&#x91CC;&#x7F13;&#x5B58;&#x6BCF;&#x4E2A;cell&#x4E0A;&#x540C;&#x6837;&#x89C4;&#x683C;&#x7684;&#x56FE;&#x50CF;&#xFF0C;&#x4F18;&#x70B9;&#x662F;&#x80FD;&#x6781;&#x5927;&#x52A0;&#x5FEB;&#x7B2C;&#x4E00;&#x6B21;&#x4ECE;&#x78C1;&#x76D8;&#x52A0;&#x8F7D;&#x8FD9;&#x4E9B;&#x56FE;&#x50CF;&#x7684;&#x901F;&#x5EA6;&#x3002;&#x4F46;&#x5B83;&#x6709;&#x4E24;&#x4E2A;&#x660E;&#x663E;&#x7684;&#x7F3A;&#x70B9;&#xFF1A;&#x4E00;&#x662F;&#x5360;&#x7A7A;&#x95F4;&#x5927;&#x3002;&#x56E0;&#x4E3A;&#x7F13;&#x5B58;&#x4E86;&#x89E3;&#x7801;&#x540E;&#x7684;&#x4F4D;&#x56FE;&#x5230;&#x78C1;&#x76D8;&#xFF0C;&#x4F4D;&#x56FE;&#x662F;&#x5F88;&#x5927;&#x7684;&#xFF0C;&#x5BBD;&#x9AD8;100<em>100&#x7684;&#x56FE;&#x50CF;&#x5728;2x&#x7684;&#x9AD8;&#x6E05;&#x5C4F;&#x8BBE;&#x5907;&#x4E0B;&#x5C31;&#x9700;&#x8981;200</em>200*4byte/pixel=156KB&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;FastImageCache&#x8981;&#x5927;&#x8D39;&#x5468;&#x7AE0;&#x9650;&#x5236;&#x7F13;&#x5B58;&#x5927;&#x5C0F;&#x3002;&#x4E8C;&#x662F;&#x63A5;&#x53E3;&#x4E0D;&#x53CB;&#x597D;&#xFF0C;&#x9700;&#x9884;&#x5B9A;&#x4E49;&#x597D;&#x7F13;&#x5B58;&#x7684;&#x56FE;&#x50CF;&#x5C3A;&#x5BF8;&#x3002;FastImageCache&#x65E0;&#x6CD5;&#x50CF;SDWebImage&#x90A3;&#x6837;&#x65E0;&#x7F1D;&#x63A5;&#x5165;UIImageView&#xFF0C;&#x4F7F;&#x7528;&#x5B83;&#x9700;&#x8981;&#x914D;&#x7F6E;ImageTable&#xFF0C;&#x5B9A;&#x4E49;&#x597D;&#x5C3A;&#x5BF8;&#xFF0C;&#x624B;&#x52A8;&#x63D0;&#x4F9B;&#x7684;&#x539F;&#x56FE;&#xFF0C;&#x6BCF;&#x79CD;&#x5B9E;&#x4F53;&#x56FE;&#x50CF;&#x8981;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;FICEntity&#x6A21;&#x578B;&#xFF0C;&#x4F7F;&#x903B;&#x8F91;&#x53D8;&#x590D;&#x6742;&#x3002;</p>
+<p>FastImageCache&#x5DF2;&#x7ECF;&#x5C5E;&#x4E8E;&#x6781;&#x9650;&#x4F18;&#x5316;&#xFF0C;&#x505A;&#x56FE;&#x50CF;&#x52A0;&#x8F7D;/&#x6E32;&#x67D3;&#x4F18;&#x5316;&#x65F6;&#x5E94;&#x8BE5;&#x4F18;&#x5148;&#x8003;&#x8651;&#x4E00;&#x4E9B;&#x4F4E;&#x4EE3;&#x4EF7;&#x9AD8;&#x56DE;&#x62A5;&#x7684;&#x4F18;&#x5316;&#x70B9;&#xFF0C;&#x4F8B;&#x5982;CALayer&#x4EE3;&#x66FF;UIImageVIew&#xFF0C;&#x51CF;&#x5C11;GPU&#x8BA1;&#x7B97;&#xFF08;&#x53BB;&#x900F;&#x660E;/&#x50CF;&#x7D20;&#x5BF9;&#x9F50;&#xFF09;&#xFF0C;&#x56FE;&#x50CF;&#x5B50;&#x7EBF;&#x7A0B;&#x89E3;&#x7801;&#xFF0C;&#x907F;&#x514D;Offscreen-Render&#x7B49;&#x3002;&#x5728;&#x5176;&#x4ED6;&#x4F18;&#x5316;&#x90FD;&#x505A;&#x5230;&#x4F4D;&#xFF0C;&#x56FE;&#x50CF;&#x7684;&#x6E32;&#x67D3;&#x8FD8;&#x662F;&#x6709;&#x6027;&#x80FD;&#x95EE;&#x9898;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x624D;&#x8003;&#x8651;&#x4F7F;&#x7528;FastImageCache&#x8FDB;&#x4E00;&#x6B65;&#x63D0;&#x5347;&#x9996;&#x6B21;&#x52A0;&#x8F7D;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x4E0D;&#x8FC7;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x7684;&#x4F18;&#x5316;&#x5012;&#x662F;&#x53EF;&#x4EE5;&#x8131;&#x79BB;FastImageCache&#x76F4;&#x63A5;&#x8FD0;&#x7528;&#x5728;&#x9879;&#x76EE;&#x4E0A;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x89E3;&#x7801;&#x56FE;&#x50CF;&#x65F6;bitmap&#x753B;&#x5E03;&#x7684;bytesPerRow&#x8BBE;&#x4E3A;64&#x7684;&#x500D;&#x6570;&#x5373;&#x53EF;&#x3002;</p>
 
           
         
@@ -1486,7 +1266,7 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/03/uiview-contentmode/" itemprop="url">
+                <a class="post-title-link" href="/2015/09/03/UIView-的contentMode/" itemprop="url">
                   UIView 的contentMode
                 </a>
               
@@ -1560,36 +1340,12 @@
 
       
         
-          
-            <h2 id="内容模式"><a href="#内容模式" class="headerlink" title="内容模式"></a><strong>内容模式</strong></h2><p>　　一个视图向它自身绘图，相对于只有背景颜色和子视图，它还有内容。这意味着每当视图被调整大小它的<strong>contentMode</strong>属性就变得非常重要。正如我之前提到的，绘图系统会尽可能避免重头开始绘制视图。相反，绘图系统将使用之前绘图操作的缓存结果（位图回填）。所以，如果视图被重新调整大小，系统可能简单的伸缩或重定位缓存绘图，前提是你的<strong>contentMode</strong>设置指令是是这样设置的。</p>
-<p> <wbr></p>
-<p>通常我们的视图的<strong>contentMode</strong>属性需要与视图绘制自己的方式一致。假设我们的<strong>drawRect：</strong>方法中的代码让箭头的尺寸和位置相对于视图的边界原点，即它的左上方。所以我们可以设置它的<strong>contentMode</strong>为<strong>UIViewContentModeTopLeft<wbr></strong>。又或者，我们可以将<strong>contentMode</strong>设置为<strong>UIVIewContentModeRedraw，</strong>这将引起缓存内容的自动缩放和重定位被关闭，最终结果是视图的<strong>setNeedsDisplay</strong>方法将被调用，触发<strong>drawRect：</strong>方法重绘视图内容。</p>
-<p>　　在另一方面，如果一个视图只是暂时被调整大小。假设是作为动画的一部分，那么伸缩行为正是你所想要的。假设我们的动画是想要让视图变大然后还原回原始大小以达到作为吸引用户的一种手段。这就需要视图伸缩的时候视图的内容也跟着伸缩，正确的<strong>contentMode</strong>的值是<strong>UIViewContentModeScaleTo<wbr>Fill</strong>，被伸缩的内容仅仅是视图内容的一副缓存图片，所以它运行起来十分的高效。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><pre class="lang:objc decode:true ">        /**<br>         UIViewContentModeScaleToFill : 图片拉伸至填充整个UIImageView（图片可能会变形）</pre></p>
-<pre><code>UIViewContentModeScaleAspectFit : 图片拉伸至完全显示在UIImageView里面为止（图片不会变形）
-
-UIViewContentModeScaleAspectFill : 
-图片拉伸至 图片的宽度等于UIImageView的宽度 或者 图片的高度等于UIImageView的高度 为止
-
-UIViewContentModeRedraw : 调用了setNeedsDisplay方法时，就会将图片重新渲染
-
-UIViewContentModeCenter : 居中显示
-UIViewContentModeTop,
-UIViewContentModeBottom,
-UIViewContentModeLeft,
-UIViewContentModeRight,
-UIViewContentModeTopLeft,
-UIViewContentModeTopRight,
-UIViewContentModeBottomLeft,
-UIViewContentModeBottomRight,
-
-经验规律：
-1.凡是带有Scale单词的，图片都会拉伸
-2.凡是带有Aspect单词的，图片都会保持原来的宽高比，图片不会变形
-*/&lt;/pre&gt;
-</code></pre><p>&nbsp;</p>
-
-          
+          <h1 id="&#x5185;&#x5BB9;&#x6A21;&#x5F0F;"><a href="#&#x5185;&#x5BB9;&#x6A21;&#x5F0F;" class="headerlink" title="&#x5185;&#x5BB9;&#x6A21;&#x5F0F;"></a><strong>&#x5185;&#x5BB9;&#x6A21;&#x5F0F;</strong></h1><p>&#x3000;&#x3000;&#x4E00;&#x4E2A;&#x89C6;&#x56FE;&#x5411;&#x5B83;&#x81EA;&#x8EAB;&#x7ED8;&#x56FE;&#xFF0C;&#x76F8;&#x5BF9;&#x4E8E;&#x53EA;&#x6709;&#x80CC;&#x666F;&#x989C;&#x8272;&#x548C;&#x5B50;&#x89C6;&#x56FE;&#xFF0C;&#x5B83;&#x8FD8;&#x6709;&#x5185;&#x5BB9;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x6BCF;&#x5F53;&#x89C6;&#x56FE;&#x88AB;&#x8C03;&#x6574;&#x5927;&#x5C0F;&#x5B83;&#x7684;<code>contentMode</code>&#x5C5E;&#x6027;&#x5C31;&#x53D8;&#x5F97;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;&#x6B63;&#x5982;&#x6211;&#x4E4B;&#x524D;&#x63D0;&#x5230;&#x7684;&#xFF0C;&#x7ED8;&#x56FE;&#x7CFB;&#x7EDF;&#x4F1A;&#x5C3D;&#x53EF;&#x80FD;&#x907F;&#x514D;&#x91CD;&#x5934;&#x5F00;&#x59CB;&#x7ED8;&#x5236;&#x89C6;&#x56FE;&#x3002;&#x76F8;&#x53CD;&#xFF0C;&#x7ED8;&#x56FE;&#x7CFB;&#x7EDF;&#x5C06;&#x4F7F;&#x7528;&#x4E4B;&#x524D;&#x7ED8;&#x56FE;&#x64CD;&#x4F5C;&#x7684;&#x7F13;&#x5B58;&#x7ED3;&#x679C;&#xFF08;&#x4F4D;&#x56FE;&#x56DE;&#x586B;&#xFF09;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5982;&#x679C;&#x89C6;&#x56FE;&#x88AB;&#x91CD;&#x65B0;&#x8C03;&#x6574;&#x5927;&#x5C0F;&#xFF0C;&#x7CFB;&#x7EDF;&#x53EF;&#x80FD;&#x7B80;&#x5355;&#x7684;&#x4F38;&#x7F29;&#x6216;&#x91CD;&#x5B9A;&#x4F4D;&#x7F13;&#x5B58;&#x7ED8;&#x56FE;&#xFF0C;&#x524D;&#x63D0;&#x662F;&#x4F60;&#x7684;<code>contentMode</code>&#x8BBE;&#x7F6E;&#x6307;&#x4EE4;&#x662F;&#x662F;&#x8FD9;&#x6837;&#x8BBE;&#x7F6E;&#x7684;&#x3002;</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/03/UIView-的contentMode/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1700,9 +1456,9 @@ UIViewContentModeBottomRight,
       
         
           
-            <p>KVC 与 KVO 是 Objective C 的关键概念，个人认为必须理解的东西，下面是实例讲解。</p>
-<p>Key-Value Coding (KVC)<br>KVC，即是指 NSKeyValueCoding，一个非正式的 Protocol，提供一种机制来间接访问对象的属性。KVO 就是基于 KVC 实现的关键技术之一。</p>
-<p>一个对象拥有某些属性。比如说，一个 Person 对象有一个 name 和一个 address 属性。以 KVC 说法，Person 对象分别有一个 value 对应他的 name 和 address 的 key。 key 只是一个字符串，它对应的值可以是任意类型的对象。从最基础的层次上看，KVC 有两个方法：一个是设置 key 的值，另一个是获取 key 的值。如下面的例子：</p>
+            <p>KVC &#x4E0E; KVO &#x662F; Objective C &#x7684;&#x5173;&#x952E;&#x6982;&#x5FF5;&#xFF0C;&#x4E2A;&#x4EBA;&#x8BA4;&#x4E3A;&#x5FC5;&#x987B;&#x7406;&#x89E3;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x4E0B;&#x9762;&#x662F;&#x5B9E;&#x4F8B;&#x8BB2;&#x89E3;&#x3002;</p>
+<p>Key-Value Coding (KVC)<br>KVC&#xFF0C;&#x5373;&#x662F;&#x6307; NSKeyValueCoding&#xFF0C;&#x4E00;&#x4E2A;&#x975E;&#x6B63;&#x5F0F;&#x7684; Protocol&#xFF0C;&#x63D0;&#x4F9B;&#x4E00;&#x79CD;&#x673A;&#x5236;&#x6765;&#x95F4;&#x63A5;&#x8BBF;&#x95EE;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x3002;KVO &#x5C31;&#x662F;&#x57FA;&#x4E8E; KVC &#x5B9E;&#x73B0;&#x7684;&#x5173;&#x952E;&#x6280;&#x672F;&#x4E4B;&#x4E00;&#x3002;</p>
+<p>&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x62E5;&#x6709;&#x67D0;&#x4E9B;&#x5C5E;&#x6027;&#x3002;&#x6BD4;&#x5982;&#x8BF4;&#xFF0C;&#x4E00;&#x4E2A; Person &#x5BF9;&#x8C61;&#x6709;&#x4E00;&#x4E2A; name &#x548C;&#x4E00;&#x4E2A; address &#x5C5E;&#x6027;&#x3002;&#x4EE5; KVC &#x8BF4;&#x6CD5;&#xFF0C;Person &#x5BF9;&#x8C61;&#x5206;&#x522B;&#x6709;&#x4E00;&#x4E2A; value &#x5BF9;&#x5E94;&#x4ED6;&#x7684; name &#x548C; address &#x7684; key&#x3002; key &#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5B83;&#x5BF9;&#x5E94;&#x7684;&#x503C;&#x53EF;&#x4EE5;&#x662F;&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x4ECE;&#x6700;&#x57FA;&#x7840;&#x7684;&#x5C42;&#x6B21;&#x4E0A;&#x770B;&#xFF0C;KVC &#x6709;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;&#x4E00;&#x4E2A;&#x662F;&#x8BBE;&#x7F6E; key &#x7684;&#x503C;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x662F;&#x83B7;&#x53D6; key &#x7684;&#x503C;&#x3002;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
 <p><pre class="lang:objc decode:true ">void changeName(Person <em>p, NSString </em>newName)<br>{</pre></p>
 <pre><code>// using the KVC accessor (getter) method
 NSString *originalName = [p valueForKey:@&quot;name&quot;];
@@ -1711,8 +1467,8 @@ NSString *originalName = [p valueForKey:@&quot;name&quot;];
 [p setValue:newName forKey:@&quot;name&quot;];
 
 NSLog(@&quot;Changed %@&apos;s name to: %@&quot;, originalName, newName);
-</code></pre><p>}<br>&nbsp;</p>
-<p>现在，如果 Person 有另外一个 key 配偶（spouse），spouse 的 key 值是另一个 Person 对象，用 KVC 可以这样写：</p>
+</code></pre><p>}<br>&#xA0;</p>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x5982;&#x679C; Person &#x6709;&#x53E6;&#x5916;&#x4E00;&#x4E2A; key &#x914D;&#x5076;&#xFF08;spouse&#xFF09;&#xFF0C;spouse &#x7684; key &#x503C;&#x662F;&#x53E6;&#x4E00;&#x4E2A; Person &#x5BF9;&#x8C61;&#xFF0C;&#x7528; KVC &#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5199;&#xFF1A;</p>
 <p><pre class="lang:objc decode:true">void logMarriage(Person *p)<br>{</pre></p>
 <pre><code>// just using the accessor again, same as example above
 NSString *personsName = [p valueForKey:@&quot;name&quot;];
@@ -1722,31 +1478,150 @@ NSString *personsName = [p valueForKey:@&quot;name&quot;];
 NSString *spousesName = [p valueForKeyPath:@&quot;spouse.name&quot;];
 
 NSLog(@&quot;%@ is happily married to %@&quot;, personsName, spousesName);
-</code></pre><p>}<br>key 与 key pat 要区分开来，key 可以从一个对象中获取值，而 key path 可以将多个 key 用点号 “.” 分割连接起来，比如：</p>
-<p>[p valueForKeyPath:@”spouse.name”];<br>相当于这样……</p>
-<p>[[p valueForKey:@”spouse”] valueForKey:@”name”];<br>好了，以上是 KVC 的基本知识，接着看看 KVO。</p>
-<p>Key-Value Observing (KVO)<br>Key-Value Observing (KVO) 建立在 KVC 之上，它能够观察一个对象的 KVC key path 值的变化。举个例子，用代码观察一个 person 对象的 address 变化，以下是实现的三个方法：</p>
-<p>watchPersonForChangeOfAddress: 实现观察<br>observeValueForKeyPath:ofObject:change:context: 在被观察的 key path 的值变化时调用。<br>dealloc 停止观察</p>
-<p><pre class="lang:objc decode:true">static NSString *const KVO_CONTEXT_ADDRESS_CHANGED = @”KVO_CONTEXT_ADDRESS_CHANGED”</pre></p>
+</code></pre><p>}<br>key &#x4E0E; key pat &#x8981;&#x533A;&#x5206;&#x5F00;&#x6765;&#xFF0C;key &#x53EF;&#x4EE5;&#x4ECE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x83B7;&#x53D6;&#x503C;&#xFF0C;&#x800C; key path &#x53EF;&#x4EE5;&#x5C06;&#x591A;&#x4E2A; key &#x7528;&#x70B9;&#x53F7; &#x201C;.&#x201D; &#x5206;&#x5272;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<p>[p valueForKeyPath:@&#x201D;spouse.name&#x201D;];<br>&#x76F8;&#x5F53;&#x4E8E;&#x8FD9;&#x6837;&#x2026;&#x2026;</p>
+<p>[[p valueForKey:@&#x201D;spouse&#x201D;] valueForKey:@&#x201D;name&#x201D;];<br>&#x597D;&#x4E86;&#xFF0C;&#x4EE5;&#x4E0A;&#x662F; KVC &#x7684;&#x57FA;&#x672C;&#x77E5;&#x8BC6;&#xFF0C;&#x63A5;&#x7740;&#x770B;&#x770B; KVO&#x3002;</p>
+<p>Key-Value Observing (KVO)<br>Key-Value Observing (KVO) &#x5EFA;&#x7ACB;&#x5728; KVC &#x4E4B;&#x4E0A;&#xFF0C;&#x5B83;&#x80FD;&#x591F;&#x89C2;&#x5BDF;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684; KVC key path &#x503C;&#x7684;&#x53D8;&#x5316;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x7528;&#x4EE3;&#x7801;&#x89C2;&#x5BDF;&#x4E00;&#x4E2A; person &#x5BF9;&#x8C61;&#x7684; address &#x53D8;&#x5316;&#xFF0C;&#x4EE5;&#x4E0B;&#x662F;&#x5B9E;&#x73B0;&#x7684;&#x4E09;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p>watchPersonForChangeOfAddress: &#x5B9E;&#x73B0;&#x89C2;&#x5BDF;<br>observeValueForKeyPath:ofObject:change:context: &#x5728;&#x88AB;&#x89C2;&#x5BDF;&#x7684; key path &#x7684;&#x503C;&#x53D8;&#x5316;&#x65F6;&#x8C03;&#x7528;&#x3002;<br>dealloc &#x505C;&#x6B62;&#x89C2;&#x5BDF;</p>
+<p><pre class="lang:objc decode:true">static NSString *const KVO_CONTEXT_ADDRESS_CHANGED = @&#x201D;KVO_CONTEXT_ADDRESS_CHANGED&#x201D;</pre></p>
 <p>@implementation PersonWatcher</p>
 <p>-(void) watchPersonForChangeOfAddress:(Person *)p<br>{</p>
-<p>// this begins the observing<br>[p addObserver:self<br>forKeyPath:@”address”<br>options:0<br>context:KVO_CONTEXT_ADDRESS_CHANGED];</p>
+<p>// this begins the observing<br>[p addObserver:self<br>forKeyPath:@&#x201D;address&#x201D;<br>options:0<br>context:KVO_CONTEXT_ADDRESS_CHANGED];</p>
 <p>// keep a record of all the people being observed,<br>// because we need to stop observing them in dealloc<br>[m_observedPeople addObject:p];<br>}</p>
 <p>// whenever an observed key path changes, this method will be called</p>
 <ul>
 <li>(void)observeValueForKeyPath:(NSString <em>)keyPath<br>ofObject:(id)object<br>change:(NSDictionary </em>)change<br>context:(void *)context</li>
 </ul>
-<p>{<br>// use the context to make sure this is a change in the address,<br>// because we may also be observing other things<br>if(context == KVO_CONTEXT_ADDRESS_CHANGED) {<br>NSString <em>name = [object valueForKey:@”name”];<br>NSString </em>address = [object valueForKey:@”address”];<br>NSLog(@”%@ has a new address: %@”, name, address);<br>}<br>}</p>
+<p>{<br>// use the context to make sure this is a change in the address,<br>// because we may also be observing other things<br>if(context == KVO_CONTEXT_ADDRESS_CHANGED) {<br>NSString <em>name = [object valueForKey:@&#x201D;name&#x201D;];<br>NSString </em>address = [object valueForKey:@&#x201D;address&#x201D;];<br>NSLog(@&#x201D;%@ has a new address: %@&#x201D;, name, address);<br>}<br>}</p>
 <p>-(void) dealloc;<br>{</p>
-<p>// must stop observing everything before this object is<br>// deallocated, otherwise it will cause crashes<br>for(Person *p in m_observedPeople){<br>[p removeObserver:self forKeyPath:@”address”];<br>}</p>
+<p>// must stop observing everything before this object is<br>// deallocated, otherwise it will cause crashes<br>for(Person *p in m_observedPeople){<br>[p removeObserver:self forKeyPath:@&#x201D;address&#x201D;];<br>}</p>
 <p>[m_observedPeople release];<br>m_observedPeople = nil;</p>
 <p>[super dealloc];</p>
 <p>}</p>
 <p>-(id) init;<br>{<br>if(self = [super init]){<br>m_observedPeople = [NSMutableArray new];<br>}</p>
 <p>return self;<br>}</p>
-<p>@end<br>这就是 KVO 的作用，它通过 key path 观察对象的值，当值发生变化的时候会收到通知。</p>
+<p>@end<br>&#x8FD9;&#x5C31;&#x662F; KVO &#x7684;&#x4F5C;&#x7528;&#xFF0C;&#x5B83;&#x901A;&#x8FC7; key path &#x89C2;&#x5BDF;&#x5BF9;&#x8C61;&#x7684;&#x503C;&#xFF0C;&#x5F53;&#x503C;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x6536;&#x5230;&#x901A;&#x77E5;&#x3002;</p>
 
           
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/07/mac-used-in-the-ios-command-line/" itemprop="url">
+                  在IOS中mac常用命令行
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-07T23:43:29+08:00" content="2015-08-07">
+              2015-08-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>&#x542F;&#x52A8;&#x672C;&#x5730;&#x7684;Apache&#x670D;&#x52A1;&#x5668;</p>
+<p><span class="s1">sudo apachectl -k start</span></p>
+<p>&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x672C;&#x5730;&#x7684;Apache&#x670D;&#x52A1;&#x5668;</p>
+<p>sudo apachectl -k restart</p>
+<p>(&#x6D89;&#x53CA;&#x4FEE;&#x6539;,&#x5C31;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x542F;&#x52A8;)</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/07/mac-used-in-the-ios-command-line/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1818,7 +1693,7 @@ NSLog(@&quot;%@ is happily married to %@&quot;, personsName, spousesName);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

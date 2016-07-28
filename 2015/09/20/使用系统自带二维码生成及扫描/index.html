@@ -1,0 +1,567 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="二维码," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x751F;&amp;#x6210;&amp;#x4EE3;&amp;#x7801;1234567891011121314151617// 1.&amp;#x5B9E;&amp;#x4F8B;&amp;#x5316;&amp;#x4E8C;&amp;#x7EF4;&amp;#x7801;&amp;#x6EE4;&amp;#x955C;   CIFilter *filter = [CIFilter filterWithName:@&amp;quot;CIQRCodeGenerator&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用系统自带二维码生成及扫描">
+<meta property="og:url" content="http://yoursite.com/2015/09/20/使用系统自带二维码生成及扫描/index.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="&amp;#x751F;&amp;#x6210;&amp;#x4EE3;&amp;#x7801;1234567891011121314151617// 1.&amp;#x5B9E;&amp;#x4F8B;&amp;#x5316;&amp;#x4E8C;&amp;#x7EF4;&amp;#x7801;&amp;#x6EE4;&amp;#x955C;   CIFilter *filter = [CIFilter filterWithName:@&amp;quot;CIQRCodeGenerator&amp;qu">
+<meta property="og:updated_time" content="2016-07-28T06:44:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用系统自带二维码生成及扫描">
+<meta name="twitter:description" content="&amp;#x751F;&amp;#x6210;&amp;#x4EE3;&amp;#x7801;1234567891011121314151617// 1.&amp;#x5B9E;&amp;#x4F8B;&amp;#x5316;&amp;#x4E8C;&amp;#x7EF4;&amp;#x7801;&amp;#x6EE4;&amp;#x955C;   CIFilter *filter = [CIFilter filterWithName:@&amp;quot;CIQRCodeGenerator&amp;qu">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/09/20/使用系统自带二维码生成及扫描/"/>
+
+  <title> 使用系统自带二维码生成及扫描 | BirdMichael </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BirdMichael</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用系统自带二维码生成及扫描
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-20T23:03:34+08:00" content="2015-09-20">
+              2015-09-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="&#x751F;&#x6210;&#x4EE3;&#x7801;"><a href="#&#x751F;&#x6210;&#x4EE3;&#x7801;" class="headerlink" title="&#x751F;&#x6210;&#x4EE3;&#x7801;"></a>&#x751F;&#x6210;&#x4EE3;&#x7801;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// 1.&#x5B9E;&#x4F8B;&#x5316;&#x4E8C;&#x7EF4;&#x7801;&#x6EE4;&#x955C;</div><div class="line">   CIFilter *filter = [CIFilter filterWithName:@&quot;CIQRCodeGenerator&quot;];</div><div class="line"></div><div class="line">   // 2.&#x6062;&#x590D;&#x6EE4;&#x955C;&#x7684;&#x9ED8;&#x8BA4;&#x5C5E;&#x6027; (&#x56E0;&#x4E3A;&#x6EE4;&#x955C;&#x6709;&#x53EF;&#x80FD;&#x4FDD;&#x5B58;&#x4E0A;&#x4E00;&#x6B21;&#x7684;&#x5C5E;&#x6027;)</div><div class="line">   [filter setDefaults];</div><div class="line"></div><div class="line">   // 3.&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x6210;NSdata</div><div class="line">   NSData *data  = [@&quot;http://www.birdmichael.com&quot; dataUsingEncoding:NSUTF8StringEncoding];</div><div class="line"></div><div class="line">   // 4.&#x901A;&#x8FC7;KVO&#x8BBE;&#x7F6E;&#x6EE4;&#x955C;, &#x4F20;&#x5165;data, &#x5C06;&#x6765;&#x6EE4;&#x955C;&#x5C31;&#x77E5;&#x9053;&#x8981;&#x901A;&#x8FC7;&#x4F20;&#x5165;&#x7684;&#x6570;&#x636E;&#x751F;&#x6210;&#x4E8C;&#x7EF4;&#x7801;</div><div class="line">   [filter setValue:data forKey:@&quot;inputMessage&quot;];</div><div class="line"></div><div class="line">   // 5.&#x751F;&#x6210;&#x4E8C;&#x7EF4;&#x7801;</div><div class="line">    CIImage *outputImage = [filter outputImage];</div><div class="line"></div><div class="line">   // 6.&#x5F97;&#x5230;image</div><div class="line">   UIImage *image = [UIImage  imageWithCIImage:outputImage];</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="&#x626B;&#x63CF;&#x4E8C;&#x7EF4;&#x7801;"><a href="#&#x626B;&#x63CF;&#x4E8C;&#x7EF4;&#x7801;" class="headerlink" title="&#x626B;&#x63CF;&#x4E8C;&#x7EF4;&#x7801;"></a>&#x626B;&#x63CF;&#x4E8C;&#x7EF4;&#x7801;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">#import &quot;ViewController.h&quot;</div><div class="line">#import &amp;lt;AVFoundation/AVFoundation.h&amp;gt;</div><div class="line"></div><div class="line">@interface ViewController ()&amp;lt;AVCaptureMetadataOutputObjectsDelegate&amp;gt;</div><div class="line">@property (nonatomic, strong) AVCaptureSession *session;</div><div class="line">@property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad {</div><div class="line">    [super viewDidLoad];</div><div class="line">    // Do any additional setup after loading the view, typically from a nib.</div><div class="line"></div><div class="line">    // 1\. &#x5B9E;&#x4F8B;&#x5316;&#x62CD;&#x6444;&#x8BBE;&#x5907;</div><div class="line">    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];</div><div class="line"></div><div class="line">    // 2\. &#x8BBE;&#x7F6E;&#x8F93;&#x5165;&#x8BBE;&#x5907;</div><div class="line">    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];</div><div class="line"></div><div class="line">    // 3\. &#x8BBE;&#x7F6E;&#x5143;&#x6570;&#x636E;&#x8F93;&#x51FA;</div><div class="line">    // 3.1 &#x5B9E;&#x4F8B;&#x5316;&#x62CD;&#x6444;&#x5143;&#x6570;&#x636E;&#x8F93;&#x51FA;</div><div class="line">    AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];</div><div class="line">    // 3.3 &#x8BBE;&#x7F6E;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x4EE3;&#x7406;</div><div class="line">    [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];</div><div class="line"></div><div class="line">    // 4\. &#x6DFB;&#x52A0;&#x62CD;&#x6444;&#x4F1A;&#x8BDD;</div><div class="line">    // 4.1 &#x5B9E;&#x4F8B;&#x5316;&#x62CD;&#x6444;&#x4F1A;&#x8BDD;</div><div class="line">    AVCaptureSession *session = [[AVCaptureSession alloc] init];</div><div class="line">    // 4.2 &#x6DFB;&#x52A0;&#x4F1A;&#x8BDD;&#x8F93;&#x5165;</div><div class="line">    [session addInput:input];</div><div class="line">    // 4.3 &#x6DFB;&#x52A0;&#x4F1A;&#x8BDD;&#x8F93;&#x51FA;</div><div class="line">    [session addOutput:output];</div><div class="line">    // 4.3 &#x8BBE;&#x7F6E;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5143;&#x6570;&#x636E;&#x8F93;&#x51FA;&#x6DFB;&#x52A0;&#x5230;&#x4F1A;&#x8BDD;&#x540E;&#xFF0C;&#x624D;&#x80FD;&#x6307;&#x5B9A;&#x5143;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x62A5;&#x9519;</div><div class="line">    [output setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];</div><div class="line"></div><div class="line">    self.session = session;</div><div class="line"></div><div class="line">    // 5\. &#x89C6;&#x9891;&#x9884;&#x89C8;&#x56FE;&#x5C42;</div><div class="line">    // 5.1 &#x5B9E;&#x4F8B;&#x5316;&#x9884;&#x89C8;&#x56FE;&#x5C42;, &#x4F20;&#x9012;_session&#x662F;&#x4E3A;&#x4E86;&#x544A;&#x8BC9;&#x56FE;&#x5C42;&#x5C06;&#x6765;&#x663E;&#x793A;&#x4EC0;&#x4E48;&#x5185;&#x5BB9;</div><div class="line">    AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession:_session];</div><div class="line"></div><div class="line">    preview.videoGravity = AVLayerVideoGravityResizeAspectFill;</div><div class="line">    preview.frame = self.view.bounds;</div><div class="line">    // 5.2 &#x5C06;&#x56FE;&#x5C42;&#x63D2;&#x5165;&#x5F53;&#x524D;&#x89C6;&#x56FE;</div><div class="line">    [self.view.layer insertSublayer:preview atIndex:100];</div><div class="line"></div><div class="line">    self.previewLayer = preview;</div><div class="line"></div><div class="line">    // 6\. &#x542F;&#x52A8;&#x4F1A;&#x8BDD;</div><div class="line">    [_session startRunning];</div><div class="line"></div><div class="line">}</div><div class="line"></div><div class="line">- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection</div><div class="line">{</div><div class="line"></div><div class="line">    // &#x4F1A;&#x9891;&#x7E41;&#x7684;&#x626B;&#x63CF;&#xFF0C;&#x8C03;&#x7528;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;</div><div class="line">    // 1\. &#x5982;&#x679C;&#x626B;&#x63CF;&#x5B8C;&#x6210;&#xFF0C;&#x505C;&#x6B62;&#x4F1A;&#x8BDD;</div><div class="line">    [self.session stopRunning];</div><div class="line">    // 2\. &#x5220;&#x9664;&#x9884;&#x89C8;&#x56FE;&#x5C42;</div><div class="line">    [self.previewLayer removeFromSuperlayer];</div><div class="line"></div><div class="line">    NSLog(@&quot;%@&quot;, metadataObjects);</div><div class="line">    // 3\. &#x8BBE;&#x7F6E;&#x754C;&#x9762;&#x663E;&#x793A;&#x626B;&#x63CF;&#x7ED3;&#x679C;</div><div class="line"></div><div class="line">    if (metadataObjects.count &amp;gt; 0) {</div><div class="line">        AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];</div><div class="line">        // &#x63D0;&#x793A;&#xFF1A;&#x5982;&#x679C;&#x9700;&#x8981;&#x5BF9;url&#x6216;&#x8005;&#x540D;&#x7247;&#x7B49;&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x626B;&#x63CF;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x8FDB;&#x884C;&#x6269;&#x5C55;&#xFF01;</div><div class="line">//        _label.text = obj.stringValue;</div><div class="line">        NSLog(@&quot;%@&quot;, obj.stringValue);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二维码/" rel="tag">#二维码</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/20/static-library/" rel="next" title="静态库">
+                <i class="fa fa-chevron-left"></i> 静态库
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/29/instancetype-instead-of-the-id-is-used-as-the-return-type-what-are-the-benefits/" rel="prev" title="用instancetype代替id作返回类型有什么好处？">
+                用instancetype代替id作返回类型有什么好处？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BirdMichael" />
+          <p class="site-author-name" itemprop="name">BirdMichael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成代码"><span class="nav-number">1.</span> <span class="nav-text">生成代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扫描二维码"><span class="nav-number">2.</span> <span class="nav-text">扫描二维码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
