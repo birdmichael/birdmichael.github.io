@@ -235,6 +235,150 @@
             
               
                 
+                <a class="post-title-link" href="/2015/10/07/ios-video-player-how-to-force-the-rotating-screen/" itemprop="url">
+                  iOS视频播放等如何强制旋转屏幕
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-07T03:42:36+08:00" content="2015-10-07">
+              2015-10-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="&#x524D;&#x8A00;"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</h1><p>&#x5982;&#x679C;&#x505A;&#x8FC7;&#x9879;&#x76EE;&#x4E2D;&#x6709;&#x89C6;&#x9891;&#x64AD;&#x653E;&#x7684;&#x5185;&#x5BB9; &#x4E00;&#x5B9A;&#x9047;&#x5230;&#x8FC7;&#x5168;&#x5C4F;&#x64AD;&#x653E;&#x89C6;&#x9891;&#x7684;&#x9700;&#x6C42; &#x4E00;&#x822C;&#x6765;&#x8BF4; &#x76F4;&#x63A5;&#x5F39;&#x51FA;&#x4E00;&#x4E2A;modal viewcontroller&#x6765;&#x5168;&#x5C4F;&#x64AD;&#x653E;&#x89C6;&#x9891;&#x5C31;ok&#x4E86;</p>
+<p>&#x4F46;&#x662F;&#x4E3A;&#x4E86;&#x7528;&#x6237;&#x4F53;&#x9A8C; &#x53EF;&#x80FD;&#x9700;&#x8981;&#x5728;&#x540C;&#x4E00;&#x4E2A;viewcontroller&#x4E2D;&#x8FDB;&#x884C;&#x5168;&#x5C4F;&#x548C;&#x975E;&#x5168;&#x5C4F;&#x7684;&#x5207;&#x6362; &#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x53EF;&#x80FD;&#x5C31;&#x9700;&#x8981;&#x5F3A;&#x5236;&#x65CB;&#x8F6C;&#x5C4F;&#x5E55;&#x6765;&#x505A;&#x5230;</p>
+<p>&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x5B8C;&#x7F8E;&#x7684;&#x5BF9;&#x5C4F;&#x5E55;&#x8FDB;&#x884C;&#x5F3A;&#x5236;&#x65CB;&#x8F6C;&#x5462;?</p>
+<p>&#x8FD9;&#x91CC;&#x53EA;&#x8BA8;&#x8BBA;ios6+&#x7684;&#x65B9;&#x6CD5;(&#x56E0;&#x4E3A;&#x4ECE;ios6+&#x8D77; &#x5C4F;&#x5E55;&#x65CB;&#x8F6C;&#x7684;api&#x505A;&#x4E86;&#x91CD;&#x8981;&#x7684;&#x53D8;&#x5316; &#x6709;&#x9700;&#x8981;&#x7684;&#x540C;&#x5B66;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x53BB;&#x63A2;&#x7D22;&#x4E00;&#x4E0B;ios6-&#x7684;&#x65B9;&#x6CD5;)</p>
+<h1 id="&#x7814;&#x7A76;"><a href="#&#x7814;&#x7A76;" class="headerlink" title="&#x7814;&#x7A76;"></a>&#x7814;&#x7A76;</h1><p>&#x9996;&#x5148; &#x4F60;&#x5F97;&#x5728;&#x9879;&#x76EE;&#x7684;&#x7684;plist&#x4E2D;&#x6216;&#x8005;target&#x7684;general&#x9009;&#x9879;&#x91CC;&#x914D;&#x7F6E;&#x597D;APP&#x6240;&#x652F;&#x6301;&#x7684;&#x6240;&#x6709;&#x653E;&#x5FC3;&#x554A;&#x4E2A;</p>
+<p>&#x7136;&#x540E; &#x5728;ios6+&#x4E4B;&#x540E; &#x5C4F;&#x5E55;&#x65CB;&#x8F6C;&#x7684;&#x63A7;&#x5236;&#x6743;&#x4EA4;&#x7ED9;&#x4E86;rootViewController(&#x8FD9;&#x91CC;&#x6CA1;&#x63A2;&#x8BA8;presentViewController&#x7684;&#x60C5;&#x51B5; &#x53EA;&#x8003;&#x8651;&#x666E;&#x901A;&#x7684;&#x5E03;&#x5C40;) &#x90A3;&#x4E48;&#x57FA;&#x672C;&#x4E0A;&#x6240;&#x6709;&#x7684;APP&#x90FD;&#x662F;&#x57FA;&#x4E8E;UINavigationController&#x6216;&#x8005;UITabbarViewController&#x505A;&#x4E3A;rootViewController&#x7684; &#x6240;&#x4EE5;&#x8981;&#x7075;&#x6D3B;&#x7684;&#x63A7;&#x5236;&#x6BCF;&#x4E2A;push&#x8FDB;&#x6765;&#x7684;view&#x7684;&#x65CB;&#x8F6C; &#x9700;&#x8981;&#x4FEE;&#x6539;&#x4E00;&#x4E0B;UINavigationController&#x6216;&#x8005;UITabbarViewController&#x7684;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x65B9;&#x6CD5;(&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;Category &#x4E5F;&#x53EF;&#x4EE5;&#x7EE7;&#x627F;&#x4E00;&#x4E0B;)</p>
+<p><pre class="lang:objc decode:true ">//UINavigationController</pre></p>
+<ul>
+<li><p>(BOOL)shouldAutorotate<br>{<br>  return self.topViewController.shouldAutorotate;<br>}</p>
+</li>
+<li><p>(NSUInteger)supportedInterfaceOrientations<br>{<br>  return self.topViewController.supportedInterfaceOrientations;<br>}</p>
+</li>
+<li><p>(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation<br>{<br>  return self.topViewController.preferredInterfaceOrientationForPresentation;<br>}</p>
+</li>
+</ul>
+<p>//UITabbarViewController<br>//&#x6CE8;&#x610F; &#x8FD9;&#x91CC;&#x7684;selectedViewController&#x5982;&#x679C;&#x662F;UINavigationController&#x7684;&#x8BDD; &#x4E5F;&#x9700;&#x8981;&#x5BF9;&#x5B83;&#x505A;&#x4E0A;&#x9762;&#x7684;&#x4FEE;&#x6539;</p>
+<ul>
+<li><p>(BOOL)shouldAutorotate<br>{<br>  return self.selectedViewController.shouldAutorotate;<br>}</p>
+</li>
+<li><p>(NSUInteger)supportedInterfaceOrientations<br>{<br>  return self.selectedViewController.supportedInterfaceOrientations;<br>}</p>
+</li>
+<li><p>(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation<br>{<br>  return self.selectedViewController.preferredInterfaceOrientationForPresentation;<br>}<br>&#xA0;</p>
+</li>
+</ul>
+<p>&#x8FD9;&#x6837; &#x63A7;&#x5236;&#x65CB;&#x8F6C;&#x7684;&#x4E3B;&#x52A8;&#x6743;&#x5C31;&#x4EA4;&#x8FD8;&#x5230;&#x4E86;&#x6BCF;&#x4E2A;viewController&#x7684;&#x624B;&#x4E0A;&#x4E86;</p>
+<h1 id="&#x65B9;&#x6CD5;"><a href="#&#x65B9;&#x6CD5;" class="headerlink" title="&#x65B9;&#x6CD5;"></a>&#x65B9;&#x6CD5;</h1><p>&#x5728;ios6&#x4E2D; &#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x7684;trick&#x53EF;&#x4EE5;&#x5F3A;&#x5236;&#x8BA9;&#x5C4F;&#x5E55;&#x8FDB;&#x884C;&#x65CB;&#x8F6C;&#x68C0;&#x6D4B;</p>
+<p><pre class="lang:objc decode:true ">UIViewController *vc = [[UIViewController alloc]init];<br>[self presentModalViewController:vc animated:NO];<br>[self dismissModalViewControllerAnimated:NO];</pre><br>&#xA0;</p>
+<p>&#x5728;ios7&#x4E2D; &#x4E0A;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x4E0D;&#x7BA1;&#x7528;&#x4E86; &#x4F46;&#x662F;&#x7A0D;&#x5FAE;&#x6539;&#x4E00;&#x6539;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</p>
+<p><pre class="lang:objc decode:true">   UIViewController *vc  = [[UIViewController alloc] init];<br>[self presentViewController:viewController animated:NO completion:^{<br>       [self dismissViewControllerAnimated:NO completion:nil];<br>}];</pre><br>&#x867D;&#x7136;&#x4E0A;&#x9762;&#x7684;&#x529E;&#x6CD5;&#x786E;&#x5B9E;&#x53EF;&#x4EE5;&#x89E6;&#x53D1;&#x5BF9;&#x5C4F;&#x5E55;&#x65CB;&#x8F6C;&#x7684;&#x5224;&#x65AD; &#x4F46;&#x7F3A;&#x9677;&#x5C31;&#x662F;&#x65CB;&#x8F6C;&#x8D77;&#x6765;&#x4E0D;&#x81EA;&#x7136;</p>
+<p>&#x5B9E;&#x9645;&#x4E0A;&#x6709;&#x4E2A;&#x66F4;&#x597D;&#x7684;&#x65B9;&#x6CD5;</p>
+<p><pre class="lang:objc decode:true">   [[UIDevice currentDevice] setValue:<br>    [NSNumber numberWithInteger: self.isFullScreen?UIInterfaceOrientationLandscapeRight:UIInterfaceOrientationPortrait]<br>                               forKey:@&#x201D;orientation&#x201D;];</pre></p>
+<p>//&#x7B49;&#x4EF7;&#x4E8E;<br>objc_msgSend([UIDevice currentDevice], @selector(setOrientation:), self.isFullScreen?UIInterfaceOrientationLandscapeRight:UIInterfaceOrientationPortrait);<br>&#x5728;stackoverflow&#x4E0A;&#x770B;&#x5230;&#x6709;&#x4EBA;&#x8BF4; &#x6B64;&#x65B9;&#x6CD5;&#x662F;&#x79C1;&#x6709;&#x65B9;&#x6CD5; &#x8C03;&#x7528;&#x6709;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x88AB;reject&#xFF0C;&#x4F46;&#x662F;&#x76EE;&#x524D;&#x5B9E;&#x6D4B;&#x662F;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#x7684;&#x3002;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/29/instancetype-instead-of-the-id-is-used-as-the-return-type-what-are-the-benefits/" itemprop="url">
                   用instancetype代替id作返回类型有什么好处？
                 </a>
@@ -1529,125 +1673,6 @@ NSLog(@&quot;%@ is happily married to %@&quot;, personsName, spousesName);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/07/mac-used-in-the-ios-command-line/" itemprop="url">
-                  在IOS中mac常用命令行
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-07T23:43:29+08:00" content="2015-08-07">
-              2015-08-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>&#x542F;&#x52A8;&#x672C;&#x5730;&#x7684;Apache&#x670D;&#x52A1;&#x5668;</p>
-<p><span class="s1">sudo apachectl -k start</span></p>
-<p>&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x672C;&#x5730;&#x7684;Apache&#x670D;&#x52A1;&#x5668;</p>
-<p>sudo apachectl -k restart</p>
-<p>(&#x6D89;&#x53CA;&#x4FEE;&#x6539;,&#x5C31;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x542F;&#x52A8;)</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/07/mac-used-in-the-ios-command-line/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1693,7 +1718,7 @@ NSLog(@&quot;%@ is happily married to %@&quot;, personsName, spousesName);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1701,7 +1726,7 @@ NSLog(@&quot;%@ is happily married to %@&quot;, personsName, spousesName);
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1710,7 +1735,7 @@ NSLog(@&quot;%@ is happily married to %@&quot;, personsName, spousesName);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-count">85</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

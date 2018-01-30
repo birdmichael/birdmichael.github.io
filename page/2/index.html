@@ -235,6 +235,210 @@
             
               
                 
+                <a class="post-title-link" href="/2015/12/28/tableview-due-to-too-many-cell-types-solution/" itemprop="url">
+                  在tableView由于cell类型太多解决方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-28T15:53:39+08:00" content="2015-12-28">
+              2015-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><pre class="lang:objc decode:true">- (void)configureCellLogical{<br>    // &#x6839;&#x7EDD;Modal&#x91CC;&#x9762;&#x67D0;&#x4E2A;&#x503C;,&#x8FDB;&#x884C;&#x5224;&#x65AD;&#x5E94;&#x8BE5;&#x521B;&#x5EFA;&#x54EA;&#x4E2A;&#x7C7B;&#x7684;cell<br>    [self addCell:@&#x201D;zhuanti&#x201D; class:@&#x201D;BMZhuanTiCell&#x201D;];<br>    [self addCell:@&#x201D;tiezi&#x201D; class:@&#x201D;BMTieZiCell&#x201D;];<br>}</pre></p>
+<ul>
+<li>(void)addCell:(NSString <em>)title class:(NSString </em>)className {<br>  [self.titles addObject:title];<br>  [self.classNames addObject:className];<br>}</li>
+</ul>
+<p>#pragma mark - Table view data source</p>
+<ul>
+<li><p>(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {<br>  return _titles.count;<br>}</p>
+</li>
+<li><p>(UITableViewCell <em>)tableView:(UITableView </em>)tableView cellForRowAtIndexPath:(NSIndexPath <em>)indexPath {<br>  UITableViewCell </em>cell = [tableView dequeueReusableCellWithIdentifier:_titles[indexPath.row]];<br>  if (!cell) { // &#x6839;&#x636E;classNames&#x6570;&#x521B;&#x5EFA;cell/</p>
+<pre><code>NSString *className = self.classNames[indexPath.row];
+Class class = NSClassFromString(className);
+cell = [[class alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_titles[indexPath.row]];
+</code></pre><p>  }<br>  cell.textLabel.text = _titles[indexPath.row];<br>  return cell;<br>}<br>&#x6CE8;:&#x4EE3;&#x7801;&#x53EF;&#x80FD;&#x7531;&#x4E8E;&#x662F;demo,&#x6709;&#x5C0F;&#x7684;&#x9519;&#x8BEF;,&#x770B;&#x4E3B;&#x8981;&#x601D;&#x60F3;&#x5373;&#x53EF;.</p>
+</li>
+</ul>
+<p>&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x901A;&#x5E38;&#x5199;&#x6CD5;,&#x5E76;&#x4E14;&#x5F88;&#x86CB;&#x75BC;&#x7684;&#x662F;:</p>
+<p><pre class="lang:objc decode:true ">    if (cellType_SecDown == indexPath.section) {<br>        YYOrderSecondDownCell* cell = [tableView dequeueReusableCellWithIdentifier:StringWithCellType(cellType_SecDown)];<br>        if (!cell) {<br>            cell = [[YYOrderSecondDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:StringWithCellType(cellType_SecDown)];<br>        }<br>        return cell;<br>    }else if (cellType_DealStatus == indexPath.section){<br>&#x2026;<br>&#x2026;.</pre><br>&#x4E8E;&#x662F;&#x8FDB;&#x5165;&#x4E86;&#x65E0;&#x9650;&#x7684;If else&#x5224;&#x65AD;..&#x4E0D;&#x4EC5;&#x5982;&#x6B64;,&#x518D;&#x8FD4;&#x56DE;cell,&#x8BA1;&#x7B97;&#x9AD8;&#x5EA6;,&#x70B9;&#x51FB;cell&#x90FD;&#x4F1A;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5224;&#x65AD;.&#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#x4F1A;&#x590D;&#x5236;&#x591A;&#x4EFD;,&#x5E76;&#x4E14;&#x5982;&#x679C;&#x518D;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#x4FEE;&#x6539;&#x90FD;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x518D;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x65B9;&#x53BB;&#x4FEE;&#x6539;&#x81EA;&#x5DF1;&#x7684;&#x903B;&#x8F91;&#x4EE3;&#x7801;..</p>
+<p>&#xA0;</p>
+<p>&#x4E0B;&#x9762;&#x8D34;&#x4E0A;&#x62B9;&#x8336;&#x7684;&#x771F;&#x5B9E;&#x7528;&#x4F8B;,&#x76EE;&#x524D;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x95EE;&#x9898;,&#x4EE3;&#x7801;&#x4E5F;&#x6BD4;&#x8F83;&#x7F8E;&#x89C2;.&#x6027;&#x80FD;&#x522B;&#x4EE5;&#x524D;&#x7565;&#x6709;&#x63D0;&#x9AD8;</p>
+<p>&#x9996;&#x5148;&#x662F;&#x4E3B;&#x63A7;&#x5236;&#x5668;:</p>
+<p><pre class="lang:objc decode:true ">#pragma mark - tableViewDelegate</pre></p>
+<ul>
+<li>(NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{<br>  // &#x907F;&#x514D;&#x521B;&#x5EFA;tableView&#x65F6;&#x6709;&#x7B2C;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#x7684;&#x6570;&#x636E;,&#x5BFC;&#x81F4;&#x6240;&#x6709;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x7684;tableView&#x90FD;&#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x4E2A;tableView&#x7684;&#x6570;&#x636E;<br>  if ([_tabelViews indexOfObject:tableView] != NSNotFound) {<pre><code>NSInteger index = [_tabelViews indexOfObject:tableView];
+YYOnlineVC *onlineVCModel = self.onlineVCModels[index];
+return onlineVCModel.feedList.count;
+</code></pre>  }else{<pre><code>return 0;
+</code></pre>  }<br>}</li>
+<li>(UITableViewCell <em>)tableView:(UITableView </em>)tableView cellForRowAtIndexPath:(NSIndexPath <em>)indexPath{<br>  NSInteger index = [_tabelViews indexOfObject:tableView];<br>  // 1. &#x53D6;&#x51FA;cell&#x6A21;&#x578B;<br>  YYOnlineVC </em>onlineVCModel = self.onlineVCModels[index];<br>  NSArray <em>feedList = onlineVCModel.feedList;<br>  // 2. &#x683C;&#x5F0F;&#x5316;&#x7C7B;&#x540D;&#x7EC4;<br>  NSArray </em>cellClassNames = [YYOnlineBusinessTabHelper formatCellClassArrayWithModelArray:feedList];<br>  // 3. &#x521B;&#x5EFA;cell<br>  YYOnlineTableViewCell <em>cell = [YYOnlineTableViewCell cellWithTableView:tableView withModalArray:cellClassNames indexpath:indexPath];<br>  // 4. &#x8BBE;&#x7F6E;&#x63A7;&#x5236;&#x5668;<br>  cell.viewController = self;<br>  // 5. &#x4F20;&#x9012;&#x6570;&#x636E;<br>  YYOnlinFeed </em>model = feedList[indexPath.row];<br>  [cell updateWithModal:model];<br>  return cell;<br>}</li>
+<li>(CGFloat)tableView:(UITableView <em>)tableView heightForRowAtIndexPath:(NSIndexPath </em>)indexPath{<br>  NSInteger index = [_tabelViews indexOfObject:tableView];<br>  // &#x53D6;&#x5BF9;&#x5E94;&#x7684;table&#x6A21;&#x578B;<br>  YYOnlineVC <em>onlineVCModel = self.onlineVCModels[index];<br>  // &#x53D6;&#x5BF9;&#x5E94;cell &#x6A21;&#x578B;<br>  YYOnlinFeed </em>feed = onlineVCModel.feedList[indexPath.row];<br>  // &#x6839;&#x636E;&#x7C7B;&#x6570;&#x7EC4;&#x53CA;&#x7D22;&#x5F15;&#x8FD4;&#x56DE;&#x9AD8;&#x5EA6;;<br>  NSString *className = [YYOnlineBusinessTabHelper formatCellClassWithModal:feed];<br>  Class class = NSClassFromString(className);<br>  return [class  heightForModal:feed];<br>}</li>
+<li>(void)tableView:(UITableView <em>)tableView didSelectRowAtIndexPath:(NSIndexPath </em>)indexPath{<br>  NSInteger index = [_tabelViews indexOfObject:tableView];<br>  // &#x53D6;&#x5BF9;&#x5E94;&#x7684;table&#x6A21;&#x578B;<br>  YYOnlineVC <em>onlineVCModel = self.onlineVCModels[index];<br>  // &#x53D6;&#x5BF9;&#x5E94;cell &#x6A21;&#x578B;<br>  YYOnlinFeed </em>feed = onlineVCModel.feedList[indexPath.row];<br>  //&#x4E0B;&#x9762;&#x662F;&#x5177;&#x4F53;&#x7684;&#x8DF3;&#x8F6C;<br>  &#x2026;.<br>}<blockquote>
+<p>&#x8FD9;&#x4E2A;&#x9875;&#x9762;&#x7684;&#x60C5;&#x51B5;&#x662F;:&#x6709;&#x591A;&#x4E2A;tableview,&#x6240;&#x4EE5;&#x7D22;&#x5F15;&#x662F;&#x611F;&#x89C9;tableView&#x5728;tableView&#x6570;&#x7EC4;&#x4E2D;&#x53D6;&#x5230;&#x7D22;&#x5F15;,&#x7136;&#x540E;&#x6839;&#x636E;&#x7D22;&#x5F15;&#x518D;&#x6A21;&#x578B;&#x6570;&#x7EC4;&#x4E2D;&#x53D6;&#x5230;&#x5177;&#x4F53;&#x7684;&#x6A21;&#x578B;..&#x6B63;&#x5E38;tableView&#x53EF;&#x4EE5;&#x7701;&#x7565;&#x8FD9;&#x90E8;.<br>&#x4E0B;&#x9762;&#x662F;<span class="s1">YYOnlineBusinessTabHelper,&#x662F;&#x9875;&#x9762;&#x7684;VM&#x5C42;</span><br><pre class="lang:objc decode:true ">+ (NSArray <em>)formatCellClassArrayWithModelArray:(NSArray </em>)modelArray{<br>  NSMutableArray <em>classArray = [@[] mutableCopy];<br>  for (YYOnlinFeed </em>feed in modelArray) {</pre></p>
+<pre><code>if (feed.dataType.integerValue == 1) {
+    // &#x5546;&#x54C1;
+    [classArray addObject:@&quot;YYOnlineGoodsCell&quot;];
+}else if (feed.dataType.integerValue == 2){
+    // &#x4E13;&#x9898;
+    [classArray addObject:@&quot;YYOnlineSubjectCell&quot;];
+}
+</code></pre><p>  }<br>  return classArray;<br>}</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>(NSString <em>)formatCellClassWithModal:(YYOnlinFeed </em>)feed{<br>  if (feed.dataType.integerValue == 1) {<pre><code>// &#x5546;&#x54C1;
+return @&quot;YYOnlineGoodsCell&quot;;
+</code></pre>  }else if (feed.dataType.integerValue == 2){<pre><code>// &#x4E13;&#x9898;
+return @&quot;YYOnlineSubjectCell&quot;;
+</code></pre>  }<br>  return @&#x201D;YYOnlineSubjectCell&#x201D;;<br>}<blockquote>
+<p>&#x8FD9;&#x6837;&#x505A;&#x7684;&#x597D;&#x5904;&#x662F;:1.&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x5E76;&#x4E14;&#x7EDF;&#x4E00;&#x63A7;&#x5236;&#x5668;&#x7684;&#x903B;&#x8F91;&#x63A7;&#x5236;&#x5C42;,&#x4EE5;&#x540E;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x5176;&#x4ED6;&#x7684;cell&#x7C7B;&#x578B;,&#x4FEE;&#x6539;&#x5BF9;&#x5E94;cell&#x53EA;&#x9700;&#x8981;&#x5728;&#x8FD9;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#x4FEE;&#x6539;,&#x5168;&#x63A7;&#x5236;&#x5668;&#x901A;&#x7528;.</p>
+<p>&#x5C0F;&#x63D0;&#x793A;:ClassArray&#x8BF7;&#x52A1;&#x5FC5;&#x91C7;&#x7528;&#x590D;&#x5236;&#x7C98;&#x8D34;&#x7684;&#x65B9;&#x5F0F;,&#x907F;&#x514D;&#x9519;&#x8BEF;.<br>&#x4E0B;&#x9762;&#x662F;&#x4E3B;tableViewCell</p>
+</blockquote>
+</li>
+</ul>
+<p>.h</p>
+<p><pre class="lang:objc decode:true ">#import &lt;UIKit/UIKit.h&gt;<br>@class YYOnlinFeed;<br>@interface YYOnlineTableViewCell : UITableViewCell<br>@property (nonatomic ,strong) YYOnlinFeed * feedModel;<br>@property (nonatomic ,weak)id viewController;</pre></p>
+<ul>
+<li>(instancetype)cellWithTableView:(UITableView <em>)tableView withModalArray:(NSArray </em>)classNames indexpath:(NSIndexPath *)indexPath;</li>
+</ul>
+<ul>
+<li>(void)updateWithModal:(YYOnlinFeed *)feedModel;</li>
+</ul>
+<ul>
+<li>(CGFloat)heightForModal:(YYOnlinFeed *)feedModel;<br>@end<br>.m<br><pre class="lang:objc decode:true ">//<br>//  YYOnlineTableViewCell.m<br>//  mocha<br>//<br>//  Created by BM on 16/1/6.<br>//  Copyright &#xA9; 2016&#x5E74; Yao. All rights reserved.<br>//</pre></li>
+</ul>
+<p>#import &#x201C;YYOnlineTableViewCell.h&#x201D;</p>
+<p>@implementation YYOnlineTableViewCell</p>
+<ul>
+<li><p>(instancetype)cellWithTableView:(UITableView <em>)tableView withModalArray:(NSArray </em>)classNames indexpath:(NSIndexPath <em>)indexPath<br>{<br>  YYOnlineTableViewCell </em>cell = [tableView dequeueReusableCellWithIdentifier:classNames[indexPath.row]];<br>  if (!cell) {</p>
+<pre><code>// &#x6839;&#x636E;classNames&#x6570;&#x521B;&#x5EFA;cell/
+NSString *className = classNames[indexPath.row];
+Class class = NSClassFromString(className);
+cell = [[class alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:classNames[indexPath.row]];
+</code></pre><p>  }</p>
+<p>  // code..<br>  return cell;<br>}</p>
+</li>
+</ul>
+<ul>
+<li>(void)updateWithModal:(YYOnlinFeed *)feedModel{<br>  NSLog(@&#x201D;YYOnlineTableViewCell:&#x8BF7;&#x5728;&#x5B50;&#x7C7B;&#x91CD;&#x5199; updateWithModal&#x65B9;&#x6CD5;&#x201D;);<br>}</li>
+</ul>
+<ul>
+<li>(CGFloat)heightForModal:(YYOnlinFeed *)feedModel{<br>  NSLog(@&#x201D;YYOnlineTableViewCell:&#x8BF7;&#x5728;&#x5B50;&#x7C7B;&#x91CD;&#x5199; heightForModal&#x65B9;&#x6CD5;&#x201D;);<br>  return 30;<br>}<br>&#x5177;&#x4F53;&#x9700;&#x8981;&#x663E;&#x793A;&#x7684;&#x5177;&#x4F53;cell&#x53EA;&#x9700;&#x8981;&#x7EE7;&#x627F;&#x4E3B;cell&#x5E76;&#x4E14;&#x91CD;&#x5199;<span class="s1">updateWithModal&#x548C;</span><span class="s1">heightForModal.</span><blockquote>
+<p>&#x5927;&#x6982;&#x7684;&#x903B;&#x8F91;&#x5982;&#x6B64;,&#x8FD9;&#x91CC;&#x6211;&#x77E5;&#x9053;&#x7684;</p>
+<p>&#x7F3A;&#x70B9;:</p>
+<p>1.&#x4F1A;&#x591A;&#x5F15;&#x5165;&#x4E00;&#x4E2A;ClassArray&#x6570;&#x7EC4;&#x6765;&#x5B58;&#x50A8;&#x5177;&#x4F53;&#x7684;cell&#x7C7B;&#x540D;</p>
+<p>&#x4F18;&#x70B9;:</p>
+<p>1.&#x903B;&#x8F91;&#x5224;&#x65AD;&#x96C6;&#x4E2D;&#x5728;&#x4E00;&#x4E2A;&#x5730;&#x65B9;,&#x4EE5;&#x4FBF;&#x4E8E;&#x4EE5;&#x540E;&#x7684;&#x66F4;&#x6539;.</p>
+<p>2.&#x4E3B;&#x63A7;&#x5236;&#x5668;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#x7B80;&#x6D01;,&#x6BCF;&#x4E00;&#x53E5;&#x90FD;&#x662F;&#x4E00;&#x4E2A;&#x4E3B;&#x8981;&#x903B;&#x8F91;,&#x4E0D;&#x81C3;&#x80BF;.</p>
+<p>3.&#x4E0D;&#x9700;&#x8981;&#x5728;&#x6570;&#x636E;&#x6E90;3&#x6B21;&#x8C03;&#x7528;,&#x4EE3;&#x7801;&#x6700;&#x5C11;1&#x6B21;&#x90FD;&#x91CD;&#x590D;&#x53BB;&#x5199;If&#x5224;&#x65AD;<br>&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x901A;&#x8FC7;&#x534F;&#x8BAE;,&#x4E0D;&#x8FC7;&#x6211;&#x8FD8;&#x6CA1;&#x6709;&#x5B9E;&#x8DF5;&#x8FC7;.</p>
+</blockquote>
+</li>
+</ul>
+<p>&#xA0;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/12/22/code-code-organization/" itemprop="url">
                   代码规范一:Code Organization
                 </a>
@@ -1531,150 +1735,6 @@ _btn = button;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/07/ios-video-player-how-to-force-the-rotating-screen/" itemprop="url">
-                  iOS视频播放等如何强制旋转屏幕
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-07T03:42:36+08:00" content="2015-10-07">
-              2015-10-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="&#x524D;&#x8A00;"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</h1><p>&#x5982;&#x679C;&#x505A;&#x8FC7;&#x9879;&#x76EE;&#x4E2D;&#x6709;&#x89C6;&#x9891;&#x64AD;&#x653E;&#x7684;&#x5185;&#x5BB9; &#x4E00;&#x5B9A;&#x9047;&#x5230;&#x8FC7;&#x5168;&#x5C4F;&#x64AD;&#x653E;&#x89C6;&#x9891;&#x7684;&#x9700;&#x6C42; &#x4E00;&#x822C;&#x6765;&#x8BF4; &#x76F4;&#x63A5;&#x5F39;&#x51FA;&#x4E00;&#x4E2A;modal viewcontroller&#x6765;&#x5168;&#x5C4F;&#x64AD;&#x653E;&#x89C6;&#x9891;&#x5C31;ok&#x4E86;</p>
-<p>&#x4F46;&#x662F;&#x4E3A;&#x4E86;&#x7528;&#x6237;&#x4F53;&#x9A8C; &#x53EF;&#x80FD;&#x9700;&#x8981;&#x5728;&#x540C;&#x4E00;&#x4E2A;viewcontroller&#x4E2D;&#x8FDB;&#x884C;&#x5168;&#x5C4F;&#x548C;&#x975E;&#x5168;&#x5C4F;&#x7684;&#x5207;&#x6362; &#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x53EF;&#x80FD;&#x5C31;&#x9700;&#x8981;&#x5F3A;&#x5236;&#x65CB;&#x8F6C;&#x5C4F;&#x5E55;&#x6765;&#x505A;&#x5230;</p>
-<p>&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x5B8C;&#x7F8E;&#x7684;&#x5BF9;&#x5C4F;&#x5E55;&#x8FDB;&#x884C;&#x5F3A;&#x5236;&#x65CB;&#x8F6C;&#x5462;?</p>
-<p>&#x8FD9;&#x91CC;&#x53EA;&#x8BA8;&#x8BBA;ios6+&#x7684;&#x65B9;&#x6CD5;(&#x56E0;&#x4E3A;&#x4ECE;ios6+&#x8D77; &#x5C4F;&#x5E55;&#x65CB;&#x8F6C;&#x7684;api&#x505A;&#x4E86;&#x91CD;&#x8981;&#x7684;&#x53D8;&#x5316; &#x6709;&#x9700;&#x8981;&#x7684;&#x540C;&#x5B66;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x53BB;&#x63A2;&#x7D22;&#x4E00;&#x4E0B;ios6-&#x7684;&#x65B9;&#x6CD5;)</p>
-<h1 id="&#x7814;&#x7A76;"><a href="#&#x7814;&#x7A76;" class="headerlink" title="&#x7814;&#x7A76;"></a>&#x7814;&#x7A76;</h1><p>&#x9996;&#x5148; &#x4F60;&#x5F97;&#x5728;&#x9879;&#x76EE;&#x7684;&#x7684;plist&#x4E2D;&#x6216;&#x8005;target&#x7684;general&#x9009;&#x9879;&#x91CC;&#x914D;&#x7F6E;&#x597D;APP&#x6240;&#x652F;&#x6301;&#x7684;&#x6240;&#x6709;&#x653E;&#x5FC3;&#x554A;&#x4E2A;</p>
-<p>&#x7136;&#x540E; &#x5728;ios6+&#x4E4B;&#x540E; &#x5C4F;&#x5E55;&#x65CB;&#x8F6C;&#x7684;&#x63A7;&#x5236;&#x6743;&#x4EA4;&#x7ED9;&#x4E86;rootViewController(&#x8FD9;&#x91CC;&#x6CA1;&#x63A2;&#x8BA8;presentViewController&#x7684;&#x60C5;&#x51B5; &#x53EA;&#x8003;&#x8651;&#x666E;&#x901A;&#x7684;&#x5E03;&#x5C40;) &#x90A3;&#x4E48;&#x57FA;&#x672C;&#x4E0A;&#x6240;&#x6709;&#x7684;APP&#x90FD;&#x662F;&#x57FA;&#x4E8E;UINavigationController&#x6216;&#x8005;UITabbarViewController&#x505A;&#x4E3A;rootViewController&#x7684; &#x6240;&#x4EE5;&#x8981;&#x7075;&#x6D3B;&#x7684;&#x63A7;&#x5236;&#x6BCF;&#x4E2A;push&#x8FDB;&#x6765;&#x7684;view&#x7684;&#x65CB;&#x8F6C; &#x9700;&#x8981;&#x4FEE;&#x6539;&#x4E00;&#x4E0B;UINavigationController&#x6216;&#x8005;UITabbarViewController&#x7684;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x65B9;&#x6CD5;(&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;Category &#x4E5F;&#x53EF;&#x4EE5;&#x7EE7;&#x627F;&#x4E00;&#x4E0B;)</p>
-<p><pre class="lang:objc decode:true ">//UINavigationController</pre></p>
-<ul>
-<li><p>(BOOL)shouldAutorotate<br>{<br>  return self.topViewController.shouldAutorotate;<br>}</p>
-</li>
-<li><p>(NSUInteger)supportedInterfaceOrientations<br>{<br>  return self.topViewController.supportedInterfaceOrientations;<br>}</p>
-</li>
-<li><p>(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation<br>{<br>  return self.topViewController.preferredInterfaceOrientationForPresentation;<br>}</p>
-</li>
-</ul>
-<p>//UITabbarViewController<br>//&#x6CE8;&#x610F; &#x8FD9;&#x91CC;&#x7684;selectedViewController&#x5982;&#x679C;&#x662F;UINavigationController&#x7684;&#x8BDD; &#x4E5F;&#x9700;&#x8981;&#x5BF9;&#x5B83;&#x505A;&#x4E0A;&#x9762;&#x7684;&#x4FEE;&#x6539;</p>
-<ul>
-<li><p>(BOOL)shouldAutorotate<br>{<br>  return self.selectedViewController.shouldAutorotate;<br>}</p>
-</li>
-<li><p>(NSUInteger)supportedInterfaceOrientations<br>{<br>  return self.selectedViewController.supportedInterfaceOrientations;<br>}</p>
-</li>
-<li><p>(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation<br>{<br>  return self.selectedViewController.preferredInterfaceOrientationForPresentation;<br>}<br>&#xA0;</p>
-</li>
-</ul>
-<p>&#x8FD9;&#x6837; &#x63A7;&#x5236;&#x65CB;&#x8F6C;&#x7684;&#x4E3B;&#x52A8;&#x6743;&#x5C31;&#x4EA4;&#x8FD8;&#x5230;&#x4E86;&#x6BCF;&#x4E2A;viewController&#x7684;&#x624B;&#x4E0A;&#x4E86;</p>
-<h1 id="&#x65B9;&#x6CD5;"><a href="#&#x65B9;&#x6CD5;" class="headerlink" title="&#x65B9;&#x6CD5;"></a>&#x65B9;&#x6CD5;</h1><p>&#x5728;ios6&#x4E2D; &#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x7684;trick&#x53EF;&#x4EE5;&#x5F3A;&#x5236;&#x8BA9;&#x5C4F;&#x5E55;&#x8FDB;&#x884C;&#x65CB;&#x8F6C;&#x68C0;&#x6D4B;</p>
-<p><pre class="lang:objc decode:true ">UIViewController *vc = [[UIViewController alloc]init];<br>[self presentModalViewController:vc animated:NO];<br>[self dismissModalViewControllerAnimated:NO];</pre><br>&#xA0;</p>
-<p>&#x5728;ios7&#x4E2D; &#x4E0A;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x4E0D;&#x7BA1;&#x7528;&#x4E86; &#x4F46;&#x662F;&#x7A0D;&#x5FAE;&#x6539;&#x4E00;&#x6539;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</p>
-<p><pre class="lang:objc decode:true">   UIViewController *vc  = [[UIViewController alloc] init];<br>[self presentViewController:viewController animated:NO completion:^{<br>       [self dismissViewControllerAnimated:NO completion:nil];<br>}];</pre><br>&#x867D;&#x7136;&#x4E0A;&#x9762;&#x7684;&#x529E;&#x6CD5;&#x786E;&#x5B9E;&#x53EF;&#x4EE5;&#x89E6;&#x53D1;&#x5BF9;&#x5C4F;&#x5E55;&#x65CB;&#x8F6C;&#x7684;&#x5224;&#x65AD; &#x4F46;&#x7F3A;&#x9677;&#x5C31;&#x662F;&#x65CB;&#x8F6C;&#x8D77;&#x6765;&#x4E0D;&#x81EA;&#x7136;</p>
-<p>&#x5B9E;&#x9645;&#x4E0A;&#x6709;&#x4E2A;&#x66F4;&#x597D;&#x7684;&#x65B9;&#x6CD5;</p>
-<p><pre class="lang:objc decode:true">   [[UIDevice currentDevice] setValue:<br>    [NSNumber numberWithInteger: self.isFullScreen?UIInterfaceOrientationLandscapeRight:UIInterfaceOrientationPortrait]<br>                               forKey:@&#x201D;orientation&#x201D;];</pre></p>
-<p>//&#x7B49;&#x4EF7;&#x4E8E;<br>objc_msgSend([UIDevice currentDevice], @selector(setOrientation:), self.isFullScreen?UIInterfaceOrientationLandscapeRight:UIInterfaceOrientationPortrait);<br>&#x5728;stackoverflow&#x4E0A;&#x770B;&#x5230;&#x6709;&#x4EBA;&#x8BF4; &#x6B64;&#x65B9;&#x6CD5;&#x662F;&#x79C1;&#x6709;&#x65B9;&#x6CD5; &#x8C03;&#x7528;&#x6709;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x88AB;reject&#xFF0C;&#x4F46;&#x662F;&#x76EE;&#x524D;&#x5B9E;&#x6D4B;&#x662F;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#x7684;&#x3002;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1720,7 +1780,7 @@ _btn = button;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1728,7 +1788,7 @@ _btn = button;
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1737,7 +1797,7 @@ _btn = button;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-count">85</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

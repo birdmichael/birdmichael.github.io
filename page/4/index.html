@@ -235,6 +235,125 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/07/mac-used-in-the-ios-command-line/" itemprop="url">
+                  在IOS中mac常用命令行
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-07T23:43:29+08:00" content="2015-08-07">
+              2015-08-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>&#x542F;&#x52A8;&#x672C;&#x5730;&#x7684;Apache&#x670D;&#x52A1;&#x5668;</p>
+<p><span class="s1">sudo apachectl -k start</span></p>
+<p>&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x672C;&#x5730;&#x7684;Apache&#x670D;&#x52A1;&#x5668;</p>
+<p>sudo apachectl -k restart</p>
+<p>(&#x6D89;&#x53CA;&#x4FEE;&#x6539;,&#x5C31;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x542F;&#x52A8;)</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/07/mac-used-in-the-ios-command-line/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/" itemprop="url">
                   Objective-C 类的加载和初始化(+load 和 +initialize 方法)
                 </a>
@@ -1387,149 +1506,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/22/loads-data-from-the-josn-model/" itemprop="url">
-                  从josn加载数据模型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-22T01:07:49+08:00" content="2015-07-22">
-              2015-07-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UI/" itemprop="url" rel="index">
-                    <span itemprop="name">UI</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UI/Xcode/" itemprop="url" rel="index">
-                    <span itemprop="name">Xcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><pre class="lang:objc decode:true ">- (NSArray *)htmls<br>{<br>    if (!_htmls) {</pre></p>
-<pre><code>    // JSON&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;help.json&quot; ofType:nil];    
-    // &#x52A0;&#x8F7D;JSON&#x6587;&#x4EF6;
-    NSData *data = [NSData dataWithContentsOfFile:path]; 
-    // &#x5C06;JSON&#x6570;&#x636E;&#x8F6C;&#x4E3A;NSArray&#x6216;&#x8005;NSDictionary
-    NSArray *dictArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    // &#x5C06;&#x5B57;&#x5178;&#x8F6C;&#x6210;&#x6A21;&#x578B;
-    NSMutableArray *htmlArray = [NSMutableArray array];
-    for (NSDictionary *dict in dictArray) {
-        Html *html = [Html htmlWithDict:dict];
-        [htmlArray addObject:html];
-    }
-    _htmls = htmlArray;
-}
-return _htmls;
-</code></pre><p>}<br>&#x53C2;&#x6570;&#x8BF4;&#x660E;:</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/22/loads-data-from-the-josn-model/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1575,7 +1551,7 @@ return _htmls;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1583,7 +1559,7 @@ return _htmls;
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1592,7 +1568,7 @@ return _htmls;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-count">85</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
