@@ -235,6 +235,135 @@
             
               
                 
+                <a class="post-title-link" href="/2015/10/07/lazy-fix-uitableviewcell-imageview/" itemprop="url">
+                  偷懒固定UITableViewCell 中的 imageView 大小
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-07T04:09:07+08:00" content="2015-10-07">
+              2015-10-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&#x5F88;&#x591A;&#x9875;&#x9762;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x8FD9;&#x79CD;&#x5C55;&#x793A;&#x7ED3;&#x679C;,&#x901A;&#x5E38;&#x9700;&#x8981;imageView,textLabel,detailTextlabel,&#x800C;UITableViewCell&#x672C;&#x8EAB;&#x63D0;&#x4F9B;&#x4E86;&#x65B9;&#x4FBF;&#x7684;&#x81EA;&#x52A8;&#x5E03;&#x5C40;(&#x5F53;&#x6709;&#x56FE;&#x7247;&#x548C;&#x6CA1;&#x56FE;&#x7247;&#x65F6;,textLabel&#x548C;detailLabel&#x7684;&#x4F4D;&#x7F6E;&#x4F1A;&#x5DE6;&#x53F3;&#x81EA;&#x52A8;&#x8C03;&#x6574;). &#x4F46;&#x662F;&#x56FE;&#x7247;&#x7684;&#x5927;&#x5C0F;&#x5374;&#x662F;&#x6CA1;&#x6709;&#x529E;&#x6CD5;&#x56FA;&#x5B9A;&#x7684;(&#x76F4;&#x63A5;&#x8BBE;&#x7F6E;imageView.frame&#x662F;&#x65E0;&#x6CD5;&#x56FA;&#x5B9A;imageView&#x7684;&#x5927;&#x5C0F;&#x7684;),&#x90A3;&#x4E48;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x7684;&#x529E;&#x6CD5;&#x6709;&#x4E24;&#x79CD;:</p>
+<ul>
+<li>&#x56FA;&#x5B9A;&#x663E;&#x793A;&#x56FE;&#x7247;&#x7684;&#x5927;&#x5C0F;(&#x5305;&#x62EC;PlaceHolder)</li>
+<li>&#x81EA;&#x5B9A;&#x4E49;tableViewCell,&#x6DFB;&#x52A0;&#x81EA;&#x5B9A;&#x4E49;&#x7684;imageView,textLabel&#x548C;detailTextLabel<br>&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;,&#x4F46;&#x662F;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x5176;&#x5B9E;&#x90FD;&#x633A;&#x9EBB;&#x70E6;&#x7684;,&#x80FD;&#x5426;&#x76F4;&#x63A5;&#x56FA;&#x5B9A;imageView&#x7684;&#x5927;&#x5C0F;&#x5462;? &#x65B9;&#x6CD5;&#x662F;&#x6709;&#x7684;,&#x53EA;&#x9700;&#x8981;&#x91CD;&#x8F7D;layoutSubviews&#x5373;&#x53EF;</li>
+</ul>
+<p>&#xA0;</p>
+<p>&#xA0;</p>
+<p><pre class="lang:objc decode:true">//&#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;Cell<br>@interface MMCell : UITableViewCell</pre></p>
+<p>@end</p>
+<p>@implementation MMCell</p>
+<p>//&#x91CD;&#x8F7D;layoutSubviews</p>
+<ul>
+<li>(void)layoutSubviews<br>{<br>  UIImage *img = self.imageView.image;<br>  self.imageView.image = [UIImage imageName:@&#x201D;res/PlaceHolder.png&#x201D;];<br>  [super layoutSubviews];<br>  self.imageView.image = img;<br>}</li>
+</ul>
+<p>@end<br>&#xA0;</p>
+<p>&#x8FD9;&#x6837;,&#x6211;&#x4EEC;&#x53EA;&#x8981;&#x4F7F;&#x7528;MMCell&#x5C31;&#x53EF;&#x4EE5;&#x56FA;&#x5B9A;imageView&#x7684;&#x5927;&#x5C0F;&#x4E86;,&#x4E14;&#x5927;&#x5C0F;&#x4E3A;PlaceHolder.png&#x7684;&#x5927;&#x5C0F;(&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x8FD9;&#x79CD;&#x9875;&#x9762;&#x90FD;&#x4F1A;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;PlaceHolder.png&#x6765;&#x663E;&#x793A;&#x9ED8;&#x8BA4;&#x56FE;&#x7247;).</p>
+<p>&#x539F;&#x7406;&#x662F;&#x5728;UItableVeiw&#x7684;layoutSubviews&#x8C03;&#x7528;&#x65F6;,&#x4F1A;&#x6839;&#x636E;imageView.image&#x7684;&#x5927;&#x5C0F;&#x6765;&#x8C03;&#x6574;imageView, textLabel, detailTextLabel&#x7684;&#x4F4D;&#x7F6E;,&#x5728;&#x6B64;&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x5148;&#x5C06;imageView.image&#x8BBE;&#x7F6E;&#x4E3A;PlaceHolder.png&#x56FE;&#x7247;,&#x7B49;&#x5F85;&#x91CD;&#x65B0;&#x5E03;&#x5C40;&#x5B8C;&#x540E;&#x518D;&#x5C06;&#x539F;&#x672C;&#x7684;&#x56FE;&#x7247;&#x8BBE;&#x7F6E;&#x56DE;&#x53BB;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/10/07/ios-video-player-how-to-force-the-rotating-screen/" itemprop="url">
                   iOS视频播放等如何强制旋转屏幕
                 </a>
@@ -1516,163 +1645,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/27/kvc-and-kvo-comprehension/" itemprop="url">
-                  KVC 与 KVO 理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-27T00:32:09+08:00" content="2015-08-27">
-              2015-08-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/OC/" itemprop="url" rel="index">
-                    <span itemprop="name">OC</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>KVC &#x4E0E; KVO &#x662F; Objective C &#x7684;&#x5173;&#x952E;&#x6982;&#x5FF5;&#xFF0C;&#x4E2A;&#x4EBA;&#x8BA4;&#x4E3A;&#x5FC5;&#x987B;&#x7406;&#x89E3;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x4E0B;&#x9762;&#x662F;&#x5B9E;&#x4F8B;&#x8BB2;&#x89E3;&#x3002;</p>
-<p>Key-Value Coding (KVC)<br>KVC&#xFF0C;&#x5373;&#x662F;&#x6307; NSKeyValueCoding&#xFF0C;&#x4E00;&#x4E2A;&#x975E;&#x6B63;&#x5F0F;&#x7684; Protocol&#xFF0C;&#x63D0;&#x4F9B;&#x4E00;&#x79CD;&#x673A;&#x5236;&#x6765;&#x95F4;&#x63A5;&#x8BBF;&#x95EE;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x3002;KVO &#x5C31;&#x662F;&#x57FA;&#x4E8E; KVC &#x5B9E;&#x73B0;&#x7684;&#x5173;&#x952E;&#x6280;&#x672F;&#x4E4B;&#x4E00;&#x3002;</p>
-<p>&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x62E5;&#x6709;&#x67D0;&#x4E9B;&#x5C5E;&#x6027;&#x3002;&#x6BD4;&#x5982;&#x8BF4;&#xFF0C;&#x4E00;&#x4E2A; Person &#x5BF9;&#x8C61;&#x6709;&#x4E00;&#x4E2A; name &#x548C;&#x4E00;&#x4E2A; address &#x5C5E;&#x6027;&#x3002;&#x4EE5; KVC &#x8BF4;&#x6CD5;&#xFF0C;Person &#x5BF9;&#x8C61;&#x5206;&#x522B;&#x6709;&#x4E00;&#x4E2A; value &#x5BF9;&#x5E94;&#x4ED6;&#x7684; name &#x548C; address &#x7684; key&#x3002; key &#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5B83;&#x5BF9;&#x5E94;&#x7684;&#x503C;&#x53EF;&#x4EE5;&#x662F;&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x4ECE;&#x6700;&#x57FA;&#x7840;&#x7684;&#x5C42;&#x6B21;&#x4E0A;&#x770B;&#xFF0C;KVC &#x6709;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;&#x4E00;&#x4E2A;&#x662F;&#x8BBE;&#x7F6E; key &#x7684;&#x503C;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x662F;&#x83B7;&#x53D6; key &#x7684;&#x503C;&#x3002;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<p><pre class="lang:objc decode:true ">void changeName(Person <em>p, NSString </em>newName)<br>{</pre></p>
-<pre><code>// using the KVC accessor (getter) method
-NSString *originalName = [p valueForKey:@&quot;name&quot;];
-
-// using the KVC  accessor (setter) method.
-[p setValue:newName forKey:@&quot;name&quot;];
-
-NSLog(@&quot;Changed %@&apos;s name to: %@&quot;, originalName, newName);
-</code></pre><p>}<br>&#xA0;</p>
-<p>&#x73B0;&#x5728;&#xFF0C;&#x5982;&#x679C; Person &#x6709;&#x53E6;&#x5916;&#x4E00;&#x4E2A; key &#x914D;&#x5076;&#xFF08;spouse&#xFF09;&#xFF0C;spouse &#x7684; key &#x503C;&#x662F;&#x53E6;&#x4E00;&#x4E2A; Person &#x5BF9;&#x8C61;&#xFF0C;&#x7528; KVC &#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5199;&#xFF1A;</p>
-<p><pre class="lang:objc decode:true">void logMarriage(Person *p)<br>{</pre></p>
-<pre><code>// just using the accessor again, same as example above
-NSString *personsName = [p valueForKey:@&quot;name&quot;];
-
-// this line is different, because it is using
-// a &quot;key path&quot; instead of a normal &quot;key&quot;
-NSString *spousesName = [p valueForKeyPath:@&quot;spouse.name&quot;];
-
-NSLog(@&quot;%@ is happily married to %@&quot;, personsName, spousesName);
-</code></pre><p>}<br>key &#x4E0E; key pat &#x8981;&#x533A;&#x5206;&#x5F00;&#x6765;&#xFF0C;key &#x53EF;&#x4EE5;&#x4ECE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x83B7;&#x53D6;&#x503C;&#xFF0C;&#x800C; key path &#x53EF;&#x4EE5;&#x5C06;&#x591A;&#x4E2A; key &#x7528;&#x70B9;&#x53F7; &#x201C;.&#x201D; &#x5206;&#x5272;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
-<p>[p valueForKeyPath:@&#x201D;spouse.name&#x201D;];<br>&#x76F8;&#x5F53;&#x4E8E;&#x8FD9;&#x6837;&#x2026;&#x2026;</p>
-<p>[[p valueForKey:@&#x201D;spouse&#x201D;] valueForKey:@&#x201D;name&#x201D;];<br>&#x597D;&#x4E86;&#xFF0C;&#x4EE5;&#x4E0A;&#x662F; KVC &#x7684;&#x57FA;&#x672C;&#x77E5;&#x8BC6;&#xFF0C;&#x63A5;&#x7740;&#x770B;&#x770B; KVO&#x3002;</p>
-<p>Key-Value Observing (KVO)<br>Key-Value Observing (KVO) &#x5EFA;&#x7ACB;&#x5728; KVC &#x4E4B;&#x4E0A;&#xFF0C;&#x5B83;&#x80FD;&#x591F;&#x89C2;&#x5BDF;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684; KVC key path &#x503C;&#x7684;&#x53D8;&#x5316;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x7528;&#x4EE3;&#x7801;&#x89C2;&#x5BDF;&#x4E00;&#x4E2A; person &#x5BF9;&#x8C61;&#x7684; address &#x53D8;&#x5316;&#xFF0C;&#x4EE5;&#x4E0B;&#x662F;&#x5B9E;&#x73B0;&#x7684;&#x4E09;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;</p>
-<p>watchPersonForChangeOfAddress: &#x5B9E;&#x73B0;&#x89C2;&#x5BDF;<br>observeValueForKeyPath:ofObject:change:context: &#x5728;&#x88AB;&#x89C2;&#x5BDF;&#x7684; key path &#x7684;&#x503C;&#x53D8;&#x5316;&#x65F6;&#x8C03;&#x7528;&#x3002;<br>dealloc &#x505C;&#x6B62;&#x89C2;&#x5BDF;</p>
-<p><pre class="lang:objc decode:true">static NSString *const KVO_CONTEXT_ADDRESS_CHANGED = @&#x201D;KVO_CONTEXT_ADDRESS_CHANGED&#x201D;</pre></p>
-<p>@implementation PersonWatcher</p>
-<p>-(void) watchPersonForChangeOfAddress:(Person *)p<br>{</p>
-<p>// this begins the observing<br>[p addObserver:self<br>forKeyPath:@&#x201D;address&#x201D;<br>options:0<br>context:KVO_CONTEXT_ADDRESS_CHANGED];</p>
-<p>// keep a record of all the people being observed,<br>// because we need to stop observing them in dealloc<br>[m_observedPeople addObject:p];<br>}</p>
-<p>// whenever an observed key path changes, this method will be called</p>
-<ul>
-<li>(void)observeValueForKeyPath:(NSString <em>)keyPath<br>ofObject:(id)object<br>change:(NSDictionary </em>)change<br>context:(void *)context</li>
-</ul>
-<p>{<br>// use the context to make sure this is a change in the address,<br>// because we may also be observing other things<br>if(context == KVO_CONTEXT_ADDRESS_CHANGED) {<br>NSString <em>name = [object valueForKey:@&#x201D;name&#x201D;];<br>NSString </em>address = [object valueForKey:@&#x201D;address&#x201D;];<br>NSLog(@&#x201D;%@ has a new address: %@&#x201D;, name, address);<br>}<br>}</p>
-<p>-(void) dealloc;<br>{</p>
-<p>// must stop observing everything before this object is<br>// deallocated, otherwise it will cause crashes<br>for(Person *p in m_observedPeople){<br>[p removeObserver:self forKeyPath:@&#x201D;address&#x201D;];<br>}</p>
-<p>[m_observedPeople release];<br>m_observedPeople = nil;</p>
-<p>[super dealloc];</p>
-<p>}</p>
-<p>-(id) init;<br>{<br>if(self = [super init]){<br>m_observedPeople = [NSMutableArray new];<br>}</p>
-<p>return self;<br>}</p>
-<p>@end<br>&#x8FD9;&#x5C31;&#x662F; KVO &#x7684;&#x4F5C;&#x7528;&#xFF0C;&#x5B83;&#x901A;&#x8FC7; key path &#x89C2;&#x5BDF;&#x5BF9;&#x8C61;&#x7684;&#x503C;&#xFF0C;&#x5F53;&#x503C;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x6536;&#x5230;&#x901A;&#x77E5;&#x3002;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1718,7 +1690,7 @@ NSLog(@&quot;%@ is happily married to %@&quot;, personsName, spousesName);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

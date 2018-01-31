@@ -235,6 +235,150 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/22/loading-from-a-local-one-html-to-uiview/" itemprop="url">
+                  从本地加载一个.html到UIView.加载Js
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-22T11:56:21+08:00" content="2015-07-22">
+              2015-07-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><pre class="lang:objc decode:true">- (void)loadView<br>{<br>    UIWebView *webView = [[UIWebView alloc]init];<br>    self.view = webView;<br>}</pre></p>
+<ul>
+<li><p>(void)viewDidLoad {<br>  [super viewDidLoad];</p>
+<p>  // &#x8BBE;&#x7F6E;&#x6807;&#x9898;<br>  self.title = self.html.title;</p>
+<p>  UIWebView <em>webView = (UIWebView </em>)self.view;</p>
+<p>  // &#x521B;&#x5EFA;URL<br>  NSURL *url = [[NSBundle mainBundle] URLForResource:self.html.html withExtension:nil];</p>
+<p>  // &#x521B;&#x5EFA;&#x8BF7;&#x6C42;<br>  NSURLRequest *request = [NSURLRequest requestWithURL:url];</p>
+<p>  // &#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x52A0;&#x8F7D;&#x7F51;&#x9875;<br>  [webView loadRequest:request];</p>
+</li>
+</ul>
+<p>}<br>&#x5927;&#x81F4;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x56DB;&#x6B65;</p>
+<ol>
+<li>&#x66FF;&#x6362;View&#x4E3A;UIWebView</li>
+<li>&#x521B;&#x5EFA;URL.</li>
+<li>&#x521B;&#x5EFA;&#x8BF7;&#x6C42;</li>
+<li>View&#x4ECE;&#x8BF7;&#x6C42;&#x52A0;&#x8F7D;.<br>&#x52A0;&#x8F7D;Js:<br><pre class="lang:objc decode:true ">// &#x4EE3;&#x7406;&#x65B9;&#x6CD5;</pre></li>
+</ol>
+<ul>
+<li>(void)webViewDidFinishLoad:(UIWebView <em>)webView<br>{<br>  // 1.&#x62FC;&#x63A5;Javacript&#x4EE3;&#x7801;<br>  NSString </em>js = [NSString stringWithFormat:@&#x201D;window.location.href = &#x2018;#%@&#x2019;;&#x201D;, self.html.ID];<br>  // 2.&#x6267;&#x884C;JavaScript&#x4EE3;&#x7801;<br>  [webView stringByEvaluatingJavaScriptFromString:js];<br>}<br>&#xA0;</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/22/loads-data-from-the-josn-model/" itemprop="url">
                   从josn加载数据模型
                 </a>
@@ -1408,140 +1552,6 @@ return _htmls;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/05/nsnotification-and-delegate-usage-and-tips/" itemprop="url">
-                  NSNotification和Delegate使用及心得
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-05T10:08:20+08:00" content="2015-07-05">
-              2015-07-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/OC/" itemprop="url" rel="index">
-                    <span itemprop="name">OC</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/OC/Xcode/" itemprop="url" rel="index">
-                    <span itemprop="name">Xcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>&#x9996;&#x5148;,&#x8BF7;&#x786E;&#x4FDD;&#x4EE5;&#x9605;&#x8BFB;: &lt;<a href="http://s-187595.abc188.com/index.php/2015/07/06/delegate-proxy-delegates-experience.html">delegate&#x4EE3;&#x7406;&#xFF08;&#x59D4;&#x6258;&#xFF09;&#x7684;&#x4F7F;&#x7528;&#x5FC3;&#x5F97;</a>&gt; &#x548C; &lt;<a href="http://s-187595.abc188.com/index.php/2015/07/02/message-notification-mechanism-nsnotification.html">&#x6D88;&#x606F;&#x901A;&#x77E5;&#x673A;&#x5236;NSNotification</a>&gt;</p>
-<p>&#x6B63;&#x5982;&#x6211;&#x4EEC;&#x5927;&#x5BB6;&#x90FD;&#x77E5;&#x9053;&#x7684;&#xFF0C;IOS&#x4E2D;&#x7ECF;&#x5E38;&#x4F1A;&#x63D0;&#x5230;NSNotification&#x548C;<a href="http://s-187595.abc188.com/index.php/2015/07/05/delegate-proxy-in-ios-delegates-experience.html">delegate</a>&#x6765;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x3002;&#x5176;&#x5B9E;&#x5728;&#x6211;&#x521A;&#x5F00;&#x59CB;&#x5B66;OC&#x7684;&#x65F6;&#x5019;,&#x5F88;&#x4E45;&#x4E0D;&#x80FD;&#x7406;&#x89E3;&#x8FD9;&#x4E2A;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x6709;&#x4EC0;&#x4E48;&#x7528;.&#x6162;&#x6162;&#x7684;&#x5F53;&#x719F;&#x6089;&#x4E86;MVC,&#x4EE5;&#x53CA;&#x5C01;&#x88C5;&#x601D;&#x60F3;&#x4EE5;&#x540E;,&#x53D1;&#x73B0;&#x8FD9;2&#x4E2A;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x771F;&#x7684;&#x65F6;&#x795E;&#x5668;,&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x4E4B;&#x95F4;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x5462;&#xFF1F;</p>
-<p>NSNotification&#x5C31;&#x662F;IOS&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x4E2A;<strong>&#x6D88;&#x606F;&#x4E2D;&#x5FC3;</strong>&#xFF0C;&#x7531;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x7684;defaultNotification&#x7BA1;&#x7406;&#x5E94;&#x7528;&#x4E2D;&#x7684;&#x6D88;&#x606F;&#x673A;&#x5236;&#x3002;&#x901A;&#x8FC7;&#x516C;&#x5F00;&#x7684;API&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x8FD9;&#x91CC;&#x9762;&#x4F7F;&#x7528;&#x4E86;&#x662F;&#x4E00;&#x4E2A;&#x89C2;&#x5BDF;&#x8005;&#xFF0C;&#x901A;&#x8FC7;&#x6CE8;&#x518C;addObserver&#x548C;&#x89E3;&#x9664;&#x6CE8;&#x518C;removeObserver&#x6765;&#x5B9E;&#x73B0;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x3002;&#x82F9;&#x679C;&#x6587;&#x6863;&#x7279;&#x522B;&#x63D0;&#x51FA;&#xFF0C;&#x5728;&#x7C7B;&#x6790;&#x6784;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8981;&#x8BB0;&#x5F97;&#x628A;removeObserver&#xFF0C;&#x4E0D;&#x7136;&#x5C31;&#x4F1A;&#x5F15;&#x53D1;&#x5D29;&#x6E83;&#xFF0C;&#x6240;&#x4EE5;NSNotifcation&#x7684;&#x4F7F;&#x7528;&#x662F;&#x6CA1;&#x6709;retain+1&#x7684;&#xFF0C;NSNotification&#x662F;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x3002;</p>
-<p>&#x81F3;&#x4E8E;Delegate&#xFF0C;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x9700;&#x8981;&#x8C03;&#x7528;&#x7684;&#x51FD;&#x6570;&#x901A;&#x8FC7;delegate&#x4F20;&#x9012;&#x5230;&#x5176;&#x4ED6;&#x7C7B;&#x4E2D;&#xFF0C;&#x6765;&#x5F97;&#x5F88;&#x76F4;&#x622A;&#x4E86;&#x5F53;&#x3002;&#x4E0D;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x5E7F;&#x64AD;&#x7684;&#x5F62;&#x5F0F;&#x53BB;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x662F;&#xFF0C;delegate&#x7684;&#x5F62;&#x5F0F;&#x53EA;&#x80FD;&#x662F;&#x4E00;&#x5BF9;&#x4E00;&#xFF0C;&#x4E0D;&#x80FD;&#x5B9E;&#x73B0;&#x4E00;&#x5BF9;&#x591A;&#x3002;</p>
-<p>&#x5728;&#x4EC0;&#x4E48;&#x60C5;&#x51B5;&#x4E0B;&#x4F7F;&#x7528;Delegate&#x548C;NSNotifiation&#x5462;&#x3002;&#x4ECE;&#x6548;&#x7387;&#x4E0A;&#x770B;Delegate&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x8F7B;&#x91CF;&#x7EA7;&#x7684;&#xFF0C;&#x76F8;&#x5BF9;delegate&#xFF0C;NSNotification&#x5374;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x91CD;&#x91CF;&#x7EA7;&#x7684;&#xFF0C;&#x6548;&#x7387;&#x4E0A;delegate&#x660E;&#x663E;&#x8981;&#x6BD4;Noticication&#x4F4E;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x6211;&#x4EEC;&#x4F1A;&#x8FD9;&#x6837;&#x4F7F;&#x7528;&#x3002;</p>
-<p>&#x573A;&#x666F;&#x4E00;&#xFF1A;</p>
-<p>A&#x62E5;&#x6709;B&#xFF0C;&#x7136;&#x540E;B&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#x9700;&#x8981;&#x56DE;&#x8C03;&#x5230;A&#x4E2D;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x7B80;&#x5355;&#x7684;&#x901A;&#x8FC7;delegate&#x56DE;&#x8C03;&#x5230;A&#x3002;&#x56E0;&#x4E3A;B&#x662F;A&#x521B;&#x5EFA;&#x7684;&#xFF0C;B&#x53EF;&#x4EE5;&#x5F88;&#x76F4;&#x63A5;&#x7684;&#x628A;delegate&#x8D4B;&#x503C;A&#x3002;</p>
-<p></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/05/nsnotification-and-delegate-usage-and-tips/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1587,7 +1597,7 @@ return _htmls;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
