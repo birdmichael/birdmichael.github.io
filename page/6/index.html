@@ -235,6 +235,179 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/06/object-c-difference-between-informal-agreements-and-formal-agreements/" itemprop="url">
+                  Object-C非正式协议与正式协议的区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-06T00:45:49+08:00" content="2015-07-06">
+              2015-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">IOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/OC/摘。/" itemprop="url" rel="index">
+                    <span itemprop="name">摘。</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&#x8FD9;&#x4E24;&#x4E2A;&#x6982;&#x5FF5;&#x56F0;&#x6270;&#x6211;&#x5F88;&#x4E45;&#x4E86;&#xFF0C;&#x4E00;&#x76F4;&#x90FD;&#x5F88;&#x50CF;&#x641E;&#x6E05;&#x695A;&#x5230;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x548C;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x548C;&#x8054;&#x7CFB;&#xFF0C;&#x4E0B;&#x9762;&#x7ED3;&#x5408;&#x7F51;&#x4E0A;&#x7684;&#x8D44;&#x6599;&#x548C;&#x81EA;&#x5DF1;&#x7684;&#x770B;&#x6CD5;&#x8C08;&#x8C08;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x4E00;&#x3001;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;</p>
+<p>&#x663E;&#x7136;&#x8FD9;&#x4E2A;&#x540D;&#x8BCD;&#x662F;&#x76F8;&#x5BF9;&#x4E8E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x800C;&#x8A00;&#x7684;&#x3002;&#x5728;&#x89E3;&#x91CA;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E4B;&#x524D;&#xFF0C;&#x5148;&#x5F15;&#x7528;&#x4E24;&#x6BB5;&#x8BDD;&#xFF1A;</p>
+<p>1&#x3001;&#x5728;&#x300A;Cocoa&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x300B;&#x7B2C;&#x516D;&#x7AE0;&#x7C7B;&#x522B;&#x7684;6.3.2&#x628A;&#x7C7B;&#x522B;&#x7528;&#x4E8E;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E00;&#x8282;&#x4E2D;&#xFF0C;&#x8FD9;&#x6837;&#x5199;&#x5230;&#xFF1A;</p>
+<p>&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x901A;&#x5E38;&#x5B9A;&#x4E49;&#x4E3A;NSObject&#x7684;&#x7C7B;&#x522B;&#x3002;&#x7C7B;&#x522B;&#x63A5;&#x53E3;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x80FD;&#x4F1A;&#x6216;&#x8005;&#x53EF;&#x80FD;&#x4E0D;&#x4F1A;&#x88AB;&#x6846;&#x67B6;&#x7C7B;&#x5B9E;&#x9645;&#x5730;&#x5B9E;&#x73B0;&#x3002;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4F4D;&#x4E8E;&#x4E00;&#x79CD;&#x8BBE;&#x8BA1;&#x7070;&#x533A;&#x4E2D;&#x3002;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x7531;&#x7F16;&#x8BD1;&#x5668;&#x68C0;&#x67E5;&#x5E76;&#x4E14;&#x4EE3;&#x8868;&#x4E00;&#x79CD;&#x5173;&#x4E8E;&#x5BF9;&#x8C61;&#x80FD;&#x529B;&#x7684;&#x4FDD;&#x8BC1;&#xFF0C;&#x4F46;&#x662F;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E0D;&#x4F1A;&#x505A;&#x51FA;&#x4FDD;&#x8BC1;&#x2014;-&#x800C;&#x53EA;&#x4F1A;&#x7ED9;&#x51FA;&#x63D0;&#x793A;&#x3002;</p>
+<p>2&#x3001;&#x82F9;&#x679C;&#x5B98;&#x65B9;&#x6587;&#x6863;<a href="http://developer.apple.com/library/ios/#documentation/general/conceptual/devpedia-cocoacore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45-SW2" target="_blank" rel="external">Cocoa Core Competencies</a>&#x4E00;&#x6587;&#x4E2D;&#x662F;&#x8FD9;&#x6837;&#x4ECB;&#x7ECD;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x7684;&#xFF1A;</p>
+<p>An informal protocol is a category on <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/Reference/Reference.html#//apple_ref/occ/cl/NSObject" target="_blank" rel="external">NSObject</a>, which implicitly makes almost all objects adopters of the protocol. (A category is a language feature that enables you to add methods to a class without subclassing it.) Implementation of the methods in an informal protocol is optional. Before invoking a method, the calling object checks to see whether the target object implements it. Until optional protocol methods were introduced in Objective-C 2.0, informal protocols were essential to the way Foundation and AppKit classes implemented delegation.</p>
+<p>&#x5927;&#x6982;&#x610F;&#x601D;&#xFF1A;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x662F;NSObject&#x7C7B;&#xFF08;&#x663E;&#x800C;&#x6613;&#x89C1;&#xFF0C;&#x8FD8;&#x5305;&#x62EC;&#x5B83;&#x7684;&#x5B50;&#x7C7B;&#xFF09;&#x7684;&#x7C7B;&#x522B;&#xFF0C;&#x5176;&#x6240;&#x6709;&#x7684;&#x5B50;&#x7C7B;&#x90FD;&#x542B;&#x84C4;&#x5730;&#x63A5;&#x53D7;&#x4E86;&#x8FD9;&#x4E2A;&#x534F;&#x8BAE;&#x3002;&#xFF08;&#x7C7B;&#x522B;&#x662F;Objective-C&#x7684;&#x4E00;&#x4E2A;&#x8BED;&#x8A00;&#x7279;&#x70B9;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9;&#x4F60;&#x5728;&#x65E0;&#x9700;&#x5B50;&#x7C7B;&#x5316;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x4E3A;&#x4E00;&#x4E2A;&#x7C7B;&#x589E;&#x52A0;&#x65B9;&#x6CD5;&#x3002;&#xFF09;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x90FD;&#x662F;&#x53EF;&#x9009;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x8C03;&#x7528;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x53BB;&#x68C0;&#x67E5;&#x5BF9;&#x8C61;&#x7C7B;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x4E86;&#x5B83;&#x3002;&#x5728;Objective-C2.0&#x4E2D;&#x5F15;&#x5165;&#x53EF;&#x9009;&#x7684;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x65B9;&#x6CD5;&#x4E4B;&#x524D;&#xFF0C;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x662F;Foundation&#x548C;AppKit&#x7C7B;&#x5B9E;&#x73B0;&#x59D4;&#x6258;&#x7684;&#x552F;&#x4E00;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>3&#x3001;&#x5230;&#x5E95;&#x4EC0;&#x4E48;&#x662F;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;</p>
+<p>&#x7EFC;&#x5408;1&#x3001;2&#x4E24;&#x6BB5;&#x5F15;&#x6587;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x6240;&#x8C13;&#x7684;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x5C31;&#x662F;&#x7C7B;&#x522B;&#xFF0C;&#x5373;&#x51E1;&#x662F;NSObject&#x6216;&#x5176;&#x5B50;&#x7C7B;&#x7684;&#x7C7B;&#x522B;&#xFF0C;&#x90FD;&#x662F;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x3002;</p>
+<p>4&#x3001;&#x7C7B;&#x522B;&#x548C;&#x533F;&#x540D;&#x7C7B;&#x522B;</p>
+<p>&#x7C7B;&#x522B;&#x7684;&#x5199;&#x6CD5;&#xFF1A;</p>
+<p><pre class="lang:objc decode:true">@interface NSString (CamelCase)  //&#x7C7B;&#x522B;<br>-(NSString*) camelCaseString;<br>@end</pre><br>&#x8FD9;&#x91CC;&#x7684;CamelCase&#x5C31;&#x662F;&#x7C7B;&#x522B;&#x540D;&#x79F0;&#xFF0C;&#x8DDF;&#x7C7B;&#x540D;&#x4E00;&#x6837;&#x4E0D;&#x80FD;&#x91CD;&#x590D;&#x3002;&#x603B;&#x6240;&#x5468;&#x77E5;&#xFF0C;&#x7C7B;&#x522B;&#x53EA;&#x80FD;&#x589E;&#x52A0;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x80FD;&#x589E;&#x52A0;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF0C;&#x4F46;&#x662F;&#x7C7B;&#x522B;&#x8FD8;&#x6709;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;</p>
+<p><pre class="lang:objc decode:true">@interface MyClass () { //&#x7C7B;&#x6269;&#x5C55;<br>    float value;<br>}    </pre></p>
+<ul>
+<li>(void)setValue:(float)newValue;<br>@end<br>&#x8FD9;&#x79CD;&#x5199;&#x6CD5;&#x7684;&#x7C7B;&#x522B;&#x53EB;&#x533F;&#x540D;&#x7C7B;&#x522B;&#xFF0C;&#x53C8;&#x53EB;&#x7C7B;&#x6269;&#x5C55;&#xFF0C;&#x6240;&#x8C13;&#x7684;&#x6269;&#x5C55;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E3A;&#x4E00;&#x4E2A;&#x7C7B;&#x6DFB;&#x52A0;&#x989D;&#x5916;&#x7684;&#x539F;&#x6765;&#x6CA1;&#x6709;&#x7684;&#x53D8;&#x91CF;&#x3001;&#x65B9;&#x6CD5;&#x6216;&#x8005;&#x5408;&#x6210;&#x5C5E;&#x6027;&#x3002;</li>
+</ul>
+<p>&#x7C7B;&#x522B;&#x4E0E;&#x7C7B;&#x6269;&#x5C55;&#x7684;&#x533A;&#x522B;&#xFF1A;</p>
+<p>&#x2460;&#x7C7B;&#x522B;&#x4E2D;&#x53EA;&#x80FD;&#x589E;&#x52A0;&#x65B9;&#x6CD5;&#xFF1B;</p>
+<p>&#x2461;&#x662F;&#x7684;&#xFF0C;&#x4F60;&#x6CA1;&#x770B;&#x9519;&#xFF0C;&#x7C7B;&#x6269;&#x5C55;&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF08;&#x6216;&#x8005;&#x5408;&#x6210;&#x5C5E;&#x6027;&#xFF09;&#xFF0C;&#x53EA;&#x662F;&#x8BE5;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x9ED8;&#x8BA4;&#x662F;@private&#x7C7B;&#x578B;&#x7684;&#xFF08;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x53EA;&#x80FD;&#x5728;&#x81EA;&#x8EAB;&#x7C7B;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5B50;&#x7C7B;&#x6216;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#xFF09;&#xFF1B;</p>
+<p>&#x2462;&#x7C7B;&#x6269;&#x5C55;&#x4E2D;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#x6CA1;&#x88AB;&#x5B9E;&#x73B0;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x62A5;&#x8B66;&#xFF0C;&#x4F46;&#x662F;&#x7C7B;&#x522B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x6CA1;&#x88AB;&#x5B9E;&#x73B0;&#x7F16;&#x8BD1;&#x5668;&#x662F;&#x4E0D;&#x4F1A;&#x6709;&#x4EFB;&#x4F55;&#x8B66;&#x544A;&#x7684;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x7C7B;&#x6269;&#x5C55;&#x662F;&#x5728;&#x7F16;&#x8BD1;&#x9636;&#x6BB5;&#x88AB;&#x6DFB;&#x52A0;&#x5230;&#x7C7B;&#x4E2D;&#xFF0C;&#x800C;&#x7C7B;&#x522B;&#x662F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x6DFB;&#x52A0;&#x5230;&#x7C7B;&#x4E2D;&#x3002;</p>
+<p>&#x2463;&#x7C7B;&#x6269;&#x5C55;&#x4E0D;&#x80FD;&#x50CF;&#x7C7B;&#x522B;&#x90A3;&#x6837;&#x62E5;&#x6709;&#x72EC;&#x7ACB;&#x7684;&#x5B9E;&#x73B0;&#x90E8;&#x5206;&#xFF08;@implementation&#x90E8;&#x5206;&#xFF09;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x7C7B;&#x6269;&#x5C55;&#x6240;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#x5FC5;&#x987B;&#x4F9D;&#x6258;&#x5BF9;&#x5E94;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x90E8;&#x5206;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x2464;&#x5B9A;&#x4E49;&#x5728; .m &#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x7C7B;&#x6269;&#x5C55;&#x65B9;&#x6CD5;&#x4E3A;&#x79C1;&#x6709;&#x7684;&#xFF0C;&#x5B9A;&#x4E49;&#x5728; .h &#x6587;&#x4EF6;&#xFF08;&#x5934;&#x6587;&#x4EF6;&#xFF09;&#x4E2D;&#x7684;&#x7C7B;&#x6269;&#x5C55;&#x65B9;&#x6CD5;&#x4E3A;&#x516C;&#x6709;&#x7684;&#x3002;&#x7C7B;&#x6269;&#x5C55;&#x662F;&#x5728; .m &#x6587;&#x4EF6;&#x4E2D;&#x58F0;&#x660E;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#x7684;&#x975E;&#x5E38;&#x597D;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x4E8C;&#x3001;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;</p>
+<p>&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x4ECE;&#x6982;&#x5FF5;&#x4E0A;&#x7406;&#x89E3;&#x8D77;&#x6765;&#x5C31;&#x7B80;&#x5355;&#x7684;&#x591A;&#x4E86;&#xFF0C;&#x5B83;&#x6307;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x4EE5;@protocol&#x65B9;&#x5F0F;&#x547D;&#x540D;&#x7684;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#xFF0C;&#x4E0E;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x76F8;&#x6BD4;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x8981;&#x6C42;&#x663E;&#x793A;&#x7684;&#x91C7;&#x7528;&#x534F;&#x8BAE;&#x3002;</p>
+<p>1&#x3001;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x7684;&#x65B9;&#x6CD5;&#x7C7B;&#x578B;</p>
+<p>&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x4E24;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#xFF1A;</p>
+<p>&#x2460;@required</p>
+<p>&#x8BE5;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5728;&#x9075;&#x5B88;&#x76F8;&#x5E94;&#x534F;&#x8BAE;&#x7684;&#x7C7B;&#x4E2D;&#x662F;&#x5FC5;&#x987B;&#x88AB;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4E0D;&#x7136;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x544A;&#x8B66;&#xFF08;&#x663E;&#x7136;&#x8FD9;&#x662F;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x505A;&#x7684;&#x68C0;&#x67E5;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#xFF09;</p>
+<p>&#x2461;@optional</p>
+<p>&#x8BE5;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5728;&#x9075;&#x5B88;&#x76F8;&#x5E94;&#x534F;&#x8BAE;&#x7684;&#x7C7B;&#x4E2D;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x662F;&#x53EF;&#x9009;&#x7684;</p>
+<p>2&#x3001;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x5B58;&#x5728;&#x7684;&#x610F;&#x4E49;</p>
+<p>&#x4ECE;&#x5B57;&#x9762;&#x4E0A;&#x7406;&#x89E3;&#xFF0C;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x6BD4;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x8981;&#x6B63;&#x5F0F;&#x4E86;&#x5F88;&#x591A;&#xFF0C;&#x5B83;&#x5B58;&#x5728;&#x7684;&#x610F;&#x4E49;&#x5728;&#x4E8E;&#xFF1A;</p>
+<p>&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x53EF;&#x4EE5;&#x5C06;&#x4E1A;&#x52A1;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x5265;&#x79BB;&#x51FA;&#x6765;&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x8DDF;&#x4F20;&#x7EDF;OO&#x4E2D;&#x7684;&#x63D0;&#x53D6;&#x63A5;&#x53E3;&#x662F;&#x4E0D;&#x8C0B;&#x800C;&#x5408;&#x7684;&#x3002;&#x5982;&#x679C;&#x9047;&#x5230;&#x4E8C;&#x4E2A;&#x7CFB;&#x7EDF;&#x9700;&#x8981;&#x4EA4;&#x6362;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x4EE5;&#x5236;&#x5B9A;&#x4E00;&#x5957;&#x53CC;&#x65B9;&#x90FD;&#x9075;&#x5B88;&#x7684;&#x534F;&#x8BAE;&#xFF0C;&#x7136;&#x540E;&#x8FD9;&#x4E8C;&#x4E2A;&#x7CFB;&#x7EDF;&#x4E2D;&#x90FD;&#x628A;&#x8FD9;&#x4E2A;&#x534F;&#x8BAE;&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x5230;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x5B9E;&#x73B0;&#x5B83;&#x5373;&#x53EF;&#x3002;</p>
+<p>3&#x3001;&#x7EE7;&#x627F;&#x6027;</p>
+<p>&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x548C;&#x7C7B;&#x4E00;&#x6837;&#xFF0C;&#x662F;&#x53EF;&#x4EE5;&#x7EE7;&#x627F;&#x7684;&#xFF0C;&#x4E66;&#x5199;&#x683C;&#x5F0F;&#x540C;&#x7C7B;&#x7EE7;&#x627F;&#x76F8;&#x4F3C;&#xFF1A;</p>
+<p><pre class="lang:objc decode:true">@protocol NewProtocal   &lt;Protocal&gt;</pre><br>&#xA0;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/06/delegate-proxy-delegates-experience/" itemprop="url">
                   delegate代理（委托）的使用心得
                 </a>
@@ -1508,7 +1681,7 @@ NSLog(@&quot;&#x672C;&#x5730;&#x8BBE;&#x5907;&#x6A21;&#x5F0F;&#xFF1A;%@&quot;, s
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
