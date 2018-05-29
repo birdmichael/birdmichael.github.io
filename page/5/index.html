@@ -848,28 +848,14 @@
       
         
           
-            <p><pre class="lang:objc decode:true">- (void)loadView<br>{<br>    UIWebView *webView = [[UIWebView alloc]init];<br>    self.view = webView;<br>}</pre></p>
-<ul>
-<li><p>(void)viewDidLoad {<br>  [super viewDidLoad];</p>
-<p>  // &#x8BBE;&#x7F6E;&#x6807;&#x9898;<br>  self.title = self.html.title;</p>
-<p>  UIWebView <em>webView = (UIWebView </em>)self.view;</p>
-<p>  // &#x521B;&#x5EFA;URL<br>  NSURL *url = [[NSBundle mainBundle] URLForResource:self.html.html withExtension:nil];</p>
-<p>  // &#x521B;&#x5EFA;&#x8BF7;&#x6C42;<br>  NSURLRequest *request = [NSURLRequest requestWithURL:url];</p>
-<p>  // &#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x52A0;&#x8F7D;&#x7F51;&#x9875;<br>  [webView loadRequest:request];</p>
-</li>
-</ul>
-<p>}<br>&#x5927;&#x81F4;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x56DB;&#x6B65;</p>
-<ol>
-<li>&#x66FF;&#x6362;View&#x4E3A;UIWebView</li>
-<li>&#x521B;&#x5EFA;URL.</li>
-<li>&#x521B;&#x5EFA;&#x8BF7;&#x6C42;</li>
-<li>View&#x4ECE;&#x8BF7;&#x6C42;&#x52A0;&#x8F7D;.<br>&#x52A0;&#x8F7D;Js:<br><pre class="lang:objc decode:true ">// &#x4EE3;&#x7406;&#x65B9;&#x6CD5;</pre></li>
-</ol>
-<ul>
-<li>(void)webViewDidFinishLoad:(UIWebView <em>)webView<br>{<br>  // 1.&#x62FC;&#x63A5;Javacript&#x4EE3;&#x7801;<br>  NSString </em>js = [NSString stringWithFormat:@&#x201D;window.location.href = &#x2018;#%@&#x2019;;&#x201D;, self.html.ID];<br>  // 2.&#x6267;&#x884C;JavaScript&#x4EE3;&#x7801;<br>  [webView stringByEvaluatingJavaScriptFromString:js];<br>}<br>&#xA0;</li>
-</ul>
+          - (voi
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/22/loading-from-a-local-one-html-to-uiview/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
