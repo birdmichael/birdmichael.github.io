@@ -236,6 +236,113 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/05/iOS运行时runtime及相关Objective-C底层讲解/" itemprop="url">
+                  iOS运行时runtime及相关Objective-C底层讲解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-05T17:03:45+08:00" content="2016-05-05">
+              2016-05-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="runtime&#x4F53;&#x9A8C;"><a href="#runtime&#x4F53;&#x9A8C;" class="headerlink" title="runtime&#x4F53;&#x9A8C;"></a>runtime&#x4F53;&#x9A8C;</h1><h2 id="&#x5F15;&#x8A00;"><a href="#&#x5F15;&#x8A00;" class="headerlink" title="&#x5F15;&#x8A00;"></a>&#x5F15;&#x8A00;</h2><p>&#x8FD0;&#x884C;&#x65F6;&#x4F5C;&#x4E3A;&#x9762;&#x8BD5;&#x9898;&#x4E2D;&#x9AD8;&#x9636;&#x95EE;&#x9898;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#x4E00;&#x4E2A;&#x6280;&#x80FD;&#x70B9;&#x3002;&#x7ECF;&#x5E38;&#x9762;&#x8BD5;&#x5B98;&#x4F1A;&#x95EE;&#x9053;&#x662F;&#x5426;&#x4F7F;&#x7528;&#x8FC7;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x4EE5;&#x53CA;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x8FD0;&#x884C;&#x65F6;&#x3002;&#x5E76;&#x4E14;&#x6211;&#x8BA4;&#x4E3A;&#x8FD9;&#x4E2A;&#x6280;&#x672F;&#x7B97;&#x662F;&#x9AD8;&#x9636;&#x5F00;&#x53D1;&#x91CC;&#x9762;&#x4E00;&#x4E2A;&#x6295;&#x673A;&#x7684;&#x6280;&#x5DE7;&#xFF0C;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x7684;UI&#x5F00;&#x53D1;&#x90FD;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528;<code>runtime</code>&#xFF0C;&#x5BB9;&#x6613;&#x51FA;&#x73B0;&#x5F88;&#x4E25;&#x91CD;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5E76;&#x4E14;&#x5B98;&#x65B9;&#x4E5F;&#x4E0D;&#x662F;&#x7279;&#x522B;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x3002;&#x6240;&#x4EE5;&#x4F1A;&#x5BFC;&#x81F4;&#x5F88;&#x591A;&#x4EBA;&#x5BF9;&#x8FD0;&#x884C;&#x65F6;&#x6CA1;&#x6709;&#x4E00;&#x4E2A;&#x6E05;&#x6670;&#x5168;&#x9762;&#x7684;&#x8BA4;&#x8BC6;&#xFF0C;&#x7F51;&#x4E0A;&#x8D44;&#x6599;&#x4E5F;&#x5F88;&#x5C11;&#x3002;&#x6240;&#x4EE5;&#x4F60;&#x4E00;&#x5B9A;&#x4F1A;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x7591;&#x95EE;&#xFF1A;&#x4EC0;&#x4E48;&#x662F;&#x8FD0;&#x884C;&#x65F6;&#xFF1F;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#x600E;&#x4E48;&#x4F7F;&#x7528;&#x8FD0;&#x884C;&#x65F6;&#xFF1F;&#x54EA;&#x4E9B;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD0;&#x884C;&#x65F6;&#xFF1F;&#x7B49;&#x7B49;&#x3002;&#x3002;</p>
+<p>&#x95EE;&#x9898;&#xFF1A;&#x5F53;&#x60F3;&#x5728;&#x4E00;&#x4E2A;&#x5206;&#x7C7B;&#xFF08;<code>category</code>&#xFF09;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x65F6;&#xFF0C;&#x5E76;&#x4E14;iOS&#x662F;&#x4E0D;&#x5141;&#x8BB8;&#x7ED9;&#x6269;&#x5C55;&#x7C7B;&#x6269;&#x5C55;&#x5C5E;&#x6027;&#x7684;&#xFF08;<code>category</code>&#x76F8;&#x5BF9;&#x4E8E;&#x5B50;&#x7C7B;&#x6765;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5219;&#x9700;&#x6DFB;&#x52A0;&#x5B50;&#x7C7B;&#x3002;&#x5982;&#x679C;&#x53EA;&#x662F;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x7528;<code>Category</code>&#x662F;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#x9009;&#x62E9;&#x3002;&#xFF09;</p>
+<p>&#x7B54;&#x6848;&#xFF1A;&#x4F7F;&#x7528;<code>runtime</code>&#x3002;</p>
+<h2 id="runtime&#x673A;&#x5236;"><a href="#runtime&#x673A;&#x5236;" class="headerlink" title="runtime&#x673A;&#x5236;"></a>runtime&#x673A;&#x5236;</h2><p>&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;Objective-C&#x662F;C&#x7684;&#x8D85;&#x96C6;&#xFF0C;&#x6211;&#x4EEC;&#x5E73;&#x65F6;&#x5199;&#x7684;Objective-C&#x90FD;&#x662F;&#x6700;&#x7EC8;&#x8F6C;&#x6210;&#x4E86;runtime&#x7684;C&#x8BED;&#x8A00;&#x4EE3;&#x7801;&#xFF0C;&#x6240;&#x4EE5;runtime&#x662F;&#x4E00;&#x5957;&#x6BD4;&#x8F83;&#x5E95;&#x5C42;&#x7684;&#x7EAF;C&#x7684;API&#xFF0C;&#x5C5E;&#x4E8E;C&#x8BED;&#x8A00;&#x5E93;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x5F88;&#x591A;&#x5E95;&#x5C42;C&#x8BED;&#x8A00;&#x7684;API&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x5728;&#x6211;&#x4EEC;&#x7F16;&#x8BD1;&#x65F6;&#xFF0C;&#x5176;&#x5B9E;<code>runtime</code>&#x662F;&#x4E0D;&#x5B58;&#x5728;&#x3002;&#x53EA;&#x6709;&#x5728;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x624D;&#x53BB;&#x786E;&#x5B9A;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x65B9;&#x6CD5;&#x7B49;&#x7B49;&#x3002;&#x800C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x7279;&#x6027;&#x518D;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x52A8;&#x6001;&#x7684;&#x4FEE;&#x6539;&#x7C7B;&#x3001;&#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5C5E;&#x6027;&#x3001;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x5728;&#x4F7F;&#x7528;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x5305;&#x542B;&#x5934;&#x6587;&#x4EF6;&#xFF1A;<code>#import &lt;objc/runtime.h&gt;</code>;&#x3002;&#x5982;&#x679C;&#x662F;Swift&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x5305;&#x542B;&#x5934;&#x6587;&#x4EF6;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;&#x3002;</p>
+<h2 id="runtime&#x5934;&#x6587;&#x4EF6;"><a href="#runtime&#x5934;&#x6587;&#x4EF6;" class="headerlink" title="runtime&#x5934;&#x6587;&#x4EF6;"></a>runtime&#x5934;&#x6587;&#x4EF6;</h2><p>&#x5728;iOS 9.3 <code>user/include&gt;objc</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x6709;&#x5982;&#x4E0B;&#x7684;&#x6587;&#x4EF6;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">message.h</span><br><span class="line">NSObjCRuntime.h</span><br><span class="line">NSObject.h</span><br><span class="line">objc-api.h</span><br><span class="line">objc-auto.h</span><br><span class="line">objc-exception.h</span><br><span class="line">objc-sync.h</span><br><span class="line">objc.h</span><br><span class="line">runtime.h</span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x4E9B;&#x90FD;&#x662F;<code>runtime</code>&#x76F8;&#x5173;&#x7684;&#x5934;&#x6587;&#x4EF6;&#xFF0C;&#x5176;&#x4E2D;&#x6211;&#x4EEC;&#x4E3B;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x662F;<code>message.h</code>&#x548C;<code>runtime.h</code>&#x8FD9;2&#x4E2A;&#x6587;&#x4EF6;&#x3002;</p>
+<ul>
+<li>message.h&#xFF1A;&#x4E3B;&#x8981;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E9B;&#x5411;&#x5BF9;&#x8C61;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x662F;OC&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x3002;</li>
+<li>runtime.h&#xFF1A;&#x8FD0;&#x884C;&#x65F6;&#x6700;&#x91CD;&#x8981;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x5BF9;&#x8FD0;&#x884C;&#x65F6;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x7684;&#x65B9;&#x6CD5;&#x3002;</li></ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/05/iOS运行时runtime及相关Objective-C底层讲解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/05/gets-the-device-only-marks-use-udid-solutions/" itemprop="url">
                   获取设备唯一标示, 使用UDID的解决方案
                 </a>
@@ -1278,124 +1385,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/" itemprop="url">
-                  ios中集合遍历方法的比较和推荐
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-10T10:37:20+08:00" content="2015-11-10">
-              2015-11-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/OC/" itemprop="url" rel="index">
-                    <span itemprop="name">OC</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          &#x524
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1441,7 +1430,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

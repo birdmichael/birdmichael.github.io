@@ -236,6 +236,126 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/12/nssearchpathfordirectoriesindomains-deep-analysis/" itemprop="url">
+                  NSSearchPathForDirectoriesInDomains深入解析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-12T02:18:43+08:00" content="2015-07-12">
+              2015-07-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>NSSearchPathForDirectoriesInDomains&#x51FD;&#x6570;&#x6709;&#x4E09;&#x4E2A;&#x53C2;&#x6570;.&#x5206;&#x522B;&#x662F;<span class="s1">NSSearchPathDirectory directory,</span><span class="s1">NSSearchPathDomainMask domainMask,</span><span class="s1">BOOL</span><span class="s2"> expandTilde.</span></p>
+<p>&#x73B0;&#x5728;&#x6765;&#x6DF1;&#x5165;&#x8BB2;&#x89E3;&#x4E00;&#x4E0B;&#x8FD9;&#x4E09;&#x4E2A;&#x53C2;&#x6570;.</p>
+<p>&#x56FD;&#x9645;&#x60EF;&#x4F8B;,&#x5148;&#x8D34;&#x4E0A;&#x5B98;&#x65B9;&#x4EE3;&#x7801;:</p>
+<p><pre class="lang:objc decode:true ">typedef NS_ENUM(NSUInteger, NSSearchPathDirectory) {<br>    NSApplicationDirectory = 1,             // supported applications (Applications)<br>    NSDemoApplicationDirectory,             // unsupported applications, demonstration versions (Demos)<br>    NSDeveloperApplicationDirectory,        // developer applications (Developer/Applications). DEPRECATED - there is no one single Developer directory.<br>    NSAdminApplicationDirectory,            // system and network administration applications (Administration)<br>    NSLibraryDirectory,                     // various documentation, support, and configuration files, resources (Library)<br>    NSDeveloperDirectory,                   // developer resources (Developer) DEPRECATED - there is no one single Developer directory.<br>    NSUserDirectory,                        // user home directories (Users)<br>    NSDocumentationDirectory,               // documentation (Documentation)<br>    NSDocumentDirectory,                    // documents (Documents)<br>    NSCoreServiceDirectory,                 // location of CoreServices directory (System/Library/CoreServices)<br>    NSAutosavedInformationDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 11,   // location of autosaved documents (Documents/Autosaved)<br>    NSDesktopDirectory = 12,                // location of user&#x2019;s desktop<br>    NSCachesDirectory = 13,                 // location of discardable cache files (Library/Caches)<br>    NSApplicationSupportDirectory = 14,     // location of application support files (plug-ins, etc) (Library/Application Support)<br>    NSDownloadsDirectory NS_ENUM_AVAILABLE(10_5, 2_0) = 15,              // location of the user&#x2019;s &#x201C;Downloads&#x201D; directory<br>    NSInputMethodsDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 16,           // input methods (Library/Input Methods)<br>    NSMoviesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 17,                 // location of user&#x2019;s Movies directory (~/Movies)<br>    NSMusicDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 18,                  // location of user&#x2019;s Music directory (~/Music)<br>    NSPicturesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 19,               // location of user&#x2019;s Pictures directory (~/Pictures)<br>    NSPrinterDescriptionDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 20,     // location of system&#x2019;s PPDs directory (Library/Printers/PPDs)<br>    NSSharedPublicDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 21,           // location of user&#x2019;s Public sharing directory (~/Public)<br>    NSPreferencePanesDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 22,        // location of the PreferencePanes directory for use with System Preferences (Library/PreferencePanes)<br>    NSApplicationScriptsDirectory NS_ENUM_AVAILABLE(10_8, NA) = 23,      // location of the user scripts folder for the calling application (~/Library/Application Scripts/code-signing-id)<br>    NSItemReplacementDirectory NS_ENUM_AVAILABLE(10_6, 4_0) = 99,        // For use with NSFileManager&#x2019;s URLForDirectory:inDomain:appropriateForURL:create:error:<br>    NSAllApplicationsDirectory = 100,       // all directories where applications can occur<br>    NSAllLibrariesDirectory = 101,          // all directories where resources can occur<br>    NSTrashDirectory NS_ENUM_AVAILABLE(10_8, NA) = 102                   // location of Trash directory</pre></p>
+<p>};</p>
+<p>typedef NS_OPTIONS(NSUInteger, NSSearchPathDomainMask) {<br>    NSUserDomainMask = 1,       // user&#x2019;s home directory &#x2014; place to install user&#x2019;s personal items (~)<br>    NSLocalDomainMask = 2,      // local to the current machine &#x2014; place to install items available to everyone on this machine (/Library)<br>    NSNetworkDomainMask = 4,    // publically available location in the local area network &#x2014; place to install items available on the network (/Network)<br>    NSSystemDomainMask = 8,     // provided by Apple, unmodifiable (/System)<br>    NSAllDomainsMask = 0x0ffff  // all domains: all of the above and future items<br>};<br></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/12/nssearchpathfordirectoriesindomains-deep-analysis/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/" itemprop="url">
                   iOS应用数据存储的常用方式(沙盒Sandbox)
                 </a>
@@ -1412,136 +1532,6 @@ NSLog(@&quot;&#x672C;&#x5730;&#x8BBE;&#x5907;&#x6A21;&#x5F0F;&#xFF1A;%@&quot;, s
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/29/delegate-applications/" itemprop="url">
-                  Delegate的使用场合
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-29T15:22:02+08:00" content="2015-06-29">
-              2015-06-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IOS/" itemprop="url" rel="index">
-                    <span itemprop="name">IOS</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IOS/OC/" itemprop="url" rel="index">
-                    <span itemprop="name">OC</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Delega
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/29/delegate-applications/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1587,7 +1577,7 @@ NSLog(@&quot;&#x672C;&#x5730;&#x8BBE;&#x5907;&#x6A21;&#x5F0F;&#xFF1A;%@&quot;, s
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
