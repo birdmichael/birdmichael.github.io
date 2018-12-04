@@ -692,6 +692,14 @@ body {
 #header-post #menu-icon:hover {
   color: #2bbc8a;
 }
+#header-post #home-icon {
+  float: left;
+  margin-left: 15px;
+  margin-right: 2rem;
+}
+#header-post #home-icon:hover {
+  color: #2bbc8a;
+}
 #header-post #menu-icon-tablet {
   float: right;
   margin-left: 15px;
