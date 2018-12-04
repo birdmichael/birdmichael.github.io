@@ -1,114 +1,12 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="&amp;#x4F5C;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;IOS&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#xFF0C;&amp;#x7EDD;&amp;#x5927;&amp;#x591A;&amp;#x6570;&amp;#x65F6;&amp;#x5019;&amp;#x4F60;&amp;#x90FD;&amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x5173;&amp;#x5FC3;&amp;#x4E00;&amp;#x4E2A;&amp;#x7C7B;&amp;#x66">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="&amp;#x4F5C;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;IOS&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#xFF0C;&amp;#x7EDD;&amp;#x5927;&amp;#x591A;&amp;#x6570;&amp;#x65F6;&amp;#x5019;&amp;#x4F60;&amp;#x90FD;&amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x5173;&amp;#x5FC3;&amp;#x4E00;&amp;#x4E2A;&amp;#x7C7B;&amp;#x66">
 <meta name="keywords" content="initialize,load,初始化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C 类的加载和初始化(+load 和 +initialize 方法)">
@@ -120,298 +18,132 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 类的加载和初始化(+load 和 +initialize 方法)">
 <meta name="twitter:description" content="&amp;#x4F5C;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;IOS&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#xFF0C;&amp;#x7EDD;&amp;#x5927;&amp;#x591A;&amp;#x6570;&amp;#x65F6;&amp;#x5019;&amp;#x4F60;&amp;#x90FD;&amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x5173;&amp;#x5FC3;&amp;#x4E00;&amp;#x4E2A;&amp;#x7C7B;&amp;#x66">
-
-
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>Objective-C 类的加载和初始化(+load 和 +initialize 方法) | BirdMichael</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Objective-C 类的加载和初始化(+load 和 +initialize 方法)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
+<body>
     
-  
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2015/08/07/mac-used-in-the-ios-command-line/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2015/08/05/objective-cs-alloc-and-allocwithzone/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&text=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&is_video=false&description=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Objective-C 类的加载和初始化(+load 和 +initialize 方法)&body=Check out this article: http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&name=Objective-C 类的加载和初始化(+load 和 +initialize 方法)&description=&lt;p&gt;&amp;#x4F5C;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;IOS&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#xFF0C;&amp;#x7EDD;&amp;#x5927;&amp;#x591A;&amp;#x6570;&amp;#x65F6;&amp;#x5019;&amp;#x4F60;&amp;#x90FD;&amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x5173;&amp;#x5FC3;&amp;#x4E00;&amp;#x4E2A;&amp;#x7C7B;&amp;#x662F;&amp;#x600E;&amp;#x4E48;&amp;#x88AB;&amp;#x52A0;&amp;#x8F7D;&amp;#x8FDB;&amp;#x5185;&amp;#x5B58;&amp;#x7684;&amp;#x3002;&amp;#x8FD9;&amp;#x91CC;&amp;#x9762; runtime linker &amp;#x5728;&amp;#x4F60;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#x8FD8;&amp;#x6CA1;&amp;#x8DD1;&amp;#x8D77;&amp;#x6765;&amp;#x4E4B;&amp;#x524D;&amp;#x5C31;&amp;#x5DF2;&amp;#x7ECF;&amp;#x505A;&amp;#x4E86;&amp;#x5F88;&amp;#x591A;&amp;#x590D;&amp;#x6742;&amp;#x7684;&amp;#x5DE5;&amp;#x4F5C;&amp;#x3002;&lt;/p&gt;
+&lt;p&gt;&amp;#x5BF9;&amp;#x4E8E;&amp;#x5927;&amp;#x591A;&amp;#x7C7B;&amp;#x6765;&amp;#x8BF4;&amp;#xFF0C;&amp;#x77E5;&amp;#x9053;&amp;#x8FD9;&amp;#x4E00;&amp;#x70B9;&amp;#x5C31;&amp;#x5DF2;&amp;#x7ECF;&amp;#x76F8;&amp;#x5F53;&amp;#x8DB3;&amp;#x591F;&amp;#x4E86;&amp;#x3002;&amp;#x4F46;&amp;#x662F;&amp;#xFF0C;&amp;#x6709;&amp;#x4E00;&amp;#x4E9B;&amp;#x7C7B;&amp;#x53EF;&amp;#x80FD;&amp;#x9700;&amp;#x8981;&amp;#x505A;&amp;#x4E00;&amp;#x4E9B;&amp;#x7279;&amp;#x6B8A;&amp;#x7684;&amp;#x51C6;&amp;#x5907;&amp;#x5DE5;&amp;#x4F5C;&amp;#x3002;&amp;#x6BD4;&amp;#x5982;&amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x4E00;&amp;#x4E2A;&amp;#x5168;&amp;#x5C40;&amp;#x7684;&amp;#x8868;&amp;#xFF0C;&amp;#x4ECE; UserDefaults &amp;#x91CC;&amp;#x9762;&amp;#x8BFB;&amp;#x53D6;&amp;#x914D;&amp;#x7F6E;&amp;#x5E76;&amp;#x7F13;&amp;#x5B58;&amp;#x8D77;&amp;#x6765;&amp;#xFF0C;&amp;#x53C8;&amp;#x6216;&amp;#x8005;&amp;#x505A;&amp;#x4E00;&amp;#x4E9B;&amp;#x5176;&amp;#x4ED6;&amp;#x7684;&amp;#x51C6;&amp;#x5907;&amp;#x5DE5;&amp;#x4F5C;&amp;#x3002;&lt;/p&gt;
+&lt;p&gt;ObjC &amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x4E24;&amp;#x79CD;&amp;#x65B9;&amp;#x6CD5;&amp;#x6765;&amp;#x5B9E;&amp;#x73B0;&amp;#x8FD9;&amp;#x4E9B;&amp;#x4E8B;&amp;#x60C5;&amp;#xFF1A;&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&quot;lang:objc decode:true&quot;&gt;+ (void)initialize&lt;/pre&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(void)load&lt;/li&gt;&lt;/ul&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">BirdMichael</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
     </div>
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#load"><span class="toc-number">1.</span> <span class="toc-text">+load</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#initialize"><span class="toc-number">2.</span> <span class="toc-text">+initialize</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">3.</span> <span class="toc-text">结论</span></a></li></ol>
+    </div>
+  </span>
 </div>
 
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Objective-C 类的加载和初始化(+load 和 +initialize 方法)
+    </h1>
 
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+    <div class="postdate">
+        <time datetime="2015-08-05T14:13:40.000Z" itemprop="datePublished">2015-08-05</time>
+    </div>
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-
-  </li>
 
       
-      
-    </ul>
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/initialize/">initialize</a>, <a class="tag-link" href="/tags/load/">load</a>, <a class="tag-link" href="/tags/初始化/">初始化</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="BirdMichael">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BirdMichael">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Objective-C 类的加载和初始化(+load 和 +initialize 方法)
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-08-05 22:13:40" itemprop="dateCreated datePublished" datetime="2015-08-05T22:13:40+08:00">2015-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2016-07-25 14:30:02" itemprop="dateModified" datetime="2016-07-25T14:30:02+08:00">2016-07-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OC/" itemprop="url" rel="index"><span itemprop="name">OC</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;IOS&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x65F6;&#x5019;&#x4F60;&#x90FD;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x4E00;&#x4E2A;&#x7C7B;&#x662F;&#x600E;&#x4E48;&#x88AB;&#x52A0;&#x8F7D;&#x8FDB;&#x5185;&#x5B58;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x9762; runtime linker &#x5728;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x8FD8;&#x6CA1;&#x8DD1;&#x8D77;&#x6765;&#x4E4B;&#x524D;&#x5C31;&#x5DF2;&#x7ECF;&#x505A;&#x4E86;&#x5F88;&#x591A;&#x590D;&#x6742;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</p>
+  <div class="content" itemprop="articleBody">
+    <p>&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;IOS&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x65F6;&#x5019;&#x4F60;&#x90FD;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x4E00;&#x4E2A;&#x7C7B;&#x662F;&#x600E;&#x4E48;&#x88AB;&#x52A0;&#x8F7D;&#x8FDB;&#x5185;&#x5B58;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x9762; runtime linker &#x5728;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x8FD8;&#x6CA1;&#x8DD1;&#x8D77;&#x6765;&#x4E4B;&#x524D;&#x5C31;&#x5DF2;&#x7ECF;&#x505A;&#x4E86;&#x5F88;&#x591A;&#x590D;&#x6742;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</p>
 <p>&#x5BF9;&#x4E8E;&#x5927;&#x591A;&#x7C7B;&#x6765;&#x8BF4;&#xFF0C;&#x77E5;&#x9053;&#x8FD9;&#x4E00;&#x70B9;&#x5C31;&#x5DF2;&#x7ECF;&#x76F8;&#x5F53;&#x8DB3;&#x591F;&#x4E86;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x6709;&#x4E00;&#x4E9B;&#x7C7B;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x505A;&#x4E00;&#x4E9B;&#x7279;&#x6B8A;&#x7684;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;&#x3002;&#x6BD4;&#x5982;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x7684;&#x8868;&#xFF0C;&#x4ECE; UserDefaults &#x91CC;&#x9762;&#x8BFB;&#x53D6;&#x914D;&#x7F6E;&#x5E76;&#x7F13;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x53C8;&#x6216;&#x8005;&#x505A;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x7684;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;&#x3002;</p>
 <p>ObjC &#x63D0;&#x4F9B;&#x4E86;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#x8FD9;&#x4E9B;&#x4E8B;&#x60C5;&#xFF1A;</p>
 <p><pre class="lang:objc decode:true">+ (void)initialize</pre></p>
@@ -442,597 +174,111 @@
 <p>&#xA0;<br>&#x539F;&#x6587;&#x5730;&#x5740;:<a href="https://www.mikeash.com/pyblog/friday-qa-2009-05-22-objective-c-class-loading-and-initialization.html" target="_blank" rel="noopener">https://www.mikeash.com/pyblog/friday-qa-2009-05-22-objective-c-class-loading-and-initialization.html</a></p>
 </blockquote>
 
-      
+  </div>
+</article>
+
+
+
     </div>
-
     
+      <div id="footer-post-container">
+  <div id="footer-post">
 
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/initialize/" rel="tag"># initialize</a>
-          
-            <a href="/tags/load/" rel="tag"># load</a>
-          
-            <a href="/tags/初始化/" rel="tag"># 初始化</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/08/05/objective-cs-alloc-and-allocwithzone/" rel="next" title="Objective-C 里的 alloc 和 allocWithZone:">
-                <i class="fa fa-chevron-left"></i> Objective-C 里的 alloc 和 allocWithZone:
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/08/07/mac-used-in-the-ios-command-line/" rel="prev" title="在IOS中mac常用命令行">
-                在IOS中mac常用命令行 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </ul>
     </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#load"><span class="toc-number">1.</span> <span class="toc-text">+load</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#initialize"><span class="toc-number">2.</span> <span class="toc-text">+initialize</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">3.</span> <span class="toc-text">结论</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&text=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&is_video=false&description=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Objective-C 类的加载和初始化(+load 和 +initialize 方法)&body=Check out this article: http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&title=Objective-C 类的加载和初始化(+load 和 +initialize 方法)"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/08/05/loading-and-initialization-of-the-objective-c-class-load-and-initialize/&name=Objective-C 类的加载和初始化(+load 和 +initialize 方法)&description=&lt;p&gt;&amp;#x4F5C;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;IOS&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#xFF0C;&amp;#x7EDD;&amp;#x5927;&amp;#x591A;&amp;#x6570;&amp;#x65F6;&amp;#x5019;&amp;#x4F60;&amp;#x90FD;&amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x5173;&amp;#x5FC3;&amp;#x4E00;&amp;#x4E2A;&amp;#x7C7B;&amp;#x662F;&amp;#x600E;&amp;#x4E48;&amp;#x88AB;&amp;#x52A0;&amp;#x8F7D;&amp;#x8FDB;&amp;#x5185;&amp;#x5B58;&amp;#x7684;&amp;#x3002;&amp;#x8FD9;&amp;#x91CC;&amp;#x9762; runtime linker &amp;#x5728;&amp;#x4F60;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#x8FD8;&amp;#x6CA1;&amp;#x8DD1;&amp;#x8D77;&amp;#x6765;&amp;#x4E4B;&amp;#x524D;&amp;#x5C31;&amp;#x5DF2;&amp;#x7ECF;&amp;#x505A;&amp;#x4E86;&amp;#x5F88;&amp;#x591A;&amp;#x590D;&amp;#x6742;&amp;#x7684;&amp;#x5DE5;&amp;#x4F5C;&amp;#x3002;&lt;/p&gt;
+&lt;p&gt;&amp;#x5BF9;&amp;#x4E8E;&amp;#x5927;&amp;#x591A;&amp;#x7C7B;&amp;#x6765;&amp;#x8BF4;&amp;#xFF0C;&amp;#x77E5;&amp;#x9053;&amp;#x8FD9;&amp;#x4E00;&amp;#x70B9;&amp;#x5C31;&amp;#x5DF2;&amp;#x7ECF;&amp;#x76F8;&amp;#x5F53;&amp;#x8DB3;&amp;#x591F;&amp;#x4E86;&amp;#x3002;&amp;#x4F46;&amp;#x662F;&amp;#xFF0C;&amp;#x6709;&amp;#x4E00;&amp;#x4E9B;&amp;#x7C7B;&amp;#x53EF;&amp;#x80FD;&amp;#x9700;&amp;#x8981;&amp;#x505A;&amp;#x4E00;&amp;#x4E9B;&amp;#x7279;&amp;#x6B8A;&amp;#x7684;&amp;#x51C6;&amp;#x5907;&amp;#x5DE5;&amp;#x4F5C;&amp;#x3002;&amp;#x6BD4;&amp;#x5982;&amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x4E00;&amp;#x4E2A;&amp;#x5168;&amp;#x5C40;&amp;#x7684;&amp;#x8868;&amp;#xFF0C;&amp;#x4ECE; UserDefaults &amp;#x91CC;&amp;#x9762;&amp;#x8BFB;&amp;#x53D6;&amp;#x914D;&amp;#x7F6E;&amp;#x5E76;&amp;#x7F13;&amp;#x5B58;&amp;#x8D77;&amp;#x6765;&amp;#xFF0C;&amp;#x53C8;&amp;#x6216;&amp;#x8005;&amp;#x505A;&amp;#x4E00;&amp;#x4E9B;&amp;#x5176;&amp;#x4ED6;&amp;#x7684;&amp;#x51C6;&amp;#x5907;&amp;#x5DE5;&amp;#x4F5C;&amp;#x3002;&lt;/p&gt;
+&lt;p&gt;ObjC &amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x4E24;&amp;#x79CD;&amp;#x65B9;&amp;#x6CD5;&amp;#x6765;&amp;#x5B9E;&amp;#x73B0;&amp;#x8FD9;&amp;#x4E9B;&amp;#x4E8B;&amp;#x60C5;&amp;#xFF1A;&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&quot;lang:objc decode:true&quot;&gt;+ (void)initialize&lt;/pre&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(void)load&lt;/li&gt;&lt;/ul&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">BirdMichael</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">64</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">24</span>
-                    <span class="site-state-item-name">分类</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">85</span>
-                    <span class="site-state-item-name">标签</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#load"><span class="nav-number">1.</span> <span class="nav-text">+load</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initialize"><span class="nav-number">2.</span> <span class="nav-text">+initialize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text">结论</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
-
-  
-
-  
 </div>
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-	
-    
-
-    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+

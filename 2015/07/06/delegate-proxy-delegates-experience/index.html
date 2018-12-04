@@ -1,114 +1,12 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="&amp;#x9996;&amp;#x5148;&amp;#xFF0C;&amp;#x5927;&amp;#x5BB6;&amp;#x5E94;&amp;#x8BE5;&amp;#x90FD;&amp;#x975E;&amp;#x5E38;&amp;#x6E05;&amp;#x695A;&amp;#x660E;&amp;#x767D;&amp;#x59D4;&amp;#x6258;(&amp;#x4EE3;&amp;#x7406;)&amp;#x5176;&amp;#x5B9E;&amp;#x534F;&amp;#x8BAE;&amp;#x7684;&amp;#x4E00;&amp;#x79C">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="&amp;#x9996;&amp;#x5148;&amp;#xFF0C;&amp;#x5927;&amp;#x5BB6;&amp;#x5E94;&amp;#x8BE5;&amp;#x90FD;&amp;#x975E;&amp;#x5E38;&amp;#x6E05;&amp;#x695A;&amp;#x660E;&amp;#x767D;&amp;#x59D4;&amp;#x6258;(&amp;#x4EE3;&amp;#x7406;)&amp;#x5176;&amp;#x5B9E;&amp;#x534F;&amp;#x8BAE;&amp;#x7684;&amp;#x4E00;&amp;#x79C">
 <meta name="keywords" content="代理,委托,dalegate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="delegate代理（委托）的使用心得">
@@ -126,872 +24,230 @@
 <meta name="twitter:title" content="delegate代理（委托）的使用心得">
 <meta name="twitter:description" content="&amp;#x9996;&amp;#x5148;&amp;#xFF0C;&amp;#x5927;&amp;#x5BB6;&amp;#x5E94;&amp;#x8BE5;&amp;#x90FD;&amp;#x975E;&amp;#x5E38;&amp;#x6E05;&amp;#x695A;&amp;#x660E;&amp;#x767D;&amp;#x59D4;&amp;#x6258;(&amp;#x4EE3;&amp;#x7406;)&amp;#x5176;&amp;#x5B9E;&amp;#x534F;&amp;#x8BAE;&amp;#x7684;&amp;#x4E00;&amp;#x79C">
 <meta name="twitter:image" content="http://common.cnblogs.com/images/copycode.gif">
-
-
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>delegate代理（委托）的使用心得 | BirdMichael</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>delegate代理（委托）的使用心得</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
+<body>
     
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">BirdMichael</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-
-  </li>
-
-      
-      
-    </ul>
-  
-
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="BirdMichael">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      </ul>
     </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BirdMichael">
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2015/07/06/object-c-difference-between-informal-agreements-and-formal-agreements/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2015/07/05/nsnotification-and-delegate-usage-and-tips/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">delegate代理（委托）的使用心得
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-07-06 00:14:53" itemprop="dateCreated datePublished" datetime="2015-07-06T00:14:53+08:00">2015-07-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2016-07-25 14:30:02" itemprop="dateModified" datetime="2016-07-25T14:30:02+08:00">2016-07-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/" itemprop="url" rel="index"><span itemprop="name">IOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/OC/" itemprop="url" rel="index"><span itemprop="name">OC</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>&#x9996;&#x5148;&#xFF0C;&#x5927;&#x5BB6;&#x5E94;&#x8BE5;&#x90FD;&#x975E;&#x5E38;&#x6E05;&#x695A;&#x660E;&#x767D;&#x59D4;&#x6258;(&#x4EE3;&#x7406;)&#x5176;&#x5B9E;&#x534F;&#x8BAE;&#x7684;&#x4E00;&#x79CD;&#xFF0C;&#x987E;&#x540D;&#x601D;&#x4E49;&#xFF0C;&#x5C31;&#x662F;&#x59D4;&#x6258;&#x4ED6;&#x4EBA;&#x5E2E;&#x81EA;&#x5DF1;&#x53BB;&#x505A;&#x4EC0;&#x4E48;&#x4E8B;,&#x6216;&#x8005;&#x4ED6;&#x4EBA;&#x4EE3;&#x8C01;&#x53BB;&#x5750;&#x67D0;&#x4E8B;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x5F53;&#x81EA;&#x5DF1;&#x505A;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;&#x4E0D;&#x65B9;&#x4FBF;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x59D4;&#x6258;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x59D4;&#x6258;&#x4ED6;&#x4EBA;&#x5E2E;&#x81EA;&#x5DF1;&#x53BB;&#x5B9E;&#x73B0;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x3002;</p>
-<div></div><br>&gt; <div>&#x59D4;&#x6258;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x505A;&#x4EE5;&#x4E0B;&#x51E0;&#x4EF6;&#x4E8B;&#x60C5;</div><br>&gt;<br>&gt; <div>&#x4F20;&#x503C;:&#x6240;&#x8C13;&#x4F20;&#x503C;&#x7ECF;&#x5E38;&#x7528;&#x5728;b&#x7C7B;&#x8981;&#x628A;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6216;&#x8005;&#x5BF9;&#x8C61;&#x4F20;&#x7ED9;a&#x7C7B;&#xFF0C;&#x8BA9;a&#x7C7B;&#x53BB;&#x5C55;&#x793A;&#x6216;&#x8005;&#x5904;&#x7406;&#x3002;&#xFF08;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x53EF;&#x590D;&#x5236;&#x6027;&#xFF0C;&#x53EF;&#x79FB;&#x690D;&#x6027;&#xFF0C;&#x548C;&#x4EE3;&#x7801;&#x5206;&#x5757;&#x7684;&#x65F6;&#x5019;&#x7ECF;&#x5E38;&#x7528;&#xFF09;</div><br>&gt;<br>&gt; <div>&#x4F20;&#x4E8B;&#x4EF6;:&#x6240;&#x8C13;&#x4F20;&#x4E8B;&#x4EF6;&#x5C31;&#x662F;a&#x7C7B;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#xFF0C;&#x628A;&#x8FD9;&#x4EF6;&#x4E8B;&#x544A;&#x8BC9;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x7684;&#x4EBA;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x59D4;&#x6258;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x7531;&#x59D4;&#x6258;&#x7684;&#x5BF9;&#x8C61;&#x53BB;&#x8003;&#x8651;&#x53D1;&#x751F;&#x8FD9;&#x4E2A;&#x4E8B;&#x4EF6;&#x540E;&#x5E94;&#x8BE5;&#x505A;&#x51FA;&#x4EC0;&#x4E48;&#x53CD;&#x6620;&#x3002;&#xFF08;&#x8FD9;&#x4E2A;&#x7ECF;&#x5E38;&#x89C1;&#xFF0C;&#x4F8B;&#x5982;&#x5728;&#x5F02;&#x6B65;&#x8BF7;&#x6C42;&#x4E2D;&#xFF0C;&#x754C;&#x9762;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x6570;&#x636E;&#x5C42;&#x6539;&#x53D8;&#x7B49;&#x7B49;&#xFF09;</div><br>&gt;<br>&gt; <div>&#x8D4B;&#x503C;:&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x611F;&#x89C9;&#x662F;&#x4E3A;&#x4E86;&#x4E0D;&#x66B4;&#x9732;&#x81EA;&#x5DF1;&#x7684;&#x5C5E;&#x6027;&#x5C31;&#x53EF;&#x4EE5;&#x7ED9;&#x81EA;&#x5DF1;&#x590D;&#x503C;&#xFF0C;&#x800C;&#x4E14;&#x8FD9;&#x6837;&#x66F4;&#x65B9;&#x4FBF;&#x4E86;&#x7C7B;&#x7684;&#x7BA1;&#x7406;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x4F60;&#x60F3;&#x8981;&#x8BA9;&#x522B;&#x4EBA;&#x7ED9;&#x4F60;&#x8D4B;&#x503C;&#x7684;&#x65F6;&#x5019;&#x624D;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x8D4B;&#x503C;&#x66F4;&#x53EF;&#x63A7;&#x4E00;&#x4E9B;&#x3002;&#xFF08;&#x4F8B;&#x5982;tableView&#x4E2D;&#x7684;&#x59D4;&#x6258;&#xFF08;dateSource&#xFF09;&#x4E2D;&#x5E38;&#x89C1;&#xFF09;&#x3002;</div><br><div></div><br><div>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x60F3;&#x5206;&#x4EAB;&#x4E00;&#x4E0B;&#x5728;&#x4F7F;&#x7528;&#x59D4;&#x6258;&#x7684;&#x65F6;&#x5019;&#x7684;&#x4E00;&#x4E9B;&#x5FC3;&#x5F97;&#x548C;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x3002;</div><br><div></div><br><div>&#x5FC3;&#x5F97;&#xFF1A;delegate&#x7684;&#x547D;&#x540D;&#x8981;&#x51C6;&#x786E;&#xFF0C;&#x5C3D;&#x91CF;&#x770B;&#x540D;&#x5B57;&#x5C31;&#x77E5;&#x9053;&#x7528;&#x6CD5;&#x3002;delegate&#x548C;&#x901A;&#x77E5;&#x6709;&#x7684;&#x7528;&#x6CD5;&#x6709;&#x4E9B;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x524D;&#x8005;&#x662F;&#x5355;&#x5BF9;&#x5355;&#x7684;&#xFF0C;&#x540E;&#x8005;&#x662F;&#x5355;&#x5BF9;&#x591A;&#x7684;&#x60C5;&#x51B5;&#x3002;</div><br>&gt; &#x547D;&#x540D;:<br>&gt; 1.&#x534F;&#x8BAE;&#x540D;&#x4E00;&#x822C;&#x4EE5;&#x7C7B;&#x540D;&#x5F00;&#x5934;,&#x5982;(<span class="s2"> BMfirendHeaderViewDelegate</span>)<br>&gt; 2.&#x59D4;&#x6258;&#x7684;&#x5916;&#x90E8;&#x58F0;&#x660E;&#x5C5E;&#x6027;&#x4E00;&#x822C;&#x56FA;&#x5B9A;&#x4E3A;delegate.(&#x6709;&#x7ECF;&#x9A8C;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x4E00;&#x822C;&#x4F1A;&#x9ED8;&#x8BA4;&#x5728;&#x4F60;&#x7C7B;&#x540D;&#x540E;&#x9762;&#x201D;.&#x201D;&#x4E00;&#x4E2A;delegate,&#x5982;&#x679C;&#x6709;&#x9A6C;&#x4E0A;&#x6210;&#x4E3A;&#x4EE3;&#x7406;&#x770B;&#x770B;)<br>&gt; 3.&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x4E5F;&#x4EE5;&#x7C7B;&#x540D;&#x5F00;&#x5934;,&#x4E14;&#x4E0D;&#x52A0;&#x6807;&#x793A;&#x7B26;.(&#x6709;&#x7ECF;&#x9A8C;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x67E5;&#x770B;&#x4F60;&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#x4F1A;&#x76F4;&#x63A5;&#x6210;&#x4E3A;&#x4EE3;&#x7406;&#x540E;&#x8F93;&#x5165;&#x4F60;&#x7684;&#x7C7B;&#x540D;&#x67E5;&#x770B;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;)<br>&gt; 4.&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x4E0D;&#x662F;&#x7279;&#x6B8A;&#x8F7B;&#x5FEB;&#x90FD;@optional.<br>&gt; 5.&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x4F1A;&#x4F7F;&#x7528;should&#x3001;will&#x3001;did&#x8FD9;3&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x8868;&#x9762;&#x72B6;&#x6001;.<br>&gt; &#x5177;&#x4F53;&#x66F4;&#x591A;&#x4E66;&#x5199;&#x89C4;&#x8303;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5B98;&#x65B9;&#x793A;&#x4F8B;.<br><div>&#x6CE8;&#x610F;&#xFF1A;&#x5728;dealloc&#x8981;&#x628A;delegate&#x81F3;&#x4E3A;nil&#xFF0C;&#x8FD8;&#x6709;&#x5C31;&#x662F;delegate&#x8BBE;&#x7F6E;&#x5C5E;&#x6027;&#x7684;&#x65F6;&#x5019;&#x8981;&#x7528;assign&#xFF0C;&#x4E0D;&#x8981;&#x7528;retain&#x3002;</div><br><a id="more"></a><br><div></div><br><div><br><br><strong>&#x59D4;&#x6258;</strong>&#x5728;IOS&#x4E2D;&#x59D4;&#x6258;&#x901A;&#x8FC7;&#x4E00;&#x79CD;@protocol&#x7684;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;,&#x6240;&#x4EE5;&#x53C8;&#x79F0;&#x4E3A;&#x534F;&#x8BAE;.&#x534F;&#x8BAE;&#x662F;&#x591A;&#x4E2A;&#x7C7B;&#x5171;&#x4EAB;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x5217;&#x8868;,&#x5728;&#x534F;&#x8BAE;&#x4E2D;&#x6240;&#x5217;&#x51FA;&#x7684;&#x65B9;&#x6CD5;&#x6CA1;&#x6709;&#x54CD;&#x5E94;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x7531;&#x5176;&#x5B83;&#x4EBA;&#x6765;&#x5B9E;&#x73B0;.&#x8FD9;&#x53EB;&#x597D;&#x6BD4;&#x6211;&#x60F3;&#x4E70;&#x4E2A;&#x624B;&#x673A;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x6709;&#x4E2A;buyIphone &#x65B9;&#x6CD5;,&#x4F46;&#x662F;&#x6211;&#x4E0D;&#x77E5;&#x9053;&#x8C01;&#x90A3;&#x4E70;&#x624B;&#x673A;,&#x6240;&#x4EE5;&#x628A;&#x8FD9;&#x4E2A;&#x9700;&#x6C42;&#x53D1;&#x5E03;&#x51FA;&#x53BB;(&#x6BD4;&#x5982;&#x516C;&#x5E03;&#x5728;&#x7F51;&#x7AD9;&#x4E0A;),&#x5982;&#x679C;&#x6709;&#x5356;&#x624B;&#x673A;&#x7684;&#x5546;&#x4EBA;(&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4ED6;&#x80FD;&#x5B9E;&#x73B0;buyIphone&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;)&#x770B;&#x5230;&#xFF0C;&#x4ED6;&#x5C31;&#x4F1A;&#x63A5;&#x53D7;&#x6211;&#x7684;&#x59D4;&#x6258;,(&#x5728;&#x5546;&#x4EBA;&#x81EA;&#x5DF1;&#x7684;&#x7C7B;&#x4E2D;&#x5B9E;&#x73B0;&lt;XXXdelegate&gt;),&#x90A3;&#x4E48;&#x6211;&#x7684;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x5C31;&#x6307;&#x5411;&#x4E86;&#x8FD9;&#x4E2A;&#x5546;&#x4EBA;..&#x5F53;&#x6211;&#x8981;&#x4E70;&#x624B;&#x673A;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x76F4;&#x63A5;&#x627E;&#x4ED6;&#x5C31;&#x884C;&#x4E86;.<br><br>&#x4F8B;&#x5982;:<br><div class="cnblogs_code"><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="&#x590D;&#x5236;&#x4EE3;&#x7801;" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a></span></div><br><pre>@protocol MyDelegate<br>-(void)buyIphone:(NSString <em>)iphoneType money:(NSString </em>)money;<br><br>@end<br>@interface My : NSObject<br>{<br>    id&lt;MyDelegate&gt; deleage;<br>}<br>@property(assign,nonatomic)id&lt;MyDelegate&gt; delegate;<br>@end</pre><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="&#x590D;&#x5236;&#x4EE3;&#x7801;" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a></span></div><br></div><br>&#x4EE3;&#x7801;&#x4E2D;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A;&#x534F;&#x8BAE; &#x540D;&#x53EB;Mydelegate,&#x5728;&#x5176;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;buyIphone&#x65B9;&#x6CD5;&#xFF0C;&#x5373;&#x4E00;&#x4E2A;&#x59D4;&#x6258;&#x9879;&#x3002;&#x5F53;&#x6211;&#x8981;&#x8D2D;&#x4E70;&#x624B;&#x673A;&#x7684;&#x65F6;&#x5019;&#x53EA;&#x9700;&#x8981;&#x901A;&#x8FC7;delegate &#x8C03;&#x7528; BuyIphone&#x65B9;&#x6CD5;&#x5373;&#x53EF;.<br><br>&#x5982;&#x4E0B;:<br><div class="cnblogs_code"><br><pre>-(void)willbuy<br>{<br>    [delegate buyIphone:@&#x201D;iphone 4s&#x201D; money:@&#x201D;4888&#x201D;];<br><br>}</pre><br></div><br>&#x6211;&#x4E0D;&#x5FC5;&#x5173;&#x5FC3;&#x8C01;&#x73B0;&#x5B9E;&#x4E86;&#x8FD9;&#x4E00;&#x59D4;&#x6258;&#xFF0C;&#x53EA;&#x8981;&#x5B9E;&#x73B0;&#x4E86;&#x8FD9;&#x4E2A;&#x59D4;&#x6258;&#x7684;&#x7C7B;&#xFF0C;&#x5E76;&#x4E14;buyIphone&#x662F;&#x58F0;&#x660E;&#x7684;&#x59D4;&#x6258;&#x4E2D;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4E00;&#x5B9A;&#x80FD;&#x591F;&#x5F97;&#x5230;&#x7ED3;&#x679C;.<br><br>&#x4F8B;&#x5982;:&#x5546;&#x4EBA;&#x7C7B;&#x5B9E;&#x73B0;&#x4E86;&#x8FD9;&#x4E00;&#x59D4;&#x6258;(&#x7528;&lt;Mydelegate&gt;&#x8868;&#x793A;&#x5B9E;&#x73B0;)<br><div class="cnblogs_code"><br><pre>#import &lt;Foundation/Foundation.h&gt;<br>#import &#x201C;My.h&#x201D;<br>@interface Business : NSObject&lt;MyDelegate&gt;<br><br>@end</pre><br></div><br>&#x7136;&#x540E;&#x5728; @implementation Business &#x4E2D;&#x8C03;&#x7528; buyIphone&#x65B9;&#x6CD5;<br><div class="cnblogs_code"><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="&#x590D;&#x5236;&#x4EE3;&#x7801;" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a></span></div><br><pre>#import &#x201C;Business.h&#x201D;<br><br>@implementation Business<br><br>-(void)buyIphone:(NSString <em>)iphoneType money:(NSString </em>)money<br>{<br>    NSLog(@&#x201D;&#x624B;&#x673A;&#x6709;&#x8D27;&#xFF0C;&#x8FD9;&#x4E2A;&#x4EF7;&#x94B1;&#x5356;&#x4F60;&#x4E86;&#xFF0C;&#x53D1;&#x8D27;&#x4E2D;!!&#x201D;);<br>}<br>@end</pre><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="&#x590D;&#x5236;&#x4EE3;&#x7801;" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a></span></div><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy">&#x59D4;&#x6258;&#x662F;Cocoa&#x4E2D;&#x6700;&#x7B80;&#x5355;&#x3001;&#x6700;&#x7075;&#x6D3B;&#x7684;&#x6A21;&#x5F0F;&#x4E4B;&#x4E00;&#x3002;&#x59D4;&#x6258;&#x662F;&#x6307;&#x7ED9;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x673A;&#x4F1A;&#x5BF9;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x53D8;&#x5316;&#x505A;&#x51FA;&#x53CD;&#x5E94;&#x6216;&#x8005;&#x5F71;&#x54CD;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x884C;&#x4E3A;&#x3002;&#x5176;&#x57FA;&#x672C;&#x601D;&#x60F3;&#x662F;&#xFF1A;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x534F;&#x540C;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x3002;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x975E;&#x5E38;&#x666E;&#x901A;&#xFF0C;&#x5E76;&#x4E14;&#x6253;&#x7B97;&#x5728;&#x5E7F;&#x6CDB;&#x7684;&#x60C5;&#x5F62;&#x4E2D;&#x91CD;&#x7528;&#x3002;&#x5B83;&#x5B58;&#x50A8;&#x6307;&#x5411;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF08;&#x5373;&#x5B83;&#x7684;&#x59D4;&#x6258;&#xFF09;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x5E76;&#x5728;&#x5173;&#x952E;&#x65F6;&#x523B;&#x7ED9;&#x59D4;&#x6258;&#x53D1;&#x6D88;&#x606F;&#x3002;&#x6D88;&#x606F;&#x53EF;&#x80FD;&#x53EA;&#x662F;&#x901A;&#x77E5;&#x59D4;&#x6258;&#x53D1;&#x751F;&#x4E86;&#x67D0;&#x4EF6;&#x4E8B;&#x60C5;&#xFF0C;&#x7ED9;&#x59D4;&#x6258;&#x63D0;&#x4F9B;&#x673A;&#x4F1A;&#x6267;&#x884C;&#x989D;&#x5916;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x6216;&#x8005;&#x6D88;&#x606F;&#x53EF;&#x80FD;&#x8981;&#x6C42;&#x59D4;&#x6258;&#x63D0;&#x4F9B;&#x4E00;&#x4E9B;&#x5173;&#x952E;&#x7684;&#x4FE1;&#x606F;&#x4EE5;&#x63A7;&#x5236;&#x6240;&#x53D1;&#x751F;&#x7684;&#x4E8B;&#x60C5;&#x3002;<br><img src="http://www.1000phone.net/data/attachment/forum/201112/23/191755zeji8jas6qyidyqe.jpg" alt=""> </span></div><br><div class="cnblogs_code_toolbar"><br><br><span class="cnblogs_code_copy">&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x901A;&#x5E38;&#x5305;&#x62EC;3&#x79CD;&#x52A8;&#x8BCD;&#xFF1A;should&#x3001;will&#x3001;did&#x3002;</span><br><br>should&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x52A8;&#x4F5C;&#x53D1;&#x751F;&#x524D;&#xFF0C;&#x901A;&#x5E38;&#x5E26;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x52A8;&#x4F5C;&#x53D1;&#x751F;&#x4E4B;&#x524D;&#x6539;&#x53D8;&#x5BF9;&#x8C61;&#x72B6;&#x6001;&#x3002;<br>will&#x5728;&#x52A8;&#x4F5C;&#x53D1;&#x751F;&#x524D;&#xFF0C;&#x59D4;&#x6258;&#x53EF;&#x4EE5;&#x5BF9;&#x52A8;&#x4F5C;&#x505A;&#x51FA;&#x54CD;&#x5E94;&#xFF0C;&#x4F46;&#x4E0D;&#x5E26;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x3002;<br>did&#x5728;&#x52A8;&#x4F5C;&#x53D1;&#x751F;&#x540E;&#x505A;&#x51FA;&#x7684;&#x54CD;&#x5E94;&#x3002;<br><br>&#x4ECE;&#x65B9;&#x6CD5;&#x7684;&#x5B9A;&#x4E49;&#x6211;&#x4EEC;&#x4E0D;&#x96BE;&#x770B;&#x51FA;&#x59D4;&#x6258;&#x6A21;&#x5F0F;&#x80FD;&#x591F;&#x8D77;&#x5230;&#x4E24;&#x65B9;&#x9762;&#x7684;&#x4F5C;&#x7528;&#xFF1A;<br><br>&#x7B2C;&#x4E00;&#xFF1A;&#x59D4;&#x6258;&#x534F;&#x52A9;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x5B8C;&#x6210;&#x67D0;&#x9879;&#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x9700;&#x8981;&#x5B9A;&#x5236;&#x5316;&#x7684;&#x64CD;&#x4F5C;&#x901A;&#x8FC7;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x6765;&#x81EA;&#x5B9A;&#x4E49;&#x5B9E;&#x73B0;&#xFF0C;&#x8FBE;&#x5230;&#x548C;&#x5B50;&#x7C7B;&#x5316;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x540C;&#x6837;&#x7684;&#x4F5C;&#x7528;&#x3002;<br>&#x7B2C;&#x4E8C;&#xFF1A;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#xFF0C;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x76D1;&#x542C;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x7684;&#x67D0;&#x4E9B;&#x91CD;&#x8981;&#x4E8B;&#x4EF6;&#xFF0C;&#x5BF9;&#x4E8B;&#x4EF6;&#x505A;&#x51FA;&#x5177;&#x4F53;&#x54CD;&#x5E94;&#x6216;&#x5E7F;&#x64AD;&#x4E8B;&#x4EF6;&#x4EA4;&#x7ED9;&#x9700;&#x8981;&#x4F5C;&#x51FA;&#x54CD;&#x5E94;&#x7684;&#x5BF9;&#x8C61;&#x3002;<br><br></div><br><div class="cnblogs_code_toolbar"><br><div class="cnblogs_code_toolbar"><br><br><span class="cnblogs_code_copy"><span class="cnblogs_code_copy">&#x59D4;&#x6258;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;&#x601D;&#x8DEF;&#xFF1A;</span></span><br><br>1&#x3001;&#x901A;&#x5E38;&#x662F;&#x5728;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x7684;&#x5F31;&#x5F15;&#x7528;&#xFF1A;<br><pre class="lang:objc decode:true">@interface A : NSObject<br>{<br>IBOutlet id delegate;<br>} -(id) delegate;<br>-(void) setDelegate:(id)obj;<br></pre><br>2&#x3001;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x73B0;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x548C;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#xFF0C;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x5728;&#x534F;&#x8BAE;&#x4E2D;&#x5B9A;&#x4E49;&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#xFF0C;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5B9E;&#x73B0;&#x5176;&#x4E2D;&#x67D0;&#x4E9B;&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x6B64;&#x5982;&#x679C;&#x901A;&#x8FC7;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x5B9A;&#x4E49;&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x4F7F;&#x7528;@option&#x3002;<br><pre class="lang:objc decode:true">@protocol NSSearchDelegate<br>@option<br>-(void)didSearchFinish:(<em>NSNotification) aNotification;<br>@end</em></pre><br>3&#x3001;&#x8FDE;&#x63A5;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x548C;&#x59D4;&#x6258;&#xFF0C;&#x65E0;&#x975E;&#x5C31;&#x662F;&#x901A;&#x8FC7;setDelegate:(id)obj&#x6765;&#x5B9E;&#x73B0;&#x3002;<br><br>4&#x3001;&#x89E6;&#x53D1;&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x3002;<br><br></div><br></div><br></div><br>&#x4E0B;&#x9762;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x59D4;&#x6258;&#x7684;&#x6B65;&#x9AA4;:<br><br>1.  &#x521B;&#x5EFA;&#x4E00;&#x4EFD;&#x534F;&#x8BAE;.<br><pre class="lang:objc decode:true">@protocol BMfirendHeaderViewDelegate &lt;NSObject&gt;<br><br>@end</pre><br><br>2.  &#x7533;&#x660E;&#x4EE3;&#x7406;&#x5C5E;&#x6027;.<br><pre class="lang:objc decode:true">@property (nonatomic, weak) id&lt;BMfirendHeaderViewDelegate&gt; delegate;</pre><br><br>3.  &#x7533;&#x660E;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;<br><pre class="lang:objc decode:true">@protocol BMfirendHeaderViewDelegate &lt;NSObject&gt;<br>@optional<br>- (void)firendHeaderViewHeadBtnClick:(BMfirendHeaderView )firendHeaderView;<br>@end</pre><br><br>4.  &#x5728;&#x59D4;&#x6258;&#xFF08;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#xFF09;&#x8BBE;&#x7F6E;&#x59D4;&#x6258;&#x4EE3;&#x7406;&#x5C5E;&#x6027;(&#x901A;&#x5E38;&#x662F;&#x67D0;&#x4E2A;ViewController&#x539F;&#x56E0;&#x4F5C;&#x4E3A;&#x59D4;&#x6258;)<br><pre class="lang:objc decode:true" title="ViewController.m">headerView.delegate =self;</pre><br><br>5.  &#x9075;&#x5B88;&#x534F;&#x8BAE;<br><pre class="lang:objc decode:true">@interface ViewController ()&lt;BMfirendHeaderViewDelegate&gt;</pre><br><br>6.  &#x5B9E;&#x73B0;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;<br><pre class="lang:objc decode:true  ">-(void)firendHeaderViewHeadBtnClick:(BMfirendHeaderView *)firendHeaderView<br>{<br><br>}</pre><br>&#xA0;<br></div>
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/代理/" rel="tag"># 代理</a>
-          
-            <a href="/tags/委托/" rel="tag"># 委托</a>
-          
-            <a href="/tags/dalegate/" rel="tag"># dalegate</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/07/05/nsnotification-and-delegate-usage-and-tips/" rel="next" title="NSNotification和Delegate使用及心得">
-                <i class="fa fa-chevron-left"></i> NSNotification和Delegate使用及心得
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/07/06/object-c-difference-between-informal-agreements-and-formal-agreements/" rel="prev" title="Object-C非正式协议与正式协议的区别">
-                Object-C非正式协议与正式协议的区别 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">BirdMichael</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">64</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">24</span>
-                    <span class="site-state-item-name">分类</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">85</span>
-                    <span class="site-state-item-name">标签</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-
-      
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&text=delegate代理（委托）的使用心得"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&is_video=false&description=delegate代理（委托）的使用心得"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=delegate代理（委托）的使用心得&body=Check out this article: http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&name=delegate代理（委托）的使用心得&description=&lt;p&gt;&amp;#x9996;&amp;#x5148;&amp;#xFF0C;&amp;#x5927;&amp;#x5BB6;&amp;#x5E94;&amp;#x8BE5;&amp;#x90FD;&amp;#x975E;&amp;#x5E38;&amp;#x6E05;&amp;#x695A;&amp;#x660E;&amp;#x767D;&amp;#x59D4;&amp;#x6258;(&amp;#x4EE3;&amp;#x7406;)&amp;#x5176;&amp;#x5B9E;&amp;#x534F;&amp;#x8BAE;&amp;#x7684;&amp;#x4E00;&amp;#x79CD;&amp;#xFF0C;&amp;#x987E;&amp;#x540D;&amp;#x601D;&amp;#x4E49;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;&amp;#x59D4;&amp;#x6258;&amp;#x4ED6;&amp;#x4EBA;&amp;#x5E2E;&amp;#x81EA;&amp;#x5DF1;&amp;#x53BB;&amp;#x505A;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;,&amp;#x6216;&amp;#x8005;&amp;#x4ED6;&amp;#x4EBA;&amp;#x4EE3;&amp;#x8C01;&amp;#x53BB;&amp;#x5750;&amp;#x67D0;&amp;#x4E8B;&amp;#x3002;&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x5F53;&amp;#x81EA;&amp;#x5DF1;&amp;#x505A;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;&amp;#x4E0D;&amp;#x65B9;&amp;#x4FBF;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x5EFA;&amp;#x7ACB;&amp;#x4E00;&amp;#x4E2A;&amp;#x59D4;&amp;#x6258;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6837;&amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x59D4;&amp;#x6258;&amp;#x4ED6;&amp;#x4EBA;&amp;#x5E2E;&amp;#x81EA;&amp;#x5DF1;&amp;#x53BB;&amp;#x5B9E;&amp;#x73B0;&amp;#x4EC0;&amp;#x4E48;&amp;#x65B9;&amp;#x6CD5;&amp;#x3002;&lt;/p&gt;
+&lt;div&gt;&lt;/div&gt;&lt;br&gt;&amp;gt; &lt;div&gt;&amp;#x59D4;&amp;#x6258;&amp;#x4E00;&amp;#x822C;&amp;#x60C5;&amp;#x51B5;&amp;#x505A;&amp;#x4EE5;&amp;#x4E0B;&amp;#x51E0;&amp;#x4EF6;&amp;#x4E8B;&amp;#x60C5;&lt;/div&gt;&lt;br&gt;&amp;gt;&lt;br&gt;&amp;gt; &lt;div&gt;&amp;#x4F20;&amp;#x503C;:&amp;#x6240;&amp;#x8C13;&amp;#x4F20;&amp;#x503C;&amp;#x7ECF;&amp;#x5E38;&amp;#x7528;&amp;#x5728;b&amp;#x7C7B;&amp;#x8981;&amp;#x628A;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x636E;&amp;#x6216;&amp;#x8005;&amp;#x5BF9;&amp;#x8C61;&amp;#x4F20;&amp;#x7ED9;a&amp;#x7C7B;&amp;#xFF0C;&amp;#x8BA9;a&amp;#x7C7B;&amp;#x53BB;&amp;#x5C55;&amp;#x793A;&amp;#x6216;&amp;#x8005;&amp;#x5904;&amp;#x7406;&amp;#x3002;&amp;#xFF08;&amp;#x63D0;&amp;#x9AD8;&amp;#x4EE3;&amp;#x7801;&amp;#x53EF;&amp;#x590D;&amp;#x5236;&amp;#x6027;&amp;#xFF0C;&amp;#x53EF;&amp;#x79FB;&amp;#x690D;&amp;#x6027;&amp;#xFF0C;&amp;#x548C;&amp;#x4EE3;&amp;#x7801;&amp;#x5206;&amp;#x5757;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x7ECF;&amp;#x5E38;&amp;#x7528;&amp;#xFF09;&lt;/div&gt;&lt;br&gt;&amp;gt;&lt;br&gt;&amp;gt; &lt;div&gt;&amp;#x4F20;&amp;#x4E8B;&amp;#x4EF6;:&amp;#x6240;&amp;#x8C13;&amp;#x4F20;&amp;#x4E8B;&amp;#x4EF6;&amp;#x5C31;&amp;#x662F;a&amp;#x7C7B;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#xFF0C;&amp;#x628A;&amp;#x8FD9;&amp;#x4EF6;&amp;#x4E8B;&amp;#x544A;&amp;#x8BC9;&amp;#x5173;&amp;#x6CE8;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x4EBA;&amp;#xFF0C;&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x59D4;&amp;#x6258;&amp;#x7684;&amp;#x5BF9;&amp;#x8C61;&amp;#xFF0C;&amp;#x7531;&amp;#x59D4;&amp;#x6258;&amp;#x7684;&amp;#x5BF9;&amp;#x8C61;&amp;#x53BB;&amp;#x8003;&amp;#x8651;&amp;#x53D1;&amp;#x751F;&amp;#x8FD9;&amp;#x4E2A;&amp;#x4E8B;&amp;#x4EF6;&amp;#x540E;&amp;#x5E94;&amp;#x8BE5;&amp;#x505A;&amp;#x51FA;&amp;#x4EC0;&amp;#x4E48;&amp;#x53CD;&amp;#x6620;&amp;#x3002;&amp;#xFF08;&amp;#x8FD9;&amp;#x4E2A;&amp;#x7ECF;&amp;#x5E38;&amp;#x89C1;&amp;#xFF0C;&amp;#x4F8B;&amp;#x5982;&amp;#x5728;&amp;#x5F02;&amp;#x6B65;&amp;#x8BF7;&amp;#x6C42;&amp;#x4E2D;&amp;#xFF0C;&amp;#x754C;&amp;#x9762;&amp;#x4E8B;&amp;#x4EF6;&amp;#x89E6;&amp;#x53D1;&amp;#x6570;&amp;#x636E;&amp;#x5C42;&amp;#x6539;&amp;#x53D8;&amp;#x7B49;&amp;#x7B49;&amp;#xFF09;&lt;/div&gt;&lt;br&gt;&amp;gt;&lt;br&gt;&amp;gt; &lt;div&gt;&amp;#x8D4B;&amp;#x503C;:&amp;#x8FD9;&amp;#x79CD;&amp;#x65B9;&amp;#x6CD5;&amp;#x611F;&amp;#x89C9;&amp;#x662F;&amp;#x4E3A;&amp;#x4E86;&amp;#x4E0D;&amp;#x66B4;&amp;#x9732;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x5C5E;&amp;#x6027;&amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x7ED9;&amp;#x81EA;&amp;#x5DF1;&amp;#x590D;&amp;#x503C;&amp;#xFF0C;&amp;#x800C;&amp;#x4E14;&amp;#x8FD9;&amp;#x6837;&amp;#x66F4;&amp;#x65B9;&amp;#x4FBF;&amp;#x4E86;&amp;#x7C7B;&amp;#x7684;&amp;#x7BA1;&amp;#x7406;&amp;#xFF0C;&amp;#x53EA;&amp;#x6709;&amp;#x5728;&amp;#x4F60;&amp;#x60F3;&amp;#x8981;&amp;#x8BA9;&amp;#x522B;&amp;#x4EBA;&amp;#x7ED9;&amp;#x4F60;&amp;#x8D4B;&amp;#x503C;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x624D;&amp;#x8C03;&amp;#x7528;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x8D4B;&amp;#x503C;&amp;#x66F4;&amp;#x53EF;&amp;#x63A7;&amp;#x4E00;&amp;#x4E9B;&amp;#x3002;&amp;#xFF08;&amp;#x4F8B;&amp;#x5982;tableView&amp;#x4E2D;&amp;#x7684;&amp;#x59D4;&amp;#x6258;&amp;#xFF08;dateSource&amp;#xFF09;&amp;#x4E2D;&amp;#x5E38;&amp;#x89C1;&amp;#xFF09;&amp;#x3002;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&amp;#x6700;&amp;#x540E;&amp;#xFF0C;&amp;#x6211;&amp;#x60F3;&amp;#x5206;&amp;#x4EAB;&amp;#x4E00;&amp;#x4E0B;&amp;#x5728;&amp;#x4F7F;&amp;#x7528;&amp;#x59D4;&amp;#x6258;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x7684;&amp;#x4E00;&amp;#x4E9B;&amp;#x5FC3;&amp;#x5F97;&amp;#x548C;&amp;#x6CE8;&amp;#x610F;&amp;#x4E8B;&amp;#x9879;&amp;#x3002;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&amp;#x5FC3;&amp;#x5F97;&amp;#xFF1A;delegate&amp;#x7684;&amp;#x547D;&amp;#x540D;&amp;#x8981;&amp;#x51C6;&amp;#x786E;&amp;#xFF0C;&amp;#x5C3D;&amp;#x91CF;&amp;#x770B;&amp;#x540D;&amp;#x5B57;&amp;#x5C31;&amp;#x77E5;&amp;#x9053;&amp;#x7528;&amp;#x6CD5;&amp;#x3002;delegate&amp;#x548C;&amp;#x901A;&amp;#x77E5;&amp;#x6709;&amp;#x7684;&amp;#x7528;&amp;#x6CD5;&amp;#x6709;&amp;#x4E9B;&amp;#x8C61;&amp;#xFF0C;&amp;#x4F46;&amp;#x662F;&amp;#x524D;&amp;#x8005;&amp;#x662F;&amp;#x5355;&amp;#x5BF9;&amp;#x5355;&amp;#x7684;&amp;#xFF0C;&amp;#x540E;&amp;#x8005;&amp;#x662F;&amp;#x5355;&amp;#x5BF9;&amp;#x591A;&amp;#x7684;&amp;#x60C5;&amp;#x51B5;&amp;#x3002;&lt;/div&gt;&lt;br&gt;&amp;gt; &amp;#x547D;&amp;#x540D;:&lt;br&gt;&amp;gt; 1.&amp;#x534F;&amp;#x8BAE;&amp;#x540D;&amp;#x4E00;&amp;#x822C;&amp;#x4EE5;&amp;#x7C7B;&amp;#x540D;&amp;#x5F00;&amp;#x5934;,&amp;#x5982;(&lt;span class=&quot;s2&quot;&gt; BMfirendHeaderViewDelegate&lt;/span&gt;)&lt;br&gt;&amp;gt; 2.&amp;#x59D4;&amp;#x6258;&amp;#x7684;&amp;#x5916;&amp;#x90E8;&amp;#x58F0;&amp;#x660E;&amp;#x5C5E;&amp;#x6027;&amp;#x4E00;&amp;#x822C;&amp;#x56FA;&amp;#x5B9A;&amp;#x4E3A;delegate.(&amp;#x6709;&amp;#x7ECF;&amp;#x9A8C;&amp;#x7684;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#x4E00;&amp;#x822C;&amp;#x4F1A;&amp;#x9ED8;&amp;#x8BA4;&amp;#x5728;&amp;#x4F60;&amp;#x7C7B;&amp;#x540D;&amp;#x540E;&amp;#x9762;&amp;#x201D;.&amp;#x201D;&amp;#x4E00;&amp;#x4E2A;delegate,&amp;#x5982;&amp;#x679C;&amp;#x6709;&amp;#x9A6C;&amp;#x4E0A;&amp;#x6210;&amp;#x4E3A;&amp;#x4EE3;&amp;#x7406;&amp;#x770B;&amp;#x770B;)&lt;br&gt;&amp;gt; 3.&amp;#x59D4;&amp;#x6258;&amp;#x65B9;&amp;#x6CD5;&amp;#x4E00;&amp;#x822C;&amp;#x4E5F;&amp;#x4EE5;&amp;#x7C7B;&amp;#x540D;&amp;#x5F00;&amp;#x5934;,&amp;#x4E14;&amp;#x4E0D;&amp;#x52A0;&amp;#x6807;&amp;#x793A;&amp;#x7B26;.(&amp;#x6709;&amp;#x7ECF;&amp;#x9A8C;&amp;#x7684;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#x67E5;&amp;#x770B;&amp;#x4F60;&amp;#x7684;&amp;#x4EE3;&amp;#x7406;&amp;#x65B9;&amp;#x6CD5;&amp;#x4F1A;&amp;#x76F4;&amp;#x63A5;&amp;#x6210;&amp;#x4E3A;&amp;#x4EE3;&amp;#x7406;&amp;#x540E;&amp;#x8F93;&amp;#x5165;&amp;#x4F60;&amp;#x7684;&amp;#x7C7B;&amp;#x540D;&amp;#x67E5;&amp;#x770B;&amp;#x4EE3;&amp;#x7406;&amp;#x65B9;&amp;#x6CD5;)&lt;br&gt;&amp;gt; 4.&amp;#x59D4;&amp;#x6258;&amp;#x65B9;&amp;#x6CD5;&amp;#x4E00;&amp;#x822C;&amp;#x4E0D;&amp;#x662F;&amp;#x7279;&amp;#x6B8A;&amp;#x8F7B;&amp;#x5FEB;&amp;#x90FD;@optional.&lt;br&gt;&amp;gt; 5.&amp;#x59D4;&amp;#x6258;&amp;#x65B9;&amp;#x6CD5;&amp;#x4E00;&amp;#x822C;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;should&amp;#x3001;will&amp;#x3001;did&amp;#x8FD9;3&amp;#x4E2A;&amp;#x5173;&amp;#x952E;&amp;#x5B57;&amp;#x8868;&amp;#x9762;&amp;#x72B6;&amp;#x6001;.&lt;br&gt;&amp;gt; &amp;#x5177;&amp;#x4F53;&amp;#x66F4;&amp;#x591A;&amp;#x4E66;&amp;#x5199;&amp;#x89C4;&amp;#x8303;&amp;#x53EF;&amp;#x4EE5;&amp;#x67E5;&amp;#x770B;&amp;#x5B98;&amp;#x65B9;&amp;#x793A;&amp;#x4F8B;.&lt;br&gt;&lt;div&gt;&amp;#x6CE8;&amp;#x610F;&amp;#xFF1A;&amp;#x5728;dealloc&amp;#x8981;&amp;#x628A;delegate&amp;#x81F3;&amp;#x4E3A;nil&amp;#xFF0C;&amp;#x8FD8;&amp;#x6709;&amp;#x5C31;&amp;#x662F;delegate&amp;#x8BBE;&amp;#x7F6E;&amp;#x5C5E;&amp;#x6027;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x8981;&amp;#x7528;assign&amp;#xFF0C;&amp;#x4E0D;&amp;#x8981;&amp;#x7528;retain&amp;#x3002;&lt;/div&gt;&lt;br&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+    <div id="toc">
+      
+    </div>
   </span>
-  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
-
-  
-
-  
 </div>
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
-
-
-
-
+    
+    <div class="content index width mx-auto px2 my4">
         
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
+    <h1 class="posttitle" itemprop="name headline">
+        delegate代理（委托）的使用心得
+    </h1>
 
-    
-	
-    
 
-    
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2015-07-05T16:14:53.000Z" itemprop="datePublished">2015-07-06</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/dalegate/">dalegate</a>, <a class="tag-link" href="/tags/代理/">代理</a>, <a class="tag-link" href="/tags/委托/">委托</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>&#x9996;&#x5148;&#xFF0C;&#x5927;&#x5BB6;&#x5E94;&#x8BE5;&#x90FD;&#x975E;&#x5E38;&#x6E05;&#x695A;&#x660E;&#x767D;&#x59D4;&#x6258;(&#x4EE3;&#x7406;)&#x5176;&#x5B9E;&#x534F;&#x8BAE;&#x7684;&#x4E00;&#x79CD;&#xFF0C;&#x987E;&#x540D;&#x601D;&#x4E49;&#xFF0C;&#x5C31;&#x662F;&#x59D4;&#x6258;&#x4ED6;&#x4EBA;&#x5E2E;&#x81EA;&#x5DF1;&#x53BB;&#x505A;&#x4EC0;&#x4E48;&#x4E8B;,&#x6216;&#x8005;&#x4ED6;&#x4EBA;&#x4EE3;&#x8C01;&#x53BB;&#x5750;&#x67D0;&#x4E8B;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x5F53;&#x81EA;&#x5DF1;&#x505A;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;&#x4E0D;&#x65B9;&#x4FBF;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x59D4;&#x6258;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x59D4;&#x6258;&#x4ED6;&#x4EBA;&#x5E2E;&#x81EA;&#x5DF1;&#x53BB;&#x5B9E;&#x73B0;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x3002;</p>
+<div></div><br>&gt; <div>&#x59D4;&#x6258;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x505A;&#x4EE5;&#x4E0B;&#x51E0;&#x4EF6;&#x4E8B;&#x60C5;</div><br>&gt;<br>&gt; <div>&#x4F20;&#x503C;:&#x6240;&#x8C13;&#x4F20;&#x503C;&#x7ECF;&#x5E38;&#x7528;&#x5728;b&#x7C7B;&#x8981;&#x628A;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6216;&#x8005;&#x5BF9;&#x8C61;&#x4F20;&#x7ED9;a&#x7C7B;&#xFF0C;&#x8BA9;a&#x7C7B;&#x53BB;&#x5C55;&#x793A;&#x6216;&#x8005;&#x5904;&#x7406;&#x3002;&#xFF08;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x53EF;&#x590D;&#x5236;&#x6027;&#xFF0C;&#x53EF;&#x79FB;&#x690D;&#x6027;&#xFF0C;&#x548C;&#x4EE3;&#x7801;&#x5206;&#x5757;&#x7684;&#x65F6;&#x5019;&#x7ECF;&#x5E38;&#x7528;&#xFF09;</div><br>&gt;<br>&gt; <div>&#x4F20;&#x4E8B;&#x4EF6;:&#x6240;&#x8C13;&#x4F20;&#x4E8B;&#x4EF6;&#x5C31;&#x662F;a&#x7C7B;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#xFF0C;&#x628A;&#x8FD9;&#x4EF6;&#x4E8B;&#x544A;&#x8BC9;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x7684;&#x4EBA;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x59D4;&#x6258;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x7531;&#x59D4;&#x6258;&#x7684;&#x5BF9;&#x8C61;&#x53BB;&#x8003;&#x8651;&#x53D1;&#x751F;&#x8FD9;&#x4E2A;&#x4E8B;&#x4EF6;&#x540E;&#x5E94;&#x8BE5;&#x505A;&#x51FA;&#x4EC0;&#x4E48;&#x53CD;&#x6620;&#x3002;&#xFF08;&#x8FD9;&#x4E2A;&#x7ECF;&#x5E38;&#x89C1;&#xFF0C;&#x4F8B;&#x5982;&#x5728;&#x5F02;&#x6B65;&#x8BF7;&#x6C42;&#x4E2D;&#xFF0C;&#x754C;&#x9762;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x6570;&#x636E;&#x5C42;&#x6539;&#x53D8;&#x7B49;&#x7B49;&#xFF09;</div><br>&gt;<br>&gt; <div>&#x8D4B;&#x503C;:&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x611F;&#x89C9;&#x662F;&#x4E3A;&#x4E86;&#x4E0D;&#x66B4;&#x9732;&#x81EA;&#x5DF1;&#x7684;&#x5C5E;&#x6027;&#x5C31;&#x53EF;&#x4EE5;&#x7ED9;&#x81EA;&#x5DF1;&#x590D;&#x503C;&#xFF0C;&#x800C;&#x4E14;&#x8FD9;&#x6837;&#x66F4;&#x65B9;&#x4FBF;&#x4E86;&#x7C7B;&#x7684;&#x7BA1;&#x7406;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x4F60;&#x60F3;&#x8981;&#x8BA9;&#x522B;&#x4EBA;&#x7ED9;&#x4F60;&#x8D4B;&#x503C;&#x7684;&#x65F6;&#x5019;&#x624D;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x8D4B;&#x503C;&#x66F4;&#x53EF;&#x63A7;&#x4E00;&#x4E9B;&#x3002;&#xFF08;&#x4F8B;&#x5982;tableView&#x4E2D;&#x7684;&#x59D4;&#x6258;&#xFF08;dateSource&#xFF09;&#x4E2D;&#x5E38;&#x89C1;&#xFF09;&#x3002;</div><br><div></div><br><div>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x60F3;&#x5206;&#x4EAB;&#x4E00;&#x4E0B;&#x5728;&#x4F7F;&#x7528;&#x59D4;&#x6258;&#x7684;&#x65F6;&#x5019;&#x7684;&#x4E00;&#x4E9B;&#x5FC3;&#x5F97;&#x548C;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x3002;</div><br><div></div><br><div>&#x5FC3;&#x5F97;&#xFF1A;delegate&#x7684;&#x547D;&#x540D;&#x8981;&#x51C6;&#x786E;&#xFF0C;&#x5C3D;&#x91CF;&#x770B;&#x540D;&#x5B57;&#x5C31;&#x77E5;&#x9053;&#x7528;&#x6CD5;&#x3002;delegate&#x548C;&#x901A;&#x77E5;&#x6709;&#x7684;&#x7528;&#x6CD5;&#x6709;&#x4E9B;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x524D;&#x8005;&#x662F;&#x5355;&#x5BF9;&#x5355;&#x7684;&#xFF0C;&#x540E;&#x8005;&#x662F;&#x5355;&#x5BF9;&#x591A;&#x7684;&#x60C5;&#x51B5;&#x3002;</div><br>&gt; &#x547D;&#x540D;:<br>&gt; 1.&#x534F;&#x8BAE;&#x540D;&#x4E00;&#x822C;&#x4EE5;&#x7C7B;&#x540D;&#x5F00;&#x5934;,&#x5982;(<span class="s2"> BMfirendHeaderViewDelegate</span>)<br>&gt; 2.&#x59D4;&#x6258;&#x7684;&#x5916;&#x90E8;&#x58F0;&#x660E;&#x5C5E;&#x6027;&#x4E00;&#x822C;&#x56FA;&#x5B9A;&#x4E3A;delegate.(&#x6709;&#x7ECF;&#x9A8C;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x4E00;&#x822C;&#x4F1A;&#x9ED8;&#x8BA4;&#x5728;&#x4F60;&#x7C7B;&#x540D;&#x540E;&#x9762;&#x201D;.&#x201D;&#x4E00;&#x4E2A;delegate,&#x5982;&#x679C;&#x6709;&#x9A6C;&#x4E0A;&#x6210;&#x4E3A;&#x4EE3;&#x7406;&#x770B;&#x770B;)<br>&gt; 3.&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x4E5F;&#x4EE5;&#x7C7B;&#x540D;&#x5F00;&#x5934;,&#x4E14;&#x4E0D;&#x52A0;&#x6807;&#x793A;&#x7B26;.(&#x6709;&#x7ECF;&#x9A8C;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x67E5;&#x770B;&#x4F60;&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#x4F1A;&#x76F4;&#x63A5;&#x6210;&#x4E3A;&#x4EE3;&#x7406;&#x540E;&#x8F93;&#x5165;&#x4F60;&#x7684;&#x7C7B;&#x540D;&#x67E5;&#x770B;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;)<br>&gt; 4.&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x4E0D;&#x662F;&#x7279;&#x6B8A;&#x8F7B;&#x5FEB;&#x90FD;@optional.<br>&gt; 5.&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x4E00;&#x822C;&#x4F1A;&#x4F7F;&#x7528;should&#x3001;will&#x3001;did&#x8FD9;3&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x8868;&#x9762;&#x72B6;&#x6001;.<br>&gt; &#x5177;&#x4F53;&#x66F4;&#x591A;&#x4E66;&#x5199;&#x89C4;&#x8303;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5B98;&#x65B9;&#x793A;&#x4F8B;.<br><div>&#x6CE8;&#x610F;&#xFF1A;&#x5728;dealloc&#x8981;&#x628A;delegate&#x81F3;&#x4E3A;nil&#xFF0C;&#x8FD8;&#x6709;&#x5C31;&#x662F;delegate&#x8BBE;&#x7F6E;&#x5C5E;&#x6027;&#x7684;&#x65F6;&#x5019;&#x8981;&#x7528;assign&#xFF0C;&#x4E0D;&#x8981;&#x7528;retain&#x3002;</div><br><a id="more"></a><br><div></div><br><div><br><br><strong>&#x59D4;&#x6258;</strong>&#x5728;IOS&#x4E2D;&#x59D4;&#x6258;&#x901A;&#x8FC7;&#x4E00;&#x79CD;@protocol&#x7684;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;,&#x6240;&#x4EE5;&#x53C8;&#x79F0;&#x4E3A;&#x534F;&#x8BAE;.&#x534F;&#x8BAE;&#x662F;&#x591A;&#x4E2A;&#x7C7B;&#x5171;&#x4EAB;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x5217;&#x8868;,&#x5728;&#x534F;&#x8BAE;&#x4E2D;&#x6240;&#x5217;&#x51FA;&#x7684;&#x65B9;&#x6CD5;&#x6CA1;&#x6709;&#x54CD;&#x5E94;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x7531;&#x5176;&#x5B83;&#x4EBA;&#x6765;&#x5B9E;&#x73B0;.&#x8FD9;&#x53EB;&#x597D;&#x6BD4;&#x6211;&#x60F3;&#x4E70;&#x4E2A;&#x624B;&#x673A;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x6709;&#x4E2A;buyIphone &#x65B9;&#x6CD5;,&#x4F46;&#x662F;&#x6211;&#x4E0D;&#x77E5;&#x9053;&#x8C01;&#x90A3;&#x4E70;&#x624B;&#x673A;,&#x6240;&#x4EE5;&#x628A;&#x8FD9;&#x4E2A;&#x9700;&#x6C42;&#x53D1;&#x5E03;&#x51FA;&#x53BB;(&#x6BD4;&#x5982;&#x516C;&#x5E03;&#x5728;&#x7F51;&#x7AD9;&#x4E0A;),&#x5982;&#x679C;&#x6709;&#x5356;&#x624B;&#x673A;&#x7684;&#x5546;&#x4EBA;(&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4ED6;&#x80FD;&#x5B9E;&#x73B0;buyIphone&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;)&#x770B;&#x5230;&#xFF0C;&#x4ED6;&#x5C31;&#x4F1A;&#x63A5;&#x53D7;&#x6211;&#x7684;&#x59D4;&#x6258;,(&#x5728;&#x5546;&#x4EBA;&#x81EA;&#x5DF1;&#x7684;&#x7C7B;&#x4E2D;&#x5B9E;&#x73B0;&lt;XXXdelegate&gt;),&#x90A3;&#x4E48;&#x6211;&#x7684;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x5C31;&#x6307;&#x5411;&#x4E86;&#x8FD9;&#x4E2A;&#x5546;&#x4EBA;..&#x5F53;&#x6211;&#x8981;&#x4E70;&#x624B;&#x673A;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x76F4;&#x63A5;&#x627E;&#x4ED6;&#x5C31;&#x884C;&#x4E86;.<br><br>&#x4F8B;&#x5982;:<br><div class="cnblogs_code"><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="&#x590D;&#x5236;&#x4EE3;&#x7801;" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a></span></div><br><pre>@protocol MyDelegate<br>-(void)buyIphone:(NSString <em>)iphoneType money:(NSString </em>)money;<br><br>@end<br>@interface My : NSObject<br>{<br>    id&lt;MyDelegate&gt; deleage;<br>}<br>@property(assign,nonatomic)id&lt;MyDelegate&gt; delegate;<br>@end</pre><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="&#x590D;&#x5236;&#x4EE3;&#x7801;" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a></span></div><br></div><br>&#x4EE3;&#x7801;&#x4E2D;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A;&#x534F;&#x8BAE; &#x540D;&#x53EB;Mydelegate,&#x5728;&#x5176;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;buyIphone&#x65B9;&#x6CD5;&#xFF0C;&#x5373;&#x4E00;&#x4E2A;&#x59D4;&#x6258;&#x9879;&#x3002;&#x5F53;&#x6211;&#x8981;&#x8D2D;&#x4E70;&#x624B;&#x673A;&#x7684;&#x65F6;&#x5019;&#x53EA;&#x9700;&#x8981;&#x901A;&#x8FC7;delegate &#x8C03;&#x7528; BuyIphone&#x65B9;&#x6CD5;&#x5373;&#x53EF;.<br><br>&#x5982;&#x4E0B;:<br><div class="cnblogs_code"><br><pre>-(void)willbuy<br>{<br>    [delegate buyIphone:@&#x201D;iphone 4s&#x201D; money:@&#x201D;4888&#x201D;];<br><br>}</pre><br></div><br>&#x6211;&#x4E0D;&#x5FC5;&#x5173;&#x5FC3;&#x8C01;&#x73B0;&#x5B9E;&#x4E86;&#x8FD9;&#x4E00;&#x59D4;&#x6258;&#xFF0C;&#x53EA;&#x8981;&#x5B9E;&#x73B0;&#x4E86;&#x8FD9;&#x4E2A;&#x59D4;&#x6258;&#x7684;&#x7C7B;&#xFF0C;&#x5E76;&#x4E14;buyIphone&#x662F;&#x58F0;&#x660E;&#x7684;&#x59D4;&#x6258;&#x4E2D;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4E00;&#x5B9A;&#x80FD;&#x591F;&#x5F97;&#x5230;&#x7ED3;&#x679C;.<br><br>&#x4F8B;&#x5982;:&#x5546;&#x4EBA;&#x7C7B;&#x5B9E;&#x73B0;&#x4E86;&#x8FD9;&#x4E00;&#x59D4;&#x6258;(&#x7528;&lt;Mydelegate&gt;&#x8868;&#x793A;&#x5B9E;&#x73B0;)<br><div class="cnblogs_code"><br><pre>#import &lt;Foundation/Foundation.h&gt;<br>#import &#x201C;My.h&#x201D;<br>@interface Business : NSObject&lt;MyDelegate&gt;<br><br>@end</pre><br></div><br>&#x7136;&#x540E;&#x5728; @implementation Business &#x4E2D;&#x8C03;&#x7528; buyIphone&#x65B9;&#x6CD5;<br><div class="cnblogs_code"><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="&#x590D;&#x5236;&#x4EE3;&#x7801;" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a></span></div><br><pre>#import &#x201C;Business.h&#x201D;<br><br>@implementation Business<br><br>-(void)buyIphone:(NSString <em>)iphoneType money:(NSString </em>)money<br>{<br>    NSLog(@&#x201D;&#x624B;&#x673A;&#x6709;&#x8D27;&#xFF0C;&#x8FD9;&#x4E2A;&#x4EF7;&#x94B1;&#x5356;&#x4F60;&#x4E86;&#xFF0C;&#x53D1;&#x8D27;&#x4E2D;!!&#x201D;);<br>}<br>@end</pre><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="http://blog.csdn.net/huifeidexin_1/article/details/7567731" title="&#x590D;&#x5236;&#x4EE3;&#x7801;" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a></span></div><br><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy">&#x59D4;&#x6258;&#x662F;Cocoa&#x4E2D;&#x6700;&#x7B80;&#x5355;&#x3001;&#x6700;&#x7075;&#x6D3B;&#x7684;&#x6A21;&#x5F0F;&#x4E4B;&#x4E00;&#x3002;&#x59D4;&#x6258;&#x662F;&#x6307;&#x7ED9;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x673A;&#x4F1A;&#x5BF9;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x53D8;&#x5316;&#x505A;&#x51FA;&#x53CD;&#x5E94;&#x6216;&#x8005;&#x5F71;&#x54CD;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x884C;&#x4E3A;&#x3002;&#x5176;&#x57FA;&#x672C;&#x601D;&#x60F3;&#x662F;&#xFF1A;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x534F;&#x540C;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x3002;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x975E;&#x5E38;&#x666E;&#x901A;&#xFF0C;&#x5E76;&#x4E14;&#x6253;&#x7B97;&#x5728;&#x5E7F;&#x6CDB;&#x7684;&#x60C5;&#x5F62;&#x4E2D;&#x91CD;&#x7528;&#x3002;&#x5B83;&#x5B58;&#x50A8;&#x6307;&#x5411;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF08;&#x5373;&#x5B83;&#x7684;&#x59D4;&#x6258;&#xFF09;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x5E76;&#x5728;&#x5173;&#x952E;&#x65F6;&#x523B;&#x7ED9;&#x59D4;&#x6258;&#x53D1;&#x6D88;&#x606F;&#x3002;&#x6D88;&#x606F;&#x53EF;&#x80FD;&#x53EA;&#x662F;&#x901A;&#x77E5;&#x59D4;&#x6258;&#x53D1;&#x751F;&#x4E86;&#x67D0;&#x4EF6;&#x4E8B;&#x60C5;&#xFF0C;&#x7ED9;&#x59D4;&#x6258;&#x63D0;&#x4F9B;&#x673A;&#x4F1A;&#x6267;&#x884C;&#x989D;&#x5916;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x6216;&#x8005;&#x6D88;&#x606F;&#x53EF;&#x80FD;&#x8981;&#x6C42;&#x59D4;&#x6258;&#x63D0;&#x4F9B;&#x4E00;&#x4E9B;&#x5173;&#x952E;&#x7684;&#x4FE1;&#x606F;&#x4EE5;&#x63A7;&#x5236;&#x6240;&#x53D1;&#x751F;&#x7684;&#x4E8B;&#x60C5;&#x3002;<br><img src="http://www.1000phone.net/data/attachment/forum/201112/23/191755zeji8jas6qyidyqe.jpg" alt=""> </span></div><br><div class="cnblogs_code_toolbar"><br><br><span class="cnblogs_code_copy">&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x901A;&#x5E38;&#x5305;&#x62EC;3&#x79CD;&#x52A8;&#x8BCD;&#xFF1A;should&#x3001;will&#x3001;did&#x3002;</span><br><br>should&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x52A8;&#x4F5C;&#x53D1;&#x751F;&#x524D;&#xFF0C;&#x901A;&#x5E38;&#x5E26;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x52A8;&#x4F5C;&#x53D1;&#x751F;&#x4E4B;&#x524D;&#x6539;&#x53D8;&#x5BF9;&#x8C61;&#x72B6;&#x6001;&#x3002;<br>will&#x5728;&#x52A8;&#x4F5C;&#x53D1;&#x751F;&#x524D;&#xFF0C;&#x59D4;&#x6258;&#x53EF;&#x4EE5;&#x5BF9;&#x52A8;&#x4F5C;&#x505A;&#x51FA;&#x54CD;&#x5E94;&#xFF0C;&#x4F46;&#x4E0D;&#x5E26;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x3002;<br>did&#x5728;&#x52A8;&#x4F5C;&#x53D1;&#x751F;&#x540E;&#x505A;&#x51FA;&#x7684;&#x54CD;&#x5E94;&#x3002;<br><br>&#x4ECE;&#x65B9;&#x6CD5;&#x7684;&#x5B9A;&#x4E49;&#x6211;&#x4EEC;&#x4E0D;&#x96BE;&#x770B;&#x51FA;&#x59D4;&#x6258;&#x6A21;&#x5F0F;&#x80FD;&#x591F;&#x8D77;&#x5230;&#x4E24;&#x65B9;&#x9762;&#x7684;&#x4F5C;&#x7528;&#xFF1A;<br><br>&#x7B2C;&#x4E00;&#xFF1A;&#x59D4;&#x6258;&#x534F;&#x52A9;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x5B8C;&#x6210;&#x67D0;&#x9879;&#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x9700;&#x8981;&#x5B9A;&#x5236;&#x5316;&#x7684;&#x64CD;&#x4F5C;&#x901A;&#x8FC7;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x6765;&#x81EA;&#x5B9A;&#x4E49;&#x5B9E;&#x73B0;&#xFF0C;&#x8FBE;&#x5230;&#x548C;&#x5B50;&#x7C7B;&#x5316;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x540C;&#x6837;&#x7684;&#x4F5C;&#x7528;&#x3002;<br>&#x7B2C;&#x4E8C;&#xFF1A;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#xFF0C;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x76D1;&#x542C;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x7684;&#x67D0;&#x4E9B;&#x91CD;&#x8981;&#x4E8B;&#x4EF6;&#xFF0C;&#x5BF9;&#x4E8B;&#x4EF6;&#x505A;&#x51FA;&#x5177;&#x4F53;&#x54CD;&#x5E94;&#x6216;&#x5E7F;&#x64AD;&#x4E8B;&#x4EF6;&#x4EA4;&#x7ED9;&#x9700;&#x8981;&#x4F5C;&#x51FA;&#x54CD;&#x5E94;&#x7684;&#x5BF9;&#x8C61;&#x3002;<br><br></div><br><div class="cnblogs_code_toolbar"><br><div class="cnblogs_code_toolbar"><br><br><span class="cnblogs_code_copy"><span class="cnblogs_code_copy">&#x59D4;&#x6258;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;&#x601D;&#x8DEF;&#xFF1A;</span></span><br><br>1&#x3001;&#x901A;&#x5E38;&#x662F;&#x5728;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x7684;&#x5F31;&#x5F15;&#x7528;&#xFF1A;<br><pre class="lang:objc decode:true">@interface A : NSObject<br>{<br>IBOutlet id delegate;<br>} -(id) delegate;<br>-(void) setDelegate:(id)obj;<br></pre><br>2&#x3001;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x73B0;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x548C;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#xFF0C;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x5728;&#x534F;&#x8BAE;&#x4E2D;&#x5B9A;&#x4E49;&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#xFF0C;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5B9E;&#x73B0;&#x5176;&#x4E2D;&#x67D0;&#x4E9B;&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x6B64;&#x5982;&#x679C;&#x901A;&#x8FC7;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x5B9A;&#x4E49;&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x4F7F;&#x7528;@option&#x3002;<br><pre class="lang:objc decode:true">@protocol NSSearchDelegate<br>@option<br>-(void)didSearchFinish:(<em>NSNotification) aNotification;<br>@end</em></pre><br>3&#x3001;&#x8FDE;&#x63A5;&#x5BF9;&#x8C61;&#x4E3B;&#x4F53;&#x548C;&#x59D4;&#x6258;&#xFF0C;&#x65E0;&#x975E;&#x5C31;&#x662F;&#x901A;&#x8FC7;setDelegate:(id)obj&#x6765;&#x5B9E;&#x73B0;&#x3002;<br><br>4&#x3001;&#x89E6;&#x53D1;&#x59D4;&#x6258;&#x65B9;&#x6CD5;&#x3002;<br><br></div><br></div><br></div><br>&#x4E0B;&#x9762;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x59D4;&#x6258;&#x7684;&#x6B65;&#x9AA4;:<br><br>1.  &#x521B;&#x5EFA;&#x4E00;&#x4EFD;&#x534F;&#x8BAE;.<br><pre class="lang:objc decode:true">@protocol BMfirendHeaderViewDelegate &lt;NSObject&gt;<br><br>@end</pre><br><br>2.  &#x7533;&#x660E;&#x4EE3;&#x7406;&#x5C5E;&#x6027;.<br><pre class="lang:objc decode:true">@property (nonatomic, weak) id&lt;BMfirendHeaderViewDelegate&gt; delegate;</pre><br><br>3.  &#x7533;&#x660E;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;<br><pre class="lang:objc decode:true">@protocol BMfirendHeaderViewDelegate &lt;NSObject&gt;<br>@optional<br>- (void)firendHeaderViewHeadBtnClick:(BMfirendHeaderView )firendHeaderView;<br>@end</pre><br><br>4.  &#x5728;&#x59D4;&#x6258;&#xFF08;&#x59D4;&#x6258;&#x5BF9;&#x8C61;&#xFF09;&#x8BBE;&#x7F6E;&#x59D4;&#x6258;&#x4EE3;&#x7406;&#x5C5E;&#x6027;(&#x901A;&#x5E38;&#x662F;&#x67D0;&#x4E2A;ViewController&#x539F;&#x56E0;&#x4F5C;&#x4E3A;&#x59D4;&#x6258;)<br><pre class="lang:objc decode:true" title="ViewController.m">headerView.delegate =self;</pre><br><br>5.  &#x9075;&#x5B88;&#x534F;&#x8BAE;<br><pre class="lang:objc decode:true">@interface ViewController ()&lt;BMfirendHeaderViewDelegate&gt;</pre><br><br>6.  &#x5B9E;&#x73B0;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;<br><pre class="lang:objc decode:true  ">-(void)firendHeaderViewHeadBtnClick:(BMfirendHeaderView *)firendHeaderView<br>{<br><br>}</pre><br>&#xA0;<br></div>
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&text=delegate代理（委托）的使用心得"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&is_video=false&description=delegate代理（委托）的使用心得"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=delegate代理（委托）的使用心得&body=Check out this article: http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&title=delegate代理（委托）的使用心得"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/06/delegate-proxy-delegates-experience/&name=delegate代理（委托）的使用心得&description=&lt;p&gt;&amp;#x9996;&amp;#x5148;&amp;#xFF0C;&amp;#x5927;&amp;#x5BB6;&amp;#x5E94;&amp;#x8BE5;&amp;#x90FD;&amp;#x975E;&amp;#x5E38;&amp;#x6E05;&amp;#x695A;&amp;#x660E;&amp;#x767D;&amp;#x59D4;&amp;#x6258;(&amp;#x4EE3;&amp;#x7406;)&amp;#x5176;&amp;#x5B9E;&amp;#x534F;&amp;#x8BAE;&amp;#x7684;&amp;#x4E00;&amp;#x79CD;&amp;#xFF0C;&amp;#x987E;&amp;#x540D;&amp;#x601D;&amp;#x4E49;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;&amp;#x59D4;&amp;#x6258;&amp;#x4ED6;&amp;#x4EBA;&amp;#x5E2E;&amp;#x81EA;&amp;#x5DF1;&amp;#x53BB;&amp;#x505A;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;,&amp;#x6216;&amp;#x8005;&amp;#x4ED6;&amp;#x4EBA;&amp;#x4EE3;&amp;#x8C01;&amp;#x53BB;&amp;#x5750;&amp;#x67D0;&amp;#x4E8B;&amp;#x3002;&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x5F53;&amp;#x81EA;&amp;#x5DF1;&amp;#x505A;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;&amp;#x4E0D;&amp;#x65B9;&amp;#x4FBF;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x5EFA;&amp;#x7ACB;&amp;#x4E00;&amp;#x4E2A;&amp;#x59D4;&amp;#x6258;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6837;&amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x59D4;&amp;#x6258;&amp;#x4ED6;&amp;#x4EBA;&amp;#x5E2E;&amp;#x81EA;&amp;#x5DF1;&amp;#x53BB;&amp;#x5B9E;&amp;#x73B0;&amp;#x4EC0;&amp;#x4E48;&amp;#x65B9;&amp;#x6CD5;&amp;#x3002;&lt;/p&gt;
+&lt;div&gt;&lt;/div&gt;&lt;br&gt;&amp;gt; &lt;div&gt;&amp;#x59D4;&amp;#x6258;&amp;#x4E00;&amp;#x822C;&amp;#x60C5;&amp;#x51B5;&amp;#x505A;&amp;#x4EE5;&amp;#x4E0B;&amp;#x51E0;&amp;#x4EF6;&amp;#x4E8B;&amp;#x60C5;&lt;/div&gt;&lt;br&gt;&amp;gt;&lt;br&gt;&amp;gt; &lt;div&gt;&amp;#x4F20;&amp;#x503C;:&amp;#x6240;&amp;#x8C13;&amp;#x4F20;&amp;#x503C;&amp;#x7ECF;&amp;#x5E38;&amp;#x7528;&amp;#x5728;b&amp;#x7C7B;&amp;#x8981;&amp;#x628A;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x636E;&amp;#x6216;&amp;#x8005;&amp;#x5BF9;&amp;#x8C61;&amp;#x4F20;&amp;#x7ED9;a&amp;#x7C7B;&amp;#xFF0C;&amp;#x8BA9;a&amp;#x7C7B;&amp;#x53BB;&amp;#x5C55;&amp;#x793A;&amp;#x6216;&amp;#x8005;&amp;#x5904;&amp;#x7406;&amp;#x3002;&amp;#xFF08;&amp;#x63D0;&amp;#x9AD8;&amp;#x4EE3;&amp;#x7801;&amp;#x53EF;&amp;#x590D;&amp;#x5236;&amp;#x6027;&amp;#xFF0C;&amp;#x53EF;&amp;#x79FB;&amp;#x690D;&amp;#x6027;&amp;#xFF0C;&amp;#x548C;&amp;#x4EE3;&amp;#x7801;&amp;#x5206;&amp;#x5757;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x7ECF;&amp;#x5E38;&amp;#x7528;&amp;#xFF09;&lt;/div&gt;&lt;br&gt;&amp;gt;&lt;br&gt;&amp;gt; &lt;div&gt;&amp;#x4F20;&amp;#x4E8B;&amp;#x4EF6;:&amp;#x6240;&amp;#x8C13;&amp;#x4F20;&amp;#x4E8B;&amp;#x4EF6;&amp;#x5C31;&amp;#x662F;a&amp;#x7C7B;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#xFF0C;&amp;#x628A;&amp;#x8FD9;&amp;#x4EF6;&amp;#x4E8B;&amp;#x544A;&amp;#x8BC9;&amp;#x5173;&amp;#x6CE8;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x4EBA;&amp;#xFF0C;&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x59D4;&amp;#x6258;&amp;#x7684;&amp;#x5BF9;&amp;#x8C61;&amp;#xFF0C;&amp;#x7531;&amp;#x59D4;&amp;#x6258;&amp;#x7684;&amp;#x5BF9;&amp;#x8C61;&amp;#x53BB;&amp;#x8003;&amp;#x8651;&amp;#x53D1;&amp;#x751F;&amp;#x8FD9;&amp;#x4E2A;&amp;#x4E8B;&amp;#x4EF6;&amp;#x540E;&amp;#x5E94;&amp;#x8BE5;&amp;#x505A;&amp;#x51FA;&amp;#x4EC0;&amp;#x4E48;&amp;#x53CD;&amp;#x6620;&amp;#x3002;&amp;#xFF08;&amp;#x8FD9;&amp;#x4E2A;&amp;#x7ECF;&amp;#x5E38;&amp;#x89C1;&amp;#xFF0C;&amp;#x4F8B;&amp;#x5982;&amp;#x5728;&amp;#x5F02;&amp;#x6B65;&amp;#x8BF7;&amp;#x6C42;&amp;#x4E2D;&amp;#xFF0C;&amp;#x754C;&amp;#x9762;&amp;#x4E8B;&amp;#x4EF6;&amp;#x89E6;&amp;#x53D1;&amp;#x6570;&amp;#x636E;&amp;#x5C42;&amp;#x6539;&amp;#x53D8;&amp;#x7B49;&amp;#x7B49;&amp;#xFF09;&lt;/div&gt;&lt;br&gt;&amp;gt;&lt;br&gt;&amp;gt; &lt;div&gt;&amp;#x8D4B;&amp;#x503C;:&amp;#x8FD9;&amp;#x79CD;&amp;#x65B9;&amp;#x6CD5;&amp;#x611F;&amp;#x89C9;&amp;#x662F;&amp;#x4E3A;&amp;#x4E86;&amp;#x4E0D;&amp;#x66B4;&amp;#x9732;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x5C5E;&amp;#x6027;&amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x7ED9;&amp;#x81EA;&amp;#x5DF1;&amp;#x590D;&amp;#x503C;&amp;#xFF0C;&amp;#x800C;&amp;#x4E14;&amp;#x8FD9;&amp;#x6837;&amp;#x66F4;&amp;#x65B9;&amp;#x4FBF;&amp;#x4E86;&amp;#x7C7B;&amp;#x7684;&amp;#x7BA1;&amp;#x7406;&amp;#xFF0C;&amp;#x53EA;&amp;#x6709;&amp;#x5728;&amp;#x4F60;&amp;#x60F3;&amp;#x8981;&amp;#x8BA9;&amp;#x522B;&amp;#x4EBA;&amp;#x7ED9;&amp;#x4F60;&amp;#x8D4B;&amp;#x503C;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x624D;&amp;#x8C03;&amp;#x7528;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x8D4B;&amp;#x503C;&amp;#x66F4;&amp;#x53EF;&amp;#x63A7;&amp;#x4E00;&amp;#x4E9B;&amp;#x3002;&amp;#xFF08;&amp;#x4F8B;&amp;#x5982;tableView&amp;#x4E2D;&amp;#x7684;&amp;#x59D4;&amp;#x6258;&amp;#xFF08;dateSource&amp;#xFF09;&amp;#x4E2D;&amp;#x5E38;&amp;#x89C1;&amp;#xFF09;&amp;#x3002;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&amp;#x6700;&amp;#x540E;&amp;#xFF0C;&amp;#x6211;&amp;#x60F3;&amp;#x5206;&amp;#x4EAB;&amp;#x4E00;&amp;#x4E0B;&amp;#x5728;&amp;#x4F7F;&amp;#x7528;&amp;#x59D4;&amp;#x6258;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x7684;&amp;#x4E00;&amp;#x4E9B;&amp;#x5FC3;&amp;#x5F97;&amp;#x548C;&amp;#x6CE8;&amp;#x610F;&amp;#x4E8B;&amp;#x9879;&amp;#x3002;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&amp;#x5FC3;&amp;#x5F97;&amp;#xFF1A;delegate&amp;#x7684;&amp;#x547D;&amp;#x540D;&amp;#x8981;&amp;#x51C6;&amp;#x786E;&amp;#xFF0C;&amp;#x5C3D;&amp;#x91CF;&amp;#x770B;&amp;#x540D;&amp;#x5B57;&amp;#x5C31;&amp;#x77E5;&amp;#x9053;&amp;#x7528;&amp;#x6CD5;&amp;#x3002;delegate&amp;#x548C;&amp;#x901A;&amp;#x77E5;&amp;#x6709;&amp;#x7684;&amp;#x7528;&amp;#x6CD5;&amp;#x6709;&amp;#x4E9B;&amp;#x8C61;&amp;#xFF0C;&amp;#x4F46;&amp;#x662F;&amp;#x524D;&amp;#x8005;&amp;#x662F;&amp;#x5355;&amp;#x5BF9;&amp;#x5355;&amp;#x7684;&amp;#xFF0C;&amp;#x540E;&amp;#x8005;&amp;#x662F;&amp;#x5355;&amp;#x5BF9;&amp;#x591A;&amp;#x7684;&amp;#x60C5;&amp;#x51B5;&amp;#x3002;&lt;/div&gt;&lt;br&gt;&amp;gt; &amp;#x547D;&amp;#x540D;:&lt;br&gt;&amp;gt; 1.&amp;#x534F;&amp;#x8BAE;&amp;#x540D;&amp;#x4E00;&amp;#x822C;&amp;#x4EE5;&amp;#x7C7B;&amp;#x540D;&amp;#x5F00;&amp;#x5934;,&amp;#x5982;(&lt;span class=&quot;s2&quot;&gt; BMfirendHeaderViewDelegate&lt;/span&gt;)&lt;br&gt;&amp;gt; 2.&amp;#x59D4;&amp;#x6258;&amp;#x7684;&amp;#x5916;&amp;#x90E8;&amp;#x58F0;&amp;#x660E;&amp;#x5C5E;&amp;#x6027;&amp;#x4E00;&amp;#x822C;&amp;#x56FA;&amp;#x5B9A;&amp;#x4E3A;delegate.(&amp;#x6709;&amp;#x7ECF;&amp;#x9A8C;&amp;#x7684;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#x4E00;&amp;#x822C;&amp;#x4F1A;&amp;#x9ED8;&amp;#x8BA4;&amp;#x5728;&amp;#x4F60;&amp;#x7C7B;&amp;#x540D;&amp;#x540E;&amp;#x9762;&amp;#x201D;.&amp;#x201D;&amp;#x4E00;&amp;#x4E2A;delegate,&amp;#x5982;&amp;#x679C;&amp;#x6709;&amp;#x9A6C;&amp;#x4E0A;&amp;#x6210;&amp;#x4E3A;&amp;#x4EE3;&amp;#x7406;&amp;#x770B;&amp;#x770B;)&lt;br&gt;&amp;gt; 3.&amp;#x59D4;&amp;#x6258;&amp;#x65B9;&amp;#x6CD5;&amp;#x4E00;&amp;#x822C;&amp;#x4E5F;&amp;#x4EE5;&amp;#x7C7B;&amp;#x540D;&amp;#x5F00;&amp;#x5934;,&amp;#x4E14;&amp;#x4E0D;&amp;#x52A0;&amp;#x6807;&amp;#x793A;&amp;#x7B26;.(&amp;#x6709;&amp;#x7ECF;&amp;#x9A8C;&amp;#x7684;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#x67E5;&amp;#x770B;&amp;#x4F60;&amp;#x7684;&amp;#x4EE3;&amp;#x7406;&amp;#x65B9;&amp;#x6CD5;&amp;#x4F1A;&amp;#x76F4;&amp;#x63A5;&amp;#x6210;&amp;#x4E3A;&amp;#x4EE3;&amp;#x7406;&amp;#x540E;&amp;#x8F93;&amp;#x5165;&amp;#x4F60;&amp;#x7684;&amp;#x7C7B;&amp;#x540D;&amp;#x67E5;&amp;#x770B;&amp;#x4EE3;&amp;#x7406;&amp;#x65B9;&amp;#x6CD5;)&lt;br&gt;&amp;gt; 4.&amp;#x59D4;&amp;#x6258;&amp;#x65B9;&amp;#x6CD5;&amp;#x4E00;&amp;#x822C;&amp;#x4E0D;&amp;#x662F;&amp;#x7279;&amp;#x6B8A;&amp;#x8F7B;&amp;#x5FEB;&amp;#x90FD;@optional.&lt;br&gt;&amp;gt; 5.&amp;#x59D4;&amp;#x6258;&amp;#x65B9;&amp;#x6CD5;&amp;#x4E00;&amp;#x822C;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;should&amp;#x3001;will&amp;#x3001;did&amp;#x8FD9;3&amp;#x4E2A;&amp;#x5173;&amp;#x952E;&amp;#x5B57;&amp;#x8868;&amp;#x9762;&amp;#x72B6;&amp;#x6001;.&lt;br&gt;&amp;gt; &amp;#x5177;&amp;#x4F53;&amp;#x66F4;&amp;#x591A;&amp;#x4E66;&amp;#x5199;&amp;#x89C4;&amp;#x8303;&amp;#x53EF;&amp;#x4EE5;&amp;#x67E5;&amp;#x770B;&amp;#x5B98;&amp;#x65B9;&amp;#x793A;&amp;#x4F8B;.&lt;br&gt;&lt;div&gt;&amp;#x6CE8;&amp;#x610F;&amp;#xFF1A;&amp;#x5728;dealloc&amp;#x8981;&amp;#x628A;delegate&amp;#x81F3;&amp;#x4E3A;nil&amp;#xFF0C;&amp;#x8FD8;&amp;#x6709;&amp;#x5C31;&amp;#x662F;delegate&amp;#x8BBE;&amp;#x7F6E;&amp;#x5C5E;&amp;#x6027;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x8981;&amp;#x7528;assign&amp;#xFF0C;&amp;#x4E0D;&amp;#x8981;&amp;#x7528;retain&amp;#x3002;&lt;/div&gt;&lt;br&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+

@@ -1,114 +1,12 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="&amp;#x524D;&amp;#x8A00;&amp;#x96C6;&amp;#x5408;&amp;#x7684;&amp;#x904D;&amp;#x5386;&amp;#x64CD;&amp;#x4F5C;&amp;#x662F;&amp;#x5F00;&amp;#x53D1;&amp;#x4E2D;&amp;#x6700;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x64CD;&amp;#x4F5C;&amp;#x4E4B;&amp;#x4E00;&amp;#xFF0C;&amp;#x4ECE;C&amp;#x8BED;&amp;#x8A00">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="&amp;#x524D;&amp;#x8A00;&amp;#x96C6;&amp;#x5408;&amp;#x7684;&amp;#x904D;&amp;#x5386;&amp;#x64CD;&amp;#x4F5C;&amp;#x662F;&amp;#x5F00;&amp;#x53D1;&amp;#x4E2D;&amp;#x6700;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x64CD;&amp;#x4F5C;&amp;#x4E4B;&amp;#x4E00;&amp;#xFF0C;&amp;#x4ECE;C&amp;#x8BED;&amp;#x8A00">
 <meta name="keywords" content="遍历">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios中集合遍历方法的比较和推荐">
@@ -120,298 +18,127 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios中集合遍历方法的比较和推荐">
 <meta name="twitter:description" content="&amp;#x524D;&amp;#x8A00;&amp;#x96C6;&amp;#x5408;&amp;#x7684;&amp;#x904D;&amp;#x5386;&amp;#x64CD;&amp;#x4F5C;&amp;#x662F;&amp;#x5F00;&amp;#x53D1;&amp;#x4E2D;&amp;#x6700;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x64CD;&amp;#x4F5C;&amp;#x4E4B;&amp;#x4E00;&amp;#xFF0C;&amp;#x4ECE;C&amp;#x8BED;&amp;#x8A00">
-
-
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>ios中集合遍历方法的比较和推荐 | BirdMichael</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ios中集合遍历方法的比较和推荐</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
+<body>
     
-  
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2015/11/12/ios-application-architecture/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2015/11/06/ios-e4-b8-adurl-e4-b8-ad-e7-89-b9-e6-ae-8a-e5-ad-97-e7-ac-a6-e8-af-b7-e6-b1-82-e4-b8-ba-e7-a9-ba/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&text=ios中集合遍历方法的比较和推荐"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&is_video=false&description=ios中集合遍历方法的比较和推荐"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ios中集合遍历方法的比较和推荐&body=Check out this article: http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&name=ios中集合遍历方法的比较和推荐&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">BirdMichael</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
     </div>
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ios中常用的遍历运算方法"><span class="toc-number">2.</span> <span class="toc-text">ios中常用的遍历运算方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实验"><span class="toc-number">3.</span> <span class="toc-text">实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#实验条件"><span class="toc-number">3.1.</span> <span class="toc-text">实验条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#值得注意的"><span class="toc-number">3.2.</span> <span class="toc-text">值得注意的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#个人推荐"><span class="toc-number">3.3.</span> <span class="toc-text">个人推荐</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#遍历实践Tips"><span class="toc-number">4.</span> <span class="toc-text">遍历实践Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#倒序遍历"><span class="toc-number">4.1.</span> <span class="toc-text">倒序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用block同时遍历字典key，value"><span class="toc-number">4.2.</span> <span class="toc-text">使用block同时遍历字典key，value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于耗时且顺序无关的遍历，使用并发版本"><span class="toc-number">4.3.</span> <span class="toc-text">对于耗时且顺序无关的遍历，使用并发版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码可读性和效率的权衡"><span class="toc-number">4.4.</span> <span class="toc-text">代码可读性和效率的权衡</span></a></li></ol></li></ol>
+    </div>
+  </span>
 </div>
 
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ios中集合遍历方法的比较和推荐
+    </h1>
 
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+    <div class="postdate">
+        <time datetime="2015-11-10T02:37:20.000Z" itemprop="datePublished">2015-11-10</time>
+    </div>
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-
-  </li>
 
       
-      
-    </ul>
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/遍历/">遍历</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="BirdMichael">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BirdMichael">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">ios中集合遍历方法的比较和推荐
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-11-10 10:37:20" itemprop="dateCreated datePublished" datetime="2015-11-10T10:37:20+08:00">2015-11-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2016-07-25 14:30:02" itemprop="dateModified" datetime="2016-07-25T14:30:02+08:00">2016-07-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OC/" itemprop="url" rel="index"><span itemprop="name">OC</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="&#x524D;&#x8A00;"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</h1><p>&#x96C6;&#x5408;&#x7684;&#x904D;&#x5386;&#x64CD;&#x4F5C;&#x662F;&#x5F00;&#x53D1;&#x4E2D;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x64CD;&#x4F5C;&#x4E4B;&#x4E00;&#xFF0C;&#x4ECE;C&#x8BED;&#x8A00;&#x7ECF;&#x5178;&#x7684;for&#x5FAA;&#x73AF;&#x5230;&#x5229;&#x7528;&#x591A;&#x6838;cpu&#x7684;&#x4F18;&#x52BF;&#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF0C;&#x5F00;&#x53D1;&#x4E2D;ios&#x6709;&#x82E5;&#x5E72;&#x96C6;&#x5408;&#x904D;&#x5386;&#x65B9;&#x6CD5;&#xFF0C;&#x672C;&#x6587;&#x901A;&#x8FC7;&#x7814;&#x7A76;&#x548C;&#x6D4B;&#x8BD5;&#x6BD4;&#x8F83;&#x4E86;&#x5404;&#x4E2A;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#x7684;&#x6548;&#x7387;&#x548C;&#x4F18;&#x7565;&#x52BF;&#xFF0C;&#x5E76;&#x603B;&#x7ED3;&#x51E0;&#x4E2A;&#x4F7F;&#x7528;&#x96C6;&#x5408;&#x904D;&#x5386;&#x65F6;&#x7684;&#x5C0F;&#x6280;&#x5DE7;&#x3002;</p>
+  <div class="content" itemprop="articleBody">
+    <h1 id="&#x524D;&#x8A00;"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</h1><p>&#x96C6;&#x5408;&#x7684;&#x904D;&#x5386;&#x64CD;&#x4F5C;&#x662F;&#x5F00;&#x53D1;&#x4E2D;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x64CD;&#x4F5C;&#x4E4B;&#x4E00;&#xFF0C;&#x4ECE;C&#x8BED;&#x8A00;&#x7ECF;&#x5178;&#x7684;for&#x5FAA;&#x73AF;&#x5230;&#x5229;&#x7528;&#x591A;&#x6838;cpu&#x7684;&#x4F18;&#x52BF;&#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF0C;&#x5F00;&#x53D1;&#x4E2D;ios&#x6709;&#x82E5;&#x5E72;&#x96C6;&#x5408;&#x904D;&#x5386;&#x65B9;&#x6CD5;&#xFF0C;&#x672C;&#x6587;&#x901A;&#x8FC7;&#x7814;&#x7A76;&#x548C;&#x6D4B;&#x8BD5;&#x6BD4;&#x8F83;&#x4E86;&#x5404;&#x4E2A;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#x7684;&#x6548;&#x7387;&#x548C;&#x4F18;&#x7565;&#x52BF;&#xFF0C;&#x5E76;&#x603B;&#x7ED3;&#x51E0;&#x4E2A;&#x4F7F;&#x7528;&#x96C6;&#x5408;&#x904D;&#x5386;&#x65F6;&#x7684;&#x5C0F;&#x6280;&#x5DE7;&#x3002;</p>
 <h1 id="ios&#x4E2D;&#x5E38;&#x7528;&#x7684;&#x904D;&#x5386;&#x8FD0;&#x7B97;&#x65B9;&#x6CD5;"><a href="#ios&#x4E2D;&#x5E38;&#x7528;&#x7684;&#x904D;&#x5386;&#x8FD0;&#x7B97;&#x65B9;&#x6CD5;" class="headerlink" title="ios&#x4E2D;&#x5E38;&#x7528;&#x7684;&#x904D;&#x5386;&#x8FD0;&#x7B97;&#x65B9;&#x6CD5;"></a>ios&#x4E2D;&#x5E38;&#x7528;&#x7684;&#x904D;&#x5386;&#x8FD0;&#x7B97;&#x65B9;&#x6CD5;</h1><p>&#x904D;&#x5386;&#x7684;&#x76EE;&#x7684;&#x662F;&#x83B7;&#x53D6;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x6216;&#x6267;&#x884C;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#xFF0C;&#x6240;&#x4EE5;&#x80FD;&#x6EE1;&#x8DB3;&#x8FD9;&#x4E2A;&#x6761;&#x4EF6;&#x7684;&#x65B9;&#x6CD5;&#x90FD;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x5907;&#x9009;&#xFF1A;</p>
 <ul>
 <li>&#x7ECF;&#x5178;for&#x5FAA;&#x73AF;</li>
@@ -445,593 +172,106 @@
 <h2 id="&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x548C;&#x6548;&#x7387;&#x7684;&#x6743;&#x8861;"><a href="#&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x548C;&#x6548;&#x7387;&#x7684;&#x6743;&#x8861;" class="headerlink" title="&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x548C;&#x6548;&#x7387;&#x7684;&#x6743;&#x8861;"></a>&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x548C;&#x6548;&#x7387;&#x7684;&#x6743;&#x8861;</h2><p>&#x867D;&#x7136;&#x8BF4;&#x4E0A;&#x9762;&#x7684;&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;&#x8868;&#x660E;&#xFF0C;&#x5728;&#x96C6;&#x5408;&#x5185;&#x5143;&#x7D20;&#x4E0D;&#x591A;&#x65F6;&#xFF0C;&#x7ECF;&#x5178;for&#x5FAA;&#x73AF;&#x7684;&#x6548;&#x7387;&#x8981;&#x6BD4;forin&#x8981;&#x9AD8;&#xFF0C;&#x4F46;&#x662F;&#x4ECE;&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x4E0A;&#x6765;&#x770B;&#xFF0C;&#x5C31;&#x8FDC;&#x4E0D;&#x5982;forin&#x770B;&#x7740;&#x66F4;&#x987A;&#x7545;&#xFF1B;&#x540C;&#x6837;&#x7684;&#x8FD8;&#x6709;kvc&#x7684;&#x96C6;&#x5408;&#x8FD0;&#x7B97;&#x7B26;&#xFF0C;&#x4E00;&#x4E9B;&#x5185;&#x7F6E;&#x7684;&#x64CD;&#x4F5C;&#x4EE5;keypath&#x7684;&#x65B9;&#x5F0F;&#x58F0;&#x660E;&#xFF0C;&#x76F8;&#x6BD4;&#x81EA;&#x5DF1;&#x7528;for&#x5FAA;&#x73AF;&#x5B9E;&#x73B0;&#xFF0C;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x5C31;&#x80FD;&#x641E;&#x5B9A;&#xFF0C;&#x6E05;&#x695A;&#x660E;&#x4E86;&#xFF0C;&#x8FD8;&#x7701;&#x53BB;&#x4E86;&#x91CD;&#x590D;&#x5DE5;&#x4F5C;&#xFF1B;&#x5728;framework&#x4E2D;&#x589E;&#x52A0;&#x4E86;&#x96C6;&#x5408;&#x904D;&#x5386;&#x7684;block&#x652F;&#x6301;&#x540E;&#xFF0C;&#x5BF9;&#x4E8E;&#x9700;&#x8981;index&#x7684;&#x904D;&#x5386;&#x518D;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x7ECF;&#x5178;for&#x5FAA;&#x73AF;&#x7684;&#x5199;&#x6CD5;&#x4E86;&#x3002;</p>
 <p>&#x8F6C;&#x8F7D;:<a href="http://blog.sunnyxx.com/2014/04/30/ios_iterator/" target="_blank" rel="noopener">sunnyxx&#x7684;&#x535A;&#x5BA2;</a></p>
 
-      
+  </div>
+</article>
+
+
+
     </div>
-
     
+      <div id="footer-post-container">
+  <div id="footer-post">
 
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/遍历/" rel="tag"># 遍历</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/11/06/ios-e4-b8-adurl-e4-b8-ad-e7-89-b9-e6-ae-8a-e5-ad-97-e7-ac-a6-e8-af-b7-e6-b1-82-e4-b8-ba-e7-a9-ba/" rel="next" title="iOS中url中特殊字符请求为空">
-                <i class="fa fa-chevron-left"></i> iOS中url中特殊字符请求为空
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/12/ios-application-architecture/" rel="prev" title="iOS中应用的架构">
-                iOS中应用的架构 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </ul>
     </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ios中常用的遍历运算方法"><span class="toc-number">2.</span> <span class="toc-text">ios中常用的遍历运算方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实验"><span class="toc-number">3.</span> <span class="toc-text">实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#实验条件"><span class="toc-number">3.1.</span> <span class="toc-text">实验条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#值得注意的"><span class="toc-number">3.2.</span> <span class="toc-text">值得注意的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#个人推荐"><span class="toc-number">3.3.</span> <span class="toc-text">个人推荐</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#遍历实践Tips"><span class="toc-number">4.</span> <span class="toc-text">遍历实践Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#倒序遍历"><span class="toc-number">4.1.</span> <span class="toc-text">倒序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用block同时遍历字典key，value"><span class="toc-number">4.2.</span> <span class="toc-text">使用block同时遍历字典key，value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于耗时且顺序无关的遍历，使用并发版本"><span class="toc-number">4.3.</span> <span class="toc-text">对于耗时且顺序无关的遍历，使用并发版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码可读性和效率的权衡"><span class="toc-number">4.4.</span> <span class="toc-text">代码可读性和效率的权衡</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&text=ios中集合遍历方法的比较和推荐"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&is_video=false&description=ios中集合遍历方法的比较和推荐"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ios中集合遍历方法的比较和推荐&body=Check out this article: http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&title=ios中集合遍历方法的比较和推荐"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/11/10/ios-e4-b8-ad-e9-9b-86-e5-90-88-e9-81-8d-e5-8e-86-e6-96-b9-e6-b3-95-e7-9a-84-e6-af-94-e8-be-83-e5-92-8c-e6-8e-a8-e8-8d-90/&name=ios中集合遍历方法的比较和推荐&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">BirdMichael</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">64</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">24</span>
-                    <span class="site-state-item-name">分类</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">85</span>
-                    <span class="site-state-item-name">标签</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ios中常用的遍历运算方法"><span class="nav-number">2.</span> <span class="nav-text">ios中常用的遍历运算方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验条件"><span class="nav-number">3.1.</span> <span class="nav-text">实验条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值得注意的"><span class="nav-number">3.2.</span> <span class="nav-text">值得注意的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人推荐"><span class="nav-number">3.3.</span> <span class="nav-text">个人推荐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遍历实践Tips"><span class="nav-number">4.</span> <span class="nav-text">遍历实践Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#倒序遍历"><span class="nav-number">4.1.</span> <span class="nav-text">倒序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用block同时遍历字典key，value"><span class="nav-number">4.2.</span> <span class="nav-text">使用block同时遍历字典key，value</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对于耗时且顺序无关的遍历，使用并发版本"><span class="nav-number">4.3.</span> <span class="nav-text">对于耗时且顺序无关的遍历，使用并发版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码可读性和效率的权衡"><span class="nav-number">4.4.</span> <span class="nav-text">代码可读性和效率的权衡</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
-
-  
-
-  
 </div>
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-	
-    
-
-    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+

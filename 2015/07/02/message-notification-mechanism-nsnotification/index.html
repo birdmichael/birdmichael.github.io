@@ -1,114 +1,12 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="&amp;#x9996;&amp;#x5148;,&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x4E00;&amp;#x6837;&amp;#x60C5;&amp;#x51B5;.&amp;#x5C31;&amp;#x662F;&amp;#x9700;&amp;#x8981;&amp;#x76D1;&amp;#x542C;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="&amp;#x9996;&amp;#x5148;,&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x4E00;&amp;#x6837;&amp;#x60C5;&amp;#x51B5;.&amp;#x5C31;&amp;#x662F;&amp;#x9700;&amp;#x8981;&amp;#x76D1;&amp;#x542C;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF">
 <meta name="keywords" content="NSNotification,通知">
 <meta property="og:type" content="article">
 <meta property="og:title" content="消息通知机制NSNotification">
@@ -122,319 +20,163 @@
 <meta name="twitter:title" content="消息通知机制NSNotification">
 <meta name="twitter:description" content="&amp;#x9996;&amp;#x5148;,&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x4E00;&amp;#x6837;&amp;#x60C5;&amp;#x51B5;.&amp;#x5C31;&amp;#x662F;&amp;#x9700;&amp;#x8981;&amp;#x76D1;&amp;#x542C;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF">
 <meta name="twitter:image" content="http://unmi.cc/wp-content/uploads/2012/01/notificationcenter.jpg">
-
-
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>消息通知机制NSNotification | BirdMichael</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>消息通知机制NSNotification</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
+<body>
     
-  
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2015/07/02/through-the-development-of-api-gets-mobile-uidevice-and-nsbundle-and-nslocale/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2015/06/29/delegate-applications/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&text=消息通知机制NSNotification"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&is_video=false&description=消息通知机制NSNotification"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=消息通知机制NSNotification&body=Check out this article: http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&name=消息通知机制NSNotification&description=&lt;p&gt;&amp;#x9996;&amp;#x5148;,&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x4E00;&amp;#x6837;&amp;#x60C5;&amp;#x51B5;.&amp;#x5C31;&amp;#x662F;&amp;#x9700;&amp;#x8981;&amp;#x76D1;&amp;#x542C;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;,&amp;#x6216;&amp;#x8005;&amp;#x901A;&amp;#x77E5;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53BB;&amp;#x505A;&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x4E8B;&amp;#x60C5;.&amp;#x4E4B;&amp;#x524D;&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;Delegate.&amp;#x6BD4;&amp;#x5982;&amp;#x6211;&amp;#x4EEC;&amp;#x4E4B;&amp;#x524D;&amp;#x4F7F;&amp;#x7528;&amp;#x7684;&lt;span class=&quot;s1&quot;&gt;UITableViewDelegate.&amp;#x4F46;&amp;#x662F;&amp;#x6709;&amp;#x4E00;&amp;#x4E2A;&amp;#x5F88;&amp;#x4E25;&amp;#x91CD;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x5C31;&amp;#x662F;,&amp;#x4EE3;&amp;#x7406;&amp;#x7684;&amp;#x65B9;&amp;#x5F0F;&amp;#x662F;1&amp;#x5BF9;1&amp;#x7684;.&amp;#x5BF9;&amp;#x8C61;A&amp;#x53EA;&amp;#x80FD;&amp;#x9075;&amp;#x5B88;&amp;#x5BF9;&amp;#x8C61;B&amp;#x7684;&amp;#x534F;&amp;#x8BAE;,&amp;#x7136;&amp;#x540E;&amp;#x5BF9;&amp;#x8C61;B&amp;#x53BB;&amp;#x8C03;&amp;#x7528;&amp;#x5BF9;&amp;#x8C61;A&amp;#x7684;&amp;#x65B9;&amp;#x6CD5;.&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x65B9;&amp;#x5F0F;&amp;#x660E;&amp;#x663E;&amp;#x4E0D;&amp;#x80FD;&amp;#x6EE1;&amp;#x8DB3;&amp;#x6211;&amp;#x4EEC;&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x8981;&amp;#x6C42;,&amp;#x6240;&amp;#x4EE5;&amp;#x82F9;&amp;#x679C;&amp;#x4E3A;&amp;#x6211;&amp;#x4EEC;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x53E6;&amp;#x5916;&amp;#x4E00;&amp;#x79CD;&amp;#x54CD;&amp;#x5E94;&amp;#x65B9;&amp;#x5F0F;,&amp;#x90A3;&amp;#x5C31;&amp;#x662F;NSNotification.&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E2D;(UIKeyboardDidShowNotification &amp;#x7B49;) &amp;#x4EE5;&amp;#x53CA;&amp;#x67D0;&amp;#x4E9B;&amp;#x7B2C;&amp;#x4E09;&amp;#x65B9;&amp;#x7EC4;&amp;#x4EF6;(&amp;#x4F8B;&amp;#x5982; ASIHTTPRequest &amp;#x7684; kReachabilityChangedNotification &amp;#x7B49;)&amp;#x3002;&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;#x5171;&amp;#x540C;&amp;#x70B9;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#x5229;&amp;#x7528;&amp;#x901A;&amp;#x77E5;&amp;#x548C;&amp;#x4EE3;&amp;#x7406;&amp;#x90FD;&amp;#x80FD;&amp;#x5B8C;&amp;#x6210;&amp;#x5BF9;&amp;#x8C61;&amp;#x4E4B;&amp;#x95F4;&amp;#x7684;&amp;#x901A;&amp;#x4FE1;(&amp;#x6BD4;&amp;#x5982;A&amp;#x5BF9;&amp;#x8C61;&amp;#x544A;&amp;#x8BC9;D&amp;#x5BF9;&amp;#x8C61;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;, A&amp;#x5BF9;&amp;#x8C61;&amp;#x4F20;&amp;#x9012;&amp;#x6570;&amp;#x636E;&amp;#x7ED9;D&amp;#x5BF9;&amp;#x8C61;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#x4E0D;&amp;#x540C;&amp;#x70B9;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&amp;#x4EE3;&amp;#x7406; : &amp;#x4E00;&amp;#x5BF9;&amp;#x4E00;&amp;#x5173;&amp;#x7CFB;(1&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53EA;&amp;#x80FD;&amp;#x544A;&amp;#x8BC9;&amp;#x53E6;1&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;)&amp;#xD8;&amp;#x901A;&amp;#x77E5; : &amp;#x591A;&amp;#x5BF9;&amp;#x591A;&amp;#x5173;&amp;#x7CFB;(1&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x80FD;&amp;#x544A;&amp;#x8BC9;N&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;, 1&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x80FD;&amp;#x5F97;&amp;#x77E5;N&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;)&lt;br&gt;&amp;#xA0;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;http://unmi.cc/nsnotificationcenter-usage/notificationcenter&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;img src=&quot;http://unmi.cc/wp-content/uploads/2012/01/notificationcenter.jpg&quot; alt=&quot;notificationcenter&quot; title=&quot;notificationcenter&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;#x5982;&amp;#x4F55;&amp;#x53BB;&amp;#x7406;&amp;#x89E3;&amp;#x901A;&amp;#x77E5;&amp;#x4E2D;&amp;#x5FC3;&amp;#x5462;?&lt;/p&gt;
+&lt;p&gt;&amp;#x6211;&amp;#x4EEC;&amp;#x53EF;&amp;#x4EE5;&amp;#x628A;&amp;#x901A;&amp;#x77E5;&amp;#x901A;&amp;#x77E5;&amp;#x4E2D;&amp;#x5FC3;&amp;#x89C6;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x6C42;&amp;#x804C;&amp;#x7F51;&amp;#x7AD9;,&amp;#x5E76;&amp;#x4E14;&amp;#x6574;&amp;#x4E2A;&amp;#x793E;&amp;#x4F1A;&amp;#x53EA;&amp;#x6709;&amp;#x8FD9;&amp;#x4E2A;&amp;#x4E48;&amp;#x4E00;&amp;#x4E2A;&amp;#x6C42;&amp;#x804C;&amp;#x7F51;&amp;#x7AD9;&amp;#x201D;&amp;#x62C9;&amp;#x94A9;&amp;#x7F51;&amp;#x201D;.&lt;/p&gt;
+&lt;p&gt;&amp;#x800C;&amp;#x516C;&amp;#x53F8;&amp;#x4E3A;&amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x53D1;&amp;#x5E03;&amp;#x8005;&lt;/p&gt;
+&lt;p&gt;&amp;#x6C42;&amp;#x804C;&amp;#x8005;&amp;#x4E3A;&amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x63A5;&amp;#x6536;&amp;#x8005;.&lt;br&gt;&amp;#x4E0B;&amp;#x9762;&amp;#x6211;&amp;#x4EEC;&amp;#x8981;&amp;#x5F15;&amp;#x5165;NSNotification,&amp;#x4E00;&amp;#x4E2A;&amp;#x5B8C;&amp;#x6574;&amp;#x7684;NSNotification&amp;#x901A;&amp;#x5E38;&amp;#x8FD8;&amp;#x6709;2-3&amp;#x4E2A;&amp;#x5C5E;&amp;#x6027;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;#x4E00;&amp;#x4E2A;&amp;#x5B8C;&amp;#x6574;&amp;#x7684;&amp;#x901A;&amp;#x77E5;&amp;#x4E00;&amp;#x822C;&amp;#x5305;&amp;#x542B;3&amp;#x4E2A;&amp;#x5C5E;&amp;#x6027;&amp;#xFF1A;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(NSString *)name; // &amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x540D;&amp;#x79F0;(&amp;#x53EF;&amp;#x4EE5;&amp;#x7406;&amp;#x89E3;&amp;#x4E3A;&amp;#x5C97;&amp;#x4F4D;&amp;#x540D;&amp;#x79F0;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;(id)object; // &amp;#x901A;&amp;#x77E5;&amp;#x53D1;&amp;#x5E03;&amp;#x8005;(&amp;#x53EF;&amp;#x4EE5;&amp;#x7406;&amp;#x89E3;&amp;#x4E3A;&amp;#x516C;&amp;#x53F8;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;(NSDictionary *)userInfo; // &amp;#x4E00;&amp;#x4E9B;&amp;#x989D;&amp;#x5916;&amp;#x7684;&amp;#x4FE1;&amp;#x606F;(&amp;#x6BD4;&amp;#x5982;&amp;#x804C;&amp;#x4F4D;&amp;#x7684;&amp;#x63CF;&amp;#x8FF0;,&amp;#x80FD;&amp;#x529B;&amp;#x7684;&amp;#x8981;&amp;#x6C42;.&amp;#x4EE5;&amp;#x5B57;&amp;#x5178;&amp;#x7684;&amp;#x65B9;&amp;#x5F0F;&amp;#x5B58;&amp;#x653E;) &amp;lt;&amp;#x800C;&amp;#x8FD9;&amp;#x4E2A;&amp;#x989D;&amp;#x5916;&amp;#x7684;&amp;#x4FE1;&amp;#x606F;&amp;#x662F;&amp;#x53EF;&amp;#x6709;&amp;#x53EF;&amp;#x65E0;&amp;#x7684;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xA0;&lt;/p&gt;
+&lt;p&gt;&amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x4E00;&amp;#x4E2A;&amp;#x901A;&amp;#x77E5;&amp;#xFF08;NSNotification&amp;#xFF09;&amp;#x5BF9;&amp;#x8C61;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;#x8FD9;&amp;#x4E00;&amp;#x6B65;,&amp;#x6211;&amp;#x4EEC;&amp;#x53EF;&amp;#x4EE5;&amp;#x7406;&amp;#x89E3;&amp;#x4E3A;&amp;#x5728;&amp;#x201D;&amp;#x62C9;&amp;#x52FE;&amp;#x7F51;&amp;#x201D;&amp;#x6CE8;&amp;#x518C;&amp;#x4E86;&amp;#x4E00;&amp;#x4E2A;&amp;#x8D26;&amp;#x53F7;,&amp;#x5E76;&amp;#x4E14;&amp;#x8BBE;&amp;#x7F6E;&amp;#x81EA;&amp;#x5DF1;&amp;#x662F;&amp;#x4EC0;&amp;#x4E48;&amp;#x540D;&amp;#x5B57;&amp;#x7684;&amp;#x516C;&amp;#x53F8;,&amp;#x9700;&amp;#x8981;&amp;#x4EC0;&amp;#x4E48;&amp;#x5C97;&amp;#x4F4D;,&amp;#x6709;&amp;#x4EC0;&amp;#x4E48;&amp;#x989D;&amp;#x5916;&amp;#x7684;&amp;#x4FE1;&amp;#x606F;&amp;#x6216;&amp;#x8005;&amp;#x8981;&amp;#x6C42;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;#x6CE8;&amp;#x610F;:&amp;#x8FD9;&amp;#x4E00;&amp;#x6B65;&amp;#x53EA;&amp;#x662F;&amp;#x6CE8;&amp;#x518C;,&amp;#x8FD9;&amp;#x4E2A;&amp;#x62DB;&amp;#x8058;&amp;#x4FE1;&amp;#x606F;&amp;#x5E76;&amp;#x6CA1;&amp;#x6709;&amp;#x63A8;&amp;#x9001;&amp;#x7ED9;&amp;#x6C42;&amp;#x804C;&amp;#x8005;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&quot;lang:objc decode:true&quot;&gt;+ (instancetype)notificationWithName:(NSString *)aName object:(id)anObject;&lt;/pre&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(instancetype)notificationWithName:(NSString &lt;em&gt;)aName object:(id)anObject userInfo:(NSDictionary &lt;/em&gt;)aUserInfo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;(instancetype)initWithName:(NSString &lt;em&gt;)name object:(id)object userInfo:(NSDictionary &lt;/em&gt;)userInfo;&lt;br&gt;&lt;br&gt;&amp;#x901A;&amp;#x77E5;&amp;#x4E2D;&amp;#x5FC3;(NSNotificationCenter)&amp;#x8C03;&amp;#x7528;&amp;#x65B9;&amp;#x6CD5;&amp;#x6765;&amp;#x53D1;&amp;#x5E03;&amp;#x901A;&amp;#x77E5;:&lt;br&gt;&lt;pre class=&quot;lang:objc decode:true &quot;&gt;- (void)postNotification:(NSNotification &lt;em&gt;)notification;&lt;/em&gt;&lt;/pre&gt;&lt;br&gt;&amp;#x5F53;&amp;#x7136;,&amp;#x6211;&amp;#x4EEC;&amp;#x53EF;&amp;#x4EE5;&amp;#x628A;&amp;#x4E0A;&amp;#x9762;&amp;#x7684;2&amp;#x90E8;&amp;#x5408;&amp;#x4E3A;&amp;#x4E00;&amp;#x6B65;,&amp;#x5C31;&amp;#x662F;&amp;#x6CE8;&amp;#x518C;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x5C31;&amp;#x53D1;&amp;#x5E03;&amp;#x5185;&amp;#x5BB9;,&amp;#x7136;&amp;#x540E;&amp;#x518D;&amp;#x586B;&amp;#x5199;&amp;#x53D1;&amp;#x5E03;&amp;#x4EC0;&amp;#x4E48;&amp;#x5185;&amp;#x5BB9;,&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x516C;&amp;#x53F8;&amp;#x60C5;&amp;#x51B5;. &amp;#x4E8E;&amp;#x662F;:&lt;br&gt;&lt;pre class=&quot;lang:objc decode:true &quot;&gt;- (void)postNotificationName:(NSString )aName object:(id)anObject;&lt;br&gt;&amp;#x53D1;&amp;#x5E03;&amp;#x4E00;&amp;#x4E2A;&amp;#x540D;&amp;#x79F0;&amp;#x4E3A;aName&amp;#x7684;&amp;#x901A;&amp;#x77E5;&amp;#xFF0C;anObject&amp;#x4E3A;&amp;#x8FD9;&amp;#x4E2A;&amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x53D1;&amp;#x5E03;&amp;#x8005;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;(void)postNotificationName:(NSString &lt;em&gt;)aName object:(id)anObject userInfo:(NSDictionary &lt;/em&gt;)aUserInfo;&lt;br&gt;&amp;#x53D1;&amp;#x5E03;&amp;#x4E00;&amp;#x4E2A;&amp;#x540D;&amp;#x79F0;&amp;#x4E3A;aName&amp;#x7684;&amp;#x901A;&amp;#x77E5;&amp;#xFF0C;anObject&amp;#x4E3A;&amp;#x8FD9;&amp;#x4E2A;&amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x53D1;&amp;#x5E03;&amp;#x8005;&amp;#xFF0C;aUserInfo&amp;#x4E3A;&amp;#x989D;&amp;#x5916;&amp;#x4FE1;&amp;#x606F;&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">BirdMichael</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
     </div>
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#还有一个因为涉及到多线程-我们今天暂时不讲解的方法"><span class="toc-number">1.</span> <span class="toc-text">(还有一个因为涉及到多线程,我们今天暂时不讲解的方法):</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#name：通知的名称"><span class="toc-number">2.</span> <span class="toc-text">name：通知的名称</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#obj：通知发布者"><span class="toc-number">3.</span> <span class="toc-text">obj：通知发布者</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#block：收到对应的通知时，会回调这个block"><span class="toc-number">4.</span> <span class="toc-text">block：收到对应的通知时，会回调这个block</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行"><span class="toc-number">5.</span> <span class="toc-text">queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行</span></a></li></ol>
+    </div>
+  </span>
 </div>
 
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        消息通知机制NSNotification
+    </h1>
 
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+    <div class="postdate">
+        <time datetime="2015-07-01T19:39:49.000Z" itemprop="datePublished">2015-07-02</time>
+    </div>
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-
-  </li>
 
       
-      
-    </ul>
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/NSNotification/">NSNotification</a>, <a class="tag-link" href="/tags/通知/">通知</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="BirdMichael">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BirdMichael">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">消息通知机制NSNotification
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-07-02 03:39:49" itemprop="dateCreated datePublished" datetime="2015-07-02T03:39:49+08:00">2015-07-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2016-07-25 14:30:02" itemprop="dateModified" datetime="2016-07-25T14:30:02+08:00">2016-07-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/" itemprop="url" rel="index"><span itemprop="name">IOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/OC/" itemprop="url" rel="index"><span itemprop="name">OC</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/OC/UI/" itemprop="url" rel="index"><span itemprop="name">UI</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/OC/UI/Xcode/" itemprop="url" rel="index"><span itemprop="name">Xcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>&#x9996;&#x5148;,&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x6837;&#x60C5;&#x51B5;.&#x5C31;&#x662F;&#x9700;&#x8981;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;,&#x6216;&#x8005;&#x901A;&#x77E5;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x53BB;&#x505A;&#x4EC0;&#x4E48;&#x662F;&#x4E8B;&#x60C5;.&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x4F7F;&#x7528;Delegate.&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x4F7F;&#x7528;&#x7684;<span class="s1">UITableViewDelegate.&#x4F46;&#x662F;&#x6709;&#x4E00;&#x4E2A;&#x5F88;&#x4E25;&#x91CD;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;,&#x4EE3;&#x7406;&#x7684;&#x65B9;&#x5F0F;&#x662F;1&#x5BF9;1&#x7684;.&#x5BF9;&#x8C61;A&#x53EA;&#x80FD;&#x9075;&#x5B88;&#x5BF9;&#x8C61;B&#x7684;&#x534F;&#x8BAE;,&#x7136;&#x540E;&#x5BF9;&#x8C61;B&#x53BB;&#x8C03;&#x7528;&#x5BF9;&#x8C61;A&#x7684;&#x65B9;&#x6CD5;.&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#x660E;&#x663E;&#x4E0D;&#x80FD;&#x6EE1;&#x8DB3;&#x6211;&#x4EEC;&#x7684;&#x4F7F;&#x7528;&#x8981;&#x6C42;,&#x6240;&#x4EE5;&#x82F9;&#x679C;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x54CD;&#x5E94;&#x65B9;&#x5F0F;,&#x90A3;&#x5C31;&#x662F;NSNotification.&#x7CFB;&#x7EDF;&#x4E2D;(UIKeyboardDidShowNotification &#x7B49;) &#x4EE5;&#x53CA;&#x67D0;&#x4E9B;&#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x4EF6;(&#x4F8B;&#x5982; ASIHTTPRequest &#x7684; kReachabilityChangedNotification &#x7B49;)&#x3002;</span></p>
+  <div class="content" itemprop="articleBody">
+    <p>&#x9996;&#x5148;,&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x6837;&#x60C5;&#x51B5;.&#x5C31;&#x662F;&#x9700;&#x8981;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;,&#x6216;&#x8005;&#x901A;&#x77E5;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x53BB;&#x505A;&#x4EC0;&#x4E48;&#x662F;&#x4E8B;&#x60C5;.&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x4F7F;&#x7528;Delegate.&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x4F7F;&#x7528;&#x7684;<span class="s1">UITableViewDelegate.&#x4F46;&#x662F;&#x6709;&#x4E00;&#x4E2A;&#x5F88;&#x4E25;&#x91CD;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;,&#x4EE3;&#x7406;&#x7684;&#x65B9;&#x5F0F;&#x662F;1&#x5BF9;1&#x7684;.&#x5BF9;&#x8C61;A&#x53EA;&#x80FD;&#x9075;&#x5B88;&#x5BF9;&#x8C61;B&#x7684;&#x534F;&#x8BAE;,&#x7136;&#x540E;&#x5BF9;&#x8C61;B&#x53BB;&#x8C03;&#x7528;&#x5BF9;&#x8C61;A&#x7684;&#x65B9;&#x6CD5;.&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#x660E;&#x663E;&#x4E0D;&#x80FD;&#x6EE1;&#x8DB3;&#x6211;&#x4EEC;&#x7684;&#x4F7F;&#x7528;&#x8981;&#x6C42;,&#x6240;&#x4EE5;&#x82F9;&#x679C;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x54CD;&#x5E94;&#x65B9;&#x5F0F;,&#x90A3;&#x5C31;&#x662F;NSNotification.&#x7CFB;&#x7EDF;&#x4E2D;(UIKeyboardDidShowNotification &#x7B49;) &#x4EE5;&#x53CA;&#x67D0;&#x4E9B;&#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x4EF6;(&#x4F8B;&#x5982; ASIHTTPRequest &#x7684; kReachabilityChangedNotification &#x7B49;)&#x3002;</span></p>
 <ul>
 <li>&#x5171;&#x540C;&#x70B9;</li>
 <li><p>&#x5229;&#x7528;&#x901A;&#x77E5;&#x548C;&#x4EE3;&#x7406;&#x90FD;&#x80FD;&#x5B8C;&#x6210;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x901A;&#x4FE1;(&#x6BD4;&#x5982;A&#x5BF9;&#x8C61;&#x544A;&#x8BC9;D&#x5BF9;&#x8C61;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;, A&#x5BF9;&#x8C61;&#x4F20;&#x9012;&#x6570;&#x636E;&#x7ED9;D&#x5BF9;&#x8C61;)</p>
@@ -511,595 +253,142 @@
 </ol>
 </blockquote>
 
-      
+  </div>
+</article>
+
+
+
     </div>
-
     
+      <div id="footer-post-container">
+  <div id="footer-post">
 
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/NSNotification/" rel="tag"># NSNotification</a>
-          
-            <a href="/tags/通知/" rel="tag"># 通知</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/06/29/delegate-applications/" rel="next" title="Delegate的使用场合">
-                <i class="fa fa-chevron-left"></i> Delegate的使用场合
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/07/02/through-the-development-of-api-gets-mobile-uidevice-and-nsbundle-and-nslocale/" rel="prev" title="通过开发api获取手机信息（UIDevice、NSBundle、NSLocale)">
-                通过开发api获取手机信息（UIDevice、NSBundle、NSLocale) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </ul>
     </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#还有一个因为涉及到多线程-我们今天暂时不讲解的方法"><span class="toc-number">1.</span> <span class="toc-text">(还有一个因为涉及到多线程,我们今天暂时不讲解的方法):</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#name：通知的名称"><span class="toc-number">2.</span> <span class="toc-text">name：通知的名称</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#obj：通知发布者"><span class="toc-number">3.</span> <span class="toc-text">obj：通知发布者</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#block：收到对应的通知时，会回调这个block"><span class="toc-number">4.</span> <span class="toc-text">block：收到对应的通知时，会回调这个block</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行"><span class="toc-number">5.</span> <span class="toc-text">queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&text=消息通知机制NSNotification"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&is_video=false&description=消息通知机制NSNotification"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=消息通知机制NSNotification&body=Check out this article: http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&title=消息通知机制NSNotification"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/02/message-notification-mechanism-nsnotification/&name=消息通知机制NSNotification&description=&lt;p&gt;&amp;#x9996;&amp;#x5148;,&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x4E00;&amp;#x6837;&amp;#x60C5;&amp;#x51B5;.&amp;#x5C31;&amp;#x662F;&amp;#x9700;&amp;#x8981;&amp;#x76D1;&amp;#x542C;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;,&amp;#x6216;&amp;#x8005;&amp;#x901A;&amp;#x77E5;&amp;#x67D0;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53BB;&amp;#x505A;&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x4E8B;&amp;#x60C5;.&amp;#x4E4B;&amp;#x524D;&amp;#x6211;&amp;#x4EEC;&amp;#x7ECF;&amp;#x5E38;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;Delegate.&amp;#x6BD4;&amp;#x5982;&amp;#x6211;&amp;#x4EEC;&amp;#x4E4B;&amp;#x524D;&amp;#x4F7F;&amp;#x7528;&amp;#x7684;&lt;span class=&quot;s1&quot;&gt;UITableViewDelegate.&amp;#x4F46;&amp;#x662F;&amp;#x6709;&amp;#x4E00;&amp;#x4E2A;&amp;#x5F88;&amp;#x4E25;&amp;#x91CD;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x5C31;&amp;#x662F;,&amp;#x4EE3;&amp;#x7406;&amp;#x7684;&amp;#x65B9;&amp;#x5F0F;&amp;#x662F;1&amp;#x5BF9;1&amp;#x7684;.&amp;#x5BF9;&amp;#x8C61;A&amp;#x53EA;&amp;#x80FD;&amp;#x9075;&amp;#x5B88;&amp;#x5BF9;&amp;#x8C61;B&amp;#x7684;&amp;#x534F;&amp;#x8BAE;,&amp;#x7136;&amp;#x540E;&amp;#x5BF9;&amp;#x8C61;B&amp;#x53BB;&amp;#x8C03;&amp;#x7528;&amp;#x5BF9;&amp;#x8C61;A&amp;#x7684;&amp;#x65B9;&amp;#x6CD5;.&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x65B9;&amp;#x5F0F;&amp;#x660E;&amp;#x663E;&amp;#x4E0D;&amp;#x80FD;&amp;#x6EE1;&amp;#x8DB3;&amp;#x6211;&amp;#x4EEC;&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x8981;&amp;#x6C42;,&amp;#x6240;&amp;#x4EE5;&amp;#x82F9;&amp;#x679C;&amp;#x4E3A;&amp;#x6211;&amp;#x4EEC;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x53E6;&amp;#x5916;&amp;#x4E00;&amp;#x79CD;&amp;#x54CD;&amp;#x5E94;&amp;#x65B9;&amp;#x5F0F;,&amp;#x90A3;&amp;#x5C31;&amp;#x662F;NSNotification.&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E2D;(UIKeyboardDidShowNotification &amp;#x7B49;) &amp;#x4EE5;&amp;#x53CA;&amp;#x67D0;&amp;#x4E9B;&amp;#x7B2C;&amp;#x4E09;&amp;#x65B9;&amp;#x7EC4;&amp;#x4EF6;(&amp;#x4F8B;&amp;#x5982; ASIHTTPRequest &amp;#x7684; kReachabilityChangedNotification &amp;#x7B49;)&amp;#x3002;&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;#x5171;&amp;#x540C;&amp;#x70B9;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#x5229;&amp;#x7528;&amp;#x901A;&amp;#x77E5;&amp;#x548C;&amp;#x4EE3;&amp;#x7406;&amp;#x90FD;&amp;#x80FD;&amp;#x5B8C;&amp;#x6210;&amp;#x5BF9;&amp;#x8C61;&amp;#x4E4B;&amp;#x95F4;&amp;#x7684;&amp;#x901A;&amp;#x4FE1;(&amp;#x6BD4;&amp;#x5982;A&amp;#x5BF9;&amp;#x8C61;&amp;#x544A;&amp;#x8BC9;D&amp;#x5BF9;&amp;#x8C61;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;, A&amp;#x5BF9;&amp;#x8C61;&amp;#x4F20;&amp;#x9012;&amp;#x6570;&amp;#x636E;&amp;#x7ED9;D&amp;#x5BF9;&amp;#x8C61;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#x4E0D;&amp;#x540C;&amp;#x70B9;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&amp;#x4EE3;&amp;#x7406; : &amp;#x4E00;&amp;#x5BF9;&amp;#x4E00;&amp;#x5173;&amp;#x7CFB;(1&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53EA;&amp;#x80FD;&amp;#x544A;&amp;#x8BC9;&amp;#x53E6;1&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;)&amp;#xD8;&amp;#x901A;&amp;#x77E5; : &amp;#x591A;&amp;#x5BF9;&amp;#x591A;&amp;#x5173;&amp;#x7CFB;(1&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x80FD;&amp;#x544A;&amp;#x8BC9;N&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;, 1&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x80FD;&amp;#x5F97;&amp;#x77E5;N&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x53D1;&amp;#x751F;&amp;#x4E86;&amp;#x4EC0;&amp;#x4E48;&amp;#x4E8B;&amp;#x60C5;)&lt;br&gt;&amp;#xA0;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;http://unmi.cc/nsnotificationcenter-usage/notificationcenter&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;img src=&quot;http://unmi.cc/wp-content/uploads/2012/01/notificationcenter.jpg&quot; alt=&quot;notificationcenter&quot; title=&quot;notificationcenter&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;#x5982;&amp;#x4F55;&amp;#x53BB;&amp;#x7406;&amp;#x89E3;&amp;#x901A;&amp;#x77E5;&amp;#x4E2D;&amp;#x5FC3;&amp;#x5462;?&lt;/p&gt;
+&lt;p&gt;&amp;#x6211;&amp;#x4EEC;&amp;#x53EF;&amp;#x4EE5;&amp;#x628A;&amp;#x901A;&amp;#x77E5;&amp;#x901A;&amp;#x77E5;&amp;#x4E2D;&amp;#x5FC3;&amp;#x89C6;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x6C42;&amp;#x804C;&amp;#x7F51;&amp;#x7AD9;,&amp;#x5E76;&amp;#x4E14;&amp;#x6574;&amp;#x4E2A;&amp;#x793E;&amp;#x4F1A;&amp;#x53EA;&amp;#x6709;&amp;#x8FD9;&amp;#x4E2A;&amp;#x4E48;&amp;#x4E00;&amp;#x4E2A;&amp;#x6C42;&amp;#x804C;&amp;#x7F51;&amp;#x7AD9;&amp;#x201D;&amp;#x62C9;&amp;#x94A9;&amp;#x7F51;&amp;#x201D;.&lt;/p&gt;
+&lt;p&gt;&amp;#x800C;&amp;#x516C;&amp;#x53F8;&amp;#x4E3A;&amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x53D1;&amp;#x5E03;&amp;#x8005;&lt;/p&gt;
+&lt;p&gt;&amp;#x6C42;&amp;#x804C;&amp;#x8005;&amp;#x4E3A;&amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x63A5;&amp;#x6536;&amp;#x8005;.&lt;br&gt;&amp;#x4E0B;&amp;#x9762;&amp;#x6211;&amp;#x4EEC;&amp;#x8981;&amp;#x5F15;&amp;#x5165;NSNotification,&amp;#x4E00;&amp;#x4E2A;&amp;#x5B8C;&amp;#x6574;&amp;#x7684;NSNotification&amp;#x901A;&amp;#x5E38;&amp;#x8FD8;&amp;#x6709;2-3&amp;#x4E2A;&amp;#x5C5E;&amp;#x6027;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;#x4E00;&amp;#x4E2A;&amp;#x5B8C;&amp;#x6574;&amp;#x7684;&amp;#x901A;&amp;#x77E5;&amp;#x4E00;&amp;#x822C;&amp;#x5305;&amp;#x542B;3&amp;#x4E2A;&amp;#x5C5E;&amp;#x6027;&amp;#xFF1A;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(NSString *)name; // &amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x540D;&amp;#x79F0;(&amp;#x53EF;&amp;#x4EE5;&amp;#x7406;&amp;#x89E3;&amp;#x4E3A;&amp;#x5C97;&amp;#x4F4D;&amp;#x540D;&amp;#x79F0;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;(id)object; // &amp;#x901A;&amp;#x77E5;&amp;#x53D1;&amp;#x5E03;&amp;#x8005;(&amp;#x53EF;&amp;#x4EE5;&amp;#x7406;&amp;#x89E3;&amp;#x4E3A;&amp;#x516C;&amp;#x53F8;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;(NSDictionary *)userInfo; // &amp;#x4E00;&amp;#x4E9B;&amp;#x989D;&amp;#x5916;&amp;#x7684;&amp;#x4FE1;&amp;#x606F;(&amp;#x6BD4;&amp;#x5982;&amp;#x804C;&amp;#x4F4D;&amp;#x7684;&amp;#x63CF;&amp;#x8FF0;,&amp;#x80FD;&amp;#x529B;&amp;#x7684;&amp;#x8981;&amp;#x6C42;.&amp;#x4EE5;&amp;#x5B57;&amp;#x5178;&amp;#x7684;&amp;#x65B9;&amp;#x5F0F;&amp;#x5B58;&amp;#x653E;) &amp;lt;&amp;#x800C;&amp;#x8FD9;&amp;#x4E2A;&amp;#x989D;&amp;#x5916;&amp;#x7684;&amp;#x4FE1;&amp;#x606F;&amp;#x662F;&amp;#x53EF;&amp;#x6709;&amp;#x53EF;&amp;#x65E0;&amp;#x7684;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xA0;&lt;/p&gt;
+&lt;p&gt;&amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x4E00;&amp;#x4E2A;&amp;#x901A;&amp;#x77E5;&amp;#xFF08;NSNotification&amp;#xFF09;&amp;#x5BF9;&amp;#x8C61;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;#x8FD9;&amp;#x4E00;&amp;#x6B65;,&amp;#x6211;&amp;#x4EEC;&amp;#x53EF;&amp;#x4EE5;&amp;#x7406;&amp;#x89E3;&amp;#x4E3A;&amp;#x5728;&amp;#x201D;&amp;#x62C9;&amp;#x52FE;&amp;#x7F51;&amp;#x201D;&amp;#x6CE8;&amp;#x518C;&amp;#x4E86;&amp;#x4E00;&amp;#x4E2A;&amp;#x8D26;&amp;#x53F7;,&amp;#x5E76;&amp;#x4E14;&amp;#x8BBE;&amp;#x7F6E;&amp;#x81EA;&amp;#x5DF1;&amp;#x662F;&amp;#x4EC0;&amp;#x4E48;&amp;#x540D;&amp;#x5B57;&amp;#x7684;&amp;#x516C;&amp;#x53F8;,&amp;#x9700;&amp;#x8981;&amp;#x4EC0;&amp;#x4E48;&amp;#x5C97;&amp;#x4F4D;,&amp;#x6709;&amp;#x4EC0;&amp;#x4E48;&amp;#x989D;&amp;#x5916;&amp;#x7684;&amp;#x4FE1;&amp;#x606F;&amp;#x6216;&amp;#x8005;&amp;#x8981;&amp;#x6C42;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;#x6CE8;&amp;#x610F;:&amp;#x8FD9;&amp;#x4E00;&amp;#x6B65;&amp;#x53EA;&amp;#x662F;&amp;#x6CE8;&amp;#x518C;,&amp;#x8FD9;&amp;#x4E2A;&amp;#x62DB;&amp;#x8058;&amp;#x4FE1;&amp;#x606F;&amp;#x5E76;&amp;#x6CA1;&amp;#x6709;&amp;#x63A8;&amp;#x9001;&amp;#x7ED9;&amp;#x6C42;&amp;#x804C;&amp;#x8005;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&quot;lang:objc decode:true&quot;&gt;+ (instancetype)notificationWithName:(NSString *)aName object:(id)anObject;&lt;/pre&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(instancetype)notificationWithName:(NSString &lt;em&gt;)aName object:(id)anObject userInfo:(NSDictionary &lt;/em&gt;)aUserInfo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;(instancetype)initWithName:(NSString &lt;em&gt;)name object:(id)object userInfo:(NSDictionary &lt;/em&gt;)userInfo;&lt;br&gt;&lt;br&gt;&amp;#x901A;&amp;#x77E5;&amp;#x4E2D;&amp;#x5FC3;(NSNotificationCenter)&amp;#x8C03;&amp;#x7528;&amp;#x65B9;&amp;#x6CD5;&amp;#x6765;&amp;#x53D1;&amp;#x5E03;&amp;#x901A;&amp;#x77E5;:&lt;br&gt;&lt;pre class=&quot;lang:objc decode:true &quot;&gt;- (void)postNotification:(NSNotification &lt;em&gt;)notification;&lt;/em&gt;&lt;/pre&gt;&lt;br&gt;&amp;#x5F53;&amp;#x7136;,&amp;#x6211;&amp;#x4EEC;&amp;#x53EF;&amp;#x4EE5;&amp;#x628A;&amp;#x4E0A;&amp;#x9762;&amp;#x7684;2&amp;#x90E8;&amp;#x5408;&amp;#x4E3A;&amp;#x4E00;&amp;#x6B65;,&amp;#x5C31;&amp;#x662F;&amp;#x6CE8;&amp;#x518C;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x5C31;&amp;#x53D1;&amp;#x5E03;&amp;#x5185;&amp;#x5BB9;,&amp;#x7136;&amp;#x540E;&amp;#x518D;&amp;#x586B;&amp;#x5199;&amp;#x53D1;&amp;#x5E03;&amp;#x4EC0;&amp;#x4E48;&amp;#x5185;&amp;#x5BB9;,&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x516C;&amp;#x53F8;&amp;#x60C5;&amp;#x51B5;. &amp;#x4E8E;&amp;#x662F;:&lt;br&gt;&lt;pre class=&quot;lang:objc decode:true &quot;&gt;- (void)postNotificationName:(NSString )aName object:(id)anObject;&lt;br&gt;&amp;#x53D1;&amp;#x5E03;&amp;#x4E00;&amp;#x4E2A;&amp;#x540D;&amp;#x79F0;&amp;#x4E3A;aName&amp;#x7684;&amp;#x901A;&amp;#x77E5;&amp;#xFF0C;anObject&amp;#x4E3A;&amp;#x8FD9;&amp;#x4E2A;&amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x53D1;&amp;#x5E03;&amp;#x8005;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;(void)postNotificationName:(NSString &lt;em&gt;)aName object:(id)anObject userInfo:(NSDictionary &lt;/em&gt;)aUserInfo;&lt;br&gt;&amp;#x53D1;&amp;#x5E03;&amp;#x4E00;&amp;#x4E2A;&amp;#x540D;&amp;#x79F0;&amp;#x4E3A;aName&amp;#x7684;&amp;#x901A;&amp;#x77E5;&amp;#xFF0C;anObject&amp;#x4E3A;&amp;#x8FD9;&amp;#x4E2A;&amp;#x901A;&amp;#x77E5;&amp;#x7684;&amp;#x53D1;&amp;#x5E03;&amp;#x8005;&amp;#xFF0C;aUserInfo&amp;#x4E3A;&amp;#x989D;&amp;#x5916;&amp;#x4FE1;&amp;#x606F;&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">BirdMichael</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">64</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">24</span>
-                    <span class="site-state-item-name">分类</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">85</span>
-                    <span class="site-state-item-name">标签</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#还有一个因为涉及到多线程-我们今天暂时不讲解的方法"><span class="nav-number">1.</span> <span class="nav-text">(还有一个因为涉及到多线程,我们今天暂时不讲解的方法):</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#name：通知的名称"><span class="nav-number">2.</span> <span class="nav-text">name：通知的名称</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#obj：通知发布者"><span class="nav-number">3.</span> <span class="nav-text">obj：通知发布者</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#block：收到对应的通知时，会回调这个block"><span class="nav-number">4.</span> <span class="nav-text">block：收到对应的通知时，会回调这个block</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行"><span class="nav-number">5.</span> <span class="nav-text">queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
-
-  
-
-  
 </div>
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-	
-    
-
-    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+

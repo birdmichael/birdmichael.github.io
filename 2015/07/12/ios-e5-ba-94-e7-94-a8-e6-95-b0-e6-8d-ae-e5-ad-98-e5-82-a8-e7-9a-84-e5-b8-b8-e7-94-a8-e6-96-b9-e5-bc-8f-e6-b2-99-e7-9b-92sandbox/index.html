@@ -1,114 +1,12 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="&amp;#x901A;&amp;#x5E38;,&amp;#x6211;&amp;#x4EEC;&amp;#x5F88;&amp;#x591A;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x90FD;&amp;#x4E0D;&amp;#x662F;&amp;#x4E34;&amp;#x65F6;&amp;#x6216;&amp;#x8005;&amp;#x4E00;&amp;#x6B21;&amp;#x6027;&amp;#x7684;,&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x8BF4;&amp;#x970">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="&amp;#x901A;&amp;#x5E38;,&amp;#x6211;&amp;#x4EEC;&amp;#x5F88;&amp;#x591A;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x90FD;&amp;#x4E0D;&amp;#x662F;&amp;#x4E34;&amp;#x65F6;&amp;#x6216;&amp;#x8005;&amp;#x4E00;&amp;#x6B21;&amp;#x6027;&amp;#x7684;,&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x8BF4;&amp;#x970">
 <meta name="keywords" content="Caches,Document,NSSearchPathForDirectoriesInDomains,NSUserDefaults,Plist,Preference,Sandbox,tmp,属性列表,数据储存,沙盒">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS应用数据存储的常用方式(沙盒Sandbox)">
@@ -120,312 +18,144 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS应用数据存储的常用方式(沙盒Sandbox)">
 <meta name="twitter:description" content="&amp;#x901A;&amp;#x5E38;,&amp;#x6211;&amp;#x4EEC;&amp;#x5F88;&amp;#x591A;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x90FD;&amp;#x4E0D;&amp;#x662F;&amp;#x4E34;&amp;#x65F6;&amp;#x6216;&amp;#x8005;&amp;#x4E00;&amp;#x6B21;&amp;#x6027;&amp;#x7684;,&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x8BF4;&amp;#x970">
-
-
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>iOS应用数据存储的常用方式(沙盒Sandbox) | BirdMichael</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>iOS应用数据存储的常用方式(沙盒Sandbox)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
+<body>
     
-  
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2015/07/12/nssearchpathfordirectoriesindomains-deep-analysis/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2015/07/09/UIStoryboardSegue讲解/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&text=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&is_video=false&description=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS应用数据存储的常用方式(沙盒Sandbox)&body=Check out this article: http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&name=iOS应用数据存储的常用方式(沙盒Sandbox)&description=&lt;p&gt;&amp;#x901A;&amp;#x5E38;,&amp;#x6211;&amp;#x4EEC;&amp;#x5F88;&amp;#x591A;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x90FD;&amp;#x4E0D;&amp;#x662F;&amp;#x4E34;&amp;#x65F6;&amp;#x6216;&amp;#x8005;&amp;#x4E00;&amp;#x6B21;&amp;#x6027;&amp;#x7684;,&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x8BF4;&amp;#x9700;&amp;#x8981;&amp;#x4E0B;&amp;#x4E00;&amp;#x6B21;&amp;#x767B;&amp;#x5F55;&amp;#x4EE5;&amp;#x540E;,&amp;#x5F88;&amp;#x591A;&amp;#x6570;&amp;#x636E;&amp;#x4F9D;&amp;#x7136;&amp;#x5B58;&amp;#x5728;.&amp;#x6211;&amp;#x4EEC;&amp;#x5C31;&amp;#x9700;&amp;#x8981;&amp;#x628A;&amp;#x8FD9;&amp;#x4E9B;&amp;#x9700;&amp;#x8981;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x5B58;&amp;#x50A8;&amp;#x5728;&amp;#x4E00;&amp;#x4E2A;&amp;#x6587;&amp;#x4EF6;&amp;#x5939;&amp;#x6216;&amp;#x8005;&amp;#x6587;&amp;#x4EF6;&amp;#x4E2D;(&amp;#x6216;&amp;#x8005;&amp;#x7F51;&amp;#x7EDC;).&amp;#x800C;ios&amp;#x9ED8;&amp;#x8BA4;&amp;#x5C31;&amp;#x4E3A;&amp;#x6211;&amp;#x4EEC;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x8FD9;&amp;#x6837;&amp;#x4E00;&amp;#x4E2A;&amp;#x6587;&amp;#x4EF6;&amp;#x5939;&amp;#x53EB;&lt;strong&gt;&amp;#x6C99;&amp;#x76D2;&lt;/strong&gt;(&amp;#x5C31;&amp;#x662F;&amp;#x6587;&amp;#x4EF6;&amp;#x7CFB;&amp;#x7EDF;&amp;#x76EE;&amp;#x5F55;).&amp;#x5E76;&amp;#x4E14;&amp;#x8FD9;&amp;#x4E2A;&amp;#x6587;&amp;#x4EF6;&amp;#x4E0E;&amp;#x5176;&amp;#x4ED6;&amp;#x6587;&amp;#x4EF6;&amp;#x7CFB;&amp;#x7EDF;&amp;#x9694;&amp;#x79BB;&amp;#x3002;&amp;#x5E94;&amp;#x7528;&amp;#x5FC5;&amp;#x987B;&amp;#x5F85;&amp;#x5728;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x6C99;&amp;#x76D2;&amp;#x91CC;&amp;#xFF0C;&amp;#x5176;&amp;#x4ED6;&amp;#x5E94;&amp;#x7528;&amp;#x4E0D;&amp;#x80FD;&amp;#x8BBF;&amp;#x95EE;&amp;#x8BE5;&amp;#x6C99;&amp;#x76D2;(&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x8BF4;A&amp;#x7A0B;&amp;#x5E8F;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x53EA;&amp;#x80FD;&amp;#x5B58;&amp;#x5728;A&amp;#x7684;&amp;#x6C99;&amp;#x76D2;&amp;#x4E2D;,&amp;#x5E76;&amp;#x4E14;&amp;#x4E0D;&amp;#x80FD;&amp;#x53BB;&amp;#x8BBF;&amp;#x95EE;B&amp;#x7A0B;&amp;#x5E8F;&amp;#x7684;&amp;#x6C99;&amp;#x76D2;)&lt;/p&gt;
+&lt;h2 id=&quot;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x65B9;&amp;#x5F0F;&quot;&gt;&lt;a href=&quot;#&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x65B9;&amp;#x5F0F;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x65B9;&amp;#x5F0F;&quot;&gt;&lt;/a&gt;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x65B9;&amp;#x5F0F;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;XML&amp;#x5C5E;&amp;#x6027;&amp;#x5217;&amp;#x8868;&amp;#xFF08;plist&amp;#xFF09;&amp;#x5F52;&amp;#x6863;&lt;/li&gt;
+&lt;li&gt;Preference(&amp;#x504F;&amp;#x597D;&amp;#x8BBE;&amp;#x7F6E;)&lt;/li&gt;
+&lt;li&gt;NSKeyedArchiver&amp;#x5F52;&amp;#x6863;(NSCoding)&lt;/li&gt;
+&lt;li&gt;SQLite3&lt;/li&gt;
+&lt;li&gt;Core Data&lt;br&gt;&amp;#x8981;&amp;#x641E;&amp;#x61C2;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x4E4B;&amp;#x524D;,&amp;#x6211;&amp;#x4EEC;&amp;#x5E94;&amp;#x8BE5;&amp;#x5BF9;&amp;#x6C99;&amp;#x76D2;&amp;#x7684;&amp;#x7ED3;&amp;#x6784;&amp;#x4EE5;&amp;#x53CA;&amp;#x6C99;&amp;#x76D2;&amp;#x7684;&amp;#x4F5C;&amp;#x7528;&amp;#x6709;&amp;#x6DF1;&amp;#x5165;&amp;#x7684;&amp;#x4E86;&amp;#x89E3;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;&amp;#x6C99;&amp;#x76D2;&amp;#x7ED3;&amp;#x6784;&quot;&gt;&lt;a href=&quot;#&amp;#x6C99;&amp;#x76D2;&amp;#x7ED3;&amp;#x6784;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x6C99;&amp;#x76D2;&amp;#x7ED3;&amp;#x6784;&quot;&gt;&lt;/a&gt;&lt;strong&gt;&amp;#x6C99;&amp;#x76D2;&amp;#x7ED3;&amp;#x6784;&lt;/strong&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Documents&lt;/strong&gt;&amp;#xFF1A;&amp;#x4FDD;&amp;#x5B58;&amp;#x5E94;&amp;#x7528;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x751F;&amp;#x6210;&amp;#x7684;&amp;#x9700;&amp;#x8981;&lt;strong&gt;&amp;#x6301;&amp;#x4E45;&amp;#x5316;&amp;#x7684;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;&amp;#xFF0C;iTunes&amp;#x540C;&amp;#x6B65;&amp;#x8BBE;&amp;#x5907;&amp;#x65F6;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;#x4F1A;&amp;#x5907;&amp;#x4EFD;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/span&gt;&amp;#x3002;&amp;#x4F8B;&amp;#x5982;&amp;#xFF0C;&amp;#x6E38;&amp;#x620F;&amp;#x5E94;&amp;#x7528;&amp;#x53EF;&amp;#x5C06;&amp;#x6E38;&amp;#x620F;&amp;#x5B58;&amp;#x6863;&amp;#x4FDD;&amp;#x5B58;&amp;#x5728;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;tmp&lt;/strong&gt;&amp;#xFF1A;&amp;#x4FDD;&amp;#x5B58;&amp;#x5E94;&amp;#x7528;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x6240;&amp;#x9700;&amp;#x7684;&lt;strong&gt;&amp;#x4E34;&amp;#x65F6;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;&amp;#xFF0C;&amp;#x4F7F;&amp;#x7528;&amp;#x5B8C;&amp;#x6BD5;&amp;#x540E;&amp;#x518D;&amp;#x5C06;&amp;#x76F8;&amp;#x5E94;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&lt;strong&gt;&amp;#x4ECE;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&amp;#x5220;&amp;#x9664;&lt;/strong&gt;&amp;#x3002;&amp;#x5E94;&amp;#x7528;&amp;#x6CA1;&amp;#x6709;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#xFF0C;&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E5F;&amp;#x53EF;&amp;#x80FD;&amp;#x4F1A;&amp;#x6E05;&amp;#x9664;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&amp;#x4E0B;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x3002;iTunes&amp;#x540C;&amp;#x6B65;&amp;#x8BBE;&amp;#x5907;&amp;#x65F6;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;#x4E0D;&amp;#x4F1A;&amp;#x5907;&amp;#x4EFD;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Library/Caches&lt;/strong&gt;&amp;#xFF1A;&amp;#x4FDD;&amp;#x5B58;&amp;#x5E94;&amp;#x7528;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x751F;&amp;#x6210;&amp;#x7684;&amp;#x9700;&amp;#x8981;&lt;strong&gt;&amp;#x6301;&amp;#x4E45;&amp;#x5316;&amp;#x7684;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;&amp;#xFF0C;iTunes&amp;#x540C;&amp;#x6B65;&amp;#x8BBE;&amp;#x5907;&amp;#x65F6;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;#x4E0D;&amp;#x4F1A;&amp;#x5907;&amp;#x4EFD;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/span&gt;&amp;#x3002;&amp;#x4E00;&amp;#x822C;&amp;#x5B58;&amp;#x50A8;&amp;#x4F53;&amp;#x79EF;&amp;#x5927;&amp;#x3001;&amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x5907;&amp;#x4EFD;&amp;#x7684;&amp;#x975E;&amp;#x91CD;&amp;#x8981;&amp;#x6570;&amp;#x636E;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Library/Preference&lt;/strong&gt;&amp;#xFF1A;&amp;#x4FDD;&amp;#x5B58;&amp;#x5E94;&amp;#x7528;&amp;#x7684;&amp;#x6240;&amp;#x6709;&amp;#x504F;&amp;#x597D;&amp;#x8BBE;&amp;#x7F6E;&amp;#xFF0C;iOS&amp;#x7684;Settings(&amp;#x8BBE;&amp;#x7F6E;)&amp;#x5E94;&amp;#x7528;&amp;#x4F1A;&amp;#x5728;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&amp;#x4E2D;&amp;#x67E5;&amp;#x627E;&amp;#x5E94;&amp;#x7528;&amp;#x7684;&amp;#x8BBE;&amp;#x7F6E;&amp;#x4FE1;&amp;#x606F;&amp;#x3002;iTunes&amp;#x540C;&amp;#x6B65;&amp;#x8BBE;&amp;#x5907;&amp;#x65F6;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;#x4F1A;&amp;#x5907;&amp;#x4EFD;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/span&gt;&lt;blockquote&gt;
+&lt;p&gt;&amp;#x6240;&amp;#x4EE5;&amp;#x6211;&amp;#x4EEC;&amp;#x5E94;&amp;#x8BE5;&amp;#x5408;&amp;#x7406;&amp;#x7684;&amp;#x9009;&amp;#x62E9;&amp;#x6211;&amp;#x4EEC;&amp;#x6570;&amp;#x636E;&amp;#x50A8;&amp;#x5B58;&amp;#x7684;&amp;#x5730;&amp;#x65B9;.&amp;#x7B80;&amp;#x5355;&amp;#x6765;&amp;#x8BF4;:&lt;/p&gt;
+&lt;p&gt;1.&amp;#x5B8C;&amp;#x5168;&lt;strong&gt;&amp;#x4E0D;&amp;#x91CD;&amp;#x8981;&lt;/strong&gt;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x653E;tmp.(&amp;#x4E34;&amp;#x65F6;&amp;#x6587;&amp;#x4EF6;)&lt;/p&gt;
+&lt;p&gt;2.&lt;strong&gt;&amp;#x4E0D;&amp;#x91CD;&amp;#x8981;&amp;#x6570;&amp;#x636E;,&lt;/strong&gt;&amp;#x4F46;&amp;#x662F;&lt;strong&gt;&amp;#x4E0D;&amp;#x4EFB;&amp;#x610F;&amp;#x5220;&amp;#x9664;&lt;/strong&gt;&amp;#x6570;&amp;#x636E;&amp;#x5B58;&amp;#x5728;Caches.(&amp;#x90E8;&amp;#x5206;&amp;#x8D44;&amp;#x6E90;,&amp;#x7F13;&amp;#x5B58;)&lt;/p&gt;
+&lt;p&gt;3.&lt;strong&gt;&amp;#x91CD;&amp;#x8981;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;,&amp;#x5E76;&amp;#x4E14;&lt;strong&gt;&amp;#x5927;&lt;/strong&gt;&amp;#x4F53;&amp;#x79EF;&amp;#x5B58;&amp;#x5728;Document.(&amp;#x5B58;&amp;#x6863;,&amp;#x6B4C;&amp;#x66F2;..)&lt;/p&gt;
+&lt;p&gt;4.&lt;strong&gt;&amp;#x91CD;&amp;#x8981;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;,&amp;#x5E76;&amp;#x4E14;&lt;strong&gt;&amp;#x5C0F;&lt;/strong&gt;&amp;#x4F53;&amp;#x79EF;&amp;#x5B58;&amp;#x5728;Preference.(&amp;#x7528;&amp;#x6237;&amp;#x8BBE;&amp;#x7F6E;,&amp;#x5BC6;&amp;#x7801;..)&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ul&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">BirdMichael</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
     </div>
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的文件存储方式"><span class="toc-number">1.</span> <span class="toc-text">常见的文件存储方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#沙盒结构"><span class="toc-number">2.</span> <span class="toc-text">沙盒结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#沙盒获取方式"><span class="toc-number">3.</span> <span class="toc-text">沙盒获取方式:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Document"><span class="toc-number">3.1.</span> <span class="toc-text">Document:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Caches"><span class="toc-number">3.2.</span> <span class="toc-text">Caches:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本数据类型归档总结"><span class="toc-number">3.2.1.</span> <span class="toc-text">基本数据类型归档总结:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#键值对进行归档-自定义的内容-几乎不用"><span class="toc-number">3.2.2.</span> <span class="toc-text">键值对进行归档(自定义的内容)  几乎不用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#键值对进行归档总结"><span class="toc-number">3.2.3.</span> <span class="toc-text">键值对进行归档总结:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型进行归档-自定义对象-常用率高达95"><span class="toc-number">3.2.4.</span> <span class="toc-text">数据模型进行归档(自定义对象)  常用率高达95%</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型进行归档总结"><span class="toc-number">3.2.5.</span> <span class="toc-text">数据模型进行归档总结:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库方式-SQLite3-Core-Data"><span class="toc-number">3.3.</span> <span class="toc-text">数据库方式(SQLite3)(Core Data)</span></a></li></ol></li></ol>
+    </div>
+  </span>
 </div>
 
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        iOS应用数据存储的常用方式(沙盒Sandbox)
+    </h1>
 
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+    <div class="postdate">
+        <time datetime="2015-07-11T18:02:47.000Z" itemprop="datePublished">2015-07-12</time>
+    </div>
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-
-  </li>
 
       
-      
-    </ul>
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Caches/">Caches</a>, <a class="tag-link" href="/tags/Document/">Document</a>, <a class="tag-link" href="/tags/NSSearchPathForDirectoriesInDomains/">NSSearchPathForDirectoriesInDomains</a>, <a class="tag-link" href="/tags/NSUserDefaults/">NSUserDefaults</a>, <a class="tag-link" href="/tags/Plist/">Plist</a>, <a class="tag-link" href="/tags/Preference/">Preference</a>, <a class="tag-link" href="/tags/Sandbox/">Sandbox</a>, <a class="tag-link" href="/tags/tmp/">tmp</a>, <a class="tag-link" href="/tags/属性列表/">属性列表</a>, <a class="tag-link" href="/tags/数据储存/">数据储存</a>, <a class="tag-link" href="/tags/沙盒/">沙盒</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="BirdMichael">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BirdMichael">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">iOS应用数据存储的常用方式(沙盒Sandbox)
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-07-12 02:02:47" itemprop="dateCreated datePublished" datetime="2015-07-12T02:02:47+08:00">2015-07-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2016-07-25 14:30:02" itemprop="dateModified" datetime="2016-07-25T14:30:02+08:00">2016-07-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/" itemprop="url" rel="index"><span itemprop="name">IOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/OC/" itemprop="url" rel="index"><span itemprop="name">OC</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/OC/Xcode/" itemprop="url" rel="index"><span itemprop="name">Xcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>&#x901A;&#x5E38;,&#x6211;&#x4EEC;&#x5F88;&#x591A;&#x7684;&#x6570;&#x636E;&#x90FD;&#x4E0D;&#x662F;&#x4E34;&#x65F6;&#x6216;&#x8005;&#x4E00;&#x6B21;&#x6027;&#x7684;,&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x9700;&#x8981;&#x4E0B;&#x4E00;&#x6B21;&#x767B;&#x5F55;&#x4EE5;&#x540E;,&#x5F88;&#x591A;&#x6570;&#x636E;&#x4F9D;&#x7136;&#x5B58;&#x5728;.&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;&#x628A;&#x8FD9;&#x4E9B;&#x9700;&#x8981;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x6216;&#x8005;&#x6587;&#x4EF6;&#x4E2D;(&#x6216;&#x8005;&#x7F51;&#x7EDC;).&#x800C;ios&#x9ED8;&#x8BA4;&#x5C31;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x53EB;<strong>&#x6C99;&#x76D2;</strong>(&#x5C31;&#x662F;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x76EE;&#x5F55;).&#x5E76;&#x4E14;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E0E;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x9694;&#x79BB;&#x3002;&#x5E94;&#x7528;&#x5FC5;&#x987B;&#x5F85;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x6C99;&#x76D2;&#x91CC;&#xFF0C;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x8BE5;&#x6C99;&#x76D2;(&#x4E5F;&#x5C31;&#x662F;&#x8BF4;A&#x7A0B;&#x5E8F;&#x7684;&#x6587;&#x4EF6;&#x53EA;&#x80FD;&#x5B58;&#x5728;A&#x7684;&#x6C99;&#x76D2;&#x4E2D;,&#x5E76;&#x4E14;&#x4E0D;&#x80FD;&#x53BB;&#x8BBF;&#x95EE;B&#x7A0B;&#x5E8F;&#x7684;&#x6C99;&#x76D2;)</p>
+  <div class="content" itemprop="articleBody">
+    <p>&#x901A;&#x5E38;,&#x6211;&#x4EEC;&#x5F88;&#x591A;&#x7684;&#x6570;&#x636E;&#x90FD;&#x4E0D;&#x662F;&#x4E34;&#x65F6;&#x6216;&#x8005;&#x4E00;&#x6B21;&#x6027;&#x7684;,&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x9700;&#x8981;&#x4E0B;&#x4E00;&#x6B21;&#x767B;&#x5F55;&#x4EE5;&#x540E;,&#x5F88;&#x591A;&#x6570;&#x636E;&#x4F9D;&#x7136;&#x5B58;&#x5728;.&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;&#x628A;&#x8FD9;&#x4E9B;&#x9700;&#x8981;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x6216;&#x8005;&#x6587;&#x4EF6;&#x4E2D;(&#x6216;&#x8005;&#x7F51;&#x7EDC;).&#x800C;ios&#x9ED8;&#x8BA4;&#x5C31;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x53EB;<strong>&#x6C99;&#x76D2;</strong>(&#x5C31;&#x662F;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x76EE;&#x5F55;).&#x5E76;&#x4E14;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E0E;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x9694;&#x79BB;&#x3002;&#x5E94;&#x7528;&#x5FC5;&#x987B;&#x5F85;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x6C99;&#x76D2;&#x91CC;&#xFF0C;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x8BE5;&#x6C99;&#x76D2;(&#x4E5F;&#x5C31;&#x662F;&#x8BF4;A&#x7A0B;&#x5E8F;&#x7684;&#x6587;&#x4EF6;&#x53EA;&#x80FD;&#x5B58;&#x5728;A&#x7684;&#x6C99;&#x76D2;&#x4E2D;,&#x5E76;&#x4E14;&#x4E0D;&#x80FD;&#x53BB;&#x8BBF;&#x95EE;B&#x7A0B;&#x5E8F;&#x7684;&#x6C99;&#x76D2;)</p>
 <h2 id="&#x5E38;&#x89C1;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;"><a href="#&#x5E38;&#x89C1;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;" class="headerlink" title="&#x5E38;&#x89C1;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;"></a>&#x5E38;&#x89C1;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;</h2><ul>
 <li>XML&#x5C5E;&#x6027;&#x5217;&#x8868;&#xFF08;plist&#xFF09;&#x5F52;&#x6863;</li>
 <li>Preference(&#x504F;&#x597D;&#x8BBE;&#x7F6E;)</li>
@@ -690,613 +420,123 @@ NSArray *ary = [unachiver decodeObjectForKey:@&quot;language&quot;];</pre>
 <h3 id="&#x6570;&#x636E;&#x5E93;&#x65B9;&#x5F0F;-SQLite3-Core-Data"><a href="#&#x6570;&#x636E;&#x5E93;&#x65B9;&#x5F0F;-SQLite3-Core-Data" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x65B9;&#x5F0F;(SQLite3)(Core Data)"></a>&#x6570;&#x636E;&#x5E93;&#x65B9;&#x5F0F;(SQLite3)(Core Data)</h3><p>&#x6D89;&#x53CA;&#x5185;&#x5BB9;&#x592A;&#x591A;,&#x540E;&#x671F;&#x5355;&#x72EC;&#x8BE6;&#x89E3;</p>
 <p>&#xA0;</p>
 
-      
+  </div>
+</article>
+
+
+
     </div>
-
     
+      <div id="footer-post-container">
+  <div id="footer-post">
 
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Caches/" rel="tag"># Caches</a>
-          
-            <a href="/tags/Document/" rel="tag"># Document</a>
-          
-            <a href="/tags/NSSearchPathForDirectoriesInDomains/" rel="tag"># NSSearchPathForDirectoriesInDomains</a>
-          
-            <a href="/tags/NSUserDefaults/" rel="tag"># NSUserDefaults</a>
-          
-            <a href="/tags/Plist/" rel="tag"># Plist</a>
-          
-            <a href="/tags/Preference/" rel="tag"># Preference</a>
-          
-            <a href="/tags/Sandbox/" rel="tag"># Sandbox</a>
-          
-            <a href="/tags/tmp/" rel="tag"># tmp</a>
-          
-            <a href="/tags/属性列表/" rel="tag"># 属性列表</a>
-          
-            <a href="/tags/数据储存/" rel="tag"># 数据储存</a>
-          
-            <a href="/tags/沙盒/" rel="tag"># 沙盒</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/07/09/UIStoryboardSegue讲解/" rel="next" title="UIStoryboardSegue讲解.">
-                <i class="fa fa-chevron-left"></i> UIStoryboardSegue讲解.
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/07/12/nssearchpathfordirectoriesindomains-deep-analysis/" rel="prev" title="NSSearchPathForDirectoriesInDomains深入解析">
-                NSSearchPathForDirectoriesInDomains深入解析 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </ul>
     </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的文件存储方式"><span class="toc-number">1.</span> <span class="toc-text">常见的文件存储方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#沙盒结构"><span class="toc-number">2.</span> <span class="toc-text">沙盒结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#沙盒获取方式"><span class="toc-number">3.</span> <span class="toc-text">沙盒获取方式:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Document"><span class="toc-number">3.1.</span> <span class="toc-text">Document:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Caches"><span class="toc-number">3.2.</span> <span class="toc-text">Caches:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本数据类型归档总结"><span class="toc-number">3.2.1.</span> <span class="toc-text">基本数据类型归档总结:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#键值对进行归档-自定义的内容-几乎不用"><span class="toc-number">3.2.2.</span> <span class="toc-text">键值对进行归档(自定义的内容)  几乎不用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#键值对进行归档总结"><span class="toc-number">3.2.3.</span> <span class="toc-text">键值对进行归档总结:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型进行归档-自定义对象-常用率高达95"><span class="toc-number">3.2.4.</span> <span class="toc-text">数据模型进行归档(自定义对象)  常用率高达95%</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型进行归档总结"><span class="toc-number">3.2.5.</span> <span class="toc-text">数据模型进行归档总结:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库方式-SQLite3-Core-Data"><span class="toc-number">3.3.</span> <span class="toc-text">数据库方式(SQLite3)(Core Data)</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&text=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&is_video=false&description=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS应用数据存储的常用方式(沙盒Sandbox)&body=Check out this article: http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&title=iOS应用数据存储的常用方式(沙盒Sandbox)"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/12/ios-e5-ba-94-e7-94-a8-e6-95-b0-e6-8d-ae-e5-ad-98-e5-82-a8-e7-9a-84-e5-b8-b8-e7-94-a8-e6-96-b9-e5-bc-8f-e6-b2-99-e7-9b-92sandbox/&name=iOS应用数据存储的常用方式(沙盒Sandbox)&description=&lt;p&gt;&amp;#x901A;&amp;#x5E38;,&amp;#x6211;&amp;#x4EEC;&amp;#x5F88;&amp;#x591A;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x90FD;&amp;#x4E0D;&amp;#x662F;&amp;#x4E34;&amp;#x65F6;&amp;#x6216;&amp;#x8005;&amp;#x4E00;&amp;#x6B21;&amp;#x6027;&amp;#x7684;,&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x8BF4;&amp;#x9700;&amp;#x8981;&amp;#x4E0B;&amp;#x4E00;&amp;#x6B21;&amp;#x767B;&amp;#x5F55;&amp;#x4EE5;&amp;#x540E;,&amp;#x5F88;&amp;#x591A;&amp;#x6570;&amp;#x636E;&amp;#x4F9D;&amp;#x7136;&amp;#x5B58;&amp;#x5728;.&amp;#x6211;&amp;#x4EEC;&amp;#x5C31;&amp;#x9700;&amp;#x8981;&amp;#x628A;&amp;#x8FD9;&amp;#x4E9B;&amp;#x9700;&amp;#x8981;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x5B58;&amp;#x50A8;&amp;#x5728;&amp;#x4E00;&amp;#x4E2A;&amp;#x6587;&amp;#x4EF6;&amp;#x5939;&amp;#x6216;&amp;#x8005;&amp;#x6587;&amp;#x4EF6;&amp;#x4E2D;(&amp;#x6216;&amp;#x8005;&amp;#x7F51;&amp;#x7EDC;).&amp;#x800C;ios&amp;#x9ED8;&amp;#x8BA4;&amp;#x5C31;&amp;#x4E3A;&amp;#x6211;&amp;#x4EEC;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x8FD9;&amp;#x6837;&amp;#x4E00;&amp;#x4E2A;&amp;#x6587;&amp;#x4EF6;&amp;#x5939;&amp;#x53EB;&lt;strong&gt;&amp;#x6C99;&amp;#x76D2;&lt;/strong&gt;(&amp;#x5C31;&amp;#x662F;&amp;#x6587;&amp;#x4EF6;&amp;#x7CFB;&amp;#x7EDF;&amp;#x76EE;&amp;#x5F55;).&amp;#x5E76;&amp;#x4E14;&amp;#x8FD9;&amp;#x4E2A;&amp;#x6587;&amp;#x4EF6;&amp;#x4E0E;&amp;#x5176;&amp;#x4ED6;&amp;#x6587;&amp;#x4EF6;&amp;#x7CFB;&amp;#x7EDF;&amp;#x9694;&amp;#x79BB;&amp;#x3002;&amp;#x5E94;&amp;#x7528;&amp;#x5FC5;&amp;#x987B;&amp;#x5F85;&amp;#x5728;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x6C99;&amp;#x76D2;&amp;#x91CC;&amp;#xFF0C;&amp;#x5176;&amp;#x4ED6;&amp;#x5E94;&amp;#x7528;&amp;#x4E0D;&amp;#x80FD;&amp;#x8BBF;&amp;#x95EE;&amp;#x8BE5;&amp;#x6C99;&amp;#x76D2;(&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x8BF4;A&amp;#x7A0B;&amp;#x5E8F;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x53EA;&amp;#x80FD;&amp;#x5B58;&amp;#x5728;A&amp;#x7684;&amp;#x6C99;&amp;#x76D2;&amp;#x4E2D;,&amp;#x5E76;&amp;#x4E14;&amp;#x4E0D;&amp;#x80FD;&amp;#x53BB;&amp;#x8BBF;&amp;#x95EE;B&amp;#x7A0B;&amp;#x5E8F;&amp;#x7684;&amp;#x6C99;&amp;#x76D2;)&lt;/p&gt;
+&lt;h2 id=&quot;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x65B9;&amp;#x5F0F;&quot;&gt;&lt;a href=&quot;#&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x65B9;&amp;#x5F0F;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x65B9;&amp;#x5F0F;&quot;&gt;&lt;/a&gt;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x65B9;&amp;#x5F0F;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;XML&amp;#x5C5E;&amp;#x6027;&amp;#x5217;&amp;#x8868;&amp;#xFF08;plist&amp;#xFF09;&amp;#x5F52;&amp;#x6863;&lt;/li&gt;
+&lt;li&gt;Preference(&amp;#x504F;&amp;#x597D;&amp;#x8BBE;&amp;#x7F6E;)&lt;/li&gt;
+&lt;li&gt;NSKeyedArchiver&amp;#x5F52;&amp;#x6863;(NSCoding)&lt;/li&gt;
+&lt;li&gt;SQLite3&lt;/li&gt;
+&lt;li&gt;Core Data&lt;br&gt;&amp;#x8981;&amp;#x641E;&amp;#x61C2;&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x4E4B;&amp;#x524D;,&amp;#x6211;&amp;#x4EEC;&amp;#x5E94;&amp;#x8BE5;&amp;#x5BF9;&amp;#x6C99;&amp;#x76D2;&amp;#x7684;&amp;#x7ED3;&amp;#x6784;&amp;#x4EE5;&amp;#x53CA;&amp;#x6C99;&amp;#x76D2;&amp;#x7684;&amp;#x4F5C;&amp;#x7528;&amp;#x6709;&amp;#x6DF1;&amp;#x5165;&amp;#x7684;&amp;#x4E86;&amp;#x89E3;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;&amp;#x6C99;&amp;#x76D2;&amp;#x7ED3;&amp;#x6784;&quot;&gt;&lt;a href=&quot;#&amp;#x6C99;&amp;#x76D2;&amp;#x7ED3;&amp;#x6784;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x6C99;&amp;#x76D2;&amp;#x7ED3;&amp;#x6784;&quot;&gt;&lt;/a&gt;&lt;strong&gt;&amp;#x6C99;&amp;#x76D2;&amp;#x7ED3;&amp;#x6784;&lt;/strong&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Documents&lt;/strong&gt;&amp;#xFF1A;&amp;#x4FDD;&amp;#x5B58;&amp;#x5E94;&amp;#x7528;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x751F;&amp;#x6210;&amp;#x7684;&amp;#x9700;&amp;#x8981;&lt;strong&gt;&amp;#x6301;&amp;#x4E45;&amp;#x5316;&amp;#x7684;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;&amp;#xFF0C;iTunes&amp;#x540C;&amp;#x6B65;&amp;#x8BBE;&amp;#x5907;&amp;#x65F6;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;#x4F1A;&amp;#x5907;&amp;#x4EFD;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/span&gt;&amp;#x3002;&amp;#x4F8B;&amp;#x5982;&amp;#xFF0C;&amp;#x6E38;&amp;#x620F;&amp;#x5E94;&amp;#x7528;&amp;#x53EF;&amp;#x5C06;&amp;#x6E38;&amp;#x620F;&amp;#x5B58;&amp;#x6863;&amp;#x4FDD;&amp;#x5B58;&amp;#x5728;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;tmp&lt;/strong&gt;&amp;#xFF1A;&amp;#x4FDD;&amp;#x5B58;&amp;#x5E94;&amp;#x7528;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x6240;&amp;#x9700;&amp;#x7684;&lt;strong&gt;&amp;#x4E34;&amp;#x65F6;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;&amp;#xFF0C;&amp;#x4F7F;&amp;#x7528;&amp;#x5B8C;&amp;#x6BD5;&amp;#x540E;&amp;#x518D;&amp;#x5C06;&amp;#x76F8;&amp;#x5E94;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&lt;strong&gt;&amp;#x4ECE;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&amp;#x5220;&amp;#x9664;&lt;/strong&gt;&amp;#x3002;&amp;#x5E94;&amp;#x7528;&amp;#x6CA1;&amp;#x6709;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#xFF0C;&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E5F;&amp;#x53EF;&amp;#x80FD;&amp;#x4F1A;&amp;#x6E05;&amp;#x9664;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&amp;#x4E0B;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x3002;iTunes&amp;#x540C;&amp;#x6B65;&amp;#x8BBE;&amp;#x5907;&amp;#x65F6;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;#x4E0D;&amp;#x4F1A;&amp;#x5907;&amp;#x4EFD;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Library/Caches&lt;/strong&gt;&amp;#xFF1A;&amp;#x4FDD;&amp;#x5B58;&amp;#x5E94;&amp;#x7528;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x751F;&amp;#x6210;&amp;#x7684;&amp;#x9700;&amp;#x8981;&lt;strong&gt;&amp;#x6301;&amp;#x4E45;&amp;#x5316;&amp;#x7684;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;&amp;#xFF0C;iTunes&amp;#x540C;&amp;#x6B65;&amp;#x8BBE;&amp;#x5907;&amp;#x65F6;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;#x4E0D;&amp;#x4F1A;&amp;#x5907;&amp;#x4EFD;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/span&gt;&amp;#x3002;&amp;#x4E00;&amp;#x822C;&amp;#x5B58;&amp;#x50A8;&amp;#x4F53;&amp;#x79EF;&amp;#x5927;&amp;#x3001;&amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x5907;&amp;#x4EFD;&amp;#x7684;&amp;#x975E;&amp;#x91CD;&amp;#x8981;&amp;#x6570;&amp;#x636E;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Library/Preference&lt;/strong&gt;&amp;#xFF1A;&amp;#x4FDD;&amp;#x5B58;&amp;#x5E94;&amp;#x7528;&amp;#x7684;&amp;#x6240;&amp;#x6709;&amp;#x504F;&amp;#x597D;&amp;#x8BBE;&amp;#x7F6E;&amp;#xFF0C;iOS&amp;#x7684;Settings(&amp;#x8BBE;&amp;#x7F6E;)&amp;#x5E94;&amp;#x7528;&amp;#x4F1A;&amp;#x5728;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&amp;#x4E2D;&amp;#x67E5;&amp;#x627E;&amp;#x5E94;&amp;#x7528;&amp;#x7684;&amp;#x8BBE;&amp;#x7F6E;&amp;#x4FE1;&amp;#x606F;&amp;#x3002;iTunes&amp;#x540C;&amp;#x6B65;&amp;#x8BBE;&amp;#x5907;&amp;#x65F6;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;#x4F1A;&amp;#x5907;&amp;#x4EFD;&amp;#x8BE5;&amp;#x76EE;&amp;#x5F55;&lt;/span&gt;&lt;blockquote&gt;
+&lt;p&gt;&amp;#x6240;&amp;#x4EE5;&amp;#x6211;&amp;#x4EEC;&amp;#x5E94;&amp;#x8BE5;&amp;#x5408;&amp;#x7406;&amp;#x7684;&amp;#x9009;&amp;#x62E9;&amp;#x6211;&amp;#x4EEC;&amp;#x6570;&amp;#x636E;&amp;#x50A8;&amp;#x5B58;&amp;#x7684;&amp;#x5730;&amp;#x65B9;.&amp;#x7B80;&amp;#x5355;&amp;#x6765;&amp;#x8BF4;:&lt;/p&gt;
+&lt;p&gt;1.&amp;#x5B8C;&amp;#x5168;&lt;strong&gt;&amp;#x4E0D;&amp;#x91CD;&amp;#x8981;&lt;/strong&gt;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x653E;tmp.(&amp;#x4E34;&amp;#x65F6;&amp;#x6587;&amp;#x4EF6;)&lt;/p&gt;
+&lt;p&gt;2.&lt;strong&gt;&amp;#x4E0D;&amp;#x91CD;&amp;#x8981;&amp;#x6570;&amp;#x636E;,&lt;/strong&gt;&amp;#x4F46;&amp;#x662F;&lt;strong&gt;&amp;#x4E0D;&amp;#x4EFB;&amp;#x610F;&amp;#x5220;&amp;#x9664;&lt;/strong&gt;&amp;#x6570;&amp;#x636E;&amp;#x5B58;&amp;#x5728;Caches.(&amp;#x90E8;&amp;#x5206;&amp;#x8D44;&amp;#x6E90;,&amp;#x7F13;&amp;#x5B58;)&lt;/p&gt;
+&lt;p&gt;3.&lt;strong&gt;&amp;#x91CD;&amp;#x8981;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;,&amp;#x5E76;&amp;#x4E14;&lt;strong&gt;&amp;#x5927;&lt;/strong&gt;&amp;#x4F53;&amp;#x79EF;&amp;#x5B58;&amp;#x5728;Document.(&amp;#x5B58;&amp;#x6863;,&amp;#x6B4C;&amp;#x66F2;..)&lt;/p&gt;
+&lt;p&gt;4.&lt;strong&gt;&amp;#x91CD;&amp;#x8981;&amp;#x6570;&amp;#x636E;&lt;/strong&gt;,&amp;#x5E76;&amp;#x4E14;&lt;strong&gt;&amp;#x5C0F;&lt;/strong&gt;&amp;#x4F53;&amp;#x79EF;&amp;#x5B58;&amp;#x5728;Preference.(&amp;#x7528;&amp;#x6237;&amp;#x8BBE;&amp;#x7F6E;,&amp;#x5BC6;&amp;#x7801;..)&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ul&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">BirdMichael</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">64</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">24</span>
-                    <span class="site-state-item-name">分类</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">85</span>
-                    <span class="site-state-item-name">标签</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的文件存储方式"><span class="nav-number">1.</span> <span class="nav-text">常见的文件存储方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沙盒结构"><span class="nav-number">2.</span> <span class="nav-text">沙盒结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沙盒获取方式"><span class="nav-number">3.</span> <span class="nav-text">沙盒获取方式:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Document"><span class="nav-number">3.1.</span> <span class="nav-text">Document:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Caches"><span class="nav-number">3.2.</span> <span class="nav-text">Caches:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本数据类型归档总结"><span class="nav-number">3.2.1.</span> <span class="nav-text">基本数据类型归档总结:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键值对进行归档-自定义的内容-几乎不用"><span class="nav-number">3.2.2.</span> <span class="nav-text">键值对进行归档(自定义的内容)  几乎不用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键值对进行归档总结"><span class="nav-number">3.2.3.</span> <span class="nav-text">键值对进行归档总结:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据模型进行归档-自定义对象-常用率高达95"><span class="nav-number">3.2.4.</span> <span class="nav-text">数据模型进行归档(自定义对象)  常用率高达95%</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据模型进行归档总结"><span class="nav-number">3.2.5.</span> <span class="nav-text">数据模型进行归档总结:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库方式-SQLite3-Core-Data"><span class="nav-number">3.3.</span> <span class="nav-text">数据库方式(SQLite3)(Core Data)</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
-
-  
-
-  
 </div>
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-	
-    
-
-    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+

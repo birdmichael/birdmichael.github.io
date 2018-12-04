@@ -1,114 +1,12 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="&amp;#x6982;&amp;#x8FF0;&amp;#x5927;&amp;#x5BB6;&amp;#x90FD;&amp;#x77E5;&amp;#x9053;,&amp;#x6211;&amp;#x4EEC;&amp;#x5728;&amp;#x5F88;&amp;#x591A;app&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x4E2D;&amp;#x5F88;&amp;#x5173;&amp;#x6CE8;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F53;&amp;#x9A8C;&amp;#x5">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="&amp;#x6982;&amp;#x8FF0;&amp;#x5927;&amp;#x5BB6;&amp;#x90FD;&amp;#x77E5;&amp;#x9053;,&amp;#x6211;&amp;#x4EEC;&amp;#x5728;&amp;#x5F88;&amp;#x591A;app&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x4E2D;&amp;#x5F88;&amp;#x5173;&amp;#x6CE8;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F53;&amp;#x9A8C;&amp;#x5">
 <meta name="keywords" content="concurrent,Deadlock,dispatch queue,dispatch_after,GCD,Global dispatch queue,NSOperation,NSThread,serial,临界区,多线程,死锁">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios多线程之NSThread,GCD,NSOperation以及线程同步">
@@ -134,305 +32,128 @@
 <meta name="twitter:title" content="ios多线程之NSThread,GCD,NSOperation以及线程同步">
 <meta name="twitter:description" content="&amp;#x6982;&amp;#x8FF0;&amp;#x5927;&amp;#x5BB6;&amp;#x90FD;&amp;#x77E5;&amp;#x9053;,&amp;#x6211;&amp;#x4EEC;&amp;#x5728;&amp;#x5F88;&amp;#x591A;app&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x4E2D;&amp;#x5F88;&amp;#x5173;&amp;#x6CE8;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F53;&amp;#x9A8C;&amp;#x5">
 <meta name="twitter:image" content="http://birdmichael.com/wp-content/uploads/2015/07/202333357067475.png">
-
-
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>ios多线程之NSThread,GCD,NSOperation以及线程同步 | BirdMichael</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ios多线程之NSThread,GCD,NSOperation以及线程同步</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
+<body>
     
-  
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2015/08/01/common-error-summary/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2015/07/29/ios-uiresponder-of-gestures-gesture-recognition-shake-apple-fm/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&text=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&is_video=false&description=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ios多线程之NSThread,GCD,NSOperation以及线程同步&body=Check out this article: http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&name=ios多线程之NSThread,GCD,NSOperation以及线程同步&description=&lt;h2 id=&quot;&amp;#x6982;&amp;#x8FF0;&quot;&gt;&lt;a href=&quot;#&amp;#x6982;&amp;#x8FF0;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x6982;&amp;#x8FF0;&quot;&gt;&lt;/a&gt;&amp;#x6982;&amp;#x8FF0;&lt;/h2&gt;&lt;p&gt;&amp;#x5927;&amp;#x5BB6;&amp;#x90FD;&amp;#x77E5;&amp;#x9053;,&amp;#x6211;&amp;#x4EEC;&amp;#x5728;&amp;#x5F88;&amp;#x591A;app&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x4E2D;&amp;#x5F88;&amp;#x5173;&amp;#x6CE8;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F53;&amp;#x9A8C;&amp;#x5C31;&amp;#x662F;app&amp;#x7684;&amp;#x6D41;&amp;#x7545;&amp;#x6027;&amp;#x4EE5;&amp;#x53CA;&amp;#x7528;&amp;#x6237;&amp;#x7B49;&amp;#x5F85;&amp;#x65F6;&amp;#x95F4;.&amp;#x800C;&amp;#x8FD9;&amp;#x4E24;&amp;#x70B9;&amp;#x5176;&amp;#x5B9E;&amp;#x6700;&amp;#x6839;&amp;#x672C;&amp;#x5C31;&amp;#x7684;&amp;#x5C31;&amp;#x662F;&amp;#x8BA9;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5DF2;&amp;#x6700;&amp;#x5C11;&amp;#x7684;&amp;#x65F6;&amp;#x95F4;&amp;#x5B8C;&amp;#x6210;&amp;#x8FD0;&amp;#x7B97;.&amp;#x65E0;&amp;#x8BBA;&amp;#x662F;&amp;#x54EA;&amp;#x79CD;&amp;#x8BED;&amp;#x8A00;&amp;#x5F00;&amp;#x53D1;&amp;#x7684;&amp;#x7A0B;&amp;#x5E8F;&amp;#x6700;&amp;#x7EC8;&amp;#x5F80;&amp;#x5F80;&amp;#x8F6C;&amp;#x6362;&amp;#x6210;&amp;#x6C47;&amp;#x7F16;&amp;#x8BED;&amp;#x8A00;&amp;#x8FDB;&amp;#x800C;&amp;#x89E3;&amp;#x91CA;&amp;#x6210;&amp;#x673A;&amp;#x5668;&amp;#x7801;&amp;#x6765;&amp;#x6267;&amp;#x884C;.&amp;#x4F46;&amp;#x662F;&amp;#x673A;&amp;#x5668;&amp;#x7801;&amp;#x662F;&amp;#x6309;&amp;#x987A;&amp;#x5E8F;&amp;#x6267;&amp;#x884C;&amp;#x7684;,&amp;#x4E00;&amp;#x4E2A;&amp;#x590D;&amp;#x6742;&amp;#x7684;&amp;#x591A;&amp;#x6B65;&amp;#x64CD;&amp;#x4F5C;&amp;#x53EA;&amp;#x80FD;&amp;#x4E00;&amp;#x6B65;&amp;#x6B65;&amp;#x6309;&amp;#x987A;&amp;#x5E8F;&amp;#x9010;&amp;#x4E2A;&amp;#x6267;&amp;#x884C;.&amp;#x6240;&amp;#x4EE5;&amp;#x6211;&amp;#x4EEC;&amp;#x5C31;&amp;#x4F1A;&amp;#x5F15;&amp;#x5165;&amp;#x8FD9;&amp;#x4E2A;&amp;#x7EBF;&amp;#x7A0B;&amp;#x6280;&amp;#x672F;.&amp;#x7136;&amp;#x540E;&amp;#x8FD9;&amp;#x91CC;&amp;#x521D;&amp;#x5B66;&amp;#x8005;&amp;#x5F88;&amp;#x5BB9;&amp;#x6613;&amp;#x6709;&amp;#x4E00;&amp;#x4E2A;&amp;#x8BEF;&amp;#x533A;&amp;#x662F;:(&amp;#x201C;&lt;strong&gt;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&amp;#x6280;&amp;#x672F;&amp;#x4F1A;&amp;#x63D0;&amp;#x9AD8;&amp;#x5355;&amp;#x4E2A;&amp;#x7B97;&amp;#x6CD5;&amp;#x672C;&amp;#x8EAB;&amp;#x7684;&amp;#x6267;&amp;#x884C;&amp;#x6548;&amp;#x7387;&lt;/strong&gt;.&amp;#x201D;&amp;#x8FD9;&amp;#x662F;&amp;#x975E;&amp;#x5E38;&amp;#x4E25;&amp;#x91CD;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&lt;span style=&quot;color: #ff0000;&quot;&gt;&lt;strong&gt;&amp;#x9519;&amp;#x8BEF;&lt;/strong&gt;.&lt;span style=&quot;color: #000000;&quot;&gt;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&amp;#x6280;&amp;#x672F;&amp;#x5E76;&amp;#x4E0D;&amp;#x4F1A;&amp;#x548C;&amp;#x7A0B;&amp;#x5E8F;&amp;#x672C;&amp;#x8EAB;&amp;#x7684;&amp;#x6267;&amp;#x884C;&amp;#x6548;&amp;#x7387;&amp;#x6709;&amp;#x5173;&amp;#x7CFB;,&amp;#x53EA;&amp;#x662F;&amp;#x5C06;&amp;#x4E00;&amp;#x4E9B;&amp;#x8017;&amp;#x65F6;&amp;#x7684;&amp;#x4EFB;&amp;#x52A1;&amp;#x5206;&amp;#x914D;&amp;#x5230;&amp;#x5176;&amp;#x4ED6;&amp;#x7EBF;&amp;#x7A0B;&amp;#x6267;&amp;#x884C;,&amp;#x8FDB;&amp;#x884C;&amp;#x4E00;&amp;#x4E2A;&amp;#x201D;&amp;#x5E76;&amp;#x884C;&amp;#x201D;&amp;#x8FD0;&amp;#x7B97;&lt;/span&gt;&lt;/span&gt;).&amp;#x5BF9;&amp;#x4E8E;&amp;#x5355;&amp;#x6838;&amp;#x5904;&amp;#x7406;&amp;#x5668;,&amp;#x53EF;&amp;#x4EE5;&amp;#x5C06;&amp;#x591A;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x653E;&amp;#x5230;&amp;#x4E0D;&amp;#x540C;&amp;#x7684;&amp;#x7EBF;&amp;#x7A0B;,&amp;#x8FD9;&amp;#x6837;&amp;#x4E00;&amp;#x6765;&amp;#x7528;&amp;#x6237;&amp;#x5B8C;&amp;#x6210;UI&amp;#x64CD;&amp;#x4F5C;&amp;#x540E;&amp;#x5176;&amp;#x4ED6;&amp;#x540E;&amp;#x7EED;&amp;#x4EFB;&amp;#x52A1;&amp;#x5728;&amp;#x5176;&amp;#x4ED6;&amp;#x7EBF;&amp;#x7A0B;&amp;#x4E2D;,&amp;#x5F53;CPU&amp;#x7A7A;&amp;#x95F2;&amp;#x65F6;&amp;#x4F1A;&amp;#x7EE7;&amp;#x7EED;&amp;#x6267;&amp;#x884C;,&amp;#x800C;&amp;#x6B64;&amp;#x65F6;&amp;#x5BF9;&amp;#x4E8E;&amp;#x7528;&amp;#x6237;&amp;#x800C;&amp;#x8A00;&amp;#x53EF;&amp;#x4EE5;&amp;#x7EE7;&amp;#x7EED;&amp;#x8FDB;&amp;#x884C;&amp;#x5176;&amp;#x4ED6;&amp;#x64CD;&amp;#x4F5C;;&amp;#x5BF9;&amp;#x4E8E;&amp;#x591A;&amp;#x6838;&amp;#x5904;&amp;#x7406;&amp;#x5668;,&amp;#x5982;&amp;#x679C;&amp;#x7528;&amp;#x6237;&amp;#x5728;UI&amp;#x7EBF;&amp;#x7A0B;&amp;#x4E2D;&amp;#x5B8C;&amp;#x6210;&amp;#x67D0;&amp;#x4E2A;&amp;#x64CD;&amp;#x4F5C;&amp;#x4E4B;&amp;#x540E;,&amp;#x5176;&amp;#x4ED6;&amp;#x540E;&amp;#x7EED;&amp;#x64CD;&amp;#x4F5C;&amp;#x5728;&amp;#x522B;&amp;#x7684;&amp;#x7EBF;&amp;#x7A0B;&amp;#x4E2D;&amp;#x7EE7;&amp;#x7EED;&amp;#x6267;&amp;#x884C;,&amp;#x7528;&amp;#x6237;&amp;#x540C;&amp;#x6837;&amp;#x53EF;&amp;#x4EE5;&amp;#x7EE7;&amp;#x7EED;&amp;#x8FDB;&amp;#x884C;&amp;#x5176;&amp;#x4ED6;UI&amp;#x64CD;&amp;#x4F5C;,&amp;#x4E0E;&amp;#x6B64;&amp;#x540C;&amp;#x65F6;&amp;#x524D;&amp;#x4E00;&amp;#x4E2A;&amp;#x64CD;&amp;#x4F5C;&amp;#x7684;&amp;#x540E;&amp;#x7EED;&amp;#x4EFB;&amp;#x52A1;&amp;#x53EF;&amp;#x4EE5;&amp;#x5206;&amp;#x6563;&amp;#x5230;&amp;#x591A;&amp;#x4E2A;&amp;#x7A7A;&amp;#x95F2;CPU&amp;#x4E2D;&amp;#x7EE7;&amp;#x7EED;&amp;#x6267;&amp;#x884C;&amp;#xFF08;&amp;#x5F53;&amp;#x7136;&amp;#x5177;&amp;#x4F53;&amp;#x8C03;&amp;#x5EA6;&amp;#x987A;&amp;#x5E8F;&amp;#x8981;&amp;#x6839;&amp;#x636E;&amp;#x7A0B;&amp;#x5E8F;&amp;#x8BBE;&amp;#x8BA1;&amp;#x800C;&amp;#x5B9A;&amp;#xFF09;,&amp;#x65E2;&amp;#x89E3;&amp;#x51B3;&amp;#x4E86;&amp;#x7EBF;&amp;#x7A0B;&amp;#x963B;&amp;#x585E;&amp;#x53C8;&amp;#x63D0;&amp;#x9AD8;&amp;#x4E86;&amp;#x8FD0;&amp;#x884C;&amp;#x6548;&amp;#x7387;.&amp;#x82F9;&amp;#x679C;&amp;#x4ECE;iPad2 &amp;#x5F00;&amp;#x59CB;&amp;#x4F7F;&amp;#x7528;&amp;#x53CC;&amp;#x6838;A5&amp;#x5904;&amp;#x7406;&amp;#x5668;(iPhone&amp;#x4E2D;&amp;#x4ECE;iPhone 4S&amp;#x5F00;&amp;#x59CB;&amp;#x4F7F;&amp;#x7528;),A7&amp;#x4E2D;&amp;#x8FD8;&amp;#x52A0;&amp;#x5165;&amp;#x4E86;&amp;#x534F;&amp;#x5904;&amp;#x7406;&amp;#x5668;&amp;#xFF0C;&amp;#x5982;&amp;#x4F55;&amp;#x5145;&amp;#x5206;&amp;#x53D1;&amp;#x6325;&amp;#x8FD9;&amp;#x4E9B;&amp;#x5904;&amp;#x7406;&amp;#x5668;&amp;#x7684;&amp;#x6027;&amp;#x80FD;&amp;#x786E;&amp;#x5B9E;&amp;#x503C;&amp;#x5F97;&amp;#x601D;&amp;#x8003;.&lt;/p&gt;
+&lt;h2 id=&quot;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&quot;&gt;&lt;a href=&quot;#&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&quot;&gt;&lt;/a&gt;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&lt;/h2&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">BirdMichael</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
     </div>
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程"><span class="toc-number">2.</span> <span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">2.1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#进程"><span class="toc-number">2.1.1.</span> <span class="toc-text">进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程"><span class="toc-number">2.1.2.</span> <span class="toc-text">线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程的串行"><span class="toc-number">2.1.3.</span> <span class="toc-text">线程的串行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程的并行"><span class="toc-number">2.1.4.</span> <span class="toc-text">多线程的并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多任务系统调度"><span class="toc-number">2.1.5.</span> <span class="toc-text">多任务系统调度</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#windows多任务"><span class="toc-number">2.1.5.1.</span> <span class="toc-text">windows多任务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程的优缺点"><span class="toc-number">2.2.</span> <span class="toc-text">多线程的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程的优点"><span class="toc-number">2.2.1.</span> <span class="toc-text">多线程的优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程的缺点"><span class="toc-number">2.2.2.</span> <span class="toc-text">多线程的缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ios中的多线程"><span class="toc-number">2.3.</span> <span class="toc-text">ios中的多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NSThread"><span class="toc-number">2.3.1.</span> <span class="toc-text">NSThread</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSOperation"><span class="toc-number">2.3.2.</span> <span class="toc-text">NSOperation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GCD"><span class="toc-number">2.3.3.</span> <span class="toc-text">GCD</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GCD-1"><span class="toc-number">3.</span> <span class="toc-text">GCD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍-1"><span class="toc-number">3.1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GCD是什么"><span class="toc-number">3.1.1.</span> <span class="toc-text">GCD是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设计"><span class="toc-number">3.1.2.</span> <span class="toc-text">设计</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#术语"><span class="toc-number">3.2.</span> <span class="toc-text">术语</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dispath-queue-调度队列"><span class="toc-number">3.2.1.</span> <span class="toc-text">dispath queue**(调度队列)**</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Serial-串行队列"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">Serial(串行队列)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Concurrent-并行队列"><span class="toc-number">3.2.1.2.</span> <span class="toc-text">Concurrent(并行队列)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Global-dispatch-queue-全局队列"><span class="toc-number">3.2.1.3.</span> <span class="toc-text">Global dispatch queue(全局队列)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Main-dispatch-queue-主队列"><span class="toc-number">3.2.1.4.</span> <span class="toc-text">Main dispatch queue(主队列)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Queue-Types-队列类型"><span class="toc-number">3.2.2.</span> <span class="toc-text">Queue Types (队列类型)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#操作-任务"><span class="toc-number">3.2.3.</span> <span class="toc-text">操作(任务)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#同步"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">同步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#异步"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">异步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#函数指针调度任务"><span class="toc-number">3.2.3.3.</span> <span class="toc-text">函数指针调度任务</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Deadlock-死锁"><span class="toc-number">3.2.4.</span> <span class="toc-text">Deadlock 死锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concurrency-vs-Parallelism-并发与并行"><span class="toc-number">3.2.5.</span> <span class="toc-text">Concurrency vs Parallelism 并发与并行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建和管理dispatch-queue-队列"><span class="toc-number">3.3.</span> <span class="toc-text">创建和管理dispatch queue(队列)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建串行Dispatch-Queue"><span class="toc-number">3.3.1.</span> <span class="toc-text">创建串行Dispatch Queue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建并行Dispatch-Queue"><span class="toc-number">3.3.2.</span> <span class="toc-text">创建并行Dispatch Queue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dispatch-sync-同步调用"><span class="toc-number">3.3.3.</span> <span class="toc-text">dispatch_sync(同步调用)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同操作及队列线程研究测试"><span class="toc-number">3.4.</span> <span class="toc-text">不同操作及队列线程研究测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主线程"><span class="toc-number">3.4.1.</span> <span class="toc-text">主线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#串行队列同步调用"><span class="toc-number">3.4.2.</span> <span class="toc-text">串行队列同步调用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#示例程序-主线程"><span class="toc-number">3.4.2.0.1.</span> <span class="toc-text">示例程序(主线程):</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#示例程序-子线程"><span class="toc-number">3.4.2.0.2.</span> <span class="toc-text">示例程序(子线程):</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#performSelector"><span class="toc-number">3.4.2.1.</span> <span class="toc-text">performSelector</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调度-队列-组"><span class="toc-number">3.4.3.</span> <span class="toc-text">调度(队列)组</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#手动管理运行状态（或计数）"><span class="toc-number">3.4.3.1.</span> <span class="toc-text">手动管理运行状态（或计数）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法"><span class="toc-number">3.4.3.2.</span> <span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSInvocationOperation"><span class="toc-number">3.4.4.</span> <span class="toc-text">NSInvocationOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#start"><span class="toc-number">3.4.4.1.</span> <span class="toc-text">start</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#添加到队列"><span class="toc-number">3.4.4.2.</span> <span class="toc-text">添加到队列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#添加多个操作"><span class="toc-number">3.4.4.3.</span> <span class="toc-text">添加多个操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#结论"><span class="toc-number">3.4.4.4.</span> <span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSBlockOperation"><span class="toc-number">3.4.5.</span> <span class="toc-text">NSBlockOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#将任务添加到操作"><span class="toc-number">3.4.5.1.</span> <span class="toc-text">将任务添加到操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#向队列中添加不同的操作"><span class="toc-number">3.4.5.2.</span> <span class="toc-text">向队列中添加不同的操作</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSOperation依赖关系"><span class="toc-number">3.4.6.</span> <span class="toc-text">NSOperation依赖关系</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码"><span class="toc-number">3.4.6.1.</span> <span class="toc-text">示例代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#输出结果"><span class="toc-number">3.4.6.2.</span> <span class="toc-text">输出结果</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他方法"><span class="toc-number">3.4.7.</span> <span class="toc-text">其他方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Initialization"><span class="toc-number">3.4.7.1.</span> <span class="toc-text">Initialization</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Executing-the-Operation"><span class="toc-number">3.4.7.2.</span> <span class="toc-text">Executing the Operation</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Waiting-for-Completion"><span class="toc-number">3.4.7.3.</span> <span class="toc-text">Waiting for Completion</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#队列中Operations的执行顺序"><span class="toc-number">3.4.8.</span> <span class="toc-text">队列中Operations的执行顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最大并发操作数量"><span class="toc-number">3.4.9.</span> <span class="toc-text">最大并发操作数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局队列"><span class="toc-number">3.4.10.</span> <span class="toc-text">全局队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#暂停和继续"><span class="toc-number">3.4.11.</span> <span class="toc-text">暂停和继续</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#挂起和回复队列"><span class="toc-number">3.4.12.</span> <span class="toc-text">挂起和回复队列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消Operations"><span class="toc-number">3.5.</span> <span class="toc-text">取消Operations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-1"><span class="toc-number">3.5.1.</span> <span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#等待Options完成"><span class="toc-number">3.6.</span> <span class="toc-text">等待Options完成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发建议"><span class="toc-number">3.7.</span> <span class="toc-text">开发建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSOperation-VS-GCD"><span class="toc-number">4.</span> <span class="toc-text">NSOperation.VS.GCD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RunLoop"><span class="toc-number">5.</span> <span class="toc-text">RunLoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是RunLoop"><span class="toc-number">5.1.</span> <span class="toc-text">什么是RunLoop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件源"><span class="toc-number">5.2.</span> <span class="toc-text">事件源</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NSPort-基于端口的源"><span class="toc-number">5.2.1.</span> <span class="toc-text">NSPort 基于端口的源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义输入源"><span class="toc-number">5.2.2.</span> <span class="toc-text">自定义输入源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#performSelector-OnThread"><span class="toc-number">5.2.3.</span> <span class="toc-text">performSelector:OnThread</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定时源"><span class="toc-number">5.2.4.</span> <span class="toc-text">定时源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RunLoop观察者"><span class="toc-number">5.3.</span> <span class="toc-text">RunLoop观察者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-Loop-Modes"><span class="toc-number">5.4.</span> <span class="toc-text">Run Loop Modes</span></a></li></ol></li></ol>
+    </div>
+  </span>
 </div>
 
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ios多线程之NSThread,GCD,NSOperation以及线程同步
+    </h1>
 
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+    <div class="postdate">
+        <time datetime="2015-07-31T09:02:29.000Z" itemprop="datePublished">2015-07-31</time>
+    </div>
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-
-  </li>
 
       
-      
-    </ul>
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Deadlock/">Deadlock</a>, <a class="tag-link" href="/tags/GCD/">GCD</a>, <a class="tag-link" href="/tags/Global-dispatch-queue/">Global dispatch queue</a>, <a class="tag-link" href="/tags/NSOperation/">NSOperation</a>, <a class="tag-link" href="/tags/NSThread/">NSThread</a>, <a class="tag-link" href="/tags/concurrent/">concurrent</a>, <a class="tag-link" href="/tags/dispatch-queue/">dispatch queue</a>, <a class="tag-link" href="/tags/dispatch-after/">dispatch_after</a>, <a class="tag-link" href="/tags/serial/">serial</a>, <a class="tag-link" href="/tags/临界区/">临界区</a>, <a class="tag-link" href="/tags/多线程/">多线程</a>, <a class="tag-link" href="/tags/死锁/">死锁</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="BirdMichael">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BirdMichael">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">ios多线程之NSThread,GCD,NSOperation以及线程同步
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-07-31 17:02:29" itemprop="dateCreated datePublished" datetime="2015-07-31T17:02:29+08:00">2015-07-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2016-07-25 14:30:02" itemprop="dateModified" datetime="2016-07-25T14:30:02+08:00">2016-07-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/" itemprop="url" rel="index"><span itemprop="name">IOS</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IOS/Xcode/" itemprop="url" rel="index"><span itemprop="name">Xcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="&#x6982;&#x8FF0;"><a href="#&#x6982;&#x8FF0;" class="headerlink" title="&#x6982;&#x8FF0;"></a>&#x6982;&#x8FF0;</h2><p>&#x5927;&#x5BB6;&#x90FD;&#x77E5;&#x9053;,&#x6211;&#x4EEC;&#x5728;&#x5F88;&#x591A;app&#x7684;&#x4F7F;&#x7528;&#x4E2D;&#x5F88;&#x5173;&#x6CE8;&#x7684;&#x4E00;&#x4E2A;&#x4F53;&#x9A8C;&#x5C31;&#x662F;app&#x7684;&#x6D41;&#x7545;&#x6027;&#x4EE5;&#x53CA;&#x7528;&#x6237;&#x7B49;&#x5F85;&#x65F6;&#x95F4;.&#x800C;&#x8FD9;&#x4E24;&#x70B9;&#x5176;&#x5B9E;&#x6700;&#x6839;&#x672C;&#x5C31;&#x7684;&#x5C31;&#x662F;&#x8BA9;&#x7A0B;&#x5E8F;&#x5DF2;&#x6700;&#x5C11;&#x7684;&#x65F6;&#x95F4;&#x5B8C;&#x6210;&#x8FD0;&#x7B97;.&#x65E0;&#x8BBA;&#x662F;&#x54EA;&#x79CD;&#x8BED;&#x8A00;&#x5F00;&#x53D1;&#x7684;&#x7A0B;&#x5E8F;&#x6700;&#x7EC8;&#x5F80;&#x5F80;&#x8F6C;&#x6362;&#x6210;&#x6C47;&#x7F16;&#x8BED;&#x8A00;&#x8FDB;&#x800C;&#x89E3;&#x91CA;&#x6210;&#x673A;&#x5668;&#x7801;&#x6765;&#x6267;&#x884C;.&#x4F46;&#x662F;&#x673A;&#x5668;&#x7801;&#x662F;&#x6309;&#x987A;&#x5E8F;&#x6267;&#x884C;&#x7684;,&#x4E00;&#x4E2A;&#x590D;&#x6742;&#x7684;&#x591A;&#x6B65;&#x64CD;&#x4F5C;&#x53EA;&#x80FD;&#x4E00;&#x6B65;&#x6B65;&#x6309;&#x987A;&#x5E8F;&#x9010;&#x4E2A;&#x6267;&#x884C;.&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5C31;&#x4F1A;&#x5F15;&#x5165;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x6280;&#x672F;.&#x7136;&#x540E;&#x8FD9;&#x91CC;&#x521D;&#x5B66;&#x8005;&#x5F88;&#x5BB9;&#x6613;&#x6709;&#x4E00;&#x4E2A;&#x8BEF;&#x533A;&#x662F;:(&#x201C;<strong>&#x591A;&#x7EBF;&#x7A0B;&#x6280;&#x672F;&#x4F1A;&#x63D0;&#x9AD8;&#x5355;&#x4E2A;&#x7B97;&#x6CD5;&#x672C;&#x8EAB;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;</strong>.&#x201D;&#x8FD9;&#x662F;&#x975E;&#x5E38;&#x4E25;&#x91CD;&#x7684;&#x4E00;&#x4E2A;<span style="color: #ff0000;"><strong>&#x9519;&#x8BEF;</strong>.<span style="color: #000000;">&#x591A;&#x7EBF;&#x7A0B;&#x6280;&#x672F;&#x5E76;&#x4E0D;&#x4F1A;&#x548C;&#x7A0B;&#x5E8F;&#x672C;&#x8EAB;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;&#x6709;&#x5173;&#x7CFB;,&#x53EA;&#x662F;&#x5C06;&#x4E00;&#x4E9B;&#x8017;&#x65F6;&#x7684;&#x4EFB;&#x52A1;&#x5206;&#x914D;&#x5230;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x6267;&#x884C;,&#x8FDB;&#x884C;&#x4E00;&#x4E2A;&#x201D;&#x5E76;&#x884C;&#x201D;&#x8FD0;&#x7B97;</span></span>).&#x5BF9;&#x4E8E;&#x5355;&#x6838;&#x5904;&#x7406;&#x5668;,&#x53EF;&#x4EE5;&#x5C06;&#x591A;&#x4E2A;&#x6B65;&#x9AA4;&#x653E;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x7EBF;&#x7A0B;,&#x8FD9;&#x6837;&#x4E00;&#x6765;&#x7528;&#x6237;&#x5B8C;&#x6210;UI&#x64CD;&#x4F5C;&#x540E;&#x5176;&#x4ED6;&#x540E;&#x7EED;&#x4EFB;&#x52A1;&#x5728;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x4E2D;,&#x5F53;CPU&#x7A7A;&#x95F2;&#x65F6;&#x4F1A;&#x7EE7;&#x7EED;&#x6267;&#x884C;,&#x800C;&#x6B64;&#x65F6;&#x5BF9;&#x4E8E;&#x7528;&#x6237;&#x800C;&#x8A00;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x8FDB;&#x884C;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;;&#x5BF9;&#x4E8E;&#x591A;&#x6838;&#x5904;&#x7406;&#x5668;,&#x5982;&#x679C;&#x7528;&#x6237;&#x5728;UI&#x7EBF;&#x7A0B;&#x4E2D;&#x5B8C;&#x6210;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#x4E4B;&#x540E;,&#x5176;&#x4ED6;&#x540E;&#x7EED;&#x64CD;&#x4F5C;&#x5728;&#x522B;&#x7684;&#x7EBF;&#x7A0B;&#x4E2D;&#x7EE7;&#x7EED;&#x6267;&#x884C;,&#x7528;&#x6237;&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x8FDB;&#x884C;&#x5176;&#x4ED6;UI&#x64CD;&#x4F5C;,&#x4E0E;&#x6B64;&#x540C;&#x65F6;&#x524D;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x7684;&#x540E;&#x7EED;&#x4EFB;&#x52A1;&#x53EF;&#x4EE5;&#x5206;&#x6563;&#x5230;&#x591A;&#x4E2A;&#x7A7A;&#x95F2;CPU&#x4E2D;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF08;&#x5F53;&#x7136;&#x5177;&#x4F53;&#x8C03;&#x5EA6;&#x987A;&#x5E8F;&#x8981;&#x6839;&#x636E;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x800C;&#x5B9A;&#xFF09;,&#x65E2;&#x89E3;&#x51B3;&#x4E86;&#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x53C8;&#x63D0;&#x9AD8;&#x4E86;&#x8FD0;&#x884C;&#x6548;&#x7387;.&#x82F9;&#x679C;&#x4ECE;iPad2 &#x5F00;&#x59CB;&#x4F7F;&#x7528;&#x53CC;&#x6838;A5&#x5904;&#x7406;&#x5668;(iPhone&#x4E2D;&#x4ECE;iPhone 4S&#x5F00;&#x59CB;&#x4F7F;&#x7528;),A7&#x4E2D;&#x8FD8;&#x52A0;&#x5165;&#x4E86;&#x534F;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x5982;&#x4F55;&#x5145;&#x5206;&#x53D1;&#x6325;&#x8FD9;&#x4E9B;&#x5904;&#x7406;&#x5668;&#x7684;&#x6027;&#x80FD;&#x786E;&#x5B9E;&#x503C;&#x5F97;&#x601D;&#x8003;.</p>
+  <div class="content" itemprop="articleBody">
+    <h2 id="&#x6982;&#x8FF0;"><a href="#&#x6982;&#x8FF0;" class="headerlink" title="&#x6982;&#x8FF0;"></a>&#x6982;&#x8FF0;</h2><p>&#x5927;&#x5BB6;&#x90FD;&#x77E5;&#x9053;,&#x6211;&#x4EEC;&#x5728;&#x5F88;&#x591A;app&#x7684;&#x4F7F;&#x7528;&#x4E2D;&#x5F88;&#x5173;&#x6CE8;&#x7684;&#x4E00;&#x4E2A;&#x4F53;&#x9A8C;&#x5C31;&#x662F;app&#x7684;&#x6D41;&#x7545;&#x6027;&#x4EE5;&#x53CA;&#x7528;&#x6237;&#x7B49;&#x5F85;&#x65F6;&#x95F4;.&#x800C;&#x8FD9;&#x4E24;&#x70B9;&#x5176;&#x5B9E;&#x6700;&#x6839;&#x672C;&#x5C31;&#x7684;&#x5C31;&#x662F;&#x8BA9;&#x7A0B;&#x5E8F;&#x5DF2;&#x6700;&#x5C11;&#x7684;&#x65F6;&#x95F4;&#x5B8C;&#x6210;&#x8FD0;&#x7B97;.&#x65E0;&#x8BBA;&#x662F;&#x54EA;&#x79CD;&#x8BED;&#x8A00;&#x5F00;&#x53D1;&#x7684;&#x7A0B;&#x5E8F;&#x6700;&#x7EC8;&#x5F80;&#x5F80;&#x8F6C;&#x6362;&#x6210;&#x6C47;&#x7F16;&#x8BED;&#x8A00;&#x8FDB;&#x800C;&#x89E3;&#x91CA;&#x6210;&#x673A;&#x5668;&#x7801;&#x6765;&#x6267;&#x884C;.&#x4F46;&#x662F;&#x673A;&#x5668;&#x7801;&#x662F;&#x6309;&#x987A;&#x5E8F;&#x6267;&#x884C;&#x7684;,&#x4E00;&#x4E2A;&#x590D;&#x6742;&#x7684;&#x591A;&#x6B65;&#x64CD;&#x4F5C;&#x53EA;&#x80FD;&#x4E00;&#x6B65;&#x6B65;&#x6309;&#x987A;&#x5E8F;&#x9010;&#x4E2A;&#x6267;&#x884C;.&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5C31;&#x4F1A;&#x5F15;&#x5165;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x6280;&#x672F;.&#x7136;&#x540E;&#x8FD9;&#x91CC;&#x521D;&#x5B66;&#x8005;&#x5F88;&#x5BB9;&#x6613;&#x6709;&#x4E00;&#x4E2A;&#x8BEF;&#x533A;&#x662F;:(&#x201C;<strong>&#x591A;&#x7EBF;&#x7A0B;&#x6280;&#x672F;&#x4F1A;&#x63D0;&#x9AD8;&#x5355;&#x4E2A;&#x7B97;&#x6CD5;&#x672C;&#x8EAB;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;</strong>.&#x201D;&#x8FD9;&#x662F;&#x975E;&#x5E38;&#x4E25;&#x91CD;&#x7684;&#x4E00;&#x4E2A;<span style="color: #ff0000;"><strong>&#x9519;&#x8BEF;</strong>.<span style="color: #000000;">&#x591A;&#x7EBF;&#x7A0B;&#x6280;&#x672F;&#x5E76;&#x4E0D;&#x4F1A;&#x548C;&#x7A0B;&#x5E8F;&#x672C;&#x8EAB;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;&#x6709;&#x5173;&#x7CFB;,&#x53EA;&#x662F;&#x5C06;&#x4E00;&#x4E9B;&#x8017;&#x65F6;&#x7684;&#x4EFB;&#x52A1;&#x5206;&#x914D;&#x5230;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x6267;&#x884C;,&#x8FDB;&#x884C;&#x4E00;&#x4E2A;&#x201D;&#x5E76;&#x884C;&#x201D;&#x8FD0;&#x7B97;</span></span>).&#x5BF9;&#x4E8E;&#x5355;&#x6838;&#x5904;&#x7406;&#x5668;,&#x53EF;&#x4EE5;&#x5C06;&#x591A;&#x4E2A;&#x6B65;&#x9AA4;&#x653E;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x7EBF;&#x7A0B;,&#x8FD9;&#x6837;&#x4E00;&#x6765;&#x7528;&#x6237;&#x5B8C;&#x6210;UI&#x64CD;&#x4F5C;&#x540E;&#x5176;&#x4ED6;&#x540E;&#x7EED;&#x4EFB;&#x52A1;&#x5728;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x4E2D;,&#x5F53;CPU&#x7A7A;&#x95F2;&#x65F6;&#x4F1A;&#x7EE7;&#x7EED;&#x6267;&#x884C;,&#x800C;&#x6B64;&#x65F6;&#x5BF9;&#x4E8E;&#x7528;&#x6237;&#x800C;&#x8A00;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x8FDB;&#x884C;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;;&#x5BF9;&#x4E8E;&#x591A;&#x6838;&#x5904;&#x7406;&#x5668;,&#x5982;&#x679C;&#x7528;&#x6237;&#x5728;UI&#x7EBF;&#x7A0B;&#x4E2D;&#x5B8C;&#x6210;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#x4E4B;&#x540E;,&#x5176;&#x4ED6;&#x540E;&#x7EED;&#x64CD;&#x4F5C;&#x5728;&#x522B;&#x7684;&#x7EBF;&#x7A0B;&#x4E2D;&#x7EE7;&#x7EED;&#x6267;&#x884C;,&#x7528;&#x6237;&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x8FDB;&#x884C;&#x5176;&#x4ED6;UI&#x64CD;&#x4F5C;,&#x4E0E;&#x6B64;&#x540C;&#x65F6;&#x524D;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x7684;&#x540E;&#x7EED;&#x4EFB;&#x52A1;&#x53EF;&#x4EE5;&#x5206;&#x6563;&#x5230;&#x591A;&#x4E2A;&#x7A7A;&#x95F2;CPU&#x4E2D;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF08;&#x5F53;&#x7136;&#x5177;&#x4F53;&#x8C03;&#x5EA6;&#x987A;&#x5E8F;&#x8981;&#x6839;&#x636E;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x800C;&#x5B9A;&#xFF09;,&#x65E2;&#x89E3;&#x51B3;&#x4E86;&#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x53C8;&#x63D0;&#x9AD8;&#x4E86;&#x8FD0;&#x884C;&#x6548;&#x7387;.&#x82F9;&#x679C;&#x4ECE;iPad2 &#x5F00;&#x59CB;&#x4F7F;&#x7528;&#x53CC;&#x6838;A5&#x5904;&#x7406;&#x5668;(iPhone&#x4E2D;&#x4ECE;iPhone 4S&#x5F00;&#x59CB;&#x4F7F;&#x7528;),A7&#x4E2D;&#x8FD8;&#x52A0;&#x5165;&#x4E86;&#x534F;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x5982;&#x4F55;&#x5145;&#x5206;&#x53D1;&#x6325;&#x8FD9;&#x4E9B;&#x5904;&#x7406;&#x5668;&#x7684;&#x6027;&#x80FD;&#x786E;&#x5B9E;&#x503C;&#x5F97;&#x601D;&#x8003;.</p>
 <h2 id="&#x591A;&#x7EBF;&#x7A0B;"><a href="#&#x591A;&#x7EBF;&#x7A0B;" class="headerlink" title="&#x591A;&#x7EBF;&#x7A0B;"></a>&#x591A;&#x7EBF;&#x7A0B;</h2><a id="more"></a>
 <h3 id="&#x4ECB;&#x7ECD;"><a href="#&#x4ECB;&#x7ECD;" class="headerlink" title="&#x4ECB;&#x7ECD;"></a>&#x4ECB;&#x7ECD;</h3><p>&#x5F53;&#x7528;&#x6237;&#x64AD;&#x653E;&#x97F3;&#x9891;&#x3001;&#x4E0B;&#x8F7D;&#x8D44;&#x6E90;&#x3001;&#x8FDB;&#x884C;&#x56FE;&#x50CF;&#x5904;&#x7406;&#x65F6;&#x5F80;&#x5F80;&#x5E0C;&#x671B;&#x505A;&#x8FD9;&#x4E9B;&#x4E8B;&#x60C5;&#x7684;&#x65F6;&#x5019;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;&#x4E0D;&#x4F1A;&#x88AB;&#x4E2D;&#x65AD;&#x6216;&#x8005;&#x5E0C;&#x671B;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x8FC7;&#x7A0B;&#x4E2D;&#x66F4;&#x52A0;&#x987A;&#x7545;&#x3002;&#x5728;&#x5355;&#x7EBF;&#x7A0B;&#x4E2D;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x53EA;&#x80FD;&#x505A;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#xFF0C;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x5904;&#x7406;&#x4E0D;&#x5B8C;&#x53E6;&#x4E00;&#x4EF6;&#x4E8B;&#x5C31;&#x4E0D;&#x80FD;&#x5F00;&#x59CB;&#xFF0C;&#x8FD9;&#x6837;&#x52BF;&#x5FC5;&#x5F71;&#x54CD;&#x7528;&#x6237;&#x4F53;&#x9A8C;&#x3002;&#x65E9;&#x5728;&#x5355;&#x6838;&#x5904;&#x7406;&#x5668;&#x65F6;&#x671F;&#x5C31;&#x6709;&#x591A;&#x7EBF;&#x7A0B;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x591A;&#x7EBF;&#x7A0B;&#x66F4;&#x591A;&#x7684;&#x7528;&#x4E8E;&#x89E3;&#x51B3;&#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x9020;&#x6210;&#x7684;&#x7528;&#x6237;&#x7B49;&#x5F85;&#xFF08;&#x901A;&#x5E38;&#x662F;&#x64CD;&#x4F5C;&#x5B8C;UI&#x540E;&#x7528;&#x6237;&#x4E0D;&#x518D;&#x5E72;&#x6D89;&#xFF0C;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x5728;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x4E2D;&#xFF0C;CPU&#x4E00;&#x65E6;&#x7A7A;&#x95F2;&#x5C31;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x4E0D;&#x5F71;&#x54CD;&#x7528;&#x6237;&#x5176;&#x4ED6;UI&#x64CD;&#x4F5C;&#xFF09;&#xFF0C;&#x5176;&#x5904;&#x7406;&#x80FD;&#x529B;&#x5E76;&#x6CA1;&#x6709;&#x660E;&#x663E;&#x7684;&#x53D8;&#x5316;&#x3002;&#x5982;&#x4ECA;&#x65E0;&#x8BBA;&#x662F;&#x79FB;&#x52A8;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x8FD8;&#x662F;PC&#x3001;&#x670D;&#x52A1;&#x5668;&#x90FD;&#x662F;&#x591A;&#x6838;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x4E8E;&#x662F;&#x201C;&#x5E76;&#x884C;&#x8FD0;&#x7B97;&#x201D;&#x5C31;&#x66F4;&#x591A;&#x7684;&#x88AB;&#x63D0;&#x53CA;&#x3002;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5206;&#x6210;&#x591A;&#x4E2A;&#x6B65;&#x9AA4;&#xFF0C;&#x5728;&#x6CA1;&#x6709;&#x987A;&#x5E8F;&#x8981;&#x6C42;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4F7F;&#x7528;&#x591A;&#x7EBF;&#x7A0B;&#x65E2;&#x80FD;&#x89E3;&#x51B3;&#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x53C8;&#x80FD;&#x5145;&#x5206;&#x5229;&#x7528;&#x591A;&#x6838;&#x5904;&#x7406;&#x5668;&#x8FD0;&#x884C;&#x80FD;&#x529B;&#x3002;</p>
 <p>&#x4E0B;&#x56FE;&#x53CD;&#x6620;&#x4E86;&#x4E00;&#x4E2A;&#x5305;&#x542B;8&#x4E2A;&#x64CD;&#x4F5C;&#x7684;&#x4EFB;&#x52A1;&#x5728;&#x4E00;&#x4E2A;&#x6709;&#x4E24;&#x6838;&#x5FC3;&#x7684;CPU&#x4E2D;&#x521B;&#x5EFA;&#x56DB;&#x4E2A;&#x7EBF;&#x7A0B;&#x8FD0;&#x884C;&#x7684;&#x60C5;&#x51B5;&#x3002;&#x5047;&#x8BBE;&#x6BCF;&#x4E2A;&#x6838;&#x5FC3;&#x6709;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x90A3;&#x4E48;&#x6BCF;&#x4E2A;CPU&#x4E2D;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#x4F1A;&#x4EA4;&#x66FF;&#x6267;&#x884C;&#xFF0C;&#x4E24;&#x4E2A;CPU&#x4E4B;&#x95F4;&#x7684;&#x64CD;&#x4F5C;&#x4F1A;&#x5E76;&#x884C;&#x8FD0;&#x7B97;&#x3002;&#x5355;&#x5C31;&#x4E00;&#x4E2A;CPU&#x800C;&#x8A00;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x9020;&#x6210;&#x7684;&#x4E0D;&#x6D41;&#x7545;&#x95EE;&#x9898;&#xFF0C;&#x5176;&#x672C;&#x8EAB;&#x8FD0;&#x884C;&#x6548;&#x7387;&#x5E76;&#x6CA1;&#x6709;&#x63D0;&#x9AD8;&#xFF0C;&#x591A;CPU&#x7684;&#x5E76;&#x884C;&#x8FD0;&#x7B97;&#x624D;&#x771F;&#x6B63;&#x89E3;&#x51B3;&#x4E86;&#x8FD0;&#x884C;&#x6548;&#x7387;&#x95EE;&#x9898;&#xFF0C;&#x8FD9;&#x4E5F;&#x6B63;&#x662F;&#x5E76;&#x53D1;&#x548C;&#x5E76;&#x884C;&#x7684;&#x533A;&#x522B;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x591A;&#x6838;&#x8FD8;&#x662F;&#x5355;&#x6838;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4E0D;&#x7528;&#x8FC7;&#x591A;&#x7684;&#x62C5;&#x5FC3;&#xFF0C;&#x56E0;&#x4E3A;&#x4EFB;&#x52A1;&#x5177;&#x4F53;&#x5206;&#x914D;&#x7ED9;&#x51E0;&#x4E2A;CPU&#x8FD0;&#x7B97;&#x662F;&#x7531;&#x7CFB;&#x7EDF;&#x8C03;&#x5EA6;&#x7684;&#xFF0C;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4E0D;&#x7528;&#x8FC7;&#x591A;&#x5173;&#x5FC3;&#x7CFB;&#x7EDF;&#x6709;&#x51E0;&#x4E2A;CPU&#x3002;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x7684;&#x662F;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#x7684;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#xFF0C;&#x56E0;&#x4E3A;&#x6709;&#x4E9B;&#x64CD;&#x4F5C;&#x5FC5;&#x987B;&#x5728;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#x5B8C;&#x6210;&#x5B8C;&#x624D;&#x80FD;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x80FD;&#x4FDD;&#x8BC1;&#x8FD9;&#x4E2A;&#x987A;&#x5E8F;&#x52BF;&#x5FC5;&#x4F1A;&#x9020;&#x6210;&#x7A0B;&#x5E8F;&#x95EE;&#x9898;&#x3002;</p>
@@ -1371,615 +1092,107 @@ queue.maxConcurrentOperationCount = 1;
 <p><td>NSRunLoopCommonModes (Cocoa) kCFRunLoopCommonModes (Core Foundation)</td></p>
 <p><td>&#x6B64;&#x6A21;&#x5F0F;&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x201D;&#x7EC4;&#x6A21;&#x5F0F;&#x201D;&#xFF0C;&#x4E00;&#x4E2A;&#x8F93;&#x5165;&#x6E90;&#x4E0E;&#x6B64;&#x6A21;&#x5F0F;&#x5173;&#x8054;&#xFF0C;&#x5219;&#x8F93;&#x5165;&#x6E90;&#x4E0E;&#x7EC4;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6A21;&#x5F0F;&#x76F8;&#x5173;&#x8054;&#x3002;</td><br><br><br><br>&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;ASIHttpRequest&#x5728;&#x540C;&#x6B65;&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x4E86; runLoop &#x7684;&#x6A21;&#x5F0F;&#x53EB;ASIHTTPRequestRunLoopMode&#x3002;ASI&#x7684;Timer&#x6E90;&#x5C31;&#x5173;&#x8054;&#x4E86;&#x6B64;&#x6A21;&#x5F0F;&#x3002;</p>
 
-      
+  </div>
+</article>
+
+
+
     </div>
-
     
+      <div id="footer-post-container">
+  <div id="footer-post">
 
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/concurrent/" rel="tag"># concurrent</a>
-          
-            <a href="/tags/Deadlock/" rel="tag"># Deadlock</a>
-          
-            <a href="/tags/dispatch-queue/" rel="tag"># dispatch queue</a>
-          
-            <a href="/tags/dispatch-after/" rel="tag"># dispatch_after</a>
-          
-            <a href="/tags/GCD/" rel="tag"># GCD</a>
-          
-            <a href="/tags/Global-dispatch-queue/" rel="tag"># Global dispatch queue</a>
-          
-            <a href="/tags/NSOperation/" rel="tag"># NSOperation</a>
-          
-            <a href="/tags/NSThread/" rel="tag"># NSThread</a>
-          
-            <a href="/tags/serial/" rel="tag"># serial</a>
-          
-            <a href="/tags/临界区/" rel="tag"># 临界区</a>
-          
-            <a href="/tags/多线程/" rel="tag"># 多线程</a>
-          
-            <a href="/tags/死锁/" rel="tag"># 死锁</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/07/29/ios-uiresponder-of-gestures-gesture-recognition-shake-apple-fm/" rel="next" title="ios的手势操作之UIResponder、手势识别、摇晃事件、耳机线控">
-                <i class="fa fa-chevron-left"></i> ios的手势操作之UIResponder、手势识别、摇晃事件、耳机线控
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/08/01/common-error-summary/" rel="prev" title="常见错误汇总">
-                常见错误汇总 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </ul>
     </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程"><span class="toc-number">2.</span> <span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">2.1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#进程"><span class="toc-number">2.1.1.</span> <span class="toc-text">进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程"><span class="toc-number">2.1.2.</span> <span class="toc-text">线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程的串行"><span class="toc-number">2.1.3.</span> <span class="toc-text">线程的串行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程的并行"><span class="toc-number">2.1.4.</span> <span class="toc-text">多线程的并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多任务系统调度"><span class="toc-number">2.1.5.</span> <span class="toc-text">多任务系统调度</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#windows多任务"><span class="toc-number">2.1.5.1.</span> <span class="toc-text">windows多任务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程的优缺点"><span class="toc-number">2.2.</span> <span class="toc-text">多线程的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程的优点"><span class="toc-number">2.2.1.</span> <span class="toc-text">多线程的优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程的缺点"><span class="toc-number">2.2.2.</span> <span class="toc-text">多线程的缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ios中的多线程"><span class="toc-number">2.3.</span> <span class="toc-text">ios中的多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NSThread"><span class="toc-number">2.3.1.</span> <span class="toc-text">NSThread</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSOperation"><span class="toc-number">2.3.2.</span> <span class="toc-text">NSOperation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GCD"><span class="toc-number">2.3.3.</span> <span class="toc-text">GCD</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GCD-1"><span class="toc-number">3.</span> <span class="toc-text">GCD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍-1"><span class="toc-number">3.1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GCD是什么"><span class="toc-number">3.1.1.</span> <span class="toc-text">GCD是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设计"><span class="toc-number">3.1.2.</span> <span class="toc-text">设计</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#术语"><span class="toc-number">3.2.</span> <span class="toc-text">术语</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dispath-queue-调度队列"><span class="toc-number">3.2.1.</span> <span class="toc-text">dispath queue**(调度队列)**</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Serial-串行队列"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">Serial(串行队列)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Concurrent-并行队列"><span class="toc-number">3.2.1.2.</span> <span class="toc-text">Concurrent(并行队列)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Global-dispatch-queue-全局队列"><span class="toc-number">3.2.1.3.</span> <span class="toc-text">Global dispatch queue(全局队列)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Main-dispatch-queue-主队列"><span class="toc-number">3.2.1.4.</span> <span class="toc-text">Main dispatch queue(主队列)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Queue-Types-队列类型"><span class="toc-number">3.2.2.</span> <span class="toc-text">Queue Types (队列类型)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#操作-任务"><span class="toc-number">3.2.3.</span> <span class="toc-text">操作(任务)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#同步"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">同步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#异步"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">异步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#函数指针调度任务"><span class="toc-number">3.2.3.3.</span> <span class="toc-text">函数指针调度任务</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Deadlock-死锁"><span class="toc-number">3.2.4.</span> <span class="toc-text">Deadlock 死锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concurrency-vs-Parallelism-并发与并行"><span class="toc-number">3.2.5.</span> <span class="toc-text">Concurrency vs Parallelism 并发与并行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建和管理dispatch-queue-队列"><span class="toc-number">3.3.</span> <span class="toc-text">创建和管理dispatch queue(队列)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建串行Dispatch-Queue"><span class="toc-number">3.3.1.</span> <span class="toc-text">创建串行Dispatch Queue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建并行Dispatch-Queue"><span class="toc-number">3.3.2.</span> <span class="toc-text">创建并行Dispatch Queue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dispatch-sync-同步调用"><span class="toc-number">3.3.3.</span> <span class="toc-text">dispatch_sync(同步调用)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同操作及队列线程研究测试"><span class="toc-number">3.4.</span> <span class="toc-text">不同操作及队列线程研究测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主线程"><span class="toc-number">3.4.1.</span> <span class="toc-text">主线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#串行队列同步调用"><span class="toc-number">3.4.2.</span> <span class="toc-text">串行队列同步调用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#示例程序-主线程"><span class="toc-number">3.4.2.0.1.</span> <span class="toc-text">示例程序(主线程):</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#示例程序-子线程"><span class="toc-number">3.4.2.0.2.</span> <span class="toc-text">示例程序(子线程):</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#performSelector"><span class="toc-number">3.4.2.1.</span> <span class="toc-text">performSelector</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调度-队列-组"><span class="toc-number">3.4.3.</span> <span class="toc-text">调度(队列)组</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#手动管理运行状态（或计数）"><span class="toc-number">3.4.3.1.</span> <span class="toc-text">手动管理运行状态（或计数）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法"><span class="toc-number">3.4.3.2.</span> <span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSInvocationOperation"><span class="toc-number">3.4.4.</span> <span class="toc-text">NSInvocationOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#start"><span class="toc-number">3.4.4.1.</span> <span class="toc-text">start</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#添加到队列"><span class="toc-number">3.4.4.2.</span> <span class="toc-text">添加到队列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#添加多个操作"><span class="toc-number">3.4.4.3.</span> <span class="toc-text">添加多个操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#结论"><span class="toc-number">3.4.4.4.</span> <span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSBlockOperation"><span class="toc-number">3.4.5.</span> <span class="toc-text">NSBlockOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#将任务添加到操作"><span class="toc-number">3.4.5.1.</span> <span class="toc-text">将任务添加到操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#向队列中添加不同的操作"><span class="toc-number">3.4.5.2.</span> <span class="toc-text">向队列中添加不同的操作</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSOperation依赖关系"><span class="toc-number">3.4.6.</span> <span class="toc-text">NSOperation依赖关系</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#示例代码"><span class="toc-number">3.4.6.1.</span> <span class="toc-text">示例代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#输出结果"><span class="toc-number">3.4.6.2.</span> <span class="toc-text">输出结果</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他方法"><span class="toc-number">3.4.7.</span> <span class="toc-text">其他方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Initialization"><span class="toc-number">3.4.7.1.</span> <span class="toc-text">Initialization</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Executing-the-Operation"><span class="toc-number">3.4.7.2.</span> <span class="toc-text">Executing the Operation</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Waiting-for-Completion"><span class="toc-number">3.4.7.3.</span> <span class="toc-text">Waiting for Completion</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#队列中Operations的执行顺序"><span class="toc-number">3.4.8.</span> <span class="toc-text">队列中Operations的执行顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最大并发操作数量"><span class="toc-number">3.4.9.</span> <span class="toc-text">最大并发操作数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局队列"><span class="toc-number">3.4.10.</span> <span class="toc-text">全局队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#暂停和继续"><span class="toc-number">3.4.11.</span> <span class="toc-text">暂停和继续</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#挂起和回复队列"><span class="toc-number">3.4.12.</span> <span class="toc-text">挂起和回复队列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消Operations"><span class="toc-number">3.5.</span> <span class="toc-text">取消Operations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码-1"><span class="toc-number">3.5.1.</span> <span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#等待Options完成"><span class="toc-number">3.6.</span> <span class="toc-text">等待Options完成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发建议"><span class="toc-number">3.7.</span> <span class="toc-text">开发建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSOperation-VS-GCD"><span class="toc-number">4.</span> <span class="toc-text">NSOperation.VS.GCD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RunLoop"><span class="toc-number">5.</span> <span class="toc-text">RunLoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是RunLoop"><span class="toc-number">5.1.</span> <span class="toc-text">什么是RunLoop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件源"><span class="toc-number">5.2.</span> <span class="toc-text">事件源</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NSPort-基于端口的源"><span class="toc-number">5.2.1.</span> <span class="toc-text">NSPort 基于端口的源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义输入源"><span class="toc-number">5.2.2.</span> <span class="toc-text">自定义输入源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#performSelector-OnThread"><span class="toc-number">5.2.3.</span> <span class="toc-text">performSelector:OnThread</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定时源"><span class="toc-number">5.2.4.</span> <span class="toc-text">定时源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RunLoop观察者"><span class="toc-number">5.3.</span> <span class="toc-text">RunLoop观察者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-Loop-Modes"><span class="toc-number">5.4.</span> <span class="toc-text">Run Loop Modes</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&text=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&is_video=false&description=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ios多线程之NSThread,GCD,NSOperation以及线程同步&body=Check out this article: http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&title=ios多线程之NSThread,GCD,NSOperation以及线程同步"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/31/ios-multi-thread-nsthreadgcdnsoperation-and-thread-synchronization/&name=ios多线程之NSThread,GCD,NSOperation以及线程同步&description=&lt;h2 id=&quot;&amp;#x6982;&amp;#x8FF0;&quot;&gt;&lt;a href=&quot;#&amp;#x6982;&amp;#x8FF0;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x6982;&amp;#x8FF0;&quot;&gt;&lt;/a&gt;&amp;#x6982;&amp;#x8FF0;&lt;/h2&gt;&lt;p&gt;&amp;#x5927;&amp;#x5BB6;&amp;#x90FD;&amp;#x77E5;&amp;#x9053;,&amp;#x6211;&amp;#x4EEC;&amp;#x5728;&amp;#x5F88;&amp;#x591A;app&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x4E2D;&amp;#x5F88;&amp;#x5173;&amp;#x6CE8;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F53;&amp;#x9A8C;&amp;#x5C31;&amp;#x662F;app&amp;#x7684;&amp;#x6D41;&amp;#x7545;&amp;#x6027;&amp;#x4EE5;&amp;#x53CA;&amp;#x7528;&amp;#x6237;&amp;#x7B49;&amp;#x5F85;&amp;#x65F6;&amp;#x95F4;.&amp;#x800C;&amp;#x8FD9;&amp;#x4E24;&amp;#x70B9;&amp;#x5176;&amp;#x5B9E;&amp;#x6700;&amp;#x6839;&amp;#x672C;&amp;#x5C31;&amp;#x7684;&amp;#x5C31;&amp;#x662F;&amp;#x8BA9;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5DF2;&amp;#x6700;&amp;#x5C11;&amp;#x7684;&amp;#x65F6;&amp;#x95F4;&amp;#x5B8C;&amp;#x6210;&amp;#x8FD0;&amp;#x7B97;.&amp;#x65E0;&amp;#x8BBA;&amp;#x662F;&amp;#x54EA;&amp;#x79CD;&amp;#x8BED;&amp;#x8A00;&amp;#x5F00;&amp;#x53D1;&amp;#x7684;&amp;#x7A0B;&amp;#x5E8F;&amp;#x6700;&amp;#x7EC8;&amp;#x5F80;&amp;#x5F80;&amp;#x8F6C;&amp;#x6362;&amp;#x6210;&amp;#x6C47;&amp;#x7F16;&amp;#x8BED;&amp;#x8A00;&amp;#x8FDB;&amp;#x800C;&amp;#x89E3;&amp;#x91CA;&amp;#x6210;&amp;#x673A;&amp;#x5668;&amp;#x7801;&amp;#x6765;&amp;#x6267;&amp;#x884C;.&amp;#x4F46;&amp;#x662F;&amp;#x673A;&amp;#x5668;&amp;#x7801;&amp;#x662F;&amp;#x6309;&amp;#x987A;&amp;#x5E8F;&amp;#x6267;&amp;#x884C;&amp;#x7684;,&amp;#x4E00;&amp;#x4E2A;&amp;#x590D;&amp;#x6742;&amp;#x7684;&amp;#x591A;&amp;#x6B65;&amp;#x64CD;&amp;#x4F5C;&amp;#x53EA;&amp;#x80FD;&amp;#x4E00;&amp;#x6B65;&amp;#x6B65;&amp;#x6309;&amp;#x987A;&amp;#x5E8F;&amp;#x9010;&amp;#x4E2A;&amp;#x6267;&amp;#x884C;.&amp;#x6240;&amp;#x4EE5;&amp;#x6211;&amp;#x4EEC;&amp;#x5C31;&amp;#x4F1A;&amp;#x5F15;&amp;#x5165;&amp;#x8FD9;&amp;#x4E2A;&amp;#x7EBF;&amp;#x7A0B;&amp;#x6280;&amp;#x672F;.&amp;#x7136;&amp;#x540E;&amp;#x8FD9;&amp;#x91CC;&amp;#x521D;&amp;#x5B66;&amp;#x8005;&amp;#x5F88;&amp;#x5BB9;&amp;#x6613;&amp;#x6709;&amp;#x4E00;&amp;#x4E2A;&amp;#x8BEF;&amp;#x533A;&amp;#x662F;:(&amp;#x201C;&lt;strong&gt;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&amp;#x6280;&amp;#x672F;&amp;#x4F1A;&amp;#x63D0;&amp;#x9AD8;&amp;#x5355;&amp;#x4E2A;&amp;#x7B97;&amp;#x6CD5;&amp;#x672C;&amp;#x8EAB;&amp;#x7684;&amp;#x6267;&amp;#x884C;&amp;#x6548;&amp;#x7387;&lt;/strong&gt;.&amp;#x201D;&amp;#x8FD9;&amp;#x662F;&amp;#x975E;&amp;#x5E38;&amp;#x4E25;&amp;#x91CD;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&lt;span style=&quot;color: #ff0000;&quot;&gt;&lt;strong&gt;&amp;#x9519;&amp;#x8BEF;&lt;/strong&gt;.&lt;span style=&quot;color: #000000;&quot;&gt;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&amp;#x6280;&amp;#x672F;&amp;#x5E76;&amp;#x4E0D;&amp;#x4F1A;&amp;#x548C;&amp;#x7A0B;&amp;#x5E8F;&amp;#x672C;&amp;#x8EAB;&amp;#x7684;&amp;#x6267;&amp;#x884C;&amp;#x6548;&amp;#x7387;&amp;#x6709;&amp;#x5173;&amp;#x7CFB;,&amp;#x53EA;&amp;#x662F;&amp;#x5C06;&amp;#x4E00;&amp;#x4E9B;&amp;#x8017;&amp;#x65F6;&amp;#x7684;&amp;#x4EFB;&amp;#x52A1;&amp;#x5206;&amp;#x914D;&amp;#x5230;&amp;#x5176;&amp;#x4ED6;&amp;#x7EBF;&amp;#x7A0B;&amp;#x6267;&amp;#x884C;,&amp;#x8FDB;&amp;#x884C;&amp;#x4E00;&amp;#x4E2A;&amp;#x201D;&amp;#x5E76;&amp;#x884C;&amp;#x201D;&amp;#x8FD0;&amp;#x7B97;&lt;/span&gt;&lt;/span&gt;).&amp;#x5BF9;&amp;#x4E8E;&amp;#x5355;&amp;#x6838;&amp;#x5904;&amp;#x7406;&amp;#x5668;,&amp;#x53EF;&amp;#x4EE5;&amp;#x5C06;&amp;#x591A;&amp;#x4E2A;&amp;#x6B65;&amp;#x9AA4;&amp;#x653E;&amp;#x5230;&amp;#x4E0D;&amp;#x540C;&amp;#x7684;&amp;#x7EBF;&amp;#x7A0B;,&amp;#x8FD9;&amp;#x6837;&amp;#x4E00;&amp;#x6765;&amp;#x7528;&amp;#x6237;&amp;#x5B8C;&amp;#x6210;UI&amp;#x64CD;&amp;#x4F5C;&amp;#x540E;&amp;#x5176;&amp;#x4ED6;&amp;#x540E;&amp;#x7EED;&amp;#x4EFB;&amp;#x52A1;&amp;#x5728;&amp;#x5176;&amp;#x4ED6;&amp;#x7EBF;&amp;#x7A0B;&amp;#x4E2D;,&amp;#x5F53;CPU&amp;#x7A7A;&amp;#x95F2;&amp;#x65F6;&amp;#x4F1A;&amp;#x7EE7;&amp;#x7EED;&amp;#x6267;&amp;#x884C;,&amp;#x800C;&amp;#x6B64;&amp;#x65F6;&amp;#x5BF9;&amp;#x4E8E;&amp;#x7528;&amp;#x6237;&amp;#x800C;&amp;#x8A00;&amp;#x53EF;&amp;#x4EE5;&amp;#x7EE7;&amp;#x7EED;&amp;#x8FDB;&amp;#x884C;&amp;#x5176;&amp;#x4ED6;&amp;#x64CD;&amp;#x4F5C;;&amp;#x5BF9;&amp;#x4E8E;&amp;#x591A;&amp;#x6838;&amp;#x5904;&amp;#x7406;&amp;#x5668;,&amp;#x5982;&amp;#x679C;&amp;#x7528;&amp;#x6237;&amp;#x5728;UI&amp;#x7EBF;&amp;#x7A0B;&amp;#x4E2D;&amp;#x5B8C;&amp;#x6210;&amp;#x67D0;&amp;#x4E2A;&amp;#x64CD;&amp;#x4F5C;&amp;#x4E4B;&amp;#x540E;,&amp;#x5176;&amp;#x4ED6;&amp;#x540E;&amp;#x7EED;&amp;#x64CD;&amp;#x4F5C;&amp;#x5728;&amp;#x522B;&amp;#x7684;&amp;#x7EBF;&amp;#x7A0B;&amp;#x4E2D;&amp;#x7EE7;&amp;#x7EED;&amp;#x6267;&amp;#x884C;,&amp;#x7528;&amp;#x6237;&amp;#x540C;&amp;#x6837;&amp;#x53EF;&amp;#x4EE5;&amp;#x7EE7;&amp;#x7EED;&amp;#x8FDB;&amp;#x884C;&amp;#x5176;&amp;#x4ED6;UI&amp;#x64CD;&amp;#x4F5C;,&amp;#x4E0E;&amp;#x6B64;&amp;#x540C;&amp;#x65F6;&amp;#x524D;&amp;#x4E00;&amp;#x4E2A;&amp;#x64CD;&amp;#x4F5C;&amp;#x7684;&amp;#x540E;&amp;#x7EED;&amp;#x4EFB;&amp;#x52A1;&amp;#x53EF;&amp;#x4EE5;&amp;#x5206;&amp;#x6563;&amp;#x5230;&amp;#x591A;&amp;#x4E2A;&amp;#x7A7A;&amp;#x95F2;CPU&amp;#x4E2D;&amp;#x7EE7;&amp;#x7EED;&amp;#x6267;&amp;#x884C;&amp;#xFF08;&amp;#x5F53;&amp;#x7136;&amp;#x5177;&amp;#x4F53;&amp;#x8C03;&amp;#x5EA6;&amp;#x987A;&amp;#x5E8F;&amp;#x8981;&amp;#x6839;&amp;#x636E;&amp;#x7A0B;&amp;#x5E8F;&amp;#x8BBE;&amp;#x8BA1;&amp;#x800C;&amp;#x5B9A;&amp;#xFF09;,&amp;#x65E2;&amp;#x89E3;&amp;#x51B3;&amp;#x4E86;&amp;#x7EBF;&amp;#x7A0B;&amp;#x963B;&amp;#x585E;&amp;#x53C8;&amp;#x63D0;&amp;#x9AD8;&amp;#x4E86;&amp;#x8FD0;&amp;#x884C;&amp;#x6548;&amp;#x7387;.&amp;#x82F9;&amp;#x679C;&amp;#x4ECE;iPad2 &amp;#x5F00;&amp;#x59CB;&amp;#x4F7F;&amp;#x7528;&amp;#x53CC;&amp;#x6838;A5&amp;#x5904;&amp;#x7406;&amp;#x5668;(iPhone&amp;#x4E2D;&amp;#x4ECE;iPhone 4S&amp;#x5F00;&amp;#x59CB;&amp;#x4F7F;&amp;#x7528;),A7&amp;#x4E2D;&amp;#x8FD8;&amp;#x52A0;&amp;#x5165;&amp;#x4E86;&amp;#x534F;&amp;#x5904;&amp;#x7406;&amp;#x5668;&amp;#xFF0C;&amp;#x5982;&amp;#x4F55;&amp;#x5145;&amp;#x5206;&amp;#x53D1;&amp;#x6325;&amp;#x8FD9;&amp;#x4E9B;&amp;#x5904;&amp;#x7406;&amp;#x5668;&amp;#x7684;&amp;#x6027;&amp;#x80FD;&amp;#x786E;&amp;#x5B9E;&amp;#x503C;&amp;#x5F97;&amp;#x601D;&amp;#x8003;.&lt;/p&gt;
+&lt;h2 id=&quot;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&quot;&gt;&lt;a href=&quot;#&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&quot;&gt;&lt;/a&gt;&amp;#x591A;&amp;#x7EBF;&amp;#x7A0B;&lt;/h2&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">BirdMichael</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">64</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">24</span>
-                    <span class="site-state-item-name">分类</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">85</span>
-                    <span class="site-state-item-name">标签</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">2.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">2.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程"><span class="nav-number">2.1.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程"><span class="nav-number">2.1.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的串行"><span class="nav-number">2.1.3.</span> <span class="nav-text">线程的串行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程的并行"><span class="nav-number">2.1.4.</span> <span class="nav-text">多线程的并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多任务系统调度"><span class="nav-number">2.1.5.</span> <span class="nav-text">多任务系统调度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#windows多任务"><span class="nav-number">2.1.5.1.</span> <span class="nav-text">windows多任务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程的优缺点"><span class="nav-number">2.2.</span> <span class="nav-text">多线程的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程的优点"><span class="nav-number">2.2.1.</span> <span class="nav-text">多线程的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程的缺点"><span class="nav-number">2.2.2.</span> <span class="nav-text">多线程的缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios中的多线程"><span class="nav-number">2.3.</span> <span class="nav-text">ios中的多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NSThread"><span class="nav-number">2.3.1.</span> <span class="nav-text">NSThread</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSOperation"><span class="nav-number">2.3.2.</span> <span class="nav-text">NSOperation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD"><span class="nav-number">2.3.3.</span> <span class="nav-text">GCD</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD-1"><span class="nav-number">3.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-1"><span class="nav-number">3.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD是什么"><span class="nav-number">3.1.1.</span> <span class="nav-text">GCD是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计"><span class="nav-number">3.1.2.</span> <span class="nav-text">设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#术语"><span class="nav-number">3.2.</span> <span class="nav-text">术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dispath-queue-调度队列"><span class="nav-number">3.2.1.</span> <span class="nav-text">dispath queue**(调度队列)**</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Serial-串行队列"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">Serial(串行队列)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Concurrent-并行队列"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">Concurrent(并行队列)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Global-dispatch-queue-全局队列"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">Global dispatch queue(全局队列)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Main-dispatch-queue-主队列"><span class="nav-number">3.2.1.4.</span> <span class="nav-text">Main dispatch queue(主队列)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Queue-Types-队列类型"><span class="nav-number">3.2.2.</span> <span class="nav-text">Queue Types (队列类型)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作-任务"><span class="nav-number">3.2.3.</span> <span class="nav-text">操作(任务)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#同步"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异步"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数指针调度任务"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">函数指针调度任务</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deadlock-死锁"><span class="nav-number">3.2.4.</span> <span class="nav-text">Deadlock 死锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Concurrency-vs-Parallelism-并发与并行"><span class="nav-number">3.2.5.</span> <span class="nav-text">Concurrency vs Parallelism 并发与并行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建和管理dispatch-queue-队列"><span class="nav-number">3.3.</span> <span class="nav-text">创建和管理dispatch queue(队列)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建串行Dispatch-Queue"><span class="nav-number">3.3.1.</span> <span class="nav-text">创建串行Dispatch Queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建并行Dispatch-Queue"><span class="nav-number">3.3.2.</span> <span class="nav-text">创建并行Dispatch Queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dispatch-sync-同步调用"><span class="nav-number">3.3.3.</span> <span class="nav-text">dispatch_sync(同步调用)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同操作及队列线程研究测试"><span class="nav-number">3.4.</span> <span class="nav-text">不同操作及队列线程研究测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主线程"><span class="nav-number">3.4.1.</span> <span class="nav-text">主线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#串行队列同步调用"><span class="nav-number">3.4.2.</span> <span class="nav-text">串行队列同步调用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#示例程序-主线程"><span class="nav-number">3.4.2.0.1.</span> <span class="nav-text">示例程序(主线程):</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#示例程序-子线程"><span class="nav-number">3.4.2.0.2.</span> <span class="nav-text">示例程序(子线程):</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#performSelector"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">performSelector</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调度-队列-组"><span class="nav-number">3.4.3.</span> <span class="nav-text">调度(队列)组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#手动管理运行状态（或计数）"><span class="nav-number">3.4.3.1.</span> <span class="nav-text">手动管理运行状态（或计数）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法"><span class="nav-number">3.4.3.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSInvocationOperation"><span class="nav-number">3.4.4.</span> <span class="nav-text">NSInvocationOperation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#start"><span class="nav-number">3.4.4.1.</span> <span class="nav-text">start</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加到队列"><span class="nav-number">3.4.4.2.</span> <span class="nav-text">添加到队列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加多个操作"><span class="nav-number">3.4.4.3.</span> <span class="nav-text">添加多个操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结论"><span class="nav-number">3.4.4.4.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSBlockOperation"><span class="nav-number">3.4.5.</span> <span class="nav-text">NSBlockOperation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将任务添加到操作"><span class="nav-number">3.4.5.1.</span> <span class="nav-text">将任务添加到操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#向队列中添加不同的操作"><span class="nav-number">3.4.5.2.</span> <span class="nav-text">向队列中添加不同的操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSOperation依赖关系"><span class="nav-number">3.4.6.</span> <span class="nav-text">NSOperation依赖关系</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#示例代码"><span class="nav-number">3.4.6.1.</span> <span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出结果"><span class="nav-number">3.4.6.2.</span> <span class="nav-text">输出结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他方法"><span class="nav-number">3.4.7.</span> <span class="nav-text">其他方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Initialization"><span class="nav-number">3.4.7.1.</span> <span class="nav-text">Initialization</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Executing-the-Operation"><span class="nav-number">3.4.7.2.</span> <span class="nav-text">Executing the Operation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting-for-Completion"><span class="nav-number">3.4.7.3.</span> <span class="nav-text">Waiting for Completion</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列中Operations的执行顺序"><span class="nav-number">3.4.8.</span> <span class="nav-text">队列中Operations的执行顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最大并发操作数量"><span class="nav-number">3.4.9.</span> <span class="nav-text">最大并发操作数量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局队列"><span class="nav-number">3.4.10.</span> <span class="nav-text">全局队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#暂停和继续"><span class="nav-number">3.4.11.</span> <span class="nav-text">暂停和继续</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂起和回复队列"><span class="nav-number">3.4.12.</span> <span class="nav-text">挂起和回复队列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消Operations"><span class="nav-number">3.5.</span> <span class="nav-text">取消Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例代码-1"><span class="nav-number">3.5.1.</span> <span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待Options完成"><span class="nav-number">3.6.</span> <span class="nav-text">等待Options完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发建议"><span class="nav-number">3.7.</span> <span class="nav-text">开发建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSOperation-VS-GCD"><span class="nav-number">4.</span> <span class="nav-text">NSOperation.VS.GCD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RunLoop"><span class="nav-number">5.</span> <span class="nav-text">RunLoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是RunLoop"><span class="nav-number">5.1.</span> <span class="nav-text">什么是RunLoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件源"><span class="nav-number">5.2.</span> <span class="nav-text">事件源</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NSPort-基于端口的源"><span class="nav-number">5.2.1.</span> <span class="nav-text">NSPort 基于端口的源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义输入源"><span class="nav-number">5.2.2.</span> <span class="nav-text">自定义输入源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#performSelector-OnThread"><span class="nav-number">5.2.3.</span> <span class="nav-text">performSelector:OnThread</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定时源"><span class="nav-number">5.2.4.</span> <span class="nav-text">定时源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop观察者"><span class="nav-number">5.3.</span> <span class="nav-text">RunLoop观察者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-Loop-Modes"><span class="nav-number">5.4.</span> <span class="nav-text">Run Loop Modes</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
-
-  
-
-  
 </div>
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-	
-    
-
-    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+

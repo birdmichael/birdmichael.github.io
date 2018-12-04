@@ -1,114 +1,12 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="&amp;#x4E00;&amp;#x4E9B;&amp;#x5F88;&amp;#x597D;&amp;#x7684;&amp;#x7F51;&amp;#x7AD9;&amp;#x548C;&amp;#x535A;&amp;#x5BA2;&amp;#xFF0C;&amp;#x73B0;&amp;#x5728;&amp;#x6458;&amp;#x5F55;&amp;#x4E0B;&amp;#x6765;&amp;#xFF0C;&amp;#x5C31;&amp;#x5F53;&amp;#x5EFA;&amp;#x4E2A;&amp;#x7D22;&amp;#x5F15;&amp;#xFF0C;">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="&amp;#x4E00;&amp;#x4E9B;&amp;#x5F88;&amp;#x597D;&amp;#x7684;&amp;#x7F51;&amp;#x7AD9;&amp;#x548C;&amp;#x535A;&amp;#x5BA2;&amp;#xFF0C;&amp;#x73B0;&amp;#x5728;&amp;#x6458;&amp;#x5F55;&amp;#x4E0B;&amp;#x6765;&amp;#xFF0C;&amp;#x5C31;&amp;#x5F53;&amp;#x5EFA;&amp;#x4E2A;&amp;#x7D22;&amp;#x5F15;&amp;#xFF0C;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发博客及资源">
 <meta property="og:url" content="http://yoursite.com/2016/01/19/ios-development-blog/index.html">
@@ -119,298 +17,122 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发博客及资源">
 <meta name="twitter:description" content="&amp;#x4E00;&amp;#x4E9B;&amp;#x5F88;&amp;#x597D;&amp;#x7684;&amp;#x7F51;&amp;#x7AD9;&amp;#x548C;&amp;#x535A;&amp;#x5BA2;&amp;#xFF0C;&amp;#x73B0;&amp;#x5728;&amp;#x6458;&amp;#x5F55;&amp;#x4E0B;&amp;#x6765;&amp;#xFF0C;&amp;#x5C31;&amp;#x5F53;&amp;#x5EFA;&amp;#x4E2A;&amp;#x7D22;&amp;#x5F15;&amp;#xFF0C;">
-
-
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2016/01/19/ios-development-blog/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>iOS开发博客及资源 | BirdMichael</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>iOS开发博客及资源</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
+<body>
     
-  
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/05/05/common-ios-development-technologies-uiwebview-js-filter-specifying-content/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/01/10/e6-95-b0-e6-8d-ae-e5-ba-93-e5-ad-98-e5-8f-96-e6-95-b0-e6-8d-ae/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/01/19/ios-development-blog/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/01/19/ios-development-blog/&text=iOS开发博客及资源"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/01/19/ios-development-blog/&is_video=false&description=iOS开发博客及资源"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS开发博客及资源&body=Check out this article: http://yoursite.com/2016/01/19/ios-development-blog/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/01/19/ios-development-blog/&name=iOS开发博客及资源&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">BirdMichael</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
     </div>
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#博客类："><span class="toc-number">1.</span> <span class="toc-text">博客类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#综合类："><span class="toc-number">2.</span> <span class="toc-text">综合类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#架构："><span class="toc-number">3.</span> <span class="toc-text">架构：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化："><span class="toc-number">4.</span> <span class="toc-text">优化：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xib-amp-autolayout："><span class="toc-number">5.</span> <span class="toc-text">xib&amp;autolayout：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UI向"><span class="toc-number">6.</span> <span class="toc-text">UI向:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webView"><span class="toc-number">7.</span> <span class="toc-text">webView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单元测试"><span class="toc-number">8.</span> <span class="toc-text">单元测试:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图文混排"><span class="toc-number">9.</span> <span class="toc-text">图文混排</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络"><span class="toc-number">10.</span> <span class="toc-text">网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据持久"><span class="toc-number">11.</span> <span class="toc-text">数据持久</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程"><span class="toc-number">12.</span> <span class="toc-text">多线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runtime"><span class="toc-number">13.</span> <span class="toc-text">Runtime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#细节向"><span class="toc-number">14.</span> <span class="toc-text">细节向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">15.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#猎奇向"><span class="toc-number">16.</span> <span class="toc-text">猎奇向</span></a></li></ol>
+    </div>
+  </span>
 </div>
 
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        iOS开发博客及资源
+    </h1>
 
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+    <div class="postdate">
+        <time datetime="2016-01-19T08:16:42.000Z" itemprop="datePublished">2016-01-19</time>
+    </div>
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-
-  </li>
 
       
-      
-    </ul>
+
+    </div>
+  </header>
   
 
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/19/ios-development-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="BirdMichael">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BirdMichael">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">iOS开发博客及资源
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-01-19 16:16:42" itemprop="dateCreated datePublished" datetime="2016-01-19T16:16:42+08:00">2016-01-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2016-07-25 14:30:02" itemprop="dateModified" datetime="2016-07-25T14:30:02+08:00">2016-07-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>&#x4E00;&#x4E9B;&#x5F88;&#x597D;&#x7684;&#x7F51;&#x7AD9;&#x548C;&#x535A;&#x5BA2;&#xFF0C;&#x73B0;&#x5728;&#x6458;&#x5F55;&#x4E0B;&#x6765;&#xFF0C;&#x5C31;&#x5F53;&#x5EFA;&#x4E2A;&#x7D22;&#x5F15;&#xFF0C;&#x6CA1;&#x4E8B;&#x7684;&#x65F6;&#x5019;&#x6765;&#x559D;&#x676F;&#x8336;&#xFF0C;&#x5B66;&#x70B9;&#x6280;&#x672F;&#xFF0C;&#x63D0;&#x9AD8;&#x4E0B;&#x81EA;&#x5DF1;&#x3002;</p>
+  <div class="content" itemprop="articleBody">
+    <p>&#x4E00;&#x4E9B;&#x5F88;&#x597D;&#x7684;&#x7F51;&#x7AD9;&#x548C;&#x535A;&#x5BA2;&#xFF0C;&#x73B0;&#x5728;&#x6458;&#x5F55;&#x4E0B;&#x6765;&#xFF0C;&#x5C31;&#x5F53;&#x5EFA;&#x4E2A;&#x7D22;&#x5F15;&#xFF0C;&#x6CA1;&#x4E8B;&#x7684;&#x65F6;&#x5019;&#x6765;&#x559D;&#x676F;&#x8336;&#xFF0C;&#x5B66;&#x70B9;&#x6280;&#x672F;&#xFF0C;&#x63D0;&#x9AD8;&#x4E0B;&#x81EA;&#x5DF1;&#x3002;</p>
 <h3 id="&#x535A;&#x5BA2;&#x7C7B;&#xFF1A;"><a href="#&#x535A;&#x5BA2;&#x7C7B;&#xFF1A;" class="headerlink" title="&#x535A;&#x5BA2;&#x7C7B;&#xFF1A;"></a>&#x535A;&#x5BA2;&#x7C7B;&#xFF1A;</h3><p>1.iOS&#x7684;&#x9EA6;&#x52A0;&#x5723;&#x5730;<br><a href="https://developer.apple.com/devcenter/ios/index.action" target="_blank" rel="noopener">iOS Dev Center</a><br>2.CS193p&#xFF0C;&#x89C6;&#x9891;&#x5B66;&#x4E60;&#x7684;&#x9996;&#x9009;&#x6559;&#x7A0B;<br><a href="http://www.stanford.edu/class/cs193p/cgi-bin/drupal/" target="_blank" rel="noopener">CS193p iPhone Application Development</a><br>3.&#x82F1;&#x6587;&#x5B66;&#x4E60;&#x7F51;&#x7AD9;<br><a href="http://www.google.com/" target="_blank" rel="noopener">Google</a> (&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x627E;&#x8C37;&#x6B4C;)<br><a href="https://github.com/" target="_blank" rel="noopener">Github</a> (&#x6E90;&#x7801;&#xFF0C;&#x76F4;&#x89C2;&#x4E14;&#x6613;&#x5B66;)<br><a href="http://stackoverflow.com/" target="_blank" rel="noopener">Stackoverflow</a> (&#x4F60;&#x9047;&#x5230;&#x7684;&#x7A0B;&#x5E8F;&#x95EE;&#x9898;&#xFF0C;&#x57FA;&#x672C;&#x90FD;&#x5728;&#x8FD9;&#x91CC;)<br><a href="http://www.raywenderlich.com/" target="_blank" rel="noopener">Raywenderlich</a> (&#x5899;&#x88C2;&#x63A8;&#x8350;@.@)<br><a href="http://www.objc.io/" target="_blank" rel="noopener">objc.io</a> (&#x6DF1;&#x5EA6;&#x89E3;&#x8BFB;Objective-C)<br><a href="http://nshipster.com/" target="_blank" rel="noopener">NSHipster</a> (a journal of the overlooked bits in Objective-C and Cocoa.)<br><a href="http://www.thinkandbuild.it/" target="_blank" rel="noopener">Think&amp;Build</a> (Tutorials about OS X,iOS and web development)<br>4.&#x4E2D;&#x6587;&#x535A;&#x5BA2;(&#x5927;&#x591A;&#x4E3A;&#x5FAE;&#x535A;&#x5927;&#x725B;&#x7684;&#x535A;&#x5BA2;)<br><a href="http://blog.devtang.com/" target="_blank" rel="noopener">&#x5510;&#x5DE7;&#x7684;&#x6280;&#x672F;&#x535A;&#x5BA2;</a> (&#x62E5;&#x6709;&#x6DF1;&#x539A;&#x529F;&#x529B;&#x8005;,&#x4EAC;&#x57CE;iOS&#x4E00;&#x54E5;@&#x5510;&#x5DE7;)<br><a href="http://beyondvincent.com/" target="_blank" rel="noopener">&#x7834;&#x8239;&#x4E4B;&#x5BB6;</a> (iOS&#x6587;&#x7AE0;&#x7EDD;&#x5BF9;&#x9AD8;&#x4EA7;&#x8005;&#xFF0C;&#x636E;&#x8BF4;&#x8DD1;&#x8D77;&#x9A6C;&#x62C9;&#x677E;&#x4E5F;&#x662F;&#x5728;&#x7A0B;&#x5E8F;&#x5458;&#x4E2D;&#x9996;&#x5C48;&#x4E00;&#x6307;@BeyondVincent)<br><a href="http://onevcat.com/" target="_blank" rel="noopener">OneV&#x2019;s Den</a> (&#x55B5;&#x795E;,&#x9690;&#x5C45;&#x6A31;&#x82B1;&#x4E4B;&#x56FD;&#xFF0C;&#x8EAC;&#x8015;&#x4E8E;&#x4E0A;&#x4E58;&#x6E38;&#x620F;&#x4E4B;&#x4F5C;@onevcat)<br><a href="http://blog.t-xx.me/" target="_blank" rel="noopener">txx&#x2019;s blog</a> (&#x867E;&#x795E;&#xFF0C;&#x51FA;&#x4EFB;&#x4E0A;&#x5E02;CTO&#x4E0D;&#x662F;&#x68A6;@&#x7CD6;&#x7092;&#x5C0F;&#x867E;_txx)<br><a href="http://iosinit.com/" target="_blank" rel="noopener">iOS init</a> (&#x5982;&#x679C;&#x4F60;&#x5BF9;objc.io&#x7684;&#x6587;&#x7AE0;&#x60C5;&#x6709;&#x72EC;&#x949F;&#xFF0C;Come here@&#x65B9;&#x4E00;&#x96C4;)<br><a href="http://www.ios-wiki.com/" target="_blank" rel="noopener">iOS Wiki</a> (iOS&#x8D44;&#x8BAF;&#x671F;&#x520A; @&#x5434;&#x53D1;&#x4F1F;Ted)<br><a href="http://yingkong1987.github.io/" target="_blank" rel="noopener">yingkong1987 iOS Dev Blog</a> (&#x7ED9;&#x6211;&#x5F88;&#x591A;&#x5E2E;&#x52A9;&#x7684;&#x5154;&#x5B50;@&#x5154;be&#x5357;&#x73BB;1)<br><a href="http://blog.xcodev.com/" target="_blank" rel="noopener">Xcode Dev</a> (&#x8D44;&#x6DF1;iOS&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;@&#x8C0C;&#x542F;&#x4EAE;)<br><a href="http://www.isaced.com/" target="_blank" rel="noopener">isaced</a> (iOS Programmer@isaced)<br><a href="http://answerhuang.duapp.com/" target="_blank" rel="noopener">answer_huang</a> (iOS developer, Python fans@answer-huang)<br><a href="http://blog.cocoabit.com/" target="_blank" rel="noopener">Cocoabit</a> (iOS &#x7801;&#x519C;&#xFF0C;&#x653B;&#x57CE;&#x72EE;&#x3002;&#x559C;&#x6B22;&#x5404;&#x79CD;&#x6709;&#x610F;&#x601D;&#x7684;&#x4E1C;&#x897F;&#x3002;@6david9)<br><a href="http://geeklu.com/" target="_blank" rel="noopener">Luke&#x2019;s Homepage|&#x5362;&#x514B;</a> (Mac&#xFF0C;iOS&#x5F00;&#x53D1;@&#x5362;&#x5C0F;&#x514B;)<br><a href="http://blog.csdn.net/ysy441088327" target="_blank" rel="noopener">&#x4F59;&#x4E66;&#x61FF;</a> (&#x4EE3;&#x8868;&#x4F5C;:&lt;&#x8C46;&#x8C46;&#x97F3;&#x4E50;&gt; @&#x4F59;&#x4E66;&#x61FF;)<br><a href="http://wangling.me/" target="_blank" rel="noopener">Creator of moke</a> (Creator of &#x58A8;&#x5BA2;(moke.com) and Voodo(moke.com/voodo)@an00na)<br><a href="http://iiiyu.com/" target="_blank" rel="noopener">&#x8427;&#x5BB8;&#x5B87;</a> (&#x6CE8;&#x5B9A;&#x6F02;&#x6CCA;&#x7684;&#x4EBA;@Sumi-iYu)<br><a href="http://webfrogs.me/" target="_blank" rel="noopener">webfrogs&#x2019; Homepage</a> (iOS&#x5F00;&#x53D1;&#xFF0C;&#x5F00;&#x6E90;&#x7231;&#x597D;&#x8005; @webfrogs)<br><a href="http://esoftmobile.com/" target="_blank" rel="noopener">Esoft Mobile</a> (iOS&#x5F00;&#x53D1;&#x8005; esoftmobile.com @TracyYih)<br><a href="http://blog.leezhong.com/" target="_blank" rel="noopener">&#x65E0;&#x7F51;&#x4E0D;&#x5269;</a> (iOS&#x5F00;&#x53D1;@&#x674E;&#x5FE0;)</p>
 <p><a href="http://blog.cnbluebox.com/" target="_blank" rel="noopener">IOS &#x5F00;&#x53D1;&#x8005;&#xFF0C;&#x73B0;&#x5C31;&#x804C;&#x4E8E;&#x676D;&#x5DDE;&#x963F;&#x91CC;</a></p>
 <p><a href="http://blog.ibireme.com/" target="_blank" rel="noopener">ibireme&#x5927;&#x795E;</a></p>
@@ -430,587 +152,106 @@
 <h3 id="&#x5176;&#x4ED6;"><a href="#&#x5176;&#x4ED6;" class="headerlink" title="&#x5176;&#x4ED6;"></a>&#x5176;&#x4ED6;</h3><p><a href="http://superdanny.link/2015/12/26/iOS-UIDocumentInteractionController/index.html" target="_blank" rel="noopener">UIDocumentInteractionController&#x4E4B;&#x7A0B;&#x5E8F;&#x95F4;&#x6587;&#x6863;&#x5171;&#x4EAB;</a><br><a href="http://www.cnblogs.com/kenshincui/p/4125570.html" target="_blank" rel="noopener">&#x53EF;&#x80FD;&#x662F;&#x6700;&#x8BE6;&#x7EC6;&#x7684;&#x5173;&#x4E8E;iOS&#x5730;&#x56FE;MKMapView&#x7684;&#x6587;&#x7AE0;</a></p>
 <h3 id="&#x730E;&#x5947;&#x5411;"><a href="#&#x730E;&#x5947;&#x5411;" class="headerlink" title="&#x730E;&#x5947;&#x5411;"></a>&#x730E;&#x5947;&#x5411;</h3><p>&#x8BB0;&#x4E0D;&#x4F4F;block&#x7684;&#x8BED;&#x6CD5;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#xFF0C;&#x5C31;&#x4E0A;<a href="http://fuckingblocksyntax.com/" target="_blank" rel="noopener">fuckingblocksyntax.com</a></p>
 
-      
+  </div>
+</article>
+
+
+
     </div>
-
     
+      <div id="footer-post-container">
+  <div id="footer-post">
 
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/01/10/e6-95-b0-e6-8d-ae-e5-ba-93-e5-ad-98-e5-8f-96-e6-95-b0-e6-8d-ae/" rel="next" title="数据库存取数据">
-                <i class="fa fa-chevron-left"></i> 数据库存取数据
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/05/common-ios-development-technologies-uiwebview-js-filter-specifying-content/" rel="prev" title="IOS开发之常见技术之:UIWebView通过JS过滤指定内容">
-                IOS开发之常见技术之:UIWebView通过JS过滤指定内容 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </ul>
     </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#博客类："><span class="toc-number">1.</span> <span class="toc-text">博客类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#综合类："><span class="toc-number">2.</span> <span class="toc-text">综合类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#架构："><span class="toc-number">3.</span> <span class="toc-text">架构：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化："><span class="toc-number">4.</span> <span class="toc-text">优化：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xib-amp-autolayout："><span class="toc-number">5.</span> <span class="toc-text">xib&amp;autolayout：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UI向"><span class="toc-number">6.</span> <span class="toc-text">UI向:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webView"><span class="toc-number">7.</span> <span class="toc-text">webView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单元测试"><span class="toc-number">8.</span> <span class="toc-text">单元测试:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图文混排"><span class="toc-number">9.</span> <span class="toc-text">图文混排</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络"><span class="toc-number">10.</span> <span class="toc-text">网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据持久"><span class="toc-number">11.</span> <span class="toc-text">数据持久</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程"><span class="toc-number">12.</span> <span class="toc-text">多线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runtime"><span class="toc-number">13.</span> <span class="toc-text">Runtime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#细节向"><span class="toc-number">14.</span> <span class="toc-text">细节向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">15.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#猎奇向"><span class="toc-number">16.</span> <span class="toc-text">猎奇向</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/01/19/ios-development-blog/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/01/19/ios-development-blog/&text=iOS开发博客及资源"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/01/19/ios-development-blog/&is_video=false&description=iOS开发博客及资源"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS开发博客及资源&body=Check out this article: http://yoursite.com/2016/01/19/ios-development-blog/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/01/19/ios-development-blog/&title=iOS开发博客及资源"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/01/19/ios-development-blog/&name=iOS开发博客及资源&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">BirdMichael</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">64</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">24</span>
-                    <span class="site-state-item-name">分类</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">85</span>
-                    <span class="site-state-item-name">标签</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#博客类："><span class="nav-number">1.</span> <span class="nav-text">博客类：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合类："><span class="nav-number">2.</span> <span class="nav-text">综合类：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构："><span class="nav-number">3.</span> <span class="nav-text">架构：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化："><span class="nav-number">4.</span> <span class="nav-text">优化：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xib-amp-autolayout："><span class="nav-number">5.</span> <span class="nav-text">xib&amp;autolayout：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UI向"><span class="nav-number">6.</span> <span class="nav-text">UI向:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webView"><span class="nav-number">7.</span> <span class="nav-text">webView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单元测试"><span class="nav-number">8.</span> <span class="nav-text">单元测试:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图文混排"><span class="nav-number">9.</span> <span class="nav-text">图文混排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络"><span class="nav-number">10.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据持久"><span class="nav-number">11.</span> <span class="nav-text">数据持久</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">12.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Runtime"><span class="nav-number">13.</span> <span class="nav-text">Runtime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#细节向"><span class="nav-number">14.</span> <span class="nav-text">细节向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">15.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#猎奇向"><span class="nav-number">16.</span> <span class="nav-text">猎奇向</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">BirdMichael</span>
-
-  
-
-  
 </div>
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-	
-    
-
-    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a href="http://github.com/sergodeeva">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+
