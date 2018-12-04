@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="FastImageCache&amp;#x662F;Path&amp;#x56E2;&amp;#x961F;&amp;#x5F00;&amp;#x53D1;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x5F00;&amp;#x6E90;&amp;#x5E93;&amp;#xFF0C;&amp;#x7528;&amp;#x4E8E;&amp;#x63D0;&amp;#x5347;&amp;#x56FE;&amp;#x7247;&amp;#x7684;&amp;#x52A0;&amp;#x8F7D;&amp;#x548C;&amp;#x6E3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS图片加载速度极限优化">
+<meta property="og:url" content="http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="FastImageCache&amp;#x662F;Path&amp;#x56E2;&amp;#x961F;&amp;#x5F00;&amp;#x53D1;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x5F00;&amp;#x6E90;&amp;#x5E93;&amp;#xFF0C;&amp;#x7528;&amp;#x4E8E;&amp;#x63D0;&amp;#x5347;&amp;#x56FE;&amp;#x7247;&amp;#x7684;&amp;#x52A0;&amp;#x8F7D;&amp;#x548C;&amp;#x6E3">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache1.png">
+<meta property="og:image" content="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache2.png">
+<meta property="og:image" content="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache3.png">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS图片加载速度极限优化">
+<meta name="twitter:description" content="FastImageCache&amp;#x662F;Path&amp;#x56E2;&amp;#x961F;&amp;#x5F00;&amp;#x53D1;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x5F00;&amp;#x6E90;&amp;#x5E93;&amp;#xFF0C;&amp;#x7528;&amp;#x4E8E;&amp;#x63D0;&amp;#x5347;&amp;#x56FE;&amp;#x7247;&amp;#x7684;&amp;#x52A0;&amp;#x8F7D;&amp;#x548C;&amp;#x6E3">
+<meta name="twitter:image" content="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>iOS图片加载速度极限优化</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2015/09/09/essential-guide-to-git-zero-process-code.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2015/09/03/UIView-的contentMode.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&text=iOS图片加载速度极限优化"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&is_video=false&description=iOS图片加载速度极限优化"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS图片加载速度极限优化&body=Check out this article: http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&name=iOS图片加载速度极限优化&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#优化点"><span class="toc-number">1.</span> <span class="toc-text">优化点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内存映射"><span class="toc-number">1.0.1.</span> <span class="toc-text">内存映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解码图像"><span class="toc-number">1.0.2.</span> <span class="toc-text">解码图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字节对齐"><span class="toc-number">1.0.3.</span> <span class="toc-text">字节对齐</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageTable"><span class="toc-number">2.0.1.</span> <span class="toc-text">ImageTable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageTableEntry"><span class="toc-number">2.0.2.</span> <span class="toc-text">ImageTableEntry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chunk"><span class="toc-number">2.0.3.</span> <span class="toc-text">Chunk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存管理"><span class="toc-number">2.0.4.</span> <span class="toc-text">缓存管理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        iOS图片加载速度极限优化
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2015-09-03T15:16:32.000Z" itemprop="datePublished">2015-09-03</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><a href="https://github.com/path/FastImageCache" target="_blank" rel="noopener">FastImageCache</a>&#x662F;Path&#x56E2;&#x961F;&#x5F00;&#x53D1;&#x7684;&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x5E93;&#xFF0C;&#x7528;&#x4E8E;&#x63D0;&#x5347;&#x56FE;&#x7247;&#x7684;&#x52A0;&#x8F7D;&#x548C;&#x6E32;&#x67D3;&#x901F;&#x5EA6;&#xFF0C;&#x8BA9;&#x57FA;&#x4E8E;&#x56FE;&#x7247;&#x7684;&#x5217;&#x8868;&#x6ED1;&#x52A8;&#x8D77;&#x6765;&#x66F4;&#x987A;&#x7545;&#xFF0C;&#x6765;&#x770B;&#x770B;&#x5B83;&#x662F;&#x600E;&#x4E48;&#x505A;&#x7684;&#x3002;</p>
+<h1 id="&#x4F18;&#x5316;&#x70B9;"><a href="#&#x4F18;&#x5316;&#x70B9;" class="headerlink" title="&#x4F18;&#x5316;&#x70B9;"></a>&#x4F18;&#x5316;&#x70B9;</h1><p>iOS&#x4ECE;&#x78C1;&#x76D8;&#x52A0;&#x8F7D;&#x4E00;&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x4F7F;&#x7528;UIImageVIew&#x663E;&#x793A;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#xFF0C;&#x9700;&#x8981;&#x7ECF;&#x8FC7;&#x4EE5;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ol>
+<li>&#x4ECE;&#x78C1;&#x76D8;&#x62F7;&#x8D1D;&#x6570;&#x636E;&#x5230;&#x5185;&#x6838;&#x7F13;&#x51B2;&#x533A;</li>
+<li>&#x4ECE;&#x5185;&#x6838;&#x7F13;&#x51B2;&#x533A;&#x590D;&#x5236;&#x6570;&#x636E;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;</li>
+<li>&#x751F;&#x6210;UIImageView&#xFF0C;&#x628A;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x8D4B;&#x503C;&#x7ED9;UIImageView</li>
+<li>&#x5982;&#x679C;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x4E3A;&#x672A;&#x89E3;&#x7801;&#x7684;PNG/JPG&#xFF0C;&#x89E3;&#x7801;&#x4E3A;&#x4F4D;&#x56FE;&#x6570;&#x636E;</li>
+<li>CATransaction&#x6355;&#x83B7;&#x5230;UIImageView layer&#x6811;&#x7684;&#x53D8;&#x5316;</li>
+<li><p>&#x4E3B;&#x7EBF;&#x7A0B;Runloop&#x63D0;&#x4EA4;CATransaction&#xFF0C;&#x5F00;&#x59CB;&#x8FDB;&#x884C;&#x56FE;&#x50CF;&#x6E32;&#x67D3;</p>
+<ul>
+<li>6.1 &#x5982;&#x679C;&#x6570;&#x636E;&#x6CA1;&#x6709;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#xFF0C;Core Animation&#x4F1A;&#x518D;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x6570;&#x636E;&#xFF0C;&#x8FDB;&#x884C;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x3002;</li>
+<li>6.2 GPU&#x5904;&#x7406;&#x4F4D;&#x56FE;&#x6570;&#x636E;&#xFF0C;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#x3002;<br>FastImageCache&#x5206;&#x522B;&#x4F18;&#x5316;&#x4E86;2,4,6.1&#x4E09;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</li>
+</ul>
+</li>
+<li><p>&#x4F7F;&#x7528;mmap&#x5185;&#x5B58;&#x6620;&#x5C04;&#xFF0C;&#x7701;&#x53BB;&#x4E86;&#x4E0A;&#x8FF0;&#x7B2C;2&#x6B65;&#x6570;&#x636E;&#x4ECE;&#x5185;&#x6838;&#x7A7A;&#x95F4;&#x62F7;&#x8D1D;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+</li>
+<li>&#x7F13;&#x5B58;&#x89E3;&#x7801;&#x540E;&#x7684;&#x4F4D;&#x56FE;&#x6570;&#x636E;&#x5230;&#x78C1;&#x76D8;&#xFF0C;&#x4E0B;&#x6B21;&#x4ECE;&#x78C1;&#x76D8;&#x8BFB;&#x53D6;&#x65F6;&#x7701;&#x53BB;&#x7B2C;4&#x6B65;&#x89E3;&#x7801;&#x7684;&#x64CD;&#x4F5C;&#x3002;</li>
+<li>&#x751F;&#x6210;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x9632;&#x6B62;&#x4E0A;&#x8FF0;&#x7B2C;6.1&#x6B65;CoreAnimation&#x5728;&#x6E32;&#x67D3;&#x65F6;&#x518D;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x6570;&#x636E;&#x3002;<br>&#x63A5;&#x4E0B;&#x6765;&#x5177;&#x4F53;&#x4ECB;&#x7ECD;&#x8FD9;&#x4E09;&#x4E2A;&#x4F18;&#x5316;&#x70B9;&#x4EE5;&#x53CA;&#x5B83;&#x7684;&#x5B9E;&#x73B0;&#x3002;</li>
+</ol>
+<h3 id="&#x5185;&#x5B58;&#x6620;&#x5C04;"><a href="#&#x5185;&#x5B58;&#x6620;&#x5C04;" class="headerlink" title="&#x5185;&#x5B58;&#x6620;&#x5C04;"></a>&#x5185;&#x5B58;&#x6620;&#x5C04;</h3><p>&#x5E73;&#x5E38;&#x6211;&#x4EEC;&#x8BFB;&#x53D6;&#x78C1;&#x76D8;&#x4E0A;&#x7684;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x4E0A;&#x5C42;API&#x8C03;&#x7528;&#x5230;&#x6700;&#x540E;&#x4F1A;&#x4F7F;&#x7528;&#x7CFB;&#x7EDF;&#x65B9;&#x6CD5;read()&#x8BFB;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x5185;&#x6838;&#x628A;&#x78C1;&#x76D8;&#x6570;&#x636E;&#x8BFB;&#x5165;&#x5185;&#x6838;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x7528;&#x6237;&#x518D;&#x4ECE;&#x5185;&#x6838;&#x7F13;&#x51B2;&#x533A;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x590D;&#x5236;&#x5230;&#x7528;&#x6237;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x6B21;&#x5185;&#x5B58;&#x62F7;&#x8D1D;&#x7684;&#x65F6;&#x95F4;&#x6D88;&#x8017;&#xFF0C;&#x5E76;&#x4E14;&#x8BFB;&#x53D6;&#x540E;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x6570;&#x636E;&#x5C31;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x4E8E;&#x7528;&#x6237;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x5360;&#x7528;&#x4E86;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x3002;</p>
+<p>FastImageCache&#x91C7;&#x7528;&#x4E86;&#x53E6;&#x4E00;&#x79CD;&#x8BFB;&#x5199;&#x6587;&#x4EF6;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;&#x7528;mmap&#x628A;&#x6587;&#x4EF6;&#x6620;&#x5C04;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x91CC;&#x7684;&#x865A;&#x62DF;&#x5185;&#x5B58;&#xFF0C;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;&#x5728;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x4E2D;&#x6709;&#x4E86;&#x5BF9;&#x5E94;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x53EF;&#x4EE5;&#x50CF;&#x64CD;&#x4F5C;&#x5185;&#x5B58;&#x4E00;&#x6837;&#x64CD;&#x4F5C;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x5DF2;&#x7ECF;&#x628A;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x653E;&#x5165;&#x5185;&#x5B58;&#xFF0C;&#x4F46;&#x5728;&#x771F;&#x6B63;&#x4F7F;&#x7528;&#x5230;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x524D;&#x5374;&#x4E0D;&#x4F1A;&#x6D88;&#x8017;&#x7269;&#x7406;&#x5185;&#x5B58;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x6709;&#x8BFB;&#x5199;&#x78C1;&#x76D8;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x53EA;&#x6709;&#x771F;&#x6B63;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x56FE;&#x50CF;&#x51C6;&#x5907;&#x6E32;&#x67D3;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#x65F6;&#xFF0C;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;VMS&#x624D;&#x6839;&#x636E;&#x7F3A;&#x9875;&#x52A0;&#x8F7D;&#x7684;&#x673A;&#x5236;&#x4ECE;&#x78C1;&#x76D8;&#x52A0;&#x8F7D;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;&#x5757;&#x5230;&#x7269;&#x7406;&#x5185;&#x5B58;&#xFF0C;&#x518D;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x6587;&#x4EF6;&#x8BFB;&#x5199;&#x6587;&#x4EF6;&#x65B9;&#x5F0F;&#x5C11;&#x4E86;&#x6570;&#x636E;&#x4ECE;&#x5185;&#x6838;&#x7F13;&#x5B58;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x62F7;&#x8D1D;&#xFF0C;&#x6548;&#x7387;&#x5F88;&#x9AD8;&#x3002;</p>
+<h3 id="&#x89E3;&#x7801;&#x56FE;&#x50CF;"><a href="#&#x89E3;&#x7801;&#x56FE;&#x50CF;" class="headerlink" title="&#x89E3;&#x7801;&#x56FE;&#x50CF;"></a>&#x89E3;&#x7801;&#x56FE;&#x50CF;</h3><p>&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x56FE;&#x50CF;&#x662F;JPG/PNG&#xFF0C;&#x8FD9;&#x4E9B;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x4F4D;&#x56FE;&#xFF0C;&#x800C;&#x662F;&#x662F;&#x7ECF;&#x8FC7;&#x7F16;&#x7801;&#x538B;&#x7F29;&#x540E;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4F7F;&#x7528;&#x5B83;&#x6E32;&#x67D3;&#x5230;&#x5C4F;&#x5E55;&#x4E4B;&#x524D;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x89E3;&#x7801;&#x8F6C;&#x6210;&#x4F4D;&#x56FE;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x4E2A;&#x89E3;&#x7801;&#x64CD;&#x4F5C;&#x662F;&#x6BD4;&#x8F83;&#x8017;&#x65F6;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x6CA1;&#x6709;GPU&#x786C;&#x89E3;&#x7801;&#xFF0C;&#x53EA;&#x80FD;&#x901A;&#x8FC7;CPU&#xFF0C;iOS&#x9ED8;&#x8BA4;&#x4F1A;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x5BF9;&#x56FE;&#x50CF;&#x8FDB;&#x884C;&#x89E3;&#x7801;&#x3002;&#x5F88;&#x591A;&#x5E93;&#x90FD;&#x89E3;&#x51B3;&#x4E86;&#x56FE;&#x50CF;&#x89E3;&#x7801;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4E0D;&#x8FC7;&#x7531;&#x4E8E;&#x89E3;&#x7801;&#x540E;&#x7684;&#x56FE;&#x50CF;&#x592A;&#x5927;&#xFF0C;&#x4E00;&#x822C;&#x4E0D;&#x4F1A;&#x7F13;&#x5B58;&#x5230;&#x78C1;&#x76D8;&#xFF0C;SDWebImage&#x7684;&#x505A;&#x6CD5;&#x662F;&#x628A;&#x89E3;&#x7801;&#x64CD;&#x4F5C;&#x4ECE;&#x4E3B;&#x7EBF;&#x7A0B;&#x79FB;&#x5230;&#x5B50;&#x7EBF;&#x7A0B;&#xFF0C;&#x8BA9;&#x8017;&#x65F6;&#x7684;&#x89E3;&#x7801;&#x64CD;&#x4F5C;&#x4E0D;&#x5360;&#x7528;&#x4E3B;&#x7EBF;&#x7A0B;&#x7684;&#x65F6;&#x95F4;&#x3002;</p>
+<p>FastImageCache&#x4E5F;&#x662F;&#x5728;&#x5B50;&#x7EBF;&#x7A0B;&#x89E3;&#x7801;&#x56FE;&#x50CF;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x662F;&#x5B83;&#x4F1A;&#x7F13;&#x5B58;&#x89E3;&#x7801;&#x540E;&#x7684;&#x56FE;&#x50CF;&#x5230;&#x78C1;&#x76D8;&#x3002;&#x56E0;&#x4E3A;&#x89E3;&#x7801;&#x540E;&#x7684;&#x56FE;&#x50CF;&#x4F53;&#x79EF;&#x5F88;&#x5927;&#xFF0C;FastImageCache&#x5BF9;&#x8FD9;&#x4E9B;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x505A;&#x4E86;&#x7CFB;&#x5217;&#x7F13;&#x5B58;&#x7BA1;&#x7406;&#xFF0C;&#x8BE6;&#x89C1;&#x4E0B;&#x6587;&#x5B9E;&#x73B0;&#x90E8;&#x5206;&#x3002;&#x53E6;&#x5916;&#x7F13;&#x5B58;&#x7684;&#x56FE;&#x50CF;&#x4F53;&#x79EF;&#x5927;&#x4E5F;&#x662F;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x5C0F;&#x6587;&#x4EF6;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x65E0;&#x4F18;&#x52BF;&#xFF0C;&#x5185;&#x5B58;&#x62F7;&#x8D1D;&#x7684;&#x91CF;&#x5C11;&#xFF0C;&#x62F7;&#x8D1D;&#x540E;&#x5360;&#x7528;&#x7528;&#x6237;&#x5185;&#x5B58;&#x4E5F;&#x4E0D;&#x9AD8;&#xFF0C;&#x6587;&#x4EF6;&#x8D8A;&#x5927;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x4F18;&#x52BF;&#x8D8A;&#x5927;&#x3002;</p>
+<h3 id="&#x5B57;&#x8282;&#x5BF9;&#x9F50;"><a href="#&#x5B57;&#x8282;&#x5BF9;&#x9F50;" class="headerlink" title="&#x5B57;&#x8282;&#x5BF9;&#x9F50;"></a>&#x5B57;&#x8282;&#x5BF9;&#x9F50;</h3><p>Core Animation&#x5728;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x975E;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x6E32;&#x67D3;&#x524D;&#x4F1A;&#x5148;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x56FE;&#x50CF;&#x6570;&#x636E;&#xFF0C;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x6CA1;&#x6709;&#x5BF9;&#x8FD9;&#x6B21;&#x62F7;&#x8D1D;&#x884C;&#x4E3A;&#x4F5C;&#x8BF4;&#x660E;&#xFF0C;&#x6A21;&#x62DF;&#x5668;&#x548C;Instrument&#x91CC;&#x6709;&#x9AD8;&#x4EAE;&#x663E;&#x793A;&#x201C;copied images&#x201D;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4F46;&#x4F3C;&#x4E4E;&#x5B83;&#x6709;bug&#xFF0C;&#x5373;&#x4F7F;&#x67D0;&#x5F20;&#x56FE;&#x7247;&#x6CA1;&#x6709;&#x88AB;&#x9AD8;&#x4EAE;&#x663E;&#x793A;&#x51FA;&#x6E32;&#x67D3;&#x65F6;&#x88AB;copy&#xFF0C;&#x4ECE;&#x8C03;&#x7528;&#x5806;&#x6808;&#x4E0A;&#x4E5F;&#x8FD8;&#x662F;&#x80FD;&#x770B;&#x5230;&#x8C03;&#x7528;&#x4E86;CA::Render::copy_image&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><a href="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache1.png" target="_blank" rel="noopener"><img src="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache1.png" alt="fastImageCache1"></a></p>
+<p>&#x90A3;&#x4EC0;&#x4E48;&#x662F;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x5462;&#xFF0C;&#x6309;&#x6211;&#x7684;&#x7406;&#x89E3;&#xFF0C;&#x4E3A;&#x4E86;&#x6027;&#x80FD;&#xFF0C;&#x5E95;&#x5C42;&#x6E32;&#x67D3;&#x56FE;&#x50CF;&#x65F6;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x6E32;&#x67D3;&#xFF0C;&#x800C;&#x662F;&#x4E00;&#x5757;&#x4E00;&#x5757;&#x6E32;&#x67D3;&#xFF0C;&#x6570;&#x636E;&#x662F;&#x4E00;&#x5757;&#x5757;&#x5730;&#x53D6;&#xFF0C;&#x5C31;&#x53EF;&#x80FD;&#x9047;&#x5230;&#x8FD9;&#x4E00;&#x5757;&#x8FDE;&#x7EED;&#x7684;&#x5185;&#x5B58;&#x6570;&#x636E;&#x91CC;&#x7ED3;&#x5C3E;&#x7684;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x56FE;&#x50CF;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x662F;&#x5185;&#x5B58;&#x91CC;&#x5176;&#x4ED6;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x80FD;&#x8D8A;&#x754C;&#x8BFB;&#x53D6;&#x5BFC;&#x81F4;&#x4E00;&#x4E9B;&#x5947;&#x602A;&#x7684;&#x4E1C;&#x897F;&#x6DF7;&#x5165;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x6E32;&#x67D3;&#x4E4B;&#x524D;CoreAnimation&#x8981;&#x628A;&#x6570;&#x636E;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x786E;&#x4FDD;&#x6BCF;&#x4E00;&#x5757;&#x90FD;&#x662F;&#x56FE;&#x50CF;&#x6570;&#x636E;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E0D;&#x8DB3;&#x4E00;&#x5757;&#x7684;&#x6570;&#x636E;&#x7F6E;&#x7A7A;&#x3002;&#x5927;&#x81F4;&#x56FE;&#x793A;&#xFF1A;(pixel&#x662F;&#x56FE;&#x50CF;&#x50CF;&#x7D20;&#x6570;&#x636E;&#xFF0C;data&#x662F;&#x5185;&#x5B58;&#x91CC;&#x5176;&#x4ED6;&#x6570;&#x636E;)</p>
+<p><a href="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache2.png" target="_blank" rel="noopener"><img src="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache2.png" alt="fastImageCache2"></a></p>
+<p>&#x5757;&#x7684;&#x5927;&#x5C0F;&#x5E94;&#x8BE5;&#x662F;&#x8DDF;CPU cache line&#x6709;&#x5173;&#xFF0C;ARMv7&#x662F;32byte&#xFF0C;A9&#x662F;64byte&#xFF0C;&#x5728;A9&#x4E0B;CoreAnimation&#x5E94;&#x8BE5;&#x662F;&#x6309;64byte&#x4F5C;&#x4E3A;&#x4E00;&#x5757;&#x6570;&#x636E;&#x53BB;&#x8BFB;&#x53D6;&#x548C;&#x6E32;&#x67D3;&#xFF0C;&#x8BA9;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x5BF9;&#x9F50;64byte&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D;CoreAnimation&#x518D;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x4FEE;&#x8865;&#x3002;FastImageCache&#x505A;&#x7684;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x4E8B;&#x60C5;&#x3002;</p>
+<h1 id="&#x5B9E;&#x73B0;"><a href="#&#x5B9E;&#x73B0;" class="headerlink" title="&#x5B9E;&#x73B0;"></a>&#x5B9E;&#x73B0;</h1><p>FastImageCache&#x628A;&#x540C;&#x4E2A;&#x7C7B;&#x578B;&#x548C;&#x5C3A;&#x5BF8;&#x7684;&#x56FE;&#x50CF;&#x90FD;&#x653E;&#x5728;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x91CC;&#xFF0C;&#x6839;&#x636E;&#x6587;&#x4EF6;&#x504F;&#x79FB;&#x53D6;&#x5355;&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x7C7B;&#x4F3C;web&#x7684;css&#x96EA;&#x78A7;&#x56FE;&#xFF0C;&#x8FD9;&#x91CC;&#x79F0;&#x4E3A;ImageTable&#x3002;&#x8FD9;&#x6837;&#x505A;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x7EDF;&#x4E00;&#x7BA1;&#x7406;&#x56FE;&#x7247;&#x7F13;&#x5B58;&#xFF0C;&#x63A7;&#x5236;&#x7F13;&#x5B58;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x6574;&#x4E2A;FastImageCache&#x5C31;&#x662F;&#x5728;&#x7BA1;&#x7406;&#x4E00;&#x4E2A;&#x4E2A;ImageTable&#x7684;&#x6570;&#x636E;&#x3002;&#x6574;&#x4F53;&#x5B9E;&#x73B0;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5982;&#x56FE;&#xFF1A;</p>
+<p><a href="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache3.png" target="_blank" rel="noopener"><img src="http://blog.cnbang.net/wp-content/uploads/2015/02/fastImageCache3.png" alt="fastImageCache3"></a></p>
+<p>&#x4E00;&#x4E9B;&#x8865;&#x5145;&#x548C;&#x8BF4;&#x660E;&#xFF1A;</p>
+<h3 id="ImageTable"><a href="#ImageTable" class="headerlink" title="ImageTable"></a>ImageTable</h3><ol>
+<li>&#x4E00;&#x4E2A;ImageFormat&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;ImageTable&#xFF0C;ImageFormat&#x6307;&#x5B9A;&#x4E86;ImageTable&#x91CC;&#x56FE;&#x50CF;&#x6E32;&#x67D3;&#x683C;&#x5F0F;/&#x5927;&#x5C0F;&#x7B49;&#x4FE1;&#x606F;&#xFF0C;ImageTable&#x91CC;&#x7684;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x90FD;&#x7531;ImageFormat&#x89C4;&#x5B9A;&#x4E86;&#x7EDF;&#x4E00;&#x7684;&#x5C3A;&#x5BF8;&#xFF0C;&#x6BCF;&#x5F20;&#x56FE;&#x50CF;&#x5927;&#x5C0F;&#x90FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</li>
+<li>&#x4E00;&#x4E2A;ImageTable&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x6709;&#x53E6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4FDD;&#x5B58;&#x8FD9;&#x4E2A;ImageTable&#x7684;meta&#x4FE1;&#x606F;&#x3002;</li>
+<li>&#x56FE;&#x50CF;&#x4F7F;&#x7528;entityUUID&#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x6807;&#x793A;&#x7B26;&#xFF0C;&#x7531;&#x7528;&#x6237;&#x5B9A;&#x4E49;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x56FE;&#x50CF;url&#x7684;hash&#x503C;&#x3002;ImageTable Meta&#x7684;indexMap&#x8BB0;&#x5F55;&#x4E86;entityUUID-&gt;entryIndex&#x7684;&#x6620;&#x5C04;&#xFF0C;&#x901A;&#x8FC7;indexMap&#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x56FE;&#x50CF;&#x7684;entityUUID&#x627E;&#x5230;&#x7F13;&#x5B58;&#x6570;&#x636E;&#x5728;ImageTable&#x5BF9;&#x5E94;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</li>
+</ol>
+<h3 id="ImageTableEntry"><a href="#ImageTableEntry" class="headerlink" title="ImageTableEntry"></a>ImageTableEntry</h3><ol>
+<li>ImageTable&#x7684;&#x5B9E;&#x4F53;&#x6570;&#x636E;&#x662F;ImageTableEntry&#xFF0C;&#x6BCF;&#x4E2A;entry&#x6709;&#x4E24;&#x90E8;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x4E00;&#x90E8;&#x5206;&#x662F;&#x5BF9;&#x9F50;&#x540E;&#x7684;&#x56FE;&#x50CF;&#x6570;&#x636E;&#xFF0C;&#x53E6;&#x4E00;&#x90E8;&#x5206;&#x662F;meta&#x4FE1;&#x606F;&#xFF0C;meta&#x4FDD;&#x5B58;&#x8FD9;&#x5F20;&#x56FE;&#x50CF;&#x7684;UUID&#x548C;&#x539F;&#x56FE;UUID&#xFF0C;&#x7528;&#x4E8E;&#x6821;&#x9A8C;&#x56FE;&#x50CF;&#x6570;&#x636E;&#x7684;&#x6B63;&#x786E;&#x6027;&#x3002;</li>
+<li>Entry&#x6570;&#x636E;&#x662F;&#x6309;&#x5185;&#x5B58;&#x5206;&#x9875;&#x5927;&#x5C0F;&#x5BF9;&#x9F50;&#x7684;&#xFF0C;&#x6570;&#x636E;&#x5927;&#x5C0F;&#x662F;&#x5185;&#x5B58;&#x5206;&#x9875;&#x5927;&#x5C0F;&#x7684;&#x6574;&#x6570;&#x500D;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x7F3A;&#x9875;&#x52A0;&#x8F7D;&#x65F6;&#x4F7F;&#x7528;&#x6700;&#x5C11;&#x7684;&#x5185;&#x5B58;&#x9875;&#x52A0;&#x8F7D;&#x4E00;&#x5F20;&#x56FE;&#x50CF;&#x3002;</li>
+<li>&#x56FE;&#x50CF;&#x6570;&#x636E;&#x505A;&#x4E86;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x5904;&#x7406;&#xFF0C;CoreAnimation&#x4F7F;&#x7528;&#x65F6;&#x65E0;&#x9700;&#x518D;&#x5904;&#x7406;&#x62F7;&#x8D1D;&#x3002;&#x5177;&#x4F53;&#x505A;&#x6CD5;&#x662F;CGBitmapContextCreate&#x521B;&#x5EFA;&#x4F4D;&#x56FE;&#x753B;&#x5E03;&#x65F6;bytesPerRow&#x53C2;&#x6570;&#x4F20;64&#x500D;&#x6570;&#x3002;</li>
+</ol>
+<h3 id="Chunk"><a href="#Chunk" class="headerlink" title="Chunk"></a>Chunk</h3><ul>
+<li>ImageTable&#x548C;&#x5B9E;&#x4F53;&#x6570;&#x636E;Entry&#x95F4;&#x591A;&#x4E86;&#x5C42;Chunk&#xFF0C;Chunk&#x662F;&#x903B;&#x8F91;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x5212;&#x5206;&#xFF0C;N&#x4E2A;Entry&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;Chunk&#xFF0C;&#x5185;&#x5B58;&#x6620;&#x5C04;mmap&#x64CD;&#x4F5C;&#x662F;&#x4EE5;chunk&#x4E3A;&#x5355;&#x4F4D;&#x7684;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;chunk&#x6267;&#x884C;&#x4E00;&#x6B21;mmap&#x628A;&#x8FD9;&#x4E2A;chunk&#x7684;&#x5185;&#x5BB9;&#x6620;&#x5C04;&#x5230;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x591A;&#x4E00;&#x5C42;chunk&#x5462;&#xFF0C;&#x6309;&#x6211;&#x7684;&#x7406;&#x89E3;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x662F;&#x4E3A;&#x4E86;&#x7075;&#x6D3B;&#x63A7;&#x5236;mmap&#x7684;&#x5927;&#x5C0F;&#x548C;&#x8C03;&#x7528;&#x6B21;&#x6570;&#xFF0C;&#x82E5;&#x5BF9;&#x6574;&#x4E2A;ImageTable&#x6267;&#x884C;mmap&#xFF0C;&#x8F7D;&#x5165;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x7684;&#x6587;&#x4EF6;&#x8FC7;&#x5927;&#xFF0C;&#x82E5;&#x5BF9;&#x6BCF;&#x4E2A;Entry&#x505A;mmap&#xFF0C;&#x8C03;&#x7528;&#x6B21;&#x6570;&#x4F1A;&#x592A;&#x591A;&#x3002;</li>
+</ul>
+<h3 id="&#x7F13;&#x5B58;&#x7BA1;&#x7406;"><a href="#&#x7F13;&#x5B58;&#x7BA1;&#x7406;" class="headerlink" title="&#x7F13;&#x5B58;&#x7BA1;&#x7406;"></a>&#x7F13;&#x5B58;&#x7BA1;&#x7406;</h3><ul>
+<li>&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x6574;&#x4E2A;ImageTable&#x91CC;&#x6700;&#x5927;&#x7F13;&#x5B58;&#x7684;&#x56FE;&#x50CF;&#x6570;&#x91CF;&#xFF0C;&#x5728;&#x6709;&#x65B0;&#x56FE;&#x50CF;&#x9700;&#x8981;&#x7F13;&#x5B58;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x7F13;&#x5B58;&#x6CA1;&#x6709;&#x8D85;&#x8FC7;&#x9650;&#x5236;&#xFF0C;&#x4F1A;&#x4EE5;chunk&#x4E3A;&#x5355;&#x4F4D;&#x6269;&#x5C55;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#xFF0C;&#x987A;&#x5E8F;&#x5199;&#x4E0B;&#x53BB;&#x3002;&#x5982;&#x679C;&#x5DF2;&#x8D85;&#x8FC7;&#x6700;&#x5927;&#x7F13;&#x5B58;&#x9650;&#x5236;&#xFF0C;&#x4F1A;&#x628A;&#x6700;&#x5C11;&#x4F7F;&#x7528;&#x7684;&#x7F13;&#x5B58;&#x66FF;&#x6362;&#x6389;&#xFF0C;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x662F;&#x6BCF;&#x6B21;&#x4F7F;&#x7528;&#x56FE;&#x50CF;&#x90FD;&#x4F1A;&#x628A;UUID&#x63D2;&#x5165;&#x5230;MRUEntries&#x6570;&#x7EC4;&#x7684;&#x5F00;&#x5934;&#xFF0C;MRUEntries&#x6309;&#x6700;&#x8FD1;&#x4F7F;&#x7528;&#x987A;&#x5E8F;&#x6392;&#x5217;&#x4E86;&#x56FE;&#x50CF;UUID&#xFF0C;&#x6570;&#x7EC4;&#x91CC;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x56FE;&#x50CF;&#x5C31;&#x662F;&#x6700;&#x5C11;&#x4F7F;&#x7528;&#x7684;&#x3002;&#x88AB;&#x66FF;&#x6362;&#x6389;&#x7684;&#x56FE;&#x7247;&#x4E0B;&#x6B21;&#x9700;&#x8981;&#x518D;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x518D;&#x8D70;&#x4E00;&#x6B21;&#x53D6;&#x539F;&#x56FE;&#x2014;&#x89E3;&#x538B;&#x2014;&#x5B58;&#x50A8;&#x7684;&#x6D41;&#x7A0B;&#x3002;</li>
+</ul>
+<h1 id="&#x4F7F;&#x7528;"><a href="#&#x4F7F;&#x7528;" class="headerlink" title="&#x4F7F;&#x7528;"></a>&#x4F7F;&#x7528;</h1><p>FastImageCache&#x9002;&#x5408;&#x7528;&#x4E8E;tableView&#x91CC;&#x7F13;&#x5B58;&#x6BCF;&#x4E2A;cell&#x4E0A;&#x540C;&#x6837;&#x89C4;&#x683C;&#x7684;&#x56FE;&#x50CF;&#xFF0C;&#x4F18;&#x70B9;&#x662F;&#x80FD;&#x6781;&#x5927;&#x52A0;&#x5FEB;&#x7B2C;&#x4E00;&#x6B21;&#x4ECE;&#x78C1;&#x76D8;&#x52A0;&#x8F7D;&#x8FD9;&#x4E9B;&#x56FE;&#x50CF;&#x7684;&#x901F;&#x5EA6;&#x3002;&#x4F46;&#x5B83;&#x6709;&#x4E24;&#x4E2A;&#x660E;&#x663E;&#x7684;&#x7F3A;&#x70B9;&#xFF1A;&#x4E00;&#x662F;&#x5360;&#x7A7A;&#x95F4;&#x5927;&#x3002;&#x56E0;&#x4E3A;&#x7F13;&#x5B58;&#x4E86;&#x89E3;&#x7801;&#x540E;&#x7684;&#x4F4D;&#x56FE;&#x5230;&#x78C1;&#x76D8;&#xFF0C;&#x4F4D;&#x56FE;&#x662F;&#x5F88;&#x5927;&#x7684;&#xFF0C;&#x5BBD;&#x9AD8;100<em>100&#x7684;&#x56FE;&#x50CF;&#x5728;2x&#x7684;&#x9AD8;&#x6E05;&#x5C4F;&#x8BBE;&#x5907;&#x4E0B;&#x5C31;&#x9700;&#x8981;200</em>200*4byte/pixel=156KB&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;FastImageCache&#x8981;&#x5927;&#x8D39;&#x5468;&#x7AE0;&#x9650;&#x5236;&#x7F13;&#x5B58;&#x5927;&#x5C0F;&#x3002;&#x4E8C;&#x662F;&#x63A5;&#x53E3;&#x4E0D;&#x53CB;&#x597D;&#xFF0C;&#x9700;&#x9884;&#x5B9A;&#x4E49;&#x597D;&#x7F13;&#x5B58;&#x7684;&#x56FE;&#x50CF;&#x5C3A;&#x5BF8;&#x3002;FastImageCache&#x65E0;&#x6CD5;&#x50CF;SDWebImage&#x90A3;&#x6837;&#x65E0;&#x7F1D;&#x63A5;&#x5165;UIImageView&#xFF0C;&#x4F7F;&#x7528;&#x5B83;&#x9700;&#x8981;&#x914D;&#x7F6E;ImageTable&#xFF0C;&#x5B9A;&#x4E49;&#x597D;&#x5C3A;&#x5BF8;&#xFF0C;&#x624B;&#x52A8;&#x63D0;&#x4F9B;&#x7684;&#x539F;&#x56FE;&#xFF0C;&#x6BCF;&#x79CD;&#x5B9E;&#x4F53;&#x56FE;&#x50CF;&#x8981;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;FICEntity&#x6A21;&#x578B;&#xFF0C;&#x4F7F;&#x903B;&#x8F91;&#x53D8;&#x590D;&#x6742;&#x3002;</p>
+<p>FastImageCache&#x5DF2;&#x7ECF;&#x5C5E;&#x4E8E;&#x6781;&#x9650;&#x4F18;&#x5316;&#xFF0C;&#x505A;&#x56FE;&#x50CF;&#x52A0;&#x8F7D;/&#x6E32;&#x67D3;&#x4F18;&#x5316;&#x65F6;&#x5E94;&#x8BE5;&#x4F18;&#x5148;&#x8003;&#x8651;&#x4E00;&#x4E9B;&#x4F4E;&#x4EE3;&#x4EF7;&#x9AD8;&#x56DE;&#x62A5;&#x7684;&#x4F18;&#x5316;&#x70B9;&#xFF0C;&#x4F8B;&#x5982;CALayer&#x4EE3;&#x66FF;UIImageVIew&#xFF0C;&#x51CF;&#x5C11;GPU&#x8BA1;&#x7B97;&#xFF08;&#x53BB;&#x900F;&#x660E;/&#x50CF;&#x7D20;&#x5BF9;&#x9F50;&#xFF09;&#xFF0C;&#x56FE;&#x50CF;&#x5B50;&#x7EBF;&#x7A0B;&#x89E3;&#x7801;&#xFF0C;&#x907F;&#x514D;Offscreen-Render&#x7B49;&#x3002;&#x5728;&#x5176;&#x4ED6;&#x4F18;&#x5316;&#x90FD;&#x505A;&#x5230;&#x4F4D;&#xFF0C;&#x56FE;&#x50CF;&#x7684;&#x6E32;&#x67D3;&#x8FD8;&#x662F;&#x6709;&#x6027;&#x80FD;&#x95EE;&#x9898;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x624D;&#x8003;&#x8651;&#x4F7F;&#x7528;FastImageCache&#x8FDB;&#x4E00;&#x6B65;&#x63D0;&#x5347;&#x9996;&#x6B21;&#x52A0;&#x8F7D;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x4E0D;&#x8FC7;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x7684;&#x4F18;&#x5316;&#x5012;&#x662F;&#x53EF;&#x4EE5;&#x8131;&#x79BB;FastImageCache&#x76F4;&#x63A5;&#x8FD0;&#x7528;&#x5728;&#x9879;&#x76EE;&#x4E0A;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x89E3;&#x7801;&#x56FE;&#x50CF;&#x65F6;bitmap&#x753B;&#x5E03;&#x7684;bytesPerRow&#x8BBE;&#x4E3A;64&#x7684;&#x500D;&#x6570;&#x5373;&#x53EF;&#x3002;</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#优化点"><span class="toc-number">1.</span> <span class="toc-text">优化点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内存映射"><span class="toc-number">1.0.1.</span> <span class="toc-text">内存映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解码图像"><span class="toc-number">1.0.2.</span> <span class="toc-text">解码图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字节对齐"><span class="toc-number">1.0.3.</span> <span class="toc-text">字节对齐</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageTable"><span class="toc-number">2.0.1.</span> <span class="toc-text">ImageTable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageTableEntry"><span class="toc-number">2.0.2.</span> <span class="toc-text">ImageTableEntry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chunk"><span class="toc-number">2.0.3.</span> <span class="toc-text">Chunk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存管理"><span class="toc-number">2.0.4.</span> <span class="toc-text">缓存管理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&text=iOS图片加载速度极限优化"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&is_video=false&description=iOS图片加载速度极限优化"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS图片加载速度极限优化&body=Check out this article: http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&title=iOS图片加载速度极限优化"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/09/03/ios-image-loading-speed-limit-optimization.html&name=iOS图片加载速度极限优化&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+    <!-- Disqus Comments -->
+    <script type="text/javascript">
+        var disqus_shortname = 'birdmichael';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

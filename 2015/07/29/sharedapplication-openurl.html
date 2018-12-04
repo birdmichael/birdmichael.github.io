@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="&amp;#x6253;&amp;#x7535;&amp;#x8BDD; &amp;#x53D1;&amp;#x77ED;&amp;#x4FE1; &amp;#x53D1;&amp;#x90AE;&amp;#x4EF6; &amp;#x5E94;&amp;#x7528;&amp;#x8DF3;&amp;#x8F6C; &amp;#x5E94;&amp;#x7528;&amp;#x8BC4;&amp;#x5206; &amp;#x5176;&amp;#x4ED6;&amp;#x4E3B;&amp;#x8981;&amp;#x901A;&amp;#x8FC7;&amp;#x4EE5;&amp;#">
+<meta name="keywords" content="openURL,sharedApplication">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sharedApplication之openURL">
+<meta property="og:url" content="http://yoursite.com/2015/07/29/sharedapplication-openurl.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="&amp;#x6253;&amp;#x7535;&amp;#x8BDD; &amp;#x53D1;&amp;#x77ED;&amp;#x4FE1; &amp;#x53D1;&amp;#x90AE;&amp;#x4EF6; &amp;#x5E94;&amp;#x7528;&amp;#x8DF3;&amp;#x8F6C; &amp;#x5E94;&amp;#x7528;&amp;#x8BC4;&amp;#x5206; &amp;#x5176;&amp;#x4ED6;&amp;#x4E3B;&amp;#x8981;&amp;#x901A;&amp;#x8FC7;&amp;#x4EE5;&amp;#">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://birdmichael.com/wp-content/uploads/2015/07/6598259438238301923.jpg">
+<meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sharedApplication之openURL">
+<meta name="twitter:description" content="&amp;#x6253;&amp;#x7535;&amp;#x8BDD; &amp;#x53D1;&amp;#x77ED;&amp;#x4FE1; &amp;#x53D1;&amp;#x90AE;&amp;#x4EF6; &amp;#x5E94;&amp;#x7528;&amp;#x8DF3;&amp;#x8F6C; &amp;#x5E94;&amp;#x7528;&amp;#x8BC4;&amp;#x5206; &amp;#x5176;&amp;#x4ED6;&amp;#x4E3B;&amp;#x8981;&amp;#x901A;&amp;#x8FC7;&amp;#x4EE5;&amp;#">
+<meta name="twitter:image" content="http://birdmichael.com/wp-content/uploads/2015/07/6598259438238301923.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>sharedApplication之openURL</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2015/07/29/ios-uiresponder-of-gestures-gesture-recognition-shake-apple-fm.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2015/07/22/loading-from-a-local-one-html-to-uiview.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/29/sharedapplication-openurl.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&text=sharedApplication之openURL"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&is_video=false&description=sharedApplication之openURL"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=sharedApplication之openURL&body=Check out this article: http://yoursite.com/2015/07/29/sharedapplication-openurl.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&name=sharedApplication之openURL&description=&lt;ul&gt;
+&lt;li&gt;&amp;#x6253;&amp;#x7535;&amp;#x8BDD;&lt;/li&gt;
+&lt;li&gt;&amp;#x53D1;&amp;#x77ED;&amp;#x4FE1;&lt;/li&gt;
+&lt;li&gt;&amp;#x53D1;&amp;#x90AE;&amp;#x4EF6;&lt;/li&gt;
+&lt;li&gt;&amp;#x5E94;&amp;#x7528;&amp;#x8DF3;&amp;#x8F6C;&lt;/li&gt;
+&lt;li&gt;&amp;#x5E94;&amp;#x7528;&amp;#x8BC4;&amp;#x5206;&lt;/li&gt;
+&lt;li&gt;&amp;#x5176;&amp;#x4ED6;&lt;br&gt;&amp;#x4E3B;&amp;#x8981;&amp;#x901A;&amp;#x8FC7;&amp;#x4EE5;&amp;#x4E0A;6&amp;#x70B9;&amp;#x5206;&amp;#x522B;&amp;#x4ECB;&amp;#x7ECD;.&lt;/li&gt;
+&lt;/ul&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#打电话"><span class="toc-number">1.</span> <span class="toc-text">打电话</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法1-最简单最直接的方式：直接跳到拨号界面"><span class="toc-number">1.1.</span> <span class="toc-text">方法1:最简单最直接的方式：直接跳到拨号界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法2-拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用"><span class="toc-number">1.2.</span> <span class="toc-text">方法2:拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法3-创建一个UIWebView来加载URL，且宽高为0-0-拨完后能自动回到原应用"><span class="toc-number">1.3.</span> <span class="toc-text">方法3:创建一个UIWebView来加载URL，且宽高为0,0,拨完后能自动回到原应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发短信"><span class="toc-number">2.</span> <span class="toc-text">发短信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法1-直接跳到发短信界面"><span class="toc-number">2.1.</span> <span class="toc-text">方法1:直接跳到发短信界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法2-使用MessageUI框架"><span class="toc-number">2.2.</span> <span class="toc-text">方法2:使用MessageUI框架</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发邮件"><span class="toc-number">3.</span> <span class="toc-text">发邮件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法1-直接跳到发邮件界面"><span class="toc-number">3.1.</span> <span class="toc-text">方法1:直接跳到发邮件界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法2-使用MessageUI框架-1"><span class="toc-number">3.2.</span> <span class="toc-text">方法2:使用MessageUI框架</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用跳转"><span class="toc-number">4.</span> <span class="toc-text">应用跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用评分"><span class="toc-number">5.</span> <span class="toc-text">应用评分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">6.</span> <span class="toc-text">其他</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        sharedApplication之openURL
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2015-07-29T09:57:51.000Z" itemprop="datePublished">2015-07-29</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/openURL/">openURL</a>, <a class="tag-link" href="/tags/sharedApplication/">sharedApplication</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <ul>
+<li>&#x6253;&#x7535;&#x8BDD;</li>
+<li>&#x53D1;&#x77ED;&#x4FE1;</li>
+<li>&#x53D1;&#x90AE;&#x4EF6;</li>
+<li>&#x5E94;&#x7528;&#x8DF3;&#x8F6C;</li>
+<li>&#x5E94;&#x7528;&#x8BC4;&#x5206;</li>
+<li>&#x5176;&#x4ED6;<br>&#x4E3B;&#x8981;&#x901A;&#x8FC7;&#x4EE5;&#x4E0A;6&#x70B9;&#x5206;&#x522B;&#x4ECB;&#x7ECD;.</li>
+</ul>
+<a id="more"></a>
+<h3 id="&#x6253;&#x7535;&#x8BDD;"><a href="#&#x6253;&#x7535;&#x8BDD;" class="headerlink" title="&#x6253;&#x7535;&#x8BDD;"></a>&#x6253;&#x7535;&#x8BDD;</h3><h4 id="&#x65B9;&#x6CD5;1-&#x6700;&#x7B80;&#x5355;&#x6700;&#x76F4;&#x63A5;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x62E8;&#x53F7;&#x754C;&#x9762;"><a href="#&#x65B9;&#x6CD5;1-&#x6700;&#x7B80;&#x5355;&#x6700;&#x76F4;&#x63A5;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x62E8;&#x53F7;&#x754C;&#x9762;" class="headerlink" title="&#x65B9;&#x6CD5;1:&#x6700;&#x7B80;&#x5355;&#x6700;&#x76F4;&#x63A5;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x62E8;&#x53F7;&#x754C;&#x9762;"></a>&#x65B9;&#x6CD5;1:&#x6700;&#x7B80;&#x5355;&#x6700;&#x76F4;&#x63A5;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x62E8;&#x53F7;&#x754C;&#x9762;</h4><p><pre class="lang:objc decode:true">NSURL <em>url = [NSURL URLWithString:@&#x201D;tel://10010&#x201D;];<br>[[UIApplication sharedApplication] openURL:url];</em></pre><br><em>*&#x7F3A;&#x70B9;</em>:&#x6253;&#x5B8C;&#x7535;&#x8BDD;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;&#xFF0C;&#x76F4;&#x63A5;&#x505C;&#x7559;&#x5728;&#x901A;&#x8BDD;&#x8BB0;&#x5F55;&#x754C;&#x9762;.</p>
+<h4 id="&#x65B9;&#x6CD5;2-&#x62E8;&#x53F7;&#x4E4B;&#x524D;&#x4F1A;&#x5F39;&#x6846;&#x8BE2;&#x95EE;&#x7528;&#x6237;&#x662F;&#x5426;&#x62E8;&#x53F7;&#xFF0C;&#x62E8;&#x5B8C;&#x540E;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;"><a href="#&#x65B9;&#x6CD5;2-&#x62E8;&#x53F7;&#x4E4B;&#x524D;&#x4F1A;&#x5F39;&#x6846;&#x8BE2;&#x95EE;&#x7528;&#x6237;&#x662F;&#x5426;&#x62E8;&#x53F7;&#xFF0C;&#x62E8;&#x5B8C;&#x540E;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;" class="headerlink" title="&#x65B9;&#x6CD5;2:&#x62E8;&#x53F7;&#x4E4B;&#x524D;&#x4F1A;&#x5F39;&#x6846;&#x8BE2;&#x95EE;&#x7528;&#x6237;&#x662F;&#x5426;&#x62E8;&#x53F7;&#xFF0C;&#x62E8;&#x5B8C;&#x540E;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;"></a>&#x65B9;&#x6CD5;2:&#x62E8;&#x53F7;&#x4E4B;&#x524D;&#x4F1A;&#x5F39;&#x6846;&#x8BE2;&#x95EE;&#x7528;&#x6237;&#x662F;&#x5426;&#x62E8;&#x53F7;&#xFF0C;&#x62E8;&#x5B8C;&#x540E;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;</h4><p><pre class="lang:objc decode:true ">SURL <em>url = [NSURL URLWithString:@&#x201D;telprompt://10010&#x201D;];<br>[[UIApplication sharedApplication] openURL:url];</em></pre><br><em>*&#x7F3A;&#x70B9;</em>:&#x79C1;&#x6709;API(&#x975E;&#x6587;&#x6863;&#x5173;&#x952E;&#x5B57;)&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x80FD;&#x4E0D;&#x4F1A;&#x88AB;&#x5BA1;&#x6838;&#x901A;&#x8FC7;(&#x6CA1;&#x6709;&#x8BD5;&#x8FC7;)</p>
+<h4 id="&#x65B9;&#x6CD5;3-&#x521B;&#x5EFA;&#x4E00;&#x4E2A;UIWebView&#x6765;&#x52A0;&#x8F7D;URL&#xFF0C;&#x4E14;&#x5BBD;&#x9AD8;&#x4E3A;0-0-&#x62E8;&#x5B8C;&#x540E;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;"><a href="#&#x65B9;&#x6CD5;3-&#x521B;&#x5EFA;&#x4E00;&#x4E2A;UIWebView&#x6765;&#x52A0;&#x8F7D;URL&#xFF0C;&#x4E14;&#x5BBD;&#x9AD8;&#x4E3A;0-0-&#x62E8;&#x5B8C;&#x540E;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;" class="headerlink" title="&#x65B9;&#x6CD5;3:&#x521B;&#x5EFA;&#x4E00;&#x4E2A;UIWebView&#x6765;&#x52A0;&#x8F7D;URL&#xFF0C;&#x4E14;&#x5BBD;&#x9AD8;&#x4E3A;0,0,&#x62E8;&#x5B8C;&#x540E;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;"></a>&#x65B9;&#x6CD5;3:&#x521B;&#x5EFA;&#x4E00;&#x4E2A;UIWebView&#x6765;&#x52A0;&#x8F7D;URL&#xFF0C;&#x4E14;&#x5BBD;&#x9AD8;&#x4E3A;0,0,&#x62E8;&#x5B8C;&#x540E;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;</h4><p><pre class="lang:objc decode:true">if (_webView == nil) {<br>    _webView = [[UIWebView alloc] initWithFrame:CGRectZero];<br>}<br>[_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@&#x201D;tel://10010&#x201D;]]];</pre><br><strong>&#x6CE8;&#x610F;</strong>:&#x5343;&#x4E07;&#x4E0D;&#x8981;&#x6DFB;&#x52A0;&#x5230;&#x754C;&#x9762;&#x4E0A;&#x6765;&#xFF0C;&#x4E0D;&#x7136;&#x4F1A;&#x6321;&#x4F4F;&#x5176;&#x4ED6;&#x754C;&#x9762;</p>
+<blockquote>
+<p>&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;3,&#x8FD9;&#x65F6;&#x7684;WEBView&#x4E0D;&#x662F;&#x7528;&#x6765;&#x663E;&#x793A;,&#x53EA;&#x662F;&#x7528;&#x6765;&#x6253;&#x7535;&#x8BDD;&#x7684;.</p>
+</blockquote>
+<p>### </p>
+<h3 id="&#x53D1;&#x77ED;&#x4FE1;"><a href="#&#x53D1;&#x77ED;&#x4FE1;" class="headerlink" title="&#x53D1;&#x77ED;&#x4FE1;"></a>&#x53D1;&#x77ED;&#x4FE1;</h3><h4 id="&#x65B9;&#x6CD5;1-&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x53D1;&#x77ED;&#x4FE1;&#x754C;&#x9762;"><a href="#&#x65B9;&#x6CD5;1-&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x53D1;&#x77ED;&#x4FE1;&#x754C;&#x9762;" class="headerlink" title="&#x65B9;&#x6CD5;1:&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x53D1;&#x77ED;&#x4FE1;&#x754C;&#x9762;"></a>&#x65B9;&#x6CD5;1:&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x53D1;&#x77ED;&#x4FE1;&#x754C;&#x9762;</h4><p><pre class="lang:objc decode:true">NSURL <em>url = [NSURL URLWithString:@&#x201D;sms://10010&#x201D;];<br>[[UIApplication sharedApplication] openURL:url];</em></pre><br><em>*&#x7F3A;&#x70B9;:</em>&#x4E0D;&#x80FD;&#x6307;&#x5B9A;&#x77ED;&#x4FE1;&#x5185;&#x5BB9;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;</p>
+<h4 id="&#x65B9;&#x6CD5;2-&#x4F7F;&#x7528;MessageUI&#x6846;&#x67B6;"><a href="#&#x65B9;&#x6CD5;2-&#x4F7F;&#x7528;MessageUI&#x6846;&#x67B6;" class="headerlink" title="&#x65B9;&#x6CD5;2:&#x4F7F;&#x7528;MessageUI&#x6846;&#x67B6;"></a>&#x65B9;&#x6CD5;2:&#x4F7F;&#x7528;MessageUI&#x6846;&#x67B6;</h4><p><pre class="lang:objc decode:true">#import &lt;MessageUI/MessageUI.h&gt;  // &#x5F15;&#x5165;&#x6846;&#x67B6;</pre></p>
+<p>// &#x5E76;&#x4E14;&#x63A7;&#x5236;&#x9700;&#x8981;&#x9075;&#x5B88;&#x4EE3;&#x7406;&#x534F;&#x8BAE;</p>
+<p>// &#x663E;&#x793A;&#x53D1;&#x77ED;&#x4FE1;&#x7684;&#x63A7;&#x5236;&#x5668;<br>MFMessageComposeViewController *vc = [[MFMessageComposeViewController alloc] init];<br>// &#x8BBE;&#x7F6E;&#x77ED;&#x4FE1;&#x5185;&#x5BB9;<br>vc.body = @&#x201D;BM&#x5728;&#x5417;&#xFF1F;&#x201D;;<br>// &#x8BBE;&#x7F6E;&#x6536;&#x4EF6;&#x4EBA;&#x5217;&#x8868;<br>vc.recipients = @[@&#x201D;10010&#x201D;, @&#x201D;02010010&#x201D;];<br>// &#x8BBE;&#x7F6E;&#x4EE3;&#x7406;<br>vc.messageComposeDelegate = self;</p>
+<p>// &#x663E;&#x793A;&#x63A7;&#x5236;&#x5668;<br>[self presentViewController:vc animated:YES completion:nil];</p>
+<p>&#x4EE3;&#x7406;&#x65B9;&#x6CD5;</p>
+<ul>
+<li><p>(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result<br>{<br>  // &#x5173;&#x95ED;&#x77ED;&#x4FE1;&#x754C;&#x9762;<br>  [controller dismissViewControllerAnimated:YES completion:nil];</p>
+<p>  if (result == MessageComposeResultCancelled) {</p>
+<pre><code>NSLog(@&quot;&#x53D6;&#x6D88;&#x53D1;&#x9001;&quot;);
+</code></pre><p>  } else if (result == MessageComposeResultSent) {</p>
+<pre><code>NSLog(@&quot;&#x5DF2;&#x7ECF;&#x53D1;&#x51FA;&quot;);
+</code></pre><p>  } else {</p>
+<pre><code>NSLog(@&quot;&#x53D1;&#x9001;&#x5931;&#x8D25;&quot;);
+</code></pre><p>  }<br>}</p>
+</li>
+</ul>
+<p><br><strong>&#x6CE8;&#x610F;:</strong>1.&#x9700;&#x8981;&#x5F15;&#x5165;&#x6846;&#x67B6;,2.&#x9700;&#x8981;&#x6210;&#x4E3A;&#x4EE3;&#x7406;.</p>
+<blockquote>
+<p>&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;2,&#x5F53;&#x77ED;&#x4FE1;&#x5173;&#x95ED;&#x65F6;&#x4F1A;&#x8FD4;&#x56DE;&#x539F;&#x6765;&#x5E94;&#x7528;,&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x77ED;&#x4FE1;&#x5185;&#x5BB9;.</p>
+</blockquote>
+<p>### </p>
+<h3 id="&#x53D1;&#x90AE;&#x4EF6;"><a href="#&#x53D1;&#x90AE;&#x4EF6;" class="headerlink" title="&#x53D1;&#x90AE;&#x4EF6;"></a>&#x53D1;&#x90AE;&#x4EF6;</h3><h4 id="&#x65B9;&#x6CD5;1-&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x53D1;&#x90AE;&#x4EF6;&#x754C;&#x9762;"><a href="#&#x65B9;&#x6CD5;1-&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x53D1;&#x90AE;&#x4EF6;&#x754C;&#x9762;" class="headerlink" title="&#x65B9;&#x6CD5;1:&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x53D1;&#x90AE;&#x4EF6;&#x754C;&#x9762;"></a>&#x65B9;&#x6CD5;1:&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x53D1;&#x90AE;&#x4EF6;&#x754C;&#x9762;</h4><p><pre class="lang:objc decode:true">NSURL <em>url = [NSURL URLWithString:@&#x201D;mailto://birdmichael126@gmail.com&#x201D;];<br>[[UIApplication sharedApplication] openURL:url];<br></em></pre><br><em>*&#x7F3A;&#x70B9;:</em>&#x4E0D;&#x80FD;&#x6307;&#x5B9A;&#x90AE;&#x4EF6;&#x5185;&#x5BB9;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x80FD;&#x81EA;&#x52A8;&#x56DE;&#x5230;&#x539F;&#x5E94;&#x7528;</p>
+<p>&#xA0;</p>
+<h4 id="&#x65B9;&#x6CD5;2-&#x4F7F;&#x7528;MessageUI&#x6846;&#x67B6;-1"><a href="#&#x65B9;&#x6CD5;2-&#x4F7F;&#x7528;MessageUI&#x6846;&#x67B6;-1" class="headerlink" title="&#x65B9;&#x6CD5;2:&#x4F7F;&#x7528;MessageUI&#x6846;&#x67B6;"></a>&#x65B9;&#x6CD5;2:&#x4F7F;&#x7528;MessageUI&#x6846;&#x67B6;</h4><p><pre class="lang:objc decode:true">#import &lt;MessageUI/MessageUI.h&gt;  // &#x5F15;&#x5165;&#x6846;&#x67B6;</pre></p>
+<p>// &#x5E76;&#x4E14;&#x63A7;&#x5236;&#x9700;&#x8981;&#x9075;&#x5B88;&#x4EE3;&#x7406;&#x534F;&#x8BAE;</p>
+<p>// &#x4E0D;&#x80FD;&#x53D1;&#x90AE;&#x4EF6;<br>if (![MFMailComposeViewController canSendMail]) return;</p>
+<p>MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];</p>
+<p>// &#x8BBE;&#x7F6E;&#x90AE;&#x4EF6;&#x4E3B;&#x9898;<br>[vc setSubject:@&#x201D;&#x4F1A;&#x8BAE;&#x201D;];<br>// &#x8BBE;&#x7F6E;&#x90AE;&#x4EF6;&#x5185;&#x5BB9;<br>[vc setMessageBody:@&#x201D;&#x4ECA;&#x5929;&#x4E0B;&#x5348;&#x5F00;&#x4F1A;&#x5427;&#x201D; isHTML:NO];<br>// &#x8BBE;&#x7F6E;&#x6536;&#x4EF6;&#x4EBA;&#x5217;&#x8868;<br>[vc setToRecipients:@[@&#x201D;643055866@qq.com&#x201D;]];<br>// &#x8BBE;&#x7F6E;&#x6284;&#x9001;&#x4EBA;&#x5217;&#x8868;<br>[vc setCcRecipients:@[@&#x201D;1234@qq.com&#x201D;]];<br>// &#x8BBE;&#x7F6E;&#x5BC6;&#x9001;&#x4EBA;&#x5217;&#x8868;<br>[vc setBccRecipients:@[@&#x201D;56789@qq.com&#x201D;]];</p>
+<p>// &#x6DFB;&#x52A0;&#x9644;&#x4EF6;&#xFF08;&#x4E00;&#x5F20;&#x56FE;&#x7247;&#xFF09;<br>UIImage <em>image = [UIImage imageNamed:@&#x201D;lufy.jpeg&#x201D;];<br>NSData </em>data = UIImageJPEGRepresentation(image, 0.5);<br>[vc addAttachmentData:data mimeType:@&#x201D;image/jepg&#x201D; fileName:@&#x201D;lufy.jpeg&#x201D;];</p>
+<p>// &#x8BBE;&#x7F6E;&#x4EE3;&#x7406;<br>vc.mailComposeDelegate = self;<br>// &#x663E;&#x793A;&#x63A7;&#x5236;&#x5668;<br>[self presentViewController:vc animated:YES completion:nil];</p>
+<p>&#x4EE3;&#x7406;&#x65B9;&#x6CD5;</p>
+<ul>
+<li><p>(void)mailComposeController:(MFMailComposeViewController <em>)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError </em>)error<br>{<br>  // &#x5173;&#x95ED;&#x90AE;&#x4EF6;&#x754C;&#x9762;<br>  [controller dismissViewControllerAnimated:YES completion:nil];</p>
+<p>  if (result == MFMailComposeResultCancelled) {</p>
+<pre><code>NSLog(@&quot;&#x53D6;&#x6D88;&#x53D1;&#x9001;&quot;);
+</code></pre><p>  } else if (result == MFMailComposeResultSent) {</p>
+<pre><code>NSLog(@&quot;&#x5DF2;&#x7ECF;&#x53D1;&#x51FA;&quot;);
+</code></pre><p>  } else {</p>
+<pre><code>NSLog(@&quot;&#x53D1;&#x9001;&#x5931;&#x8D25;&quot;);
+</code></pre><p>  }<br>}</p>
+</li>
+</ul>
+<p><br><strong>&#x6CE8;&#x610F;:</strong>1.&#x9700;&#x8981;&#x5F15;&#x5165;&#x6846;&#x67B6;,2.&#x9700;&#x8981;&#x6210;&#x4E3A;&#x4EE3;&#x7406;.</p>
+<blockquote>
+<p>&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;2,&#x4E0E;&#x53D1;&#x77ED;&#x4FE1;&#x7C7B;&#x4F3C;,&#x53EA;&#x4E0D;&#x8FC7;&#x63A7;&#x5236;&#x5668;&#x7C7B;&#x540D;&#x6362;&#x4E86;&#x800C;&#x5DF2;.<br>&#xA0;</p>
+</blockquote>
+<h3 id="&#x5E94;&#x7528;&#x8DF3;&#x8F6C;"><a href="#&#x5E94;&#x7528;&#x8DF3;&#x8F6C;" class="headerlink" title="&#x5E94;&#x7528;&#x8DF3;&#x8F6C;"></a>&#x5E94;&#x7528;&#x8DF3;&#x8F6C;</h3><p>&#x5176;&#x4E2D;,bm:&#x662F;&#x534F;&#x8BAE;&#x5934;,ios.birdmichael.com&#x662F;&#x8DEF;&#x5F84;</p>
+<p>&#x5728; iOS &#x91CC;&#xFF0C;&#x7A0B;&#x5E8F;&#x4E4B;&#x95F4;&#x90FD;&#x662F;&#x76F8;&#x4E92;&#x9694;&#x79BB;&#xFF0C;&#x76EE;&#x524D;&#x5E76;&#x6CA1;&#x6709;&#x4E00;&#x4E2A;&#x6709;&#x6548;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x505A;&#x7A0B;&#x5E8F;&#x95F4;&#x901A;&#x4FE1;&#xFF0C;&#x5E78;&#x597D; iOS &#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x6CE8;&#x518C;&#x81EA;&#x5DF1;&#x7684; URL Scheme&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6253;&#x5F00;&#x7279;&#x5B9A; URL &#x7684;&#x65B9;&#x5F0F;&#x6765;&#x4F20;&#x9012;&#x53C2;&#x6570;&#x7ED9;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#x5728; iPad &#x4E0A;&#x6D4F;&#x89C8;&#x7F51;&#x9875;&#xFF0C;&#x5E76;&#x4E14; iPad &#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86; &#x6DD8;&#x5B9D; HD&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x6253;&#x5F00;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x94FE;&#x63A5;&#x5C31;&#x4F1A;&#x5728;&#x6DD8;&#x5B9D; HD &#x4E2D;&#x67E5;&#x770B;&#x8FD9;&#x4E2A;&#x5546;&#x54C1;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x4F7F;&#x7528;&#x6DD8;&#x5B9D; HD &#x8FDB;&#x884C;&#x8D2D;&#x4E70;&#x3001;&#x6536;&#x85CF;&#x7B49;&#x64CD;&#x4F5C;&#x3002;</p>
+<p><strong>&#x914D;&#x7F6E;</strong></p>
+<p>&#x8981;&#x4E3A; iOS &#x7A0B;&#x5E8F;&#x6DFB;&#x52A0;&#x81EA;&#x5B9A;&#x4E49;&#x534F;&#x8BAE;&#x7684;&#x652F;&#x6301;&#x662F;&#x4E00;&#x4EF6;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x4E8B;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x7A0B;&#x5E8F;&#x7684; Info.plist &#x6DFB;&#x52A0;&#x4E00;&#x4E2A; URL types &#x8282;&#x70B9;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x91CC;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x6240;&#x652F;&#x6301;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x534F;&#x8BAE;&#x540D;&#x79F0;&#xFF0C;&#x50CF; http&#x3001;ftp &#x8FD9;&#x79CD;&#xFF0C;&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E3A;&#x7A0B;&#x5E8F;&#x82F1;&#x6587;&#x540D;&#x79F0;&#xFF0C;&#x50CF;&#x6DD8;&#x5B9D;&#x5BA2;&#x6237;&#x7AEF;&#x4E2D;&#x5C31;&#x8BBE;&#x7F6E;&#x4E86; taobao&#xFF0C;&#x8FD9;&#x6837; taobao:// &#x8FD9;&#x4E2A;&#x5F62;&#x5F0F;&#x7684; URL &#x5C31;&#x4F1A;&#x5173;&#x8054;&#x5230;&#x6DD8;&#x5B9D;&#x5BA2;&#x6237;&#x7AEF;&#x7684; App&#x3002;</p>
+<div><a href="http://birdmichael.com/wp-content/uploads/2015/07/6598259438238301923.jpg" target="_blank" rel="noopener"><img src="http://birdmichael.com/wp-content/uploads/2015/07/6598259438238301923.jpg" alt="6598259438238301923"></a></div>
+
+<ol>
+<li>&#x5982;&#x679C;&#x6CA1;&#x6709;URL types&#xFF0C;&#x968F;&#x610F;&#x70B9;&#x4E00;&#x4E2A;key&#x884C;&#x540E;&#x9762;&#xFF0B;&#x53F7;&#xFF0C;&#x8F93;&#x5165;&#x5927;&#x5199;URL&#x9009;&#x62E9;URL types</li>
+<li>&#x53F3;&#x952E;URL types&#xFF0C;&#x9009;&#x62E9;add row</li>
+<li>item0&#x4E0B;&#x6539;&#x6210;url identifier&#xFF0C;&#x540E;&#x9762;&#x7684;value&#x503C;&#x968F;&#x610F;&#x5199;&#xFF0C;com.xx,xx</li>
+<li>&#x52A0;&#x4E00;&#x884C;&#xFF0C;&#x9009;&#x62E9;url schemes&#xFF0C;item&#x540E;&#x9762;&#x503C;&#x5199;&#x6210;&#x4F60;&#x9700;&#x8981;&#x7684;&#xFF0C;&#x8B6C;&#x5982;&#x4E0A;&#x9762;&#x7684;todolist&#xFF0C;&#x4EE5;&#x540E;&#x522B;&#x7684;app&#x5C31;&#x53EF;&#x4EE5;&#x7528;<br>&#xA0;<br><pre class="lang:objc decode:true ">NSURL *url = [NSURL URLWithString:@&#x201D;bm://ios.birdmichael.com&#x201D;];<br>[[UIApplication sharedApplication] openURL:url];<br></pre><br>&#x542F;&#x52A8;&#x4F60;&#x7684;app.</li>
+</ol>
+<p>&#xA0;</p>
+<h3 id="&#x5E94;&#x7528;&#x8BC4;&#x5206;"><a href="#&#x5E94;&#x7528;&#x8BC4;&#x5206;" class="headerlink" title="&#x5E94;&#x7528;&#x8BC4;&#x5206;"></a>&#x5E94;&#x7528;&#x8BC4;&#x5206;</h3><p>&#x5176;&#x4E2D;appid&#x662F;&#x6709;&#x82F9;&#x679C;&#x5546;&#x5E97;&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x4E2A;&#x8EAB;&#x4EFD;&#x6807;&#x8BC6;id.</p>
+<p>&#x65B9;&#x6CD5;1:</p>
+<p><pre class="lang:objc decode:true ">NSString <em>appid = @&#x201D;444934666&#x201D;;<br>NSString </em>str = [NSString stringWithFormat:<br>                 @&#x201D;itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&amp;id=%@&#x201D;, appid];<br>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];<br></pre><br>&#xA0;</p>
+<p>&#x65B9;&#x6CD5;2:</p>
+<p><pre class="lang:objc decode:true ">NSString *str = [NSString stringWithFormat:<br>                 @&#x201D;itms-apps://itunes.apple.com/cn/app/id%@?mt=8&#x201D;, appid];<br>[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];</pre></p>
+<blockquote>
+<p>&#x5EFA;&#x7ACB;&#x4F7F;&#x7528;&#x7B2C;&#x4E8C;&#x79CD;.<br>&#xA0;</p>
+</blockquote>
+<h3 id="&#x5176;&#x4ED6;"><a href="#&#x5176;&#x4ED6;" class="headerlink" title="&#x5176;&#x4ED6;"></a>&#x5176;&#x4ED6;</h3><p><div>About &#x2014; prefs:root=General&amp;path=About <wbr></div></p>
+<p><div>Accessibility &#x2014; prefs:root=General&amp;path=ACCESSIBILITY <wbr></div></p>
+<p><div>Airplane Mode On &#x2014; prefs:root=AIRPLANE_MODE <wbr></div></p>
+<p><div>Auto-Lock &#x2014; prefs:root=General&amp;path=AUTOLOCK <wbr></div></p>
+<p><div>Brightness &#x2014; prefs:root=Brightness <wbr></div></p>
+<p><div>Bluetooth &#x2014; prefs:root=General&amp;path=Bluetooth <wbr></div></p>
+<p><div>Date &amp; Time &#x2014; prefs:root=General&amp;path=DATE_AND_TIME <wbr></div></p>
+<p><div>FaceTime &#x2014; prefs:root=FACETIME <wbr></div></p>
+<p><div>General &#x2014; prefs:root=General <wbr></div></p>
+<p><div>Keyboard &#x2014; prefs:root=General&amp;path=Keyboard <wbr></div></p>
+<p><div>iCloud &#x2014; prefs:root=CASTLE <wbr></div></p>
+<p><div>iCloud Storage &amp; Backup &#x2014; prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP <wbr></div></p>
+<p><div>International &#x2014; prefs:root=General&amp;path=INTERNATIONAL <wbr></div></p>
+<p><div>Location Services &#x2014; prefs:root=LOCATION_SERVICES <wbr></div></p>
+<p><div>Music &#x2014; prefs:root=MUSIC <wbr></div></p>
+<p><div>Music Equalizer &#x2014; prefs:root=MUSIC&amp;path=EQ <wbr></div></p>
+<p><div>Music Volume Limit &#x2014; prefs:root=MUSIC&amp;path=VolumeLimit <wbr></div></p>
+<p><div>Network &#x2014; prefs:root=General&amp;path=Network <wbr></div></p>
+<p><div>Nike + iPod &#x2014; prefs:root=NIKE_PLUS_IPOD <wbr></div></p>
+<p><div>Notes &#x2014; prefs:root=NOTES <wbr></div></p>
+<p><div>Notification &#x2014; prefs:root=NOTIFICATIONS_ID <wbr></div></p>
+<p><div>Phone &#x2014; prefs:root=Phone <wbr></div></p>
+<p><div>Photos &#x2014; prefs:root=Photos <wbr></div></p>
+<p><div>Profile &#x2014; prefs:root=General&amp;path=ManagedConfigurationList<wbr> <wbr></div></p>
+<p><div>Reset &#x2014; prefs:root=General&amp;path=Reset <wbr></div></p>
+<p><div>Safari &#x2014; prefs:root=Safari <wbr></div></p>
+<p><div>Siri &#x2014; prefs:root=General&amp;path=Assistant <wbr></div></p>
+<p><div>Sounds &#x2014; prefs:root=Sounds <wbr></div></p>
+<p><div>Software Update &#x2014; prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK <wbr></div></p>
+<p><div>Store &#x2014; prefs:root=STORE <wbr></div></p>
+<p><div>Twitter &#x2014; prefs:root=TWITTER <wbr></div></p>
+<p><div>Usage &#x2014; prefs:root=General&amp;path=USAGE <wbr></div></p>
+<p><div>VPN &#x2014; prefs:root=General&amp;path=Network/VPN <wbr></div></p>
+<p><div>Wallpaper &#x2014; prefs:root=Wallpaper <wbr></div></p>
+<p><div>Wi-Fi &#x2014; prefs:root=WIFI <wbr></div></p>
+<p><div>INTERNET_TETHERING Internet_tethering &#x2014; prefs:root= INTERNET_TETHERING</div><br>&#xA0;</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#打电话"><span class="toc-number">1.</span> <span class="toc-text">打电话</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法1-最简单最直接的方式：直接跳到拨号界面"><span class="toc-number">1.1.</span> <span class="toc-text">方法1:最简单最直接的方式：直接跳到拨号界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法2-拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用"><span class="toc-number">1.2.</span> <span class="toc-text">方法2:拨号之前会弹框询问用户是否拨号，拨完后能自动回到原应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法3-创建一个UIWebView来加载URL，且宽高为0-0-拨完后能自动回到原应用"><span class="toc-number">1.3.</span> <span class="toc-text">方法3:创建一个UIWebView来加载URL，且宽高为0,0,拨完后能自动回到原应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发短信"><span class="toc-number">2.</span> <span class="toc-text">发短信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法1-直接跳到发短信界面"><span class="toc-number">2.1.</span> <span class="toc-text">方法1:直接跳到发短信界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法2-使用MessageUI框架"><span class="toc-number">2.2.</span> <span class="toc-text">方法2:使用MessageUI框架</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发邮件"><span class="toc-number">3.</span> <span class="toc-text">发邮件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法1-直接跳到发邮件界面"><span class="toc-number">3.1.</span> <span class="toc-text">方法1:直接跳到发邮件界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法2-使用MessageUI框架-1"><span class="toc-number">3.2.</span> <span class="toc-text">方法2:使用MessageUI框架</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用跳转"><span class="toc-number">4.</span> <span class="toc-text">应用跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用评分"><span class="toc-number">5.</span> <span class="toc-text">应用评分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">6.</span> <span class="toc-text">其他</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/07/29/sharedapplication-openurl.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&text=sharedApplication之openURL"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&is_video=false&description=sharedApplication之openURL"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=sharedApplication之openURL&body=Check out this article: http://yoursite.com/2015/07/29/sharedapplication-openurl.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&title=sharedApplication之openURL"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/07/29/sharedapplication-openurl.html&name=sharedApplication之openURL&description=&lt;ul&gt;
+&lt;li&gt;&amp;#x6253;&amp;#x7535;&amp;#x8BDD;&lt;/li&gt;
+&lt;li&gt;&amp;#x53D1;&amp;#x77ED;&amp;#x4FE1;&lt;/li&gt;
+&lt;li&gt;&amp;#x53D1;&amp;#x90AE;&amp;#x4EF6;&lt;/li&gt;
+&lt;li&gt;&amp;#x5E94;&amp;#x7528;&amp;#x8DF3;&amp;#x8F6C;&lt;/li&gt;
+&lt;li&gt;&amp;#x5E94;&amp;#x7528;&amp;#x8BC4;&amp;#x5206;&lt;/li&gt;
+&lt;li&gt;&amp;#x5176;&amp;#x4ED6;&lt;br&gt;&amp;#x4E3B;&amp;#x8981;&amp;#x901A;&amp;#x8FC7;&amp;#x4EE5;&amp;#x4E0A;6&amp;#x70B9;&amp;#x5206;&amp;#x522B;&amp;#x4ECB;&amp;#x7ECD;.&lt;/li&gt;
+&lt;/ul&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+    <!-- Disqus Comments -->
+    <script type="text/javascript">
+        var disqus_shortname = 'birdmichael';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
