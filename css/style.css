@@ -1321,58 +1321,49 @@ article .content .caption {
   color: #383838;
 }
 .highlight {
-  color: #dccf8f;
-  background: url("./pojoaque.jpg") repeat scroll left top #181914;
+  color: #c5c8c6;
+  background: #1d1f21;
 }
 .highlight .code .comment,
 .highlight .code .quote {
-  color: #586e75;
-  font-style: italic;
-}
-.highlight .code .keyword,
-.highlight .code .selector-tag,
-.highlight .code .literal,
-.highlight .code .addition {
-  color: #b64926;
-}
-.highlight .code .number,
-.highlight .code .string,
-.highlight .code .doctag,
-.highlight .code .regexp {
-  color: #468966;
-}
-.highlight .code .title,
-.highlight .code .section,
-.highlight .code .built_in,
-.highlight .code .name {
-  color: #ffb03b;
+  color: #969896;
 }
 .highlight .code .variable,
 .highlight .code .template-variable,
-.highlight .code .class .title,
+.highlight .code .tag,
+.highlight .code .name,
+.highlight .code .selector-id,
+.highlight .code .selector-class,
+.highlight .code .regexp,
+.highlight .code .deletion {
+  color: #c66;
+}
+.highlight .code .number,
+.highlight .code .built_in,
+.highlight .code .builtin-name,
+.highlight .code .literal,
 .highlight .code .type,
-.highlight .code .tag {
-  color: #b58900;
+.highlight .code .params,
+.highlight .code .meta,
+.highlight .code .link {
+  color: #de935f;
 }
 .highlight .code .attribute {
-  color: #b89859;
+  color: #f0c674;
 }
+.highlight .code .string,
 .highlight .code .symbol,
 .highlight .code .bullet,
-.highlight .code .link,
-.highlight .code .subst,
-.highlight .code .meta {
-  color: #cb4b16;
+.highlight .code .addition {
+  color: #b5bd68;
 }
-.highlight .code .deletion {
-  color: #dc322f;
+.highlight .code .title,
+.highlight .code .section {
+  color: #81a2be;
 }
-.highlight .code .selector-id,
-.highlight .code .selector-class {
-  color: #d3a60c;
-}
-.highlight .code .formula {
-  background: #073642;
+.highlight .code .keyword,
+.highlight .code .selector-tag {
+  color: #b294bb;
 }
 .highlight .code .emphasis {
   font-style: italic;
