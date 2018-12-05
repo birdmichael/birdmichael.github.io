@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="前提无意中看到了一个很有意思的APP，传说是苹果2017设计奖。很多地方的控件都不知道如何实现的。于是有了想逆向能不能查看一些思路。 比如：  这个下面的选色控件：支持横向滚动改变颜色，纵向滚动改变明度。点击滑动到中间区域，还有各种动画。 咋眼一看感觉好像不是很难，但是在实际实现中遇到了很多困难。 于是开始了Lake的逆向之旅。 越狱工具Electra官网：点此连接 越狱工具下载地址：点此连接（I">
+<meta name="keywords" content="逆向,砸壳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lake逆向之路（持续更新中）">
+<meta property="og:url" content="http://yoursite.com/2018/12/05/Lake逆向之路.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="前提无意中看到了一个很有意思的APP，传说是苹果2017设计奖。很多地方的控件都不知道如何实现的。于是有了想逆向能不能查看一些思路。 比如：  这个下面的选色控件：支持横向滚动改变颜色，纵向滚动改变明度。点击滑动到中间区域，还有各种动画。 咋眼一看感觉好像不是很难，但是在实际实现中遇到了很多困难。 于是开始了Lake的逆向之旅。 越狱工具Electra官网：点此连接 越狱工具下载地址：点此连接（I">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/12/05/Lake逆向之路/539B31754E927C4EDBCB5BC48B1AD93C.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/12/05/Lake逆向之路/B468281C-9139-4EAE-B6A0-EA07D6FE9BFD.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/05/Lake逆向之路/7DEBE80B81480DB6C1D5B45775285B58.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/12/05/Lake逆向之路/B6116220-0A01-488F-9F05-077C67474B47.png">
+<meta property="og:updated_time" content="2018-12-05T09:24:09.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lake逆向之路（持续更新中）">
+<meta name="twitter:description" content="前提无意中看到了一个很有意思的APP，传说是苹果2017设计奖。很多地方的控件都不知道如何实现的。于是有了想逆向能不能查看一些思路。 比如：  这个下面的选色控件：支持横向滚动改变颜色，纵向滚动改变明度。点击滑动到中间区域，还有各种动画。 咋眼一看感觉好像不是很难，但是在实际实现中遇到了很多困难。 于是开始了Lake的逆向之旅。 越狱工具Electra官网：点此连接 越狱工具下载地址：点此连接（I">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/05/Lake逆向之路/539B31754E927C4EDBCB5BC48B1AD93C.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Lake逆向之路（持续更新中）</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/12/05/iproxy-通过USB使用SSH连接iOS设备.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href=/ ><i class="fa fa-home" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">Back to home</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/05/Lake逆向之路.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&text=Lake逆向之路（持续更新中）"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&is_video=false&description=Lake逆向之路（持续更新中）"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Lake逆向之路（持续更新中）&body=Check out this article: http://yoursite.com/2018/12/05/Lake逆向之路.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&name=Lake逆向之路（持续更新中）&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前提"><span class="toc-number">1.</span> <span class="toc-text">前提</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#越狱"><span class="toc-number">1.1.</span> <span class="toc-text">越狱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工具"><span class="toc-number">1.1.1.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#教程"><span class="toc-number">1.1.2.</span> <span class="toc-text">教程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#砸壳"><span class="toc-number">1.2.</span> <span class="toc-text">砸壳</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工具"><span class="toc-number">1.2.1.</span> <span class="toc-text">准备工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-number">1.2.2.</span> <span class="toc-text">过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逆向"><span class="toc-number">1.3.</span> <span class="toc-text">逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MonkeyDev安装"><span class="toc-number">1.3.1.</span> <span class="toc-text">MonkeyDev安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卸载"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">卸载</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Lake逆向之路（持续更新中）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-12-05T04:32:02.000Z" itemprop="datePublished">2018-12-05</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/砸壳/">砸壳</a>, <a class="tag-link" href="/tags/逆向/">逆向</a>
+    </div>
+
+
+      
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><p>无意中看到了一个很有意思的APP，传说是苹果2017设计奖。很多地方的控件都不知道如何实现的。于是有了想逆向能不能查看一些思路。</p>
+<p>比如：</p>
+<p><img src="Lake逆向之路/539B31754E927C4EDBCB5BC48B1AD93C.jpg" alt=""></p>
+<p>这个下面的选色控件：支持横向滚动改变颜色，纵向滚动改变明度。点击滑动到中间区域，还有各种动画。</p>
+<p>咋眼一看感觉好像不是很难，但是在实际实现中遇到了很多困难。</p>
+<p>于是开始了<code>Lake</code>的逆向之旅。</p>
+<h2 id="越狱"><a href="#越狱" class="headerlink" title="越狱"></a>越狱</h2><h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>Electra官网：<a href="https://coolstar.org/electra/" target="_blank" rel="noopener">点此连接</a></p>
+<p>越狱工具下载地址：<a href="https://coolstar.org/electra/" target="_blank" rel="noopener">点此连接</a>（IPA文件）</p>
+<p>越狱工具安装工具：<a href="http://www.cydiaimpactor.com/" target="_blank" rel="noopener">点此连接</a>（Cydia Impactor）</p>
+<blockquote>
+<p>注意IPA版本。最新版本支持为iOS 11.2 – 11.3.1。我是11.1.2 在历史下载的<a href="https://coolstar.org/electra1112" target="_blank" rel="noopener">Electra for 11.0-11.1.2</a></p>
+</blockquote>
+<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p>1、下载Cydia Impactor后，解压运行“Impactor”。把之前下载好的IPA文件“Electra1131 ”拖进cydia Impactor里面（过程没有变化提示，会自动弹出输入苹果账号框）；</p>
+<p>2、然后根据提示输入自己的Apple ID账号与密码（需关闭双重验证，部分账号无法关闭双重验证，可以改用其他账号）；</p>
+<p>3、桌面出现名为 Electra 的App，打开“设置-&gt;通用-&gt;描述文件”找到描述文件，点击信任；</p>
+<p>4、将iOS调至飞行模式，运行Electra App，点击“Jailbreak”按钮，主屏出现Cydia之后，即可关闭飞行模式，越狱成功。（实际好像不用飞行模式）</p>
+<p>5、之后可以在桌面的出现<code>Cydia</code>，越狱成功。</p>
+<h2 id="砸壳"><a href="#砸壳" class="headerlink" title="砸壳"></a>砸壳</h2><p>最早的砸壳工具是stefanesser写的<a href="https://github.com/stefanesser/dumpdecrypted" target="_blank" rel="noopener">dumpdecrypted</a>，通过手动注入然后启动应用程序在内存进行dump解密后的内存实现砸壳，这种砸壳只能砸主App可执行文件。</p>
+<p>对于应用程序里面存在framework的情况可以使用conradev的<a href="https://github.com/conradev/dumpdecrypted" target="_blank" rel="noopener">dumpdecrypted</a>，通过_dyld_register_func_for_add_image注册回调对每个模块进行dump解密。</p>
+<p>但是这种还是需要拷贝dumpdecrypted.dylib，然后找路径什么的，还是挺麻烦的。所以笔者干脆放到<a href="https://github.com/AloneMonkey/MonkeyDev" target="_blank" rel="noopener">MonkeyDev</a>模板变成一个tweak的形式<a href="https://github.com/AloneMonkey/dumpdecrypted" target="_blank" rel="noopener">dumpdecrypted</a>，这样填写目标bundle id然后看日志把文件拷贝出来就可以了。</p>
+<p>但是还是很麻烦，需要拷贝文件自己还原ipa，然后有了KJCracks的<a href="https://github.com/KJCracks/Clutch" target="_blank" rel="noopener">Clutch</a>通过posix_spawnp创建进程然后dump直接生成ipa包在设备，可以说是很方便了。这个是工具在使用的时候大部分应用会出报错，此外生成的包还需要自己拷贝。</p>
+<h3 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h3><ol>
+<li><p><code>frida</code>安装</p>
+<p>Mac安装frida: <code>sudo pip install frida</code></p>
+<p>手机安装frida:添加源<code>build.frida.re</code>，并且安装</p>
+</li>
+<li><p><code>iproxy</code>安装</p>
+<p>可以查看之前一篇文章：<a href="https://birdmichael.github.io/2018/12/05/iproxy-%E9%80%9A%E8%BF%87USB%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5iOS%E8%AE%BE%E5%A4%87.html" target="_blank" rel="noopener">iproxy-通过USB使用SSH连接iOS设备</a></p>
+</li>
+<li><p><code>frida-ios-dump</code></p>
+<p>在<code>Github</code>根据<code>README.md</code>下载并安装：<a href="https://github.com/AloneMonkey/frida-ios-dump" target="_blank" rel="noopener">Github地址</a>。</p>
+</li>
+</ol>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>mac端在克隆<code>frida-ios-dump</code>下运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install -r requirements.txt --upgrade</span><br></pre></td></tr></table></figure>
+<p><img src="Lake逆向之路\B468281C-9139-4EAE-B6A0-EA07D6FE9BFD.png" alt="d"></p>
+<ol>
+<li><p>Mac终端通过USB连接iOS设备。</p>
+<p>新建一个<code>iTerm</code>窗口输入<code>iproxy 2222 22</code>,会得到<code>waiting for connection</code>的反馈。说明等待连接了。</p>
+<p>然后再新建一个<code>iTerm</code>窗口输入<code>ssh -p 2222 root@127.0.0.1</code>并填写默认密码<code>alpine</code>。</p>
+</li>
+</ol>
+<p><img src="Lake逆向之路/7DEBE80B81480DB6C1D5B45775285B58.jpg" alt=""></p>
+<p>到此为止，已经成功连接上了设备，开始准备一键砸壳，感谢<code>alonemonkey</code>大神带来了毫无体验之旅。</p>
+<ol>
+<li>一键砸壳</li>
+</ol>
+<p>回到步骤1那个窗口输入<code>./dump.py -l</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">912  App Store        com.apple.AppStore</span><br><span class="line">950  Cydia            com.saurik.Cydia</span><br><span class="line">939  Lake 涂色书         com.lake.coloring</span><br><span class="line">  -  Electra          org.coolstar.electra</span><br><span class="line">  -  MC Face++ Demo   com.megvii.awesomedemo.facepp</span><br><span class="line">  -  MGFaceppSDKTest  com.megvssii.MGFaceppSDKTestddd</span><br><span class="line">  -  Safari           com.apple.mobilesafari</span><br><span class="line">  -  Wallet           com.apple.Passbook</span><br><span class="line">  -  iFile            eu.heinelt.ifile</span><br><span class="line">  -  信息               com.apple.MobileSMS</span><br><span class="line">  -  健康               com.apple.Health</span><br><span class="line">  -  时钟               com.apple.mobiletimer</span><br><span class="line">  -  查找 iPhone        com.apple.mobileme.fmip1</span><br><span class="line">  -  电话               com.apple.mobilephone</span><br><span class="line">  -  相机               com.apple.camera</span><br><span class="line">  -  通讯录              com.apple.MobileAddressBook</span><br><span class="line">  -  音乐               com.apple.Music</span><br></pre></td></tr></table></figure>
+<p>因为 <code>Display name</code>又是中文，又是英文，又是空格的，个人建议是通过<code>Bundle identifier</code>，这样准确点。</p>
+<p>然后开始砸壳吧~~输入<code>./dump.py com.lake.coloring</code>,其中的<code>Bundle identifier</code>你是通过上面查到的。于是开始屌屌的砸壳过程中。</p>
+<p><img src="Lake逆向之路/B6116220-0A01-488F-9F05-077C67474B47.png" alt=""></p>
+<p>等待自动砸壳传输完成之后便会到当前目录生成一个解密后的ipa文件。砸壳之旅就这样结束了。</p>
+<p>这个时候赶紧拖到<a href="https://github.com/AloneMonkey/MonkeyDev" target="_blank" rel="noopener">MonkeyDev</a>开始逆向之旅吧！</p>
+<h2 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h2><h3 id="MonkeyDev安装"><a href="#MonkeyDev安装" class="headerlink" title="MonkeyDev安装"></a>MonkeyDev安装</h3><h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>使用工具前确保如下几点:</p>
+<ul>
+<li>安装最新的<a href="https://github.com/theos/theos/wiki/Installation" target="_blank" rel="noopener">theos</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo git clone --recursive https://github.com/theos/theos.git /opt/theos</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装ldid(如安装theos过程安装了ldid，跳过)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ldid</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置免密码登录越狱设备(如果没有越狱设备，跳过)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -P &apos;&apos;</span><br><span class="line">ssh-copy-id -i /Users/username/.ssh/id_rsa root@ip</span><br></pre></td></tr></table></figure>
+<p>或者安装<code>sshpass</code>自己设置密码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb</span><br></pre></td></tr></table></figure>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>你可以通过以下命令选择指定的Xcode进行安装:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xcode-select -s /Applications/Xcode-beta.app</span><br></pre></td></tr></table></figure>
+<p>默认安装的Xcode为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select -p</span><br></pre></td></tr></table></figure>
+<p>执行安装命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-uninstall)&quot;</span><br></pre></td></tr></table></figure>
+<p>鸣谢：</p>
+<ul>
+<li>iOS 11.2-11.3.1越狱发布！支持系统内所有iPhone <a href="https://www.ithome.com/html/iphone/369214.htm" target="_blank" rel="noopener">↩</a></li>
+<li>All iOS Versions Jailbreak <a href="https://juejin.im/entry/5bec596b5188250fa83597b1#fnref:pangu" target="_blank" rel="noopener">↩</a></li>
+<li>MonkeyDev安装教程 <a href="https://juejin.im/entry/5bec596b5188250fa83597b1#fnref:monkeydev_install" target="_blank" rel="noopener">↩</a></li>
+<li>一条命令完成砸壳<a href="http://www.alonemonkey.com/2018/01/30/frida-ios-dump/" target="_blank" rel="noopener">↩</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前提"><span class="toc-number">1.</span> <span class="toc-text">前提</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#越狱"><span class="toc-number">1.1.</span> <span class="toc-text">越狱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工具"><span class="toc-number">1.1.1.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#教程"><span class="toc-number">1.1.2.</span> <span class="toc-text">教程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#砸壳"><span class="toc-number">1.2.</span> <span class="toc-text">砸壳</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工具"><span class="toc-number">1.2.1.</span> <span class="toc-text">准备工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-number">1.2.2.</span> <span class="toc-text">过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逆向"><span class="toc-number">1.3.</span> <span class="toc-text">逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MonkeyDev安装"><span class="toc-number">1.3.1.</span> <span class="toc-text">MonkeyDev安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卸载"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">卸载</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/05/Lake逆向之路.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&text=Lake逆向之路（持续更新中）"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&is_video=false&description=Lake逆向之路（持续更新中）"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Lake逆向之路（持续更新中）&body=Check out this article: http://yoursite.com/2018/12/05/Lake逆向之路.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&title=Lake逆向之路（持续更新中）"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/05/Lake逆向之路.html&name=Lake逆向之路（持续更新中）&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 BirdMichael
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+    <!-- Disqus Comments -->
+    <script type="text/javascript">
+        var disqus_shortname = 'birdmichael';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

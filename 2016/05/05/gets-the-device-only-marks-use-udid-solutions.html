@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="&amp;#x5728;&amp;#x73B0;&amp;#x5728;app&amp;#x6781;&amp;#x5EA6;&amp;#x5546;&amp;#x4E1A;&amp;#x5316;&amp;#x7684;&amp;#x65F6;&amp;#x4EE3;,&amp;#x83B7;&amp;#x53D6;&amp;#x7528;&amp;#x6237;&amp;#x8BBE;&amp;#x5907;&amp;#x7684;&amp;#x552F;&amp;#x4E00;&amp;#x6807;&amp;#x793A;&amp;#x5C24;&amp;#x5176;&amp;#x7">
+    <meta name="description" content="在现在app极度商业化的时代,获取用户设备的唯一标示尤其的重要. MAC地址在网络上用来区分设备的唯一性，接入网络的设备都有一个MAC地址，他们肯定都是不同的，是唯一的。一部iPhone上可能有多个MAC地址，包括WIFI的、SIM的等，但是iTouch和iPad上就有一个WIFI的，因此只需获取WIFI的MAC地址就好了，也就是en0的地址。直接把MAC地址拿出来使用是不安全的，因此对他们做一次">
 <meta property="og:type" content="article">
 <meta property="og:title" content="获取设备唯一标示, 使用UDID的解决方案">
 <meta property="og:url" content="http://yoursite.com/2016/05/05/gets-the-device-only-marks-use-udid-solutions.html">
 <meta property="og:site_name" content="BirdMichael">
-<meta property="og:description" content="&amp;#x5728;&amp;#x73B0;&amp;#x5728;app&amp;#x6781;&amp;#x5EA6;&amp;#x5546;&amp;#x4E1A;&amp;#x5316;&amp;#x7684;&amp;#x65F6;&amp;#x4EE3;,&amp;#x83B7;&amp;#x53D6;&amp;#x7528;&amp;#x6237;&amp;#x8BBE;&amp;#x5907;&amp;#x7684;&amp;#x552F;&amp;#x4E00;&amp;#x6807;&amp;#x793A;&amp;#x5C24;&amp;#x5176;&amp;#x7">
+<meta property="og:description" content="在现在app极度商业化的时代,获取用户设备的唯一标示尤其的重要. MAC地址在网络上用来区分设备的唯一性，接入网络的设备都有一个MAC地址，他们肯定都是不同的，是唯一的。一部iPhone上可能有多个MAC地址，包括WIFI的、SIM的等，但是iTouch和iPad上就有一个WIFI的，因此只需获取WIFI的MAC地址就好了，也就是en0的地址。直接把MAC地址拿出来使用是不安全的，因此对他们做一次">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="获取设备唯一标示, 使用UDID的解决方案">
-<meta name="twitter:description" content="&amp;#x5728;&amp;#x73B0;&amp;#x5728;app&amp;#x6781;&amp;#x5EA6;&amp;#x5546;&amp;#x4E1A;&amp;#x5316;&amp;#x7684;&amp;#x65F6;&amp;#x4EE3;,&amp;#x83B7;&amp;#x53D6;&amp;#x7528;&amp;#x6237;&amp;#x8BBE;&amp;#x5907;&amp;#x7684;&amp;#x552F;&amp;#x4E00;&amp;#x6807;&amp;#x793A;&amp;#x5C24;&amp;#x5176;&amp;#x7">
+<meta name="twitter:description" content="在现在app极度商业化的时代,获取用户设备的唯一标示尤其的重要. MAC地址在网络上用来区分设备的唯一性，接入网络的设备都有一个MAC地址，他们肯定都是不同的，是唯一的。一部iPhone上可能有多个MAC地址，包括WIFI的、SIM的等，但是iTouch和iPad上就有一个WIFI的，因此只需获取WIFI的MAC地址就好了，也就是en0的地址。直接把MAC地址拿出来使用是不安全的，因此对他们做一次">
     
     
         
@@ -127,9 +127,9 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>&#x5728;&#x73B0;&#x5728;app&#x6781;&#x5EA6;&#x5546;&#x4E1A;&#x5316;&#x7684;&#x65F6;&#x4EE3;,&#x83B7;&#x53D6;&#x7528;&#x6237;&#x8BBE;&#x5907;&#x7684;&#x552F;&#x4E00;&#x6807;&#x793A;&#x5C24;&#x5176;&#x7684;&#x91CD;&#x8981;.</p>
-<p>MAC&#x5730;&#x5740;&#x5728;&#x7F51;&#x7EDC;&#x4E0A;&#x7528;&#x6765;&#x533A;&#x5206;&#x8BBE;&#x5907;&#x7684;&#x552F;&#x4E00;&#x6027;&#xFF0C;&#x63A5;&#x5165;&#x7F51;&#x7EDC;&#x7684;&#x8BBE;&#x5907;&#x90FD;&#x6709;&#x4E00;&#x4E2A;MAC&#x5730;&#x5740;&#xFF0C;&#x4ED6;&#x4EEC;&#x80AF;&#x5B9A;&#x90FD;&#x662F;&#x4E0D;&#x540C;&#x7684;&#xFF0C;&#x662F;&#x552F;&#x4E00;&#x7684;&#x3002;&#x4E00;&#x90E8;iPhone&#x4E0A;&#x53EF;&#x80FD;&#x6709;&#x591A;&#x4E2A;MAC&#x5730;&#x5740;&#xFF0C;&#x5305;&#x62EC;WIFI&#x7684;&#x3001;SIM&#x7684;&#x7B49;&#xFF0C;&#x4F46;&#x662F;iTouch&#x548C;iPad&#x4E0A;&#x5C31;&#x6709;&#x4E00;&#x4E2A;WIFI&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x53EA;&#x9700;&#x83B7;&#x53D6;WIFI&#x7684;MAC&#x5730;&#x5740;&#x5C31;&#x597D;&#x4E86;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;en0&#x7684;&#x5730;&#x5740;&#x3002;&#x76F4;&#x63A5;&#x628A;MAC&#x5730;&#x5740;&#x62FF;&#x51FA;&#x6765;&#x4F7F;&#x7528;&#x662F;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x5BF9;&#x4ED6;&#x4EEC;&#x505A;&#x4E00;&#x6B21;hash&#x8BA1;&#x7B97;&#xFF0C;MD5&#x5C31;&#x662F;&#x4E00;&#x79CD;&#x54C8;&#x5E0C;&#x7B97;&#x6CD5;&#xFF0C;&#x5BF9;&#x5F97;&#x5230;&#x7684;MAC&#x5730;&#x5740;&#x8BA1;&#x7B97;&#x4E00;&#x4E0B;&#x4ED6;&#x7684;MD5&#x503C;&#x5C31;&#x597D;&#x4E86;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x6837;&#x62FF;&#x5230;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x8BBE;&#x5907;&#x552F;&#x4E00;&#x7684;ID&#x4E86;&#x3002;&#x6709;&#x65F6;&#x6211;&#x4EEC;&#x4E3A;&#x4E86;&#x533A;&#x5206;&#x8BBE;&#x5907;&#x4E0A;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x5230;&#x5E94;&#x7528;&#x7684;bundleID&#xFF0C;&#x5728;&#x548C;MAC&#x5730;&#x5740;&#x7ED3;&#x5408;&#x8D77;&#x6765;&#x8BA1;&#x7B97;&#x4E00;&#x4E0B;MD5&#xFF0C;&#x90A3;&#x4E48;&#x8BE5;&#x503C;&#x5C31;&#x662F;&#x53EF;&#x4EE5;&#x533A;&#x5206;&#x8BBE;&#x5907;&#x4E0A;&#x5E94;&#x7528;&#x7684;ID&#x4E86;&#x3002;</p>
-<p>&#xA0;</p>
+    <p>在现在app极度商业化的时代,获取用户设备的唯一标示尤其的重要.</p>
+<p>MAC地址在网络上用来区分设备的唯一性，接入网络的设备都有一个MAC地址，他们肯定都是不同的，是唯一的。一部iPhone上可能有多个MAC地址，包括WIFI的、SIM的等，但是iTouch和iPad上就有一个WIFI的，因此只需获取WIFI的MAC地址就好了，也就是en0的地址。直接把MAC地址拿出来使用是不安全的，因此对他们做一次hash计算，MD5就是一种哈希算法，对得到的MAC地址计算一下他的MD5值就好了，那么这样拿到的就是这个设备唯一的ID了。有时我们为了区分设备上的应用，也可以获取到应用的bundleID，在和MAC地址结合起来计算一下MD5，那么该值就是可以区分设备上应用的ID了。</p>
+<p>&nbsp;</p>
 
   </div>
 </article>

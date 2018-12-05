@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="&amp;#x53C2;&amp;#x8003;&amp;#xFF1A; http://stackoverflow.com/questions/3499704/difference-between-category-and-class-extension http://www.tutorialspoint.com/objective_c/objective_c_extensions.htm Category &amp;#x752">
+    <meta name="description" content="参考： http://stackoverflow.com/questions/3499704/difference-between-category-and-class-extension http://www.tutorialspoint.com/objective_c/objective_c_extensions.htm Category 用于给class及其subclass添加新的方法 有自">
 <meta name="keywords" content="Category,Extension">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Object-C Category和Extension的区别">
 <meta property="og:url" content="http://yoursite.com/2016/05/16/object-c-difference-between-category-and-extension.html">
 <meta property="og:site_name" content="BirdMichael">
-<meta property="og:description" content="&amp;#x53C2;&amp;#x8003;&amp;#xFF1A; http://stackoverflow.com/questions/3499704/difference-between-category-and-class-extension http://www.tutorialspoint.com/objective_c/objective_c_extensions.htm Category &amp;#x752">
+<meta property="og:description" content="参考： http://stackoverflow.com/questions/3499704/difference-between-category-and-class-extension http://www.tutorialspoint.com/objective_c/objective_c_extensions.htm Category 用于给class及其subclass添加新的方法 有自">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Object-C Category和Extension的区别">
-<meta name="twitter:description" content="&amp;#x53C2;&amp;#x8003;&amp;#xFF1A; http://stackoverflow.com/questions/3499704/difference-between-category-and-class-extension http://www.tutorialspoint.com/objective_c/objective_c_extensions.htm Category &amp;#x752">
+<meta name="twitter:description" content="参考： http://stackoverflow.com/questions/3499704/difference-between-category-and-class-extension http://www.tutorialspoint.com/objective_c/objective_c_extensions.htm Category 用于给class及其subclass添加新的方法 有自">
     
     
         
@@ -133,19 +133,19 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>&#x53C2;&#x8003;&#xFF1A;</p>
+    <p>参考：</p>
 <p><a href="http://stackoverflow.com/questions/3499704/difference-between-category-and-class-extension" target="_blank" rel="noopener">http://stackoverflow.com/questions/3499704/difference-between-category-and-class-extension</a></p>
 <p><a href="http://www.tutorialspoint.com/objective_c/objective_c_extensions.htm" target="_blank" rel="noopener">http://www.tutorialspoint.com/objective_c/objective_c_extensions.htm</a></p>
 <h1 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h1><ul>
-<li>&#x7528;&#x4E8E;&#x7ED9;class&#x53CA;&#x5176;subclass&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x65B9;&#x6CD5;</li>
-<li>&#x6709;&#x81EA;&#x5DF1;&#x5355;&#x72EC;&#x7684; .h &#x548C; .m &#x6587;&#x4EF6;</li>
-<li>&#x7528;&#x4E8E;&#x6DFB;&#x52A0;&#x65B0;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x4E0D;&#x80FD;&#x6DFB;&#x52A0;&#x65B0;&#x5C5E;&#x6027;&#xFF08;property&#xFF09;</li>
+<li>用于给class及其subclass添加新的方法</li>
+<li>有自己单独的 .h 和 .m 文件</li>
+<li>用于添加新方法，而不能添加新属性（property）</li>
 </ul>
 <h1 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h1><ul>
-<li>Extension&#x5E38;&#x88AB;&#x79F0;&#x4E3A;&#x662F;&#x533F;&#x540D;&#x7684;Category</li>
-<li>&#x7528;&#x4E8E;&#x7ED9;&#x7C7B;&#x6DFB;&#x52A0;&#x65B0;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x53EA;&#x4F5C;&#x7528;&#x4E8E;&#x539F;&#x59CB;&#x7C7B;&#xFF0C;&#x4E0D;&#x4F5C;&#x7528;&#x4E8E;subclass</li>
-<li>&#x53EA;&#x80FD;&#x5BF9;&#x6709;implementation&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x7C7B;&#x5199;Extension&#xFF0C;&#x5BF9;&#x4E8E;&#x6CA1;&#x6709;implementation&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x7C7B;&#xFF0C;&#x6BD4;&#x5982;framework class&#xFF0C;&#x662F;&#x4E0D;&#x53EF;&#x4EE5;&#x7684;</li>
-<li>Extension&#x53EF;&#x4EE5;&#x7ED9;&#x539F;&#x59CB;&#x7C7B;&#x6DFB;&#x52A0;&#x65B0;&#x65B9;&#x6CD5;&#xFF0C;&#x4EE5;&#x53CA;&#x65B0;&#x5C5E;&#x6027;</li>
+<li>Extension常被称为是匿名的Category</li>
+<li>用于给类添加新方法，但只作用于原始类，不作用于subclass</li>
+<li>只能对有implementation源代码的类写Extension，对于没有implementation源代码的类，比如framework class，是不可以的</li>
+<li>Extension可以给原始类添加新方法，以及新属性</li>
 </ul>
 
   </div>

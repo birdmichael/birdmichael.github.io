@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="&amp;#x5F88;&amp;#x591A;&amp;#x9875;&amp;#x9762;&amp;#x5176;&amp;#x5B9E;&amp;#x5C31;&amp;#x662F;&amp;#x8FD9;&amp;#x79CD;&amp;#x5C55;&amp;#x793A;&amp;#x7ED3;&amp;#x679C;,&amp;#x901A;&amp;#x5E38;&amp;#x9700;&amp;#x8981;imageView,textLabel,detailTextlabel,&amp;#x800C;UITableView">
+    <meta name="description" content="很多页面其实就是这种展示结果,通常需要imageView,textLabel,detailTextlabel,而UITableViewCell本身提供了方便的自动布局(当有图片和没图片时,textLabel和detailLabel的位置会左右自动调整). 但是图片的大小却是没有办法固定的(直接设置imageView.frame是无法固定imageView的大小的),那么一般来说解决这个问题的办法有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="偷懒固定UITableViewCell 中的 imageView 大小">
 <meta property="og:url" content="http://yoursite.com/2015/10/07/lazy-fix-uitableviewcell-imageview.html">
 <meta property="og:site_name" content="BirdMichael">
-<meta property="og:description" content="&amp;#x5F88;&amp;#x591A;&amp;#x9875;&amp;#x9762;&amp;#x5176;&amp;#x5B9E;&amp;#x5C31;&amp;#x662F;&amp;#x8FD9;&amp;#x79CD;&amp;#x5C55;&amp;#x793A;&amp;#x7ED3;&amp;#x679C;,&amp;#x901A;&amp;#x5E38;&amp;#x9700;&amp;#x8981;imageView,textLabel,detailTextlabel,&amp;#x800C;UITableView">
+<meta property="og:description" content="很多页面其实就是这种展示结果,通常需要imageView,textLabel,detailTextlabel,而UITableViewCell本身提供了方便的自动布局(当有图片和没图片时,textLabel和detailLabel的位置会左右自动调整). 但是图片的大小却是没有办法固定的(直接设置imageView.frame是无法固定imageView的大小的),那么一般来说解决这个问题的办法有">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-07-25T06:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="偷懒固定UITableViewCell 中的 imageView 大小">
-<meta name="twitter:description" content="&amp;#x5F88;&amp;#x591A;&amp;#x9875;&amp;#x9762;&amp;#x5176;&amp;#x5B9E;&amp;#x5C31;&amp;#x662F;&amp;#x8FD9;&amp;#x79CD;&amp;#x5C55;&amp;#x793A;&amp;#x7ED3;&amp;#x679C;,&amp;#x901A;&amp;#x5E38;&amp;#x9700;&amp;#x8981;imageView,textLabel,detailTextlabel,&amp;#x800C;UITableView">
+<meta name="twitter:description" content="很多页面其实就是这种展示结果,通常需要imageView,textLabel,detailTextlabel,而UITableViewCell本身提供了方便的自动布局(当有图片和没图片时,textLabel和detailLabel的位置会左右自动调整). 但是图片的大小却是没有办法固定的(直接设置imageView.frame是无法固定imageView的大小的),那么一般来说解决这个问题的办法有">
     
     
         
@@ -127,23 +127,23 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>&#x5F88;&#x591A;&#x9875;&#x9762;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x8FD9;&#x79CD;&#x5C55;&#x793A;&#x7ED3;&#x679C;,&#x901A;&#x5E38;&#x9700;&#x8981;imageView,textLabel,detailTextlabel,&#x800C;UITableViewCell&#x672C;&#x8EAB;&#x63D0;&#x4F9B;&#x4E86;&#x65B9;&#x4FBF;&#x7684;&#x81EA;&#x52A8;&#x5E03;&#x5C40;(&#x5F53;&#x6709;&#x56FE;&#x7247;&#x548C;&#x6CA1;&#x56FE;&#x7247;&#x65F6;,textLabel&#x548C;detailLabel&#x7684;&#x4F4D;&#x7F6E;&#x4F1A;&#x5DE6;&#x53F3;&#x81EA;&#x52A8;&#x8C03;&#x6574;). &#x4F46;&#x662F;&#x56FE;&#x7247;&#x7684;&#x5927;&#x5C0F;&#x5374;&#x662F;&#x6CA1;&#x6709;&#x529E;&#x6CD5;&#x56FA;&#x5B9A;&#x7684;(&#x76F4;&#x63A5;&#x8BBE;&#x7F6E;imageView.frame&#x662F;&#x65E0;&#x6CD5;&#x56FA;&#x5B9A;imageView&#x7684;&#x5927;&#x5C0F;&#x7684;),&#x90A3;&#x4E48;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x7684;&#x529E;&#x6CD5;&#x6709;&#x4E24;&#x79CD;:</p>
+    <p>很多页面其实就是这种展示结果,通常需要imageView,textLabel,detailTextlabel,而UITableViewCell本身提供了方便的自动布局(当有图片和没图片时,textLabel和detailLabel的位置会左右自动调整). 但是图片的大小却是没有办法固定的(直接设置imageView.frame是无法固定imageView的大小的),那么一般来说解决这个问题的办法有两种:</p>
 <ul>
-<li>&#x56FA;&#x5B9A;&#x663E;&#x793A;&#x56FE;&#x7247;&#x7684;&#x5927;&#x5C0F;(&#x5305;&#x62EC;PlaceHolder)</li>
-<li>&#x81EA;&#x5B9A;&#x4E49;tableViewCell,&#x6DFB;&#x52A0;&#x81EA;&#x5B9A;&#x4E49;&#x7684;imageView,textLabel&#x548C;detailTextLabel<br>&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;,&#x4F46;&#x662F;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x5176;&#x5B9E;&#x90FD;&#x633A;&#x9EBB;&#x70E6;&#x7684;,&#x80FD;&#x5426;&#x76F4;&#x63A5;&#x56FA;&#x5B9A;imageView&#x7684;&#x5927;&#x5C0F;&#x5462;? &#x65B9;&#x6CD5;&#x662F;&#x6709;&#x7684;,&#x53EA;&#x9700;&#x8981;&#x91CD;&#x8F7D;layoutSubviews&#x5373;&#x53EF;</li>
+<li>固定显示图片的大小(包括PlaceHolder)</li>
+<li>自定义tableViewCell,添加自定义的imageView,textLabel和detailTextLabel<br>这两种方式都可以解决这个问题,但是这两种方式其实都挺麻烦的,能否直接固定imageView的大小呢? 方法是有的,只需要重载layoutSubviews即可</li>
 </ul>
-<p>&#xA0;</p>
-<p>&#xA0;</p>
-<p><pre class="lang:objc decode:true">//&#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;Cell<br>@interface MMCell : UITableViewCell</pre></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><pre class="lang:objc decode:true">//自定义一个Cell<br>@interface MMCell : UITableViewCell</pre></p>
 <p>@end</p>
 <p>@implementation MMCell</p>
-<p>//&#x91CD;&#x8F7D;layoutSubviews</p>
+<p>//重载layoutSubviews</p>
 <ul>
-<li>(void)layoutSubviews<br>{<br>  UIImage *img = self.imageView.image;<br>  self.imageView.image = [UIImage imageName:@&#x201D;res/PlaceHolder.png&#x201D;];<br>  [super layoutSubviews];<br>  self.imageView.image = img;<br>}</li>
+<li>(void)layoutSubviews<br>{<br>  UIImage *img = self.imageView.image;<br>  self.imageView.image = [UIImage imageName:@”res/PlaceHolder.png”];<br>  [super layoutSubviews];<br>  self.imageView.image = img;<br>}</li>
 </ul>
-<p>@end<br>&#xA0;</p>
-<p>&#x8FD9;&#x6837;,&#x6211;&#x4EEC;&#x53EA;&#x8981;&#x4F7F;&#x7528;MMCell&#x5C31;&#x53EF;&#x4EE5;&#x56FA;&#x5B9A;imageView&#x7684;&#x5927;&#x5C0F;&#x4E86;,&#x4E14;&#x5927;&#x5C0F;&#x4E3A;PlaceHolder.png&#x7684;&#x5927;&#x5C0F;(&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x8FD9;&#x79CD;&#x9875;&#x9762;&#x90FD;&#x4F1A;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;PlaceHolder.png&#x6765;&#x663E;&#x793A;&#x9ED8;&#x8BA4;&#x56FE;&#x7247;).</p>
-<p>&#x539F;&#x7406;&#x662F;&#x5728;UItableVeiw&#x7684;layoutSubviews&#x8C03;&#x7528;&#x65F6;,&#x4F1A;&#x6839;&#x636E;imageView.image&#x7684;&#x5927;&#x5C0F;&#x6765;&#x8C03;&#x6574;imageView, textLabel, detailTextLabel&#x7684;&#x4F4D;&#x7F6E;,&#x5728;&#x6B64;&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x5148;&#x5C06;imageView.image&#x8BBE;&#x7F6E;&#x4E3A;PlaceHolder.png&#x56FE;&#x7247;,&#x7B49;&#x5F85;&#x91CD;&#x65B0;&#x5E03;&#x5C40;&#x5B8C;&#x540E;&#x518D;&#x5C06;&#x539F;&#x672C;&#x7684;&#x56FE;&#x7247;&#x8BBE;&#x7F6E;&#x56DE;&#x53BB;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</p>
+<p>@end<br>&nbsp;</p>
+<p>这样,我们只要使用MMCell就可以固定imageView的大小了,且大小为PlaceHolder.png的大小(一般来说这种页面都会使用一个PlaceHolder.png来显示默认图片).</p>
+<p>原理是在UItableVeiw的layoutSubviews调用时,会根据imageView.image的大小来调整imageView, textLabel, detailTextLabel的位置,在此之前我们先将imageView.image设置为PlaceHolder.png图片,等待重新布局完后再将原本的图片设置回去就可以了</p>
 
   </div>
 </article>
