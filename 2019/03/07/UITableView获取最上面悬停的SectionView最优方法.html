@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="起因是项目有这样一个设计，如图所示：  在悬浮在最上面的SectionHeaderView有一个阴影的特殊处理，而其他其他没有悬浮的SectionHeaderView则是没有阴影处理的，于是开始探索之旅。 不妥方法一最开始的想法是在TableView内部镶嵌一个自定义View制作一个阴影的图，通过监听ContentOffset，来创建一个悬浮的阴影。 因为层级关系，SectionHeaderVie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITableView获取最上面悬停的SectionView最优方法">
+<meta property="og:url" content="http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html">
+<meta property="og:site_name" content="BirdMichael">
+<meta property="og:description" content="起因是项目有这样一个设计，如图所示：  在悬浮在最上面的SectionHeaderView有一个阴影的特殊处理，而其他其他没有悬浮的SectionHeaderView则是没有阴影处理的，于是开始探索之旅。 不妥方法一最开始的想法是在TableView内部镶嵌一个自定义View制作一个阴影的图，通过监听ContentOffset，来创建一个悬浮的阴影。 因为层级关系，SectionHeaderVie">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法/WechatIMG216.jpeg">
+<meta property="og:updated_time" content="2019-03-07T11:05:08.186Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITableView获取最上面悬停的SectionView最优方法">
+<meta name="twitter:description" content="起因是项目有这样一个设计，如图所示：  在悬浮在最上面的SectionHeaderView有一个阴影的特殊处理，而其他其他没有悬浮的SectionHeaderView则是没有阴影处理的，于是开始探索之旅。 不妥方法一最开始的想法是在TableView内部镶嵌一个自定义View制作一个阴影的图，通过监听ContentOffset，来创建一个悬浮的阴影。 因为层级关系，SectionHeaderVie">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法/WechatIMG216.jpeg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>UITableView获取最上面悬停的SectionView最优方法</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/12/05/Lake逆向之路.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href=/ ><i class="fa fa-home" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">首 页</span>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&text=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&is_video=false&description=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UITableView获取最上面悬停的SectionView最优方法&body=Check out this article: http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&name=UITableView获取最上面悬停的SectionView最优方法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#不妥方法一"><span class="toc-number">1.</span> <span class="toc-text">不妥方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不妥方法二"><span class="toc-number">2.</span> <span class="toc-text">不妥方法二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同方法三"><span class="toc-number">3.</span> <span class="toc-text">不同方法三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐做法："><span class="toc-number">4.</span> <span class="toc-text">推荐做法：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        UITableView获取最上面悬停的SectionView最优方法
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BirdMichael</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-03-07T10:20:41.000Z" itemprop="datePublished">2019-03-07</time>
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>起因是项目有这样一个设计，如图所示：</p>
+<p><img src="UITableView获取最上面悬停的SectionView最优方法/WechatIMG216.jpeg" alt=""></p>
+<p>在悬浮在最上面的<code>SectionHeaderView</code>有一个阴影的特殊处理，而其他其他没有悬浮的<code>SectionHeaderView</code>则是没有阴影处理的，于是开始探索之旅。</p>
+<h3 id="不妥方法一"><a href="#不妥方法一" class="headerlink" title="不妥方法一"></a>不妥方法一</h3><p>最开始的想法是在<code>TableView</code>内部镶嵌一个自定义<code>View</code>制作一个阴影的图，通过监听<code>ContentOffset</code>，来创建一个悬浮的阴影。</p>
+<p>因为层级关系，<code>SectionHeaderView</code>会自动在最顶部，还需要通过代码切换层级。</p>
+<p>虽然可以完成初级效果。但是在表头切换的时候，它会永远的存在，会导致表头从阴影里穿过的诡异效果。</p>
+<p>–&gt; 放弃！</p>
+<h3 id="不妥方法二"><a href="#不妥方法二" class="headerlink" title="不妥方法二"></a>不妥方法二</h3><p>查了一下，发现了这种做法：监听滑动时间，通过计算<code>visibleCells</code>里面最小的cell，来获取他所属cellSection，再进行调整。核心代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (void)scrollViewDidScroll:(UIScrollView *)scrollView&#123;</span><br><span class="line">    if (scrollView == self.tableView) &#123;</span><br><span class="line">        NSArray &lt;UITableViewCell *&gt; *cellArray = [self.tableView  visibleCells];</span><br><span class="line">        //cell的section的最小值</span><br><span class="line">        long cellSectionMINCount = LONG_MAX;</span><br><span class="line">        for (int i = 0; i &lt; cellArray.count; i++) &#123;</span><br><span class="line">            UITableViewCell *cell = cellArray[i];</span><br><span class="line">            long cellSection = [self.tableView indexPathForCell:cell].section;</span><br><span class="line">            if (cellSection &lt; cellSectionMINCount) &#123;</span><br><span class="line">                cellSectionMINCount = cellSection;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        _currentTopSectionViewCount = cellSectionMINCount;</span><br><span class="line">        NSLog(@&quot;当前悬停的组头是:%ld&quot;,_currentTopSectionViewCount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">--------------------- </span><br><span class="line">作者：MeteoriteMan </span><br><span class="line">来源：CSDN </span><br><span class="line">原文：https://blog.csdn.net/qq_18683985/article/details/80082282 </span><br><span class="line">版权声明：本文为博主原创文章，转载请附上博文链接！</span><br></pre></td></tr></table></figure>
+<p>再不考虑系统能力的情况下，个人感觉这个运算级是比较大的。首先在互动的每次回调去拿<code>visibleCells</code>进行一次遍历查询，然后拿到最小值。</p>
+<p>–&gt; 还行！</p>
+<h3 id="不同方法三"><a href="#不同方法三" class="headerlink" title="不同方法三"></a>不同方法三</h3><p>也是监听滑动事件，同时需要去关心：当前组头，是上拉还是下滑，是否是第一次加载，滚动的偏移量。</p>
+<p><a href="https://www.cnblogs.com/piaojin/p/5945095.html" target="_blank" rel="noopener">https://www.cnblogs.com/piaojin/p/5945095.html</a></p>
+<ul>
+<li><code>(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section</code>组头将要出现的时候系统会调用；</li>
+<li><code>(void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section</code> 组头出现的时候系统会调用；<br>利用以上两个方法可以判断出组头被顶出和组头又下拉回来事件，还有其他的组头相关动作可以监听需自己去编写。<br><code>_currentSection</code>：当前显示的组头<br><code>_isUpScroll</code>：是否是上拉滚动<br><code>_isFirstLoad</code>：是否第一次加载tableView<br><code>_oldY</code>:滚动的偏移量</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section&#123;</span><br><span class="line">    if(!_isUpScroll &amp;&amp; (_currentSection - section) == 1)&#123;</span><br><span class="line">       //最上面组头（不一定是第一个组头，指最近刚被顶出去的组头）又被拉回来</span><br><span class="line">        _currentSection = section;</span><br><span class="line">        NSLog(@&quot;willDisplayHeaderView显示第%ld组&quot;,(long)section);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section&#123;</span><br><span class="line">    if(!_isFirstLoad &amp;&amp; _isUpScroll)&#123;</span><br><span class="line">       _currentSection = section + 1;</span><br><span class="line">        //最上面的组头被顶出去</span><br><span class="line">        NSLog(@&quot;didEndDisplayingHeaderView显示第%ld组&quot;,(long)section + 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">- (void)scrollViewDidScroll:(UIScrollView *)scrollView&#123;</span><br><span class="line"></span><br><span class="line">    if ([scrollView isEqual: self.tableView]) &#123;</span><br><span class="line"></span><br><span class="line">        if (self.tableView.contentOffset.y &gt; _oldY) &#123;</span><br><span class="line">            // 上滑</span><br><span class="line">            _isUpScroll = YES;</span><br><span class="line">            NSLog(@&quot;上滑&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            // 下滑</span><br><span class="line">            _isUpScroll = NO;</span><br><span class="line">            NSLog(@&quot;下滑&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        _isFirstLoad = NO;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView&#123;</span><br><span class="line">    // 获取开始拖拽时tableview偏移量</span><br><span class="line">    _oldY = self.tableView.contentOffset.y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>个人感觉：1.需要关注的点过多，比如是上划还是下滑。2.代码相对比较分散</p>
+<p>–&gt; 较优！</p>
+<h3 id="推荐做法："><a href="#推荐做法：" class="headerlink" title="推荐做法："></a>推荐做法：</h3><p>灵感启发来源于做法二，他是通过<code>visibleCells</code>，那我为什么不可以自己维护一个<code>visibleSectionHeaders</code>，通过<code>(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section</code>来添加，<code>(void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section</code>来减少。</p>
+<p>然后KVO数组的改变，来遍历<code>visibleCells</code>寻找最少顶部的<code>SectionHeaderView</code>。</p>
+<p>1.定义字典<code>key</code>，创建<code>visibleSectionHeaders</code>字典。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef NSString * BMVisibleSectionDictionaryKey NS_EXTENSIBLE_STRING_ENUM;</span><br><span class="line">BMVisibleSectionDictionaryKey kVisibleSectionDictionarySectionKey = @&quot;kVisibleSectionDictionarySectionKey&quot;;</span><br><span class="line">BMVisibleSectionDictionaryKey kVisibleSectionDictionaryViewKey = @&quot;kVisibleSectionDictionaryViewKey&quot;;</span><br><span class="line"></span><br><span class="line">@interface GCContactCertifiedPersonTableView ()&lt;UITableViewDelegate, UITableViewDataSource&gt;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) NSArray &lt;NSDictionary *&gt; *visibleSectionHeaders;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>2.通过SectionHeaderView的显示与不显示维护数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section</span><br><span class="line">&#123;</span><br><span class="line">    NSMutableArray *tempArray = [self.visibleSectionHeaders mutableCopy];</span><br><span class="line">    [tempArray addObject:@&#123;kVisibleSectionDictionarySectionKey:@(section),</span><br><span class="line">                           kVisibleSectionDictionaryViewKey:view,</span><br><span class="line">                           &#125;];</span><br><span class="line">    self.visibleSectionHeaders = [NSArray arrayWithArray:tempArray];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(nonnull UIView *)view forSection:(NSInteger)section</span><br><span class="line">&#123;</span><br><span class="line">    NSMutableArray *tempArray = [self.visibleSectionHeaders mutableCopy];</span><br><span class="line">    [tempArray removeObject:@&#123;kVisibleSectionDictionarySectionKey:@(section),</span><br><span class="line">                              kVisibleSectionDictionaryViewKey:view,</span><br><span class="line">                              &#125;];</span><br><span class="line">    self.visibleSectionHeaders = [NSArray arrayWithArray:tempArray];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个有一个小问题，因为后面采用的KVO，但是<code>NSMutableArray</code>并不支持数组内部成员变化的监听。所以这里替换成<code>NSArray</code>。</p>
+<p>3.KVO<code>visibleSectionHeaders</code>数组。做自己的自定义操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@weakify(self)</span><br><span class="line">    [RACObserve(self, visibleSectionHeaders) subscribeNext:^(id  _Nullable x) &#123;</span><br><span class="line">        @strongify(self)</span><br><span class="line">        // 寻找最顶部</span><br><span class="line">        NSArray &lt;NSDictionary *&gt; *visibleSectionHeaders = x;</span><br><span class="line">        // 需要最小section</span><br><span class="line">        NSInteger minSectionIndex = NSIntegerMax;</span><br><span class="line">        NSDictionary *minSectionDic = @&#123;&#125;;</span><br><span class="line">        for (NSDictionary *visibleSectionHeaderDic in visibleSectionHeaders) &#123;</span><br><span class="line">            if ([visibleSectionHeaderDic[kVisibleSectionDictionarySectionKey] integerValue] &lt; minSectionIndex) &#123;</span><br><span class="line">                minSectionDic = visibleSectionHeaderDic;</span><br><span class="line">                minSectionIndex = [visibleSectionHeaderDic[kVisibleSectionDictionarySectionKey] integerValue];</span><br><span class="line">            &#125;</span><br><span class="line">            // 复原下面操作</span><br><span class="line">            UITableViewHeaderFooterView *otherSectionView = visibleSectionHeaderDic[kVisibleSectionDictionaryViewKey];</span><br><span class="line">            otherSectionView.textLabel.text = self.keys[[visibleSectionHeaderDic[kVisibleSectionDictionarySectionKey] integerValue]];</span><br><span class="line">        &#125;</span><br><span class="line">        // 获取view 执行操作</span><br><span class="line">        UITableViewHeaderFooterView *minSectionView = minSectionDic[kVisibleSectionDictionaryViewKey];</span><br><span class="line">        minSectionView.textLabel.text = @&quot;z&quot;;</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+<p>这里因为demo原因，做的操作是是最顶上的为字母<code>z</code>，其他复原为正常。</p>
+<p>这样做相对方法二来说，计算级少了很多，我只关心<code>visibleSectionHeaders</code>的变化，理因只在<code>visibleSectionHeaders</code>寻找最小。相对于方法三来说，代码更加聚合。没有引入其他多余的变量，没有其他多余的事件需要关系。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#不妥方法一"><span class="toc-number">1.</span> <span class="toc-text">不妥方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不妥方法二"><span class="toc-number">2.</span> <span class="toc-text">不妥方法二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同方法三"><span class="toc-number">3.</span> <span class="toc-text">不同方法三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐做法："><span class="toc-number">4.</span> <span class="toc-text">推荐做法：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&text=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&is_video=false&description=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UITableView获取最上面悬停的SectionView最优方法&body=Check out this article: http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&title=UITableView获取最上面悬停的SectionView最优方法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/03/07/UITableView获取最上面悬停的SectionView最优方法.html&name=UITableView获取最上面悬停的SectionView最优方法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="home"><a class="icon" href=/><i class="fas fa-home fa-lg" aria-hidden="true"></i> HOME</a></a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 BirdMichael
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'birdmichael';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
